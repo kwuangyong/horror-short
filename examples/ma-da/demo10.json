@@ -1,0 +1,121 @@
+{
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "output": "build/ma-da-demo-10s.mp4",
+ "hud": {
+  "label": "GHOST MAP · THE MA DA"
+ },
+ "music": "build/audio/drone.wav",
+ "music_volume": 0.6,
+ "captions": "build/captions10.ass",
+ "sfx": [
+  {
+   "file": "build/audio/impact.wav",
+   "at": 0.0,
+   "volume": 1.0
+  },
+  {
+   "file": "build/audio/impact.wav",
+   "at": 4.6,
+   "volume": 0.7
+  },
+  {
+   "file": "build/audio/heartbeat.wav",
+   "at": 7.0,
+   "volume": 1.0
+  },
+  {
+   "file": "build/audio/impact.wav",
+   "at": 8.6,
+   "volume": 1.2
+  }
+ ],
+ "scenes": [
+  {
+   "image": "build/cards/hook10.png",
+   "duration": 3.0,
+   "zoom": [
+    1.15,
+    1.0
+   ],
+   "shake": 8,
+   "flash": true,
+   "hud": false
+  },
+  {
+   "image": "build/art/house.png",
+   "duration": 1.6,
+   "zoom": [
+    1.0,
+    1.1
+   ],
+   "clock": "2:47 AM"
+  },
+  {
+   "image": "build/art/empty-mat.png",
+   "duration": 1.4,
+   "zoom": [
+    1.1,
+    1.22
+   ],
+   "shake": 14,
+   "clock": "2:58 AM"
+  },
+  {
+   "image": "build/art/wet-kid.png",
+   "duration": 1.0,
+   "zoom": [
+    1.0,
+    1.15
+   ]
+  },
+  {
+   "image": "build/cards/choice10_3.png",
+   "duration": 0.55,
+   "zoom": [
+    1.0,
+    1.0
+   ],
+   "clock": "2:59 AM"
+  },
+  {
+   "image": "build/cards/choice10_2.png",
+   "duration": 0.55,
+   "zoom": [
+    1.0,
+    1.0
+   ],
+   "shake": 4
+  },
+  {
+   "image": "build/cards/choice10_1.png",
+   "duration": 0.5,
+   "zoom": [
+    1.0,
+    1.0
+   ],
+   "shake": 7
+  },
+  {
+   "image": "build/art/face.png",
+   "duration": 0.75,
+   "zoom": [
+    1.25,
+    1.5
+   ],
+   "shake": 22,
+   "flash": true,
+   "hud": false
+  },
+  {
+   "image": "build/cards/end10.png",
+   "duration": 0.65,
+   "zoom": [
+    1.0,
+    1.05
+   ],
+   "hud": false
+  }
+ ]
+}

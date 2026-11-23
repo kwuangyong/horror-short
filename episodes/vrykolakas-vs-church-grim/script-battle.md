@@ -143,7 +143,7 @@
 
 > Grim *pounces*. Jaws on the neck.
 
-[UI] Chữ lớn **K.O.** · VRYKOLAKAS 0% · **WINNER: THE KID + GRIM** (KID 20%, GRIM 30%)
+[UI] Chữ lớn **K.O.** · VRYKOLAKAS 0% · **WINNER: THE KID + GRIM** (KID 20%, GRIM 75%)
 
 > Grim ends it. The kid *wins*.
 
@@ -176,4 +176,5 @@
 ## Changelog
 - v1: bản battle đầu tiên (độc lập với script.md).
 - v1.1 (Boss): hook freeze-frame khớp đúng khoảnh khắc Round 2; bỏ câu meta "His health bar shrinks".
+- v2.1 (Boss): K.O. GRIM 30% → 75% (không có đòn nào làm Grim mất máu sau Round 2).
 - v2: THE HUMAN → THE KID (đại từ the kid/they), bối cảnh rừng đêm + nghĩa địa cũ tường đổ. Thêm lý do vào rừng (đom đóm), tiền đề "Every night, the kid sneaks into the woods." Bỏ xẻng và máu: Round 3 bé ném tỏi vào mặt + dùng đèn pin nhử vào đất Grim, Grim kết liễu. Giữ: hook = khung Round 2, 3 hiệp, giới hạn "chỉ trong tường", cài "Only fire ends it" ~0:19 (thêm "Matches in the other"), CTA "Grandma said fire". 205 → 221 từ.

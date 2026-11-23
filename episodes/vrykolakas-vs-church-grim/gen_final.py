@@ -24,16 +24,16 @@ def hud(name, kid=None, grim=None, vry=None, ghost=None, blink=False):
 # ---------------------------------------------------------------- cards (over REAL art)
 def c_hooktext():
     img = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(img)
-    d.rounded_rectangle((80, 470, W - 80, 800), 20, fill=(8, 8, 12, 200), outline=RED + (255,), width=8)
-    ctext(d, 480, "WHO", F(140), WHITE); ctext(d, 625, "SURVIVES?", F(140), RED)
+    d.rounded_rectangle((120, 350, W - 120, 640), 20, fill=(8, 8, 12, 185), outline=RED + (255,), width=8)
+    ctext(d, 355, "WHO", F(120), WHITE); ctext(d, 480, "SURVIVES?", F(120), RED)
     img.save(f"{B}/img/hooktext.png"); return "build/final/img/hooktext.png"
 def c_kid():
     img = art("card-the-kid").convert("RGBA")
     ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(ov)
-    d.rounded_rectangle((120, 150, W - 120, 440), 20, fill=(10, 12, 20, 215), outline=(60, 200, 110, 255), width=6)
+    d.rounded_rectangle((150, 150, W - 150, 330), 20, fill=(10, 12, 20, 215), outline=(60, 200, 110, 255), width=6)
     img.alpha_composite(ov); img = img.convert("RGB"); d = ImageDraw.Draw(img)
-    ctext(d, 160, "CHARACTER", F(40), (60, 200, 110)); ctext(d, 215, "THE KID", F(130), WHITE)
-    ctext(d, 350, "HP 100%", F(48), WHITE); d.rectangle((200, 415, W - 200, 428), fill=(60, 200, 110))
+    ctext(d, 158, "CHARACTER  ·  HP 100%", F(36), (60, 200, 110)); ctext(d, 200, "THE KID", F(105), WHITE)
+    d.rectangle((200, 312, W - 200, 322), fill=(60, 200, 110))
     return put("kidcard", img)
 def c_fighter(spin, n, name, sub, col):
     img = art(spin).convert("RGBA"); ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -45,7 +45,7 @@ def c_fighter(spin, n, name, sub, col):
 def c_vs(on, step):
     img = art("vs-triangle").convert("RGBA"); d = ImageDraw.Draw(img)
     img = img.convert("RGB"); d = ImageDraw.Draw(img)
-    ctext(d, 170, "VRYKOLAKAS", F(58), (190, 225, 190), x=40); ctext(d, 170, "GRIM", F(58), WHITE, x=W - 40 - d.textlength("GRIM", font=F(58)))
+    ctext(d, 215, "VRYKOLAKAS", F(52), (190, 225, 190), x=40); ctext(d, 215, "GRIM", F(52), WHITE, x=W - 40 - d.textlength("GRIM", font=F(52)))
     # fill the 3 empty bars (y 1150/1190/1230, x 260-820): red from centre-left (Vrykolakas), white to right (Grim)
     for y, lab, a, b in ((1150, "POWER", 80, 70), (1190, "SPEED", 60, 85), (1230, "LORE", 95, 70)):
         if step < 1: break
@@ -54,9 +54,9 @@ def c_vs(on, step):
         d.rounded_rectangle((cx + 2, y + 5, 814, y + 19), 6, fill=(30, 30, 38))
         d.rounded_rectangle((cx - 2 - (cx - 270) * a / 100, y + 5, cx - 2, y + 19), 6, fill=RED)
         d.rounded_rectangle((cx + 2, y + 5, cx + 2 + (810 - cx) * b / 100, y + 19), 6, fill=(235, 235, 240))
-        ctext(d, y - 40, lab, F(26), (200, 200, 210), x=(W - d.textlength(lab, font=F(26))) / 2)
-    img = panel(img, (110, 860, W - 110, 1010), RED if on else WHITE, fill=(10, 10, 16, 225)); d = ImageDraw.Draw(img)
-    ctext(d, 888, "WHO WINS? COMMENT", fit(d, "WHO WINS? COMMENT", W - 280, 84), RED if on else WHITE)
+        ctext(d, y - 2, lab, F(24), (200, 200, 210), x=250 - d.textlength(lab, font=F(24)))
+    img = panel(img, (110, 1440, W - 110, 1590), RED if on else WHITE, fill=(10, 10, 16, 225)); d = ImageDraw.Draw(img)
+    ctext(d, 1468, "WHO WINS? COMMENT", fit(d, "WHO WINS? COMMENT", W - 280, 84), RED if on else WHITE)
     return put(f"vs_{'on' if on else 'off'}{step}", img)
 def card_round(n, name):
     img = dark(name); img = panel(img, (80, 540, W - 80, 960), RED, width=10); d = ImageDraw.Draw(img)
@@ -74,10 +74,10 @@ def card_limit():
     return put("limit", img)
 def card_ko():
     img = art("ko-winner-kid-grim").convert("RGBA"); ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(ov)
-    d.rounded_rectangle((70, 230, W - 70, 700), 20, fill=(8, 8, 12, 205), outline=RED + (255,), width=10)
+    d.rounded_rectangle((70, 340, W - 70, 640), 20, fill=(8, 8, 12, 195), outline=RED + (255,), width=10)
     img.alpha_composite(ov); img = img.convert("RGB"); d = ImageDraw.Draw(img)
-    ctext(d, 235, "K.O.", F(290), RED); ctext(d, 540, "WINNER", F(52), (205, 205, 215))
-    ctext(d, 600, "THE KID + GRIM", fit(d, "THE KID + GRIM", W - 220, 96), WHITE)
+    ctext(d, 335, "K.O.", F(210), RED)
+    ctext(d, 555, "WINNER: THE KID + GRIM", fit(d, "WINNER: THE KID + GRIM", W - 200, 58), WHITE)
     return put("ko", img)
 def card_cta(txt1, txt2, name):
     img = art("cta-whos-next").convert("RGBA"); ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))

@@ -10,7 +10,7 @@
  "music": "audio/music.wav",
  "music_volume": 0.11,
  "captions": "audio/captions.ass",
- "loudness": -14,
+ "loudness": -13.6,
  "scenes": [
   {
    "image": "art/b-hook-freeze-grim-stuck_bg.png",
@@ -43,10 +43,9 @@
    "image": "build/final/img/kidcard.png",
    "zoom": [
     1.0,
-    1.08
+    1.04
    ],
    "flash": true,
-   "overlay": "build/final/img/hud_k100.png",
    "duration": 4.0,
    "_t": 3.19
   },

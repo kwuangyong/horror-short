@@ -13,7 +13,7 @@ tm = lambda e, **kw: [dict(file=e, **kw)]
 
 add(0.0, **bgfg("hook-freeze-grim-stuck"), zoom=[1.3, 1.0], fg_zoom=[1.36, 1.08], shake=16, shake_win=[0, 1.6], flash=True,
     overlay=HU["h0"], overlays_timed=tm(I["hooktext"], enable="gte(t,1.5)"))
-add(3.19, image=I["kidcard"], zoom=[1.0, 1.08], flash=True, overlay=HU["k100"])
+add(3.19, image=I["kidcard"], zoom=[1.0, 1.04], flash=True)
 # spin 1 (fast blurred pan) -> lock + FIGHTER 1 card on "Vrykolakas"
 add(7.2, image=I["f1"].replace("fighter1", "spinblur1"), zoom=[1.55, 1.55], pan="down", overlay=HU["k100"])
 add(7.65, image=I["f1"].replace("fighter1", "spinblur1"), zoom=[1.55, 1.55], pan="up", overlay=HU["k100"])
@@ -72,6 +72,6 @@ for k, (t, sc) in enumerate(T):
 proj = dict(width=1080, height=1920, fps=30, output="build/final/battle-final.mp4",
             hud=dict(label="BATTLE SPIN · VRYKOLAKAS vs CHURCH GRIM"),
             voice="audio/voice_dark.wav", music="audio/music.wav", music_volume=0.11,
-            captions="audio/captions.ass", loudness=-14, scenes=scenes)
+            captions="audio/captions.ass", loudness=-13.6, scenes=scenes)
 json.dump(proj, open(f"{HERE}/project-final.json", "w"), indent=1, ensure_ascii=False)
 print("scenes", len(scenes), "sum", round(sum(s["duration"] for s in scenes), 3))

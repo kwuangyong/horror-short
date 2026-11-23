@@ -29,3 +29,12 @@ Ghi chú cho format Dual Spin (rút ra từ tập này):
 **Tổng: 9/10 (v1) → 10/10 (v1.1). ĐẠT.**
 
 Ghi chú: Human đang là "he". Nếu muốn mascot trung tính cho khán giả rộng, cân nhắc thiết kế nhân vật + đại từ trước khi làm tập 2.
+
+---
+
+# Review · Cổng 3 · bản dựng nháp script.md v1.1 (Boss)
+ĐẠT ở mức **nháp kiểm pipeline** (102 s, −14 LUFS, phụ đề 70%). Lỗi cần sửa khi dựng bản thật / bản Battle:
+- Vòng đếm ngược đè lên chữ ô A/B (tools/make_cards.py) → dời vòng tròn ra cạnh phải hoặc giữa 2 ô có khoảng trống.
+- Thẻ luật đè lên nhãn placeholder phía sau (chữ "G…C" lộ hai bên) → thẻ luật cần nền cảnh riêng hoặc làm tối nền.
+- Thẻ tên spin chồng lên dãy buồng → khi có ảnh thật, khóa vòng quay rồi mới hiện thẻ (0.3 s sau flash).
+- Mix nghiêng về drone; SFX nhỏ → cân lại khi có giọng thật.

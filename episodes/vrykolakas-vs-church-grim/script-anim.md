@@ -1,325 +1,308 @@
-# Script: "BATTLE SPIN #001 · VRYKOLAKAS vs CHURCH GRIM" (bản HOẠT HÌNH v4, GUARDIAN vs MONSTER + đứa bé làm bối cảnh)
+# Script: "BATTLE SPIN #001 · VRYKOLAKAS vs CHURCH GRIM" (bản HOẠT HÌNH v5, kể liền mạch + góc máy điện ảnh)
 
-> Ngôn ngữ: tiếng Anh · Giọng: trầm, chậm, bình luận viên trận tử thần (ngôi thứ ba) · Mục tiêu: 95–105 giây.
-> **Số từ lời dẫn (chỉ dòng `>`): 178 từ** · Thời lượng ước tính: ~100 giây (kể cả split roll, VS, khoảng lặng).
-> `*word*` = từ khóa đỏ (1/câu) · `[ANIM]` = hành động rig theo đúng câu ngay trên nó · `[SFX]` · `[UI]` · `[HUD]` · `(…)` = chỉ dẫn đọc.
-> Hướng: TRÁI/PHẢI tính theo màn hình. Mặc định Grim đứng bên PHẢI khung, Vrykolakas bên TRÁI. Bé (`kid`) đứng ở NỀN GIỮA (xa camera), sau một bia mộ bên TRONG tường.
-> Bé = BỐI CẢNH: không thẻ, không HP, không lời dẫn tập trung vào bé; gọi "a kid / the kid / they". Không máu trên bé. Không máu nói chung (chỉ chớp trắng, thanh máu tụt, bụi).
+> Ngôn ngữ: tiếng Anh · Giọng: trầm, cuốn, bình luận viên (ngôi thứ ba), đọc nhanh hơn v4 ~25% · Mục tiêu: 85–95 giây.
+> **Số từ lời dẫn (chỉ dòng `>`): 218 từ** · Thời lượng ước tính: ~90 giây (đọc ~80 s + split roll/VS/khoảng lặng).
+> `*word*` = từ khóa đỏ (1/câu) · `[SHOT n]` = loại cảnh + chuyển động camera · `[ANIM]` = ai làm gì · `[SFX]` · `[UI]` · `[HUD]` · `(…)` = chỉ dẫn đọc.
+> Hướng: TRÁI/PHẢI tính theo màn hình. Mặc định Grim bên PHẢI, Vrykolakas bên TRÁI. Bé (`kid`) = BỐI CẢNH: không thẻ, không HP; gọi "a kid / the kid". Không máu (chỉ chớp trắng, thanh máu tụt, bụi).
+> Mã SHOT: POV-KID · OTS-KID · VERSUS-SIDE · CU-x · ECU-x · LOW-ANGLE · HIGH-ANGLE · DUTCH · WIDE-ESTABLISH · REACTION-KID · INSERT-x · SPLIT-ROLL · TRACKING.
 
-**Luật đã nêu và tác dụng:**
-1. "Garlic weakens it" (~0:25) → R3: tỏi mọc dại bên lỗ hổng tường làm Vrykolakas choáng.
-2. "Grim guards inside the wall. Only." (~0:32) → R2: Vrykolakas quăng Grim ra ngoài tường, Grim mất sức, Vrykolakas quay sang bé.
-3. **Cài cú lửng:** chữ khắc trên bia "ONLY FIRE ENDS IT" (~0:28) → cuối: không ai đốt xác, đêm hôm sau, bé trên giường, một tiếng gõ cửa.
-→ Thắng: **GRIM** (35% máu) bằng đất của mình + tỏi dại; cứu được bé. R3 dùng: **tỏi (research), chỉ-trong-tường/đất Grim (research), linh hồn chó bị chôn dưới nền nhà thờ ("legend says")**.
+**Luật đã cài (bằng lời, TRƯỚC khi dùng):**
+1. "Garlic makes it flinch" (~0:27) → R3: Vrykolakas giẫm tỏi dại, choáng.
+2. "Grim is strong only inside these walls" (~0:33) → R2: bị quăng ra ngoài tường, mất sức.
+3. Bia khắc "ONLY FIRE ENDS IT" (~0:30) → cú lửng: không ai đốt xác, đêm sau một tiếng gõ cửa.
+→ Thắng **GRIM** (35%); R3: tỏi (research) + đất Grim (research) + linh hồn chó chôn dưới nhà thờ ("legend says").
 
 ---
 
 ## 0 · HOOK (0:00–0:03)
 
-[SCENE] Freeze-frame cuối ROUND 2 (khớp đúng câu 26 bên dưới): Grim nằm ngoài tường trên cỏ, Vrykolakas đã quay lưng, bước về phía bia mộ nền giữa nơi bé núp. Khung đỏ.
-[SFX] Impact + tiếng tua băng.
-[UI] Chữ lớn **"WHO SURVIVES?"** · HUD: GRIM 35% · VRYKOLAKAS 55%
+[SCENE] Freeze-frame cuối ROUND 2: Grim nằm ngoài tường, Vrykolakas quay lưng bước về bia mộ nơi bé núp. Khung đỏ.
+[SFX] Impact + tua băng. [UI] Chữ lớn **"WHO SURVIVES?"** · HUD: GRIM 35% · VRYKOLAKAS 55%
 
 > It turns to the *kid*.
-[ANIM] Freeze: Vrykolakas bên trái, quay hẳn người về phía bia mộ nền giữa, tay duỗi; từ sau bia, bé ló nửa mặt, mắt mở to (không máu). Grim nằm nghiêng bên phải ngoài vạch tường, thở dốc. Camera: slow push-in vào bia mộ, rung nhẹ.
+[SHOT 1] OTS-KID (qua vai bé, sau bia): slow push-in vào bóng Vrykolakas đang bước tới, tay duỗi.
+[ANIM] Freeze: Vrykolakas quay hẳn người, tay duỗi; Grim nằm nghiêng xa nền sau.
 
 > Who *survives*?
-[ANIM] Tua băng: khung rung glitch, mọi thứ tan thành sương rồi cắt đen.
+[SHOT 2] CU-KID (REACTION): crash-zoom vào mắt bé mở to; glitch tua băng, tan thành sương, cắt đen.
+[ANIM] Bé ló nửa mặt sau bia, đứng hình (không máu).
 
-## 1 · SPLIT ROLL (0:03–0:13)
+## 1 · SPLIT ROLL (0:03–0:12)
 
-[SCENE] Màn hình chia đôi bởi vạch dọc sáng đỏ. Trái: cuộn quái vật (silhouette lướt dọc). Phải: cuộn hộ vệ.
-[SFX] Ratchet spin, 2 tiếng khóa clunk.
+[SCENE] Màn hình chia đôi vạch dọc đỏ. Trái cuộn quái vật, phải cuộn hộ vệ. [SFX] Ratchet spin, 2 tiếng clunk.
 [UI] Nhãn "MONSTER" (trái) · "GUARDIAN" (phải).
 
-> Tonight. Two *legends*.
-[ANIM] Hai cuộn bắt đầu quay cùng lúc: các silhouette (xác chết, ma cà rồng, chó, hộp...) trượt nhanh từ trên xuống, nhòe chuyển động; camera zoom nhẹ vào vạch chia.
+> Tonight, two *legends* collide.
+[SHOT 3] SPLIT-ROLL: crash-zoom nhẹ vào vạch chia khi hai cuộn quay.
+[ANIM] Silhouette (xác chết, ma cà rồng, chó, hộp…) trượt nhòe từ trên xuống ở cả hai cuộn.
 
-> Left. The *Vrykolakas*.
-[ANIM] Cuộn trái chậm dần, dừng ở Vrykolakas: flash trắng khóa, nhân vật bật lên đứng thẳng, gục đầu rồi ngẩng lên, mắt trắng đục sáng, vai rung. Thẻ tên hiện sau 0.3 s.
-[UI] Thẻ **"VRYKOLAKAS · THE GREEK REVENANT"**
+> On the left, the *Vrykolakas*.
+[SHOT 4] SPLIT-ROLL → CU-VRYKOLAKAS: cuộn trái dừng, flash trắng khóa, push-in vào mặt.
+[ANIM] Nhân vật bật đứng, gục đầu rồi ngẩng, mắt trắng đục sáng. [UI] Thẻ **"VRYKOLAKAS · THE GREEK REVENANT"**
 
-> Right. The Church *Grim*.
-[ANIM] Cuộn phải chậm dần, dừng ở Church Grim: flash trắng khóa, chó đen khổng lồ nảy lên đứng, vẩy lông, ngẩng đầu, mắt đỏ rực lóe. Thẻ tên hiện sau 0.3 s.
-[UI] Thẻ **"CHURCH GRIM · GRAVEYARD GUARDIAN"**
+> On the right, the Church *Grim*.
+[SHOT 5] SPLIT-ROLL → LOW-ANGLE-GRIM: cuộn phải dừng, flash khóa, rack-focus sang mắt.
+[ANIM] Chó đen khổng lồ nảy lên, vẩy lông, ngẩng đầu, mắt đỏ lóe. [UI] Thẻ **"CHURCH GRIM · GRAVEYARD GUARDIAN"**
 
-> Who *wins*? Comment.
-[ANIM] Vạch chia nứt rồi tan thành tia sáng; cả hai nhân vật tan thành đom đóm bay lên, camera trượt ra rừng đêm. (Chưa vào đấu trường: bé xuất hiện trước.)
-[UI] Tam giác **VS** đập xuống giữa + chữ nhấp nháy đỏ **"WHO WINS? COMMENT"** · HUD hiện: GRIM ▮▮▮▮▮ 100% · VRYKOLAKAS ▮▮▮▮▮ 100%
-[SFX] Sấm trầm, chuông.
+> *Who* wins? Comment.
+[SHOT 6] SPLIT-ROLL: vạch chia nứt; hai nhân vật tan thành đom đóm bay lên, camera trượt ra rừng đêm.
+[UI] **VS** đập xuống + **"WHO WINS? COMMENT"** nhấp nháy đỏ · HUD: GRIM 100% · VRYKOLAKAS 100% · [SFX] Sấm trầm.
 
-## 2 · BÉ LẠC + ĐẤU TRƯỜNG + LUẬT (0:13–0:34)
+## 2 · BÉ LẠC + ĐẤU TRƯỜNG + LUẬT (0:12–0:34)
 
-[SCENE] Rừng đêm, trăng to, sương mù, đom đóm; rồi nghĩa địa cũ với tường đá đổ.
+> A kid chases *fireflies* deep into the woods, until the path vanishes.
+[SHOT 7] POV-KID: tay bé + đèn pin trong khung, chùm sáng quét qua thân cây, khung nhún theo bước (handheld bob), tiếng thở gấp; đuổi đom đóm. (cut at "woods")
+[SHOT 8] POV-KID: bé xoay quanh, chùm sáng quét qua cây giống hệt nhau, không thấy đường về; whip-pan.
+[ANIM] Bàn tay bé với theo đom đóm, đèn pin rung; bé lạc.
 
-> A kid chases *fireflies*.
-[ANIM] Bé (bóng nhỏ, áo khoác, đèn pin) đi tò mò trong rừng, giơ tay đuổi đom đóm, đèn pin quét qua cành cây; rồi dừng, ngoảnh quanh không thấy đường về (lạc). Camera tracking cạnh, sương trôi.
+> Then the trees part, and an old *graveyard* waits.
+[SHOT 9] POV-KID: đèn pin gạt cành, lộ tường đá đổ và bia xiêu dưới trăng; dừng nhún. (cut at "and")
+[SHOT 10] WIDE-ESTABLISH: toàn cảnh nghĩa địa, sương, trăng to, lỗ hổng tường; bé nhỏ xíu bước vào.
+[ANIM] Bé bước qua lỗ hổng tường, ngước nhìn.
 
-> An old *graveyard*.
-[ANIM] Bé bước qua lỗ hổng tường đổ vào nghĩa địa; camera pan trái sang phải quét tường đá, bia xiêu, trăng glow; bé ngước nhìn (look-up).
+> The ground *shakes*, and the Vrykolakas claws its way out.
+[SHOT 11] ECU-BÀN-CHÂN/ĐẤT: đất rung, bụi bay, đom đóm tản. (cut at "and")
+[SHOT 12] LOW-ANGLE: tay xanh chộp mép mộ, thân kéo lên, gục đầu rồi ngẩng, mắt trắng đục; camera hất từ dưới lên.
+[ANIM] Bé lùi, đèn pin run.
 
-> The ground *shakes*.
-[ANIM] Đất rung, bụi bay, đom đóm tản; bé lùi một bước, đèn pin run.
+> It sees the kid, and starts *walking*.
+[SHOT 13] OTS-KID: qua vai bé, Vrykolakas lảo đảo tiến thẳng về camera, tay duỗi. (cut at "and")
+[SHOT 14] REACTION-KID: CU mặt bé hoảng, đèn pin rơi, push-in.
+[ANIM] Bé lùi sát bia mộ.
 
-> The Vrykolakas *rises*.
-[ANIM] Vrykolakas trồi lên từ mộ bên TRÁI: tay xanh chộp mép đất, kéo thân lên, gục đầu rồi ngẩng, mắt trắng đục.
+> But Church Grim leaps the wall and *blocks* its path.
+[SHOT 15] TRACKING: Grim lao từ PHẢI, nhảy qua tường; whip-pan theo. (cut at "and")
+[SHOT 16] VERSUS-SIDE: Grim đáp xuống giữa Vrykolakas và bé, vòng sáng đỏ bùng trên cỏ; crash-zoom nhẹ.
+[ANIM] Grim gầm, lông dựng; bé chạy núp sau bia nền giữa, ló nửa mặt.
+[UI] HUD hiện: GRIM 100% · VRYKOLAKAS 100%
 
-> It walks toward the *kid*.
-[ANIM] Vrykolakas lảo đảo về phía bé, tay duỗi, há miệng; bé hoảng (scared), đèn pin rơi, lùi sát một bia mộ.
+> Garlic makes it flinch, and the headstone warns: only *fire* ends it.
+[SHOT 17] INSERT-TỎI: cận nhánh tỏi trắng trong cỏ; rack-focus sang chân Vrykolakas rùn lại. (cut at "and")
+[ANIM] Vrykolakas liếc tỏi, rùn vai ghê tởm. [UI] Rule card **"GARLIC WEAKENS IT"**
+[SHOT 18] INSERT-BIA: tilt-down xuống bia mộ rêu, chữ khắc phát sáng đỏ từng nét; ECU-MẮT Vrykolakas phản chiếu ngọn lửa nhỏ rồi tắt.
+[UI] Chữ khắc **"ONLY FIRE ENDS IT"**
 
-> Then Grim *appears*.
-[ANIM] Từ PHẢI, Church Grim nhảy qua tường, đáp xuống giữa Vrykolakas và bé; vòng sáng đỏ bùng quanh nền cỏ bên trong tường; mắt đỏ rực.
-[UI] HUD hiện (nếu chưa): GRIM 100% · VRYKOLAKAS 100%
+> But Grim is strong *only* inside these walls.
+[SHOT 19] DUTCH → WIDE: Grim bước dọc bên trong tường, chân trước dừng đúng vạch; vạch tường sáng đỏ, camera trượt theo.
+[ANIM] Paw-on-line pose. [UI] Box **"THE LIMIT: INSIDE THE WALL"**
 
-> Between the dead and the *kid*.
-[ANIM] Grim đứng chắn, lông dựng, gầm; phía sau, bé chạy núp sau bia mộ nền giữa (hide-behind-gravestone), chỉ ló nửa mặt.
+## 3 · ROUND 1 (0:34–0:45)
 
-> Garlic *weakens* it.
-[ANIM] Cận cảnh một nhánh tỏi trắng trong cỏ gần lỗ hổng tường; Vrykolakas liếc xuống, rùn vai ghê tởm rồi quay đi.
-[UI] Rule card **"GARLIC WEAKENS IT"** (~0:25)
+[UI] Thẻ **ROUND 1** đập xuống, nhịp trống. [HUD] GRIM 100% · VRYKOLAKAS 100%
 
-> Only *fire* ends it.
-[ANIM] Camera pan xuống bia mộ cổ, rêu bám; chữ khắc phát sáng đỏ từng nét; ngọn lửa nhỏ lóe trong mắt Vrykolakas (phản chiếu) rồi tắt.
-[UI] Chữ khắc hiện: **"ONLY FIRE ENDS IT"** (~0:28)
+> Round one. Grim *lunges*, and his jaws close on its throat.
+[SHOT 20] VERSUS-SIDE (WIDE): hai bên vòng quanh nhau, push-in. (cut at "lunges")
+[SHOT 21] VERSUS-SIDE: Grim bật lao PHẢI→TRÁI, thân kéo dài, slow-mo. (cut at "jaws")
+[SHOT 22] ECU-HÀM: hàm ngoạm cổ, crash-zoom, chớp trắng.
+[ANIM] Grim đè Vrykolakas ngã ngửa, lắc mạnh. [HUD] VRYKOLAKAS 100% → 55%
 
-> Grim guards inside the wall. *Only*.
-[ANIM] Grim đi dọc bên trong tường, dừng đúng vạch, chân trước chạm mép; camera dolly theo Grim, vạch tường sáng đỏ.
-[UI] Box **"THE LIMIT: INSIDE THE WALL · ONLY"**
-
-## 3 · ROUND 1 (0:34–0:46)
-
-[UI] Thẻ **ROUND 1** đập xuống. Nhạc nhịp trống.
-[HUD] GRIM 100% · VRYKOLAKAS 100%
-
-> Round *one*.
-[ANIM] Cả hai hạ thấp người, vòng quanh nhau (Vrykolakas sang phải, Grim sang trái). Nền sau, bé thu mình sau bia (cower). Camera: wide, rồi push-in.
-
-> Grim *lunges*.
-[ANIM] Grim bật lao từ PHẢI sang TRÁI, thân kéo dài, miệng mở; camera slow-mo.
-[SFX] Gầm.
-
-> Jaws on its *throat*.
-[ANIM] Grim vồ đè Vrykolakas ngã ngửa, hàm ngoạm cổ, lắc mạnh; chớp trắng, camera shake mạnh. Bé ló ra xem (peek), rồi rụt lại.
-[HUD] VRYKOLAKAS 100% → 55%
-
-> Claws rake Grim's *side*.
-[ANIM] Vrykolakas vung vuốt quét ngang sườn Grim; Grim giật lùi một bước, rên, vẫn đứng vững, lông dựng.
+> Claws rake his side, but he *holds*, and the dead man crawls away.
+[SHOT 23] ECU-MÓNG: vuốt quét ngang sườn Grim, handheld shake. (cut at "but")
+[SHOT 24] REACTION-KID: bé ló mặt (peek) rồi rụt lại. (cut at "and")
+[SHOT 25] LOW-ANGLE: Grim đứng trên Vrykolakas đang bò lùi về TRÁI, ngực phập phồng, đuôi cao.
 [HUD] GRIM 100% → 90%
-[ANIM] (tiếp, không lời) Grim đứng trên Vrykolakas đang quỳ gục, ngực phập phồng, đuôi cao; Vrykolakas lùi bằng tay chân (crawl) về TRÁI. Bé ló nửa mặt, thở nhẹ ra. Camera low-angle.
 
-## 4 · ROUND 2 (0:46–1:00)
+## 4 · ROUND 2 (0:45–0:59)
 
 [UI] Thẻ **ROUND 2**.
 
-> Round *two*.
-[ANIM] Vrykolakas đứng dậy chậm, vặn cổ rắc rắc; lùi sát về phía vạch tường, dụ Grim. Camera pan theo, nhịp trống chậm.
-
-> It grabs Grim's *neck*.
-[ANIM] Vrykolakas bất ngờ chộp cổ Grim bằng hai tay, nhấc bổng; Grim đạp chân, tru lên. Cận cảnh bàn tay đè lông.
-
-> And hurls him *over* the wall.
-[ANIM] Vrykolakas quăng Grim theo vòng cung qua vạch tường sang PHẢI; Grim xoay trong không, rơi bịch xuống cỏ ngoài tường. Camera slow-mo theo cung rơi, rung khi chạm đất. Bé giật mình, che miệng.
+> Round two. It *grabs* Grim by the neck and hurls him over the wall.
+[SHOT 26] VERSUS-SIDE: Vrykolakas đứng dậy, vặn cổ, lùi sát vạch tường dụ Grim; whip-pan. (cut at "grabs")
+[SHOT 27] ECU-TAY: hai bàn tay xanh chộp cổ Grim, nhấc bổng, lông bị đè; Grim đạp chân. (cut at "hurls")
+[SHOT 28] VERSUS-SIDE → TRACKING: quăng theo vòng cung qua vạch sang PHẢI, slow-mo, rơi bịch ngoài tường, rung.
 [HUD] GRIM 90% → 60%
+[SHOT 29] REACTION-KID: bé che miệng, giật mình (gasp), crash-zoom.
 
-> Outside, no *power*.
-[ANIM] Grim cố đứng dậy, chân run; vòng sáng đỏ quanh Grim tắt dần, mắt mờ; đẩy chân trước tới vạch thì khựng như chạm tường vô hình, rên rỉ.
-
-> Claws *tear* him.
-[ANIM] Vrykolakas bước qua vạch, đè lên Grim, vung vuốt xuống liên tiếp; Grim co người. Camera shake, chớp trắng nhẹ mỗi đòn.
+> Outside, his power dies, so every claw *lands*.
+[SHOT 30] CU-GRIM: vòng sáng đỏ tắt dần, mắt mờ; chân trước đẩy tới vạch thì khựng như chạm tường vô hình. (cut at "so")
+[SHOT 31] DUTCH: Vrykolakas bước qua vạch, đè lên Grim, vuốt chém xuống liên tiếp; mỗi đòn chớp trắng.
 [HUD] GRIM 60% → 35% (đỏ nhấp nháy) · VRYKOLAKAS 55%
 
-> Grim *falls*.
-[ANIM] Grim ngã nghiêng sang PHẢI, đầu gục xuống cỏ, mắt hé, thở dốc; Vrykolakas đứng trên giơ vuốt thắng thế, rồi ngửa mặt.
+> Grim *falls*, and the Vrykolakas turns to the kid.
+[SHOT 32] HIGH-ANGLE: Grim ngã nghiêng sang PHẢI, đầu gục xuống cỏ, thở dốc; Vrykolakas giơ vuốt thắng thế. (cut at "and")
+[SHOT 33] OTS-KID: Vrykolakas bỏ Grim, quay hẳn người, bước về bia (= khung hook); ECU-MẮT Grim hé mở, thanh GRIM đỏ nhấp nháy. [SFX] Nhịp tim lớn.
 
-> It turns to the *kid*.
-[ANIM] Vrykolakas bỏ Grim, quay hẳn người, bước chậm về phía bia nền giữa, tay duỗi; bé ló mặt, đứng hình (đây là khung HOOK, freeze 0.3 s). Cận cảnh thanh GRIM đỏ nhấp nháy, rồi mắt Grim hé mở.
-[SFX] Nhịp tim lớn.
-
-> The kid *cowers*.
-[ANIM] Bé ngồi thụp sau bia, ôm đầu gối, run; bóng Vrykolakas phủ lên bia mộ. Camera push-in chậm.
-
-## 5 · ROUND 3 (1:00–1:22)
+## 5 · ROUND 3 (0:59–1:15)
 
 [UI] Thẻ **ROUND 3**. Nhạc dừng, chỉ còn nhịp tim.
 
-> Round *three*.
-[ANIM] Grim nằm im; tai giật; một đom đóm bay ngang mắt nó. Camera push-in chậm.
-
-> Grim *crawls* back inside.
-[ANIM] Grim lết bằng chân trước, kéo thân về TRÁI qua vạch tường; khi qua vạch, vòng sáng đỏ bật lại quanh chân, mắt đỏ rực nhẹ; nó chen vào giữa Vrykolakas và bia mộ nơi bé núp, đứng chắn lần nữa (dù run). Camera pan theo.
+> Round three. Grim *crawls* back inside, and his strength returns.
+[SHOT 34] ECU-MẮT: đom đóm bay ngang mắt Grim, tai giật; push-in chậm. (cut at "Grim")
+[SHOT 35] VERSUS-SIDE: Grim lết bằng chân trước qua vạch về TRÁI; qua vạch, vòng sáng đỏ bật lại quanh chân; nó chen vào chắn giữa Vrykolakas và bia bé núp, run nhưng đứng vững.
 [HUD] GRIM 35% (nhấp nháy)
 
-> The dead man *lunges*.
-[ANIM] Vrykolakas quay lại, vung vuốt lao vào Grim, bước dồn về TRÁI, hướng lỗ hổng tường. Cận cảnh mặt: mắt trắng đục, lưỡi liếm môi.
-
-> Wild *garlic* grows by the wall.
-[ANIM] Cắt cảnh: bụi tỏi dại mọc trong khe tường đổ, hoa trắng đung đưa; camera tilt-up từ gốc lên.
-[UI] Chú thích nhỏ: **"GARLIC"** (đạo cụ trong cảnh)
-
-> It steps *through*.
-[ANIM] Chân Vrykolakas giẫm vào bụi tỏi, bước qua lỗ hổng tường; phấn trắng bắn lên.
-
-> The stench *hits* it.
-[ANIM] Vrykolakas khựng, giật đầu ra sau, hai tay bịt mũi miệng, loạng choạng lùi.
-[SFX] Xèo.
+> It charges through wild *garlic*, and the stench cripples it.
+[SHOT 36] VERSUS-SIDE: Vrykolakas quay lại, vung vuốt lao vào Grim, dồn bước về TRÁI hướng lỗ hổng tường. (cut at "garlic")
+[SHOT 37] INSERT-TỎI: tilt-up bụi tỏi dại hoa trắng trong khe tường; chân Vrykolakas giẫm vào, phấn trắng bắn lên.
+[SHOT 38] CU-VRYKOLAKAS: giật đầu ra sau, bịt mũi miệng, khói trắng bốc từ da, quỳ một gối ho khan. [SFX] Xèo.
 [HUD] VRYKOLAKAS 55% → 30%
 
-[ANIM] (tiếp, không lời) Khói trắng bốc từ da vai và mặt; nó quỳ một gối, ho khan, ôm cổ, run bần bật. Camera shake nhẹ.
+> Legend says a dog lies *buried* here, and Grim grows stronger.
+[SHOT 39] INSERT-NỀN: nền móng nhà thờ cũ dưới đất, bóng chó cuộn, mắt đỏ mở trong bóng tối; rack-focus. (cut at "and")
+[SHOT 40] LOW-ANGLE: Grim đứng dậy, vòng sáng bùng rộng, bia mộ rung, thân to lên một cỡ, trăng sau lưng, tru dài.
+[SHOT 41] REACTION-KID: mắt bé sáng lên, ló mặt (peek). [HUD] GRIM 35% (sáng, hết nhấp nháy)
 
-> Grim's ground. Grim's *power*.
-[ANIM] Grim đứng dậy chậm, vòng sáng đỏ bùng rộng quanh nghĩa địa; bia mộ rung; lông dựng, thân to lên một cỡ. Camera low-angle, trăng sau lưng. Bé ló mặt, mắt sáng lên một chút (peek).
-[HUD] GRIM 35% (thanh sáng, hết nhấp nháy)
+> He *pounces*, and one last bite ends it.
+[SHOT 42] VERSUS-SIDE: Grim bật nhảy PHẢI→TRÁI, slow-mo. (cut at "and")
+[SHOT 43] ECU-HÀM: hàm ngoạm cổ, crash-zoom, chớp trắng, camera shake lớn. [HUD] VRYKOLAKAS 30% → 10%
+[ANIM] Hàm khép; Vrykolakas giật một lần rồi nằm im, tay buông. Im lặng một nhịp. [HUD] VRYKOLAKAS 10% → 0%
 
-> Legend says, a dog lies *buried* here.
-[ANIM] Cắt nhanh: nền móng nhà thờ cũ dưới đất, bóng chó nằm cuộn, mắt đỏ mở trong bóng tối; rồi về Grim ngẩng đầu tru dài về phía trăng.
-[SFX] Tru vang.
-
-> Grim *pounces*.
-[ANIM] Grim nhảy bật từ PHẢI sang TRÁI, thân dài; camera slow-mo, cắt nhanh cận cảnh hàm.
-
-> Jaws on the *neck*.
-[ANIM] Grim ghì Vrykolakas xuống đất, hàm ngoạm cổ, lắc mạnh; chớp trắng, camera shake lớn.
-[HUD] VRYKOLAKAS 30% → 10%
-
-> One last *snap*.
-[ANIM] Hàm Grim khép; Vrykolakas giật một lần rồi nằm im, tay buông. Im lặng một nhịp. Bé ôm bia, nhìn.
-[HUD] VRYKOLAKAS 10% → 0%
-
-## 6 · K.O. (1:22–1:26)
-
-[UI] Chữ lớn **K.O.** (flash 0.07 s rồi giữ) · **WINNER: CHURCH GRIM** · GRIM 35% · VRYKOLAKAS 0%
-[SFX] Chuông trầm, nhạc dịu.
-
+## 6 · K.O. (1:15–1:18)
 > Grim *wins*.
-[ANIM] Grim đứng trên xác, ngẩng đầu tru ngắn về phía trăng, đuôi buông, mệt mỏi; camera pull-back chậm.
+[SHOT] CU-GRIM, low-angle, push-in
+[ANIM] Grim ngẩng đầu tru dài dưới trăng; thẻ K.O. / WINNER: CHURCH GRIM.
 
-## 7 · BÌNH YÊN GIẢ (1:26–1:34)
+[SHOT 44] WIDE-ESTABLISH: Grim đứng trên xác, ngẩng đầu tru ngắn về trăng, pull-back chậm.
+[UI] Chữ lớn **K.O.** (flash 0.07 s rồi giữ) · **WINNER: CHURCH GRIM** · GRIM 35% · VRYKOLAKAS 0% · [SFX] Chuông trầm.
 
-[SCENE] Bình minh cam ấm, sương tan.
+## 7 · BÌNH MINH (1:18–1:25)
 
-> Dawn. Church *bells*.
-[ANIM] Bầu trời chuyển cam, trăng mờ dần; ngọn tháp nhà thờ xa, chuông lắc, sóng âm lan ra. Sương trôi sang PHẢI, đom đóm tắt.
-[SFX] Chuông nhà thờ.
+> At *dawn*, Grim buries the body, and the kid runs home.
+[SHOT 45] WIDE-ESTABLISH: trời chuyển cam, tháp chuông xa, sóng âm lan, sương trôi sang PHẢI, đom đóm tắt; Grim ngậm áo xác kéo vào mộ mở, hất đất phủ lại. (cut at "and")
+[SHOT 46] TRACKING: bé nhặt đèn pin, ngoảnh lại một lần, chạy qua lỗ hổng tường về phía ánh sáng; Grim ngồi trên tường dõi theo, mắt đỏ dịu thành hổ phách.
 
-[ANIM] (tiếp, không lời) Grim ngậm vạt áo xác, lê vào mộ mở, đẩy xuống và dùng hai chân trước hất đất phủ lại. Bé đứng nền sau, chậm rãi bước ra khỏi bia.
+## 8 · CÚ LỬNG (1:25–1:30)
 
-> The kid *runs* home.
-[ANIM] Bé nhặt đèn pin, ngoảnh lại một lần rồi chạy về phía lỗ hổng tường, ra khỏi khung theo hướng ánh sáng bình minh.
+[SCENE] Đêm hôm sau, phòng ngủ nhỏ, cửa sổ trăng, cánh cửa gỗ đóng. Nhạc im.
 
-> Grim watches them *go*.
-[ANIM] Grim ngồi trên tường đá, dõi theo, đuôi lắc nhẹ, mắt đỏ dịu thành hổ phách.
+> Next night, the kid lies in *bed*. Then, one knock.
+[SHOT 47] HIGH-ANGLE: bé nằm trên giường, chăn kéo cao, nhíu mày; chữ khắc "ONLY FIRE ENDS IT" hiện lại 0.5 s ở góc khung. (cut at "Then")
+[SHOT 48] ECU-CỬA: cánh cửa gỗ đóng, im lặng; cắt đen. [SFX] Nhạc tắt đột ngột, đúng MỘT tiếng gõ; cắt REACTION-KID: bé mở mắt bật dậy (in-bed-wake).
 
-## 8 · CÚ LỬNG (1:34–1:40)
-
-[SCENE] Đêm hôm sau. Phòng ngủ nhỏ, cửa sổ có trăng, cánh cửa gỗ đóng ở nền sau. Nhạc im.
-
-> Next *night*. The kid lies in bed.
-[ANIM] Cắt sang phòng: bé nằm trên giường, chăn kéo cao, mắt nhắm nhưng nhíu mày (in-bed). Chữ khắc "ONLY FIRE ENDS IT" hiện lại 0.5 s ở góc khung rồi tắt.
-
-> One *knock*.
-[ANIM] Bé mở mắt bật dậy (in-bed-wake), nhìn cánh cửa. Cắt đen. Đúng một tiếng gõ gỗ.
-[SFX] Nhạc tắt đột ngột. Đúng một tiếng gõ.
-
-## 9 · CTA (1:40–1:46)
+## 9 · CTA (1:30–1:36)
 
 [UI] **"IS IT REALLY DEAD?"** rồi **"WHO'S NEXT?"** (thẻ vòng quay tiếp theo + Follow)
 
 > Nobody *burned* it.
-[ANIM] Cận cảnh bia mộ, rêu; không có đèn, không có lửa; đất mộ nhúc nhích, lá bay qua.
+[SHOT 49] INSERT-BIA: bia mộ rêu, không đèn không lửa; đất mộ nhúc nhích, lá bay qua; push-in.
 
 > Is it really *dead*?
-[ANIM] Mộ cũ, đất khẽ động lần nữa, Grim ngẩng đầu, ngoảnh nhìn camera.
+[SHOT 50] LOW-ANGLE: mộ cũ, đất khẽ động lần nữa; Grim trên tường ngoảnh nhìn camera.
 
 > Who's *next*?
-[ANIM] Hai cuộn split roll quay lại nhanh, mờ dần; nút Follow nảy lên.
+[SHOT 51] SPLIT-ROLL: hai cuộn quay lại nhanh, mờ dần; nút Follow nảy lên.
+
+---
+
+## SHOT LIST
+
+| # | Thời điểm | Loại cảnh | Mô tả |
+|---|---|---|---|
+| 1 | 0:00 | OTS-KID + push-in | Vrykolakas bước về bia, qua vai bé (hook) |
+| 2 | 0:02 | REACTION-KID + crash-zoom | Mắt bé mở to, glitch tua băng |
+| 3 | 0:03 | SPLIT-ROLL | Hai cuộn quay |
+| 4 | 0:05 | SPLIT-ROLL → CU | Khóa Vrykolakas, thẻ tên |
+| 5 | 0:07 | SPLIT-ROLL → LOW-ANGLE | Khóa Grim, thẻ tên |
+| 6 | 0:10 | SPLIT-ROLL | VS + "Who wins? Comment", tan thành đom đóm |
+| 7 | 0:12 | POV-KID | Đèn pin quét cây, nhún bước, đuổi đom đóm |
+| 8 | 0:15 | POV-KID + whip-pan | Lạc, cây giống nhau |
+| 9 | 0:17 | POV-KID | Gạt cành, lộ nghĩa địa |
+| 10 | 0:19 | WIDE-ESTABLISH | Toàn nghĩa địa, bé bước vào |
+| 11 | 0:21 | ECU-ĐẤT | Đất rung, bụi |
+| 12 | 0:22 | LOW-ANGLE | Vrykolakas trồi lên |
+| 13 | 0:24 | OTS-KID | Vrykolakas tiến về camera |
+| 14 | 0:25 | REACTION-KID | Bé hoảng, đèn pin rơi |
+| 15 | 0:27 | TRACKING + whip-pan | Grim nhảy qua tường |
+| 16 | 0:28 | VERSUS-SIDE | Grim chắn, bé núp |
+| 17 | 0:30 | INSERT-TỎI | Tỏi, Vrykolakas rùn vai |
+| 18 | 0:32 | INSERT-BIA + ECU-MẮT | "ONLY FIRE ENDS IT" |
+| 19 | 0:33 | DUTCH → WIDE | Giới hạn trong tường |
+| 20 | 0:35 | VERSUS-SIDE (WIDE) | R1 vòng quanh |
+| 21 | 0:37 | VERSUS-SIDE slow-mo | Grim lao |
+| 22 | 0:38 | ECU-HÀM | Ngoạm cổ (V 55%) |
+| 23 | 0:40 | ECU-MÓNG | Cào sườn (G 90%) |
+| 24 | 0:42 | REACTION-KID | Bé peek |
+| 25 | 0:43 | LOW-ANGLE | Grim đứng trên, V bò lùi |
+| 26 | 0:46 | VERSUS-SIDE | R2, V dụ Grim |
+| 27 | 0:48 | ECU-TAY | Chộp cổ, nhấc |
+| 28 | 0:50 | TRACKING slow-mo | Quăng ra ngoài tường (G 60%) |
+| 29 | 0:51 | REACTION-KID + crash-zoom | Bé che miệng |
+| 30 | 0:52 | CU-GRIM | Mất sức, khựng vạch |
+| 31 | 0:54 | DUTCH | Vuốt chém (G 35%) |
+| 32 | 0:56 | HIGH-ANGLE | Grim gục |
+| 33 | 0:58 | OTS-KID | V quay sang bé (khung hook) |
+| 34 | 1:00 | ECU-MẮT | R3, đom đóm ngang mắt |
+| 35 | 1:02 | VERSUS-SIDE | Grim bò về, đất sáng lại, chắn bé |
+| 36 | 1:04 | VERSUS-SIDE | V lao về lỗ hổng tường |
+| 37 | 1:06 | INSERT-TỎI | Giẫm tỏi dại |
+| 38 | 1:07 | CU-VRYKOLAKAS | Bịt mũi, khói (V 30%) |
+| 39 | 1:09 | INSERT-NỀN | Bóng chó chôn |
+| 40 | 1:10 | LOW-ANGLE | Grim lớn lên, tru |
+| 41 | 1:11 | REACTION-KID | Bé sáng mắt |
+| 42 | 1:12 | VERSUS-SIDE slow-mo | Grim vồ |
+| 43 | 1:14 | ECU-HÀM | Cú cắn cuối (V 0%) |
+| 44 | 1:15 | WIDE-ESTABLISH | K.O., WINNER |
+| 45 | 1:18 | WIDE-ESTABLISH | Bình minh, chôn xác |
+| 46 | 1:22 | TRACKING | Bé chạy về, Grim dõi theo |
+| 47 | 1:25 | HIGH-ANGLE | Phòng ngủ, bé nằm |
+| 48 | 1:28 | ECU-CỬA + REACTION | Một tiếng gõ |
+| 49 | 1:30 | INSERT-BIA | "Nobody burned it" |
+| 50 | 1:32 | LOW-ANGLE | "Is it really dead?" |
+| 51 | 1:34 | SPLIT-ROLL | "Who's next?" + Follow |
+
+51 cảnh / ~90 s ≈ 1 cảnh mỗi 1.8 s.
 
 ---
 
 ## ANIMATION BEAT SHEET
 
-**KID (rig mới, nhỏ, áo khoác, đèn pin; nền giữa/xa camera, sau bia mộ; KHÔNG thẻ, KHÔNG HP)**
+**KID (nhỏ, áo khoác, đèn pin; KHÔNG thẻ, KHÔNG HP)**
 | Action / pose | Dùng ở |
 |---|---|
-| walk-curious-flashlight (đi tò mò, đèn pin quét, giơ tay đuổi đom đóm) | rừng mở đầu |
-| look-up (ngước nhìn cổng/bia/trăng) | bước vào nghĩa địa |
-| scared (lùi, đèn pin rơi, run) | Vrykolakas trồi lên, tiến tới |
-| run (chạy núp sau bia; chạy về nhà) | Grim xuất hiện; bình minh |
-| hide-behind-gravestone (chỉ ló nửa mặt) | từ "Between the dead and the kid" xuyên suốt trận |
-| peek (ló mặt ra xem, rụt lại) | R1, R3 |
-| cower (ngồi thụp ôm đầu gối, run) | R1, R2 cuối |
-| gasp (che miệng) | R2 Grim bị quăng |
-| in-bed-wake (nằm trên giường, mở mắt bật dậy, nhìn cửa) | cú lửng |
+| POV: tay + đèn pin trong khung, chùm sáng, bob theo bước, thở gấp | SHOT 7–9 |
+| walk-curious + reach-fireflies (góc ngoài, nếu cần) | SHOT 10 |
+| look-up | SHOT 10 |
+| scared (lùi, đèn pin rơi, run) | SHOT 11–14 |
+| run-hide (chạy núp sau bia) | SHOT 16 |
+| hide-behind-gravestone (ló nửa mặt) | 16–43 |
+| peek (ló, rụt) | 24, 41 |
+| gasp (che miệng) | 29 |
+| cower (ngồi thụp ôm gối) | R2 cuối (33) |
+| run-home | 46 |
+| in-bed + in-bed-wake | 47–48 |
 
-**VRYKOLAKAS (rig, trái mặc định)**
+**VRYKOLAKAS (TRÁI)**
 | Action / pose | Dùng ở |
 |---|---|
-| rise-from-grave (tay chộp mép đất, kéo thân lên) | mở câu chuyện |
-| idle-stand (gục đầu → ngẩng, vai rung) | roll lock-in |
-| walk-shamble (lảo đảo, tay duỗi) về bé / về camera | tiến về bé, R3 |
-| turn-to-kid (quay hẳn người, tay duỗi, bước chậm) | R2 cuối, hook |
-| circle-sidestep (khom, vòng quanh) | R1 mở |
-| pinned-on-back + scream (miệng há, tay giãy) | R1 |
-| claw-swipe ngang | R1 |
-| crawl lùi | R1 |
-| stand-up chậm + neck-crack | R2 mở |
-| neck-grab + lift (hai tay) → throw | R2 |
-| claw-slash xuống liên tiếp | R2 |
-| victory raise-claw | R2 |
-| lunge-at-Grim (vuốt, bước dồn) | R3 |
-| recoil/stagger (hai tay bịt mũi miệng) | R3 |
-| kneel + cough + smoke + choke (ôm cổ, run) | R3 |
-| pinned-on-ground → limp, fall | R3 K.O. |
-| hand-twitch từ mộ (chớp rồi chìm) | CTA |
+| idle-stand (gục → ngẩng) | 4 |
+| rise-from-grave | 12 |
+| walk-shamble tay duỗi | 13, 33 |
+| flinch-at-garlic | 17 |
+| circle-sidestep | 20 |
+| pinned-on-back, scream; claw-swipe; crawl lùi | 22–25 |
+| stand-up + neck-crack; neck-grab + lift → throw | 26–28 |
+| claw-slash liên tiếp; victory raise-claw | 31–32 |
+| turn-to-kid | 33 |
+| lunge-at-Grim | 36 |
+| recoil + kneel/cough + smoke | 37–38 |
+| pinned → limp | 43 |
+| hand-twitch từ mộ | 49–50 |
 
-**CHURCH GRIM (rig, phải mặc định)**
+**CHURCH GRIM (PHẢI)**
 | Action / pose | Dùng ở |
 |---|---|
-| idle-stand + shake-fur + head-up | roll lock-in |
-| leap-over-wall + land-between (chắn trước bé) + growl | Grim xuất hiện |
-| walk dọc tường, paw-on-line pose | luật |
-| growl + circle | R1 |
-| lunge/pounce (nhảy dài, slow-mo) | R1, R3 |
-| bite + shake (hàm ngoạm cổ) | R1, R3 |
-| stagger-back nhẹ (bị cào) | R1 |
-| dangle-kick + howl (bị nhấc) | R2 |
-| fall-through-air (xoay) + land | R2 |
-| weak-stand (chân run, tai cụp) | R2 |
-| push-on-invisible-wall (khựng) | R2 |
-| curl-up + fall-sideways | R2 |
-| eyes half-open + blink | R2 |
-| crawl (kéo chân trước) + shield-kid (chen vào chắn) | R3 |
-| stand-up chậm + fur-bristle + grow | R3 |
-| long howl (ngẩng trăng) | R3, K.O. |
-| drag-body (ngậm áo) + dig-paw (hất đất) | bình minh |
-| sit + tail-wag + watch-after-kid | bình minh |
-| step-back + look-to-camera | CTA |
+| idle-stand + shake-fur + head-up | 5 |
+| leap-over-wall + land-between + growl | 15–16 |
+| walk dọc tường, paw-on-line | 19 |
+| lunge/pounce; bite + shake | 21–22, 42–43 |
+| stagger-back nhẹ | 23 |
+| dangle-kick + howl; fall-through-air + land | 27–28 |
+| weak-stand; push-on-invisible-wall | 30 |
+| curl-up + fall-sideways; eyes half-open | 32–33 |
+| crawl + shield-kid | 34–35 |
+| stand-up + fur-bristle + grow; long howl | 40 |
+| drag-body + dig-paw; sit + watch-after-kid | 45–46 |
+| look-to-camera | 50 |
 
-**Đạo cụ / hiệu ứng / nền**
-| Hạng mục | Ghi chú |
-|---|---|
-| Trăng to + glow | xuyên suốt, mờ dần lúc bình minh; có cả trong phòng ngủ |
-| Sương mù (layers trôi) | đêm dày, bình minh tan sang phải |
-| Đom đóm | rừng, nghĩa địa, R3, tắt lúc bình minh |
-| Rừng đêm (cây, cành) + đèn pin của bé (nón sáng) | mở câu chuyện |
-| Tường đá đổ + lỗ hổng + vạch tường sáng đỏ | R2 quan trọng |
-| Vòng sáng đỏ đất của Grim (bật/tắt/mở rộng) | Grim xuất hiện, R2, R3 |
-| Bia mộ rêu nền giữa (chỗ bé núp) + chữ khắc "ONLY FIRE ENDS IT" | luật, R1–R3, cú lửng, CTA |
-| Tỏi: tép trong cỏ + bụi tỏi dại hoa trắng bên lỗ hổng tường + phấn trắng | luật, R3 |
-| Khói trắng bốc từ da | R3 |
-| Cảnh nền nhà thờ + bóng chó chôn, mắt đỏ | R3 (cut-away) |
-| Tháp chuông nhà thờ + sóng âm | bình minh |
-| Mộ mở + đống đất | Vrykolakas trồi lên, chôn lại, CTA |
-| **PHÒNG NGỦ (mới)**: giường, chăn, cửa sổ trăng, cánh cửa gỗ đóng nền sau; tiếng gõ 1 lần (rung nhẹ cánh cửa) | cú lửng |
-| Đốm lửa nhỏ (phản chiếu mắt) | luật |
-| Chớp trắng va chạm, bụi, camera shake, slow-mo, flash khóa roll | mọi trận |
-| 2 cuộn slot roll, vạch chia nứt-tan | mở đầu |
-| UI: HUD 2 thanh GRIM / VRYKOLAKAS (không thanh bé), VS, WHO WINS? COMMENT, ROUND 1/2/3, K.O., WINNER, IS IT REALLY DEAD?, WHO'S NEXT?, Follow | xuyên suốt |
+**Đạo cụ / hiệu ứng / nền:** trăng to + glow · sương (layers) · đom đóm · rừng đêm + chùm đèn pin (POV) · tường đá đổ + lỗ hổng + vạch đỏ · vòng sáng đỏ đất Grim · bia rêu nền giữa + chữ khắc · tỏi (tép trong cỏ + bụi dại + phấn trắng) · khói trắng · nền nhà thờ + bóng chó · tháp chuông · mộ mở · phòng ngủ (giường, cửa sổ, cửa gỗ rung 1 lần) · đốm lửa phản chiếu mắt · chớp trắng, bụi, shake, slow-mo, crash-zoom · 2 cuộn slot roll · UI: HUD 2 thanh, VS, WHO WINS? COMMENT, ROUND 1/2/3, K.O., WINNER, IS IT REALLY DEAD?, WHO'S NEXT?, Follow.
 
-**Bảng máu (kiểm tra):** R1: V 100→55, G 100→90 · R2: G 90→60→35, V 55 (hook = cuối R2: G 35, V 55) · R3: V 55→30→10→0, G 35 → Winner G 35%.
+**Bảng máu:** R1 V 100→55, G 100→90 · R2 G 90→60→35, V 55 (hook: G 35, V 55) · R3 V 55→30→10→0, G 35 → Winner G 35%.
 
 ---
 
 ## Changelog
-- v3-anim: bản mới từ script-battle v2. Bỏ THE KID/bà Eleni. Thêm split roll mở đầu, dòng [ANIM] cho mỗi câu. Giữ hook = khung Round 2, 3 hiệp, giới hạn "chỉ trong tường", cú lửng "only fire ends it" và CTA. Round 3 đảo chiều bằng tỏi dại + đất Grim + linh hồn chó. Số từ 199.
+- v3-anim: bản mới từ script-battle v2. Split roll, [ANIM] mỗi câu, hook = khung R2, 3 hiệp, giới hạn "chỉ trong tường", cú lửng "only fire ends it", CTA. 199 từ.
 - v3.1 (Boss): bỏ câu CTA lặp "Only fire ends it".
-- v4: thêm đứa bé làm BỐI CẢNH (không thẻ/HP; "a kid / the kid / they"). Sau split roll + VS: bé lạc rừng đuổi đom đóm → nghĩa địa → Vrykolakas trồi lên tiến về bé → Grim chắn trước bé. Bé núp sau bia, ló xem; R2 Grim bị quăng ra ngoài, Vrykolakas quay sang bé; R3 Grim bò về chắn bé. Kết A: bình minh, bé chạy về nhà, Grim dõi theo; cú lửng mới: đêm hôm sau bé trên giường, một tiếng gõ cửa; giữ "Nobody burned it" + CTA. Hook đổi sang khung "It turns to the kid" (cuối R2, HUD G 35 / V 55). Bỏ các câu bình luận thừa ("Red eyes", "The dead man walks hungry", "Mist clears", "Peace. At last", "Hungry for the kill"...). Số từ 178 (Boss: giọng chậm, mục tiêu 165–185; đã cắt "Lost. Deep in the woods", "Carved in stone", "Grim is winning", "Its skin hisses", "Grim buries the body", hành động giữ trong [ANIM]). Beat sheet: thêm actor kid + cảnh phòng ngủ/cửa.
+- v4: thêm bé làm bối cảnh, Kết A, cú lửng gõ cửa, hook "It turns to the kid". 178 từ.
+- v5: (1) Viết lại lời dẫn thành kể liền mạch có từ nối (but/so/until/then/and), nguyên nhân → kết quả, câu 6–14 từ, câu ngắn chỉ ở nhấn ("One knock", "Who's next?"); bỏ bình luận thừa ("Grim's ground. Grim's power.", "Grim wins."). (2) 218 từ, ~90 s (giọng nhanh hơn 25%). (3) Mỗi dòng `>` có [SHOT] điện ảnh: mở đầu POV-KID, OTS-KID khi thấy nghĩa địa/quái, VERSUS-SIDE xen ECU/CU + crash-zoom ở đòn mạnh, REACTION-KID, DUTCH, HIGH/LOW-ANGLE; 51 cảnh. (4) Cài tỏi + bia + giới hạn tường bằng lời trước khi dùng. (5) Cập nhật SHOT LIST và beat sheet; HP và UI giữ nhất quán.
+- v5.1 (Boss): "the red light returns" → "his strength returns" (người nghe không biết "red light" là gì); thêm "Grim wins." ở K.O.

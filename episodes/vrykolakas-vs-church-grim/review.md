@@ -72,3 +72,6 @@ Sửa v3.1: bỏ câu CTA lặp "Only fire ends it". **ĐẠT 10/10.** Lưu ý: 
 # Review · Cổng 3 · bản HOẠT HÌNH v4 (Boss)
 **ĐẠT (bản 1).** 102.7 s, −14.2 LUFS, 3082 khung. Split roll có tiêu đề MONSTER/GUARDIAN, máu bên monster, hào quang bên guardian. Grim có rim light; bé núp sau bia; phòng ngủ + tiếng gõ ở cú lửng.
 Nâng cấp lần sau: cụm phụ đề lẻ ("IT", "IT GRABS GRIM'S" cắt sau sở hữu cách); nhân vật vẫn nhỏ ở cảnh rộng (25–40%); Grim che mất bé ở vài cảnh; tỏi lộ ra trước khi được nhắc; cảnh chó chôn dưới nhà thờ tối, nhỏ; tay Vrykolakas lún dưới mặt đất khi bị đè; chưa có slow-mo thật; font phụ đề là Inter (chưa cài Oswald).
+
+# Review · Cổng 2 · script-anim v5 (mạch lạc, cinematic) (Boss)
+220 từ, 51+ cảnh (~1.8 s/cảnh). Lời dẫn đã liền mạch có từ nối, cài tỏi/bia/luật tường trước khi dùng. Sửa v5.1: "red light returns" → "his strength returns"; thêm "Grim wins." ở K.O. **ĐẠT.**

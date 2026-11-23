@@ -114,8 +114,8 @@ def make_base(name, with_label=True):
             if len(cur_) + len(w_) + 1 > 40 and cur_: lines_.append(cur_); cur_ = w_
             else: cur_ = (cur_ + " " + w_).strip()
         lines_.append(cur_)
-        for k_, ln_ in enumerate(lines_[:3]): ctext(d, 430 + 46 * k_, ln_, F(38), (210, 210, 210))
-        ctext(d, 580, "[placeholder - replace with illustration]", F(28), (140, 140, 140))
+        for k_, ln_ in enumerate(lines_[:3]): ctext(d, 880 + 46 * k_, ln_, F(38), (210, 210, 210))
+        ctext(d, 1030, "[placeholder - replace with illustration]", F(28), (140, 140, 140))
     return img
 
 def darken(img, amt=0.72, blur=7):

@@ -22,3 +22,8 @@ Câu chuyện là đêm sống sót: hộ vệ có giúp được bạn trước
 - Tập trung chủ yếu: **châu Âu (phương Tây), Mỹ, Canada, Nga**.
 - Mục cũ ngoài phạm vi (Ma Da, Ma Lai, Krasue, Pontianak, Jiangshi, Chung Quỳ, Garuda...) giữ trong file research để tham khảo nhưng không đưa vào vòng quay.
 - Truyền thuyết của người bản địa Bắc Mỹ (Wendigo, Skinwalker, Thunderbird...) là tín ngưỡng sống: nhạy cảm cao, ưu tiên tránh hoặc xử lý rất cẩn trọng.
+
+## TIÊU CHÍ CHỌN QUÁI VẬT (quyết định của người dùng)
+- Chỉ lấy quái vật **ma mị, quỷ dị, máu me**. Loại các cryptid "ngộ nghĩnh"/không đáng sợ: **Bigfoot**, Hodag, Loveland Frogmen, Lizard Man, Grafton, Fresno Nightcrawlers, Momo, Flatwoods.
+- Không bắt buộc quái vật có điểm yếu dân gian: nếu không có, hộ vệ/THE KID thắng bằng sức mạnh hộ vệ hoặc mẹo (Boss quyết theo từng tập).
+- Máu me ở mức hoạt hình flat-vector (không gore thực tế), không bao giờ có máu trên người THE KID.

@@ -75,3 +75,7 @@ Nâng cấp lần sau: cụm phụ đề lẻ ("IT", "IT GRABS GRIM'S" cắt sau
 
 # Review · Cổng 2 · script-anim v5 (mạch lạc, cinematic) (Boss)
 220 từ, 51+ cảnh (~1.8 s/cảnh). Lời dẫn đã liền mạch có từ nối, cài tỏi/bia/luật tường trước khi dùng. Sửa v5.1: "red light returns" → "his strength returns"; thêm "Grim wins." ở K.O. **ĐẠT.**
+
+# Review · Cổng 3 · bản HOẠT HÌNH CINEMATIC v5.1 (Boss)
+**ĐẠT.** 89.7 s, −14.2 LUFS, 55 cảnh cut theo từ. POV đèn pin, OTS qua vai bé, low-angle trồi mộ, ECU hàm/mắt, versus, high-angle, phòng ngủ + gõ cửa. Phụ đề không vượt câu.
+Nâng cấp lần sau: cảnh "Legend says a dog lies buried here" gần như đen; Grim che bé ở vài cảnh rộng; phụ đề đè mặt ở cảnh cận; rừng POV vẫn phẳng; font Inter (chưa có Oswald).

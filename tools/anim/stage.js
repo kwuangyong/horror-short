@@ -199,7 +199,7 @@
   const SCN_VIS = { forest: ['sky', 'moon', 'far', 'near', 'ground', 'ftrees', 'actors', 'fx', 'fog', 'flies'], grave: ['sky', 'moon', 'far', 'near', 'ground', 'props', 'hole', 'actors', 'mound', 'fx', 'fog', 'flies', 'tower'], room: ['room', 'actors', 'fx'], church: ['church'], void: [] };
   const sceneAt = (t) => { let sc = 'grave'; for (const s of (TL.scenes || [])) if (t >= s.t0) sc = s.s; return sc; };
   function sceneVis(t) { const sc = sceneAt(t), vis = SCN_VIS[sc]; for (const name in PAR) layers[name].setAttribute('display', vis.includes(name) ? 'inline' : 'none'); if (room.blanket) room.blanket.setAttribute('display', sc === 'room' ? 'inline' : 'none'); return sc; }
-  function updateScene(t, cam, shk) {
+  function updateScene(t, cam, shk, ta = t) {
     let sc = sceneAt(t);
     const vis = { forest: ['sky', 'moon', 'far', 'near', 'ground', 'ftrees', 'actors', 'fx', 'fog', 'flies'], grave: ['sky', 'moon', 'far', 'near', 'ground', 'props', 'hole', 'actors', 'mound', 'fx', 'fog', 'flies', 'tower'], room: ['room', 'actors', 'fx'], church: ['church'], void: [] }[sc];
     const dawn = trk('dawn', t, 0);
@@ -214,8 +214,8 @@
     layers.bell.setAttribute('transform', `translate(0 -292) rotate(${f2(24 * Math.sin(t * 6) * clamp(dawn * 3) * trk('bells', t, 0))})`);
     if (sc === 'forest' || sc === 'grave') {
       layers.sky.querySelectorAll('[data-tw]').forEach((c) => c.setAttribute('opacity', (0.35 + 0.35 * Math.sin(t * 1.3 + +c.getAttribute('data-tw'))) * (1 - dawn)));
-      Array.from(layers.fog.children).forEach((e) => { const f = e.__fog; e.setAttribute('transform', `translate(${f2(((f.x0 + t * f.sp * (1 + 2 * dawn)) % 3200) - 900)} 0)`); e.setAttribute('opacity', 0.8 * (1 - 0.6 * dawn)); });
-      Array.from(layers.flies.children).forEach((e) => { const f = e.__f; e.setAttribute('transform', `translate(${f2(f.x + 40 * Math.sin(t * 0.5 + f.ph))} ${f2(f.y + 30 * Math.sin(t * 0.7 + f.ph * 2))})`); e.setAttribute('opacity', 0.5 + 0.5 * Math.sin(t * 2.2 + f.ph)); });
+      Array.from(layers.fog.children).forEach((e) => { const f = e.__fog; e.setAttribute('transform', `translate(${f2(((f.x0 + ta * f.sp * (1 + 2 * dawn)) % 3200) - 900)} 0)`); e.setAttribute('opacity', 0.8 * (1 - 0.6 * dawn)); });
+      Array.from(layers.flies.children).forEach((e) => { const f = e.__f; e.setAttribute('transform', `translate(${f2(f.x + 40 * Math.sin(ta * 0.5 + f.ph))} ${f2(f.y + 30 * Math.sin(ta * 0.7 + f.ph * 2))})`); e.setAttribute('opacity', 0.5 + 0.5 * Math.sin(ta * 2.2 + f.ph)); });
       const fill = trk('grave', t, 0); layers.holeFill.setAttribute('opacity', fill);
       const wob = trk('soil', t, 0); layers.moundEls.forEach((e, i) => e.setAttribute('transform', `translate(0 ${f2(-wob * (4 + (i % 2) * 5) * Math.abs(Math.sin(t * 7 + i)))})`));
     }
@@ -303,6 +303,7 @@
       if (f.type === 'soil') for (let i = 0; i < (f.n || 18); i++) { const e = $('rect', { width: 10 + r() * 12, height: 8 + r() * 10, rx: 3, fill: r() > 0.5 ? '#5a4056' : '#3d2a38' }, grp); it.parts.push({ e, vx: (r() - 0.5) * 520, vy: -(300 + r() * 520), rot: (r() - 0.5) * 900 }); }
       if (f.type === 'sparks') for (let i = 0; i < (f.n || 24); i++) { const e = $('circle', { r: 3 + r() * 4, fill: f.color || '#ffd65a' }, grp); const a = r() * 6.283, sp = 120 + r() * 360; it.parts.push({ e, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 60, g: -70 - r() * 120 }); }
       if (f.type === 'ripple') for (let i = 0; i < 4; i++) it.parts.push({ e: $('circle', { fill: 'none', stroke: f.color || '#ffe39a', 'stroke-width': 5 }, grp), d: i * 0.18 });
+      if (f.type === 'flame') { it.fl1 = $('polygon', { fill: '#ff8a1e' }, grp); it.fl2 = $('polygon', { fill: '#ffe08a' }, grp); it.glow = $('circle', { fill: 'url(#gGold)' }, grp); }
       if (f.type === 'impact') { it.star = $('polygon', { fill: '#fff' }, grp); it.ring = $('circle', { fill: 'none', stroke: '#ffd9dc', 'stroke-width': 10 }, grp); it.core = $('circle', { fill: 'url(#gWhite)' }, grp);
         for (let i = 0; i < 14; i++) it.parts.push({ e: $('polygon', { fill: i % 3 ? '#fff' : '#ff4a56' }, grp), a: r() * 6.283, l0: 90 + r() * 80, l1: 220 + r() * 260, w: 7 + r() * 8 }); }
       if (f.type === 'speed') for (let i = 0; i < (f.n || 22); i++) it.parts.push({ e: $('polygon', { fill: '#fff' }, grp), a: (i / (f.n || 22)) * 6.283 + r() * 0.2, l0: 160 + r() * 120, l1: 420 + r() * 360, w: 5 + r() * 7 });
@@ -317,6 +318,7 @@
       if (f.type === 'dust' || f.type === 'powder') it.parts.forEach((p) => { const e = EASE.outCubic(u); p.e.setAttribute('cx', f2(X + p.dx + p.vx * e)); p.e.setAttribute('cy', f2(Y + p.vy * e * 1.4)); p.e.setAttribute('r', f2(lerp(p.r0, p.r1, e))); p.e.setAttribute('opacity', f2(1.6 * (1 - u))); });
       if (f.type === 'smoke') it.parts.forEach((p) => { const life = 1.1, q = ((lt - p.d * 0.9) / life); const qq = q - Math.floor(q); const act = lt - p.d * 0.9 > 0; p.e.setAttribute('cx', f2(X + p.dx + p.vx * qq)); p.e.setAttribute('cy', f2(Y - 160 * qq)); p.e.setAttribute('r', f2(10 + p.r1 * qq)); p.e.setAttribute('opacity', act ? f2(0.9 * Math.sin(qq * Math.PI) * (1 - u * 0.4)) : 0); });
       if (f.type === 'soil') it.parts.forEach((p) => { p.e.setAttribute('transform', `translate(${f2(X + p.vx * lt)} ${f2(Y + p.vy * lt + 1500 * lt * lt)}) rotate(${f2(p.rot * lt)})`); p.e.setAttribute('opacity', clamp(1.4 - u * 1.4)); });
+      if (f.type === 'flame') { const R = f.r || 14, fl = 1 + 0.25 * Math.sin(lt * 31) + 0.15 * Math.sin(lt * 53), a = Math.sin(Math.PI * clamp(u)) ; const tear = (rr, k) => `${f2(X - rr)},${f2(Y)} ${f2(X - rr * 0.7)},${f2(Y - rr * 1.2 * fl * k)} ${f2(X + 0.12 * rr * Math.sin(lt * 17))},${f2(Y - rr * 2.6 * fl * k)} ${f2(X + rr * 0.7)},${f2(Y - rr * 1.2 * fl * k)} ${f2(X + rr)},${f2(Y)} ${f2(X)},${f2(Y + rr * 0.5)}`; it.fl1.setAttribute('points', tear(R, 1)); it.fl2.setAttribute('points', tear(R * 0.55, 0.8)); it.glow.setAttribute('cx', X); it.glow.setAttribute('cy', Y - R); it.glow.setAttribute('r', R * 5); it.grp.setAttribute('opacity', f2(a)); }
       if (f.type === 'sparks') it.parts.forEach((p) => { p.e.setAttribute('cx', f2(X + p.vx * lt * (1 - u * 0.5))); p.e.setAttribute('cy', f2(Y + p.vy * lt + 0.5 * p.g * lt * lt)); p.e.setAttribute('opacity', clamp(1.6 - u * 1.6)); });
       if (f.type === 'ripple') it.parts.forEach((p) => { const q = clamp((lt - p.d) / (dur - 0.5)); p.e.setAttribute('cx', X); p.e.setAttribute('cy', Y); p.e.setAttribute('r', f2(30 + q * (f.r || 520))); p.e.setAttribute('opacity', q <= 0 ? 0 : f2(0.8 * (1 - q))); });
       if (f.type === 'impact') {
@@ -416,6 +418,8 @@
     inst.g.setAttribute('display', on ? 'inline' : 'none'); if (!on) return;
     const fade = cfg.fadeIn ? clamp((t - t0) / cfg.fadeIn) : 1, fout = cfg.fadeOut ? clamp((cfg.end - t) / cfg.fadeOut) : 1;
     inst.g.setAttribute('opacity', Math.min(fade, fout));
+    let zz = 1, zcx = 540, zcy = 960; for (const z of (cfg.zooms || [])) if (t >= z.t0 && t <= z.t1) { const e = ease(z.ease || 'inOut', (t - z.t0) / (z.t1 - z.t0)); zz = lerp(z.z0, z.z1, e); zcx = z.cx; zcy = z.cy; }
+    inst.g.setAttribute('transform', zz === 1 ? '' : `translate(${zcx} ${zcy}) scale(${f2(zz)}) translate(${-zcx} ${-zcy})`);
     const T0 = t0 + 0.05;
     for (const h of [cfg.left, cfg.right]) {
       const lockT = h.lockT, s = clamp((t - T0) / (lockT - T0)), p = cum(s) / 0.5333, M = (h.N - 1) * h.S;
@@ -507,7 +511,7 @@
   }
 
   // ------------------------------------------------------------------ SHOT SYSTEM (hard cuts between camera set-ups)
-  let povG = null, povW = null, povHand = null, povTrees = [], povFlies = [], povBeam = null, povCone = [], povDark = null, povFog = [], otsG = null, crashG = null, curShot = null;
+  let povGrp = [], povG = null, povW = null, povHand = null, povTrees = [], povFlies = [], povBeam = null, povCone = [], povDark = null, povFog = [], otsG = null, crashG = null, curShot = null;
   const HEADSZ = { vry: 150, grim: 250, kid: 150 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262] };
   function markerWorld(actor, name) {
     const d = TL.actors[actor]; if (!d || !d.rig || !d.rig.mk || !d.rig.mk[name]) return null;
@@ -523,7 +527,8 @@
     const s = info.s, u = info.u, lt = info.lt; let cx = s.cx === undefined ? 540 : s.cx, cy = s.cy === undefined ? 930 : s.cy, zoom = s.zoom || 1, rot = 0, sy = 1;
     const A = s.actor && TL.actors[s.actor], P = A && A.pos;
     switch (s.type) {
-      case 'versus': { const a = TL.actors[s.a].pos, b = TL.actors[s.b].pos; if (a && b) { cx = (a.x + b.x) / 2 + (s.dx || 0); const span = Math.abs(a.x - b.x) + (s.margin || 560); zoom = s.zoom || Math.min(s.maxZoom || 2.0, 1000 / span); cy = s.cy || 930; } break; }
+      case 'versus': { const a = TL.actors[s.a].pos, b = TL.actors[s.b].pos; if (a && b) { const ha = a.x + HEADOFF[TL.actors[s.a].kind][0] * a.flip * a.sc, hb = b.x + HEADOFF[TL.actors[s.b].kind][0] * b.flip * b.sc; cx = (ha + hb) / 2 + (s.dx || 0); const span = Math.abs(ha - hb) + (s.margin || 340); zoom = s.zoom || Math.min(s.maxZoom || 1.7, Math.max(s.minZoom || 1.2, 980 / span)); cy = s.cy || 960; } break; }
+      case 'follow': { if (P) { cx = P.x + (s.dx || 0); cy = P.y + (s.dy === undefined ? -150 : s.dy); } break; }
       case 'cu': case 'reaction': { if (P) { const o = HEADOFF[A.kind], sc = P.sc; cx = P.x + o[0] * P.flip * sc + (s.dx || 0); cy = P.y + o[1] * sc + (s.dy || 0); zoom = s.zoom || ((s.fill || 0.6) * 1080 / (HEADSZ[A.kind] * sc)); } break; }
       case 'ecu': { const mk = markerWorld(s.actor, s.at || 'eye'); if (mk) { cx = mk.x + (s.dx || 0); cy = mk.y + (s.dy || 0); } zoom = s.zoom || 5; break; }
       case 'low': { const x = s.x !== undefined ? s.x : (P ? P.x : 540), feet = P ? P.y : 1080; cx = x + (s.dx || 0); zoom = s.zoom || 1.6; cy = feet - ((s.ground || 0.88) * 1920 - 960) / zoom; sy = s.sy || 1.12; break; }
@@ -545,8 +550,8 @@
     const far = $('g', {}, povW); for (let x = -200; x < 1300; x += 60 + r() * 40) pine(far, x, 910, 200 + r() * 140, '#1a2040', 4);
     $('rect', { x: -200, y: 900, width: 1480, height: 1300, fill: 'url(#gGround)' }, povW);
     $('polygon', { points: '532,900 548,900 980,1980 100,1980', fill: '#2a3159', opacity: 0.55 }, povW);
-    povTrees = []; const grp = $('g', {}, povW);
-    for (let i = 0; i < 64; i++) { const g = $('g', {}, grp), X = (r() < 0.5 ? -1 : 1) * (1.3 + Math.pow(r(), 1.2) * 10), o = { g, X, ph: r() * 24.7, h: 10 + r() * 8, sz: 0.8 + r() * 0.5, w: 0.35 + r() * 0.3, trunk: $('rect', {}, g), tiers: [0, 1, 2, 3, 4].map(() => $('polygon', {}, g)) }; povTrees.push(o); }
+    povTrees = []; povGrp = [$('g', {}, povW), $('g', {}, povW), $('g', { style: 'filter:blur(7px)' }, povW)];
+    for (let i = 0; i < 64; i++) { const g = $('g', {}, povGrp[0]), X = (r() < 0.5 ? -1 : 1) * (1.3 + Math.pow(r(), 1.2) * 10), o = { g, X, ph: r() * 24.7, h: 10 + r() * 8, sz: 0.8 + r() * 0.5, w: 0.35 + r() * 0.3, trunk: $('rect', {}, g), shade: $('rect', {}, g), tiers: [0, 1, 2, 3, 4].map(() => $('polygon', {}, g)), tops: [0, 1, 2, 3, 4].map(() => $('polygon', {}, g)) }; povTrees.push(o); }
     povFog = []; for (let i = 0; i < 6; i++) { const e = $('ellipse', { rx: 700, ry: 70, fill: 'url(#gFog)' }, povW); povFog.push({ e, y: 940 + i * 70, sp: 10 + r() * 14, x0: r() * 1800 }); }
     povBeam = $('polygon', { fill: '#fff0b8', opacity: 0.09 }, povW);
     povDark = $('rect', { x: -300, y: -300, width: 1680, height: 2500, fill: '#02030a', opacity: cfg.dark === undefined ? 0.94 : cfg.dark }, povW);
@@ -569,10 +574,16 @@
     const D0 = lt * speed + (s.start || 0);
     const items = povTrees.map((o) => { let D = Df - (((o.ph + D0) % (Df - Dn)) + (Df - Dn)) % (Df - Dn); return { o, D }; }).sort((a, b) => b.D - a.D);
     for (const { o, D } of items) {
-      const k = f / D, sx = 540 + o.X * k, base = horizon + camH * k, fogK = clamp((D - 3) / 21), col = mixc('#05070f', '#2a3366', fogK), op = clamp((Df - D) / 3) * clamp((D - 1.25) / 1.0);
-      o.g.setAttribute('opacity', f2(op)); o.g.setAttribute('display', op <= 0.01 || sx < -600 || sx > 1700 ? 'none' : 'inline');
+      const k = f / D, sx = 540 + o.X * k, base = horizon + camH * k, fogK = clamp((D - 3) / 21), col = mixc('#04060e', '#303a74', Math.pow(fogK, 0.8)), op = clamp((Df - D) / 3) * clamp((D - 1.25) / 1.0);
+      povGrp[D > 9 ? 0 : D > 3.4 ? 1 : 2].appendChild(o.g);      // far / mid / near (near group is out of focus)
+      o.g.setAttribute('opacity', f2(op)); o.g.setAttribute('display', op <= 0.01 || sx < -700 || sx > 1800 ? 'none' : 'inline');
+      const lit = mixc(col, '#6f7cc4', 0.34 * (1 - fogK)), dk = mixc(col, '#000000', 0.45);
       o.trunk.setAttribute('fill', col); o.trunk.setAttribute('x', f2(sx - o.w * k / 2)); o.trunk.setAttribute('y', f2(base - o.h * k)); o.trunk.setAttribute('width', f2(o.w * k)); o.trunk.setAttribute('height', f2(o.h * k));
-      const step_ = (o.h - 4) / 4.2; o.tiers.forEach((p, i) => { const y0 = base - (2.3 + i * step_) * k, hw = (1.8 - i * 0.3) * o.sz * k, hh = (step_ + 2.2) * k; p.setAttribute('fill', col); p.setAttribute('points', `${f2(sx - hw)},${f2(y0)} ${f2(sx - hw * 0.35)},${f2(y0 - hh * 0.45)} ${f2(sx)},${f2(y0 - hh)} ${f2(sx + hw * 0.35)},${f2(y0 - hh * 0.45)} ${f2(sx + hw)},${f2(y0)}`); });
+      o.shade.setAttribute('fill', dk); o.shade.setAttribute('x', f2(sx - o.w * k / 2 + o.w * k * 0.55)); o.shade.setAttribute('y', f2(base - o.h * k)); o.shade.setAttribute('width', f2(o.w * k * 0.45)); o.shade.setAttribute('height', f2(o.h * k));
+      const step_ = (o.h - 4) / 4.2;
+      o.tiers.forEach((p, i) => { const y0 = base - (2.3 + i * step_) * k, hw = (1.8 - i * 0.3) * o.sz * k, hh = (step_ + 2.2) * k; const c = i % 2 ? dk : col;
+        p.setAttribute('fill', c); p.setAttribute('points', `${f2(sx - hw)},${f2(y0)} ${f2(sx - hw * 0.35)},${f2(y0 - hh * 0.45)} ${f2(sx)},${f2(y0 - hh)} ${f2(sx + hw * 0.35)},${f2(y0 - hh * 0.45)} ${f2(sx + hw)},${f2(y0)}`);
+        const t2 = o.tops[i]; t2.setAttribute('fill', lit); t2.setAttribute('points', `${f2(sx - hw * 0.42)},${f2(y0 - hh * 0.4)} ${f2(sx)},${f2(y0 - hh)} ${f2(sx - hw * 0.05)},${f2(y0 - hh * 0.4)}`); });
     }
     povFog.forEach((q) => { q.e.setAttribute('cx', f2(((q.x0 + t * q.sp) % 2000) - 400)); q.e.setAttribute('cy', q.y); });
     povFlies.forEach((q) => { const D = Df * 0.9 - (((q.ph * 3 + D0 * q.sp * 0.6) % 14) + 14) % 14 - 0.6; const k = f / Math.max(1.0, D + 2); const x = 540 + (q.X + 0.8 * Math.sin(t * 0.7 + q.ph)) * k * 0.6, y = horizon - (q.Y + 0.25 * Math.sin(t * 1.1 + q.ph)) * k * 0.55 + 140; q.g.setAttribute('transform', `translate(${f2(x)} ${f2(y)}) scale(${f2(clamp(k / 220, 0.25, 2.4))})`); q.g.setAttribute('opacity', f2((0.55 + 0.45 * Math.sin(t * 2.4 + q.ph)) * clamp((D + 2) / 3))); });
@@ -587,17 +598,36 @@
   // ---- OTS-KID foreground: the kid's hooded back, big and blurred at the bottom corner
   function buildOts() {
     otsG = $('g', { display: 'none' }, svg); const g = $('g', {}, otsG); otsG.__in = g;
-    $('ellipse', { cx: 230, cy: 2060, rx: 560, ry: 400, fill: '#2a3262' }, g); $('ellipse', { cx: 226, cy: 2040, rx: 540, ry: 380, fill: '#343e74' }, g);        // shoulders / jacket
-    $('polygon', { points: '-40,1560 70,1330 230,1020 390,1330 500,1560 400,1760 20,1760', fill: '#2c3568' }, g);                                                  // hood
-    $('ellipse', { cx: 232, cy: 1640, rx: 270, ry: 250, fill: '#3a4580' }, g); $('polygon', { points: '-20,1580 110,1330 232,1060 350,1340 480,1580 400,1540 232,1150 70,1540', fill: '#46528f' }, g);
-    $('path', { d: 'M232 1060 Q252 1420 236 1780', stroke: '#222a58', 'stroke-width': 9, fill: 'none' }, g);
-    $('path', { d: 'M470 1330 Q540 1520 490 1700', stroke: '#8d9ee0', 'stroke-width': 10, fill: 'none', opacity: 0.8, 'stroke-linecap': 'round' }, g);                // moon rim light
-    $('polygon', { points: '-40,1810 520,1810 540,1930 -40,1930', fill: '#a30d1a' }, g); $('polygon', { points: '350,1840 470,1850 540,2160 440,2170', fill: '#c4121f' }, g); $('ellipse', { cx: 300, cy: 1880, rx: 70, ry: 54, fill: '#8a0d18' }, g);   // scarf
+    // light beam from the flashlight toward the scene
+    $('polygon', { points: '560,1480 1400,1000 1400,1700', fill: '#fff0b8', opacity: 0.07 }, g); $('polygon', { points: '560,1480 1400,1180 1400,1560', fill: '#fff0b8', opacity: 0.08 }, g);
+    // flying scarf tail (animated path)
+    otsG.__scarf = $('path', { fill: '#c4121f' }, g); otsG.__scarf2 = $('path', { fill: '#8a0d18' }, g);
+    // coat / shoulders (back view)
+    $('path', { d: 'M-120 2000 Q-60 1700 120 1650 L420 1650 Q620 1700 700 2000Z', fill: '#2c3670' }, g);
+    $('path', { d: 'M-60 2000 Q0 1740 130 1690 L400 1690 Q560 1740 620 2000Z', fill: '#4a5690' }, g);
+    $('path', { d: 'M250 1700 L262 2000', stroke: '#2c3670', 'stroke-width': 8 }, g);
+    // flashlight arm (right shoulder -> raised, big flashlight pointing into the scene)
+    $('polygon', { points: '420,1720 470,1660 640,1540 700,1600 520,1780', fill: '#4a5690' }, g); $('polygon', { points: '470,1660 640,1540 660,1568 500,1690', fill: '#5d6aa8' }, g);
+    $('ellipse', { cx: 668, cy: 1560, rx: 46, ry: 40, fill: '#d7b19d' }, g);
+    const fl = $('g', { transform: 'translate(650 1540) rotate(-24)' }, g);
+    $('rect', { x: -30, y: -44, width: 270, height: 88, rx: 20, fill: '#3e466a' }, fl); $('rect', { x: -30, y: -44, width: 270, height: 18, rx: 9, fill: '#6a74a0' }, fl); $('rect', { x: 60, y: -44, width: 28, height: 88, fill: '#c4121f' }, fl); $('rect', { x: 180, y: -64, width: 90, height: 128, rx: 22, fill: '#4a5482' }, fl);
+    $('ellipse', { cx: 272, cy: 0, rx: 14, ry: 56, fill: '#fff6c8' }, fl); $('circle', { cx: 282, cy: 0, r: 150, fill: 'url(#gGold)', opacity: 0.85 }, fl);
+    for (let i = 0; i < 3; i++) $('ellipse', { cx: 20 + i * 30, cy: 40, rx: 17, ry: 24, fill: '#c9a48f' }, fl);
+    // hood: round head + pointed tip, seam, rim light
+    $('ellipse', { cx: 250, cy: 1520, rx: 235, ry: 250, fill: '#3a4680' }, g);
+    $('polygon', { points: '40,1470 130,1230 250,820 330,1020 450,1290 470,1480', fill: '#4a5898' }, g); $('polygon', { points: '250,820 330,1020 450,1290 380,1250 300,1040', fill: '#2e386c' }, g);
+    $('ellipse', { cx: 240, cy: 1560, rx: 205, ry: 215, fill: '#42508c' }, g);
+    $('path', { d: 'M250 840 Q262 1280 244 1700', stroke: '#222a58', 'stroke-width': 9, fill: 'none' }, g);
+    $('path', { d: 'M420 1180 Q500 1380 462 1560', stroke: '#b4c4f8', 'stroke-width': 9, fill: 'none', opacity: 0.85, 'stroke-linecap': 'round' }, g);
+    // scarf wrapped round the neck + knot
+    $('path', { d: 'M20 1700 Q250 1780 480 1700 L500 1790 Q250 1870 0 1790Z', fill: '#c4121f' }, g); $('path', { d: 'M20 1740 Q250 1810 480 1740 L486 1790 Q250 1860 8 1790Z', fill: '#a30d1a' }, g); $('ellipse', { cx: 150, cy: 1790, rx: 60, ry: 46, fill: '#8a0d18' }, g);
   }
   function updateOts(t, info) {
     const s = info.s, show = s.type === 'ots'; otsG.setAttribute('display', show ? 'inline' : 'none'); if (!show) return;
     const side = s.side === 'right' ? -1 : 1, br = 5 * Math.sin(2 * Math.PI * 0.3 * t);
     otsG.__in.setAttribute('transform', `translate(${side < 0 ? 1080 : 0} ${f2(br)}) scale(${side} 1) translate(${s.fgX || 0} ${s.fgY || 0})`);
+    const w1 = Math.sin(t * 5.2), w2 = Math.sin(t * 6.4 + 1.3), tail = (a, b) => `M110 1740 C60 1760 ${-20 + 20 * w1} ${1700 + 40 * w2 + a} ${-140 + 40 * w2} ${1640 + 60 * w1 + a} L${-160 + 30 * w1} ${1700 + 40 * w2 + a + b} C${-20 + 20 * w2} ${1790 + 30 * w1} 60 1820 150 1800Z`;
+    otsG.__scarf.setAttribute('d', tail(0, 40)); otsG.__scarf2.setAttribute('d', tail(18, 26));
     const fb = s.rack && s.rack.fg !== undefined ? s.rack.fg : 9; otsG.style.filter = `blur(${fb}px)`;
   }
   function updateCrash(sh) { if (!crashG) return; const w = sh ? sh.crash : 0; crashG.setAttribute('display', w > 0.01 ? 'inline' : 'none'); if (w > 0.01) Array.from(crashG.children).forEach((e) => e.setAttribute('opacity', f2(0.55 * w))); }
@@ -635,8 +665,8 @@
     curShot = shotX;
     let sk = shk;
     if (shotX && shotX.whip) sk = [shk[0] + shotX.whip * shotX.whip * 520 * shotX.whipDir, shk[1]];
-    updateScene(t, cam, sk);
-    if (sceneOn && !isPov) { updateProps(t, sc); updateFx(t); }
+    updateScene(t, cam, sk, ta);
+    if (sceneOn && !isPov) { updateProps(t, sc); updateFx(ta); }
     const bl = (shotX && shotX.whip ? 16 * shotX.whip : 0) + (shotX && shotX.rack && shotX.rack.bg ? shotX.rack.bg : 0);
     arena.style.filter = bl > 0.3 ? `blur(${f2(bl)}px)` : '';
     if (povG) { povG.setAttribute('display', isPov ? 'inline' : 'none'); if (isPov) { updatePov(t, info); const wb = info.s.whip && info.lt < info.s.whip ? 12 * (1 - info.lt / info.s.whip) : 0; povG.style.filter = wb > 0.3 ? `blur(${f2(wb)}px)` : ''; } }

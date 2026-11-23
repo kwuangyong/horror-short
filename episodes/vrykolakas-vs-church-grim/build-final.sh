@@ -6,6 +6,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 export HERE TOOLS="$HERE/../../tools" B="$HERE/build/final"
 mkdir -p "$B/img" "$HERE/preview"
 python3 "$HERE/gen_final.py"            # cards + HUD overlays over real art
+python3 "$TOOLS/make_captions.py" "$HERE/audio/words.json" --script "$HERE/script-battle.md" -o "$B/captions.ass"
 python3 "$HERE/gen_final_project.py"    # project-final.json (timings from audio/words.json marks)
 python3 "$TOOLS/render.py" "$HERE/project-final.json"
 OUT="$B/battle-final.mp4"

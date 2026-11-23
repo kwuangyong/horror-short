@@ -9,7 +9,7 @@
  "voice": "audio/voice_dark.wav",
  "music": "audio/music.wav",
  "music_volume": 0.11,
- "captions": "audio/captions.ass",
+ "captions": "build/final/captions.ass",
  "loudness": -13.6,
  "scenes": [
   {
@@ -176,6 +176,7 @@
    "_t": 14.14
   },
   {
+   "clock": "2:10 AM",
    "image": "art/b-forest-old-graves.png",
    "zoom": [
     1.0,
@@ -187,6 +188,7 @@
    "_t": 16.8
   },
   {
+   "clock": "2:15 AM",
    "image": "art/b-grandma-garlic-flashback.png",
    "zoom": [
     1.0,
@@ -220,6 +222,7 @@
    "_t": 28.8
   },
   {
+   "clock": "2:20 AM",
    "image": "art/b-grave-rises.png",
    "zoom": [
     1.0,
@@ -264,6 +267,7 @@
    "_t": 37.4
   },
   {
+   "clock": "2:30 AM",
    "image": "art/b-grim-appears-stance_bg.png",
    "fg": "art/b-grim-appears-stance_fg.png",
    "zoom": [
@@ -292,6 +296,7 @@
    "_t": 44.9
   },
   {
+   "clock": "2:40 AM",
    "image": "build/final/img/round1.png",
    "zoom": [
     1.7,
@@ -343,6 +348,7 @@
    "_t": 49.1
   },
   {
+   "clock": "2:50 AM",
    "image": "build/final/img/round2.png",
    "zoom": [
     1.7,
@@ -436,6 +442,7 @@
    "_t": 61.3
   },
   {
+   "clock": "3:10 AM",
    "image": "build/final/img/round3.png",
    "zoom": [
     1.7,
@@ -506,6 +513,7 @@
    "_t": 70.6
   },
   {
+   "clock": "3:20 AM",
    "image": "art/b-round3-flashlight-lure_bg.png",
    "fg": "art/b-round3-flashlight-lure_fg.png",
    "zoom": [
@@ -525,6 +533,7 @@
    "_t": 73.2
   },
   {
+   "clock": "3:30 AM",
    "image": "art/b-round3-grim-pounce_bg.png",
    "fg": "art/b-round3-grim-pounce_fg.png",
    "zoom": [
@@ -566,7 +575,9 @@
     0,
     0.6
    ],
-   "flash": true,
+   "flash_at": [
+    0
+   ],
    "overlay": "build/final/img/hud_ko.png",
    "duration": 1.8667,
    "_t": 83.6

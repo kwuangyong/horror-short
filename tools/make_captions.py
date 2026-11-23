@@ -16,7 +16,22 @@ import json
 import re
 from pathlib import Path
 
-from common import norm, script_tokens
+from common import narration_lines, norm, script_tokens
+
+PUNCT_END = re.compile(r"[.,!?…:;]$")
+DANGLING = {"the", "a", "an", "to", "of", "in", "on", "at", "for", "into", "and", "or", "but", "with",
+            "its", "their", "them", "over", "from", "by"}
+
+
+def line_end_indexes(script: str) -> set[int]:
+    """Indexes (in script_tokens order) of the last token of every narration line (> line)."""
+    ends, n = set(), 0
+    for line in narration_lines(script, keep_marks=True):
+        k = len(script_tokens("## x\n> " + line))
+        n += k
+        if k:
+            ends.add(n - 1)
+    return ends
 
 RED_ASS = "&H002F26E3&"    # BGR of (227, 38, 47)
 WHITE_ASS = "&H00EBF2F5&"
@@ -40,7 +55,8 @@ def even_words(tokens: list[tuple[str, bool]], duration: float, start: float = 0
     return out
 
 
-def align_keywords(words: list[dict], tokens: list[tuple[str, bool]], window: int = 6) -> None:
+def align_keywords(words: list[dict], tokens: list[tuple[str, bool]], window: int = 6,
+                   line_ends: set[int] | None = None) -> None:
     """Mark transcript words as keywords by aligning them, in order, with the script.
     Only the occurrence that was starred in the script is highlighted, not every repeat."""
     j = 0
@@ -50,6 +66,8 @@ def align_keywords(words: list[dict], tokens: list[tuple[str, bool]], window: in
         for k in range(j, min(j + window, len(tokens))):
             if norm(tokens[k][0]) == n:
                 w["key"] = tokens[k][1]
+                # sentence boundary known from the script (words.json has no punctuation)
+                w["brk"] = bool(PUNCT_END.search(tokens[k][0])) or k in (line_ends or ())
                 j = k + 1
                 break
 
@@ -61,11 +79,16 @@ def chunk(words: list[dict], max_words: int, max_chars: int, gap: float) -> list
         if cur:
             text_len = sum(len(x["word"]) + 1 for x in cur) + len(w["word"])
             prev = cur[-1]
+            hard = prev.get("brk") or PUNCT_END.search(prev["word"])
             if (len(cur) >= max_words or text_len > max_chars
-                    or w["start"] - prev["end"] > gap
-                    or re.search(r"[.,!?…:;]$", prev["word"])):
-                chunks.append(cur)
-                cur = []
+                    or w["start"] - prev["end"] > gap or hard):
+                if (not hard and len(cur) > 1 and norm(prev["word"]) in DANGLING):
+                    cur.pop()                      # never leave "the/to/of..." hanging at chunk end
+                    chunks.append(cur)
+                    cur = [prev]
+                else:
+                    chunks.append(cur)
+                    cur = []
         cur.append(w)
     if cur:
         chunks.append(cur)
@@ -129,7 +152,7 @@ def main() -> None:
     if a.words:
         words = json.loads(Path(a.words).read_text(encoding="utf-8"))
         if tokens:                       # otherwise keep "key" flags from the json
-            align_keywords(words, tokens)
+            align_keywords(words, tokens, line_ends=line_end_indexes(script))
     elif a.duration and script:
         words = even_words(tokens, a.duration, a.offset)
     else:

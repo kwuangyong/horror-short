@@ -213,7 +213,8 @@
    ],
    "shake": 16,
    "flash": true,
-   "clock": null
+   "clock": null,
+   "overlay": "build/battle/img/hook_hud.png"
   },
   {
    "image": "build/battle/img/kidcard.png",
@@ -388,7 +389,8 @@
    ],
    "pan": "right",
    "fade_in": 0.3,
-   "clock": "2:00 AM"
+   "clock": "2:00 AM",
+   "overlay": "build/battle/img/window_hud.png"
   },
   {
    "image": "build/battle/img/forest.png",
@@ -397,7 +399,8 @@
     1.0,
     1.15
    ],
-   "pan": "left"
+   "pan": "left",
+   "overlay": "build/battle/img/forest_hud.png"
   },
   {
    "image": "build/battle/img/grandma.png",
@@ -406,7 +409,8 @@
     1.0,
     1.1
    ],
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/grandma_hud.png"
   },
   {
    "image": "build/battle/img/rule.png",
@@ -415,7 +419,8 @@
     1.0,
     1.06
    ],
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/rule_hud.png"
   },
   {
    "image": "build/battle/img/rise.png",
@@ -424,7 +429,8 @@
     1.0,
     1.2
    ],
-   "shake": 8
+   "shake": 8,
+   "overlay": "build/battle/img/rise_hud.png"
   },
   {
    "image": "build/battle/img/claw.png",
@@ -434,7 +440,8 @@
     1.25
    ],
    "shake": 22,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/claw_hud.png"
   },
   {
    "image": "build/battle/img/grim.png",
@@ -442,7 +449,8 @@
    "zoom": [
     1.0,
     1.15
-   ]
+   ],
+   "overlay": "build/battle/img/grim_hud.png"
   },
   {
    "image": "build/battle/img/limit.png",
@@ -451,7 +459,8 @@
     1.0,
     1.05
    ],
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/limit_hud.png"
   },
   {
    "image": "build/battle/img/round1.png",
@@ -461,7 +470,8 @@
     1.0
    ],
    "shake": 24,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/round1_hud.png"
   },
   {
    "image": "build/battle/img/r1_a.png",
@@ -471,7 +481,8 @@
     1.3
    ],
    "shake": 20,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/r1_a_hud.png"
   },
   {
    "image": "build/battle/img/r1_b.png",
@@ -481,7 +492,8 @@
     1.4
    ],
    "shake": 14,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/r1_b_hud.png"
   },
   {
    "image": "build/battle/img/round2.png",
@@ -491,7 +503,8 @@
     1.0
    ],
    "shake": 24,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/round2_hud.png"
   },
   {
    "image": "build/battle/img/r2a.png",
@@ -501,7 +514,8 @@
     1.3
    ],
    "shake": 18,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/r2a_hud.png"
   },
   {
    "image": "build/battle/img/r2b.png",
@@ -512,7 +526,8 @@
    ],
    "pan": "right",
    "shake": 6,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/r2b_hud.png"
   },
   {
    "image": "build/battle/img/r2b_blink.png",
@@ -521,7 +536,8 @@
     1.1,
     1.2
    ],
-   "shake": 10
+   "shake": 10,
+   "overlay": "build/battle/img/r2b_blink_hud.png"
   },
   {
    "image": "build/battle/img/r2b.png",
@@ -531,7 +547,8 @@
     1.3
    ],
    "shake": 14,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/r2b_hud.png"
   },
   {
    "image": "build/battle/img/r2b_blink.png",
@@ -541,7 +558,8 @@
     1.45
    ],
    "shake": 18,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/r2b_blink_hud.png"
   },
   {
    "image": "build/battle/img/round3.png",
@@ -551,7 +569,8 @@
     1.0
    ],
    "shake": 24,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/round3_hud.png"
   },
   {
    "image": "build/battle/img/crawl.png",
@@ -559,7 +578,8 @@
    "zoom": [
     1.0,
     1.15
-   ]
+   ],
+   "overlay": "build/battle/img/crawl_hud.png"
   },
   {
    "image": "build/battle/img/crush.png",
@@ -568,7 +588,8 @@
     1.0,
     1.3
    ],
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/crush_hud.png"
   },
   {
    "image": "build/battle/img/throw_a.png",
@@ -576,7 +597,8 @@
    "zoom": [
     1.0,
     1.2
-   ]
+   ],
+   "overlay": "build/battle/img/throw_a_hud.png"
   },
   {
    "image": "build/battle/img/throw_b.png",
@@ -586,7 +608,8 @@
     1.5
    ],
    "shake": 22,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/throw_b_hud.png"
   },
   {
    "image": "build/battle/img/lure.png",
@@ -595,7 +618,8 @@
     1.0,
     1.2
    ],
-   "pan": "right"
+   "pan": "right",
+   "overlay": "build/battle/img/lure_hud.png"
   },
   {
    "image": "build/battle/img/lure.png",
@@ -605,7 +629,8 @@
     1.5
    ],
    "shake": 8,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/lure_hud.png"
   },
   {
    "image": "build/battle/img/pounce.png",
@@ -615,7 +640,8 @@
     1.5
    ],
    "shake": 24,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/pounce_hud.png"
   },
   {
    "image": "build/battle/img/ko.png",
@@ -625,7 +651,8 @@
     1.0
    ],
    "shake": 18,
-   "flash": true
+   "flash": true,
+   "overlay": "build/battle/img/ko_hud.png"
   },
   {
    "image": "build/battle/img/dawn.png",

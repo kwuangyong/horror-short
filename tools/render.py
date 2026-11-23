@@ -86,11 +86,21 @@ def scene_clip(sc: dict, i: int, cfg: dict, base: Path, tmp: Path, font: str) ->
     cmd = ["ffmpeg", "-y", "-v", "error", "-loop", "1", "-framerate", str(fps), "-t", f"{dur}",
            "-i", str(src)]
     hud = cfg.get("hud")
+    ovs: list[Path] = []                       # overlays composited after zoom/shake (not zoomed)
     if hud and sc.get("hud", True):
         hp = tmp / f"hud_{i:03d}.png"
         hud_png(hp, hud["label"], sc.get("_clock"), W, H, font)
-        cmd += ["-i", str(hp), "-filter_complex",
-                f"[0:v]{','.join(vf)}[v];[v][1:v]overlay=0:0,format=yuv420p[o]", "-map", "[o]"]
+        ovs.append(hp)
+    if sc.get("overlay"):                      # optional extra full-frame RGBA png (e.g. health bars)
+        ovs.append(base / sc["overlay"])
+    if ovs:
+        for o in ovs:
+            cmd += ["-i", str(o)]
+        chain, last = f"[0:v]{','.join(vf)}[v0]", "v0"
+        for k in range(len(ovs)):
+            chain += f";[{last}][{k+1}:v]overlay=0:0,format=yuv420p[v{k+1}]"
+            last = f"v{k+1}"
+        cmd += ["-filter_complex", chain, "-map", f"[{last}]"]
     else:
         cmd += ["-vf", ",".join(vf)]
     cmd += ["-frames:v", str(n), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",

@@ -123,7 +123,7 @@ def darken(img, amt=0.72, blur=7):
     return Image.blend(img, Image.new("RGB", (W, H), (4, 4, 8)), amt)
 
 # ---------------------------------------------------------------- HUD (3 health bars)
-def bars(img, hud, ghost=None, blink=False):
+def bars(img, hud, ghost=None, blink=False):  # img: transparent RGBA overlay
     """hud = dict(kid=, grim=, vry=) values 0..100 (missing = hidden). ghost = previous values."""
     d = ImageDraw.Draw(img, "RGBA")
     rows = [("KID", "kid", (60, 200, 110)), ("GRIM", "grim", (235, 235, 240)), ("VRYKOLAKAS", "vry", (227, 38, 47))]
@@ -221,7 +221,7 @@ def c_cta(txt1, txt2, col, extra=None):
 def c_next():
     img = make_base("cta", False); d = ImageDraw.Draw(img, "RGBA")
     d.rectangle((90, 380, W - 90, 920), fill=(24, 12, 20, 240), outline=RED, width=8)
-    kid(d, 540, 760, 1.5); d.text((0, 0), "", font=F(10))
+    kid(d, 540, 880, 1.3)
     d = ImageDraw.Draw(img)
     ctext(d, 450, "NEXT BATTLE SPIN", F(60), (205, 205, 215))
     ctext(d, 940, "WHO'S NEXT?", fit(d, "WHO'S NEXT?", W - 200, 140), WHITE)
@@ -246,10 +246,12 @@ def c_spin_lock(kind):
     return img
 
 # ---------------------------------------------------------------- save helpers
-IMG = {}
+IMG, OVL = {}, {}
 def save(key, img, hud=None, ghost=None, blink=False):
-    if hud is not None: img = bars(img.copy(), hud, ghost, blink)
-    p = f"{B}/img/{key}.png"; img.convert("RGB").save(p); IMG[key] = f"build/battle/img/{key}.png"; return IMG[key]
+    img.convert("RGB").save(f"{B}/img/{key}.png"); IMG[key] = f"build/battle/img/{key}.png"
+    if hud is not None:   # HUD bars = separate overlay, so zoom/shake never crops them
+        bars(Image.new("RGBA", (W, H), (0, 0, 0, 0)), hud, ghost, blink).save(f"{B}/img/{key}_hud.png")
+        OVL[key] = f"build/battle/img/{key}_hud.png"
 
 # ================================================================== TIMELINE
 text = open(f"{HERE}/script-battle.md", encoding="utf-8").read()
@@ -367,6 +369,7 @@ for i in range(20):
         for k in ("pan", "shake", "flash", "fade_in", "clock"):
             if k in s: e[k] = s[k]
         if s.get("hud") is False: e["hud"] = False
+        if s["img"] in OVL: e["overlay"] = OVL[s["img"]]
         scenes_out.append(e)
         for name, off, vol in s.get("sfx", []):
             at = st + (d - 0.06 if off == "END" else off)

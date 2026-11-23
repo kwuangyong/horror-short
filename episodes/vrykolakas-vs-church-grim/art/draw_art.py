@@ -273,7 +273,7 @@ def wall(c, rng, x0, x1, base, h=110, gaps=(), light=(104, 112, 146), c1=(86, 94
 
 
 def boundary(c, x0, x1, y, col=(255, 226, 140)):
-    c.glow((x0 + x1) / 2, y, (x1 - x0) / 2, col + (70,), 18)
+    c.rect(x0, y - 10, x1, y + 10, col + (45,))
     c.line([(x0, y), (x1, y)], 5, col + (255,))
     for x in range(int(x0), int(x1), 60):
         c.glow(x + 30, y, 10, col + (160,), 6)
@@ -809,7 +809,7 @@ def sc_hook(c, B, Fg, rng):
     if B:
         forest_bg(c, rng, G=880, moon_pos=(820, 290), edge_trees=True)
         c.grad(0, 880, W, H, (30, 38, 70), (8, 8, 20))
-        draw_grim(c, 250, 930, 0.95, "blocked", flip=1)
+        draw_grim(c, 330, 930, 1.0, "blocked", flip=1)
         wall(c, rng, -20, W + 20, 930, 110, gaps=[])
         c.fog(780, 960, (130, 80, 100), 60)
         c.grad(0, 930, W, H, (34, 40, 72), (8, 8, 18))
@@ -818,7 +818,6 @@ def sc_hook(c, B, Fg, rng):
     if Fg:
         draw_kid(c, 470, 1105, 1.05, "fall", flip=-1)
         draw_vrykolakas(c, 700, 1075, 0.98, "claw", flip=-1, aL=(-130, -150), aR=(-125, -160))
-        speed(c, 600, 760, 330, 540, 20, (255, 255, 255, 40), seed=4, w=8)
 
 
 def sc_card(c, B, Fg, rng):
@@ -960,10 +959,10 @@ def sc_grandma(c, B, Fg, rng):
         k = draw_kid(c, 760, 1090, 1.2, "stand", flip=-1, aL=-18, aR=18, fl=None, face="normal")
         p_near = k.pt(40, -110)
         p_far = k.pt(-40, -110)
-        draw_grandma(c, 360, 1090, 1.18, 1, reach=(p_near[0] + 6, p_near[1] - 8), reach2=(p_near[0] - 150, p_near[1] - 120))
+        draw_grandma(c, 440, 1090, 1.18, 1, reach=(p_near[0] + 4, p_near[1] - 6))
         garlic(c, p_near[0] - 18, p_near[1] - 6, 0.52)
-        lamp(c, p_far[0], p_far[1] + 8, 0.42)
-        matchbox(c, p_near[0] - 150, p_near[1] - 118, 0.5, -20)
+        lamp(c, p_far[0] - 8, p_far[1] - 6, 0.34)
+        matchbox(c, p_far[0] + 6, p_far[1] - 14, 0.28, -14)
 
 
 def sc_grave_rises(c, B, Fg, rng):
@@ -994,12 +993,11 @@ def sc_claw_miss(c, B, Fg, rng):
         tomb(c, 140, 1030, 90, 120, 5)
         c.tint((196, 18, 31, 26))
     if Fg:
+        impact(c, 600, 800, 70, (255, 255, 255), seed=9)
         draw_kid(c, 390, 1060, 1.1, "fall", flip=1, rot=48, aL=130, aR=160, lL=22, lR=-30, tail=(100, 330))
         draw_vrykolakas(c, 840, 1040, 0.98, "claw", flip=-1, rot=-4, aL=(-80, -118), aR=(-95, -128))
         slash(c, 610, 640, 210, 120, 240, 34, CRIM)
         slash(c, 650, 700, 230, 130, 235, 22, CRIM)
-        impact(c, 560, 860, 80, (255, 255, 255), seed=9)
-        speed(c, 560, 860, 120, 300, 18, (255, 255, 255, 70), seed=8)
 
 
 def sc_grim_appears(c, B, Fg, rng):
@@ -1027,12 +1025,12 @@ def sc_round1(c, B, Fg, rng):
         tomb(c, 880, 1060, 100, 140, 7)
         tomb(c, 330, 1030, 80, 110, -8)
     if Fg:
+        impact(c, 620, 660, 120, (255, 255, 255), seed=2)
+        speed(c, 620, 660, 160, 380, 22, (255, 255, 255, 60), seed=5)
         draw_kid(c, 150, 1110, 0.62, "hug", flip=1)
         tomb(c, 160, 1150, 230, 300, -3)
         draw_vrykolakas(c, 740, 1060, 0.9, "claw", flip=-1, rot=-52, aL=(-100, -140), aR=(-120, -150))
         draw_grim(c, 460, 920, 0.95, "lunge", flip=1, rot=26)
-        impact(c, 600, 680, 150, (255, 255, 255), seed=2)
-        speed(c, 600, 690, 200, 420, 22, (255, 255, 255, 80), seed=5)
 
 
 def sc_round2_thrown(c, B, Fg, rng):
@@ -1042,7 +1040,7 @@ def sc_round2_thrown(c, B, Fg, rng):
         c.fog(740, 900, (110, 124, 180), 60)
     if Fg:
         draw_vrykolakas(c, 190, 900, 0.8, "throw", flip=1)
-        draw_grim(c, 840, 900, 0.8, "blocked", flip=-1)
+        draw_grim(c, 890, 900, 0.8, "blocked", flip=-1)
     if B:
         wall(c, rng, -20, W + 20, 940, 110, gaps=[])
         boundary(c, 560, 1100, 944)
@@ -1050,7 +1048,7 @@ def sc_round2_thrown(c, B, Fg, rng):
         c.tint((196, 18, 31, 30))
     if Fg:
         c.limb((380, 700), (520, 560), 12, 10, CRIM) if False else None
-        draw_kid(c, 520, 800, 1.0, "fall", flip=1, rot=70, aL=-160, aR=165, lL=30, lR=-30, tail=(-125, 300))
+        draw_kid(c, 470, 760, 1.0, "fall", flip=1, rot=70, aL=-160, aR=165, lL=30, lR=-30, tail=(-125, 300))
         speed(c, 540, 700, 180, 330, 14, (255, 255, 255, 60), seed=6, w=7)
 
 
@@ -1131,8 +1129,8 @@ def sc_flash_lure(c, B, Fg, rng):
         draw_grim(c, 900, 900, 0.75, "snarl", flip=-1, alpha=0.0) if False else None
         c.ell(868, 826, 14, 10, (255, 56, 56)); c.ell(930, 826, 14, 10, (255, 56, 56))
         c.ell(870, 826, 5, 7, (255, 214, 200)); c.ell(932, 826, 5, 7, (255, 214, 200))
-        draw_kid(c, 560, 930, 0.72, "flashlight", flip=-1, aR=84, aL=-24, fl=("R", 84, True), lL=-14, lR=16)
-        draw_vrykolakas(c, 190, 1120, 1.02, "stagger", flip=1)
+        draw_kid(c, 600, 930, 0.72, "flashlight", flip=-1, aR=84, aL=-24, fl=("R", 84, True), lL=-14, lR=16)
+        draw_vrykolakas(c, 150, 1120, 0.95, "stagger", flip=1)
 
 
 def sc_grim_pounce(c, B, Fg, rng):
@@ -1146,10 +1144,9 @@ def sc_grim_pounce(c, B, Fg, rng):
         boundary(c, 300, 620, 944)
         c.grad(0, 940, W, H, (34, 40, 72), (8, 8, 18))
     if Fg:
+        impact(c, 660, 760, 70, (255, 90, 90), seed=21, n=10)
         draw_vrykolakas(c, 450, 985, 0.95, "stagger", flip=-1, rot=-8, aL=(-100, -120), aR=(-110, -130))
         draw_grim(c, 830, 830, 0.95, "lunge", flip=-1, rot=14)
-        impact(c, 660, 700, 100, (255, 90, 90), seed=21, n=10)
-        speed(c, 660, 700, 130, 320, 18, (255, 255, 255, 70), seed=22)
 
 
 def sc_ko(c, B, Fg, rng):
@@ -1204,25 +1201,27 @@ def sc_cliff(c, B, Fg, rng):
         c.grad(0, 560, W, 900, (255, 160, 100, 0), (255, 170, 100, 70))
         c.fog(500, 900, (190, 200, 240), 40)
         c.grad(0, 880, W, H, (40, 38, 66), (8, 8, 18))
-        mound(c, 540, 1010, 460, 280, soil=(70, 50, 62), soil_l=(100, 74, 84))
-        for x in range(60, 1040, 46):
-            c.poly([(x, 1030 + (x % 5) * 3), (x + 18, 1030), (x + 6, 1030 - 24 - (x % 7) * 3)], (30, 44, 70))
-        # soil bulge
-        c.ell(540, 760, 130, 70, (110, 82, 90))
-        c.ell(540, 780, 110, 52, (88, 64, 74))
-        c.ell(540, 740, 70, 34, (120, 92, 100))
-        for sx in (-90, 40, 100, -40):
-            c.ell(540 + sx, 730 + abs(sx) * 0.1, 10, 7, (50, 36, 46))
-        c.line([(470, 760), (520, 790), (500, 830)], 6, (24, 16, 26))
-        c.line([(610, 750), (580, 800), (606, 840)], 6, (24, 16, 26))
+        mound(c, 540, 1010, 480, 300, soil=(70, 50, 62), soil_l=(100, 74, 84))
+        for x in range(90, 1000, 70):
+            c.ell(x, 1022, 22, 7, (26, 38, 62))
+        for gx, gy, gr in ((300, 860, 26), (760, 880, 30), (420, 940, 22), (680, 930, 24), (210, 960, 18)):
+            c.ell(gx, gy, gr, gr * 0.6, (54, 38, 48))
+        c.ell(540, 745, 170, 95, (62, 44, 56))
+        c.ell(540, 735, 160, 86, (112, 84, 92))
+        c.ell(530, 720, 110, 56, (128, 98, 104))
+        c.line([(450, 760), (500, 790), (480, 840)], 8, (24, 16, 26))
+        c.line([(630, 750), (590, 800), (620, 850)], 8, (24, 16, 26))
         matchbox(c, 250, 1140, 1.5, -12)
         lamp(c, 850, 1100, 1.0, lit=False, rot=64)
     if Fg:
         c.glow(540, 700, 80, (200, 240, 210, 60), 40)
-        for i, (kx, ky, rr) in enumerate(((510, 700, 22), (545, 694, 24), (580, 702, 22))):
-            c.ell(kx, ky, rr, rr * 0.9, SK_D)
-            c.ell(kx - 3, ky - 4, rr * 0.85, rr * 0.75, SK)
-        c.limb((520, 720), (520, 760), 40, 44, SK_D)
+        c.limb((540, 740), (540, 700), 110, 100, SK_D)
+        for i, (kx, ky, rr) in enumerate(((490, 668, 36), (540, 656, 40), (592, 666, 37))):
+            c.ell(kx, ky, rr, rr * 0.85, SK_D)
+            c.ell(kx - 4, ky - 5, rr * 0.86, rr * 0.72, SK)
+            c.ell(kx - 10, ky - 14, 8, 5, (200, 220, 205))
+        for sx_, sy_ in ((440, 720), (640, 716), (500, 730), (590, 734)):
+            c.ell(sx_, sy_, 14, 9, (70, 50, 62))
 
 
 def sc_cta(c, B, Fg, rng):

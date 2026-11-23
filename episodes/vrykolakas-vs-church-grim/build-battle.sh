@@ -9,5 +9,5 @@ mkdir -p "$B/img" "$B/audio"
 CAPFONT="$(fc-scan --format '%{family[0]}' "$(python3 -c "import sys; sys.path.insert(0,'$TOOLS'); from common import find_font; print(find_font())")")"
 export CAPFONT
 python3 "$HERE/battle_gen.py"          # timeline, images, audio, captions words, project-battle.json
-python3 "$TOOLS/make_captions.py" "$B/words_est.json" --font "$CAPFONT" -o "$B/captions.ass"
+python3 "$TOOLS/make_captions.py" "$B/words_est.json" --font "$CAPFONT" --size 80 --max-chars 14 -o "$B/captions.ass"
 python3 "$TOOLS/render.py" "$HERE/project-battle.json"

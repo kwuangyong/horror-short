@@ -1,0 +1,54 @@
+{
+ "scale": 1.0639377416455373,
+ "duration": 99.133729,
+ "sections": [
+  {
+   "section": 0,
+   "start": 0.0
+  },
+  {
+   "section": 1,
+   "start": 3.19
+  },
+  {
+   "section": 2,
+   "start": 7.2
+  },
+  {
+   "section": 3,
+   "start": 11.99
+  },
+  {
+   "section": 4,
+   "start": 14.14
+  },
+  {
+   "section": 5,
+   "start": 39.38
+  },
+  {
+   "section": 6,
+   "start": 46.59
+  },
+  {
+   "section": 7,
+   "start": 51.7
+  },
+  {
+   "section": 8,
+   "start": 65.62
+  },
+  {
+   "section": 9,
+   "start": 85.48
+  },
+  {
+   "section": 10,
+   "start": 91.48
+  },
+  {
+   "section": 11,
+   "start": 95.3
+  }
+ ]
+}

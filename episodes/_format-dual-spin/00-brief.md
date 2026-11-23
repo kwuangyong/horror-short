@@ -16,3 +16,9 @@ Câu chuyện là đêm sống sót: hộ vệ có giúp được bạn trước
 - Không dùng nhân vật có chủ bản quyền (Siren Head, Smile Dog, Jeff the Killer, Slenderman...).
 - Cẩn trọng tôn giáo đang được thờ phụng (không biến thần thành trò cười, không đặt thần thua quái vật một cách xúc phạm); ghi chú mức nhạy cảm.
 - Video tiếng Anh, khán giả toàn cầu; ưu tiên có yếu tố Việt Nam/Á Đông làm điểm khác biệt.
+
+## CẬP NHẬT PHẠM VI (quyết định của người dùng)
+- **KHÔNG** dùng quái vật/hộ vệ Việt Nam và châu Á, **trừ Nhật Bản**.
+- Tập trung chủ yếu: **châu Âu (phương Tây), Mỹ, Canada, Nga**.
+- Mục cũ ngoài phạm vi (Ma Da, Ma Lai, Krasue, Pontianak, Jiangshi, Chung Quỳ, Garuda...) giữ trong file research để tham khảo nhưng không đưa vào vòng quay.
+- Truyền thuyết của người bản địa Bắc Mỹ (Wendigo, Skinwalker, Thunderbird...) là tín ngưỡng sống: nhạy cảm cao, ưu tiên tránh hoặc xử lý rất cẩn trọng.

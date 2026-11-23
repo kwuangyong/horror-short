@@ -106,7 +106,7 @@ I = dict(
 H_ = hud  # shortcut
 HU = {
  "h0": H_("hud_h0", 20, 75, 60), "k100": H_("hud_k100", 100),
- "rise": H_("hud_rise", 100, None, 100), "claw": H_("hud_claw", 60, None, 100, dict(kid=100)),
+ "rise": H_("hud_rise", 100, None, 100), "claw2": H_("hud_claw2", 60, None, 100), "claw": H_("hud_claw", 60, None, 100, dict(kid=100)),
  "grim": H_("hud_grim", 60, 100, 100), "r1a": H_("hud_r1a", 60, 100, 100), "r1b": H_("hud_r1b", 60, 90, 55, dict(grim=100, vry=100)),
  "r2a": H_("hud_r2a", 60, 90, 60, dict(vry=55)), "r2b": H_("hud_r2b", 20, 90, 60, dict(kid=60)),
  "r2c": H_("hud_r2c", 20, 75, 60, dict(grim=90)), "r2c_n": H_("hud_r2cn", 20, 75, 60), "r2c_b": H_("hud_r2cb", 20, 75, 60, blink=True),
@@ -116,3 +116,5 @@ HU = {
 }
 json.dump(dict(I=I, HU=HU), open(f"{B}/assets.json", "w"))
 print("assets ok")
+
+Image.new("RGB", (W, H), (0, 0, 0)).save(f"{B}/img/black.png")

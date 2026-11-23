@@ -2,1327 +2,1327 @@
  {
   "word": "The",
   "start": 0.0,
-  "end": 0.072,
+  "end": 0.071,
   "eleni": false
  },
  {
   "word": "dog",
-  "start": 0.087,
-  "end": 0.513,
+  "start": 0.082,
+  "end": 0.406,
   "eleni": false
  },
  {
   "word": "can't",
-  "start": 0.528,
-  "end": 0.896,
+  "start": 0.417,
+  "end": 0.696,
   "eleni": false
  },
  {
   "word": "reach",
-  "start": 0.91,
-  "end": 1.219,
+  "start": 0.707,
+  "end": 0.941,
   "eleni": false
  },
  {
   "word": "them",
-  "start": 1.234,
-  "end": 1.602,
+  "start": 0.952,
+  "end": 1.231,
   "eleni": false
  },
  {
   "word": "Who",
-  "start": 2.154,
-  "end": 2.291,
+  "start": 1.599,
+  "end": 1.71,
   "eleni": false
  },
  {
   "word": "survives",
-  "start": 2.305,
-  "end": 3.247,
+  "start": 1.721,
+  "end": 2.436,
   "eleni": false
  },
  {
   "word": "Meet",
-  "start": 4.337,
-  "end": 4.569,
+  "start": 3.212,
+  "end": 3.397,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 4.584,
-  "end": 4.701,
+  "start": 3.408,
+  "end": 3.497,
   "eleni": false
  },
  {
   "word": "kid",
-  "start": 4.716,
-  "end": 5.216,
+  "start": 3.508,
+  "end": 3.888,
   "eleni": false
  },
  {
   "word": "Small",
-  "start": 5.742,
-  "end": 6.55,
+  "start": 4.241,
+  "end": 4.864,
   "eleni": false
  },
  {
   "word": "Stubborn",
-  "start": 7.041,
-  "end": 7.763,
+  "start": 5.179,
+  "end": 5.729,
   "eleni": false
  },
  {
   "word": "Alive",
-  "start": 8.31,
-  "end": 8.969,
+  "start": 6.091,
+  "end": 6.604,
   "eleni": false
  },
  {
   "word": "Fighter",
-  "start": 10.062,
-  "end": 10.419,
+  "start": 7.373,
+  "end": 7.646,
   "eleni": false
  },
  {
   "word": "one",
-  "start": 10.434,
-  "end": 10.846,
+  "start": 7.657,
+  "end": 7.97,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 11.413,
-  "end": 11.471,
+  "start": 8.349,
+  "end": 8.409,
   "eleni": false
  },
  {
   "word": "Vrykolakas",
-  "start": 11.486,
-  "end": 12.647,
+  "start": 8.42,
+  "end": 9.302,
   "eleni": false
  },
  {
   "word": "Fighter",
-  "start": 13.165,
-  "end": 13.528,
+  "start": 9.64,
+  "end": 9.929,
   "eleni": false
  },
  {
   "word": "two",
-  "start": 13.542,
-  "end": 14.028,
+  "start": 9.94,
+  "end": 10.308,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 14.575,
-  "end": 14.63,
+  "start": 10.679,
+  "end": 10.736,
   "eleni": false
  },
  {
   "word": "Church",
-  "start": 14.644,
-  "end": 15.071,
+  "start": 10.748,
+  "end": 11.071,
   "eleni": false
  },
  {
   "word": "Grim",
-  "start": 15.086,
-  "end": 15.644,
+  "start": 11.082,
+  "end": 11.506,
   "eleni": false
  },
  {
   "word": "Who",
-  "start": 16.706,
-  "end": 16.853,
+  "start": 12.259,
+  "end": 12.388,
   "eleni": false
  },
  {
   "word": "wins",
-  "start": 16.868,
-  "end": 17.515,
+  "start": 12.399,
+  "end": 12.89,
   "eleni": false
  },
  {
   "word": "Comment",
-  "start": 18.059,
-  "end": 18.696,
+  "start": 13.247,
+  "end": 13.744,
   "eleni": false
  },
  {
   "word": "Every",
-  "start": 19.775,
-  "end": 20.054,
+  "start": 14.509,
+  "end": 14.731,
   "eleni": false
  },
  {
   "word": "night",
-  "start": 20.069,
-  "end": 20.451,
+  "start": 14.742,
+  "end": 15.033,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 20.701,
-  "end": 20.833,
+  "start": 15.222,
+  "end": 15.323,
   "eleni": false
  },
  {
   "word": "kid",
-  "start": 20.848,
-  "end": 21.172,
+  "start": 15.334,
+  "end": 15.579,
   "eleni": false
  },
  {
   "word": "sneaks",
-  "start": 21.186,
-  "end": 21.672,
+  "start": 15.591,
+  "end": 15.959,
   "eleni": false
  },
  {
   "word": "into",
-  "start": 21.686,
-  "end": 21.951,
+  "start": 15.97,
+  "end": 16.171,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 21.966,
-  "end": 22.083,
+  "start": 16.182,
+  "end": 16.271,
   "eleni": false
  },
  {
   "word": "woods",
-  "start": 22.098,
-  "end": 22.73,
+  "start": 16.283,
+  "end": 16.762,
   "eleni": false
  },
  {
   "word": "Tonight",
-  "start": 23.262,
-  "end": 23.721,
+  "start": 17.112,
+  "end": 17.469,
   "eleni": false
  },
  {
   "word": "a",
-  "start": 24.03,
-  "end": 24.118,
+  "start": 17.703,
+  "end": 17.77,
   "eleni": false
  },
  {
   "word": "firefly",
-  "start": 24.133,
-  "end": 24.824,
+  "start": 17.781,
+  "end": 18.306,
   "eleni": false
  },
  {
   "word": "leads",
-  "start": 24.839,
-  "end": 25.236,
+  "start": 18.317,
+  "end": 18.618,
   "eleni": false
  },
  {
   "word": "them",
-  "start": 25.25,
-  "end": 25.456,
+  "start": 18.63,
+  "end": 18.786,
   "eleni": false
  },
  {
   "word": "deeper",
-  "start": 25.471,
-  "end": 26.03,
+  "start": 18.797,
+  "end": 19.221,
   "eleni": false
  },
  {
   "word": "Two",
-  "start": 26.504,
-  "end": 26.781,
+  "start": 19.522,
+  "end": 19.748,
   "eleni": false
  },
  {
   "word": "A.M.",
-  "start": 26.795,
-  "end": 27.472,
+  "start": 19.759,
+  "end": 20.273,
   "eleni": false
  },
  {
   "word": "Old",
-  "start": 28.005,
-  "end": 28.241,
+  "start": 20.632,
+  "end": 20.822,
   "eleni": false
  },
  {
   "word": "graves",
-  "start": 28.256,
-  "end": 28.711,
+  "start": 20.833,
+  "end": 21.179,
   "eleni": false
  },
  {
   "word": "ahead",
-  "start": 28.726,
-  "end": 29.27,
+  "start": 21.19,
+  "end": 21.603,
   "eleni": false
  },
  {
   "word": "Grandma",
-  "start": 29.784,
-  "end": 30.204,
+  "start": 21.944,
+  "end": 22.277,
   "eleni": false
  },
  {
   "word": "Eleni's",
-  "start": 30.219,
-  "end": 30.719,
+  "start": 22.288,
+  "end": 22.668,
   "eleni": false
  },
  {
   "word": "voice",
-  "start": 30.734,
-  "end": 31.116,
+  "start": 22.679,
+  "end": 22.969,
   "eleni": false
  },
  {
   "word": "echoes",
-  "start": 31.131,
-  "end": 31.866,
+  "start": 22.98,
+  "end": 23.538,
   "eleni": false
  },
  {
   "word": "Garlic",
-  "start": 32.542,
-  "end": 32.972,
+  "start": 24.0,
+  "end": 24.43,
   "eleni": true
  },
  {
   "word": "weakens",
-  "start": 32.989,
-  "end": 33.572,
+  "start": 24.447,
+  "end": 25.03,
   "eleni": true
  },
  {
   "word": "it",
-  "start": 33.589,
-  "end": 33.905,
+  "start": 25.047,
+  "end": 25.364,
   "eleni": true
  },
  {
   "word": "Only",
-  "start": 35.072,
-  "end": 35.505,
+  "start": 26.53,
+  "end": 26.964,
   "eleni": true
  },
  {
   "word": "fire",
-  "start": 35.522,
-  "end": 36.122,
+  "start": 26.98,
+  "end": 27.58,
   "eleni": true
  },
  {
   "word": "ends",
-  "start": 36.139,
-  "end": 36.489,
+  "start": 27.597,
+  "end": 27.947,
   "eleni": true
  },
  {
   "word": "it",
-  "start": 36.505,
-  "end": 36.822,
+  "start": 27.964,
+  "end": 28.28,
   "eleni": true
  },
  {
   "word": "Garlic",
-  "start": 37.468,
-  "end": 37.871,
+  "start": 28.726,
+  "end": 29.04,
   "eleni": false
  },
  {
   "word": "in",
-  "start": 37.886,
-  "end": 38.062,
+  "start": 29.051,
+  "end": 29.185,
   "eleni": false
  },
  {
   "word": "one",
-  "start": 38.077,
-  "end": 38.356,
+  "start": 29.196,
+  "end": 29.408,
   "eleni": false
  },
  {
   "word": "pocket",
-  "start": 38.371,
-  "end": 38.989,
+  "start": 29.419,
+  "end": 29.888,
   "eleni": false
  },
  {
   "word": "Matches",
-  "start": 39.534,
-  "end": 40.037,
+  "start": 30.248,
+  "end": 30.638,
   "eleni": false
  },
  {
   "word": "in",
-  "start": 40.052,
-  "end": 40.155,
+  "start": 30.649,
+  "end": 30.727,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 40.17,
-  "end": 40.273,
+  "start": 30.738,
+  "end": 30.816,
   "eleni": false
  },
  {
   "word": "other",
-  "start": 40.287,
-  "end": 40.773,
+  "start": 30.827,
+  "end": 31.196,
   "eleni": false
  },
  {
   "word": "A",
-  "start": 41.272,
-  "end": 41.32,
+  "start": 31.524,
+  "end": 31.571,
   "eleni": false
  },
  {
   "word": "fresh",
-  "start": 41.335,
-  "end": 41.776,
+  "start": 31.582,
+  "end": 31.917,
   "eleni": false
  },
  {
   "word": "grave",
-  "start": 41.791,
-  "end": 42.188,
+  "start": 31.928,
+  "end": 32.229,
   "eleni": false
  },
  {
   "word": "cracks",
-  "start": 42.203,
-  "end": 42.688,
+  "start": 32.241,
+  "end": 32.609,
   "eleni": false
  },
  {
   "word": "open",
-  "start": 42.703,
-  "end": 43.203,
+  "start": 32.62,
+  "end": 32.999,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 43.703,
-  "end": 43.746,
+  "start": 33.331,
+  "end": 33.378,
   "eleni": false
  },
  {
   "word": "Vrykolakas",
-  "start": 43.76,
-  "end": 44.628,
+  "start": 33.389,
+  "end": 34.048,
   "eleni": false
  },
  {
   "word": "rises",
-  "start": 44.643,
-  "end": 45.437,
+  "start": 34.059,
+  "end": 34.662,
   "eleni": false
  },
  {
   "word": "One",
-  "start": 45.953,
-  "end": 46.22,
+  "start": 35.021,
+  "end": 35.231,
   "eleni": false
  },
  {
   "word": "claw",
-  "start": 46.235,
-  "end": 46.779,
+  "start": 35.243,
+  "end": 35.656,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 47.307,
-  "end": 47.368,
+  "start": 36.011,
+  "end": 36.072,
   "eleni": false
  },
  {
   "word": "kid",
-  "start": 47.382,
-  "end": 47.706,
+  "start": 36.083,
+  "end": 36.329,
   "eleni": false
  },
  {
   "word": "falls",
-  "start": 47.721,
-  "end": 48.471,
+  "start": 36.34,
+  "end": 36.909,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 49.012,
-  "end": 49.07,
+  "start": 37.278,
+  "end": 37.338,
   "eleni": false
  },
  {
   "word": "kid",
-  "start": 49.085,
-  "end": 49.393,
+  "start": 37.349,
+  "end": 37.583,
   "eleni": false
  },
  {
   "word": "runs",
-  "start": 49.408,
-  "end": 49.82,
+  "start": 37.595,
+  "end": 37.907,
   "eleni": false
  },
  {
   "word": "for",
-  "start": 49.835,
-  "end": 49.967,
+  "start": 37.918,
+  "end": 38.019,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 49.982,
-  "end": 50.099,
+  "start": 38.03,
+  "end": 38.119,
   "eleni": false
  },
  {
   "word": "wall",
-  "start": 50.114,
-  "end": 50.658,
+  "start": 38.13,
+  "end": 38.543,
   "eleni": false
  },
  {
   "word": "A",
-  "start": 51.68,
-  "end": 51.737,
+  "start": 39.276,
+  "end": 39.328,
   "eleni": false
  },
  {
   "word": "black",
-  "start": 51.752,
-  "end": 52.193,
+  "start": 39.339,
+  "end": 39.674,
   "eleni": false
  },
  {
   "word": "dog",
-  "start": 52.208,
-  "end": 52.605,
+  "start": 39.685,
+  "end": 39.987,
   "eleni": false
  },
  {
   "word": "waits",
-  "start": 52.62,
-  "end": 52.987,
+  "start": 39.998,
+  "end": 40.277,
   "eleni": false
  },
  {
   "word": "inside",
-  "start": 53.002,
-  "end": 53.781,
+  "start": 40.288,
+  "end": 40.88,
   "eleni": false
  },
  {
   "word": "Church",
-  "start": 54.293,
-  "end": 54.633,
+  "start": 41.222,
+  "end": 41.488,
   "eleni": false
  },
  {
   "word": "Grim",
-  "start": 54.648,
-  "end": 55.222,
+  "start": 41.5,
+  "end": 41.935,
   "eleni": false
  },
  {
   "word": "Red",
-  "start": 55.728,
-  "end": 55.964,
+  "start": 42.261,
+  "end": 42.452,
   "eleni": false
  },
  {
   "word": "eyes",
-  "start": 55.978,
-  "end": 56.625,
+  "start": 42.463,
+  "end": 42.954,
   "eleni": false
  },
  {
   "word": "Grim",
-  "start": 57.176,
-  "end": 57.465,
+  "start": 43.298,
+  "end": 43.529,
   "eleni": false
  },
  {
   "word": "guards",
-  "start": 57.48,
-  "end": 57.906,
+  "start": 43.54,
+  "end": 43.864,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 57.921,
-  "end": 58.039,
+  "start": 43.875,
+  "end": 43.964,
   "eleni": false
  },
  {
   "word": "graves",
-  "start": 58.053,
-  "end": 58.803,
+  "start": 43.975,
+  "end": 44.545,
   "eleni": false
  },
  {
   "word": "Inside",
-  "start": 59.329,
-  "end": 59.833,
+  "start": 44.904,
+  "end": 45.299,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 59.848,
-  "end": 59.951,
+  "start": 45.31,
+  "end": 45.388,
   "eleni": false
  },
  {
   "word": "wall",
-  "start": 59.966,
-  "end": 60.48,
+  "start": 45.399,
+  "end": 45.79,
   "eleni": false
  },
  {
   "word": "Round",
-  "start": 61.525,
-  "end": 61.917,
+  "start": 46.531,
+  "end": 46.839,
   "eleni": false
  },
  {
   "word": "one",
-  "start": 61.932,
-  "end": 62.373,
+  "start": 46.85,
+  "end": 47.185,
   "eleni": false
  },
  {
   "word": "Grim",
-  "start": 62.94,
-  "end": 63.197,
+  "start": 47.563,
+  "end": 47.768,
   "eleni": false
  },
  {
   "word": "slams",
-  "start": 63.211,
-  "end": 63.726,
+  "start": 47.779,
+  "end": 48.17,
   "eleni": false
  },
  {
   "word": "it",
-  "start": 63.741,
-  "end": 63.858,
+  "start": 48.181,
+  "end": 48.27,
   "eleni": false
  },
  {
   "word": "down",
-  "start": 63.873,
-  "end": 64.417,
+  "start": 48.281,
+  "end": 48.694,
   "eleni": false
  },
  {
   "word": "Grim",
-  "start": 64.934,
-  "end": 65.227,
+  "start": 49.041,
+  "end": 49.274,
   "eleni": false
  },
  {
   "word": "bites",
-  "start": 65.242,
-  "end": 65.919,
+  "start": 49.285,
+  "end": 49.799,
   "eleni": false
  },
  {
   "word": "Grim",
-  "start": 66.466,
-  "end": 66.757,
+  "start": 50.141,
+  "end": 50.374,
   "eleni": false
  },
  {
   "word": "tears",
-  "start": 66.772,
-  "end": 67.507,
+  "start": 50.385,
+  "end": 50.943,
   "eleni": false
  },
  {
   "word": "Round",
-  "start": 68.594,
-  "end": 68.984,
+  "start": 51.719,
+  "end": 52.025,
   "eleni": false
  },
  {
   "word": "two",
-  "start": 68.999,
-  "end": 69.499,
+  "start": 52.036,
+  "end": 52.415,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 70.05,
-  "end": 70.14,
+  "start": 52.783,
+  "end": 52.863,
   "eleni": false
  },
  {
   "word": "dead",
-  "start": 70.155,
-  "end": 70.449,
+  "start": 52.874,
+  "end": 53.097,
   "eleni": false
  },
  {
   "word": "man",
-  "start": 70.464,
-  "end": 70.802,
+  "start": 53.108,
+  "end": 53.365,
   "eleni": false
  },
  {
   "word": "grins",
-  "start": 70.817,
-  "end": 71.581,
+  "start": 53.376,
+  "end": 53.957,
   "eleni": false
  },
  {
   "word": "It",
-  "start": 72.12,
-  "end": 72.215,
+  "start": 54.308,
+  "end": 54.393,
   "eleni": false
  },
  {
   "word": "grabs",
-  "start": 72.23,
-  "end": 72.73,
+  "start": 54.404,
+  "end": 54.783,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 72.744,
-  "end": 72.862,
+  "start": 54.794,
+  "end": 54.884,
   "eleni": false
  },
  {
   "word": "kid",
-  "start": 72.877,
-  "end": 73.377,
+  "start": 54.895,
+  "end": 55.274,
   "eleni": false
  },
  {
   "word": "Hurls",
-  "start": 73.907,
-  "end": 74.216,
+  "start": 55.618,
+  "end": 55.864,
   "eleni": false
  },
  {
   "word": "them",
-  "start": 74.23,
-  "end": 74.422,
+  "start": 55.875,
+  "end": 56.02,
   "eleni": false
  },
  {
   "word": "over",
-  "start": 74.436,
-  "end": 74.686,
+  "start": 56.031,
+  "end": 56.221,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 74.701,
-  "end": 74.819,
+  "start": 56.232,
+  "end": 56.321,
   "eleni": false
  },
  {
   "word": "wall",
-  "start": 74.833,
-  "end": 75.363,
+  "start": 56.332,
+  "end": 56.734,
   "eleni": false
  },
  {
   "word": "Outside",
-  "start": 75.859,
-  "end": 76.641,
+  "start": 57.065,
+  "end": 57.67,
   "eleni": false
  },
  {
   "word": "Grim",
-  "start": 77.178,
-  "end": 77.457,
+  "start": 58.017,
+  "end": 58.236,
   "eleni": false
  },
  {
   "word": "stops",
-  "start": 77.471,
-  "end": 78.221,
+  "start": 58.248,
+  "end": 58.817,
   "eleni": false
  },
  {
   "word": "Paws",
-  "start": 78.76,
-  "end": 79.1,
+  "start": 59.178,
+  "end": 59.447,
   "eleni": false
  },
  {
   "word": "on",
-  "start": 79.114,
-  "end": 79.247,
+  "start": 59.458,
+  "end": 59.558,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 79.261,
-  "end": 79.35,
+  "start": 59.57,
+  "end": 59.637,
   "eleni": false
  },
  {
   "word": "line",
-  "start": 79.364,
-  "end": 79.894,
+  "start": 59.648,
+  "end": 60.05,
   "eleni": false
  },
  {
   "word": "Grim's",
-  "start": 80.459,
-  "end": 80.835,
+  "start": 60.42,
+  "end": 60.72,
   "eleni": false
  },
  {
   "word": "ground",
-  "start": 80.85,
-  "end": 81.321,
+  "start": 60.731,
+  "end": 61.088,
   "eleni": false
  },
  {
   "word": "ends",
-  "start": 81.335,
-  "end": 81.644,
+  "start": 61.099,
+  "end": 61.333,
   "eleni": false
  },
  {
   "word": "here",
-  "start": 81.659,
-  "end": 82.1,
+  "start": 61.345,
+  "end": 61.679,
   "eleni": false
  },
  {
   "word": "Red",
-  "start": 82.6,
-  "end": 82.853,
+  "start": 62.006,
+  "end": 62.209,
   "eleni": false
  },
  {
   "word": "bar",
-  "start": 82.868,
-  "end": 83.382,
+  "start": 62.221,
+  "end": 62.611,
   "eleni": false
  },
  {
   "word": "Almost",
-  "start": 83.888,
-  "end": 84.302,
+  "start": 62.945,
+  "end": 63.273,
   "eleni": false
  },
  {
   "word": "empty",
-  "start": 84.317,
-  "end": 84.831,
+  "start": 63.285,
+  "end": 63.675,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 85.338,
-  "end": 85.394,
+  "start": 64.004,
+  "end": 64.058,
   "eleni": false
  },
  {
   "word": "claws",
-  "start": 85.408,
-  "end": 85.908,
+  "start": 64.069,
+  "end": 64.448,
   "eleni": false
  },
  {
   "word": "return",
-  "start": 85.923,
-  "end": 86.585,
+  "start": 64.459,
+  "end": 64.962,
   "eleni": false
  },
  {
   "word": "Round",
-  "start": 87.692,
-  "end": 88.079,
+  "start": 65.76,
+  "end": 66.065,
   "eleni": false
  },
  {
   "word": "three",
-  "start": 88.094,
-  "end": 88.623,
+  "start": 66.076,
+  "end": 66.478,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 89.128,
-  "end": 89.2,
+  "start": 66.811,
+  "end": 66.881,
   "eleni": false
  },
  {
   "word": "kid",
-  "start": 89.214,
-  "end": 89.553,
+  "start": 66.893,
+  "end": 67.149,
   "eleni": false
  },
  {
   "word": "crawls",
-  "start": 89.567,
-  "end": 90.361,
+  "start": 67.16,
+  "end": 67.763,
   "eleni": false
  },
  {
   "word": "Garlic",
-  "start": 90.904,
-  "end": 91.541,
+  "start": 68.126,
+  "end": 68.626,
   "eleni": false
  },
  {
   "word": "Crushed",
-  "start": 92.04,
-  "end": 92.705,
+  "start": 68.957,
+  "end": 69.473,
   "eleni": false
  },
  {
   "word": "It",
-  "start": 93.207,
-  "end": 93.279,
+  "start": 69.806,
+  "end": 69.871,
   "eleni": false
  },
  {
   "word": "hits",
-  "start": 93.294,
-  "end": 93.632,
+  "start": 69.883,
+  "end": 70.139,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 93.647,
-  "end": 93.809,
+  "start": 70.15,
+  "end": 70.273,
   "eleni": false
  },
  {
   "word": "dead",
-  "start": 93.823,
-  "end": 94.103,
+  "start": 70.284,
+  "end": 70.496,
   "eleni": false
  },
  {
   "word": "man's",
-  "start": 94.117,
-  "end": 94.544,
+  "start": 70.508,
+  "end": 70.831,
   "eleni": false
  },
  {
   "word": "face",
-  "start": 94.559,
-  "end": 95.191,
+  "start": 70.842,
+  "end": 71.322,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 95.711,
-  "end": 95.754,
+  "start": 71.678,
+  "end": 71.726,
   "eleni": false
  },
  {
   "word": "Vrykolakas",
-  "start": 95.769,
-  "end": 96.637,
+  "start": 71.737,
+  "end": 72.396,
   "eleni": false
  },
  {
   "word": "chokes",
-  "start": 96.651,
-  "end": 97.372,
+  "start": 72.407,
+  "end": 72.954,
   "eleni": false
  },
  {
   "word": "Then",
-  "start": 97.907,
-  "end": 98.132,
+  "start": 73.302,
+  "end": 73.488,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 98.147,
-  "end": 98.279,
+  "start": 73.499,
+  "end": 73.599,
   "eleni": false
  },
  {
   "word": "big",
-  "start": 98.294,
-  "end": 98.588,
+  "start": 73.61,
+  "end": 73.834,
   "eleni": false
  },
  {
   "word": "flashlight",
-  "start": 98.603,
-  "end": 99.382,
+  "start": 73.845,
+  "end": 74.436,
   "eleni": false
  },
  {
   "word": "clicks",
-  "start": 99.397,
-  "end": 99.808,
+  "start": 74.447,
+  "end": 74.76,
   "eleni": false
  },
  {
   "word": "on",
-  "start": 99.823,
-  "end": 100.264,
+  "start": 74.771,
+  "end": 75.106,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 100.824,
-  "end": 100.879,
+  "start": 75.479,
+  "end": 75.536,
   "eleni": false
  },
  {
   "word": "kid",
-  "start": 100.894,
-  "end": 101.217,
+  "start": 75.548,
+  "end": 75.793,
   "eleni": false
  },
  {
   "word": "backs",
-  "start": 101.232,
-  "end": 101.629,
+  "start": 75.804,
+  "end": 76.106,
   "eleni": false
  },
  {
   "word": "over",
-  "start": 101.644,
-  "end": 101.864,
+  "start": 76.117,
+  "end": 76.284,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 101.879,
-  "end": 101.997,
+  "start": 76.295,
+  "end": 76.385,
   "eleni": false
  },
  {
   "word": "wall",
-  "start": 102.011,
-  "end": 102.541,
+  "start": 76.396,
+  "end": 76.798,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 103.019,
-  "end": 103.107,
+  "start": 77.1,
+  "end": 77.182,
   "eleni": false
  },
  {
   "word": "dead",
-  "start": 103.122,
-  "end": 103.416,
+  "start": 77.193,
+  "end": 77.417,
   "eleni": false
  },
  {
   "word": "man",
-  "start": 103.431,
-  "end": 103.798,
+  "start": 77.428,
+  "end": 77.707,
   "eleni": false
  },
  {
   "word": "chases",
-  "start": 103.813,
-  "end": 104.328,
+  "start": 77.718,
+  "end": 78.109,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 104.342,
-  "end": 104.46,
+  "start": 78.12,
+  "end": 78.209,
   "eleni": false
  },
  {
   "word": "light",
-  "start": 104.475,
-  "end": 104.96,
+  "start": 78.22,
+  "end": 78.588,
   "eleni": false
  },
  {
   "word": "Into",
-  "start": 105.488,
-  "end": 105.792,
+  "start": 78.932,
+  "end": 79.169,
   "eleni": false
  },
  {
   "word": "Grim's",
-  "start": 105.807,
-  "end": 106.262,
+  "start": 79.18,
+  "end": 79.526,
   "eleni": false
  },
  {
   "word": "ground",
-  "start": 106.277,
-  "end": 106.924,
+  "start": 79.537,
+  "end": 80.028,
   "eleni": false
  },
  {
   "word": "Grim",
-  "start": 107.423,
-  "end": 107.704,
+  "start": 80.356,
+  "end": 80.578,
   "eleni": false
  },
  {
   "word": "pounces",
-  "start": 107.718,
-  "end": 108.586,
+  "start": 80.589,
+  "end": 81.248,
   "eleni": false
  },
  {
   "word": "Jaws",
-  "start": 109.132,
-  "end": 109.534,
+  "start": 81.602,
+  "end": 81.918,
   "eleni": false
  },
  {
   "word": "on",
-  "start": 109.549,
-  "end": 109.696,
+  "start": 81.929,
+  "end": 82.041,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 109.711,
-  "end": 109.784,
+  "start": 82.052,
+  "end": 82.108,
   "eleni": false
  },
  {
   "word": "neck",
-  "start": 109.799,
-  "end": 110.328,
+  "start": 82.119,
+  "end": 82.521,
   "eleni": false
  },
  {
   "word": "Grim",
-  "start": 110.843,
-  "end": 111.146,
+  "start": 82.853,
+  "end": 83.094,
   "eleni": false
  },
  {
   "word": "ends",
-  "start": 111.16,
-  "end": 111.513,
+  "start": 83.105,
+  "end": 83.373,
   "eleni": false
  },
  {
   "word": "it",
-  "start": 111.528,
-  "end": 111.822,
+  "start": 83.384,
+  "end": 83.608,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 112.339,
-  "end": 112.41,
+  "start": 83.949,
+  "end": 84.019,
   "eleni": false
  },
  {
   "word": "kid",
-  "start": 112.425,
-  "end": 112.734,
+  "start": 84.03,
+  "end": 84.264,
   "eleni": false
  },
  {
   "word": "wins",
-  "start": 112.749,
-  "end": 113.44,
+  "start": 84.276,
+  "end": 84.8,
   "eleni": false
  },
  {
   "word": "Dawn",
-  "start": 114.515,
-  "end": 115.084,
+  "start": 85.584,
+  "end": 86.029,
   "eleni": false
  },
  {
   "word": "Church",
-  "start": 115.627,
-  "end": 115.981,
+  "start": 86.389,
+  "end": 86.667,
   "eleni": false
  },
  {
   "word": "bells",
-  "start": 115.996,
-  "end": 116.672,
+  "start": 86.678,
+  "end": 87.191,
   "eleni": false
  },
  {
   "word": "The",
-  "start": 117.211,
-  "end": 117.281,
+  "start": 87.547,
+  "end": 87.616,
   "eleni": false
  },
  {
   "word": "kid",
-  "start": 117.296,
-  "end": 117.634,
+  "start": 87.627,
+  "end": 87.884,
   "eleni": false
  },
  {
   "word": "limps",
-  "start": 117.649,
-  "end": 117.987,
+  "start": 87.895,
+  "end": 88.152,
   "eleni": false
  },
  {
   "word": "home",
-  "start": 118.002,
-  "end": 118.487,
+  "start": 88.163,
+  "end": 88.531,
   "eleni": false
  },
  {
   "word": "Grim",
-  "start": 119.012,
-  "end": 119.288,
+  "start": 88.884,
+  "end": 89.105,
   "eleni": false
  },
  {
   "word": "drags",
-  "start": 119.303,
-  "end": 119.817,
+  "start": 89.116,
+  "end": 89.507,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 119.832,
-  "end": 119.95,
+  "start": 89.518,
+  "end": 89.607,
   "eleni": false
  },
  {
   "word": "body",
-  "start": 119.964,
-  "end": 120.317,
+  "start": 89.618,
+  "end": 89.886,
   "eleni": false
  },
  {
   "word": "back",
-  "start": 120.332,
-  "end": 120.626,
+  "start": 89.897,
+  "end": 90.121,
   "eleni": false
  },
  {
   "word": "to",
-  "start": 120.641,
-  "end": 120.773,
+  "start": 90.132,
+  "end": 90.232,
   "eleni": false
  },
  {
   "word": "its",
-  "start": 120.788,
-  "end": 120.95,
+  "start": 90.243,
+  "end": 90.366,
   "eleni": false
  },
  {
   "word": "grave",
-  "start": 120.964,
-  "end": 121.597,
+  "start": 90.377,
+  "end": 90.857,
   "eleni": false
  },
  {
   "word": "Behind",
-  "start": 122.669,
-  "end": 123.069,
+  "start": 91.621,
+  "end": 91.937,
   "eleni": false
  },
  {
   "word": "them",
-  "start": 123.084,
-  "end": 123.378,
+  "start": 91.948,
+  "end": 92.171,
   "eleni": false
  },
  {
   "word": "the",
-  "start": 123.614,
-  "end": 123.746,
+  "start": 92.35,
+  "end": 92.45,
   "eleni": false
  },
  {
   "word": "soil",
-  "start": 123.761,
-  "end": 124.261,
+  "start": 92.462,
+  "end": 92.841,
   "eleni": false
  },
  {
   "word": "moves",
-  "start": 124.275,
-  "end": 124.952,
+  "start": 92.852,
+  "end": 93.366,
   "eleni": false
  },
  {
   "word": "One",
-  "start": 125.889,
-  "end": 126.16,
+  "start": 94.018,
+  "end": 94.24,
   "eleni": false
  },
  {
   "word": "knock",
-  "start": 126.174,
-  "end": 126.733,
+  "start": 94.252,
+  "end": 94.676,
   "eleni": false
  },
  {
   "word": "Is",
-  "start": 127.813,
-  "end": 127.901,
+  "start": 95.434,
+  "end": 95.514,
   "eleni": false
  },
  {
   "word": "it",
-  "start": 127.915,
-  "end": 128.063,
+  "start": 95.526,
+  "end": 95.637,
   "eleni": false
  },
  {
   "word": "really",
-  "start": 128.077,
-  "end": 128.386,
+  "start": 95.648,
+  "end": 95.883,
   "eleni": false
  },
  {
   "word": "dead",
-  "start": 128.401,
-  "end": 128.842,
+  "start": 95.894,
+  "end": 96.229,
   "eleni": false
  },
  {
   "word": "Grandma",
-  "start": 129.369,
-  "end": 129.789,
+  "start": 96.584,
+  "end": 96.917,
   "eleni": false
  },
  {
   "word": "said",
-  "start": 129.804,
-  "end": 130.113,
+  "start": 96.928,
+  "end": 97.162,
   "eleni": false
  },
  {
   "word": "fire",
-  "start": 130.128,
-  "end": 130.745,
+  "start": 97.173,
+  "end": 97.642,
   "eleni": false
  },
  {
   "word": "Who's",
-  "start": 131.226,
-  "end": 131.466,
+  "start": 97.959,
+  "end": 98.158,
   "eleni": false
  },
  {
   "word": "next",
-  "start": 131.48,
-  "end": 132.098,
+  "start": 98.169,
+  "end": 98.638,
   "eleni": false
  }
 ]

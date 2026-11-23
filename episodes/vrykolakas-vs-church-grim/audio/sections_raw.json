@@ -1,5 +1,5 @@
 {
- "eleni_start": 32.542208333333335,
+ "eleni_start": 24.000333333333334,
  "sections": [
   {
    "section": 0,
@@ -7,48 +7,48 @@
   },
   {
    "section": 1,
-   "start": 4.34
+   "start": 3.21
   },
   {
    "section": 2,
-   "start": 10.06
+   "start": 7.37
   },
   {
    "section": 3,
-   "start": 16.71
+   "start": 12.26
   },
   {
    "section": 4,
-   "start": 19.78
+   "start": 14.51
   },
   {
    "section": 5,
-   "start": 51.68
+   "start": 39.28
   },
   {
    "section": 6,
-   "start": 61.53
+   "start": 46.53
   },
   {
    "section": 7,
-   "start": 68.59
+   "start": 51.72
   },
   {
    "section": 8,
-   "start": 87.69
+   "start": 65.76
   },
   {
    "section": 9,
-   "start": 114.52
+   "start": 85.58
   },
   {
    "section": 10,
-   "start": 122.67
+   "start": 91.62
   },
   {
    "section": 11,
-   "start": 127.81
+   "start": 95.43
   }
  ],
- "duration": 132.68354166666666
+ "duration": 99.21204166666666
 }

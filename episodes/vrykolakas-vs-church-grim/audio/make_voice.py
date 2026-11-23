@@ -50,9 +50,9 @@ async def main():
         x = decode(audio); x, lead = trim(x)
         # gap before
         if prev_sec is not None:
-            if s != prev_sec: gap = 0.7
-            elif el or (units[i-1][2]): gap = 0.4
-            else: gap = 0.28
+            if s != prev_sec: gap = 0.55
+            elif el or (units[i-1][2]): gap = 0.35
+            else: gap = 0.2
             if "..." in txt or "…" in text: gap += 0.0
             add_sil(gap)
         if s != prev_sec: marks.append({"section": s, "start": round(len(out)/SR, 2)})

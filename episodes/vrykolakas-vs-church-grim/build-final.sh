@@ -10,6 +10,8 @@ python3 "$TOOLS/make_captions.py" "$HERE/audio/words.json" --script "$HERE/scrip
 python3 "$HERE/gen_final_project.py"    # project-final.json (timings from audio/words.json marks)
 python3 "$TOOLS/render.py" "$HERE/project-final.json"
 OUT="$B/battle-final.mp4"
+# loudnorm lands ~-14.5 (true-peak limited): +0.5 dB and a -1 dBFS limiter -> ~-14.2 LUFS
+ffmpeg -v error -y -i "$OUT" -c:v copy -af "volume=0.5dB,alimiter=limit=0.89:level=0" -c:a aac -b:a 192k -movflags +faststart "$B/bf2.mp4" && mv "$B/bf2.mp4" "$OUT"
 # preview (<15 MB) + contact sheet 4x4
 ffmpeg -v error -y -i "$OUT" -vf scale=720:-2 -c:v libx264 -crf 27 -preset medium -c:a aac -b:a 96k -movflags +faststart "$HERE/preview/battle-final.mp4"
 D=$(ffprobe -v error -show_entries format=duration -of csv=p=0 "$OUT")

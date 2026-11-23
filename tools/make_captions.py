@@ -67,7 +67,8 @@ def align_keywords(words: list[dict], tokens: list[tuple[str, bool]], window: in
             if norm(tokens[k][0]) == n:
                 w["key"] = tokens[k][1]
                 # sentence boundary known from the script (words.json has no punctuation)
-                w["brk"] = bool(PUNCT_END.search(tokens[k][0])) or k in (line_ends or ())
+                w["brk"] = bool(re.search(r"[.!?…]$", tokens[k][0])) or k in (line_ends or ())
+                w["comma"] = bool(re.search(r"[,;:]$", tokens[k][0]))
                 j = k + 1
                 break
 
@@ -101,9 +102,11 @@ def _split_segment(seg: list[dict], max_words: int, max_chars: int, gap: float) 
                 break
             c = cost + 1.0                                   # fewer chunks preferred
             if len(g) == 1:
-                c += 5
+                c += 12
+            if j < n and (g[-1].get("comma") or re.search(r"[,;:]$", g[-1]["word"])):
+                c -= 0.8                                     # break at a comma if possible
             if j < n and _dangling(g[-1]):
-                c += 8
+                c += 15
             c += abs(len(g) - (max_words + 1) / 2) * 0.3     # prefer ~2-3 words
             groups.append(g); rec(j, groups, c); groups.pop()
     rec(0, [], 0.0)
@@ -115,7 +118,7 @@ def chunk(words: list[dict], max_words: int, max_chars: int, gap: float) -> list
     cur: list[dict] = []
     for w in words:
         cur.append(w)
-        if w.get("brk") or PUNCT_END.search(w["word"]):
+        if w.get("brk") or re.search(r"[.!?…]$", w["word"]):
             segs.append(cur); cur = []
     if cur:
         segs.append(cur)

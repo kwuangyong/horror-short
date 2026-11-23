@@ -1,30 +1,38 @@
-# Shotlist · BATTLE SPIN #001 · VRYKOLAKAS vs CHURCH GRIM
+# Shotlist · BATTLE SPIN #001 · VRYKOLAKAS vs CHURCH GRIM · v2 (THE KID, rừng đêm)
 
 **STYLE** (gắn vào cuối mọi prompt, từ docs/03 bước 4):
 `flat vector illustration, minimal 2D cartoon, no outlines, soft flat shading, dark navy night palette with deep crimson accents, simple geometric shapes, eerie but clean, vertical 9:16 composition, empty space in lower third for captions, --no text, watermark, realistic, 3d`
 
-**HUD** (overlay, không vẽ vào ảnh): 3 thanh máu HUMAN (xanh) / GRIM (trắng) / VRYKOLAKAS (đỏ) ở đỉnh khung, tụt theo từng đòn (xem script-battle.md).
+**HUD** (overlay, không vẽ vào ảnh): 3 thanh máu KID (xanh) / GRIM (trắng) / VRYKOLAKAS (đỏ) ở đỉnh khung, tụt theo từng đòn (xem script-battle.md).
+
+**An toàn:** không máu trên người bé; chỉ vết bụi, ngã, vệt cào đỏ dạng hiệu ứng (không thịt/vết thương).
+
+**MASCOT SHEET · THE KID** (dùng lại mọi tập, dán đầu mọi prompt có bé, thêm `the kid` = chuỗi này):
+`MASCOT SHEET: a small child of ambiguous gender, round simple face with two dot eyes, wearing loose light-grey pajamas, a long bright red scarf, a pointed hood up, and an oversized flashlight almost as big as their torso, small bare-ish slippers; NO yellow raincoat; same proportions in every image, front-facing character sheet, neutral pose, plain dark background`
 
 | # | File | Mô tả cảnh | Prompt ảnh (mô tả + STYLE) |
 |---|---|---|---|
-| 1 | b-hook-freeze-grim-down.png | Hook: freeze-frame, Grim bị đè, Vrykolakas giơ vuốt, Human phía sau | huge black dog pinned on its back under a pale gaunt dead man with raised claws, a small human in a coat crouched behind, red tint, fighting pose frozen + STYLE |
-| 2 | b-card-the-human.png | Thẻ nhân vật THE HUMAN | small human character in a dark coat holding an oil lamp, standing front-facing like a game character select portrait, calm tired face, crimson spotlight + STYLE |
+| 0 | mascot-sheet-the-kid.png | MASCOT SHEET: chuẩn nhân vật THE KID, dùng lại mọi tập | a small child of ambiguous gender, round simple face with two dot eyes, loose light-grey pajamas, long bright red scarf, pointed hood up, oversized flashlight nearly as big as their torso, slippers, no yellow raincoat, front view and side view and back view turnaround, plain dark background + STYLE |
+| 1 | b-hook-freeze-grim-stuck.png | Hook: freeze-frame ROUND 2, kid nằm ngoài tường, Vrykolakas giơ vuốt, Grim kẹt ở vạch | the kid (red scarf, grey pajamas, hood) lying on grass outside a crumbling stone wall, pale gaunt dead man with raised claws above them, huge black dog behind the wall with front paws on the wall edge, dark forest, red tint, frozen fight pose + STYLE |
+| 2 | b-card-the-kid.png | Thẻ nhân vật THE KID | the kid in grey pajamas, red scarf, hood up, holding an oversized flashlight, front-facing like a game character select portrait, wide worried-but-stubborn eyes, crimson spotlight, dark forest silhouette behind + STYLE |
 | 3 | b-spin-fighters.png | Spin 1+2: hai bánh xe, xác chết xanh xao / chó đen | two slot-machine reels side by side, left reel lit on a pale dead man silhouette, right reel lit on a black dog with red eyes + STYLE |
-| 4 | b-vs-triangle.png | Màn VS tam giác, hai bên đối đầu | versus screen, pale dead man on the left and black dog on the right facing each other, red triangle divider with three empty stat bars + STYLE |
-| 5 | b-island-churchyard-walk.png | Human đi dọc tường nghĩa địa, mộ mới | small human walking along a low churchyard wall on a Greek island at night, whitewashed houses, fresh grave mound, fog, crescent moon + STYLE |
-| 6 | b-grandma-garlic-flashback.png | Hồi tưởng: bà Eleni đưa chuỗi tỏi | elderly grandmother in black headscarf handing a braid of garlic to a young human, oil lamp, sepia-blue flashback tone + STYLE |
-| 7 | b-grave-rises.png | Mộ nứt, Vrykolakas bò ra | pale gaunt dead man crawling out of cracked fresh soil, hand clawing the ground, small human stumbling backwards in the foreground + STYLE |
-| 8 | b-claw-hit-human.png | Va chạm: vuốt cào Human | pale claws slashing across a small human's arm, crimson slash streak, impact star flash, human falling back + STYLE |
-| 9 | b-grim-appears-stance.png | Tư thế Grim trên bia mộ, gầm | huge black dog standing on a gravestone, hackles raised, glowing red eyes, snarling, churchyard wall behind, fog + STYLE |
-| 10 | b-round1-grim-slams.png | ROUND 1 va chạm: Grim ghì Vrykolakas | black dog leaping onto a pale dead man, jaws on its shoulder, white impact flash, both bodies mid-fall on gravestones + STYLE |
-| 11 | b-round2-thrown-over-wall.png | ROUND 2: Human bị quăng qua tường, Grim dừng ở vạch | small human flying over a low stone wall, pale dead man grinning with arm extended, black dog on the far side with front paws at the wall edge, a faint line of light along the wall + STYLE |
-| 12 | b-round2-grim-stuck.png | Tư thế Grim bất lực, Vrykolakas tiến tới Human | black dog stopped at the wall line barking, outside the wall a pale dead man standing over a collapsed human, red low-health glow + STYLE |
-| 13 | b-round3-garlic-crush.png | ROUND 3: tay bóp nát tỏi | close-up of a human hand crushing a garlic clove, white garlic dust, crimson background, tense + STYLE |
-| 14 | b-round3-garlic-mouth.png | Đòn quyết định: nhét tỏi vào miệng | human shoving crushed garlic into the open mouth of a pale dead man, white burst flash, dead man's eyes wide, impact lines + STYLE |
-| 15 | b-round3-grim-pounce.png | Vrykolakas lảo đảo qua tường, Grim vồ | pale dead man stumbling backward over the churchyard wall, black dog pouncing from the graves with jaws open, red impact flash + STYLE |
-| 16 | b-ko-winner-human.png | K.O.: Human đứng thắng, cầm xẻng | small wounded human standing holding a shovel, pale dead man collapsed on the ground, black dog panting beside, crimson sky, victory pose + STYLE |
-| 17 | b-dawn-peace.png | Bình yên giả: bình minh, mộ phẳng, Grim mờ dần | warm orange dawn over Greek island churchyard, freshly flattened grave mound, black dog sitting on the wall fading into light, small human walking away in the distance, church bell tower, palette shifted warm + STYLE |
-| 18 | b-cliffhanger-soil-moves.png | CÚ LỬNG: đất động, tiếng gõ, đèn dầu chưa châm | close-up of a flat grave mound with soil bulging slightly upward in the center, an unlit oil lamp left beside it, one pale knuckle visible at the surface, warm dawn light turning to cold blue + STYLE |
-| 19 | b-cta-whos-next.png | CTA: IS IT REALLY DEAD? / WHO'S NEXT? | black screen with a single crimson question-mark shaped crack in soil, small human silhouette and Follow button area empty in lower third + STYLE |
+| 4 | b-vs-triangle.png | Màn VS tam giác | versus screen, pale dead man on the left and black dog on the right facing each other, red triangle divider with three empty stat bars + STYLE |
+| 5 | b-kid-window-firefly.png | Mở: bé trèo cửa sổ ra rừng theo đom đóm | the kid in pajamas and red scarf climbing out a small window of a whitewashed Greek island house toward a dark forest, one glowing firefly floating ahead, crescent moon + STYLE |
+| 6 | b-forest-old-graves.png | Bé theo đom đóm tới nghĩa địa cũ, tường đổ, mộ mới | the kid following a single glowing firefly between tall dark pine trees toward a ruined old churchyard with a crumbling low stone wall and a fresh grave mound, fog, flashlight off in hand + STYLE |
+| 7 | b-grandma-garlic-flashback.png | Hồi tưởng: bà Eleni nhét tỏi/diêm vào túi bé | elderly grandmother in black headscarf tucking a garlic braid into one pocket of the kid's grey pajamas and a small oil lamp with matchbox into the other, sepia-blue flashback tone + STYLE |
+| 8 | b-grave-rises.png | Mộ nứt, Vrykolakas bò ra | pale gaunt dead man crawling out of cracked fresh forest soil, hand clawing the ground, the kid with red scarf stumbling backwards in the foreground, trees behind + STYLE |
+| 9 | b-claw-miss-kid-falls.png | Va chạm: vuốt sượt khăn quàng, bé ngã | pale claws swiping past the kid's red scarf, scarf tail flying, crimson slash streak effect in air only, impact star flash, kid tumbling onto grass, no injury + STYLE |
+| 10 | b-grim-appears-stance.png | Tư thế Grim trên bia mộ, gầm | huge black dog standing on a gravestone, hackles raised, glowing red eyes, snarling, broken stone wall behind, forest fog, a small kid peeking from a gap in the wall + STYLE |
+| 11 | b-round1-grim-slams.png | ROUND 1 va chạm: Grim ghì Vrykolakas | black dog leaping onto a pale dead man, jaws on its shoulder, white impact flash, both mid-fall among gravestones, the kid hiding behind a tombstone hugging a big flashlight + STYLE |
+| 12 | b-round2-thrown-over-wall.png | ROUND 2: bé bị quăng qua tường, Grim dừng ở vạch | the kid with red scarf flying over a low ruined stone wall, pale dead man grinning with arm extended holding the scarf end, black dog on the far side with front paws at the wall edge, a faint line of light along the wall + STYLE |
+| 13 | b-round2-grim-stuck.png | Grim bất lực; Vrykolakas tiến tới bé | black dog stopped at the wall line barking, outside the wall a pale dead man standing over the collapsed kid on grass, red low-health glow, forest dark behind + STYLE |
+| 14 | b-round3-garlic-crush.png | ROUND 3: bàn tay nhỏ bóp nát tỏi | close-up of a small child's hand with a red sleeve crushing a garlic clove, white garlic dust, crimson background, tense + STYLE |
+| 15 | b-round3-garlic-throw.png | Đòn mẹo: ném tỏi vào mặt | the kid throwing crushed garlic into the face of a pale dead man, white powder burst, dead man's eyes wide and recoiling, impact lines + STYLE |
+| 16 | b-round3-flashlight-lure.png | Nhử bằng đèn pin qua tường | the kid backing through a gap in the ruined wall waving a huge flashlight beam, pale dead man staggering after the light with arms out, the wall line glowing faintly, black dog waiting in shadow behind gravestones + STYLE |
+| 17 | b-round3-grim-pounce.png | Vrykolakas bước qua tường, Grim vồ kết liễu | pale dead man stepping over the crumbled wall into the graveyard, black dog pouncing from behind a gravestone with jaws open, red impact flash, the kid watching from the side with flashlight lowered + STYLE |
+| 18 | b-ko-winner-kid-grim.png | K.O.: bé và Grim đứng cạnh nhau | the kid standing tired but safe beside a huge black dog, pale dead man collapsed motionless on the ground, crimson sky between trees, victory pose, no injuries + STYLE |
+| 19 | b-dawn-peace.png | Bình yên giả: bình minh, Grim kéo xác về mộ | warm orange dawn over a forest churchyard, black dog dragging the dead man's body toward an old open grave, small kid in red scarf walking away toward a village in the distance clutching an oil lamp and matchbox, church bell tower, palette shifted warm + STYLE |
+| 20 | b-cliffhanger-soil-moves.png | CÚ LỬNG: đất động, tiếng gõ, diêm chưa dùng | close-up of a grave mound with soil bulging slightly upward in the center, an unopened matchbox and small unlit oil lamp lying beside it, one pale knuckle at the surface, warm dawn light turning cold blue + STYLE |
+| 21 | b-cta-whos-next.png | CTA: IS IT REALLY DEAD? / WHO'S NEXT? | black screen with a single crimson question-mark shaped crack in soil, the kid's small red scarf silhouette and Follow button area empty in lower third + STYLE |
 
-Ghi chú: #8–#16 gồm 6–8 khung đánh nhau chính (tư thế: #9, #12; va chạm: #8, #10, #11, #14, #15, #16). #18 là cảnh cú lửng.
+Ghi chú: #1–#2 và #5–#21 có bé; dùng MASCOT SHEET (#0) làm ảnh tham chiếu để giữ nhân vật nhất quán. Khung đánh nhau chính (6–8): tư thế #10, #13; va chạm #9, #11, #12, #15, #16, #17. #20 là cảnh cú lửng.

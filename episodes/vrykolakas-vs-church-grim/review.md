@@ -38,3 +38,17 @@ Ghi chú: Human đang là "he". Nếu muốn mascot trung tính cho khán giả 
 - Thẻ luật đè lên nhãn placeholder phía sau (chữ "G…C" lộ hai bên) → thẻ luật cần nền cảnh riêng hoặc làm tối nền.
 - Thẻ tên spin chồng lên dãy buồng → khi có ảnh thật, khóa vòng quay rồi mới hiện thẻ (0.3 s sau flash).
 - Mix nghiêng về drone; SFX nhỏ → cân lại khi có giọng thật.
+
+---
+
+# Review · Cổng 2 · script-battle v2 (THE KID) (Boss)
+
+| Tiêu chí | Điểm | Nhận xét |
+|---|---|---|
+| Hook | 2/2 | Khung Round 2 giữ nguyên, đại từ "them" trung tính. |
+| Nhịp | 2/2 | Tiền đề series "Every night, the kid sneaks into the woods" + đom đóm dẫn đường: dễ thương mà đáng lo. Round 3 dày (10 câu) nhưng mỗi câu là 1 hành động, chấp nhận; chỉnh khi có giọng thật. |
+| Câu chữ | 2/2 | 221 từ, không he/she, không máu trên người bé. |
+| Tương tác | 2/2 | Chỉ "WHO WINS?" ở màn VS. |
+| Cú lửng | 2/2 | Cài 2 lớp: "Only fire ends it" + "Matches in the other pocket" → bé về nhà với diêm chưa dùng. Ném tỏi vào mặt (không chạm quái vật) là hợp lý cho nhân vật trẻ em. |
+
+**Tổng: 10/10. ĐẠT, chuyển Producer.**

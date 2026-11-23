@@ -8,7 +8,7 @@
  },
  "voice": null,
  "music": "build/audio/drone.wav",
- "music_volume": 0.6,
+ "music_volume": 1.9,
  "captions": "build/captions.ass",
  "loudness": -14,
  "sfx": [

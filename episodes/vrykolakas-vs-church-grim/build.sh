@@ -129,8 +129,13 @@ import os, subprocess
 d = os.environ["B"] + "/audio"
 def ff(*a): subprocess.run(["ffmpeg", "-v", "error", "-y", *a], check=True)
 def lav(spec, af, out): ff("-f", "lavfi", "-i", spec, "-af", af, f"{d}/{out}.wav")
-ff("-f", "lavfi", "-i", "anoisesrc=c=brown:a=0.25:d=110", "-f", "lavfi", "-i", "sine=f=55:d=110", "-filter_complex",
-   "[0]lowpass=f=300[n];[1]volume=0.3,tremolo=f=0.15:d=0.6[s];[n][s]amix=inputs=2:normalize=0", f"{d}/drone.wav")
+# bed: bass drone + mid-range wind so it registers in LUFS, compressed/limited so the
+# loudnorm pass (linear, TP -1) can reach -14 LUFS without voice
+ff("-f", "lavfi", "-i", "anoisesrc=c=brown:a=0.25:d=110", "-f", "lavfi", "-i", "sine=f=55:d=110",
+   "-f", "lavfi", "-i", "anoisesrc=c=pink:a=0.5:d=110", "-filter_complex",
+   "[0]lowpass=f=300[n];[1]volume=0.3,tremolo=f=0.15:d=0.6[s];[2]bandpass=f=900:w=1200,tremolo=f=0.1:d=0.5,volume=1.2[w];"
+   "[n][s][w]amix=inputs=3:normalize=0,volume=6,acompressor=threshold=0.1:ratio=12:attack=5:release=80:makeup=2,"
+   "alimiter=limit=0.35:level=0", f"{d}/drone.wav")
 lav("anoisesrc=c=brown:a=1:d=1.2", "lowpass=f=180,afade=t=out:st=0.05:d=1.1,volume=4", "impact")
 lav("sine=f=48:d=0.12", "afade=t=out:st=0:d=0.12,volume=6", "beat")
 lav("anoisesrc=c=white:a=0.6:d=0.05", "highpass=f=2500,afade=t=out:st=0:d=0.05,volume=2", "tick")
@@ -160,6 +165,11 @@ while t < 7.5: hb += [t, t + 0.22]; t += gap; gap = max(0.35, gap * 0.88)
 mix("heartbeat", hb, "beat", 8)
 mix("ticking", [i * 1.0 for i in range(8)], "tick", 8)
 mix("steps", [0, 0.8, 1.6, 2.4], "step", 4)
+# soften every SFX peak (draft SFX are synthetic; keeps the mix within TP -1 at -14 LUFS)
+import glob, shutil
+for f in glob.glob(d + "/*.wav"):
+    if f.endswith("drone.wav") or f.endswith("_lim.wav"): continue
+    ff("-i", f, "-af", "alimiter=limit=0.18:level=0", f[:-4] + "_lim.wav"); shutil.move(f[:-4] + "_lim.wav", f)
 PY
 
 # ---------- 4. captions ----------

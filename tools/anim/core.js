@@ -58,7 +58,7 @@
     u = clamp(u);
     if (u <= frames[0][0]) return frames[0][1];
     for (let i = 1; i < frames.length; i++) {
-      if (u <= frames[i][0]) { const a = frames[i - 1], b = frames[i]; return lerp(a[1], b[1], ease(e || 'inOut', (u - a[0]) / (b[0] - a[0] || 1))); }
+      if (u <= frames[i][0]) { const a = frames[i - 1], b = frames[i], w = ease(e || 'inOut', (u - a[0]) / (b[0] - a[0] || 1)); return Array.isArray(a[1]) ? a[1].map((v, k) => lerp(v, b[1][k], w)) : lerp(a[1], b[1], w); }
     }
     return frames[frames.length - 1][1];
   }

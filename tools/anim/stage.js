@@ -98,10 +98,10 @@
     for (let i = 0; i < 7; i++) $('rect', { x: 620 + brng() * 120 - 20, y: base - 20 - brng() * 14, width: 30 + brng() * 20, height: 24, rx: 5, fill: '#4a5278' }, g);
     $('ellipse', { cx: 900, cy: base + 8, rx: 420, ry: 16, fill: '#04050e', opacity: 0.4 }, g);
     // grave hole (Vrykolakas)
-    layers.hole = $('g', {}, arena); $('ellipse', { cx: 170, cy: 1088, rx: 130, ry: 30, fill: '#1c121e' }, layers.hole); $('ellipse', { cx: 170, cy: 1092, rx: 104, ry: 20, fill: '#0b060c' }, layers.hole);
+    layers.hole = $('g', {}, arena); $('ellipse', { cx: 230, cy: 1088, rx: 130, ry: 30, fill: '#1c121e' }, layers.hole); $('ellipse', { cx: 230, cy: 1092, rx: 104, ry: 20, fill: '#0b060c' }, layers.hole);
     layers.actors = $('g', {}, arena);
     layers.mound = $('g', {}, arena);
-    for (const [x, rx, ry, c] of [[60, 70, 22, '#4a3446'], [286, 74, 22, '#4a3446'], [112, 46, 14, '#5a4056'], [236, 44, 14, '#5a4056']]) $('ellipse', { cx: x, cy: 1096, rx, ry, fill: c }, layers.mound);
+    for (const [x, rx, ry, c] of [[120, 70, 22, '#4a3446'], [346, 74, 22, '#4a3446'], [172, 46, 14, '#5a4056'], [296, 44, 14, '#5a4056']]) $('ellipse', { cx: x, cy: 1096, rx, ry, fill: c }, layers.mound);
     layers.fx = $('g', {}, arena);
     g = L('fog'); const fr = mulberry(21);
     for (let i = 0; i < 9; i++) { const e = $('ellipse', { cx: 0, cy: 1020 + fr() * 330, rx: 260 + fr() * 220, ry: 40 + fr() * 36, fill: 'url(#gFog)', opacity: 0.8 }, g); e.__fog = { x0: fr() * 2400, sp: 8 + fr() * 14 }; }
@@ -153,7 +153,7 @@
   function buildFx() {
     for (const f of (TL.fx || [])) {
       const r = mulberry((f.seed || 1) * 977 + Math.round(f.t0 * 100)); const grp = $('g', { display: 'none' }, layers.fx); const it = { f, grp, parts: [] };
-      if (f.type === 'dust') for (let i = 0; i < (f.n || 14); i++) { const e = $('circle', { r: 1, fill: f.color || '#9aa2c8' }, grp); it.parts.push({ e, vx: (r() - 0.5) * (f.spread || 380), vy: -(30 + r() * 90), r0: 14 + r() * 20, r1: 40 + r() * 50, dx: (r() - 0.5) * 120 }); }
+      if (f.type === 'dust') for (let i = 0; i < (f.n || 14); i++) { const e = $('circle', { r: 1, fill: 'url(#gFog)' }, grp); it.parts.push({ e, vx: (r() - 0.5) * (f.spread || 380), vy: -(30 + r() * 90), r0: 14 + r() * 20, r1: 40 + r() * 50, dx: (r() - 0.5) * 120 }); }
       if (f.type === 'soil') for (let i = 0; i < (f.n || 18); i++) { const e = $('rect', { width: 10 + r() * 12, height: 8 + r() * 10, rx: 3, fill: r() > 0.5 ? '#5a4056' : '#3d2a38' }, grp); it.parts.push({ e, vx: (r() - 0.5) * 520, vy: -(300 + r() * 520), rot: (r() - 0.5) * 900 }); }
       if (f.type === 'impact') { it.star = $('polygon', { fill: '#fff' }, grp); it.ring = $('circle', { fill: 'none', stroke: '#ffd9dc', 'stroke-width': 10 }, grp); it.core = $('circle', { fill: 'url(#gWhite)' }, grp);
         for (let i = 0; i < 14; i++) it.parts.push({ e: $('polygon', { fill: i % 3 ? '#fff' : '#ff4a56' }, grp), a: r() * 6.283, l0: 90 + r() * 80, l1: 220 + r() * 260, w: 7 + r() * 8 }); }
@@ -166,7 +166,7 @@
       const f = it.f, lt = t - f.t0, dur = f.dur || 1, u = lt / dur;
       if (lt < 0 || u > 1) { it.grp.setAttribute('display', 'none'); continue; }
       it.grp.setAttribute('display', 'inline'); const X = f.x, Y = f.y;
-      if (f.type === 'dust') it.parts.forEach((p) => { const e = EASE.outCubic(u); p.e.setAttribute('cx', f2(X + p.dx + p.vx * e)); p.e.setAttribute('cy', f2(Y + p.vy * e * 1.4)); p.e.setAttribute('r', f2(lerp(p.r0, p.r1, e))); p.e.setAttribute('opacity', f2(0.6 * (1 - u))); });
+      if (f.type === 'dust') it.parts.forEach((p) => { const e = EASE.outCubic(u); p.e.setAttribute('cx', f2(X + p.dx + p.vx * e)); p.e.setAttribute('cy', f2(Y + p.vy * e * 1.4)); p.e.setAttribute('r', f2(lerp(p.r0, p.r1, e))); p.e.setAttribute('opacity', f2(1.6 * (1 - u))); });
       if (f.type === 'soil') it.parts.forEach((p) => { p.e.setAttribute('transform', `translate(${f2(X + p.vx * lt)} ${f2(Y + p.vy * lt + 1500 * lt * lt)}) rotate(${f2(p.rot * lt)})`); p.e.setAttribute('opacity', clamp(1.4 - u * 1.4)); });
       if (f.type === 'impact') {
         const e = EASE.outCubic(clamp(u * 2.2)), R = (f.r || 150) * (0.4 + e), pts = [];
@@ -220,7 +220,7 @@
       h.flash = $('rect', { x: x0, y: 0, width: 540, height: H, fill: '#fff', opacity: 0 }, clipG);
       h.ring = $('circle', { cx, cy: 900, r: 10, fill: 'none', stroke: '#ff5a64', 'stroke-width': 10, opacity: 0 }, hg);
       h.tag = $('g', { opacity: 0 }, hg); $('rect', { x: cx - 150, y: 470, width: 300, height: 62, rx: 31, fill: side === 'L' ? '#c4121f' : '#2a3a8a' }, h.tag);
-      h.tagT = $('text', { x: cx, y: 514, 'text-anchor': 'middle', 'font-family': 'Inter', 'font-weight': 800, 'font-size': 38, fill: '#fff', 'letter-spacing': 6 }, h.tag); h.tagT.textContent = h.tag_;
+      h.tagT = $('text', { x: cx, y: 514, 'text-anchor': 'middle', 'font-family': 'Inter', 'font-weight': 800, 'font-size': 38, fill: '#fff', 'letter-spacing': 6 }, h.tag); h.tagT.textContent = h.tagText;
       h.name = $('text', { x: cx, y: 1296, 'text-anchor': 'middle', 'font-family': 'Inter', 'font-weight': 800, 'font-size': h.nameSize || 62, fill: '#f2f0ea', opacity: 0, 'letter-spacing': 3 }, hg); h.name.textContent = h.label;
     }
     S.line = $('g', {}, splitG); $('rect', { x: 528, y: 0, width: 24, height: H, fill: 'url(#gLine)' }, S.line); $('rect', { x: 536, y: 0, width: 8, height: H, fill: '#ff6a74' }, S.line); S.line.setAttribute('class', 'divider');

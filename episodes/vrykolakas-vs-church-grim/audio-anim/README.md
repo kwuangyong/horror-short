@@ -1,0 +1,7 @@
+# audio-anim/ - voice + score for script-anim.md (v4, 174 words). Free, synthesized.
+Voice: edge-tts en-US-ChristopherNeural, rate +0%, pitch -10Hz (-3% gave 104.8 s, too close to the limit), then tools/voice_fx.sh `deep` (0.94x slower). voice_dark.wav = 102.73 s, 48k. Silences: hook->roll 2.2 s, roll lines 0.9 s apart, roll->arena 1.4 s, 0.5 s before "One knock".
+Section starts (s): hook 0.0 | split_roll 5.26 | arena (kid+arena) 17.40 | R1 38.78 | R2 46.19 | R3 61.12 | K.O. 84.04 | peace 85.89 | cliffhanger 92.34 | CTA 98.13 | end 102.73 (sections.json has names).
+Music cues (music.wav 105.73 s = voice+3): hook hit 0; ratchet from 5.26; lock hits 9.18 (Vrykolakas) and 12.61 (Grim) = on the name words, 3.4 s apart (not 1 s: narration puts them there); VS hit 15.99 after "Comment"; ground shake, growls; taiko R1-R2; heartbeat R3 to K.O. hit 83.47; bell + detuned piano from 85.89; music hard-cut 96.37 (before "One"), single wooden knock 97.33.
+Captions: captions.ass (tools/make_captions.py), 80 events, checked: none spans two sentences.
+Mix: mix_test.sh (music -18 dB, pre-gain+limiter, loudnorm 2-pass): mix-test.mp3 105.84 s, -14.2 LUFS, true peak -1.9 dBFS.
+Rebuild (HTTPS_PROXY set): narration.py ../script-anim.md -o voice.txt; python make_voice.py --rate=+0% --pitch=-10Hz; python post_voice.py; python make_music.py; python ../../../tools/make_captions.py words.json --script ../script-anim.md -o captions.ass; bash mix_test.sh

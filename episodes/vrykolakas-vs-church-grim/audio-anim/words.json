@@ -1,0 +1,872 @@
+[
+ {
+  "word": "It",
+  "start": 0.0,
+  "end": 0.111
+ },
+ {
+  "word": "turns",
+  "start": 0.123,
+  "end": 0.523
+ },
+ {
+  "word": "to",
+  "start": 0.536,
+  "end": 0.629
+ },
+ {
+  "word": "the",
+  "start": 0.643,
+  "end": 0.749
+ },
+ {
+  "word": "kid",
+  "start": 0.762,
+  "end": 1.228
+ },
+ {
+  "word": "Who",
+  "start": 1.823,
+  "end": 1.962
+ },
+ {
+  "word": "survives",
+  "start": 1.975,
+  "end": 2.826
+ },
+ {
+  "word": "Tonight",
+  "start": 5.253,
+  "end": 5.806
+ },
+ {
+  "word": "Two",
+  "start": 6.192,
+  "end": 6.419
+ },
+ {
+  "word": "legends",
+  "start": 6.433,
+  "end": 7.151
+ },
+ {
+  "word": "Left",
+  "start": 8.207,
+  "end": 8.708
+ },
+ {
+  "word": "The",
+  "start": 9.096,
+  "end": 9.162
+ },
+ {
+  "word": "Vrykolakas",
+  "start": 9.175,
+  "end": 10.227
+ },
+ {
+  "word": "Right",
+  "start": 11.247,
+  "end": 11.745
+ },
+ {
+  "word": "The",
+  "start": 12.131,
+  "end": 12.193
+ },
+ {
+  "word": "Church",
+  "start": 12.207,
+  "end": 12.593
+ },
+ {
+  "word": "Grim",
+  "start": 12.606,
+  "end": 13.112
+ },
+ {
+  "word": "Who",
+  "start": 14.112,
+  "end": 14.261
+ },
+ {
+  "word": "wins",
+  "start": 14.275,
+  "end": 14.86
+ },
+ {
+  "word": "Comment",
+  "start": 15.246,
+  "end": 15.839
+ },
+ {
+  "word": "A",
+  "start": 17.394,
+  "end": 17.463
+ },
+ {
+  "word": "kid",
+  "start": 17.477,
+  "end": 17.77
+ },
+ {
+  "word": "chases",
+  "start": 17.783,
+  "end": 18.288
+ },
+ {
+  "word": "fireflies",
+  "start": 18.302,
+  "end": 19.272
+ },
+ {
+  "word": "An",
+  "start": 19.87,
+  "end": 19.999
+ },
+ {
+  "word": "old",
+  "start": 20.013,
+  "end": 20.279
+ },
+ {
+  "word": "graveyard",
+  "start": 20.292,
+  "end": 21.037
+ },
+ {
+  "word": "The",
+  "start": 21.621,
+  "end": 21.686
+ },
+ {
+  "word": "ground",
+  "start": 21.7,
+  "end": 22.112
+ },
+ {
+  "word": "shakes",
+  "start": 22.125,
+  "end": 22.83
+ },
+ {
+  "word": "The",
+  "start": 23.447,
+  "end": 23.499
+ },
+ {
+  "word": "Vrykolakas",
+  "start": 23.513,
+  "end": 24.297
+ },
+ {
+  "word": "rises",
+  "start": 24.311,
+  "end": 25.03
+ },
+ {
+  "word": "It",
+  "start": 25.62,
+  "end": 25.735
+ },
+ {
+  "word": "walks",
+  "start": 25.748,
+  "end": 26.174
+ },
+ {
+  "word": "toward",
+  "start": 26.187,
+  "end": 26.48
+ },
+ {
+  "word": "the",
+  "start": 26.493,
+  "end": 26.573
+ },
+ {
+  "word": "kid",
+  "start": 26.587,
+  "end": 27.012
+ },
+ {
+  "word": "Then",
+  "start": 27.629,
+  "end": 27.855
+ },
+ {
+  "word": "Grim",
+  "start": 27.869,
+  "end": 28.174
+ },
+ {
+  "word": "appears",
+  "start": 28.188,
+  "end": 28.933
+ },
+ {
+  "word": "Between",
+  "start": 29.536,
+  "end": 29.864
+ },
+ {
+  "word": "the",
+  "start": 29.878,
+  "end": 30.011
+ },
+ {
+  "word": "dead",
+  "start": 30.024,
+  "end": 30.37
+ },
+ {
+  "word": "and",
+  "start": 30.384,
+  "end": 30.529
+ },
+ {
+  "word": "the",
+  "start": 30.543,
+  "end": 30.636
+ },
+ {
+  "word": "kid",
+  "start": 30.65,
+  "end": 31.102
+ },
+ {
+  "word": "Garlic",
+  "start": 31.707,
+  "end": 32.068
+ },
+ {
+  "word": "weakens",
+  "start": 32.082,
+  "end": 32.547
+ },
+ {
+  "word": "it",
+  "start": 32.561,
+  "end": 32.813
+ },
+ {
+  "word": "Only",
+  "start": 33.409,
+  "end": 33.687
+ },
+ {
+  "word": "fire",
+  "start": 33.701,
+  "end": 34.18
+ },
+ {
+  "word": "ends",
+  "start": 34.192,
+  "end": 34.472
+ },
+ {
+  "word": "it",
+  "start": 34.485,
+  "end": 34.738
+ },
+ {
+  "word": "Grim",
+  "start": 35.341,
+  "end": 35.601
+ },
+ {
+  "word": "guards",
+  "start": 35.615,
+  "end": 36.001
+ },
+ {
+  "word": "inside",
+  "start": 36.014,
+  "end": 36.507
+ },
+ {
+  "word": "the",
+  "start": 36.52,
+  "end": 36.599
+ },
+ {
+  "word": "wall",
+  "start": 36.612,
+  "end": 37.078
+ },
+ {
+  "word": "Only",
+  "start": 37.394,
+  "end": 37.889
+ },
+ {
+  "word": "Round",
+  "start": 38.78,
+  "end": 39.145
+ },
+ {
+  "word": "one",
+  "start": 39.159,
+  "end": 39.558
+ },
+ {
+  "word": "Grim",
+  "start": 40.191,
+  "end": 40.48
+ },
+ {
+  "word": "lunges",
+  "start": 40.493,
+  "end": 41.158
+ },
+ {
+  "word": "Jaws",
+  "start": 41.775,
+  "end": 42.15
+ },
+ {
+  "word": "on",
+  "start": 42.163,
+  "end": 42.323
+ },
+ {
+  "word": "its",
+  "start": 42.337,
+  "end": 42.536
+ },
+ {
+  "word": "throat",
+  "start": 42.549,
+  "end": 43.002
+ },
+ {
+  "word": "Claws",
+  "start": 43.644,
+  "end": 44.036
+ },
+ {
+  "word": "rake",
+  "start": 44.05,
+  "end": 44.355
+ },
+ {
+  "word": "Grim's",
+  "start": 44.369,
+  "end": 44.742
+ },
+ {
+  "word": "side",
+  "start": 44.754,
+  "end": 45.274
+ },
+ {
+  "word": "Round",
+  "start": 46.188,
+  "end": 46.551
+ },
+ {
+  "word": "two",
+  "start": 46.565,
+  "end": 47.017
+ },
+ {
+  "word": "It",
+  "start": 47.643,
+  "end": 47.747
+ },
+ {
+  "word": "grabs",
+  "start": 47.76,
+  "end": 48.226
+ },
+ {
+  "word": "Grim's",
+  "start": 48.238,
+  "end": 48.678
+ },
+ {
+  "word": "neck",
+  "start": 48.691,
+  "end": 49.17
+ },
+ {
+  "word": "And",
+  "start": 49.761,
+  "end": 49.852
+ },
+ {
+  "word": "hurls",
+  "start": 49.866,
+  "end": 50.265
+ },
+ {
+  "word": "him",
+  "start": 50.277,
+  "end": 50.424
+ },
+ {
+  "word": "over",
+  "start": 50.437,
+  "end": 50.664
+ },
+ {
+  "word": "the",
+  "start": 50.677,
+  "end": 50.783
+ },
+ {
+  "word": "wall",
+  "start": 50.797,
+  "end": 51.276
+ },
+ {
+  "word": "Outside",
+  "start": 51.831,
+  "end": 52.455
+ },
+ {
+  "word": "no",
+  "start": 52.668,
+  "end": 52.88
+ },
+ {
+  "word": "power",
+  "start": 52.894,
+  "end": 53.492
+ },
+ {
+  "word": "Claws",
+  "start": 54.061,
+  "end": 54.425
+ },
+ {
+  "word": "tear",
+  "start": 54.437,
+  "end": 54.703
+ },
+ {
+  "word": "him",
+  "start": 54.717,
+  "end": 55.01
+ },
+ {
+  "word": "Grim",
+  "start": 55.645,
+  "end": 55.905
+ },
+ {
+  "word": "falls",
+  "start": 55.918,
+  "end": 56.609
+ },
+ {
+  "word": "It",
+  "start": 57.227,
+  "end": 57.337
+ },
+ {
+  "word": "turns",
+  "start": 57.35,
+  "end": 57.749
+ },
+ {
+  "word": "to",
+  "start": 57.763,
+  "end": 57.856
+ },
+ {
+  "word": "the",
+  "start": 57.869,
+  "end": 57.976
+ },
+ {
+  "word": "kid",
+  "start": 57.989,
+  "end": 58.455
+ },
+ {
+  "word": "The",
+  "start": 59.05,
+  "end": 59.129
+ },
+ {
+  "word": "kid",
+  "start": 59.142,
+  "end": 59.449
+ },
+ {
+  "word": "cowers",
+  "start": 59.461,
+  "end": 60.18
+ },
+ {
+  "word": "Round",
+  "start": 61.116,
+  "end": 61.475
+ },
+ {
+  "word": "three",
+  "start": 61.489,
+  "end": 61.968
+ },
+ {
+  "word": "Grim",
+  "start": 62.559,
+  "end": 62.811
+ },
+ {
+  "word": "crawls",
+  "start": 62.825,
+  "end": 63.224
+ },
+ {
+  "word": "back",
+  "start": 63.237,
+  "end": 63.53
+ },
+ {
+  "word": "inside",
+  "start": 63.544,
+  "end": 64.235
+ },
+ {
+  "word": "The",
+  "start": 64.819,
+  "end": 64.913
+ },
+ {
+  "word": "dead",
+  "start": 64.926,
+  "end": 65.192
+ },
+ {
+  "word": "man",
+  "start": 65.206,
+  "end": 65.552
+ },
+ {
+  "word": "lunges",
+  "start": 65.565,
+  "end": 66.217
+ },
+ {
+  "word": "Wild",
+  "start": 66.834,
+  "end": 67.198
+ },
+ {
+  "word": "garlic",
+  "start": 67.211,
+  "end": 67.583
+ },
+ {
+  "word": "grows",
+  "start": 67.597,
+  "end": 67.996
+ },
+ {
+  "word": "by",
+  "start": 68.009,
+  "end": 68.169
+ },
+ {
+  "word": "the",
+  "start": 68.182,
+  "end": 68.302
+ },
+ {
+  "word": "wall",
+  "start": 68.315,
+  "end": 68.794
+ },
+ {
+  "word": "It",
+  "start": 69.367,
+  "end": 69.456
+ },
+ {
+  "word": "steps",
+  "start": 69.47,
+  "end": 69.922
+ },
+ {
+  "word": "through",
+  "start": 69.935,
+  "end": 70.361
+ },
+ {
+  "word": "The",
+  "start": 70.938,
+  "end": 71.001
+ },
+ {
+  "word": "stench",
+  "start": 71.015,
+  "end": 71.401
+ },
+ {
+  "word": "hits",
+  "start": 71.414,
+  "end": 71.693
+ },
+ {
+  "word": "it",
+  "start": 71.707,
+  "end": 71.959
+ },
+ {
+  "word": "Grim's",
+  "start": 72.554,
+  "end": 72.914
+ },
+ {
+  "word": "ground",
+  "start": 72.928,
+  "end": 73.526
+ },
+ {
+  "word": "Grim's",
+  "start": 73.836,
+  "end": 74.17
+ },
+ {
+  "word": "power",
+  "start": 74.182,
+  "end": 74.741
+ },
+ {
+  "word": "Legend",
+  "start": 75.283,
+  "end": 75.699
+ },
+ {
+  "word": "says",
+  "start": 75.712,
+  "end": 76.178
+ },
+ {
+  "word": "a",
+  "start": 76.43,
+  "end": 76.55
+ },
+ {
+  "word": "dog",
+  "start": 76.563,
+  "end": 76.923
+ },
+ {
+  "word": "lies",
+  "start": 76.935,
+  "end": 77.308
+ },
+ {
+  "word": "buried",
+  "start": 77.322,
+  "end": 77.694
+ },
+ {
+  "word": "here",
+  "start": 77.707,
+  "end": 78.12
+ },
+ {
+  "word": "Grim",
+  "start": 78.705,
+  "end": 78.966
+ },
+ {
+  "word": "pounces",
+  "start": 78.98,
+  "end": 79.764
+ },
+ {
+  "word": "Jaws",
+  "start": 80.368,
+  "end": 80.74
+ },
+ {
+  "word": "on",
+  "start": 80.754,
+  "end": 80.887
+ },
+ {
+  "word": "the",
+  "start": 80.899,
+  "end": 80.966
+ },
+ {
+  "word": "neck",
+  "start": 80.979,
+  "end": 81.458
+ },
+ {
+  "word": "One",
+  "start": 82.05,
+  "end": 82.301
+ },
+ {
+  "word": "last",
+  "start": 82.314,
+  "end": 82.647
+ },
+ {
+  "word": "snap",
+  "start": 82.66,
+  "end": 83.218
+ },
+ {
+  "word": "Grim",
+  "start": 84.035,
+  "end": 84.314
+ },
+ {
+  "word": "wins",
+  "start": 84.328,
+  "end": 84.953
+ },
+ {
+  "word": "Dawn",
+  "start": 85.893,
+  "end": 86.423
+ },
+ {
+  "word": "Church",
+  "start": 86.778,
+  "end": 87.112
+ },
+ {
+  "word": "bells",
+  "start": 87.126,
+  "end": 87.738
+ },
+ {
+  "word": "The",
+  "start": 88.343,
+  "end": 88.41
+ },
+ {
+  "word": "kid",
+  "start": 88.424,
+  "end": 88.73
+ },
+ {
+  "word": "runs",
+  "start": 88.744,
+  "end": 89.076
+ },
+ {
+  "word": "home",
+  "start": 89.089,
+  "end": 89.528
+ },
+ {
+  "word": "Grim",
+  "start": 90.125,
+  "end": 90.373
+ },
+ {
+  "word": "watches",
+  "start": 90.387,
+  "end": 90.798
+ },
+ {
+  "word": "them",
+  "start": 90.812,
+  "end": 90.999
+ },
+ {
+  "word": "go",
+  "start": 91.011,
+  "end": 91.424
+ },
+ {
+  "word": "Next",
+  "start": 92.339,
+  "end": 92.66
+ },
+ {
+  "word": "night",
+  "start": 92.674,
+  "end": 93.099
+ },
+ {
+  "word": "The",
+  "start": 93.429,
+  "end": 93.507
+ },
+ {
+  "word": "kid",
+  "start": 93.52,
+  "end": 93.839
+ },
+ {
+  "word": "lies",
+  "start": 93.853,
+  "end": 94.238
+ },
+ {
+  "word": "in",
+  "start": 94.252,
+  "end": 94.411
+ },
+ {
+  "word": "bed",
+  "start": 94.424,
+  "end": 94.864
+ },
+ {
+  "word": "One",
+  "start": 96.433,
+  "end": 96.686
+ },
+ {
+  "word": "knock",
+  "start": 96.699,
+  "end": 97.205
+ },
+ {
+  "word": "Nobody",
+  "start": 98.125,
+  "end": 98.549
+ },
+ {
+  "word": "burned",
+  "start": 98.563,
+  "end": 98.909
+ },
+ {
+  "word": "it",
+  "start": 98.921,
+  "end": 99.161
+ },
+ {
+  "word": "Is",
+  "start": 99.764,
+  "end": 99.861
+ },
+ {
+  "word": "it",
+  "start": 99.874,
+  "end": 100.007
+ },
+ {
+  "word": "really",
+  "start": 100.021,
+  "end": 100.3
+ },
+ {
+  "word": "dead",
+  "start": 100.313,
+  "end": 100.712
+ },
+ {
+  "word": "Who's",
+  "start": 101.316,
+  "end": 101.548
+ },
+ {
+  "word": "next",
+  "start": 101.562,
+  "end": 102.12
+ }
+]

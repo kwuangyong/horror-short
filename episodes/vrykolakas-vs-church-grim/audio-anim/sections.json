@@ -1,0 +1,56 @@
+{
+ "scale": 1.064186100716071,
+ "duration": 102.729875,
+ "sections": [
+  {
+   "section": 0,
+   "name": "hook",
+   "start": 0.0
+  },
+  {
+   "section": 1,
+   "name": "split_roll",
+   "start": 5.26
+  },
+  {
+   "section": 2,
+   "name": "arena",
+   "start": 17.4
+  },
+  {
+   "section": 3,
+   "name": "R1",
+   "start": 38.78
+  },
+  {
+   "section": 4,
+   "name": "R2",
+   "start": 46.19
+  },
+  {
+   "section": 5,
+   "name": "R3",
+   "start": 61.12
+  },
+  {
+   "section": 6,
+   "name": "KO",
+   "start": 84.04
+  },
+  {
+   "section": 7,
+   "name": "peace",
+   "start": 85.89
+  },
+  {
+   "section": 8,
+   "name": "cliffhanger",
+   "start": 92.34
+  },
+  {
+   "section": 9,
+   "name": "CTA",
+   "start": 98.13
+  }
+ ]
+}

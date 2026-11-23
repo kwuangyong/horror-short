@@ -1,0 +1,46 @@
+{
+ "eleni_start": null,
+ "sections": [
+  {
+   "section": 0,
+   "start": 0.0
+  },
+  {
+   "section": 1,
+   "start": 4.94
+  },
+  {
+   "section": 2,
+   "start": 16.35
+  },
+  {
+   "section": 3,
+   "start": 36.44
+  },
+  {
+   "section": 4,
+   "start": 43.4
+  },
+  {
+   "section": 5,
+   "start": 57.43
+  },
+  {
+   "section": 6,
+   "start": 78.97
+  },
+  {
+   "section": 7,
+   "start": 80.71
+  },
+  {
+   "section": 8,
+   "start": 86.77
+  },
+  {
+   "section": 9,
+   "start": 92.21
+  }
+ ],
+ "duration": 96.53375
+}

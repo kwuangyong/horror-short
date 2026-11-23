@@ -19,3 +19,12 @@ Quyết định của người dùng (thay thế các brief trước nếu mâu 
 - Câu chuyện: một đứa bé lạc vào rừng (đuổi đom đóm) → tới nghĩa địa cũ → Vrykolakas trồi lên, tiến về phía bé → Church Grim xuất hiện chắn trước bé → đánh nhau. Bé núp sau bia mộ, ló ra xem; có lúc gặp nguy (vd. R2 Grim bị quăng ra ngoài, Vrykolakas quay sang bé) để tăng kịch tính.
 - KHÔNG thẻ THE KID, KHÔNG thanh HP cho bé, không lời dẫn tập trung vào bé; gọi là "a kid" / "the kid" / "they".
 - Tập này dùng **Kết A (Grim thắng)**: bình minh, bé chạy về nhà an toàn. Cú lửng theo lore Vrykolakas: đêm đó, bé nằm trên giường… **một tiếng gõ cửa duy nhất** (Vrykolakas gõ 1 lần) — và/hoặc đất mộ động. Nhắc "only fire ends it / nobody burned it".
+
+## CẬP NHẬT v5 (người dùng, sau khi xem bản hoạt hình v4)
+1. **Lời dẫn mạch lạc**: kể như một câu chuyện liền ý (có từ nối, nguyên nhân → kết quả), KHÔNG chuỗi mảnh câu 2–3 từ rời rạc. Vẫn ngắn gọn, dễ nghe, nhưng câu 6–14 từ là bình thường; chỉ dùng câu cực ngắn ở khoảnh khắc nhấn.
+2. **Nhịp nhanh hơn ~1.25x**: giọng đọc nhanh hơn bản v4 khoảng 25%; tổng video ~85–95 s → kịch bản ~200–220 từ.
+3. **Quay phim (cinematic), nhiều cảnh hơn**: mỗi câu có dòng `[SHOT]` (loại cảnh) + `[ANIM]`.
+   - Mở đầu: **góc nhìn thứ nhất (POV) của đứa bé** đi trong rừng: tay cầm đèn pin trong khung, chùm sáng quét, khung nhún theo bước, thở gấp.
+   - Đánh nhau: **góc đối kháng ngang** (kiểu game đối kháng, hai bên trái–phải).
+   - Còn lại: cận mặt từng nhân vật (close-up/extreme close-up mắt, hàm), góc thấp hất lên khi quái vật trồi lên, qua vai (over-the-shoulder) từ sau lưng bé nhìn quái vật, cảnh phản ứng (reaction) của bé, góc nghiêng (dutch) lúc nguy, góc trên cao khi Grim gục, cắt nhanh trong hành động.
+   - Trung bình 1 cảnh mới mỗi 1.5–3 s.

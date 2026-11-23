@@ -1,0 +1,497 @@
+{
+ "width": 1080,
+ "height": 1920,
+ "fps": 30,
+ "output": "build/vrykolakas-vs-church-grim-draft.mp4",
+ "hud": {
+  "label": "DUAL SPIN · VRYKOLAKAS vs CHURCH GRIM"
+ },
+ "voice": null,
+ "music": "build/audio/drone.wav",
+ "music_volume": 0.6,
+ "captions": "build/captions.ass",
+ "loudness": -14,
+ "sfx": [
+  {
+   "file": "build/audio/impact.wav",
+   "at": 0,
+   "volume": 1
+  },
+  {
+   "file": "build/audio/rewind.wav",
+   "at": 0.4,
+   "volume": 0.6
+  },
+  {
+   "file": "build/audio/ratchet.wav",
+   "at": 3.0,
+   "volume": 0.8
+  },
+  {
+   "file": "build/audio/clunk.wav",
+   "at": 5.0,
+   "volume": 1
+  },
+  {
+   "file": "build/audio/ratchet.wav",
+   "at": 6.0,
+   "volume": 0.6
+  },
+  {
+   "file": "build/audio/bell.wav",
+   "at": 8.0,
+   "volume": 0.7
+  },
+  {
+   "file": "build/audio/clunk.wav",
+   "at": 8.0,
+   "volume": 0.8
+  },
+  {
+   "file": "build/audio/growl.wav",
+   "at": 7.0,
+   "volume": 0.5
+  },
+  {
+   "file": "build/audio/knock.wav",
+   "at": 26.3,
+   "volume": 1
+  },
+  {
+   "file": "build/audio/whisper.wav",
+   "at": 28.0,
+   "volume": 0.7
+  },
+  {
+   "file": "build/audio/impact.wav",
+   "at": 37.5,
+   "volume": 0.9
+  },
+  {
+   "file": "build/audio/growl.wav",
+   "at": 41.0,
+   "volume": 0.9
+  },
+  {
+   "file": "build/audio/growl.wav",
+   "at": 45.5,
+   "volume": 0.9
+  },
+  {
+   "file": "build/audio/steps.wav",
+   "at": 50.5,
+   "volume": 0.8
+  },
+  {
+   "file": "build/audio/heartbeat.wav",
+   "at": 58.0,
+   "volume": 0.9
+  },
+  {
+   "file": "build/audio/ticking.wav",
+   "at": 58.0,
+   "volume": 0.5
+  },
+  {
+   "file": "build/audio/impact.wav",
+   "at": 66.0,
+   "volume": 1
+  },
+  {
+   "file": "build/audio/latch.wav",
+   "at": 70.5,
+   "volume": 0.9
+  },
+  {
+   "file": "build/audio/howl.wav",
+   "at": 74.0,
+   "volume": 0.5
+  },
+  {
+   "file": "build/audio/rewind.wav",
+   "at": 77.0,
+   "volume": 0.6
+  },
+  {
+   "file": "build/audio/impact.wav",
+   "at": 77.0,
+   "volume": 0.9
+  },
+  {
+   "file": "build/audio/growl.wav",
+   "at": 85.0,
+   "volume": 0.7
+  },
+  {
+   "file": "build/audio/offnote.wav",
+   "at": 91.5,
+   "volume": 0.6
+  }
+ ],
+ "scenes": [
+  {
+   "image": "build/cards/hook.png",
+   "duration": 3.0,
+   "zoom": [
+    1.15,
+    1.0
+   ],
+   "shake": 10,
+   "flash": true,
+   "hud": false
+  },
+  {
+   "image": "build/scenes/spin1_0.png",
+   "duration": 0.5,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "pan": "up",
+   "clock": "2:40 AM"
+  },
+  {
+   "image": "build/scenes/spin1_1.png",
+   "duration": 0.5,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "pan": "up"
+  },
+  {
+   "image": "build/scenes/spin1_2.png",
+   "duration": 0.5,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "pan": "up"
+  },
+  {
+   "image": "build/scenes/spin1_3.png",
+   "duration": 0.5,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "pan": "up"
+  },
+  {
+   "image": "build/cards/name1.png",
+   "duration": 1.0,
+   "zoom": [
+    1.0,
+    1.05
+   ],
+   "flash": true
+  },
+  {
+   "image": "build/scenes/spin2_0.png",
+   "duration": 0.5,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "pan": "up"
+  },
+  {
+   "image": "build/scenes/spin2_1.png",
+   "duration": 0.5,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "pan": "up"
+  },
+  {
+   "image": "build/scenes/spin2_2.png",
+   "duration": 0.5,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "pan": "up"
+  },
+  {
+   "image": "build/scenes/spin2_3.png",
+   "duration": 0.5,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "pan": "up"
+  },
+  {
+   "image": "build/cards/name2.png",
+   "duration": 1.0,
+   "zoom": [
+    1.0,
+    1.05
+   ],
+   "flash": true
+  },
+  {
+   "image": "build/scenes/island-house.png",
+   "duration": 4.5,
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  },
+  {
+   "image": "build/scenes/bedroom.png",
+   "duration": 2.5,
+   "zoom": [
+    1.05,
+    1.0
+   ]
+  },
+  {
+   "image": "build/scenes/grandma.png",
+   "duration": 2.5,
+   "zoom": [
+    1.0,
+    1.08
+   ],
+   "clock": "2:44 AM"
+  },
+  {
+   "image": "build/cards/rule1.png",
+   "duration": 2.5,
+   "zoom": [
+    1.0,
+    1.04
+   ]
+  },
+  {
+   "image": "build/cards/rule2.png",
+   "duration": 2.5,
+   "zoom": [
+    1.0,
+    1.04
+   ]
+  },
+  {
+   "image": "build/cards/rule3.png",
+   "duration": 2.5,
+   "zoom": [
+    1.0,
+    1.04
+   ]
+  },
+  {
+   "image": "build/scenes/door-knock.png",
+   "duration": 6.0,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "shake": 6,
+   "clock": "2:52 AM"
+  },
+  {
+   "image": "build/scenes/legend.png",
+   "duration": 3.5,
+   "zoom": [
+    1.1,
+    1.0
+   ],
+   "pan": "right",
+   "clock": "3:02 AM"
+  },
+  {
+   "image": "build/scenes/grim-wall.png",
+   "duration": 2.0,
+   "zoom": [
+    1.0,
+    1.12
+   ]
+  },
+  {
+   "image": "build/cards/trick.png",
+   "duration": 3.5,
+   "zoom": [
+    1.0,
+    1.05
+   ]
+  },
+  {
+   "image": "build/scenes/grim-growls.png",
+   "duration": 5.0,
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "shake": 8,
+   "clock": "3:07 AM"
+  },
+  {
+   "image": "build/scenes/grim-lunges.png",
+   "duration": 5.0,
+   "zoom": [
+    1.0,
+    1.1
+   ],
+   "shake": 10,
+   "clock": "3:19 AM"
+  },
+  {
+   "image": "build/scenes/nikos-latch.png",
+   "duration": 7.0,
+   "zoom": [
+    1.0,
+    1.2
+   ],
+   "pan": "up",
+   "clock": "3:31 AM"
+  },
+  {
+   "image": "build/cards/choice_5.png",
+   "duration": 1.5,
+   "zoom": [
+    1.0,
+    1.0
+   ],
+   "clock": "3:33 AM"
+  },
+  {
+   "image": "build/cards/choice_4.png",
+   "duration": 1.3,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "image": "build/cards/choice_3.png",
+   "duration": 1.3,
+   "zoom": [
+    1.0,
+    1.0
+   ]
+  },
+  {
+   "image": "build/cards/choice_2.png",
+   "duration": 1.3,
+   "zoom": [
+    1.0,
+    1.0
+   ],
+   "shake": 4
+  },
+  {
+   "image": "build/cards/choice_1.png",
+   "duration": 1.3,
+   "zoom": [
+    1.0,
+    1.0
+   ],
+   "shake": 6
+  },
+  {
+   "image": "build/cards/choice_0.png",
+   "duration": 1.3,
+   "zoom": [
+    1.0,
+    1.0
+   ],
+   "shake": 8
+  },
+  {
+   "image": "build/cards/pickA.png",
+   "duration": 1.5,
+   "zoom": [
+    1.1,
+    1.0
+   ],
+   "shake": 12,
+   "flash": true,
+   "clock": "3:34 AM"
+  },
+  {
+   "image": "build/scenes/end-a-latch.png",
+   "duration": 4.0,
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "shake": 6
+  },
+  {
+   "image": "build/scenes/end-a-howl.png",
+   "duration": 3.0,
+   "zoom": [
+    1.0,
+    1.1
+   ]
+  },
+  {
+   "image": "build/cards/come-out.png",
+   "duration": 2.5,
+   "zoom": [
+    1.0,
+    1.06
+   ],
+   "fade_out": 0.6,
+   "hud": false
+  },
+  {
+   "image": "build/cards/pickB.png",
+   "duration": 1.5,
+   "zoom": [
+    1.1,
+    1.0
+   ],
+   "shake": 12,
+   "flash": true,
+   "clock": "3:33 AM"
+  },
+  {
+   "image": "build/scenes/end-b-window.png",
+   "duration": 4.0,
+   "zoom": [
+    1.0,
+    1.12
+   ],
+   "pan": "left"
+  },
+  {
+   "image": "build/scenes/end-b-between.png",
+   "duration": 3.5,
+   "zoom": [
+    1.0,
+    1.15
+   ],
+   "shake": 8
+  },
+  {
+   "image": "build/scenes/end-b-dawn.png",
+   "duration": 3.5,
+   "zoom": [
+    1.0,
+    1.08
+   ],
+   "fade_in": 0.8,
+   "clock": "5:30 AM"
+  },
+  {
+   "image": "build/scenes/end-b-grandma.png",
+   "duration": 5.5,
+   "zoom": [
+    1.0,
+    1.1
+   ]
+  },
+  {
+   "image": "build/cards/cta.png",
+   "duration": 7.0,
+   "zoom": [
+    1.0,
+    1.05
+   ],
+   "fade_out": 0.6,
+   "hud": false
+  }
+ ]
+}

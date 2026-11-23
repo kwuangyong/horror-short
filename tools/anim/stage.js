@@ -39,7 +39,14 @@
   }
   const trk = (name, t, init = 0) => numTrack(TL.tracks && TL.tracks[name], t, init);
   const inWin = (wins, t) => { if (!wins) return true; for (const w of wins) if (t >= w[0] && t < w[1]) return true; return false; };
-  function actorTime(t) { let ta = t; for (const f of (TL.freeze || [])) if (t >= f.t0 && t < f.t0 + f.dur) ta = f.t0; return ta; }
+  function actorTime(t) {
+    let ta = t; for (const f of (TL.freeze || [])) if (t >= f.t0 && t < f.t0 + f.dur) ta = f.t0;
+    for (const w of (TL.slow || [])) {            // slow-mo: actor time lags inside [t0,t1], then catches up smoothly (exp decay)
+      const L = (1 - w.rate) * (w.t1 - w.t0);
+      if (t >= w.t0 && t < w.t1) ta -= (1 - w.rate) * (t - w.t0); else if (t >= w.t1) ta -= L * Math.exp(-(t - w.t1) * 7);
+    }
+    return ta;
+  }
 
   // ------------------------------------------------------------------ defs
   function buildDefs() {
@@ -189,14 +196,17 @@
     layers.dogEyeLid = $('rect', { x: 240, y: 14, width: 44, height: 32, fill: '#101226' }, d);
   }
 
+  const SCN_VIS = { forest: ['sky', 'moon', 'far', 'near', 'ground', 'ftrees', 'actors', 'fx', 'fog', 'flies'], grave: ['sky', 'moon', 'far', 'near', 'ground', 'props', 'hole', 'actors', 'mound', 'fx', 'fog', 'flies', 'tower'], room: ['room', 'actors', 'fx'], church: ['church'], void: [] };
+  const sceneAt = (t) => { let sc = 'grave'; for (const s of (TL.scenes || [])) if (t >= s.t0) sc = s.s; return sc; };
+  function sceneVis(t) { const sc = sceneAt(t), vis = SCN_VIS[sc]; for (const name in PAR) layers[name].setAttribute('display', vis.includes(name) ? 'inline' : 'none'); if (room.blanket) room.blanket.setAttribute('display', sc === 'room' ? 'inline' : 'none'); return sc; }
   function updateScene(t, cam, shk) {
-    let sc = 'grave'; for (const s of (TL.scenes || [])) if (t >= s.t0) sc = s.s;
+    let sc = sceneAt(t);
     const vis = { forest: ['sky', 'moon', 'far', 'near', 'ground', 'ftrees', 'actors', 'fx', 'fog', 'flies'], grave: ['sky', 'moon', 'far', 'near', 'ground', 'props', 'hole', 'actors', 'mound', 'fx', 'fog', 'flies', 'tower'], room: ['room', 'actors', 'fx'], church: ['church'], void: [] }[sc];
     const dawn = trk('dawn', t, 0);
     for (const name in PAR) {
       const l = layers[name]; l.setAttribute('display', vis.includes(name) ? 'inline' : 'none'); if (!vis.includes(name)) continue;
       const p = PAR[name], cx = 540 + (cam.cx - 540) * p, cy = 960 + (cam.cy - 960) * p, z = name === 'church' ? 1 : cam.zoom;
-      l.setAttribute('transform', `translate(${f2(540 + shk[0])} ${f2(960 + shk[1])}) scale(${f2(z)}) translate(${f2(-cx)} ${f2(-cy)})`);
+      l.setAttribute('transform', `translate(${f2(540 + shk[0])} ${f2(960 + shk[1])}) rotate(${f2(cam.rot || 0)}) scale(${f2(z)} ${f2(z * (cam.sy || 1))}) translate(${f2(-cx)} ${f2(-cy)})`);
     }
     layers.dawnRect.setAttribute('opacity', dawn);
     layers.moon.setAttribute('opacity', 1 - 0.8 * dawn); layers.flies.setAttribute('opacity', 1 - dawn);
@@ -496,12 +506,112 @@
     fl(L, hud.L, c.blinkL); fl(R, hud.R, c.blinkR);
   }
 
+  // ------------------------------------------------------------------ SHOT SYSTEM (hard cuts between camera set-ups)
+  let povG = null, povW = null, povHand = null, povTrees = [], povFlies = [], povBeam = null, povCone = [], povDark = null, povFog = [], otsG = null, crashG = null, curShot = null;
+  const HEADSZ = { vry: 150, grim: 250, kid: 150 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262] };
+  function markerWorld(actor, name) {
+    const d = TL.actors[actor]; if (!d || !d.rig || !d.rig.mk || !d.rig.mk[name]) return null;
+    const m = d.rig.mk[name], c1 = m.getCTM(), c2 = layers.actors.getCTM(); if (!c1 || !c2) return null;
+    const M = c2.inverse().multiply(c1), x = +m.getAttribute('cx'), y = +m.getAttribute('cy');
+    return { x: M.a * x + M.c * y + M.e, y: M.b * x + M.d * y + M.f };
+  }
+  function shotInfo(t) {
+    const L = TL.shots; if (!L || !L.length) return null; let i = -1; for (let k = 0; k < L.length; k++) if (L[k].t <= t) i = k; if (i < 0) return null;
+    const s = L[i], t1 = i + 1 < L.length ? L[i + 1].t : TL.duration; return { s, i, t1, dur: Math.max(1e-3, t1 - s.t), lt: t - s.t, u: clamp((t - s.t) / Math.max(1e-3, t1 - s.t)) };
+  }
+  function shotCam(t, info) {
+    const s = info.s, u = info.u, lt = info.lt; let cx = s.cx === undefined ? 540 : s.cx, cy = s.cy === undefined ? 930 : s.cy, zoom = s.zoom || 1, rot = 0, sy = 1;
+    const A = s.actor && TL.actors[s.actor], P = A && A.pos;
+    switch (s.type) {
+      case 'versus': { const a = TL.actors[s.a].pos, b = TL.actors[s.b].pos; if (a && b) { cx = (a.x + b.x) / 2 + (s.dx || 0); const span = Math.abs(a.x - b.x) + (s.margin || 560); zoom = s.zoom || Math.min(s.maxZoom || 2.0, 1000 / span); cy = s.cy || 930; } break; }
+      case 'cu': case 'reaction': { if (P) { const o = HEADOFF[A.kind], sc = P.sc; cx = P.x + o[0] * P.flip * sc + (s.dx || 0); cy = P.y + o[1] * sc + (s.dy || 0); zoom = s.zoom || ((s.fill || 0.6) * 1080 / (HEADSZ[A.kind] * sc)); } break; }
+      case 'ecu': { const mk = markerWorld(s.actor, s.at || 'eye'); if (mk) { cx = mk.x + (s.dx || 0); cy = mk.y + (s.dy || 0); } zoom = s.zoom || 5; break; }
+      case 'low': { const x = s.x !== undefined ? s.x : (P ? P.x : 540), feet = P ? P.y : 1080; cx = x + (s.dx || 0); zoom = s.zoom || 1.6; cy = feet - ((s.ground || 0.88) * 1920 - 960) / zoom; sy = s.sy || 1.12; break; }
+      case 'high': { const x = s.x !== undefined ? s.x : (P ? P.x : 540), feet = P ? P.y : 1080; cx = x + (s.dx || 0); zoom = s.zoom || 1.5; sy = s.sy || 0.74; cy = feet - ((s.ground || 0.62) * 1920 - 960) / (zoom * sy) ; break; }
+      default: break;     // wide / establish / insert / ots / versus fallbacks use cx,cy,zoom
+    }
+    if (s.push) zoom *= 1 + (s.push - 1) * ease(s.pushEase || 'inOut', u);
+    if (s.pan) { cx += s.pan[0] * ease('inOut', u); cy += s.pan[1] * ease('inOut', u); }
+    if (s.dutch !== undefined) rot = lerp(s.dutch, s.dutchTo === undefined ? s.dutch : s.dutchTo, u);
+    if (s.hand) { const a = s.hand; cx += a * (Math.sin(t * 1.9) + 0.5 * Math.sin(t * 4.3 + 1)); cy += a * (Math.sin(t * 1.3 + 2) + 0.5 * Math.sin(t * 3.7)); rot += a * 0.05 * Math.sin(t * 1.1 + 1); }
+    let crash = 0;
+    if (s.crash) { const q = clamp((t - s.crash.at) / (s.crash.dur || 0.12)); if (t >= s.crash.at) { zoom *= 1 + (s.crash.k - 1) * EASE.outCubic(q); crash = clamp(1 - (t - s.crash.at) / 0.4) * 1; } }
+    return { cx, cy, zoom, rot, sy, crash, whip: s.whip && lt < s.whip ? 1 - lt / s.whip : 0, whipDir: s.whipDir || 1, rack: s.rack || null };
+  }
+  // ---- POV-KID: first-person forest walk with a flashlight cone (screen space, deterministic)
+  function buildPov(cfg) {
+    povG = $('g', { display: 'none' }, svg); povW = $('g', {}, povG); const r = mulberry(17);
+    $('rect', { x: -200, y: -200, width: 1480, height: 1100, fill: 'url(#gSky)' }, povW); $('circle', { cx: 700, cy: 330, r: 360, fill: 'url(#gMoon)' }, povW); $('circle', { cx: 700, cy: 330, r: 96, fill: '#ece9d6' }, povW);
+    const far = $('g', {}, povW); for (let x = -200; x < 1300; x += 60 + r() * 40) pine(far, x, 910, 200 + r() * 140, '#1a2040', 4);
+    $('rect', { x: -200, y: 900, width: 1480, height: 1300, fill: 'url(#gGround)' }, povW);
+    $('polygon', { points: '532,900 548,900 980,1980 100,1980', fill: '#2a3159', opacity: 0.55 }, povW);
+    povTrees = []; const grp = $('g', {}, povW);
+    for (let i = 0; i < 64; i++) { const g = $('g', {}, grp), X = (r() < 0.5 ? -1 : 1) * (1.3 + Math.pow(r(), 1.2) * 10), o = { g, X, ph: r() * 24.7, h: 10 + r() * 8, sz: 0.8 + r() * 0.5, w: 0.35 + r() * 0.3, trunk: $('rect', {}, g), tiers: [0, 1, 2, 3, 4].map(() => $('polygon', {}, g)) }; povTrees.push(o); }
+    povFog = []; for (let i = 0; i < 6; i++) { const e = $('ellipse', { rx: 700, ry: 70, fill: 'url(#gFog)' }, povW); povFog.push({ e, y: 940 + i * 70, sp: 10 + r() * 14, x0: r() * 1800 }); }
+    povBeam = $('polygon', { fill: '#fff0b8', opacity: 0.09 }, povW);
+    povDark = $('rect', { x: -300, y: -300, width: 1680, height: 2500, fill: '#02030a', opacity: cfg.dark === undefined ? 0.94 : cfg.dark }, povW);
+    const mk = $('mask', { id: 'povMask', maskUnits: 'userSpaceOnUse', x: -300, y: -300, width: 1680, height: 2500 }, defs); $('rect', { x: -300, y: -300, width: 1680, height: 2500, fill: '#fff' }, mk);
+    povCone = [$('polygon', { fill: '#c0c0c0' }, mk), $('polygon', { fill: '#808080' }, mk), $('polygon', { fill: '#000' }, mk)]; povDark.setAttribute('mask', 'url(#povMask)');
+    povFlies = []; for (let i = 0; i < 16; i++) { const g = $('g', {}, povW); $('circle', { r: 24, fill: 'url(#gFly)' }, g); $('circle', { r: 3.6, fill: '#fff2a8' }, g); povFlies.push({ g, X: (r() - 0.5) * 9, Y: 0.4 + r() * 2.4, ph: r() * 20, sp: 0.5 + r() * 1.2 }); }
+    // foreground: the kid's hand + oversized flashlight (own group, bobs less than the world)
+    povHand = $('g', {}, povG);
+    const sl = $('polygon', { points: '860,1900 960,1740 1160,1740 1160,2010 800,2010', fill: '#8a90b4' }, povHand); $('polygon', { points: '960,1740 1160,1740 1160,1800 940,1790', fill: '#a5abcd' }, povHand);
+    povHand.__fl = $('g', {}, povHand); const f = povHand.__fl;
+    $('rect', { x: -70, y: -52, width: 380, height: 104, rx: 22, fill: '#3e466a' }, f); $('rect', { x: -70, y: -52, width: 380, height: 22, rx: 11, fill: '#6a74a0' }, f); $('rect', { x: 120, y: -52, width: 36, height: 104, fill: '#c4121f' }, f); $('rect', { x: 250, y: -76, width: 110, height: 152, rx: 26, fill: '#4a5482' }, f);
+    $('ellipse', { cx: 362, cy: 0, rx: 18, ry: 70, fill: '#fff6c8' }, f); $('circle', { cx: 372, cy: 0, r: 150, fill: 'url(#gGold)', opacity: 0.8 }, f);
+    for (let i = 0; i < 4; i++) $('ellipse', { cx: 30 + i * 36, cy: 52, rx: 20, ry: 28, fill: '#c9a48f' }, f); $('ellipse', { cx: 150, cy: -46, rx: 38, ry: 22, fill: '#d7b19d' }, f);
+    povHand.__cfg = cfg;
+  }
+  function updatePov(t, info) {
+    const s = info.s, lt = info.lt, f = 1000, horizon = 900, camH = 1.1, speed = s.speed === undefined ? 3.0 : s.speed, Dn = 1.3, Df = 26, step = 1.9;
+    const bob = 14 * Math.abs(Math.sin(Math.PI * step * t)) * (speed > 0 ? 1 : 0.2), breath = 4 * Math.sin(2 * Math.PI * 0.27 * t), roll = 1.4 * Math.sin(Math.PI * step * t + 0.5) * (speed > 0 ? 1 : 0.3);
+    povW.setAttribute('transform', `translate(${f2(4 * Math.sin(Math.PI * step * t))} ${f2(bob + breath)}) rotate(${f2(roll)} 540 960)`);
+    const D0 = lt * speed + (s.start || 0);
+    const items = povTrees.map((o) => { let D = Df - (((o.ph + D0) % (Df - Dn)) + (Df - Dn)) % (Df - Dn); return { o, D }; }).sort((a, b) => b.D - a.D);
+    for (const { o, D } of items) {
+      const k = f / D, sx = 540 + o.X * k, base = horizon + camH * k, fogK = clamp((D - 3) / 21), col = mixc('#05070f', '#2a3366', fogK), op = clamp((Df - D) / 3) * clamp((D - 1.25) / 1.0);
+      o.g.setAttribute('opacity', f2(op)); o.g.setAttribute('display', op <= 0.01 || sx < -600 || sx > 1700 ? 'none' : 'inline');
+      o.trunk.setAttribute('fill', col); o.trunk.setAttribute('x', f2(sx - o.w * k / 2)); o.trunk.setAttribute('y', f2(base - o.h * k)); o.trunk.setAttribute('width', f2(o.w * k)); o.trunk.setAttribute('height', f2(o.h * k));
+      const step_ = (o.h - 4) / 4.2; o.tiers.forEach((p, i) => { const y0 = base - (2.3 + i * step_) * k, hw = (1.8 - i * 0.3) * o.sz * k, hh = (step_ + 2.2) * k; p.setAttribute('fill', col); p.setAttribute('points', `${f2(sx - hw)},${f2(y0)} ${f2(sx - hw * 0.35)},${f2(y0 - hh * 0.45)} ${f2(sx)},${f2(y0 - hh)} ${f2(sx + hw * 0.35)},${f2(y0 - hh * 0.45)} ${f2(sx + hw)},${f2(y0)}`); });
+    }
+    povFog.forEach((q) => { q.e.setAttribute('cx', f2(((q.x0 + t * q.sp) % 2000) - 400)); q.e.setAttribute('cy', q.y); });
+    povFlies.forEach((q) => { const D = Df * 0.9 - (((q.ph * 3 + D0 * q.sp * 0.6) % 14) + 14) % 14 - 0.6; const k = f / Math.max(1.0, D + 2); const x = 540 + (q.X + 0.8 * Math.sin(t * 0.7 + q.ph)) * k * 0.6, y = horizon - (q.Y + 0.25 * Math.sin(t * 1.1 + q.ph)) * k * 0.55 + 140; q.g.setAttribute('transform', `translate(${f2(x)} ${f2(y)}) scale(${f2(clamp(k / 220, 0.25, 2.4))})`); q.g.setAttribute('opacity', f2((0.55 + 0.45 * Math.sin(t * 2.4 + q.ph)) * clamp((D + 2) / 3))); });
+    // flashlight aim (sweeps like the kid looking around)
+    const O = [940, 1770], tx = 540 + (s.sweep === undefined ? 300 : s.sweep) * Math.sin(lt * 0.85 + (s.phase || 0.5)) + (s.aimX || 0), ty = 780 + 70 * Math.sin(lt * 1.3) + (s.aimY || 0), th = Math.atan2(ty - O[1], tx - O[0]), hw = s.cone || 0.2;
+    const cone = (w, len) => `${O[0]},${O[1]} ${f2(O[0] + Math.cos(th - w) * len)},${f2(O[1] + Math.sin(th - w) * len)} ${f2(O[0] + Math.cos(th + w) * len)},${f2(O[1] + Math.sin(th + w) * len)}`;
+    povCone[0].setAttribute('points', cone(hw * 1.7, 2800)); povCone[1].setAttribute('points', cone(hw * 1.3, 2800)); povCone[2].setAttribute('points', cone(hw * 0.95, 2800)); povBeam.setAttribute('points', cone(hw, 2300));
+    povDark.setAttribute('opacity', f2((s.dark === undefined ? 0.94 : s.dark) * (0.985 + 0.015 * Math.sin(t * 31))));
+    povHand.setAttribute('transform', `translate(${f2(3 * Math.sin(Math.PI * step * t + 1))} ${f2(bob * 0.5 + breath * 1.4)})`);
+    povHand.__fl.setAttribute('transform', `translate(${O[0]} ${O[1]}) rotate(${f2(th * 57.2958)})`);
+  }
+  // ---- OTS-KID foreground: the kid's hooded back, big and blurred at the bottom corner
+  function buildOts() {
+    otsG = $('g', { display: 'none' }, svg); const g = $('g', {}, otsG); otsG.__in = g;
+    $('ellipse', { cx: 230, cy: 2060, rx: 560, ry: 400, fill: '#2a3262' }, g); $('ellipse', { cx: 226, cy: 2040, rx: 540, ry: 380, fill: '#343e74' }, g);        // shoulders / jacket
+    $('polygon', { points: '-40,1560 70,1330 230,1020 390,1330 500,1560 400,1760 20,1760', fill: '#2c3568' }, g);                                                  // hood
+    $('ellipse', { cx: 232, cy: 1640, rx: 270, ry: 250, fill: '#3a4580' }, g); $('polygon', { points: '-20,1580 110,1330 232,1060 350,1340 480,1580 400,1540 232,1150 70,1540', fill: '#46528f' }, g);
+    $('path', { d: 'M232 1060 Q252 1420 236 1780', stroke: '#222a58', 'stroke-width': 9, fill: 'none' }, g);
+    $('path', { d: 'M470 1330 Q540 1520 490 1700', stroke: '#8d9ee0', 'stroke-width': 10, fill: 'none', opacity: 0.8, 'stroke-linecap': 'round' }, g);                // moon rim light
+    $('polygon', { points: '-40,1810 520,1810 540,1930 -40,1930', fill: '#a30d1a' }, g); $('polygon', { points: '350,1840 470,1850 540,2160 440,2170', fill: '#c4121f' }, g); $('ellipse', { cx: 300, cy: 1880, rx: 70, ry: 54, fill: '#8a0d18' }, g);   // scarf
+  }
+  function updateOts(t, info) {
+    const s = info.s, show = s.type === 'ots'; otsG.setAttribute('display', show ? 'inline' : 'none'); if (!show) return;
+    const side = s.side === 'right' ? -1 : 1, br = 5 * Math.sin(2 * Math.PI * 0.3 * t);
+    otsG.__in.setAttribute('transform', `translate(${side < 0 ? 1080 : 0} ${f2(br)}) scale(${side} 1) translate(${s.fgX || 0} ${s.fgY || 0})`);
+    const fb = s.rack && s.rack.fg !== undefined ? s.rack.fg : 9; otsG.style.filter = `blur(${fb}px)`;
+  }
+  function updateCrash(sh) { if (!crashG) return; const w = sh ? sh.crash : 0; crashG.setAttribute('display', w > 0.01 ? 'inline' : 'none'); if (w > 0.01) Array.from(crashG.children).forEach((e) => e.setAttribute('opacity', f2(0.55 * w))); }
+
   // ------------------------------------------------------------------ public API
   G.loadTimeline = function (tl) {
-    TL = tl; props = []; fxList = []; textList = []; splits = []; hud = null; layers = {}; room = {};
+    TL = tl; props = []; fxList = []; textList = []; splits = []; hud = null; layers = {}; room = {}; povG = null; povTrees = [];
     document.body.innerHTML = ''; svg = $('svg', { xmlns: G.NS, width: W, height: H, viewBox: `0 0 ${W} ${H}` }); document.body.appendChild(svg);
     buildDefs(); buildArena(); setupActors(); buildProps(); buildFx();
+    TL.shots = (TL.shots || []).slice().sort((a, b) => a.t - b.t); TL.scenes = TL.scenes || []; TL.slow = (TL.slow || []).slice();
+    TL.shots.forEach((sh, i) => { if (sh.scene) TL.scenes.push({ t0: sh.t, s: sh.scene }); if (sh.slow) TL.slow.push({ t0: sh.t, t1: i + 1 < TL.shots.length ? TL.shots[i + 1].t : TL.duration, rate: sh.slow }); if (sh.type === 'pov' && !povG) buildPov(sh); });
+    TL.scenes.sort((a, b) => a.t0 - b.t0);
     for (const s of (TL.splits || (TL.split ? [TL.split] : []))) buildSplit(s);
+    buildOts(); crashG = $('g', { display: 'none' }, svg); for (let i = 0; i < 30; i++) { const a = i / 30 * 6.283 + 0.1; $('polygon', { points: `${540 + Math.cos(a) * 200},${960 + Math.sin(a) * 200} ${540 + Math.cos(a + 0.012) * 1500},${960 + Math.sin(a + 0.012) * 1500} ${540 + Math.cos(a - 0.012) * 1500},${960 + Math.sin(a - 0.012) * 1500}`, fill: '#fff' }, crashG); }
     buildText(); buildHud();
     $('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#gVig)' }, svg); vigEl = svg.lastChild;
     tintEl = $('rect', { x: 0, y: 0, width: W, height: H, fill: '#c4121f', opacity: 0 }, svg);
@@ -512,17 +622,26 @@
     fitText(); G.renderFrame(0);
   };
   G.renderFrame = function (t) {
-    const ta = actorTime(t);
-    const cam = stateTrack(TL.cam || [], t, TL.camInit || { cx: 540, cy: 960, zoom: 1 });
+    const ta = actorTime(t), info = shotInfo(t);
     const shk = shakeAt(t);
     const sp = splits.find((s) => t >= (s.cfg.t0 || 0) && t <= s.cfg.end && s.cfg.opaque !== false);
-    const sc = updateScene(t, cam, shk);
-    arena.setAttribute('display', 'inline');
     const sceneOn = !splits.length || splits.every((s) => !(t >= (s.cfg.t0 || 0) && t < s.cfg.shatter - 0.05 && s.cfg.opaque !== false));
-    arena.setAttribute('display', sceneOn ? 'inline' : 'none');
-    if (sceneOn) { updateActors(t, ta); updateProps(t, sc); updateFx(t); }
+    const isPov = info && info.s.type === 'pov' && povG;
+    const sc = sceneVis(t);
+    arena.setAttribute('display', sceneOn && !isPov ? 'inline' : 'none');
+    if (sceneOn) updateActors(t, ta);
+    let cam = stateTrack(TL.cam || [], t, TL.camInit || { cx: 540, cy: 960, zoom: 1 }), shotX = null;
+    if (info && !isPov) { shotX = shotCam(t, info); cam = shotX; }
+    curShot = shotX;
+    let sk = shk;
+    if (shotX && shotX.whip) sk = [shk[0] + shotX.whip * shotX.whip * 520 * shotX.whipDir, shk[1]];
+    updateScene(t, cam, sk);
+    if (sceneOn && !isPov) { updateProps(t, sc); updateFx(t); }
+    const bl = (shotX && shotX.whip ? 16 * shotX.whip : 0) + (shotX && shotX.rack && shotX.rack.bg ? shotX.rack.bg : 0);
+    arena.style.filter = bl > 0.3 ? `blur(${f2(bl)}px)` : '';
+    if (povG) { povG.setAttribute('display', isPov ? 'inline' : 'none'); if (isPov) { updatePov(t, info); const wb = info.s.whip && info.lt < info.s.whip ? 12 * (1 - info.lt / info.s.whip) : 0; povG.style.filter = wb > 0.3 ? `blur(${f2(wb)}px)` : ''; } }
+    updateOts(t, info || { s: {} }); updateCrash(shotX);
     splits.forEach((s) => updateSplit(s, t));
-    // unified split position: keep split groups above the arena but below text/overlays
     updateText(t); updateHud(t); updateOverlay(t);
     return true;
   };

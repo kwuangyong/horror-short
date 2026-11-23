@@ -11,83 +11,99 @@ Style: Cap,Oswald,92,&H00EBF2F5&,&H00EBF2F5&,&H00000000,&H96000000,-1,0,0,0,100,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:00.00,0:00:00.54,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT TURNS
-Dialogue: 0,0:00:00.54,0:00:01.82,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}TO THE {\c&H002F26E3&}KID{\c&H00EBF2F5&}
-Dialogue: 0,0:00:01.82,0:00:03.43,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}WHO {\c&H002F26E3&}SURVIVES{\c&H00EBF2F5&}
-Dialogue: 0,0:00:05.25,0:00:06.19,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}TONIGHT
-Dialogue: 0,0:00:06.19,0:00:07.75,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}TWO {\c&H002F26E3&}LEGENDS{\c&H00EBF2F5&}
-Dialogue: 0,0:00:08.21,0:00:09.10,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}LEFT
-Dialogue: 0,0:00:09.10,0:00:10.83,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE {\c&H002F26E3&}VRYKOLAKAS{\c&H00EBF2F5&}
-Dialogue: 0,0:00:11.25,0:00:12.13,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}RIGHT
-Dialogue: 0,0:00:12.13,0:00:13.71,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE CHURCH {\c&H002F26E3&}GRIM{\c&H00EBF2F5&}
-Dialogue: 0,0:00:14.11,0:00:15.25,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}WHO {\c&H002F26E3&}WINS{\c&H00EBF2F5&}
-Dialogue: 0,0:00:15.25,0:00:16.44,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}COMMENT
-Dialogue: 0,0:00:17.39,0:00:18.30,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}A KID CHASES
-Dialogue: 0,0:00:18.30,0:00:19.87,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}FIREFLIES{\c&H00EBF2F5&}
-Dialogue: 0,0:00:19.87,0:00:21.62,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AN OLD {\c&H002F26E3&}GRAVEYARD{\c&H00EBF2F5&}
-Dialogue: 0,0:00:21.62,0:00:23.43,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE GROUND {\c&H002F26E3&}SHAKES{\c&H00EBF2F5&}
-Dialogue: 0,0:00:23.45,0:00:24.31,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE VRYKOLAKAS
-Dialogue: 0,0:00:24.31,0:00:25.62,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}RISES{\c&H00EBF2F5&}
-Dialogue: 0,0:00:25.62,0:00:26.49,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT WALKS TOWARD
-Dialogue: 0,0:00:26.49,0:00:27.61,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE {\c&H002F26E3&}KID{\c&H00EBF2F5&}
-Dialogue: 0,0:00:27.63,0:00:29.53,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THEN GRIM {\c&H002F26E3&}APPEARS{\c&H00EBF2F5&}
-Dialogue: 0,0:00:29.54,0:00:30.38,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BETWEEN THE DEAD
-Dialogue: 0,0:00:30.38,0:00:31.70,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THE {\c&H002F26E3&}KID{\c&H00EBF2F5&}
-Dialogue: 0,0:00:31.71,0:00:33.41,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GARLIC {\c&H002F26E3&}WEAKENS{\c&H00EBF2F5&} IT
-Dialogue: 0,0:00:33.41,0:00:34.48,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ONLY {\c&H002F26E3&}FIRE{\c&H00EBF2F5&} ENDS
-Dialogue: 0,0:00:34.48,0:00:35.34,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT
-Dialogue: 0,0:00:35.34,0:00:36.52,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM GUARDS INSIDE
-Dialogue: 0,0:00:36.52,0:00:37.39,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE WALL
-Dialogue: 0,0:00:37.39,0:00:38.49,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}ONLY{\c&H00EBF2F5&}
-Dialogue: 0,0:00:38.78,0:00:40.16,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ROUND {\c&H002F26E3&}ONE{\c&H00EBF2F5&}
-Dialogue: 0,0:00:40.19,0:00:41.76,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM {\c&H002F26E3&}LUNGES{\c&H00EBF2F5&}
-Dialogue: 0,0:00:41.77,0:00:42.34,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}JAWS ON
-Dialogue: 0,0:00:42.34,0:00:43.60,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ITS {\c&H002F26E3&}THROAT{\c&H00EBF2F5&}
-Dialogue: 0,0:00:43.64,0:00:44.75,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}CLAWS RAKE GRIM'S
-Dialogue: 0,0:00:44.75,0:00:45.87,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}SIDE{\c&H00EBF2F5&}
-Dialogue: 0,0:00:46.19,0:00:47.62,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ROUND {\c&H002F26E3&}TWO{\c&H00EBF2F5&}
-Dialogue: 0,0:00:47.64,0:00:48.69,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT GRABS GRIM'S
-Dialogue: 0,0:00:48.69,0:00:49.76,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}NECK{\c&H00EBF2F5&}
-Dialogue: 0,0:00:49.76,0:00:50.44,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND HURLS HIM
-Dialogue: 0,0:00:50.44,0:00:51.83,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}OVER{\c&H00EBF2F5&} THE WALL
-Dialogue: 0,0:00:51.83,0:00:52.67,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}OUTSIDE
-Dialogue: 0,0:00:52.67,0:00:54.06,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}NO {\c&H002F26E3&}POWER{\c&H00EBF2F5&}
-Dialogue: 0,0:00:54.06,0:00:55.61,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}CLAWS {\c&H002F26E3&}TEAR{\c&H00EBF2F5&} HIM
-Dialogue: 0,0:00:55.65,0:00:57.21,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM {\c&H002F26E3&}FALLS{\c&H00EBF2F5&}
-Dialogue: 0,0:00:57.23,0:00:57.76,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT TURNS
-Dialogue: 0,0:00:57.76,0:00:59.05,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}TO THE {\c&H002F26E3&}KID{\c&H00EBF2F5&}
-Dialogue: 0,0:00:59.05,0:01:00.78,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE KID {\c&H002F26E3&}COWERS{\c&H00EBF2F5&}
-Dialogue: 0,0:01:01.12,0:01:02.56,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ROUND {\c&H002F26E3&}THREE{\c&H00EBF2F5&}
-Dialogue: 0,0:01:02.56,0:01:03.54,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM {\c&H002F26E3&}CRAWLS{\c&H00EBF2F5&} BACK
-Dialogue: 0,0:01:03.54,0:01:04.82,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}INSIDE
-Dialogue: 0,0:01:04.82,0:01:05.56,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE DEAD MAN
-Dialogue: 0,0:01:05.56,0:01:06.82,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}LUNGES{\c&H00EBF2F5&}
-Dialogue: 0,0:01:06.83,0:01:08.01,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}WILD {\c&H002F26E3&}GARLIC{\c&H00EBF2F5&} GROWS
-Dialogue: 0,0:01:08.01,0:01:09.37,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BY THE WALL
-Dialogue: 0,0:01:09.37,0:01:10.94,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT STEPS {\c&H002F26E3&}THROUGH{\c&H00EBF2F5&}
-Dialogue: 0,0:01:10.94,0:01:11.71,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE STENCH {\c&H002F26E3&}HITS{\c&H00EBF2F5&}
-Dialogue: 0,0:01:11.71,0:01:12.55,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT
-Dialogue: 0,0:01:12.55,0:01:13.84,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM'S GROUND
-Dialogue: 0,0:01:13.84,0:01:15.28,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM'S {\c&H002F26E3&}POWER{\c&H00EBF2F5&}
-Dialogue: 0,0:01:15.28,0:01:16.43,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}LEGEND SAYS
-Dialogue: 0,0:01:16.43,0:01:17.32,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}A DOG LIES
-Dialogue: 0,0:01:17.32,0:01:18.70,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}BURIED{\c&H00EBF2F5&} HERE
-Dialogue: 0,0:01:18.70,0:01:20.36,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM {\c&H002F26E3&}POUNCES{\c&H00EBF2F5&}
-Dialogue: 0,0:01:20.37,0:01:20.90,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}JAWS ON
-Dialogue: 0,0:01:20.90,0:01:22.05,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE {\c&H002F26E3&}NECK{\c&H00EBF2F5&}
-Dialogue: 0,0:01:22.05,0:01:23.82,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ONE LAST {\c&H002F26E3&}SNAP{\c&H00EBF2F5&}
-Dialogue: 0,0:01:24.03,0:01:25.55,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM {\c&H002F26E3&}WINS{\c&H00EBF2F5&}
-Dialogue: 0,0:01:25.89,0:01:26.78,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}DAWN
-Dialogue: 0,0:01:26.78,0:01:28.34,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}CHURCH {\c&H002F26E3&}BELLS{\c&H00EBF2F5&}
-Dialogue: 0,0:01:28.34,0:01:29.09,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE KID {\c&H002F26E3&}RUNS{\c&H00EBF2F5&}
-Dialogue: 0,0:01:29.09,0:01:30.12,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}HOME
-Dialogue: 0,0:01:30.12,0:01:30.81,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM WATCHES
-Dialogue: 0,0:01:30.81,0:01:32.02,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THEM {\c&H002F26E3&}GO{\c&H00EBF2F5&}
-Dialogue: 0,0:01:32.34,0:01:33.43,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}NEXT {\c&H002F26E3&}NIGHT{\c&H00EBF2F5&}
-Dialogue: 0,0:01:33.43,0:01:34.25,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE KID LIES
-Dialogue: 0,0:01:34.25,0:01:35.46,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IN BED
-Dialogue: 0,0:01:36.43,0:01:37.80,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ONE {\c&H002F26E3&}KNOCK{\c&H00EBF2F5&}
-Dialogue: 0,0:01:38.12,0:01:39.76,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}NOBODY {\c&H002F26E3&}BURNED{\c&H00EBF2F5&} IT
-Dialogue: 0,0:01:39.76,0:01:40.31,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IS IT REALLY
-Dialogue: 0,0:01:40.31,0:01:41.31,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}DEAD{\c&H00EBF2F5&}
-Dialogue: 0,0:01:41.32,0:01:42.62,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}WHO'S {\c&H002F26E3&}NEXT{\c&H00EBF2F5&}
+Dialogue: 0,0:00:00.00,0:00:00.51,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT TURNS
+Dialogue: 0,0:00:00.51,0:00:01.56,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}TO THE {\c&H002F26E3&}KID{\c&H00EBF2F5&}
+Dialogue: 0,0:00:01.56,0:00:03.11,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}WHO {\c&H002F26E3&}SURVIVES{\c&H00EBF2F5&}
+Dialogue: 0,0:00:03.98,0:00:04.62,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}TONIGHT
+Dialogue: 0,0:00:04.62,0:00:04.88,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}TWO
+Dialogue: 0,0:00:04.88,0:00:06.58,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}LEGENDS{\c&H00EBF2F5&} COLLIDE
+Dialogue: 0,0:00:06.61,0:00:07.50,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ON THE LEFT
+Dialogue: 0,0:00:07.50,0:00:09.19,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE {\c&H002F26E3&}VRYKOLAKAS{\c&H00EBF2F5&}
+Dialogue: 0,0:00:09.25,0:00:10.00,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ON THE RIGHT
+Dialogue: 0,0:00:10.00,0:00:11.57,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE CHURCH {\c&H002F26E3&}GRIM{\c&H00EBF2F5&}
+Dialogue: 0,0:00:11.62,0:00:12.67,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}WHO{\c&H00EBF2F5&} WINS
+Dialogue: 0,0:00:12.67,0:00:13.83,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}COMMENT
+Dialogue: 0,0:00:14.25,0:00:15.06,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}A KID CHASES
+Dialogue: 0,0:00:15.06,0:00:16.06,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}FIREFLIES{\c&H00EBF2F5&} DEEP
+Dialogue: 0,0:00:16.06,0:00:17.08,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}INTO THE WOODS
+Dialogue: 0,0:00:17.08,0:00:17.36,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}UNTIL
+Dialogue: 0,0:00:17.36,0:00:18.88,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE PATH VANISHES
+Dialogue: 0,0:00:18.88,0:00:19.08,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THEN
+Dialogue: 0,0:00:19.08,0:00:20.16,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE TREES PART
+Dialogue: 0,0:00:20.16,0:00:20.66,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND AN OLD
+Dialogue: 0,0:00:20.66,0:00:22.16,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}GRAVEYARD{\c&H00EBF2F5&} WAITS
+Dialogue: 0,0:00:22.16,0:00:23.30,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE GROUND {\c&H002F26E3&}SHAKES{\c&H00EBF2F5&}
+Dialogue: 0,0:00:23.30,0:00:24.26,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THE VRYKOLAKAS
+Dialogue: 0,0:00:24.26,0:00:24.64,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}CLAWS
+Dialogue: 0,0:00:24.64,0:00:25.84,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ITS WAY OUT
+Dialogue: 0,0:00:25.84,0:00:26.31,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT SEES
+Dialogue: 0,0:00:26.31,0:00:27.02,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE KID
+Dialogue: 0,0:00:27.02,0:00:28.52,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND STARTS {\c&H002F26E3&}WALKING{\c&H00EBF2F5&}
+Dialogue: 0,0:00:28.52,0:00:29.40,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BUT CHURCH GRIM
+Dialogue: 0,0:00:29.40,0:00:30.22,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}LEAPS THE WALL
+Dialogue: 0,0:00:30.22,0:00:30.75,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND {\c&H002F26E3&}BLOCKS{\c&H00EBF2F5&}
+Dialogue: 0,0:00:30.75,0:00:31.82,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ITS PATH
+Dialogue: 0,0:00:31.82,0:00:32.45,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GARLIC MAKES
+Dialogue: 0,0:00:32.45,0:00:33.28,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT FLINCH
+Dialogue: 0,0:00:33.28,0:00:34.07,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THE HEADSTONE
+Dialogue: 0,0:00:34.07,0:00:34.82,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}WARNS
+Dialogue: 0,0:00:34.82,0:00:35.56,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ONLY {\c&H002F26E3&}FIRE{\c&H00EBF2F5&}
+Dialogue: 0,0:00:35.56,0:00:36.44,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ENDS IT
+Dialogue: 0,0:00:36.44,0:00:36.92,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BUT GRIM
+Dialogue: 0,0:00:36.92,0:00:37.81,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IS STRONG {\c&H002F26E3&}ONLY{\c&H00EBF2F5&}
+Dialogue: 0,0:00:37.81,0:00:39.68,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}INSIDE THESE WALLS
+Dialogue: 0,0:00:39.68,0:00:40.73,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ROUND ONE
+Dialogue: 0,0:00:40.73,0:00:41.71,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM {\c&H002F26E3&}LUNGES{\c&H00EBF2F5&}
+Dialogue: 0,0:00:41.71,0:00:42.07,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND HIS
+Dialogue: 0,0:00:42.07,0:00:42.85,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}JAWS CLOSE
+Dialogue: 0,0:00:42.85,0:00:44.02,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ON ITS THROAT
+Dialogue: 0,0:00:44.02,0:00:44.65,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}CLAWS RAKE
+Dialogue: 0,0:00:44.65,0:00:45.47,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}HIS SIDE
+Dialogue: 0,0:00:45.47,0:00:46.44,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BUT HE {\c&H002F26E3&}HOLDS{\c&H00EBF2F5&}
+Dialogue: 0,0:00:46.44,0:00:46.97,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THE DEAD
+Dialogue: 0,0:00:46.97,0:00:48.62,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}MAN CRAWLS AWAY
+Dialogue: 0,0:00:48.62,0:00:49.72,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ROUND TWO
+Dialogue: 0,0:00:49.72,0:00:50.59,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT {\c&H002F26E3&}GRABS{\c&H00EBF2F5&} GRIM
+Dialogue: 0,0:00:50.59,0:00:51.18,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BY THE NECK
+Dialogue: 0,0:00:51.18,0:00:51.76,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND HURLS HIM
+Dialogue: 0,0:00:51.76,0:00:52.85,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}OVER THE WALL
+Dialogue: 0,0:00:52.85,0:00:53.64,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}OUTSIDE
+Dialogue: 0,0:00:53.64,0:00:54.88,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}HIS POWER DIES
+Dialogue: 0,0:00:54.88,0:00:55.47,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}SO EVERY
+Dialogue: 0,0:00:55.47,0:00:56.78,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}CLAW {\c&H002F26E3&}LANDS{\c&H00EBF2F5&}
+Dialogue: 0,0:00:56.78,0:00:57.72,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM {\c&H002F26E3&}FALLS{\c&H00EBF2F5&}
+Dialogue: 0,0:00:57.72,0:00:58.70,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THE VRYKOLAKAS
+Dialogue: 0,0:00:58.70,0:00:59.08,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}TURNS
+Dialogue: 0,0:00:59.08,0:01:00.25,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}TO THE KID
+Dialogue: 0,0:01:00.25,0:01:01.33,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ROUND THREE
+Dialogue: 0,0:01:01.33,0:01:01.98,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM {\c&H002F26E3&}CRAWLS{\c&H00EBF2F5&}
+Dialogue: 0,0:01:01.98,0:01:03.09,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BACK INSIDE
+Dialogue: 0,0:01:03.09,0:01:03.41,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND HIS
+Dialogue: 0,0:01:03.41,0:01:04.91,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}STRENGTH RETURNS
+Dialogue: 0,0:01:04.91,0:01:05.75,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT CHARGES THROUGH
+Dialogue: 0,0:01:05.75,0:01:06.88,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}WILD {\c&H002F26E3&}GARLIC{\c&H00EBF2F5&}
+Dialogue: 0,0:01:06.88,0:01:07.45,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THE STENCH
+Dialogue: 0,0:01:07.45,0:01:08.48,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}CRIPPLES IT
+Dialogue: 0,0:01:08.48,0:01:09.13,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}LEGEND SAYS
+Dialogue: 0,0:01:09.13,0:01:09.58,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}A DOG
+Dialogue: 0,0:01:09.58,0:01:10.83,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}LIES {\c&H002F26E3&}BURIED{\c&H00EBF2F5&} HERE
+Dialogue: 0,0:01:10.83,0:01:11.32,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND GRIM
+Dialogue: 0,0:01:11.32,0:01:12.61,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GROWS STRONGER
+Dialogue: 0,0:01:12.61,0:01:13.57,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}HE {\c&H002F26E3&}POUNCES{\c&H00EBF2F5&}
+Dialogue: 0,0:01:13.57,0:01:14.38,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND ONE LAST
+Dialogue: 0,0:01:14.38,0:01:15.69,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BITE ENDS IT
+Dialogue: 0,0:01:15.69,0:01:17.12,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM {\c&H002F26E3&}WINS{\c&H00EBF2F5&}
+Dialogue: 0,0:01:17.12,0:01:17.90,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AT {\c&H002F26E3&}DAWN{\c&H00EBF2F5&}
+Dialogue: 0,0:01:17.90,0:01:18.59,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}GRIM BURIES
+Dialogue: 0,0:01:18.59,0:01:19.32,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE BODY
+Dialogue: 0,0:01:19.32,0:01:19.83,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THE KID
+Dialogue: 0,0:01:19.83,0:01:21.09,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}RUNS HOME
+Dialogue: 0,0:01:21.09,0:01:21.92,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}NEXT NIGHT
+Dialogue: 0,0:01:21.92,0:01:22.35,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE KID
+Dialogue: 0,0:01:22.35,0:01:23.77,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}LIES IN {\c&H002F26E3&}BED{\c&H00EBF2F5&}
+Dialogue: 0,0:01:23.77,0:01:24.32,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THEN
+Dialogue: 0,0:01:24.32,0:01:25.62,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ONE KNOCK
+Dialogue: 0,0:01:25.62,0:01:27.01,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}NOBODY {\c&H002F26E3&}BURNED{\c&H00EBF2F5&} IT
+Dialogue: 0,0:01:27.01,0:01:27.25,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IS IT
+Dialogue: 0,0:01:27.25,0:01:28.30,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}REALLY {\c&H002F26E3&}DEAD{\c&H00EBF2F5&}
+Dialogue: 0,0:01:28.30,0:01:29.56,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}WHO'S {\c&H002F26E3&}NEXT{\c&H00EBF2F5&}

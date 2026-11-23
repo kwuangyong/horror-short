@@ -9,5 +9,5 @@ names = ["hook","split_roll","arena","R1","R2","R3","KO","peace","cliffhanger","
 words = [{"word": w["word"], "start": round(w["start"]*k,3), "end": round(w["end"]*k,3)} for w in json.load(open(f"{H}/words_raw.json"))]
 json.dump(words, open(f"{H}/words.json","w"), ensure_ascii=False, indent=1)
 secs = [{"section": s["section"], "name": names[s["section"]], "start": round(s["start"]*k,2)} for s in raw["sections"]]
-json.dump({"scale": k, "duration": d_fx, "sections": secs}, open(f"{H}/sections.json","w"), indent=1)
+json.dump({"scale": k, "duration": d_fx, "sections": secs, "sentences": [dict(x, start=round(x["start"]*k,2)) for x in raw["sentences"]]}, open(f"{H}/sections.json","w"), indent=1)
 print("scale", k, "voice_dark", d_fx, [(s["name"], s["start"]) for s in secs])

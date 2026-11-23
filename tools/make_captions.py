@@ -72,27 +72,57 @@ def align_keywords(words: list[dict], tokens: list[tuple[str, bool]], window: in
                 break
 
 
+def _dangling(w: dict) -> bool:
+    n = norm(w["word"])
+    return n in DANGLING or w["word"].lower().rstrip(".,!?").endswith(("'s", "\u2019s"))
+
+
+def _split_segment(seg: list[dict], max_words: int, max_chars: int, gap: float) -> list[list[dict]]:
+    """Split one clause into balanced chunks: no lone 1-word chunk (unless the clause is 1 word),
+    never end a chunk on a preposition/article/possessive (unless unavoidable)."""
+    n = len(seg)
+    if n == 1:
+        return [seg]
+    best = None
+
+    def ok_group(g):
+        return (len(g) <= max_words and sum(len(x["word"]) + 1 for x in g) - 1 <= max_chars
+                and all(g[i + 1]["start"] - g[i]["end"] <= gap for i in range(len(g) - 1)))
+
+    def rec(i, groups, cost):
+        nonlocal best
+        if best is not None and cost >= best[0]:
+            return
+        if i == n:
+            best = (cost, list(groups)); return
+        for j in range(i + 1, min(i + max_words, n) + 1):
+            g = seg[i:j]
+            if not ok_group(g):
+                break
+            c = cost + 1.0                                   # fewer chunks preferred
+            if len(g) == 1:
+                c += 5
+            if j < n and _dangling(g[-1]):
+                c += 8
+            c += abs(len(g) - (max_words + 1) / 2) * 0.3     # prefer ~2-3 words
+            groups.append(g); rec(j, groups, c); groups.pop()
+    rec(0, [], 0.0)
+    return best[1] if best else [[w] for w in seg]
+
+
 def chunk(words: list[dict], max_words: int, max_chars: int, gap: float) -> list[list[dict]]:
-    chunks: list[list[dict]] = []
+    segs: list[list[dict]] = []
     cur: list[dict] = []
-    for i, w in enumerate(words):
-        if cur:
-            text_len = sum(len(x["word"]) + 1 for x in cur) + len(w["word"])
-            prev = cur[-1]
-            hard = prev.get("brk") or PUNCT_END.search(prev["word"])
-            if (len(cur) >= max_words or text_len > max_chars
-                    or w["start"] - prev["end"] > gap or hard):
-                if (not hard and len(cur) > 1 and norm(prev["word"]) in DANGLING):
-                    cur.pop()                      # never leave "the/to/of..." hanging at chunk end
-                    chunks.append(cur)
-                    cur = [prev]
-                else:
-                    chunks.append(cur)
-                    cur = []
+    for w in words:
         cur.append(w)
+        if w.get("brk") or PUNCT_END.search(w["word"]):
+            segs.append(cur); cur = []
     if cur:
-        chunks.append(cur)
-    return chunks
+        segs.append(cur)
+    out: list[list[dict]] = []
+    for sg in segs:
+        out += _split_segment(sg, max_words, max_chars, gap)
+    return out
 
 
 def build_ass(words, width, height, font, size, max_words, max_chars, gap,

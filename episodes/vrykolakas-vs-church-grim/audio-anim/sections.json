@@ -1,6 +1,6 @@
 {
- "scale": 1.064186100716071,
- "duration": 102.729875,
+ "scale": 1.063961031519758,
+ "duration": 89.672542,
  "sections": [
   {
    "section": 0,
@@ -10,47 +10,214 @@
   {
    "section": 1,
    "name": "split_roll",
-   "start": 5.26
+   "start": 3.98
   },
   {
    "section": 2,
    "name": "arena",
-   "start": 17.4
+   "start": 14.25
   },
   {
    "section": 3,
    "name": "R1",
-   "start": 38.78
+   "start": 39.68
   },
   {
    "section": 4,
    "name": "R2",
-   "start": 46.19
+   "start": 48.61
   },
   {
    "section": 5,
    "name": "R3",
-   "start": 61.12
+   "start": 60.25
   },
   {
    "section": 6,
    "name": "KO",
-   "start": 84.04
+   "start": 75.68
   },
   {
    "section": 7,
    "name": "peace",
-   "start": 85.89
+   "start": 77.12
   },
   {
    "section": 8,
    "name": "cliffhanger",
-   "start": 92.34
+   "start": 81.08
   },
   {
    "section": 9,
    "name": "CTA",
-   "start": 98.13
+   "start": 85.63
+  }
+ ],
+ "sentences": [
+  {
+   "section": 0,
+   "text": "It turns to the kid.",
+   "start": 0.0
+  },
+  {
+   "section": 0,
+   "text": "Who survives?",
+   "start": 1.56
+  },
+  {
+   "section": 1,
+   "text": "Tonight, two legends collide.",
+   "start": 3.98
+  },
+  {
+   "section": 1,
+   "text": "On the left, the Vrykolakas.",
+   "start": 6.62
+  },
+  {
+   "section": 1,
+   "text": "On the right, the Church Grim.",
+   "start": 9.25
+  },
+  {
+   "section": 1,
+   "text": "Who wins?",
+   "start": 11.62
+  },
+  {
+   "section": 1,
+   "text": "Comment.",
+   "start": 12.67
+  },
+  {
+   "section": 2,
+   "text": "A kid chases fireflies deep into the woods, until the path vanishes.",
+   "start": 14.25
+  },
+  {
+   "section": 2,
+   "text": "Then the trees part, and an old graveyard waits.",
+   "start": 18.87
+  },
+  {
+   "section": 2,
+   "text": "The ground shakes, and the Vrykolakas claws its way out.",
+   "start": 22.16
+  },
+  {
+   "section": 2,
+   "text": "It sees the kid, and starts walking.",
+   "start": 25.84
+  },
+  {
+   "section": 2,
+   "text": "But Church Grim leaps the wall and blocks its path.",
+   "start": 28.51
+  },
+  {
+   "section": 2,
+   "text": "Garlic makes it flinch, and the headstone warns: only fire ends it.",
+   "start": 31.82
+  },
+  {
+   "section": 2,
+   "text": "But Grim is strong only inside these walls.",
+   "start": 36.44
+  },
+  {
+   "section": 3,
+   "text": "Round one.",
+   "start": 39.68
+  },
+  {
+   "section": 3,
+   "text": "Grim lunges, and his jaws close on its throat.",
+   "start": 40.73
+  },
+  {
+   "section": 3,
+   "text": "Claws rake his side, but he holds, and the dead man crawls away.",
+   "start": 44.03
+  },
+  {
+   "section": 4,
+   "text": "Round two.",
+   "start": 48.61
+  },
+  {
+   "section": 4,
+   "text": "It grabs Grim by the neck and hurls him over the wall.",
+   "start": 49.72
+  },
+  {
+   "section": 4,
+   "text": "Outside, his power dies, so every claw lands.",
+   "start": 52.86
+  },
+  {
+   "section": 4,
+   "text": "Grim falls, and the Vrykolakas turns to the kid.",
+   "start": 56.77
+  },
+  {
+   "section": 5,
+   "text": "Round three.",
+   "start": 60.25
+  },
+  {
+   "section": 5,
+   "text": "Grim crawls back inside, and his strength returns.",
+   "start": 61.34
+  },
+  {
+   "section": 5,
+   "text": "It charges through wild garlic, and the stench cripples it.",
+   "start": 64.91
+  },
+  {
+   "section": 5,
+   "text": "Legend says a dog lies buried here, and Grim grows stronger.",
+   "start": 68.49
+  },
+  {
+   "section": 5,
+   "text": "He pounces, and one last bite ends it.",
+   "start": 72.6
+  },
+  {
+   "section": 6,
+   "text": "Grim wins.",
+   "start": 75.68
+  },
+  {
+   "section": 7,
+   "text": "At dawn, Grim buries the body, and the kid runs home.",
+   "start": 77.12
+  },
+  {
+   "section": 8,
+   "text": "Next night, the kid lies in bed.",
+   "start": 81.08
+  },
+  {
+   "section": 8,
+   "text": "Then, one knock.",
+   "start": 83.77
+  },
+  {
+   "section": 9,
+   "text": "Nobody burned it.",
+   "start": 85.63
+  },
+  {
+   "section": 9,
+   "text": "Is it really dead?",
+   "start": 87.01
+  },
+  {
+   "section": 9,
+   "text": "Who's next?",
+   "start": 88.3
   }
  ]
 }

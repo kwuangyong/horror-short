@@ -11,3 +11,5 @@ function cueOnWord(words, word, o) {          // o: {actor, action, len, lead=0,
   return { actor: o.actor, action: o.action, t0, t1: t0 + (o.len || 1), params: o.params || {} };
 }
 module.exports = { wordTime, cueOnWord, find };
+// cut on a word: cutOnWord(words, 'bites', {type:'cu', actor:'grim', zoom:3, lead:0.05}) -> shot object for TL.shots
+module.exports.cutOnWord = (words, word, o) => { const { nth, lead, ...rest } = o; return Object.assign({ t: wordTime(words, word, nth || 1) - (lead || 0) }, rest); };

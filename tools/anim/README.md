@@ -44,5 +44,17 @@ Action = `fn({t,lt,dur,u,p}) -> partial pose`; add new ones in rigs.js (`ACTIONS
 - extra actions: grim shake-fur sit down weak dangle bite-shake crawl paw-line stalk dig bristle alert stand-up | vry circle fall-back pinned crawl-back stand-up neck-grab slash-down victory lunge-at cover-face kneel-cough disgust hand dead | kid hide(behind tomb) peek cower(hug knees) gasp scared-back chase lost bed-wake.
 - `peek.sh TIMELINE out.jpg t1,t2,...` = quick low-res contact sheet of chosen times.
 
+## v3: SHOT SYSTEM (cinematic cuts) - `shots:[{t, type, ...}]` (hard cut at t, shot lasts until the next shot; no `shots` = legacy `cam` tracks)
+Common params: `scene` (switch scene at the cut), `push` (total zoom factor over the shot), `pan:[dx,dy]`, `dutch`/`dutchTo` (frame roll, deg), `hand` (handheld amplitude), `slow` (actor time-scale for the whole shot, e.g. 0.4; actors catch up smoothly afterwards; sound unaffected), `whip` (s: whip-pan blur+slide at the start, `whipDir` +-1), `rack:{bg,fg}` (blur px of background / foreground), `crash:{at,dur,k}` (crash-zoom: zoom x k at time `at`, with radial speed lines), `cx,cy,zoom`.
+- `wide` / `establish` {cx,cy,zoom}  - `insert` {cx,cy,zoom} close-up on a prop (garlic, tomb, door, hole: pass its x,y)
+- `versus` {a,b,dx,cy,zoom|maxZoom,margin} - side-on fighting-game framing of two actors (follows their midpoint)
+- `cu` / `reaction` {actor, fill=0.6 (head width / frame), dx,dy} - close-up on the head (kid = REACTION-KID)
+- `ecu` {actor, at:'eye'|'mouth'|'jaw'|'nose'|'hand'|'claw'|'head', zoom=5} - extreme close-up locked on a rig marker (grim: eye mouth jaw nose head; vry: eye mouth hand claw handL head; kid: eye lens head)
+- `low` {actor|x, zoom, ground=0.88 (feet at 88% of frame height), sy=1.12} looming low angle; `high` {actor|x, zoom, sy=0.74, ground} looking down
+- `ots` {side:'left'|'right', cx,cy,zoom, rack:{fg,bg}} over-the-shoulder: the kid's blurred hooded back in the lower corner, world in the distance
+- `pov` {speed (m/s), sweep (px of flashlight sweep), cone (rad), dark, aimX,aimY, start} first-person kid: forest layers approach in perspective (44+ trees, fog, fireflies), oversized flashlight + hand bottom-right, cone of light with everything else black, step bob / roll / breathing.
+- timeline_words.js `cutOnWord(words,'bites',{type:'cu',actor:'grim',lead:0.05})` builds a shot that cuts when the word is spoken. Top-level `slow:[{t0,t1,rate}]` and `freeze` also work outside shots.
+- Test: episodes/vrykolakas-vs-church-grim/anim-test/make_cine_timeline.js -> cine-test.mp4 (12 s: POV 4 s, OTS 2 s, LOW 2 s, ECU 1 s, VERSUS + crash-zoom 3 s). Render ~49 ms/frame (blur filters on cut frames only).
+
 ## Known limits
 Fx are simple (no real particles beyond dust/soil/impact/speed lines). Silhouette/split-roll decoys are 7 generic shapes. Grim is very dark on dark ground (rim light is weak). Kid poses hide/cower are rough. Freeze skips actor time (see above).

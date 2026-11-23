@@ -38,7 +38,7 @@ def trim(x):
     idx = np.where(np.abs(x) > 0.01)[0]
     return x[max(idx[0]-int(.02*SR),0): idx[-1]+int(.08*SR)] , (max(idx[0]-int(.02*SR),0))/SR
 async def main():
-    tracks = []; words = []; marks = []; t = 0.0; prev_sec = None; narr = []; eleni = None
+    tracks = []; words = []; marks = []; t = 0.0; prev_sec = None; narr = []; eleni = None; sents = []
     out = np.zeros(0, np.float32); narr_out = np.zeros(0, np.float32)
     def add_sil(d):
         nonlocal out, narr_out
@@ -51,15 +51,15 @@ async def main():
         x = decode(audio); x, lead = trim(x)
         # gap before
         if prev_sec is not None:
-            if s != prev_sec: gap = {1: 2.2, 2: 1.4}.get(s, 0.8 if s in (3,4,5,6,7,8,9) else 0.6)
-            elif s == 1: gap = 0.9 if newline else 0.3
-            elif newline: gap = 0.5
-            else: gap = 0.25
+            if s != prev_sec: gap = {1: 1.3, 2: 0.9}.get(s, 0.45)
+            elif s == 1: gap = 0.55 if newline else 0.25
+            elif newline: gap = 0.3
+            else: gap = 0.2
             
             add_sil(gap)
-        if text.startswith("One knock"): add_sil(0.9)
+        if text.startswith("Then, one"): add_sil(0.2)
         if s != prev_sec: marks.append({"section": s, "start": round(len(out)/SR, 2)})
-        st = len(out)/SR
+        st = len(out)/SR; sents.append({"section": s, "text": text, "start": round(st,2)})
         for w, b, e in wb:
             words.append({"word": w, "start": round(st + max(b-lead,0), 3), "end": round(st + max(e-lead,0), 3), "eleni": el})
         out = np.concatenate([out, x])
@@ -71,6 +71,6 @@ async def main():
         subprocess.run(["ffmpeg","-v","error","-y","-f","f32le","-ar",str(SR),"-ac","1","-i","pipe:0","-b:a","192k",path], input=x.tobytes(), check=True)
     wr(os.path.join(HERE,"voice.mp3"), out); wr(os.path.join(HERE,"voice_narr.mp3"), narr_out)
     json.dump(words, open(os.path.join(HERE,"words_raw.json"),"w"), indent=1)
-    json.dump({"eleni_start": None, "sections": marks, "duration": len(out)/SR}, open(os.path.join(HERE,"sections_raw.json"),"w"), indent=1)
+    json.dump({"eleni_start": None, "sections": marks, "sentences": sents, "duration": len(out)/SR}, open(os.path.join(HERE,"sections_raw.json"),"w"), indent=1)
     print("duration", len(out)/SR, "words", len(words), "units", len(units))
 asyncio.run(main())

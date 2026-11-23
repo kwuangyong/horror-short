@@ -92,7 +92,7 @@ t_all = T(len(buf)/SR)
 kn = find("knock", 0, sec[8]); on = find("One", 0, sec[8])
 t_cut = on.start - 0.06
 t_k = kn.end + 0.12
-sn = find("snap", 0, sec[5]); t_ko = sn.end + 0.25
+last5 = [w for w in W if sec[5] <= w["start"] < sec[6]][-1]; t_ko = last5["end"] + 0.2
 t_dawn = sec[7]
 fm = 48 + 3*np.sin(2*np.pi*0.05*t_all)
 drone = np.sin(2*np.pi*np.cumsum(fm)/SR)*0.5 + 0.35*np.sin(2*np.pi*np.cumsum(fm*1.5*(1+0.002*np.sin(2*np.pi*0.11*t_all)))/SR) \
@@ -120,7 +120,7 @@ put(IMP, t_vs, 0.8); put(bell(98, 5), t_vs+0.05, 0.9)
 put(lp(rng.standard_normal(int(3*SR)), 250, 2)*np.exp(-T(3)/1.2)*6, t_vs, 0.5)
 # arena: ground shake, Vrykolakas rises, Grim appears
 put(lp(rng.standard_normal(int(1.5*SR)), 600, 2)*np.exp(-T(1.5)/0.5)*5, find("shakes", 0, sec[2]).start, 0.6)
-put(GRW, find("appears", 0, sec[2]).start - 0.6, 0.6)
+put(GRW, find("leaps", 0, sec[2]).start - 0.5, 0.6)
 # rounds
 rs = [find("Round", i, sec[3]-0.1) for i in range(3)]
 for r in rs: put(IMP, r.start - 0.05, 0.75)
@@ -132,7 +132,7 @@ def drums(t0, t1, iv0, iv1, g0, g1):
         t += iv0 + (iv1-iv0)*p
 drums(rs[0].end + 0.3, rs[1].start - 0.4, 0.9, 0.75, 0.35, 0.5)
 drums(rs[1].end + 0.3, rs[2].start - 0.4, 0.75, 0.55, 0.5, 0.7)
-put(GRW, find("lunges", 0, sec[3]).start - 0.1, 0.7)
+put(GRW, find("lunges", 0, sec[3]-0.1).start - 0.1, 0.7)
 # R3: music dips, accelerating heartbeat to K.O.
 buf[span(rs[2].start-0.1, rs[2].start+0.2)] *= np.linspace(1, 0.3, int(0.3*SR))
 t = rs[2].end + 0.2

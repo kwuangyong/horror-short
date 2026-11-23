@@ -59,3 +59,9 @@ Ghi chú: Human đang là "he". Nếu muốn mascot trung tính cho khán giả 
 Lần 1: KHÔNG ĐẠT (phụ đề ghép xuyên câu "DEAD GRANDMA SAID", đồng hồ HUD đứng yên, flash K.O. xóa trắng).
 Lần 2: **ĐẠT.** 99.2 s, −14.2 LUFS, 45 cảnh căn theo words.json. Phụ đề không vượt ranh giới câu (sửa trong tools/make_captions.py, ma-da demo vẫn chạy). Đồng hồ 2:00 → 3:30 → 5:40. K.O. chỉ nháy 0.07 s rồi thẻ WINNER rõ.
 Còn có thể nâng cấp: tranh riêng cho "kid crawls"; spin thành bánh xe quay thật; tên VRYKOLAKAS sát mép ở màn VS; tay bàn tay cú lửng.
+
+---
+
+# Review · Cổng 2 · script-anim v3 (hoạt hình, không THE KID) (Boss)
+Hook 2/2 (khung R2 có thật) · Nhịp 2/2 (split roll 0:03–0:13, mỗi câu có [ANIM] khớp nghĩa) · Câu chữ 2/2 (199 từ) · Tương tác 2/2 (chỉ "WHO WINS?") · Twist/lửng 2/2 (tỏi được cài bằng hình ở 0:25 rồi trả ở R3; "Only fire ends it" khắc trên bia; "Legend says a dog lies buried here" dùng lore Grim thật).
+Sửa v3.1: bỏ câu CTA lặp "Only fire ends it". **ĐẠT 10/10.** Lưu ý: tỏi mọc dại là chi tiết câu chuyện (không phải lore).

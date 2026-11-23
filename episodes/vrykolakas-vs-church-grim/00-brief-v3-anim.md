@@ -14,3 +14,8 @@ Quyết định của người dùng (thay thế các brief trước nếu mâu 
 ## Hoạt hình (producer)
 - Engine: HTML/SVG rig + timeline, render từng khung bằng Playwright Chromium → ffmpeg. Đồng bộ theo words.json.
 - Phong cách giữ như art cũ: flat-vector, không viền, navy + đỏ thẫm, trăng glow; Grim và Vrykolakas giống thiết kế trong art/.
+
+## CẬP NHẬT v4 (người dùng): đứa bé quay lại làm BỐI CẢNH
+- Câu chuyện: một đứa bé lạc vào rừng (đuổi đom đóm) → tới nghĩa địa cũ → Vrykolakas trồi lên, tiến về phía bé → Church Grim xuất hiện chắn trước bé → đánh nhau. Bé núp sau bia mộ, ló ra xem; có lúc gặp nguy (vd. R2 Grim bị quăng ra ngoài, Vrykolakas quay sang bé) để tăng kịch tính.
+- KHÔNG thẻ THE KID, KHÔNG thanh HP cho bé, không lời dẫn tập trung vào bé; gọi là "a kid" / "the kid" / "they".
+- Tập này dùng **Kết A (Grim thắng)**: bình minh, bé chạy về nhà an toàn. Cú lửng theo lore Vrykolakas: đêm đó, bé nằm trên giường… **một tiếng gõ cửa duy nhất** (Vrykolakas gõ 1 lần) — và/hoặc đất mộ động. Nhắc "only fire ends it / nobody burned it".

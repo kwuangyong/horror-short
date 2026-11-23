@@ -33,5 +33,16 @@ core.js (svg/joint/easing/keyframes) | rigs.js (Grim, Vrykolakas, Kid rigs + act
 - kid (background character, no card/HP bar): idle-scared walk(flashlight) run hide(crouch + peek) cower look-up sleep wake. No bed/tombstone prop is drawn: hide = crouch (use clipY + a tombstone in front, or place in a scene prop); sleep = lying pose, add a bed prop in the scene.
 Action = `fn({t,lt,dur,u,p}) -> partial pose`; add new ones in rigs.js (`ACTIONS.grim.myAction = ...`). Pose params: Grim bodyY/bodyRot/head/jaw/hackle/tail1/tail2/ear/FN,FF,RN,RF [thigh,shin]/eye/glow/brow/shake; Vry bodyRot/head/open/grin/aL,aR [upper,fore]/lL,lR/flap/wide/rage/sink/trail/grip; Kid bodyRot/head/aL/aR/lL/lR/lookX/lookY/wide/mouth/beam/sleep.
 
+## v2 additions (full-episode build)
+- `scenes:[{t0,s}]` s = forest | grave | room (bedroom: bed, blanket, moon window, wooden door; `knocks:[t]` shakes the door) | church (buried-dog cut-away, track `dogEye`) | void.
+- `tracks:{name:[{t0,t1,v,ease}]}` numeric tweens used by scene/props: `dawn` (orange sky, tower, bells), `bells`, `ring` (red ground aura following an actor), `limit` (red wall line), `inscr` (tomb inscription glow), `grave` (fills the open grave), `soil` (mound wobble), `blanket*`, `dogEye`.
+- `props:[{type:'tomb'|'garlic'|'ring'|'limit', x,y,scale,z,scene,vis,follow,track}]` (z sorts with actors; tomb = hiding place for the kid).
+- actor `vis:[[t0,t1],...]` visibility windows; cue params `z`, `rot:[a,b]` (spin about the body), `flip`.
+- `splits:[{t0,shatter,end,left,right,fadeIn,opaque}]` (several slot-roll instances). Left column = MONSTER (blood drips, claw marks, red), right = GUARDIAN (gold halo, rays, rising sparks); titles on top; 17 named silhouettes (Koschei, Chupacabra, Jersey Devil, Draugr, Baba Yaga, Kelpie, Headless Horseman, Black-Eyed Child, Strigoi | Cerberus, Talos, Griffin, Garmr, Domovoi, Brownie, Matagot, Tomte). Lock: monster = blood splat, guardian = holy flash.
+- `text:[{..., bg:{fill,stroke,..}, glow, shadow, anim:'slam'|'pop'|'blink'|'fade'}]`, multi-line with `\n`; `tints:[{t0,t1,a,color}]`, `black:[[t0,t1,alpha]]`, `glitch:[[t0,t1]]`, `hud:{vis,leftInit,rightInit,left:[..],right:[..],blinkL,blinkR}`.
+- fx types: dust powder smoke soil sparks ripple impact speed.
+- extra actions: grim shake-fur sit down weak dangle bite-shake crawl paw-line stalk dig bristle alert stand-up | vry circle fall-back pinned crawl-back stand-up neck-grab slash-down victory lunge-at cover-face kneel-cough disgust hand dead | kid hide(behind tomb) peek cower(hug knees) gasp scared-back chase lost bed-wake.
+- `peek.sh TIMELINE out.jpg t1,t2,...` = quick low-res contact sheet of chosen times.
+
 ## Known limits
 Fx are simple (no real particles beyond dust/soil/impact/speed lines). Silhouette/split-roll decoys are 7 generic shapes. Grim is very dark on dark ground (rim light is weak). Kid poses hide/cower are rough. Freeze skips actor time (see above).

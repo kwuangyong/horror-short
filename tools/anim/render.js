@@ -12,7 +12,7 @@ const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i < 0 ?
   const total = Math.round((tl.duration) * fps), out = arg('out', 'out.mp4');
   const dump = arg('dump', null), tmp = path.resolve(arg('dump-dir', fs.mkdtempSync(path.join(require('os').tmpdir(), 'anim-'))));
   fs.mkdirSync(tmp, { recursive: true });
-  const jobs = dump ? String(dump).split(',').map((s) => ({ t: +s, name: 'd_' + (+s).toFixed(2) })) : Array.from({ length: total }, (_, i) => ({ t: i / fps, name: 'f' + String(i).padStart(5, '0') }));
+  const jobs = dump ? String(dump).split(',').map((s) => ({ t: +s, name: 'd_' + (+s).toFixed(2).padStart(6, '0') })) : Array.from({ length: total }, (_, i) => ({ t: i / fps, name: 'f' + String(i).padStart(5, '0') }));
   const ext = png || dump ? 'png' : 'jpg', url = 'file://' + path.join(__dirname, 'index.html');
   const browser = await chromium.launch(); const t0 = Date.now();
   const run = async (w) => {

@@ -19,6 +19,7 @@ Nghiên cứu cách làm video kinh dị ngắn (TikTok / Reels / YouTube Shorts
 | 03 | [Quy trình sản xuất](docs/03-quy-trinh-san-xuat.md) | 8 bước: format series → kịch bản → giọng → hình → dựng → phụ đề → âm thanh → xuất file |
 | 04 | [Hook + kết lựa chọn A/B](docs/04-hook-va-ket-lua-chon-AB.md) | 7 công thức hook, khung 10 nhịp, thiết kế điểm chọn, 3 cách triển khai trên nền tảng |
 | 05 | [Giọng đọc trầm](docs/05-giong-doc-tram.md) | Chọn giọng TTS tiếng Anh, cài đặt ElevenLabs, chuỗi xử lý cho giọng trầm và ghê |
+| 06 | [Dàn nhạc agent](docs/06-dan-nhac-agent.md) | Opus làm Boss giao việc và duyệt, Haiku tìm tài liệu/tài nguyên, Sonnet viết kịch bản và dựng video. Bắt đầu bằng `/episode <quái vật>` |
 
 ## Ví dụ hoàn chỉnh: "The Ma Da" (Vietnam's drowned ghost)
 

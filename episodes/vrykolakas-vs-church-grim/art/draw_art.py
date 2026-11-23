@@ -79,6 +79,9 @@ class Canvas:
     def rrect(self, x0, y0, x1, y1, r, fill):
         if len(fill) == 4 and fill[3] < 255:
             return self.rect(x0, y0, x1, y1, fill)
+        x0, x1 = min(x0, x1), max(x0, x1)
+        y0, y1 = min(y0, y1), max(y0, y1)
+        r = min(r, (x1 - x0) / 2, (y1 - y0) / 2)
         self.d.rounded_rectangle([x0 * SS, y0 * SS, x1 * SS, y1 * SS], r * SS, fill=fill)
 
     def line(self, pts, w, fill):
@@ -806,13 +809,13 @@ def sc_hook(c, B, Fg, rng):
     if B:
         forest_bg(c, rng, G=880, moon_pos=(820, 290), edge_trees=True)
         c.grad(0, 880, W, H, (30, 38, 70), (8, 8, 20))
+        draw_grim(c, 250, 930, 0.95, "blocked", flip=1)
         wall(c, rng, -20, W + 20, 930, 110, gaps=[])
         c.fog(780, 960, (130, 80, 100), 60)
         c.grad(0, 930, W, H, (34, 40, 72), (8, 8, 18))
         c.tint((196, 18, 31, 54))
         c.glow(560, 760, 380, CRIM + (60,), 130)
     if Fg:
-        draw_grim(c, 250, 930, 0.95, "blocked", flip=1)
         draw_kid(c, 470, 1105, 1.05, "fall", flip=-1)
         draw_vrykolakas(c, 700, 1075, 0.98, "claw", flip=-1, aL=(-130, -150), aR=(-125, -160))
         speed(c, 600, 760, 330, 540, 20, (255, 255, 255, 40), seed=4, w=8)
@@ -1012,9 +1015,7 @@ def sc_grim_appears(c, B, Fg, rng):
         c.poly([(370, 1100), (370, 846), (412, 806), (690, 806), (730, 846), (730, 1100)], (100, 108, 144))
         c.line([(560, 880), (560, 1000)], 12, (70, 76, 108)); c.line([(500, 920), (620, 920)], 12, (70, 76, 108))
     if Fg:
-        draw_kid(c, 855, 1000, 0.5, "scared", flip=-1, aL=-30, aR=30)
-        if B or True:
-            wall(c, random.Random(3), 780, 1100, 1020, 130, gaps=[(780, 830)])
+        draw_kid(c, 855, 1015, 0.5, "scared", flip=-1, aL=-30, aR=30)
         draw_grim(c, 560, 806, 1.12, "snarl", flip=-1)
 
 
@@ -1130,7 +1131,7 @@ def sc_flash_lure(c, B, Fg, rng):
         draw_grim(c, 900, 900, 0.75, "snarl", flip=-1, alpha=0.0) if False else None
         c.ell(868, 826, 14, 10, (255, 56, 56)); c.ell(930, 826, 14, 10, (255, 56, 56))
         c.ell(870, 826, 5, 7, (255, 214, 200)); c.ell(932, 826, 5, 7, (255, 214, 200))
-        draw_kid(c, 560, 930, 0.72, "flashlight", flip=-1, aR=-100, aL=24, fl=("R", -108, True), lL=-14, lR=16)
+        draw_kid(c, 560, 930, 0.72, "flashlight", flip=-1, aR=84, aL=-24, fl=("R", 84, True), lL=-14, lR=16)
         draw_vrykolakas(c, 190, 1120, 1.02, "stagger", flip=1)
 
 
@@ -1140,13 +1141,13 @@ def sc_grim_pounce(c, B, Fg, rng):
         c.grad(0, 860, W, H, (30, 38, 70), (8, 8, 18))
         c.fog(740, 900, (110, 124, 180), 60)
         tomb(c, 900, 930, 120, 170, 5)
+        draw_kid(c, 120, 905, 0.7, "limp", flip=1, rot=2, lL=-10, lR=10, fl=("R", 25, False), face="normal")
         wall(c, rng, -20, W + 20, 940, 110, gaps=[(300, 620)])
         boundary(c, 300, 620, 944)
         c.grad(0, 940, W, H, (34, 40, 72), (8, 8, 18))
     if Fg:
-        draw_kid(c, 150, 930, 0.7, "limp", flip=1, rot=2, lL=-10, lR=10, fl=("R", 25, False), face="normal")
-        draw_vrykolakas(c, 440, 1030, 1.0, "stagger", flip=-1, rot=-8, aL=(-100, -120), aR=(-110, -130))
-        draw_grim(c, 830, 900, 0.95, "lunge", flip=-1, rot=-6)
+        draw_vrykolakas(c, 450, 985, 0.95, "stagger", flip=-1, rot=-8, aL=(-100, -120), aR=(-110, -130))
+        draw_grim(c, 830, 830, 0.95, "lunge", flip=-1, rot=14)
         impact(c, 660, 700, 100, (255, 90, 90), seed=21, n=10)
         speed(c, 660, 700, 130, 320, 18, (255, 255, 255, 70), seed=22)
 

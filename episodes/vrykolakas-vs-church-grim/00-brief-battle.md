@@ -30,3 +30,15 @@ Quyết định của người dùng + Boss (thay cho cơ chế điểm chọn A
 
 ## Ràng buộc
 Tiếng Anh, 95–105s, 200–240 từ. Shotlist cần 6–8 khung đánh nhau (tư thế, khung va chạm) + HUD 3 thanh máu. Không chế giễu tôn giáo, không dùng nhân vật có bản quyền.
+
+---
+
+## CẬP NHẬT v2 (quyết định của người dùng): HUMAN → THE KID
+
+- **THE KID**: một đứa bé, mascot cố định của series. Tiền đề lặp mọi tập: *"Every night, the kid sneaks into the woods."* Bé đi chơi (đuổi đom đóm / tìm đường tắt / nghe tiếng gọi) và gặp nguy hiểm.
+- Ngoại hình: đồ ngủ, khăn quàng đỏ, mũ trùm, đèn pin to quá khổ. KHÔNG áo mưa vàng (tránh giống Six – Little Nightmares).
+- Giới tính trung tính: lời dẫn chỉ dùng "the kid" / "they", không "he/she".
+- Bé yếu, không đánh tay đôi: dùng **mẹo + lore** (tỏi, đèn, nhử quái vật vào vùng hộ vệ). **Đòn kết liễu là của hộ vệ.** Không dùng xẻng đập.
+- An toàn nền tảng: **không có máu trên người bé** (chỉ vết cào, ngã, thanh máu tụt). Quái vật/hộ vệ có thể có va chạm mạnh nhưng không gore.
+- Bối cảnh: **khu rừng tối** sau làng đảo Hy Lạp; giữa rừng là **nghĩa địa nhà thờ cũ có tường đá đổ nát** (đất của Grim). Vrykolakas từ một ngôi mộ mới trong rừng/ven nghĩa địa.
+- Cú lửng giữ nguyên tinh thần: "Only fire ends it" (bà dặn) → bé chạy về nhà lúc bình minh, **đèn dầu/diêm bà đưa vẫn chưa dùng**; Grim kéo xác vào mộ; đất động + một tiếng gõ.

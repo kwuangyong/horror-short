@@ -65,3 +65,6 @@ Còn có thể nâng cấp: tranh riêng cho "kid crawls"; spin thành bánh xe 
 # Review · Cổng 2 · script-anim v3 (hoạt hình, không THE KID) (Boss)
 Hook 2/2 (khung R2 có thật) · Nhịp 2/2 (split roll 0:03–0:13, mỗi câu có [ANIM] khớp nghĩa) · Câu chữ 2/2 (199 từ) · Tương tác 2/2 (chỉ "WHO WINS?") · Twist/lửng 2/2 (tỏi được cài bằng hình ở 0:25 rồi trả ở R3; "Only fire ends it" khắc trên bia; "Legend says a dog lies buried here" dùng lore Grim thật).
 Sửa v3.1: bỏ câu CTA lặp "Only fire ends it". **ĐẠT 10/10.** Lưu ý: tỏi mọc dại là chi tiết câu chuyện (không phải lore).
+
+# Review · Cổng 2 · script-anim v4 (bé làm bối cảnh, Kết A) (Boss)
+174 từ. Bé chỉ là bối cảnh (không thẻ/HP), có mặt đúng lúc tạo nguy hiểm (R2 "It turns to the kid"). Hook khớp khung R2. HP nhất quán (G 35% thắng). Kết A đúng quy tắc: bé an toàn + cú lửng theo lore Vrykolakas (một tiếng gõ cửa). **ĐẠT 10/10.**

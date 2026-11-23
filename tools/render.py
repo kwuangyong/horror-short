@@ -70,39 +70,66 @@ def scene_clip(sc: dict, i: int, cfg: dict, base: Path, tmp: Path, font: str) ->
     yexpr = {"up": f"(ih-ih/zoom)*(1-{prog})", "down": f"(ih-ih/zoom)*{prog}"}.get(
         pan, "ih/2-(ih/zoom/2)")
     vf = [pre, f"zoompan=z='{zexpr}':x='{xexpr}':y='{yexpr}':d={n}:s={W}x{H}:fps={fps}"]
+    post = []
     if sc.get("shake"):
         amp = int(sc["shake"]) if not isinstance(sc["shake"], bool) else 14
-        vf.append(f"crop={W-2*amp}:{H-2*amp}:'{amp}+{amp}*sin(t*47)':'{amp}+{amp}*cos(t*39)',"
-                  f"scale={W}:{H}")
+        win = sc.get("shake_win")              # optional [t0, t1]: shake only inside this window (s)
+        g = f"*between(t,{win[0]},{win[1]})" if win else ""
+        post.append(f"crop={W-2*amp}:{H-2*amp}:'{amp}+{amp}*sin(t*47){g}':'{amp}+{amp}*cos(t*39){g}',"
+                    f"scale={W}:{H}")
+    for ft in sc.get("flash_at", []):          # extra white flashes at given times (s) inside the scene
+        post.append(f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.85:t=fill:enable='between(t,{ft},{ft+0.07})'")
+        post.append(f"drawbox=x=0:y=0:w=iw:h=ih:color=white@0.4:t=fill:enable='between(t,{ft+0.07},{ft+0.2})'")
     if sc.get("flash"):
-        vf.append("fade=t=in:st=0:d=0.18:color=white")
+        post.append("fade=t=in:st=0:d=0.18:color=white")
     if sc.get("fade_in"):
-        vf.append(f"fade=t=in:st=0:d={sc['fade_in']}")
+        post.append(f"fade=t=in:st=0:d={sc['fade_in']}")
     if sc.get("fade_out"):
-        vf.append(f"fade=t=out:st={dur - sc['fade_out']:.3f}:d={sc['fade_out']}")
-    vf.append("format=yuv420p")
+        post.append(f"fade=t=out:st={dur - sc['fade_out']:.3f}:d={sc['fade_out']}")
+    post.append("format=yuv420p")
 
     out = tmp / f"scene_{i:03d}.mp4"
     cmd = ["ffmpeg", "-y", "-v", "error", "-loop", "1", "-framerate", str(fps), "-t", f"{dur}",
            "-i", str(src)]
     hud = cfg.get("hud")
-    ovs: list[Path] = []                       # overlays composited after zoom/shake (not zoomed)
+    ovs: list[tuple[Path, str | None]] = []    # overlays composited after zoom/shake (not zoomed)
     if hud and sc.get("hud", True):
         hp = tmp / f"hud_{i:03d}.png"
         hud_png(hp, hud["label"], sc.get("_clock"), W, H, font)
-        ovs.append(hp)
+        ovs.append((hp, None))
     if sc.get("overlay"):                      # optional extra full-frame RGBA png (e.g. health bars)
-        ovs.append(base / sc["overlay"])
-    if ovs:
-        for o in ovs:
+        ovs.append((base / sc["overlay"], None))
+    for o in sc.get("overlays_timed", []):     # [{"file":..., "enable":"gte(t,1.5)"}] (t = scene time)
+        ovs.append((base / o["file"], o.get("enable")))
+
+    # parallax: optional "fg" (RGBA png) zooms/slides at a different rate over the background
+    nin = 1
+    chain = ""
+    last = None
+    if sc.get("fg"):
+        f0, f1 = sc.get("fg_zoom", [z0 * 1.04, z1 * 1.12])
+        slide = float(sc.get("fg_slide", 0))      # px (output scale) the fg drifts in x over the scene
+        fz = f"{f0}+({f1}-{f0})*on/{max(n-1,1)}"
+        fx = f"iw/2-(iw/zoom/2)+{2*slide}*{prog}"
+        fy = f"ih*0.62-(ih/zoom)*0.62"             # zoom about 62% height (feet-ish) so figures stay grounded
+        cmd += ["-loop", "1", "-framerate", str(fps), "-t", f"{dur}", "-i", str(base / sc["fg"])]
+        nin = 2
+        chain = (f"[0:v]{','.join(vf)}[bg];[1:v]format=rgba,{pre},"
+                 f"zoompan=z='{fz}':x='{fx}':y='{fy}':d={n}:s={W}x{H}:fps={fps}[fg];"
+                 f"[bg][fg]overlay=0:0:format=auto,{','.join(post)}[v0]")
+        last = "v0"
+    if ovs or chain:
+        for o, _ in ovs:
             cmd += ["-i", str(o)]
-        chain, last = f"[0:v]{','.join(vf)}[v0]", "v0"
-        for k in range(len(ovs)):
-            chain += f";[{last}][{k+1}:v]overlay=0:0,format=yuv420p[v{k+1}]"
+        if not chain:
+            chain, last = f"[0:v]{','.join(vf + post)}[v0]", "v0"
+        for k, (_, en) in enumerate(ovs):
+            e = f":enable='{en}'" if en else ""
+            chain += f";[{last}][{k+nin}:v]overlay=0:0{e},format=yuv420p[v{k+1}]"
             last = f"v{k+1}"
         cmd += ["-filter_complex", chain, "-map", f"[{last}]"]
     else:
-        cmd += ["-vf", ",".join(vf)]
+        cmd += ["-vf", ",".join(vf + post)]
     cmd += ["-frames:v", str(n), "-c:v", "libx264", "-preset", "veryfast", "-crf", "18",
             "-r", str(fps), str(out)]
     run(cmd)

@@ -28,3 +28,10 @@ Quyết định của người dùng (thay thế các brief trước nếu mâu 
    - Đánh nhau: **góc đối kháng ngang** (kiểu game đối kháng, hai bên trái–phải).
    - Còn lại: cận mặt từng nhân vật (close-up/extreme close-up mắt, hàm), góc thấp hất lên khi quái vật trồi lên, qua vai (over-the-shoulder) từ sau lưng bé nhìn quái vật, cảnh phản ứng (reaction) của bé, góc nghiêng (dutch) lúc nguy, góc trên cao khi Grim gục, cắt nhanh trong hành động.
    - Trung bình 1 cảnh mới mỗi 1.5–3 s.
+
+## CẬP NHẬT v6 (người dùng, sau khi xem bản cinematic v5.1)
+1. **Sửa điểm yếu v5.1**: cảnh "legend says a dog lies buried here" quá tối; Grim che mất bé ở cảnh rộng; phụ đề đè mặt ở cảnh cận; rừng POV phẳng; font phụ đề (thử cài Oswald/Anton/Bebas qua apt, không được thì dùng font condensed đậm sẵn có).
+2. **Phân cảnh đang bị đứt lìa**: nối cảnh mượt hơn — ít cut hơn (trung bình 2.5–3.5 s/cảnh, ~30–35 cảnh), **match-on-action** (cắt giữa động tác, động tác tiếp diễn ở cảnh sau), giữ **quy tắc 180°** (Vrykolakas luôn bên trái, Grim bên phải trong cảnh đối kháng; bé ở phía Grim), chuyển cảnh có động lực (whip-pan, push-in nối push-in, cắt theo hướng nhìn), cảnh rộng định vị lại sau chuỗi cận. Không cắt chỉ để cắt.
+3. **THE KID đổi ngoại hình, KHÔNG trùm mũ**: tóc rối sẫm màu lộ ra, mắt to; áo pyjama sọc rộng thùng thình + khăn quàng đỏ; dép/giày đỏ; đèn pin to. Giới tính trung tính. (Không áo mưa vàng.)
+4. **Cú lửng đáng sợ hơn**: sau tiếng gõ, cho thấy **xác Vrykolakas lấp ló sau cửa sổ phòng ngủ** (mặt xám, mắt trống, móng cào kính / hơi thở mờ kính), bé chưa thấy hoặc vừa quay lại.
+5. **Thoại cuối Guardian ↔ bé**: trước khi bé chạy về, Grim (giọng trầm, khàn, như tiếng gầm thành lời) nói với bé, ví dụ "Go home, child. Never come back after dark." Bé có thể đáp 1 câu ngắn. Thoại nhân vật ghi theo cú pháp `(grim's voice)` / `(kid's voice)` để tools/narration.py tách giọng.

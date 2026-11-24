@@ -315,46 +315,55 @@
   GRIM.__noop = null;
 
 
-  // =============================================================== THE KID (background character; pajamas, hood, red scarf, big flashlight)
+  // =============================================================== THE KID v2 (no hood: messy dark hair, big eyes, baggy striped pyjamas, red scarf + shoes, big flashlight)
   function buildKid() {
     const rig = newRig(); const root = $('g'); const lift = $('g', {}, root);
-    const skin = rgb(240, 208, 182), skinD = rgb(206, 168, 150), pj = rgb(196, 200, 216), pjD = rgb(150, 156, 182), hood = rgb(176, 182, 204), hoodD = rgb(124, 130, 158), shoe = rgb(104, 76, 88), ink = rgb(30, 24, 40), scarfC = rgb(196, 18, 31), scarfD = rgb(130, 10, 24), fl = rgb(62, 70, 104), flL = rgb(112, 120, 156);
+    const skin = rgb(244, 212, 188), skinD = rgb(214, 172, 152), pj = rgb(201, 206, 230), pjS = rgb(143, 152, 200), pjD = rgb(158, 166, 206), shoe = rgb(196, 18, 31), shoeD = rgb(130, 10, 24), ink = rgb(30, 24, 40), scarfC = rgb(196, 18, 31), scarfD = rgb(130, 10, 24), fl = rgb(62, 70, 104), flL = rgb(112, 120, 156), hairC = rgb(42, 34, 58), hairL = rgb(74, 62, 98);
     const body = joint(lift, 0, -62); rig.body = body; const B = body.c;
-    rig.legs = [-20, 20].map((hx) => { const j = joint(B, hx, -66); limb(j.c, [hx, -66], [hx, -4], 34, 28, pjD); ell(j.c, hx + 8, -1, 25, 12, shoe); return j; });
+    const stripes = (p, x, y0, y1, w, n, col) => { for (let i = 0; i < n; i++) { const y = y0 + (y1 - y0) * (i + 0.5) / n; poly(p, [[x - w / 2, y - 4], [x + w / 2, y - 4], [x + w / 2, y + 4], [x - w / 2, y + 4]], col); } };
+    rig.legs = [-24, 24].map((hx) => { const j = joint(B, hx, -66); limb(j.c, [hx, -66], [hx, -8], 44, 38, pjD); stripes(j.c, hx, -62, -14, 40, 4, pjS); ell(j.c, hx + 10, -2, 32, 15, shoe); ell(j.c, hx + 12, 6, 30, 6, '#f4f1f8'); ell(j.c, hx + 18, -8, 12, 6, shoeD); return j; });
     rig.scarf = G.reg($('path', { fill: scarfC }, B), scarfC);
-    const arm = (sx, parent) => { const j = joint(parent, sx, -168); limb(j.c, [sx, -168], [sx, -84], 36, 29, pj); ell(j.c, sx, -84, 17, 17, skin); return j; };
-    rig.aL = arm(-48, B);
-    poly(B, [[-52, -192], [52, -192], [64, -62], [-64, -62]], pj); poly(B, [[20, -192], [52, -192], [64, -62], [26, -62]], pjD); ell(B, 0, -62, 64, 12, pjD);
-    for (const by of [-150, -118, -86]) ell(B, 0, by, 5, 5, pjD);
-    poly(B, [[-56, -208], [56, -208], [62, -176], [-62, -176]], scarfC); poly(B, [[10, -176], [62, -176], [56, -208], [24, -208]], scarfD);
-    const aR = arm(48, B); rig.aR = aR;
-    // flashlight in right hand, pointing along arm direction (down at rest)
-    rig.beam = $('polygon', { points: '0,0', fill: '#fff0aa', opacity: 0 }, aR.c);
-    rig.beam.setAttribute('points', '48,40 120,780 -24,780');
-    limb(aR.c, [48, -128], [48, -4], 40, 42, fl); limb(aR.c, [48, -66], [48, -50], 44, 44, flL); limb(aR.c, [48, -8], [48, 38], 58, 66, fl); limb(aR.c, [48, 34], [48, 44], 56, 56, rgb(255, 238, 170)); limb(aR.c, [48, -34], [48, -26], 43, 43, scarfC);
-    ell(aR.c, 48, -84, 17, 17, skin);
-    const hd = joint(B, 0, -200); rig.head = hd; const H = hd.c; const hy = -262;
-    ell(H, 0, hy, 70, 72, hoodD); poly(H, [[-60, hy - 36], [62, hy - 32], [36, hy - 134]], hoodD); poly(H, [[-64, hy - 30], [54, hy - 30], [30, hy - 126]], hood); ell(H, -2, hy - 2, 66, 68, hood);
-    ell(H, 0, hy + 4, 54, 54, hoodD); ell(H, 0, hy + 7, 52, 51, skinD); ell(H, -2, hy + 5, 49, 48, skin);
-    rig.eyes = [-1, 1].map((s) => { const j = joint(H, s * 19, hy + 4); const w = ell(j.c, s * 19, hy + 4, 13, 14, rgb(250, 250, 255)); const pu = ell(j.c, s * 19, hy + 5, 6.8, 7.2, ink); return { j, pu, s, w }; });
-    rig.brows = [-1, 1].map((s) => { const j = joint(H, s * 20, hy - 22); poly(j.c, [[s * 32, hy - 24], [s * 8, hy - 18], [s * 8, hy - 23], [s * 32, hy - 29]], ink); return { j, s }; });
-    rig.mouth = ell(H, 0, hy + 34, 9, 6, ink);
-    for (const s of [-1, 1]) ell(H, s * 33, hy + 24, 9, 6, rgb(232, 150, 150), { opacity: 0.6 });
+    const arm = (sx, parent) => { const j = joint(parent, sx, -168); limb(j.c, [sx, -168], [sx, -84], 44, 36, pj); stripes(j.c, sx, -160, -96, 40, 4, pjS); ell(j.c, sx, -84, 21, 20, pjD); ell(j.c, sx, -78, 17, 16, skin); return j; };
+    rig.aL = arm(-56, B);
+    poly(B, [[-64, -196], [64, -196], [80, -58], [-80, -58]], pj); poly(B, [[24, -196], [64, -196], [80, -58], [34, -58]], pjD);
+    for (let i = 0; i < 5; i++) { const y = -176 + i * 26, k0 = (y + 196) / 138, xl = lerp(64, 80, k0), xr = lerp(64, 80, (y + 8 + 196) / 138); poly(B, [[-xl, y], [xl, y], [xr, y + 9], [-xr, y + 9]], pjS); }
+    ell(B, 0, -58, 80, 12, pjD); for (const by of [-170, -134, -98]) ell(B, 0, by, 5, 5, pjS);
+    poly(B, [[-60, -214], [60, -214], [66, -180], [-66, -180]], scarfC); poly(B, [[12, -180], [66, -180], [60, -214], [26, -214]], scarfD);
+    const aR = arm(56, B); rig.aR = aR;
+    rig.beam = $('polygon', { points: '56,44 128,780 -16,780', fill: '#fff0aa', opacity: 0 }, aR.c);
+    limb(aR.c, [56, -128], [56, -4], 42, 44, fl); limb(aR.c, [56, -66], [56, -50], 46, 46, flL); limb(aR.c, [56, -8], [56, 38], 60, 68, fl); limb(aR.c, [56, 34], [56, 44], 58, 58, rgb(255, 238, 170)); limb(aR.c, [56, -34], [56, -26], 45, 45, scarfC);
+    ell(aR.c, 56, -84, 18, 18, skin);
+    // head (no hood): face, ears, big eyes, messy hair that bounces
+    const hd = joint(B, 0, -200); rig.head = hd; const H = hd.c; const hy = -264;
+    poly(H, [[-22, -204], [22, -204], [20, -226], [-20, -226]], skinD);
+    ell(H, -62, hy + 6, 11, 15, skinD); ell(H, 62, hy + 6, 11, 15, skinD); ell(H, 0, hy + 4, 64, 66, skinD); ell(H, -2, hy + 2, 62, 63, skin);
+    rig.hairBack = ell(H, 0, hy - 24, 70, 54, hairC);
+    rig.locks = [];
+    for (let i = 0; i < 11; i++) { const th = (196 + i * 14.8) * Math.PI / 180, px = 66 * Math.cos(th), py = hy - 20 + 48 * Math.sin(th), len = 34 + 14 * ((i * 7) % 3), w = 12 + (i % 2) * 4, out = Math.atan2(Math.sin(th) * 48 / 66, Math.cos(th)) * 0 + th; const j = joint(H, px, py); const ux = Math.cos(th), uy = Math.sin(th), nx = -uy, ny = ux; poly(j.c, [[px - nx * w, py - ny * w], [px + ux * len, py + uy * len], [px + nx * w, py + ny * w]], i % 3 === 0 ? hairL : hairC); j.baseRot = (th * 180 / Math.PI + 90) * 0; j.k = i; rig.locks.push(j); }
+    ell(H, 0, hy - 30, 56, 38, hairC); ell(H, -8, hy - 40, 40, 20, hairL);
+    for (const [fx, fw, fl_] of [[-34, 14, 30], [-8, 14, 38], [22, 14, 32], [42, 12, 24]]) poly(H, [[fx - fw, hy - 40], [fx + fw, hy - 40], [fx + 2, hy - 40 + fl_]], hairC);   // fringe
+    rig.eyes = [-1, 1].map((s) => { const j = joint(H, s * 24, hy + 2); ell(j.c, s * 24, hy + 2, 17, 21, '#ffffff'); const iris = ell(j.c, s * 24, hy + 4, 11, 14, rgb(92, 62, 48)); const pu = ell(j.c, s * 24, hy + 4, 6.4, 8.4, ink); ell(j.c, s * 24 - 3, hy - 3, 4.6, 4.6, '#ffffff'); ell(j.c, s * 24 + 4, hy + 8, 2.2, 2.2, '#ffffff'); $('path', { d: `M${s * 24 - 18} ${hy - 6} Q${s * 24} ${hy - 26} ${s * 24 + 18} ${hy - 6}`, stroke: ink, 'stroke-width': 4, fill: 'none', 'stroke-linecap': 'round' }, j.c); return { j, s, pu, iris }; });
+    rig.brows = [-1, 1].map((s) => { const j = joint(H, s * 24, hy - 30); poly(j.c, [[s * 38, hy - 30], [s * 10, hy - 26], [s * 10, hy - 32], [s * 38, hy - 38]], hairC); return { j, s }; });
+    ell(H, 0, hy + 20, 5, 3.4, skinD);
+    rig.mouth = ell(H, 0, hy + 42, 10, 6, ink); rig.tongue = ell(H, 0, hy + 46, 6, 3, rgb(220, 110, 120), { opacity: 0 });
+    for (const s of [-1, 1]) ell(H, s * 40, hy + 28, 12, 7, rgb(236, 140, 146), { opacity: 0.55 });
     rig.mk = {}; const mk = (n, p, x, y) => { rig.mk[n] = $('circle', { cx: x, cy: y, r: 1, fill: 'none' }, p); };
-    mk('head', H, 0, hy); mk('eye', H, 0, hy + 4); mk('body', B, 0, -130); mk('lens', aR.c, 48, 44);
+    mk('head', H, 0, hy); mk('eye', H, 0, hy + 2); mk('body', B, 0, -130); mk('lens', aR.c, 56, 44);
     rig.root = root;
-    rig.N = { bodyRot: 0, bodyY: 0, head: 0, lookX: 0, lookY: 0, aL: -14, aR: 95, lL: -6, lR: 6, scarf: [150, 130], beam: 0, beamOn: 0, wide: 0.3, mouth: 0.2, sleep: 0, brow: 0.5, shakeX: 0, shakeY: 0, sx: 1, sy: 1 };
+    rig.N = { bodyRot: 0, bodyY: 0, head: 0, lookX: 0, lookY: 0, aL: -14, aR: 95, lL: -6, lR: 6, scarf: [150, 130], beam: 0, beamOn: 0, wide: 0.3, mouth: 0.2, sleep: 0, brow: 0.5, shakeX: 0, shakeY: 0, sx: 1, sy: 1, hair: 0.15, smile: 0 };
     rig.apply = (P, t) => {
       body.set(P.bodyRot, P.sx, P.sy, P.shakeX, P.bodyY + P.shakeY);
       rig.legs[0].set(-P.lL); rig.legs[1].set(-P.lR); rig.aL.set(-P.aL); aR.set(-P.aR);
       hd.set(P.head);
       const bl = P.sleep > 0.5 ? 0.08 : Math.max(0.1, 1 - blink(t, 3.6));
-      rig.eyes.forEach((E) => { E.j.set(0, 1 + P.wide * 0.25, Math.max(0.06, bl * (1 + P.wide * 0.3) * (1 - P.sleep))); E.pu.setAttribute('cx', E.s * 19 + P.lookX * 5); E.pu.setAttribute('cy', hy + 5 + P.lookY * 5); E.pu.setAttribute('rx', 6.8 - P.wide * 2); E.pu.setAttribute('ry', 7.2 - P.wide * 2); });
-      rig.brows.forEach((E) => E.j.set(E.s * (P.brow - 0.5) * -24 + (P.wide) * -E.s * 0, 1, 1, 0, -P.wide * 8));
-      rig.mouth.setAttribute('rx', 8 + P.mouth * 4); rig.mouth.setAttribute('ry', 4.5 + P.mouth * 12);
+      rig.eyes.forEach((E) => { E.j.set(0, 1 + P.wide * 0.18, Math.max(0.06, bl * (1 + P.wide * 0.16) * (1 - P.sleep))); E.pu.setAttribute('cx', E.s * 24 + P.lookX * 6); E.iris.setAttribute('cx', E.s * 24 + P.lookX * 6); E.pu.setAttribute('cy', hy + 4 + P.lookY * 6); E.iris.setAttribute('cy', hy + 4 + P.lookY * 6); const k = 1 - P.wide * 0.18; E.pu.setAttribute('rx', 6.4 * k); E.pu.setAttribute('ry', 8.4 * k); });
+      rig.brows.forEach((E) => E.j.set(E.s * (P.brow - 0.5) * -22, 1, 1, 0, -P.wide * 9));
+      const mo = clamp(P.mouth, 0, 1.2); rig.mouth.setAttribute('rx', 8 + mo * 5 + P.smile * 5); rig.mouth.setAttribute('ry', 3.4 + mo * 13); rig.tongue.setAttribute('opacity', mo > 0.5 ? 0.9 : 0); rig.tongue.setAttribute('cy', hy + 42 + mo * 7);
       rig.beam.setAttribute('opacity', 0.32 * P.beam);
+      const hairAmp = clamp(Math.abs(P.lL) / 24 + P.hair, 0, 2.2);
+      rig.locks.forEach((j) => j.set(hairAmp * 9 * Math.sin(t * 13 + j.k * 1.7) + 3 * Math.sin(t * 1.9 + j.k) + P.bodyRot * -0.3, 1, 1));
       const ta = P.scarf[0] + 12 * Math.sin(t * 2.5), tl = P.scarf[1], pl = [], pr = [];
-      for (let i = 0; i <= 10; i++) { const u = i / 10, d = [Math.sin(ta * rad), Math.cos(ta * rad)], wv = 16 * Math.sin(u * 6.9 + t * 4) * u, px = 30 + d[0] * tl * u - d[1] * wv, py = -184 + d[1] * tl * u + d[0] * wv, wd = 24 - 9 * u;
+      for (let i = 0; i <= 10; i++) { const u = i / 10, d = [Math.sin(ta * rad), Math.cos(ta * rad)], wv = 18 * Math.sin(u * 6.9 + t * 4) * u, px = 34 + d[0] * tl * u - d[1] * wv, py = -190 + d[1] * tl * u + d[0] * wv, wd = 28 - 10 * u;
         pl.push([px - d[1] * wd / 2, py + d[0] * wd / 2]); pr.push([px + d[1] * wd / 2, py - d[0] * wd / 2]); }
       rig.scarf.setAttribute('d', 'M' + pl.concat(pr.reverse()).map((q) => f2(q[0]) + ' ' + f2(q[1])).join('L') + 'Z');
     };
@@ -376,6 +385,9 @@
     sleep: (c) => ({ bodyRot: 88, bodyY: 62, head: -8, sleep: 1, mouth: 0.1 + 0.15 * Math.sin(c.t * 1.8), aL: -30, aR: 5, lL: -4, lR: 4, brow: 1, beam: 0, wide: 0, sy: 1 + 0.015 * Math.sin(c.t * 1.8), scarf: [150, 90] }),
     wake: (c) => KO(c.u, [[0, { bodyRot: 88, bodyY: 62, sleep: 1, mouth: 0.1, beam: 0, aL: -30, aR: 20 }], [0.25, { bodyRot: 88, bodyY: 62, sleep: 0, wide: 1, mouth: 0.7 }], [0.7, { bodyRot: 20, bodyY: 14, sleep: 0, wide: 1, mouth: 0.6, aL: -50, aR: 40, head: 8 }], [1, { bodyRot: 0, bodyY: 0, sleep: 0, wide: 0.9, mouth: 0.5, aL: -24, aR: 70, brow: 1 }]], 'inOut'),
   };
+  KID.talk = (c) => ({ bodyY: 1.5 * Math.sin(c.t * 2.2), head: 3 * Math.sin(c.t * 1.7) + 2, mouth: 0.08 + 0.85 * (c.amp || 0), wide: 0.4 + 0.3 * (c.amp || 0), brow: 0.6, aL: -20 + 8 * Math.sin(c.t * 3), aR: 80, beam: c.p.beam === undefined ? 0.6 : c.p.beam, smile: 0.2, lookX: c.p.look === undefined ? 0.5 : c.p.look, scarf: [150, 120] });
+  KID.wave = (c) => ({ bodyRot: -2, aL: 140 + 28 * Math.sin(c.lt * 9), aR: 80, mouth: 0.4, smile: 1, wide: 0.3, brow: 0.2, head: 4 * Math.sin(c.lt * 4.5), beam: 0.7, scarf: [140, 120], hair: 0.5 });
+  KID['look-back'] = (c) => { const e = env(c.lt, 0.25); return { bodyRot: -6 * e, head: -14 * e, lookX: -1 * e, lookY: -0.2 * e, wide: 0.9 * e, mouth: 0.4 * e, brow: 1, aR: 80, aL: -20, beam: 0.6, scarf: [150, 130], hair: 0.5 }; };
   KID.idle = KID['idle-scared'];
   const ACTIONS = { grim: GRIM, vry: VRY, kid: KID };
   const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid };

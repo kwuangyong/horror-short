@@ -36,6 +36,13 @@ Ghi vào `episodes/<slug>/02-assets.md` một bảng:
 ### `trend`: soi xu hướng
 Ghi vào `episodes/<slug>/01-research.md` (mục "Xu hướng"): 5–10 video/hook liên quan đang chạy tốt, câu hook nguyên văn, độ dài, lượt xem nếu thấy. Nếu công cụ vidIQ có sẵn, dùng để lấy số liệu; không có thì dùng WebSearch.
 
+## Phạm vi format Battle Spin (xem docs/07-format-battle-spin.md mục 4)
+- Chỉ châu Âu, Mỹ, Canada, Nga/Slav, Nhật. Không Việt Nam và châu Á khác.
+- Monster phải ma mị, quỷ dị, máu me; ghi rõ **điểm yếu / điều kiện chết hẳn** (dùng cho R3 và cú lửng).
+- Guardian phải có **sức mạnh chiến đấu** và **giới hạn** (dùng cho R2).
+- Đánh dấu nhạy cảm (tín ngưỡng bản địa đang sống, bi kịch có thật) và bản quyền (creepypasta có tác giả, SCP CC BY-SA, hình ảnh phim/game).
+- Kiểm tra kho có sẵn trong `episodes/_format-dual-spin/01-research-*.md` trước, không lặp lại.
+
 ## Quy tắc
 - Không bịa link, không bịa giấy phép. Không chắc thì ghi `CHƯA XÁC MINH`.
 - Viết tiếng Việt, giữ nguyên tên riêng/thuật ngữ tiếng Anh.

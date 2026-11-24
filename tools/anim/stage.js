@@ -39,6 +39,12 @@
   }
   const trk = (name, t, init = 0) => numTrack(TL.tracks && TL.tracks[name], t, init);
   const inWin = (wins, t) => { if (!wins) return true; for (const w of wins) if (t >= w[0] && t < w[1]) return true; return false; };
+  function ampAt(name, t) {
+    const V = name && TL.voices && TL.voices[name]; if (!V) return 0;
+    if (V.v) { const x = t * V.fps, i = Math.floor(x); if (i < 0 || i >= V.v.length - 1) return 0; return clamp(lerp(V.v[i], V.v[i + 1], x - i) * (V.gain || 1)); }
+    for (const w of (V.words || [])) if (t >= w[0] && t <= w[1]) { const e = Math.min(clamp((t - w[0]) / 0.05), clamp((w[1] - t) / 0.07)); return clamp((0.45 + 0.55 * Math.abs(Math.sin(t * 17 + w[0] * 9))) * e); }
+    return 0;
+  }
   function actorTime(t) {
     let ta = t; for (const f of (TL.freeze || [])) if (t >= f.t0 && t < f.t0 + f.dur) ta = f.t0;
     for (const w of (TL.slow || [])) {            // slow-mo: actor time lags inside [t0,t1], then catches up smoothly (exp decay)
@@ -268,7 +274,7 @@
   function poseFor(d, ta) {
     const cues = d.cues; let idx = -1; for (let i = 0; i < cues.length; i++) if (cues[i].t0 <= ta) idx = i;
     const N = d.rig.N, acts = ACTIONS[d.kind];
-    const at = (c) => { const lt = ta - c.t0, dur = Math.max(1e-3, c.t1 - c.t0); const fn = acts[c.action] || acts.idle; return Object.assign({}, N, fn({ t: ta, lt, dur, u: clamp(lt / dur), p: c.params || {} })); };
+    const at = (c) => { const lt = ta - c.t0, dur = Math.max(1e-3, c.t1 - c.t0); const fn = acts[c.action] || acts.idle; return Object.assign({}, N, fn({ t: ta, lt, dur, u: clamp(lt / dur), p: c.params || {}, amp: ampAt(c.params && c.params.voice, ta) })); };
     if (idx < 0) return Object.assign({}, N, acts.idle({ t: ta, lt: ta, dur: 1, u: 0, p: {} }));
     let P = at(cues[idx]);
     if (idx > 0) { const bl = (cues[idx].params && cues[idx].params.blend) || 0.18, lt = ta - cues[idx].t0; if (lt < bl) P = mixP(at(cues[idx - 1]), P, EASE.smooth(lt / bl)); }
@@ -511,7 +517,7 @@
   }
 
   // ------------------------------------------------------------------ SHOT SYSTEM (hard cuts between camera set-ups)
-  let povGrp = [], povG = null, povW = null, povHand = null, povTrees = [], povFlies = [], povBeam = null, povCone = [], povDark = null, povFog = [], otsG = null, crashG = null, curShot = null;
+  let povFogL = [], povRev = null, povBeamG = null, povGrp = [], povG = null, povW = null, povHand = null, povTrees = [], povFlies = [], povBeam = null, povCone = [], povDark = null, povFog = [], otsG = null, crashG = null, curShot = null;
   const HEADSZ = { vry: 150, grim: 250, kid: 150 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262] };
   function markerWorld(actor, name) {
     const d = TL.actors[actor]; if (!d || !d.rig || !d.rig.mk || !d.rig.mk[name]) return null;
@@ -546,51 +552,64 @@
   // ---- POV-KID: first-person forest walk with a flashlight cone (screen space, deterministic)
   function buildPov(cfg) {
     povG = $('g', { display: 'none' }, svg); povW = $('g', {}, povG); const r = mulberry(17);
+    const gb = $('linearGradient', { id: 'gBeamL', gradientUnits: 'userSpaceOnUse', x1: 0, y1: 0, x2: 1, y2: 1 }, defs); [[0, '#fff2c0', 0.55], [0.35, '#ffe9a0', 0.22], [1, '#ffe9a0', 0]].forEach((q) => $('stop', { offset: q[0], 'stop-color': q[1], 'stop-opacity': q[2] }, gb)); povBeamG = gb;
+    const gv = $('linearGradient', { id: 'gTrunkVol', x1: 0, y1: 0, x2: 1, y2: 0 }, defs); [[0, '#c8d4ff', 0.34], [0.35, '#ffffff', 0], [1, '#000000', 0.55]].forEach((q) => $('stop', { offset: q[0], 'stop-color': q[1], 'stop-opacity': q[2] }, gv));
     $('rect', { x: -200, y: -200, width: 1480, height: 1100, fill: 'url(#gSky)' }, povW); $('circle', { cx: 700, cy: 330, r: 360, fill: 'url(#gMoon)' }, povW); $('circle', { cx: 700, cy: 330, r: 96, fill: '#ece9d6' }, povW);
     const far = $('g', {}, povW); for (let x = -200; x < 1300; x += 60 + r() * 40) pine(far, x, 910, 200 + r() * 140, '#1a2040', 4);
     $('rect', { x: -200, y: 900, width: 1480, height: 1300, fill: 'url(#gGround)' }, povW);
     $('polygon', { points: '532,900 548,900 980,1980 100,1980', fill: '#2a3159', opacity: 0.55 }, povW);
+    povRev = $('g', { opacity: 0 }, povW);                                  // graveyard wall + headstones at the horizon (revealed by `reveal`)
+    for (let i = 0; i < 7; i++) $('rect', { x: 260 + i * 84, y: 862 - (i % 2) * 8, width: 80, height: 62, rx: 5, fill: i % 2 ? '#565e88' : '#4a5278' }, povRev);
+    for (const x of [330, 480, 640, 760]) $('path', { d: `M${x - 22} 930 L${x - 22} 880 A22 22 0 0 1 ${x + 22} 880 L${x + 22} 930Z`, fill: '#646c98' }, povRev);
     povTrees = []; povGrp = [$('g', {}, povW), $('g', {}, povW), $('g', { style: 'filter:blur(7px)' }, povW)];
-    for (let i = 0; i < 64; i++) { const g = $('g', {}, povGrp[0]), X = (r() < 0.5 ? -1 : 1) * (1.3 + Math.pow(r(), 1.2) * 10), o = { g, X, ph: r() * 24.7, h: 10 + r() * 8, sz: 0.8 + r() * 0.5, w: 0.35 + r() * 0.3, trunk: $('rect', {}, g), shade: $('rect', {}, g), tiers: [0, 1, 2, 3, 4].map(() => $('polygon', {}, g)), tops: [0, 1, 2, 3, 4].map(() => $('polygon', {}, g)) }; povTrees.push(o); }
+    // mist between the depth layers
+    povFogL = []; for (const [gi, y, op] of [[1, 960, 0.5], [2, 1010, 0.4]]) { const e = $('ellipse', { cx: 540, cy: y, rx: 1000, ry: 190, fill: 'url(#gFog)', opacity: op }, povW); povW.insertBefore(e, povGrp[gi]); povFogL.push(e); }
+    for (let i = 0; i < 64; i++) { const g = $('g', {}, povGrp[0]), X = (r() < 0.5 ? -1 : 1) * (1.3 + Math.pow(r(), 1.2) * 10), o = { g, X, ph: r() * 24.7, h: 10 + r() * 8, sz: 0.8 + r() * 0.5, w: 0.35 + r() * 0.3, bk: [0, 1, 2].map(() => $('polygon', {}, g)), trunk: $('rect', {}, g), shade: $('rect', {}, g), vol: $('rect', { fill: 'url(#gTrunkVol)' }, g), bark: [0, 1].map(() => $('rect', {}, g)), tiers: [0, 1, 2, 3, 4].map(() => $('polygon', {}, g)), tops: [0, 1, 2, 3, 4].map(() => $('polygon', {}, g)) }; povTrees.push(o); }
     povFog = []; for (let i = 0; i < 6; i++) { const e = $('ellipse', { rx: 700, ry: 70, fill: 'url(#gFog)' }, povW); povFog.push({ e, y: 940 + i * 70, sp: 10 + r() * 14, x0: r() * 1800 }); }
-    povBeam = $('polygon', { fill: '#fff0b8', opacity: 0.09 }, povW);
     povDark = $('rect', { x: -300, y: -300, width: 1680, height: 2500, fill: '#02030a', opacity: cfg.dark === undefined ? 0.94 : cfg.dark }, povW);
     const mk = $('mask', { id: 'povMask', maskUnits: 'userSpaceOnUse', x: -300, y: -300, width: 1680, height: 2500 }, defs); $('rect', { x: -300, y: -300, width: 1680, height: 2500, fill: '#fff' }, mk);
     povCone = [$('polygon', { fill: '#c0c0c0' }, mk), $('polygon', { fill: '#808080' }, mk), $('polygon', { fill: '#000' }, mk)]; povDark.setAttribute('mask', 'url(#povMask)');
+    povBeam = $('polygon', { fill: 'url(#gBeamL)', style: 'mix-blend-mode:screen' }, povW);   // warm flashlight light on the nearest trunks
     povFlies = []; for (let i = 0; i < 16; i++) { const g = $('g', {}, povW); $('circle', { r: 24, fill: 'url(#gFly)' }, g); $('circle', { r: 3.6, fill: '#fff2a8' }, g); povFlies.push({ g, X: (r() - 0.5) * 9, Y: 0.4 + r() * 2.4, ph: r() * 20, sp: 0.5 + r() * 1.2 }); }
-    // foreground: the kid's hand + oversized flashlight (own group, bobs less than the world)
-    povHand = $('g', {}, povG);
-    const sl = $('polygon', { points: '860,1900 960,1740 1160,1740 1160,2010 800,2010', fill: '#8a90b4' }, povHand); $('polygon', { points: '960,1740 1160,1740 1160,1800 940,1790', fill: '#a5abcd' }, povHand);
+    povHand = $('g', {}, povG);                                              // kid's striped sleeve + hand + oversized flashlight
+    $('polygon', { points: '840,1920 950,1730 1180,1730 1180,2030 780,2030', fill: '#7a84bc' }, povHand); $('polygon', { points: '950,1730 1180,1730 1180,1796 930,1784', fill: '#98a2d6' }, povHand);
+    for (let i = 0; i < 4; i++) { const y = 1790 + i * 56; $('polygon', { points: `${920 - i * 26},${y + 70} ${1180},${y} ${1180},${y + 26} ${900 - i * 26},${y + 96}`, fill: '#56609a' }, povHand); }
+    $('polygon', { points: '938,1740 1000,1700 1010,1760 944,1790', fill: '#e0b8a4' }, povHand);
     povHand.__fl = $('g', {}, povHand); const f = povHand.__fl;
     $('rect', { x: -70, y: -52, width: 380, height: 104, rx: 22, fill: '#3e466a' }, f); $('rect', { x: -70, y: -52, width: 380, height: 22, rx: 11, fill: '#6a74a0' }, f); $('rect', { x: 120, y: -52, width: 36, height: 104, fill: '#c4121f' }, f); $('rect', { x: 250, y: -76, width: 110, height: 152, rx: 26, fill: '#4a5482' }, f);
     $('ellipse', { cx: 362, cy: 0, rx: 18, ry: 70, fill: '#fff6c8' }, f); $('circle', { cx: 372, cy: 0, r: 150, fill: 'url(#gGold)', opacity: 0.8 }, f);
-    for (let i = 0; i < 4; i++) $('ellipse', { cx: 30 + i * 36, cy: 52, rx: 20, ry: 28, fill: '#c9a48f' }, f); $('ellipse', { cx: 150, cy: -46, rx: 38, ry: 22, fill: '#d7b19d' }, f);
-    povHand.__cfg = cfg;
+    for (let i = 0; i < 4; i++) $('ellipse', { cx: 30 + i * 36, cy: 52, rx: 20, ry: 28, fill: '#d2aa96' }, f); $('ellipse', { cx: 150, cy: -46, rx: 38, ry: 22, fill: '#e0b8a4' }, f);
   }
   function updatePov(t, info) {
     const s = info.s, lt = info.lt, f = 1000, horizon = 900, camH = 1.1, speed = s.speed === undefined ? 3.0 : s.speed, Dn = 1.3, Df = 26, step = 1.9;
     const bob = 14 * Math.abs(Math.sin(Math.PI * step * t)) * (speed > 0 ? 1 : 0.2), breath = 4 * Math.sin(2 * Math.PI * 0.27 * t), roll = 1.4 * Math.sin(Math.PI * step * t + 0.5) * (speed > 0 ? 1 : 0.3);
     povW.setAttribute('transform', `translate(${f2(4 * Math.sin(Math.PI * step * t))} ${f2(bob + breath)}) rotate(${f2(roll)} 540 960)`);
+    povRev.setAttribute('opacity', f2(s.reveal ? clamp(lt / (s.revealT || 1)) * s.reveal : 0));
     const D0 = lt * speed + (s.start || 0);
     const items = povTrees.map((o) => { let D = Df - (((o.ph + D0) % (Df - Dn)) + (Df - Dn)) % (Df - Dn); return { o, D }; }).sort((a, b) => b.D - a.D);
     for (const { o, D } of items) {
       const k = f / D, sx = 540 + o.X * k, base = horizon + camH * k, fogK = clamp((D - 3) / 21), col = mixc('#04060e', '#303a74', Math.pow(fogK, 0.8)), op = clamp((Df - D) / 3) * clamp((D - 1.25) / 1.0);
-      povGrp[D > 9 ? 0 : D > 3.4 ? 1 : 2].appendChild(o.g);      // far / mid / near (near group is out of focus)
+      povGrp[D > 9 ? 0 : D > 3.4 ? 1 : 2].appendChild(o.g);
       o.g.setAttribute('opacity', f2(op)); o.g.setAttribute('display', op <= 0.01 || sx < -700 || sx > 1800 ? 'none' : 'inline');
-      const lit = mixc(col, '#6f7cc4', 0.34 * (1 - fogK)), dk = mixc(col, '#000000', 0.45);
-      o.trunk.setAttribute('fill', col); o.trunk.setAttribute('x', f2(sx - o.w * k / 2)); o.trunk.setAttribute('y', f2(base - o.h * k)); o.trunk.setAttribute('width', f2(o.w * k)); o.trunk.setAttribute('height', f2(o.h * k));
-      o.shade.setAttribute('fill', dk); o.shade.setAttribute('x', f2(sx - o.w * k / 2 + o.w * k * 0.55)); o.shade.setAttribute('y', f2(base - o.h * k)); o.shade.setAttribute('width', f2(o.w * k * 0.45)); o.shade.setAttribute('height', f2(o.h * k));
+      const lit = mixc(col, '#7f8cd2', 0.4 * (1 - fogK)), dk = mixc(col, '#000000', 0.5), mid = mixc(col, '#1a2048', 0.45 * (1 - fogK));
+      const tx = sx - o.w * k / 2, ty = base - o.h * k, tw = o.w * k, th = o.h * k;
+      o.trunk.setAttribute('fill', mid); o.trunk.setAttribute('x', f2(tx)); o.trunk.setAttribute('y', f2(ty)); o.trunk.setAttribute('width', f2(tw)); o.trunk.setAttribute('height', f2(th));
+      o.shade.setAttribute('fill', dk); o.shade.setAttribute('x', f2(tx + tw * 0.62)); o.shade.setAttribute('y', f2(ty)); o.shade.setAttribute('width', f2(tw * 0.38)); o.shade.setAttribute('height', f2(th));
+      o.vol.setAttribute('x', f2(tx)); o.vol.setAttribute('y', f2(ty)); o.vol.setAttribute('width', f2(tw)); o.vol.setAttribute('height', f2(th));
+      o.bark.forEach((bk, i) => { bk.setAttribute('fill', dk); bk.setAttribute('x', f2(tx + tw * (0.2 + i * 0.3))); bk.setAttribute('y', f2(ty + th * 0.4)); bk.setAttribute('width', f2(Math.max(1, tw * 0.05))); bk.setAttribute('height', f2(th * 0.6)); });
       const step_ = (o.h - 4) / 4.2;
+      o.bk.forEach((p, i) => { const y0 = base - (2.6 + i * step_ * 1.5) * k, hw = (2.5 - i * 0.55) * o.sz * k, hh = (step_ * 1.9 + 2) * k; p.setAttribute('fill', dk); p.setAttribute('points', `${f2(sx - hw)},${f2(y0)} ${f2(sx)},${f2(y0 - hh)} ${f2(sx + hw)},${f2(y0)}`); });
       o.tiers.forEach((p, i) => { const y0 = base - (2.3 + i * step_) * k, hw = (1.8 - i * 0.3) * o.sz * k, hh = (step_ + 2.2) * k; const c = i % 2 ? dk : col;
         p.setAttribute('fill', c); p.setAttribute('points', `${f2(sx - hw)},${f2(y0)} ${f2(sx - hw * 0.35)},${f2(y0 - hh * 0.45)} ${f2(sx)},${f2(y0 - hh)} ${f2(sx + hw * 0.35)},${f2(y0 - hh * 0.45)} ${f2(sx + hw)},${f2(y0)}`);
         const t2 = o.tops[i]; t2.setAttribute('fill', lit); t2.setAttribute('points', `${f2(sx - hw * 0.42)},${f2(y0 - hh * 0.4)} ${f2(sx)},${f2(y0 - hh)} ${f2(sx - hw * 0.05)},${f2(y0 - hh * 0.4)}`); });
     }
     povFog.forEach((q) => { q.e.setAttribute('cx', f2(((q.x0 + t * q.sp) % 2000) - 400)); q.e.setAttribute('cy', q.y); });
+    povFogL.forEach((e, i) => e.setAttribute('cx', f2(540 + 60 * Math.sin(t * 0.3 + i))));
     povFlies.forEach((q) => { const D = Df * 0.9 - (((q.ph * 3 + D0 * q.sp * 0.6) % 14) + 14) % 14 - 0.6; const k = f / Math.max(1.0, D + 2); const x = 540 + (q.X + 0.8 * Math.sin(t * 0.7 + q.ph)) * k * 0.6, y = horizon - (q.Y + 0.25 * Math.sin(t * 1.1 + q.ph)) * k * 0.55 + 140; q.g.setAttribute('transform', `translate(${f2(x)} ${f2(y)}) scale(${f2(clamp(k / 220, 0.25, 2.4))})`); q.g.setAttribute('opacity', f2((0.55 + 0.45 * Math.sin(t * 2.4 + q.ph)) * clamp((D + 2) / 3))); });
-    // flashlight aim (sweeps like the kid looking around)
     const O = [940, 1770], tx = 540 + (s.sweep === undefined ? 300 : s.sweep) * Math.sin(lt * 0.85 + (s.phase || 0.5)) + (s.aimX || 0), ty = 780 + 70 * Math.sin(lt * 1.3) + (s.aimY || 0), th = Math.atan2(ty - O[1], tx - O[0]), hw = s.cone || 0.2;
     const cone = (w, len) => `${O[0]},${O[1]} ${f2(O[0] + Math.cos(th - w) * len)},${f2(O[1] + Math.sin(th - w) * len)} ${f2(O[0] + Math.cos(th + w) * len)},${f2(O[1] + Math.sin(th + w) * len)}`;
-    povCone[0].setAttribute('points', cone(hw * 1.7, 2800)); povCone[1].setAttribute('points', cone(hw * 1.3, 2800)); povCone[2].setAttribute('points', cone(hw * 0.95, 2800)); povBeam.setAttribute('points', cone(hw, 2300));
+    povCone[0].setAttribute('points', cone(hw * 1.7, 2800)); povCone[1].setAttribute('points', cone(hw * 1.3, 2800)); povCone[2].setAttribute('points', cone(hw * 0.95, 2800)); povBeam.setAttribute('points', cone(hw * 1.0, 2000));
+    povBeamG.setAttribute('x1', O[0]); povBeamG.setAttribute('y1', O[1]); povBeamG.setAttribute('x2', f2(O[0] + Math.cos(th) * 1500)); povBeamG.setAttribute('y2', f2(O[1] + Math.sin(th) * 1500));
     povDark.setAttribute('opacity', f2((s.dark === undefined ? 0.94 : s.dark) * (0.985 + 0.015 * Math.sin(t * 31))));
     povHand.setAttribute('transform', `translate(${f2(3 * Math.sin(Math.PI * step * t + 1))} ${f2(bob * 0.5 + breath * 1.4)})`);
     povHand.__fl.setAttribute('transform', `translate(${O[0]} ${O[1]}) rotate(${f2(th * 57.2958)})`);
@@ -598,29 +617,30 @@
   // ---- OTS-KID foreground: the kid's hooded back, big and blurred at the bottom corner
   function buildOts() {
     otsG = $('g', { display: 'none' }, svg); const g = $('g', {}, otsG); otsG.__in = g;
-    // light beam from the flashlight toward the scene
     $('polygon', { points: '560,1480 1400,1000 1400,1700', fill: '#fff0b8', opacity: 0.07 }, g); $('polygon', { points: '560,1480 1400,1180 1400,1560', fill: '#fff0b8', opacity: 0.08 }, g);
-    // flying scarf tail (animated path)
     otsG.__scarf = $('path', { fill: '#c4121f' }, g); otsG.__scarf2 = $('path', { fill: '#8a0d18' }, g);
-    // coat / shoulders (back view)
-    $('path', { d: 'M-120 2000 Q-60 1700 120 1650 L420 1650 Q620 1700 700 2000Z', fill: '#2c3670' }, g);
-    $('path', { d: 'M-60 2000 Q0 1740 130 1690 L400 1690 Q560 1740 620 2000Z', fill: '#4a5690' }, g);
-    $('path', { d: 'M250 1700 L262 2000', stroke: '#2c3670', 'stroke-width': 8 }, g);
-    // flashlight arm (right shoulder -> raised, big flashlight pointing into the scene)
-    $('polygon', { points: '420,1720 470,1660 640,1540 700,1600 520,1780', fill: '#4a5690' }, g); $('polygon', { points: '470,1660 640,1540 660,1568 500,1690', fill: '#5d6aa8' }, g);
-    $('ellipse', { cx: 668, cy: 1560, rx: 46, ry: 40, fill: '#d7b19d' }, g);
-    const fl = $('g', { transform: 'translate(650 1540) rotate(-24)' }, g);
+    const cp = $('clipPath', { id: 'clipCoat' }, defs); $('path', { d: 'M-160 2000 Q-100 1700 110 1640 L440 1640 Q660 1700 740 2000Z' }, cp);
+    $('path', { d: 'M-160 2000 Q-100 1700 110 1640 L440 1640 Q660 1700 740 2000Z', fill: '#7a84bc' }, g);                       // baggy pyjama top, back view
+    const cg = $('g', { 'clip-path': 'url(#clipCoat)' }, g); for (let y = 1680; y < 2040; y += 64) $('rect', { x: -200, y, width: 1000, height: 26, fill: '#56609a' }, cg); $('rect', { x: 430, y: 1600, width: 400, height: 500, fill: '#6a74a8', opacity: 0.5 }, cg);
+    $('path', { d: 'M250 1690 L262 2000', stroke: '#4a5488', 'stroke-width': 7, opacity: 0.7 }, g);
+    // flashlight arm: striped sleeve, hand, oversized flashlight
+    const sl = $('g', {}, g); $('polygon', { points: '430,1730 490,1650 650,1520 722,1590 530,1790', fill: '#8a94c8' }, sl); $('polygon', { points: '490,1650 650,1520 672,1550 520,1676', fill: '#a0abdc' }, sl);
+    for (const [x0, y0, x1, y1] of [[520, 1690, 560, 1760], [570, 1650, 610, 1720], [620, 1612, 656, 1680]]) $('polygon', { points: `${x0},${y0} ${x1},${y1} ${x1 + 22},${y1 - 14} ${x0 + 22},${y0 - 14}`, fill: '#56609a' }, sl);
+    $('ellipse', { cx: 676, cy: 1558, rx: 44, ry: 38, fill: '#e0b8a4' }, g);
+    const fl = $('g', { transform: 'translate(654 1538) rotate(-24)' }, g);
     $('rect', { x: -30, y: -44, width: 270, height: 88, rx: 20, fill: '#3e466a' }, fl); $('rect', { x: -30, y: -44, width: 270, height: 18, rx: 9, fill: '#6a74a0' }, fl); $('rect', { x: 60, y: -44, width: 28, height: 88, fill: '#c4121f' }, fl); $('rect', { x: 180, y: -64, width: 90, height: 128, rx: 22, fill: '#4a5482' }, fl);
     $('ellipse', { cx: 272, cy: 0, rx: 14, ry: 56, fill: '#fff6c8' }, fl); $('circle', { cx: 282, cy: 0, r: 150, fill: 'url(#gGold)', opacity: 0.85 }, fl);
-    for (let i = 0; i < 3; i++) $('ellipse', { cx: 20 + i * 30, cy: 40, rx: 17, ry: 24, fill: '#c9a48f' }, fl);
-    // hood: round head + pointed tip, seam, rim light
-    $('ellipse', { cx: 250, cy: 1520, rx: 235, ry: 250, fill: '#3a4680' }, g);
-    $('polygon', { points: '40,1470 130,1230 250,820 330,1020 450,1290 470,1480', fill: '#4a5898' }, g); $('polygon', { points: '250,820 330,1020 450,1290 380,1250 300,1040', fill: '#2e386c' }, g);
-    $('ellipse', { cx: 240, cy: 1560, rx: 205, ry: 215, fill: '#42508c' }, g);
-    $('path', { d: 'M250 840 Q262 1280 244 1700', stroke: '#222a58', 'stroke-width': 9, fill: 'none' }, g);
-    $('path', { d: 'M420 1180 Q500 1380 462 1560', stroke: '#b4c4f8', 'stroke-width': 9, fill: 'none', opacity: 0.85, 'stroke-linecap': 'round' }, g);
-    // scarf wrapped round the neck + knot
-    $('path', { d: 'M20 1700 Q250 1780 480 1700 L500 1790 Q250 1870 0 1790Z', fill: '#c4121f' }, g); $('path', { d: 'M20 1740 Q250 1810 480 1740 L486 1790 Q250 1860 8 1790Z', fill: '#a30d1a' }, g); $('ellipse', { cx: 150, cy: 1790, rx: 60, ry: 46, fill: '#8a0d18' }, g);
+    for (let i = 0; i < 3; i++) $('ellipse', { cx: 20 + i * 30, cy: 40, rx: 17, ry: 24, fill: '#d2aa96' }, fl);
+    // nape, ears, big messy hair seen from behind
+    $('ellipse', { cx: 250, cy: 1640, rx: 92, ry: 70, fill: '#b8847e' }, g); $('ellipse', { cx: 250, cy: 1626, rx: 80, ry: 52, fill: '#c89488' }, g);
+    $('ellipse', { cx: 6, cy: 1450, rx: 30, ry: 44, fill: '#c89488' }, g); $('ellipse', { cx: 494, cy: 1450, rx: 30, ry: 44, fill: '#c89488' }, g);
+    const hairG = $('g', {}, g); otsG.__hair = hairG;
+    $('ellipse', { cx: 250, cy: 1400, rx: 262, ry: 290, fill: '#2a2238' }, hairG);
+    const hr = mulberry(33);
+    for (let i = 0; i < 17; i++) { const th = (180 + i * 11.2) * Math.PI / 180, px = 250 + 250 * Math.cos(th), py = 1400 + 280 * Math.sin(th), len = 70 + hr() * 90, w = 26 + hr() * 20, ux = Math.cos(th) + (hr() - 0.5) * 0.5, uy = Math.sin(th) + (hr() - 0.5) * 0.3, nx = -uy, ny = ux; $('polygon', { points: `${f2(px - nx * w)},${f2(py - ny * w)} ${f2(px + ux * len)},${f2(py + uy * len)} ${f2(px + nx * w)},${f2(py + ny * w)}`, fill: i % 3 === 0 ? '#4a3e66' : '#2a2238' }, hairG); }
+    $('ellipse', { cx: 300, cy: 1260, rx: 150, ry: 90, fill: '#3a2f52', opacity: 0.7 }, hairG); $('path', { d: 'M130 1500 Q200 1380 250 1300 M330 1520 Q380 1400 330 1290', stroke: '#1c1628', 'stroke-width': 7, fill: 'none', 'stroke-linecap': 'round' }, hairG);
+    $('path', { d: 'M440 1230 Q520 1380 486 1560', stroke: '#c4d0fa', 'stroke-width': 9, fill: 'none', opacity: 0.8, 'stroke-linecap': 'round' }, g);                         // moon rim light
+    $('path', { d: 'M0 1690 Q250 1760 500 1690 L520 1790 Q250 1860 -20 1790Z', fill: '#c4121f' }, g); $('path', { d: 'M0 1730 Q250 1800 500 1730 L506 1780 Q250 1850 -12 1780Z', fill: '#a30d1a' }, g); $('ellipse', { cx: 150, cy: 1790, rx: 62, ry: 48, fill: '#8a0d18' }, g);
   }
   function updateOts(t, info) {
     const s = info.s, show = s.type === 'ots'; otsG.setAttribute('display', show ? 'inline' : 'none'); if (!show) return;
@@ -628,6 +648,7 @@
     otsG.__in.setAttribute('transform', `translate(${side < 0 ? 1080 : 0} ${f2(br)}) scale(${side} 1) translate(${s.fgX || 0} ${s.fgY || 0})`);
     const w1 = Math.sin(t * 5.2), w2 = Math.sin(t * 6.4 + 1.3), tail = (a, b) => `M110 1740 C60 1760 ${-20 + 20 * w1} ${1700 + 40 * w2 + a} ${-140 + 40 * w2} ${1640 + 60 * w1 + a} L${-160 + 30 * w1} ${1700 + 40 * w2 + a + b} C${-20 + 20 * w2} ${1790 + 30 * w1} 60 1820 150 1800Z`;
     otsG.__scarf.setAttribute('d', tail(0, 40)); otsG.__scarf2.setAttribute('d', tail(18, 26));
+    otsG.__hair.setAttribute('transform', `rotate(${f2(1.2 * Math.sin(t * 1.9))} 250 1500) translate(0 ${f2(3 * Math.sin(t * 2.6))})`);
     const fb = s.rack && s.rack.fg !== undefined ? s.rack.fg : 9; otsG.style.filter = `blur(${fb}px)`;
   }
   function updateCrash(sh) { if (!crashG) return; const w = sh ? sh.crash : 0; crashG.setAttribute('display', w > 0.01 ? 'inline' : 'none'); if (w > 0.01) Array.from(crashG.children).forEach((e) => e.setAttribute('opacity', f2(0.55 * w))); }

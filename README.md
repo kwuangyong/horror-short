@@ -20,6 +20,7 @@ Nghiên cứu cách làm video kinh dị ngắn (TikTok / Reels / YouTube Shorts
 | 04 | [Hook + kết lựa chọn A/B](docs/04-hook-va-ket-lua-chon-AB.md) | 7 công thức hook, khung 10 nhịp, thiết kế điểm chọn, 3 cách triển khai trên nền tảng |
 | 05 | [Giọng đọc trầm](docs/05-giong-doc-tram.md) | Chọn giọng TTS tiếng Anh, cài đặt ElevenLabs, chuỗi xử lý cho giọng trầm và ghê |
 | 06 | [Dàn nhạc agent](docs/06-dan-nhac-agent.md) | Opus làm Boss giao việc và duyệt, Haiku tìm tài liệu/tài nguyên, Sonnet viết kịch bản và dựng video. Bắt đầu bằng `/episode <quái vật>` |
+| 07 | [Format Battle Spin](docs/07-format-battle-spin.md) | Guardian vs Monster, hoạt hình cutout + góc quay kiểu phim, 2 kiểu kết lửng. Làm tập mới: `/episode <monster> vs <guardian>` |
 
 ## Ví dụ hoàn chỉnh: "The Ma Da" (Vietnam's drowned ghost)
 

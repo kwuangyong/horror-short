@@ -26,3 +26,8 @@ Theo `docs/07-format-battle-spin.md`. Tập mẫu định dạng: `episodes/vryk
 - R3 đảo chiều bằng lore đã cài: bé **từ chối mời** ("No. You can't come in.") → luật giữ chúng ngoài ngưỡng cửa; đầu thứ ba của Cerberus chưa ngủ hẳn, bài hát đứt, cả ba đầu thức dậy → Cerberus ngoạm, đẩy chúng xuống vòng sáng âm phủ / đuổi khỏi hiên. K.O.: CERBERUS thắng.
 - Thoại cuối (bình minh): Cerberus (ba tầng giọng): "Never let them in. Go home." Bé: một câu rất ngắn.
 - Cú lửng (Black-Eyed Children không bị tiêu diệt, theo lore chỉ bị chặn): đêm sau ở nhà bé, tiếng gõ cửa, giọng phẳng "Can we come in?" — camera cho thấy **hai đứa trẻ mắt đen đứng ngoài cửa sổ/cửa kính**, nhìn thẳng vào camera. CTA: "Will the kid let them in? / Who's next?"
+
+## CẬP NHẬT 2 (người dùng): CERBERUS CẮN CHẾT VÀ KÉO MONSTER XUỐNG ĐỊA NGỤC
+- R3/K.O.: Cerberus ngoạm từng đứa (ba đầu), cổng âm phủ mở dưới hiên, Cerberus **kéo cả hai xuống địa ngục** qua vòng lửa đỏ; cổng đóng sập.
+- An toàn: BEC có hình dạng trẻ con → thể hiện là **quái vật** (mắt đen, da xám nứt, tiếng rít không phải người khi bị cắn), cú cắn bằng bóng/silhouette hoặc cắt ngay lúc ngoạm, không máu, không gore; chúng tan thành khói đen khi bị kéo xuống.
+- Cú lửng (đêm sau ở nhà bé): lỗ thông gió/sàn nhà phòng bé hắt ánh đỏ như cổng âm phủ, một tiếng gõ, giọng phẳng "Can we come in?", và **hai cặp mắt đen hiện sau cửa sổ** → cắt đen. CTA: "Did hell really keep them? / Who's next?"

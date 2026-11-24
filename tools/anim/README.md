@@ -67,5 +67,14 @@ Common params: `scene` (switch scene at the cut), `push` (total zoom factor over
 - Layout tip: put the tomb/kid at y~940 (further back) so the kid's head clears Grim's back, and keep Grim's nose x at least 60 px from the kid's head.
 - Fonts: Oswald / Anton / League Gothic are not in the apt registry; `fonts-bebas-neue` installed (condensed bold caps) -> `make_captions.py --font "Bebas Neue" --size 104`.
 
+## Episode #002 additions (black-eyed-children-vs-cerberus)
+- **cerberus** rig (`kind:'cerberus'`, three heads with own jaw/ear/eye): per-head pose arrays `hrot, jaw, eyeO, anger (amber->red), ear, sleepy`. Actions: idle growl lunge bite(`head:0|1|2`) block sleepy(`head:` = head falling asleep, lower indices already asleep; `u` = progress) fight-sleep (last head fights sleep) talk (3 overlapping voices, middle jaw biggest; `voice:`) open-gate wounded fade bite-hold(`head`, `shake`) drag-down(`head`, `speed`; move it with an x track backwards).
+- **bec** rig (`kind:'bec'`, `variant:0` grey hoodie + messy light hair, `variant:1` olive coat + black bowl cut): pale child, pure black eyes (no whites), almost motionless. Actions: idle-still knock(`period`) head-tilt(`dir`,`dur`) step hum mimic(voice mouth) point smile enter turn-to-camera shriek dragged(`mouth`) dissolve-smoke (u 0..1 distorts + fades the rig; add `fx smoke {dark:true}` and an `alpha` track).
+- **scenes** `cabin` (abandoned wooden cabin: porch, door hinged at left, windows, swinging oil lamp; tracks `door` 0..1, `thresh` glow, `knocks:[t]` shakes the door) and `cabin-in` (interior: planks, moon window, doorway + door leaf, tracks `door`, `gateLeak`; prop `torch` rolls via track `torchX`/`torchBeam`).
+- **underworld gate** prop `{type:'gate', x,y,scale,track:'gate', closeAt:t}`: void ellipse, red-orange rings, spirals, embers, smoke; opens with track `gate` 0..1; `closeAt` = close-slam (collapses in 0.22 s + white shock ring; add shake/flash cues yourself).
+- bedroom (`room`): track `vent` = flickering red light from a vent + floor cracks; layer `winGlass` is drawn over actors so two BECs placed at the window (x~190/330, y~745, scale .9) stand "behind the glass"; track `winBreath` fogs it.
+- split roll already has BEC (`blackeyed`) and CERBERUS silhouettes; both rigs also work as `kind` of a locked card.
+- Sheet: `node tools/anim/make_ep002_sheet.js` -> `tools/anim/ep002-rigs-sheet.png`.
+
 ## Known limits
 Fx are simple (no real particles beyond dust/soil/impact/speed lines). Silhouette/split-roll decoys are 7 generic shapes. Grim is very dark on dark ground (rim light is weak). Kid poses hide/cower are rough. Freeze skips actor time (see above).

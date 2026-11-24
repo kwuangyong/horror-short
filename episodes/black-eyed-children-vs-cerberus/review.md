@@ -7,3 +7,5 @@ Lưu ý: bài ru và việc nhại giọng là tình tiết câu chuyện, khôn
 
 # Review · Cổng 3 · render (Boss)
 Lần 1: KHÔNG ĐẠT ("Come in." chiếu cận mặt bé → tưởng bé mời). Lần 2: **ĐẠT.** Câu nhại giọng chiếu cận BEC mấp máy miệng, phụ đề xám lạnh; còn ~0.3 s phụ đề "Come in" chồng sang khung bé (nhỏ). 97.0 s, −14.2 LUFS, 180° pass.
+
+# Cổng 2 · v2 (Boss): ĐẠT. 215 từ, 44 cảnh, bỏ round/HP, mỗi bên ≥2 khoảnh khắc sức mạnh, chuỗi kéo xuống địa ngục 5 cảnh. Hook đổi lại "Only one head is awake." (S1 dựng khung R2: 2 đầu gục, 1 đầu ngóc).

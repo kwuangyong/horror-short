@@ -31,3 +31,10 @@ Theo `docs/07-format-battle-spin.md`. Tập mẫu định dạng: `episodes/vryk
 - R3/K.O.: Cerberus ngoạm từng đứa (ba đầu), cổng âm phủ mở dưới hiên, Cerberus **kéo cả hai xuống địa ngục** qua vòng lửa đỏ; cổng đóng sập.
 - An toàn: BEC có hình dạng trẻ con → thể hiện là **quái vật** (mắt đen, da xám nứt, tiếng rít không phải người khi bị cắn), cú cắn bằng bóng/silhouette hoặc cắt ngay lúc ngoạm, không máu, không gore; chúng tan thành khói đen khi bị kéo xuống.
 - Cú lửng (đêm sau ở nhà bé): lỗ thông gió/sàn nhà phòng bé hắt ánh đỏ như cổng âm phủ, một tiếng gõ, giọng phẳng "Can we come in?", và **hai cặp mắt đen hiện sau cửa sổ** → cắt đen. CTA: "Did hell really keep them? / Who's next?"
+
+## CẬP NHẬT 3 (người dùng): v2 — bỏ kiểu đối kháng, khoe sức mạnh, nhiều góc hơn
+- Theo docs/07 mục 0: bỏ thẻ ROUND, bỏ thanh HP, bỏ khung đối kháng ngang làm chủ đạo; kể trận đánh như phim.
+- Sức mạnh (lore Cerberus, Apollodorus/Ovid): **đuôi là con rắn, bờm/lưng mọc rắn**, **nước dãi độc làm cỏ héo / mọc aconite (phụ tử)**, ba đầu, giữ cổng âm phủ, kéo kẻ chết xuống. Sức mạnh BEC (truyền thuyết đô thị): **cảm giác sợ hãi áp đảo, giọng ép người phải mở cửa (thôi miên)**, đèn dầu/đèn pin chập chờn tắt khi chúng tới, đứng bất động không chớp mắt. Bài hát ru và nhại giọng là chi tiết câu chuyện.
+- Mỗi bên ≥ 2 khoảnh khắc khoe sức mạnh bằng cảnh cận + hiệu ứng.
+- Cảnh kéo xuống địa ngục: chuỗi 3–5 cảnh (cận hàm Cerberus ngoạm, góc từ trong cổng lửa nhìn lên, ECU tay xám cào sàn gỗ để lại vệt, rắn đuôi quấn chân, cảnh rộng cổng đóng sập).
+- ~40–45 cảnh, nhịp nhanh hơn ~10%, tổng ~85–92 s, 200–220 từ. Giữ cốt truyện, thoại cuối, cú lửng.

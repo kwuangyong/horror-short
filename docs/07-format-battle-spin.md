@@ -2,6 +2,12 @@
 
 Format chốt sau tập thử #001 (`episodes/vrykolakas-vs-church-grim/`). Đây là **luật chung cho mọi tập**; brief từng tập chỉ ghi phần riêng (cặp đấu, lore, kiểu kết).
 
+## 0. Cập nhật mới nhất (ưu tiên hơn các mục bên dưới nếu mâu thuẫn)
+- **Bỏ kiểu game đối kháng**: KHÔNG thẻ ROUND 1/2/3, KHÔNG thanh HP, KHÔNG khung VERSUS-SIDE làm chủ đạo. Trận đánh kể như phim: 3 nhịp (guardian áp đảo → monster lật kèo bằng giới hạn guardian → đảo chiều bằng lore) nhưng không gắn nhãn.
+- **Phô diễn siêu năng lực**: mỗi nhân vật phải có ít nhất 2 khoảnh khắc khoe sức mạnh siêu nhiên theo lore (vd. Cerberus: đuôi rắn, bờm rắn, nước dãi độc làm cỏ héo; Black-Eyed Children: giọng thôi miên ép người mở cửa, đèn tắt/nhấp nháy khi chúng tới), quay bằng cảnh cận/hiệu ứng rõ.
+- **Nhiều góc quay hơn, nhịp nhanh hơn**: ~40–45 cảnh, 2–2.5 s/cảnh; khoảnh khắc lớn (vd. kéo xuống địa ngục) quay bằng chuỗi 3–5 cảnh: cận hàm, góc từ dưới cổng nhìn lên, ECU tay cào sàn, cảnh rộng cổng đóng.
+- Giọng đọc nhanh hơn ~10%.
+
 ## 1. Ý tưởng
 Hai vòng quay chọn ra **1 MONSTER** và **1 GUARDIAN**. Một đứa bé lạc vào nơi nguy hiểm, monster xuất hiện, guardian tới đánh nhau để bảo vệ bé. Kết luôn **lửng** để kéo bình luận.
 

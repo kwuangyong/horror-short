@@ -150,9 +150,9 @@
     g = L('fog'); const fr = mulberry(21);
     for (let i = 0; i < 12; i++) { const e = $('ellipse', { cx: 0, cy: 1020 + fr() * 330, rx: 260 + fr() * 220, ry: 40 + fr() * 36, fill: 'url(#gFog)', opacity: 0.8 }, g); e.__fog = { x0: fr() * 3200, sp: 8 + fr() * 14 }; }
     layers.flies = L('flies'); for (let i = 0; i < 22; i++) { const e = $('g', {}, layers.flies); $('circle', { r: 26, fill: 'url(#gFly)' }, e); $('circle', { r: 4, fill: '#fff2a8' }, e); e.__f = { x: -100 + fr() * 1700, y: 600 + fr() * 800, ph: fr() * 6 }; }
-    buildRoom(); buildCabin(); buildChurch(); arena.insertBefore(layers.cabin, layers.actors); arena.insertBefore(layers.cabinIn, arena.firstChild); arena.insertBefore(layers.winGlass, layers.mound); arena.insertBefore(layers.room, arena.firstChild); arena.insertBefore(layers.church, arena.firstChild);
+    buildRoom(); buildCabin(); buildChurch(); arena.insertBefore(layers.cabin, layers.actors); arena.insertBefore(layers.cabinIn, arena.firstChild); arena.insertBefore(layers.winGlass, layers.mound); arena.insertBefore(layers.cabinGlassX, layers.mound); arena.insertBefore(layers.cabinGlassI, layers.mound); arena.insertBefore(layers.room, arena.firstChild); arena.insertBefore(layers.church, arena.firstChild);
   }
-  const PAR = { cabin: 1, cabinIn: 1, winGlass: 1, sky: 0.1, moon: 0.12, tower: 0.45, far: 0.35, near: 0.6, ftrees: 0.9, ground: 1, props: 1, hole: 1, actors: 1, mound: 1, fx: 1, fog: 1.12, flies: 1.2, room: 1, church: 0 };
+  const PAR = { cabinGlassX: 1, cabinGlassI: 1, cabin: 1, cabinIn: 1, winGlass: 1, sky: 0.1, moon: 0.12, tower: 0.45, far: 0.35, near: 0.6, ftrees: 0.9, ground: 1, props: 1, hole: 1, actors: 1, mound: 1, fx: 1, fog: 1.12, flies: 1.2, room: 1, church: 0 };
 
 
   function buildCabin() {
@@ -198,6 +198,9 @@
     $('polygon', { points: '90,270 280,270 150,740 90,740', fill: '#fff', opacity: 0.06 }, W2); $('polygon', { points: '310,270 350,270 250,740 200,740', fill: '#fff', opacity: 0.05 }, W2);
     $('rect', { x: 258, y: 270, width: 5, height: 470, fill: '#4a3446', opacity: 0.9 }, W2); $('rect', { x: 90, y: 420, width: 340, height: 5, fill: '#4a3446', opacity: 0.9 }, W2);
     layers.winGlassFog = $('ellipse', { cx: 260, cy: 650, rx: 190, ry: 130, fill: 'url(#gBreath)', opacity: 0 }, W2);
+    // glass overlays so characters placed in a window look "behind the glass"
+    const GX = layers.cabinGlassX = $('g', {}, arena); $('rect', { x: 880, y: 700, width: 160, height: 180, fill: '#9fb4ff', opacity: 0.08 }, GX); $('polygon', { points: '880,700 940,700 900,880 880,880', fill: '#fff', opacity: 0.08 }, GX); $('polygon', { points: '985,700 1010,700 950,880 925,880', fill: '#fff', opacity: 0.06 }, GX); $('rect', { x: 876, y: 696, width: 168, height: 188, fill: 'none', stroke: '#2a1e20', 'stroke-width': 12 }, GX); $('rect', { x: 956, y: 700, width: 8, height: 180, fill: '#2a1e20' }, GX); $('rect', { x: 880, y: 786, width: 160, height: 8, fill: '#2a1e20' }, GX);
+    const GI = layers.cabinGlassI = $('g', {}, arena); $('rect', { x: 214, y: 344, width: 232, height: 302, fill: '#9fb4ff', opacity: 0.08 }, GI); $('polygon', { points: '214,344 290,344 250,646 214,646', fill: '#fff', opacity: 0.08 }, GI); $('polygon', { points: '350,344 380,344 330,646 300,646', fill: '#fff', opacity: 0.06 }, GI); $('rect', { x: 326, y: 344, width: 8, height: 302, fill: '#1c1214' }, GI); $('rect', { x: 214, y: 486, width: 232, height: 8, fill: '#1c1214' }, GI); $('rect', { x: 200, y: 330, width: 260, height: 330, fill: 'none', stroke: '#1c1214', 'stroke-width': 16 }, GI);
     // ---- bedroom: vent + floor cracks leaking flickering red light (under-world glow)
     const R = layers.room; layers.vent = $('g', { opacity: 0 }, R);
     $('polygon', { points: '560,1034 760,1034 900,1300 420,1300', fill: 'url(#gFire)', opacity: 0.4 }, layers.vent);
@@ -305,7 +308,7 @@
     layers.dogEyeLid = $('rect', { x: 240, y: 12, width: 48, height: 34, fill: '#c6dcff' }, d);
     for (let i = 0; i < 18; i++) $('circle', { cx: 160 + (i * 61) % 420, cy: 1000 + (i * 89) % 420, r: 3, fill: '#e6f1ff', opacity: 0.55 }, g);   // drifting motes
   }
-  const SCN_VIS = { cabin: ['sky', 'moon', 'far', 'near', 'ground', 'cabin', 'actors', 'fx', 'fog', 'flies'], 'cabin-in': ['cabinIn', 'actors', 'fx'], forest: ['sky', 'moon', 'far', 'near', 'ground', 'ftrees', 'actors', 'fx', 'fog', 'flies'], grave: ['sky', 'moon', 'far', 'near', 'ground', 'props', 'hole', 'actors', 'mound', 'fx', 'fog', 'flies', 'tower'], room: ['room', 'actors', 'winGlass', 'fx'], church: ['church'], void: [] };
+  const SCN_VIS = { cabin: ['sky', 'moon', 'far', 'near', 'ground', 'cabin', 'actors', 'cabinGlassX', 'fx', 'fog', 'flies'], 'cabin-in': ['cabinIn', 'actors', 'cabinGlassI', 'fx'], forest: ['sky', 'moon', 'far', 'near', 'ground', 'ftrees', 'actors', 'fx', 'fog', 'flies'], grave: ['sky', 'moon', 'far', 'near', 'ground', 'props', 'hole', 'actors', 'mound', 'fx', 'fog', 'flies', 'tower'], room: ['room', 'actors', 'winGlass', 'fx'], church: ['church'], void: [] };
   const sceneAt = (t) => { if (TL.__sceneT !== undefined) t = TL.__sceneT; let sc = 'grave'; for (const s of (TL.scenes || [])) if (t >= s.t0) sc = s.s; return sc; };
   function sceneVis(t) { const sc = sceneAt(t), vis = SCN_VIS[sc]; for (const name in PAR) layers[name].setAttribute('display', vis.includes(name) ? 'inline' : 'none'); if (room.blanket) room.blanket.setAttribute('display', sc === 'room' ? 'inline' : 'none'); return sc; }
   function updateScene(t, cam, shk, ta = t) {
@@ -360,6 +363,7 @@
         o.smoke = Array.from({ length: 7 }, () => ({ e: $('ellipse', { rx: 40, ry: 26, fill: 'url(#gSmokeD)' }, g), x: (rg_() - 0.5) * 1.4, ph: rg_() * 4, sp: 0.18 + rg_() * 0.12 }));
         o.slamRing = $('ellipse', { cx: 0, cy: 0, rx: 100, ry: 20, fill: 'none', stroke: '#fff2c8', 'stroke-width': 10, opacity: 0 }, g);
       }
+      if (p.type === 'lyre') { $('path', { d: 'M-46 -90 Q-60 20 -30 60 L30 60 Q60 20 46 -90 L38 -90 Q48 10 24 46 L-24 46 Q-48 10 -38 -90Z', fill: '#6a4a38' }, g); $('rect', { x: -52, y: -100, width: 104, height: 12, rx: 5, fill: '#8a6448' }, g); o.strings = []; for (let i = 0; i < 6; i++) o.strings.push($('path', { stroke: '#e8d8b0', 'stroke-width': 2, fill: 'none' }, g)); o.glow = $('circle', { cx: 0, cy: -20, r: 130, fill: 'url(#gRed)', opacity: 0 }, g); }
       if (p.type === 'torch') { o.beam = $('polygon', { points: '40,0 400,-60 400,60', fill: '#fff0aa', opacity: 0.2 }, g); $('rect', { x: -60, y: -20, width: 100, height: 40, rx: 12, fill: '#3e466a' }, g); $('rect', { x: -60, y: -20, width: 100, height: 8, rx: 4, fill: '#6a74a0' }, g); $('rect', { x: -10, y: -20, width: 14, height: 40, fill: '#c4121f' }, g); $('rect', { x: 28, y: -28, width: 34, height: 56, rx: 8, fill: '#4a5482' }, g); $('ellipse', { cx: 64, cy: 0, rx: 6, ry: 22, fill: '#fff6c8' }, g); $('circle', { cx: 70, cy: 0, r: 60, fill: 'url(#gGold)', opacity: 0.7 }, g); }
       if (p.type === 'flashlight') { $('rect', { x: -6, y: -30, width: 12, height: 34, rx: 4, fill: '#3e466a' }, g); $('rect', { x: -9, y: -42, width: 18, height: 14, rx: 4, fill: '#fff0aa' }, g); }
       props.push(o);
@@ -389,6 +393,7 @@
         const sl = t >= ca && t < ca + 0.35 ? (t - ca) / 0.35 : -1; o.slamRing.setAttribute('opacity', sl >= 0 ? f2(1 - sl) : 0); if (sl >= 0) { o.slamRing.setAttribute('rx', f2(40 + sl * 420)); o.slamRing.setAttribute('ry', f2((40 + sl * 420) * 0.2)); }
         if (sl >= 0) o.g.setAttribute('opacity', 1);
       }
+      if (p.type === 'lyre') { const v = trk(p.track || 'lyre', t, 0); o.strings.forEach((e, i) => { const x = -34 + i * 13.6, w = 3.5 * v * Math.sin(t * 40 + i); e.setAttribute('d', `M${f2(x)} -88 Q${f2(x + w)} -20 ${f2(x)} 46`); }); o.glow.setAttribute('opacity', f2(0.7 * v)); }
       if (p.type === 'torch') { const tx = trk(p.xTrack || 'torchX', t, p.x); const r = (tx - p.x) * 0.45; o.g.setAttribute('transform', `translate(${f2(tx)} ${f2(p.y - 18)}) scale(${f2(sc_)}) rotate(${f2(r)})`); o.beam.setAttribute('opacity', f2(0.2 * (0.8 + 0.2 * Math.sin(t * 17)) * trk(p.beamTrack || 'torchBeam', t, 1))); }
       o.g.setAttribute('opacity', (p.type === 'ring' || p.type === 'limit') ? o.g.getAttribute('opacity') : a);
     }
@@ -413,7 +418,7 @@
   function updateActors(t, ta) {
     for (const name in TL.actors) {
       const d = TL.actors[name], a = d.cues;
-      const on = inWin(d.vis, t); d.wrap.setAttribute('display', on ? 'inline' : 'none'); if (!on) continue;
+      const on = inWin(d.vis, t) && (!d.scenes || d.scenes.includes(sceneAt(t))); d.wrap.setAttribute('display', on ? 'inline' : 'none'); if (!on) continue;
       const P = poseFor(d, ta); d.rig.apply(P, ta);
       const x = track(a, 'x', ta, d.x), y = track(a, 'y', ta, d.y, 'y'), sc = track(a, 'scale', ta, d.scale || 1), al = track(a, 'alpha', ta, 1), rot = track(a, 'rot', ta, 0);
       let flip = d.flip || 1; for (const c of a) if (c.t0 <= ta && c.params && c.params.flip !== undefined) flip = c.params.flip;
@@ -421,8 +426,11 @@
       d.rig.root.setAttribute('transform', `translate(${f2(x)} ${f2(y)}) scale(${f2(flip * sc)} ${f2(sc)}) rotate(${f2(rot)} 0 ${rc})`);
       d.wrap.setAttribute('opacity', al);
       let clip = null; for (const c of a) if (c.t0 <= ta && ta <= c.t1 + 0.4 && c.params && c.params.clipY !== undefined) clip = c.params.clipY;
-      if (clip !== null) { document.getElementById('clipRiseR').setAttribute('height', clip + 3000); d.wrap.setAttribute('clip-path', 'url(#clipRise)'); } else d.wrap.removeAttribute('clip-path');
+      if (clip !== null) { document.getElementById('clipRiseR').setAttribute('height', clip + 3000); d.wrap.setAttribute('clip-path', 'url(#clipRise)'); } else if (!(a.some((c) => c.t0 <= ta && c.params && c.params.clipRect !== undefined))) d.wrap.removeAttribute('clip-path');
       let zz = d.z || 0; for (const c of a) if (c.t0 <= ta && c.params && c.params.z !== undefined) zz = c.params.z; d.wrap.__z = zz;
+      let cr = null; for (const c of a) if (c.t0 <= ta && c.params && c.params.clipRect !== undefined) cr = c.params.clipRect;
+      if (cr) { const id = 'clipRct_' + name; let cp = document.getElementById(id); if (!cp) { cp = $('clipPath', { id, clipPathUnits: 'userSpaceOnUse' }, defs); $('rect', {}, cp); } const rc = cp.firstChild; rc.setAttribute('x', cr[0]); rc.setAttribute('y', cr[1]); rc.setAttribute('width', cr[2]); rc.setAttribute('height', cr[3]); d.wrap.setAttribute('clip-path', `url(#${id})`); }
+      setSil(d.rig, clamp(track(a, 'sil', ta, 0)), '#07040a');
       d.pos = { x, y, flip, sc };
     }
     // z-order of actors + props + blanket
@@ -438,6 +446,7 @@
       if (f.type === 'smoke') for (let i = 0; i < (f.n || 10); i++) { const e = $('circle', { r: 1, fill: f.dark ? 'url(#gSmokeD)' : 'url(#gSmoke)' }, grp); it.parts.push({ e, d: r() * 0.9, dx: (r() - 0.5) * (f.spread || 90), vx: (r() - 0.5) * 40, r1: 30 + r() * 30 }); }
       if (f.type === 'soil') for (let i = 0; i < (f.n || 18); i++) { const e = $('rect', { width: 10 + r() * 12, height: 8 + r() * 10, rx: 3, fill: r() > 0.5 ? '#5a4056' : '#3d2a38' }, grp); it.parts.push({ e, vx: (r() - 0.5) * 520, vy: -(300 + r() * 520), rot: (r() - 0.5) * 900 }); }
       if (f.type === 'sparks') for (let i = 0; i < (f.n || 24); i++) { const e = $('circle', { r: 3 + r() * 4, fill: f.color || '#ffd65a' }, grp); const a = r() * 6.283, sp = 120 + r() * 360; it.parts.push({ e, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 60, g: -70 - r() * 120 }); }
+      if (f.type === 'notes') for (let i = 0; i < (f.n || 8); i++) { const e = $('text', { 'font-family': 'DejaVu Sans', 'font-size': 38, fill: f.color || '#b8bccf', 'text-anchor': 'middle' }, grp); e.textContent = i % 2 ? '\u266A' : '\u266B'; it.parts.push({ e, d: i / (f.n || 8) * 0.9, a: (r() - 0.5) * 50, w: 14 + r() * 24 }); }
       if (f.type === 'ripple') for (let i = 0; i < 4; i++) it.parts.push({ e: $('circle', { fill: 'none', stroke: f.color || '#ffe39a', 'stroke-width': 5 }, grp), d: i * 0.18 });
       if (f.type === 'flame') { it.fl1 = $('polygon', { fill: '#ff8a1e' }, grp); it.fl2 = $('polygon', { fill: '#ffe08a' }, grp); it.glow = $('circle', { fill: 'url(#gGold)' }, grp); }
       if (f.type === 'impact') { it.star = $('polygon', { fill: '#fff' }, grp); it.ring = $('circle', { fill: 'none', stroke: '#ffd9dc', 'stroke-width': 10 }, grp); it.core = $('circle', { fill: 'url(#gWhite)' }, grp);
@@ -456,6 +465,7 @@
       if (f.type === 'soil') it.parts.forEach((p) => { p.e.setAttribute('transform', `translate(${f2(X + p.vx * lt)} ${f2(Y + p.vy * lt + 1500 * lt * lt)}) rotate(${f2(p.rot * lt)})`); p.e.setAttribute('opacity', clamp(1.4 - u * 1.4)); });
       if (f.type === 'flame') { const R = f.r || 14, fl = 1 + 0.25 * Math.sin(lt * 31) + 0.15 * Math.sin(lt * 53), a = Math.sin(Math.PI * clamp(u)) ; const tear = (rr, k) => `${f2(X - rr)},${f2(Y)} ${f2(X - rr * 0.7)},${f2(Y - rr * 1.2 * fl * k)} ${f2(X + 0.12 * rr * Math.sin(lt * 17))},${f2(Y - rr * 2.6 * fl * k)} ${f2(X + rr * 0.7)},${f2(Y - rr * 1.2 * fl * k)} ${f2(X + rr)},${f2(Y)} ${f2(X)},${f2(Y + rr * 0.5)}`; it.fl1.setAttribute('points', tear(R, 1)); it.fl2.setAttribute('points', tear(R * 0.55, 0.8)); it.glow.setAttribute('cx', X); it.glow.setAttribute('cy', Y - R); it.glow.setAttribute('r', R * 5); it.grp.setAttribute('opacity', f2(a)); }
       if (f.type === 'sparks') it.parts.forEach((p) => { p.e.setAttribute('cx', f2(X + p.vx * lt * (1 - u * 0.5))); p.e.setAttribute('cy', f2(Y + p.vy * lt + 0.5 * p.g * lt * lt)); p.e.setAttribute('opacity', clamp(1.6 - u * 1.6)); });
+      if (f.type === 'notes') it.parts.forEach((p) => { const q = clamp((lt - p.d) / (dur * 0.5)); const x = X + (f.dx || 300) * q + p.w * Math.sin(q * 9), y = Y + (f.dy || -60) * q - 60 * Math.sin(q * 3) + p.a * q; p.e.setAttribute('x', f2(x)); p.e.setAttribute('y', f2(y)); p.e.setAttribute('opacity', q <= 0 || q >= 1 ? 0 : f2(Math.sin(q * Math.PI) * 0.9)); p.e.setAttribute('transform', `rotate(${f2(Math.sin(q * 7) * 20)} ${f2(x)} ${f2(y)})`); });
       if (f.type === 'ripple') it.parts.forEach((p) => { const q = clamp((lt - p.d) / (dur - 0.5)); p.e.setAttribute('cx', X); p.e.setAttribute('cy', Y); p.e.setAttribute('r', f2(30 + q * (f.r || 520))); p.e.setAttribute('opacity', q <= 0 ? 0 : f2(0.8 * (1 - q))); });
       if (f.type === 'impact') {
         const e = EASE.outCubic(clamp(u * 2.2)), R = (f.r || 150) * (0.4 + e), pts = [];
@@ -516,7 +526,7 @@
       h.streaks = $('g', {}, clipG); for (let i = 0; i < 9; i++) $('rect', { x: x0 + 20 + i * 60, y: 0, width: 4, height: 500, fill: mon ? '#ffb0b0' : '#fff6d0', opacity: 0 }, h.streaks);
       h.parts = []; const pr = mulberry(mon ? 41 : 43);
       for (let i = 0; i < 18; i++) { const e = $('circle', { r: mon ? 5 + pr() * 4 : 3 + pr() * 4, fill: mon ? '#c4121f' : '#ffe39a' }, clipG); h.parts.push({ e, x: x0 + 20 + pr() * 500, sp: 60 + pr() * 160, ph: pr() * 2000, mon }); }
-      h.reel = $('g', {}, clipG); h.cards = []; h.S = 700; const N = h.N, names = mon ? MON_NAMES : GUA_NAMES, eyeCol = mon ? '#ff3a44' : '#ffd98a';
+      h.reel = $('g', {}, clipG); h.cards = []; h.S = 700; const N = h.N, names = (mon ? MON_NAMES : GUA_NAMES).filter((n) => !(cfg.exclude || []).includes(n)), eyeCol = mon ? '#ff3a44' : '#ffd98a';
       if (h.kind) { h.rig = RIGS[h.kind](); }
       for (let i = -3; i < N; i++) {
         const c = $('g', {}, h.reel); const tgt = i === N - 1 && h.kind; const inner = $('g', { transform: `translate(${cx} 0)` }, c);
@@ -647,8 +657,8 @@
   }
 
   // ------------------------------------------------------------------ SHOT SYSTEM (hard cuts between camera set-ups)
-  let povFogL = [], povRev = null, povBeamG = null, povGrp = [], povG = null, povW = null, povHand = null, povTrees = [], povFlies = [], povBeam = null, povCone = [], povDark = null, povFog = [], otsG = null, crashG = null, curShot = null;
-  const HEADSZ = { vry: 150, grim: 250, kid: 150 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262] };
+  let povLamp = null, povFogL = [], povRev = null, povBeamG = null, povGrp = [], povG = null, povW = null, povHand = null, povTrees = [], povFlies = [], povBeam = null, povCone = [], povDark = null, povFog = [], otsG = null, crashG = null, curShot = null;
+  const HEADSZ = { vry: 150, grim: 250, kid: 150, bec: 120, cerberus: 340 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262], bec: [0, -262], cerberus: [424, -405] };
   function markerWorld(actor, name) {
     const d = TL.actors[actor]; if (!d || !d.rig || !d.rig.mk || !d.rig.mk[name]) return null;
     const m = d.rig.mk[name], c1 = m.getCTM(), c2 = layers.actors.getCTM(); if (!c1 || !c2) return null;
@@ -701,6 +711,7 @@
     const mk = $('mask', { id: 'povMask', maskUnits: 'userSpaceOnUse', x: -300, y: -300, width: 1680, height: 2500 }, defs); $('rect', { x: -300, y: -300, width: 1680, height: 2500, fill: '#fff' }, mk);
     povCone = [$('polygon', { fill: '#c0c0c0' }, mk), $('polygon', { fill: '#808080' }, mk), $('polygon', { fill: '#000' }, mk)]; povDark.setAttribute('mask', 'url(#povMask)');
     povBeam = $('polygon', { fill: 'url(#gBeamL)', style: 'mix-blend-mode:screen' }, povW);   // warm flashlight light on the nearest trunks
+    povLamp = $('circle', { cx: 640, cy: 872, r: 70, fill: 'url(#gLamp)', opacity: 0 }, povW);
     povFlies = []; for (let i = 0; i < 16; i++) { const g = $('g', {}, povW); $('circle', { r: 24, fill: 'url(#gFly)' }, g); $('circle', { r: 3.6, fill: '#fff2a8' }, g); povFlies.push({ g, X: (r() - 0.5) * 9, Y: 0.4 + r() * 2.4, ph: r() * 20, sp: 0.5 + r() * 1.2 }); }
     povHand = $('g', {}, povG);                                              // kid's striped sleeve + hand + oversized flashlight
     $('polygon', { points: '840,1920 950,1730 1180,1730 1180,2030 780,2030', fill: '#7a84bc' }, povHand); $('polygon', { points: '950,1730 1180,1730 1180,1796 930,1784', fill: '#98a2d6' }, povHand);
@@ -716,6 +727,7 @@
     const bob = 14 * Math.abs(Math.sin(Math.PI * step * t)) * (speed > 0 ? 1 : 0.2), breath = 4 * Math.sin(2 * Math.PI * 0.27 * t), roll = 1.4 * Math.sin(Math.PI * step * t + 0.5) * (speed > 0 ? 1 : 0.3);
     povW.setAttribute('transform', `translate(${f2(4 * Math.sin(Math.PI * step * t))} ${f2(bob + breath)}) rotate(${f2(roll)} 540 960)`);
     povRev.setAttribute('opacity', f2(s.reveal ? clamp(lt / (s.revealT || 1)) * s.reveal : 0));
+    povLamp.setAttribute('opacity', f2(s.lamp ? clamp((lt - (s.lampAt || 0)) / 0.5) * s.lamp * (0.85 + 0.15 * Math.sin(t * 9)) : 0));
     const D0 = lt * speed + (s.start || 0);
     const items = povTrees.map((o) => { let D = Df - (((o.ph + D0) % (Df - Dn)) + (Df - Dn)) % (Df - Dn); return { o, D }; }).sort((a, b) => b.D - a.D);
     for (const { o, D } of items) {

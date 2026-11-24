@@ -36,6 +36,7 @@ def line_end_indexes(script: str) -> set[int]:
 RED_ASS = "&H002F26E3&"    # BGR of (227, 38, 47)
 WHITE_ASS = "&H00EBF2F5&"
 AMBER_ASS = "&H0000BFFF&"   # BGR of (255, 191, 0)
+SPEAKER_COLOR = {"grim": AMBER_ASS, "cerberus": "&H001E5AFF&", "children": "&H00C8BEB4&"}
 
 
 def ts(t: float) -> str:
@@ -107,7 +108,7 @@ def _split_segment(seg: list[dict], max_words: int, max_chars: int, gap: float) 
             if j < n and (g[-1].get("comma") or re.search(r"[,;:]$", g[-1]["word"])):
                 c -= 0.8                                     # break at a comma if possible
             if j < n and _dangling(g[-1]):
-                c += 15
+                c += 15 if norm(g[-1]["word"]) in DANGLING else 6   # possessive hanging is the lesser evil
             c += abs(len(g) - (max_words + 1) / 2) * 0.3     # prefer ~2-3 words
             groups.append(g); rec(j, groups, c); groups.pop()
     rec(0, [], 0.0)
@@ -154,8 +155,8 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         end = min(nxt, c[-1]["end"] + 0.6)
         parts = []
         spk = c[0].get("speaker", "narrator")
-        base = AMBER_ASS if spk == "grim" else WHITE_ASS      # Grim = amber, kid = white italic
-        pre = f"{{\\c{base}}}" + ("{\\i1}" if spk == "kid" else "") if spk != "narrator" else ""
+        base = SPEAKER_COLOR.get(spk, WHITE_ASS)      # per-speaker colour (grim amber, cerberus red-orange, children cold grey)
+        pre = f"{{\\c{base}}}" + ("{\\i1}" if spk in ("kid", "kid_mimic") else "") if spk != "narrator" else ""
         for w in c:
             txt = re.sub(r"[\"“”]", "", w["word"]).upper()
             if w.get("key"):

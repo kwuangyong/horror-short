@@ -60,7 +60,7 @@ def char_fx(spk, raw, out, raw2=None):
             "[l0][l1][l2][g]amix=inputs=4:normalize=0:duration=first,aecho=0.8:0.6:60|110:0.2|0.12,alimiter=limit=0.89", "-ar","48000", out], check=True)
     elif spk == "children":   # two flat child voices, a few ms apart, cold room
         subprocess.run(["ffmpeg","-v","error","-y","-i",raw,"-i",raw2,"-filter_complex",
-            "[0:a]aresample=48000,highpass=f=180,volume=0.9[a];[1:a]aresample=48000,highpass=f=180,adelay=14:all=1,volume=0.8[b];"
+            "[0:a]aresample=48000,highpass=f=180,volume=1.5[a];[1:a]aresample=48000,highpass=f=180,adelay=14:all=1,volume=1.3[b];"
             "[a][b]amix=inputs=2:normalize=0:duration=longest,acompressor=threshold=-24dB:ratio=3:makeup=4,aecho=0.8:0.6:90|170:0.3|0.2,alimiter=limit=0.85", "-ar","48000", out], check=True)
     elif spk == "kid_mimic":  # the kid's voice, flat, echoing and warped
         subprocess.run(["ffmpeg","-v","error","-y","-i",raw,"-af",

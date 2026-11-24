@@ -1,0 +1,333 @@
+{
+ "sections": [
+  {
+   "section": 0,
+   "start": 0.0
+  },
+  {
+   "section": 1,
+   "start": 3.96
+  },
+  {
+   "section": 2,
+   "start": 13.47
+  },
+  {
+   "section": 3,
+   "start": 35.39
+  },
+  {
+   "section": 4,
+   "start": 41.91
+  },
+  {
+   "section": 5,
+   "start": 52.55
+  },
+  {
+   "section": 6,
+   "start": 71.52
+  },
+  {
+   "section": 7,
+   "start": 73.15
+  },
+  {
+   "section": 8,
+   "start": 80.07
+  }
+ ],
+ "sentences": [
+  {
+   "section": 0,
+   "speaker": "narrator",
+   "text": "Only one head is awake.",
+   "start": 0.0
+  },
+  {
+   "section": 0,
+   "speaker": "narrator",
+   "text": "Who survives?",
+   "start": 1.71
+  },
+  {
+   "section": 1,
+   "speaker": "narrator",
+   "text": "Tonight, two legends collide.",
+   "start": 3.96
+  },
+  {
+   "section": 1,
+   "speaker": "narrator",
+   "text": "On the left, the Black-Eyed Children.",
+   "start": 6.38
+  },
+  {
+   "section": 1,
+   "speaker": "narrator",
+   "text": "On the right, Cerberus.",
+   "start": 8.92
+  },
+  {
+   "section": 1,
+   "speaker": "narrator",
+   "text": "Who wins?",
+   "start": 11.02
+  },
+  {
+   "section": 1,
+   "speaker": "narrator",
+   "text": "Comment.",
+   "start": 12.0
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "A kid flees through the woods, until a lamp glows in an abandoned cabin.",
+   "start": 13.47
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "They slip inside, but a knock comes.",
+   "start": 17.61
+  },
+  {
+   "section": 2,
+   "speaker": "children",
+   "text": "Can we come in?",
+   "start": 20.47
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Legend says they cannot enter unless invited.",
+   "start": 22.16
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "So the kid stays silent, but the floor begins to glow.",
+   "start": 24.7
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Cerberus, who keeps the gate of the dead, climbs through the boards and blocks the door.",
+   "start": 27.99
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Legend also says music puts him to sleep.",
+   "start": 32.68
+  },
+  {
+   "section": 3,
+   "speaker": "narrator",
+   "text": "Round one.",
+   "start": 35.39
+  },
+  {
+   "section": 3,
+   "speaker": "narrator",
+   "text": "Three heads snap and hurl them off the porch.",
+   "start": 36.35
+  },
+  {
+   "section": 3,
+   "speaker": "narrator",
+   "text": "They rise unmarked, and one begins to hum.",
+   "start": 38.93
+  },
+  {
+   "section": 4,
+   "speaker": "narrator",
+   "text": "Round two.",
+   "start": 41.91
+  },
+  {
+   "section": 4,
+   "speaker": "narrator",
+   "text": "The lullaby drifts, and the left head sags.",
+   "start": 42.91
+  },
+  {
+   "section": 4,
+   "speaker": "narrator",
+   "text": "Then the middle falls, and Cerberus sinks to his knees.",
+   "start": 45.73
+  },
+  {
+   "section": 4,
+   "speaker": "narrator",
+   "text": "Only one head stays awake, and the children step closer.",
+   "start": 49.01
+  },
+  {
+   "section": 5,
+   "speaker": "narrator",
+   "text": "Round three.",
+   "start": 52.55
+  },
+  {
+   "section": 5,
+   "speaker": "narrator",
+   "text": "They speak in the kid's own voice.",
+   "start": 53.53
+  },
+  {
+   "section": 5,
+   "speaker": "kid_mimic",
+   "text": "Come in.",
+   "start": 55.83
+  },
+  {
+   "section": 5,
+   "speaker": "narrator",
+   "text": "But the kid answers.",
+   "start": 57.36
+  },
+  {
+   "section": 5,
+   "speaker": "kid",
+   "text": "No.",
+   "start": 59.05
+  },
+  {
+   "section": 5,
+   "speaker": "kid",
+   "text": "You can't come in.",
+   "start": 59.83
+  },
+  {
+   "section": 5,
+   "speaker": "narrator",
+   "text": "The song breaks, and all three heads wake.",
+   "start": 61.6
+  },
+  {
+   "section": 5,
+   "speaker": "narrator",
+   "text": "Cerberus seizes them, and the porch splits open into a red gate.",
+   "start": 64.44
+  },
+  {
+   "section": 5,
+   "speaker": "narrator",
+   "text": "He drags both children down, and the gate slams shut.",
+   "start": 68.11
+  },
+  {
+   "section": 6,
+   "speaker": "narrator",
+   "text": "Cerberus wins.",
+   "start": 71.52
+  },
+  {
+   "section": 7,
+   "speaker": "narrator",
+   "text": "At dawn, he turns to the kid.",
+   "start": 73.15
+  },
+  {
+   "section": 7,
+   "speaker": "cerberus",
+   "text": "Never let them in.",
+   "start": 75.54
+  },
+  {
+   "section": 7,
+   "speaker": "cerberus",
+   "text": "Go home.",
+   "start": 77.32
+  },
+  {
+   "section": 7,
+   "speaker": "kid",
+   "text": "I won't.",
+   "start": 78.88
+  },
+  {
+   "section": 8,
+   "speaker": "narrator",
+   "text": "But next night, a red glow creeps under the kid's floor.",
+   "start": 80.07
+  },
+  {
+   "section": 8,
+   "speaker": "narrator",
+   "text": "Then, one knock.",
+   "start": 83.36
+  },
+  {
+   "section": 8,
+   "speaker": "children",
+   "text": "Can we come in?",
+   "start": 85.74
+  },
+  {
+   "section": 8,
+   "speaker": "narrator",
+   "text": "Did hell really keep them?",
+   "start": 87.43
+  },
+  {
+   "section": 8,
+   "speaker": "narrator",
+   "text": "Who's next?",
+   "start": 88.93
+  }
+ ],
+ "chars": [
+  {
+   "file": "char_0_fx.wav",
+   "speaker": "children",
+   "start": 20.465708333333332,
+   "text": "Can we come in?"
+  },
+  {
+   "file": "char_1_fx.wav",
+   "speaker": "kid_mimic",
+   "start": 55.833958333333335,
+   "text": "Come in."
+  },
+  {
+   "file": "char_2_fx.wav",
+   "speaker": "kid",
+   "start": 59.045833333333334,
+   "text": "No."
+  },
+  {
+   "file": "char_3_fx.wav",
+   "speaker": "kid",
+   "start": 59.83445833333333,
+   "text": "You can't come in."
+  },
+  {
+   "file": "char_4_fx.wav",
+   "speaker": "cerberus",
+   "start": 75.54345833333333,
+   "text": "Never let them in."
+  },
+  {
+   "file": "char_5_fx.wav",
+   "speaker": "cerberus",
+   "start": 77.31654166666667,
+   "text": "Go home."
+  },
+  {
+   "file": "char_6_fx.wav",
+   "speaker": "kid",
+   "start": 78.88154166666666,
+   "text": "I won't."
+  },
+  {
+   "file": "char_7_fx.wav",
+   "speaker": "children",
+   "start": 85.735375,
+   "text": "Can we come in?"
+  }
+ ],
+ "duration": 90.20104166666667
+}

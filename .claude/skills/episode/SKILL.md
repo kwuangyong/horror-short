@@ -6,12 +6,15 @@ argument-hint: <monster> vs <guardian> [--ending A|B] [--until script|audio|rend
 
 Bạn là **Boss**. Làm một tập Battle Spin cho: **$ARGUMENTS**
 
-Đọc trước (bắt buộc): `docs/07-format-battle-spin.md` (luật format), `CLAUDE.md` (quy trình 3 cổng), `tools/anim/README.md` (engine hoạt hình). Tập mẫu: `episodes/vrykolakas-vs-church-grim/`.
+Đọc trước (bắt buộc): `docs/07-format-battle-spin.md` (luật nền), **`docs/08-he-thong-bien-the.md` (chọn tổ hợp biến thể, sức mạnh từ truyện gốc, tạo hình)**, `episodes/_registry.md` (tổ hợp đã dùng), `docs/research/anime-power-techniques.md` (kỹ thuật khoe sức mạnh), `CLAUDE.md` (quy trình 3 cổng), `tools/anim/README.md` (engine hoạt hình). Tập mẫu: `episodes/vrykolakas-vs-church-grim/`.
 
 ## 0. Chọn cặp và kiểu kết
 - Nếu thiếu monster hoặc guardian: chọn từ vòng gợi ý trong docs/07 mục 4, ưu tiên cặp có **xung đột lore tự nhiên** và chưa dùng ở tập trước (xem `episodes/`).
 - Kết A (guardian thắng + monster hồi sinh lấp ló) hoặc Kết B (monster thắng + guardian giải thoát bé + "Do you think the kid survived?"). Không có `--ending` thì Boss chọn theo lore.
 - Đặt `<slug>` = `<monster>-vs-<guardian>` (kebab-case).
+
+## 0b. Chọn tổ hợp biến thể
+Chọn 1 ô mỗi bảng A–F trong docs/08 theo luật chống lặp, khớp lore cặp đấu; thêm dòng vào `episodes/_registry.md`. `--ending` cũ (A/B) chỉ là gợi ý cho bảng A/B/C.
 
 ## 1. Brief
 Tạo `episodes/<slug>/00-brief.md`: cặp đấu, lý do chọn, lore dùng ở R2 (giới hạn guardian) và R3 (điểm yếu monster), kiểu kết + cú lửng (điều kiện lore bị bỏ sót, monster phải **lộ diện**), nơi bé lạc vào, thoại cuối guardian ↔ bé dự kiến.
@@ -19,7 +22,8 @@ Tạo `episodes/<slug>/00-brief.md`: cặp đấu, lý do chọn, lore dùng ở
 ## 2. Trinh sát (song song, một lượt)
 - Nếu cặp đã có trong `episodes/_format-dual-spin/01-research-*.md` với độ tin cậy ≥ TB: dùng luôn, chỉ giao `scout` phần còn thiếu.
 - Nếu chưa: `scout` loại `lore` cho monster + `scout` loại `lore` cho guardian → `episodes/<slug>/01-research.md`.
-- **Cổng 1**: ≥ 3 nguồn, có điểm yếu monster + giới hạn guardian, không vướng bản quyền/nhạy cảm (docs/07 mục 4).
+- Research phải có **bảng sức mạnh có nguồn** cho cả hai nhân vật (docs/08 mục G).
+- **Cổng 1**: ≥ 3 nguồn, mỗi sức mạnh dùng trong tập có nguồn, có điểm yếu monster + giới hạn guardian, không vướng bản quyền/nhạy cảm (docs/07 mục 4).
 
 ## 3. Kịch bản
 Giao `writer` viết `episodes/<slug>/script-anim.md` theo docs/07 mục 2, 3, 5, 6 và lấy `episodes/vrykolakas-vs-church-grim/script-anim.md` làm mẫu định dạng: mỗi câu `>` có `[SHOT]` + `[ANIM]`; thoại nhân vật theo cú pháp `(grim's voice …)` / `(kid's voice …)` mà `tools/narration.py` tách được; mục `## SHOT LIST` (30–35 cảnh) và `## ANIMATION BEAT SHEET`; kèm `hooks.md` (3 hook, 3 tiêu đề, mô tả + hashtag).

@@ -2,7 +2,7 @@
 
 Phiên chính chạy **Opus** (`.claude/settings.json`) và đóng vai **Boss**: lập kế hoạch, giao việc, quản lý tiến độ, kiểm duyệt. Boss **không tự làm** việc của agent con, trừ khi sửa nhỏ (≤ 5 dòng) nhanh hơn giao lại.
 
-Thiết kế đội agent: [`docs/06-dan-nhac-agent.md`](docs/06-dan-nhac-agent.md). **Luật format hiện hành: [`docs/07-format-battle-spin.md`](docs/07-format-battle-spin.md)** (Guardian vs Monster, hoạt hình cutout, góc quay kiểu phim).
+Thiết kế đội agent: [`docs/06-dan-nhac-agent.md`](docs/06-dan-nhac-agent.md). **Luật format: [`docs/07-format-battle-spin.md`](docs/07-format-battle-spin.md) + hệ thống biến thể [`docs/08-he-thong-bien-the.md`](docs/08-he-thong-bien-the.md)** (mỗi tập một tổ hợp, ghi `episodes/_registry.md`) (Guardian vs Monster, hoạt hình cutout, góc quay kiểu phim).
 
 ## Đội hình
 

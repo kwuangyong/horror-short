@@ -82,7 +82,7 @@ async def main():
         if prev_sec is not None:
             if s != prev_sec: gap = {1: 1.3, 2: 0.9}.get(s, 0.45)
             elif s == 1: gap = 0.55 if newline else 0.25
-            elif spk == "children" and s == 8: gap = 1.1     # room for the single knock
+            elif spk == "children" and s == 5: gap = 1.1     # room for the single knock
             elif spk != prev_spk: gap = 0.55          # air before/after dialogue
             elif newline: gap = 0.3
             else: gap = 0.2 if spk == "narrator" else 0.3

@@ -87,27 +87,26 @@ def wav(path, x, stereo=False):
         f.setnchannels(2); f.setsampwidth(2); f.setframerate(SR); f.writeframes((x*32767).astype("<i2").tobytes())
 IMP, GRW, KNK = impact(), growl(), knock()
 wav(f"{H}/impact.wav", IMP); wav(f"{H}/growl.wav", GRW); wav(f"{H}/knock.wav", KNK)
-# ---------- score: black-eyed-children-vs-cerberus (0 hook,1 roll,2 arena,3 R1,4 R2,5 R3,6 KO,7 dawn,8 cliff+CTA) ----------
+# ---------- score v2: 0 hook,1 roll,2 arena(+powers),3 fight,4 KO,5 dawn,6 cliffhanger,7 CTA ----------
 t_all = T(len(buf)/SR)
 def fw(prefix, after=0.0, before=1e9):
     return [w for w in W if w["word"].lower().startswith(prefix.lower()) and after <= w["start"] < before][0]
-on = fw("one", sec[8]); kn = fw("knock", sec[8])
+on = fw("one", sec[6]); kn = fw("knock", sec[6])
 t_cut = on["start"] - 0.06; t_k = kn["end"] + 0.12
-t_break = fw("breaks", sec[5])["start"]; t_hum = fw("hum", sec[3])["end"]
-t_split = fw("splits", sec[5])["start"]; t_shut = fw("shut", sec[5])["start"]; t_ko = sec[6] - 0.03
-t_glow = fw("glow", sec[8])["start"]
-# --- bed: drone + wind
+t_break = fw("breaks", sec[3])["start"]; t_hum = fw("humming", sec[3])["end"]
+t_split = fw("splits", sec[3])["start"]; t_down = fw("down", t_split)["start"]; t_shut = fw("shut", t_split)["start"]; t_ko = sec[4] - 0.03
+t_glow = fw("glow", sec[6])["start"]
+# --- bed
 fm = 46 + 3*np.sin(2*np.pi*0.05*t_all)
 drone = np.sin(2*np.pi*np.cumsum(fm)/SR)*0.5 + 0.35*np.sin(2*np.pi*np.cumsum(fm*1.5*(1+0.002*np.sin(2*np.pi*0.11*t_all)))/SR) + 0.25*np.sin(2*np.pi*np.cumsum(fm*0.5)/SR)
 wind = lp(rng.standard_normal(len(t_all)), 400, 2)*8; wind *= (0.5+0.5*np.sin(2*np.pi*0.13*t_all+1))**1.5
 bed = drone*0.55 + wind*0.35
-lvl = np.interp(t_all, [0, sec[1], sec[2], sec[3], sec[4], sec[4]+3, t_break-0.02, t_break, t_ko, t_ko+0.3, sec[7], sec[7]+2, sec[8]-1, sec[8], t_cut, t_cut+0.04, TOTAL],
-                      [0.5, .45, .65, .8, .5, .3, .3, .85, .9, 0.0, 0.0, .3, .3, 0.0, 0.0, 0.0, 0.0])
-lvl[(t_all > t_ko+0.3) & (t_all < sec[7])] = 0
+lvl = np.interp(t_all, [0, sec[1], sec[2], sec[3], t_hum, t_hum+2, t_break-0.02, t_break, t_ko, t_ko+0.3, sec[5], sec[5]+2, sec[6]-1, sec[6], t_cut, t_cut+0.04, TOTAL],
+                      [0.5, .45, .6, .75, .75, .3, .3, .85, .9, 0.0, 0.0, .3, .3, 0.0, 0.0, 0.0, 0.0])
+lvl[(t_all > t_ko+0.3) & (t_all < sec[5])] = 0
 buf += bed*lvl
-# --- hook hit
 put(IMP, 0.0, 0.9)
-# --- split roll: ratchet + locks on the names
+# --- split roll
 def ratchet(t0, t1):
     t = t0; iv = 0.05
     while t < t1:
@@ -118,43 +117,60 @@ ratchet(fw("children", sec[1])["end"]+0.05, f2["start"]-0.05); put(boom(0.9, 95,
 cm = fw("comment", sec[1]); t_vs = cm["end"] + 0.15
 put(IMP, t_vs, 0.8); put(bell(98, 5), t_vs+0.05, 0.9)
 put(lp(rng.standard_normal(int(3*SR)), 250, 2)*np.exp(-T(3)/1.2)*6, t_vs, 0.5)
-# --- arena: the knock (cabin), floor glow swell, Cerberus climbs
-put(KNK, fw("knock", sec[2])["start"] - 0.05, 0.9)
-gl = fw("glow", sec[2])["start"]
+# --- arena: knock at the cabin door
+put(KNK, fw("knock", sec[2])["start"] - 0.05, 0.9); put(KNK, fw("knock", sec[2])["end"] + 0.35, 0.7)
+# lamp dies: sizzle + sag (thump down)
+t_lamp = fw("dies", sec[2])["start"]
+sz = lambda d, hf=3000: (lambda n: (n - lp(n, hf, 1)))(rng.standard_normal(int(d*SR)))
+put(sz(0.7)*np.exp(-T(0.7)/0.22)*0.5, t_lamp, 0.6)
+put(boom(0.9, 70, 30), t_lamp+0.25, 0.8); buf[int((t_lamp+0.3)*SR):int((t_lamp+0.55)*SR)] *= 0.25   # dip: lights gone
+# hypnosis: murky, throbbing low-mid drone under "so they repeat it ... latch"
+h0 = fw("repeat", sec[2])["start"] - 0.1; h1 = fw("latch", sec[2])["end"] + 0.2; th = T(h1-h0)
+hyp = (np.sin(2*np.pi*np.cumsum(150 + 6*np.sin(2*np.pi*0.8*th))/SR) + 0.6*np.sin(2*np.pi*np.cumsum(151.5 + 4*np.sin(2*np.pi*0.6*th))/SR)
+       + 0.4*np.sin(2*np.pi*np.cumsum(75 + 3*np.sin(2*np.pi*0.5*th))/SR))
+hyp = lp(hyp, 420, 2)*(0.55 + 0.45*np.sin(2*np.pi*3.0*th))*np.hanning(len(th))*0.7
+put(hyp, h0, 0.5)
+# floor glows + Cerberus rises
+gl = fw("glows", sec[2]+3)["start"]
 put(lp(rng.standard_normal(int(2.5*SR)), 300, 2)*np.hanning(int(2.5*SR))*8, gl, 0.5)
-put(GRW, fw("cerberus", sec[2]+3)["start"] - 0.2, 0.6)
-put(lp(rng.standard_normal(int(1.2*SR)), 700, 2)*np.exp(-T(1.2)/0.4)*5, fw("boards", sec[2])["start"], 0.5)   # wood splintering
-# --- rounds
-rs = [fw("round", sec[3]-0.1), fw("round", sec[4]-0.1), fw("round", sec[5]-0.1)]
-for r in rs: put(IMP, r["start"]-0.05, 0.7)
+put(GRW, fw("rises", sec[2])["start"] - 0.4, 0.7)
+# serpent hiss
+t_ser = fw("serpent", sec[2])["start"]
+def hiss(d=1.0):
+    t = T(d); n = rng.standard_normal(len(t)); n = n - lp(n, 4500, 1)
+    return lp(n, 11000, 1)*(0.4 + 0.6*np.sin(np.pi*t/d)**2)*(0.75 + 0.25*np.sin(2*np.pi*14*t))*0.5
+put(hiss(1.0), t_ser, 0.8); put(hiss(0.6), t_ser + 0.55, 0.5)
+# venom drool: drips + sizzle on grass
+for dt in (0.0, 0.5, 0.95):
+    t0 = fw("drool", sec[2])["start"] + dt
+    put(tick(1400, 0.05), t0, 0.5); put(sz(0.5, 2500)*np.exp(-T(0.5)/0.12)*0.45, t0+0.04, 0.5)
+# --- fight: snap hit + short drums, lullaby, break
+put(GRW, fw("snap", sec[3])["start"] - 0.15, 0.8); put(IMP, fw("snap", sec[3])["start"], 0.7)
 def drums(t0, t1, iv0, iv1, g0, g1):
     t = t0
     while t < t1:
         p = (t-t0)/(t1-t0); put(boom(1.0, 95, 48), t, g0+(g1-g0)*p)
         if int((t-t0)/iv0) % 2: put(lp(rng.standard_normal(int(.12*SR)), 3000, 1)*np.exp(-T(.12)/0.03), t+iv0/2, 0.15*g0)
         t += iv0 + (iv1-iv0)*p
-drums(rs[0]["end"]+0.3, t_hum-0.6, 0.85, 0.7, 0.4, 0.55)         # R1 drums
-put(GRW, fw("snap", sec[3])["start"]-0.1, 0.6)
-# --- R2: off-key music-box lullaby from the hum until "The song breaks"
-mel = [0, 0, 7, 7, 9, 9, 7, None, 5, 5, 4, 4, 2, 2, 0, None]       # twinkle-ish, then it falls apart
+drums(fw("snap", sec[3])["end"]+0.3, fw("unblinking", sec[3])["start"]-0.3, 0.7, 0.55, 0.5, 0.65)
+mel = [0, 0, 7, 7, 9, 9, 7, None, 5, 5, 4, 4, 2, 2, 0, None]
 def musicbox(f, d=1.6, det=0.0):
     t = T(d); f = f*2**(det/12)
     x = (np.sin(2*np.pi*f*t) + 0.4*np.sin(2*np.pi*f*2.76*t)*np.exp(-t/0.2) + 0.2*np.sin(2*np.pi*f*5.4*t)*np.exp(-t/0.08))
     return x*np.exp(-t/0.55)*(1-np.exp(-t/0.003))*0.22
-t = t_hum - 0.5; i = 0; iv = 0.62
+t = fw("unblinking", sec[3])["start"]; i = 0; iv = 0.55
 while t < t_break - 0.05:
     st = mel[i % len(mel)]
     if st is not None:
-        det = rng.uniform(-0.55, 0.55) + (0.35 if i % 5 == 3 else 0)      # sour, wandering pitch
+        det = rng.uniform(-0.55, 0.55) + (0.35 if i % 5 == 3 else 0)
         put(musicbox(392.0*2**(st/12), 1.6, det), t, 0.9 + 0.1*rng.random())
-        if i % 4 == 2: put(musicbox(392.0*2**((st+6)/12), 1.2, 0.2), t+0.03, 0.35)   # tritone ghost
+        if i % 4 == 2: put(musicbox(392.0*2**((st+6)/12), 1.2, 0.2), t+0.03, 0.35)
     t += iv*(1 + 0.012*i)*(1.3 if st is None else 1.0); i += 1
-# hard stop: the song breaks (also kills the drone for a beat)
-buf[int(t_break*SR):int((t_break+0.15)*SR)] *= 0.0
+buf[int(t_break*SR):int((t_break+0.15)*SR)] *= 0.0      # the song breaks: dead stop
 put(IMP, t_break, 0.8)
-# --- R3: strong beat after the break, fire + growl when the gate opens, slam
+# strong beat, seize, red gate: fire, growl, planks clawed, drag, slam
 drums(t_break+0.3, t_shut-0.3, 0.55, 0.38, 0.6, 0.95)
-put(GRW, fw("seizes", sec[5])["start"]-0.1, 0.9)
+put(GRW, fw("seizes", sec[3])["start"]-0.1, 0.9)
 def fire(d):
     t = T(d); n = rng.standard_normal(len(t)); roar = lp(n, 900, 2)*6*np.minimum(t/1.0, 1)
     crack = np.zeros(len(t))
@@ -162,26 +178,32 @@ def fire(d):
         j = rng.integers(0, len(t)-400); crack[j:j+400] += rng.standard_normal(400)*np.exp(-np.arange(400)/60)*rng.uniform(.3, 1)
     return (roar*0.7 + crack*0.5)*np.minimum((d-t)/0.4, 1)*0.5
 put(fire(t_shut - t_split), t_split, 0.9)
-put(GRW, t_split + 0.3, 0.6)
-clang = lambda: (np.sin(2*np.pi*310*T(1.5))*np.exp(-T(1.5)/0.5) + 0.6*np.sin(2*np.pi*477*T(1.5))*np.exp(-T(1.5)/0.35))*0.4
-put(IMP, t_shut, 1.0); put(clang(), t_shut, 0.7); put(boom(2.5, 60, 24), t_shut, 0.8)
-put(IMP, t_ko, 1.0)                                              # K.O.
-# --- dawn: gentle in-tune bell + soft pad
-d0 = sec[7]
-for k_, (dt, f) in enumerate([(0.2, 523.25), (1.8, 659.25), (3.4, 783.99), (5.0, 659.25)]):
-    if d0+dt < sec[8]-0.5: put(pnote(f, 3.5, 0.0), d0+dt, 0.5)
+def claw(d=0.9):       # wooden boards scraped: band-passed noise in stuttering strokes
+    t = T(d); n = lp(rng.standard_normal(len(t)), 2600, 1); n = n - lp(n, 700, 1)
+    am = np.zeros(len(t))
+    for a0 in np.arange(0, d-0.15, 0.18):
+        m = (t >= a0) & (t < a0+0.14); am[m] = np.sin(np.pi*(t[m]-a0)/0.14)
+    return n*am*(0.7 + 0.3*np.sin(2*np.pi*60*t))*2.5
+put(claw(), t_split + 0.35, 0.7); put(claw(0.7), t_down - 0.1, 0.8)
+put(GRW, t_split + 0.3, 0.6); put(GRW, t_down - 0.2, 0.8)
+clang = (np.sin(2*np.pi*310*T(1.5))*np.exp(-T(1.5)/0.5) + 0.6*np.sin(2*np.pi*477*T(1.5))*np.exp(-T(1.5)/0.35))*0.4
+put(IMP, t_shut, 1.0); put(clang, t_shut, 0.7); put(boom(2.5, 60, 24), t_shut, 0.8)
+put(IMP, t_ko, 1.0)
+# --- dawn
+d0 = sec[5]
+for dt, f in [(0.2, 523.25), (1.8, 659.25), (3.4, 783.99), (5.0, 659.25)]:
+    if d0+dt < sec[6]-0.5: put(pnote(f, 3.5, 0.0), d0+dt, 0.5)
 put(lp(bell(392, 6), 2200, 1), d0+0.1, 0.5)
-pad = sum(np.sin(2*np.pi*f*t_all) for f in (130.8, 164.8, 196.0))*0.05*np.interp(t_all, [d0, d0+2, sec[8]-1, sec[8]], [0, 1, 1, 0])
-buf += pad
-# --- cliffhanger: low red rumble under the floor -> cut -> one knock -> (child voice) -> silence
+buf += sum(np.sin(2*np.pi*f*t_all) for f in (130.8, 164.8, 196.0))*0.05*np.interp(t_all, [d0, d0+2, sec[6]-1, sec[6]], [0, 1, 1, 0])
+# --- cliffhanger: red sub-rumble -> cut -> knock
 rum = np.sin(2*np.pi*np.cumsum(34 + 4*np.sin(2*np.pi*0.7*t_all))/SR)*0.9 + lp(rng.standard_normal(len(t_all)), 110, 2)*10
 rum *= np.interp(t_all, [t_glow, t_cut-0.3], [0.0, 0.85]) * ((t_all > t_glow) & (t_all < t_cut))
-rum *= 0.6 + 0.4*np.sin(2*np.pi*0.9*t_all)                       # breathing pulse
+rum *= 0.6 + 0.4*np.sin(2*np.pi*0.9*t_all)
 buf += rum*0.9
-buf[int((t_cut)*SR):int((t_cut+0.04)*SR)] *= np.linspace(1, 0, int(0.04*SR))
+buf[int(t_cut*SR):int((t_cut+0.04)*SR)] *= np.linspace(1, 0, int(0.04*SR))
 buf[int((t_cut+0.04)*SR):] = 0
 put(KNK, t_k, 1.0)
 out = buf[:int(TOTAL*SR)]
 pk = np.max(np.abs(out)); out = np.tanh(out/pk*1.4)/np.tanh(1.4)*0.9
 wav(f"{H}/music.wav", out)
-print("music.wav", len(out)/SR, "locks", round(f1["start"],2), round(f2["start"],2), "VS", round(t_vs,2), "break", round(t_break,2), "gate", round(t_split,2), round(t_shut,2), "KO", round(t_ko,2), "cut", round(t_cut,2), "knock", round(t_k,2))
+print("music.wav", round(len(out)/SR,2), "locks", round(f1["start"],2), round(f2["start"],2), "VS", round(t_vs,2), "lamp", round(t_lamp,2), "hyp", round(h0,2), round(h1,2), "serpent", round(t_ser,2), "break", round(t_break,2), "gate", round(t_split,2), round(t_down,2), round(t_shut,2), "KO", round(t_ko,2), "cut", round(t_cut,2), "knock", round(t_k,2))

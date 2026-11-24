@@ -1,13 +1,8 @@
-# audio-anim/ - voice + score, black-eyed-children-vs-cerberus (script-anim v1.1, 232 words incl. dialogue). Synthesized, no licences.
-Narrator: edge-tts Christopher, rate +8%, pitch -10Hz, voice_fx `deep`. voice_dark.wav 95.97 s.
-Characters (silent slots in narration, overlaid; 0.55 s air around; 1.1 s before the final "Can we come in?" for the knock):
-- children (x2): en-US-AnaNeural + en-GB-MaisieNeural, rate -14%, flat, 14 ms apart, cold echo.
-- kid_mimic "Come in.": Ana flat + triple echo + chorus (warped).
-- kid "No. You can't come in." / "I won't.": Ana whisper, light echo.
-- cerberus "Never let them in. Go home.": GuyNeural -22% -18Hz; 3 layers (base -2 st, -5 st +35 ms, +3 st +70 ms) + low growl.
-words.json: every word has speaker narrator/children/kid/kid_mimic/cerberus. sections.json: sections, "dialogue", "sentences" (start of every sentence).
-Sections (s): hook 0 | split_roll 4.21 | arena 14.33 | R1 37.65 | R2 44.59 | R3 55.91 | K.O. 76.10 | dawn 77.84 | cliffhanger 85.20 | CTA 93.03 (see sections.json).
-Music (music.wav 98.97 s): locks 7.75 ("Black-Eyed") / 10.29 ("Cerberus"); VS 13.46; cabin knock + floor-glow swell; R1 drums; R2 off-key music-box lullaby from "hum" (44.0), hard stop at "breaks" 66.0 (+ hit); R3 strong beat, fire + growl from "splits" 70.45, gate slam 75.11, K.O. hit 76.06; soft bell/pad at dawn; red sub-rumble from "glow" -> hard cut 89.18 (before "one") -> single knock 90.10 -> children's line -> silence.
-Captions: captions.ass, --font "Bebas Neue" --max-words 5 --max-chars 24 --size 92; 81 events; no chunk crosses a sentence, no orphan word, none ends on article/preposition. Colours by speaker: children cold grey, kid/kid_mimic white italic, cerberus red-orange, narrator white (tools/make_captions.py SPEAKER_COLOR).
-Mix: mix_test.sh -> mix-test.mp3 99.0 s, -14.2 LUFS.
-Rebuild (HTTPS_PROXY set; growl.wav copied from episode 001): python make_voice.py --rate=+8%; python post_voice.py; python make_music.py; python ../../../tools/make_captions.py words.json --script ../script-anim.md --font "Bebas Neue" --max-words 5 --max-chars 24 --size 92 -o captions.ass; bash mix_test.sh
+# audio-anim/ - black-eyed-children-vs-cerberus, script-anim v2 (218 words incl. dialogue). Synthesized, no licences.
+Narrator: Christopher, rate +16%, pitch -10Hz, voice_fx `deep`; voice_dark.wav 86.84 s. Characters as before (children = Ana + Maisie 14 ms apart; kid_mimic = Ana flat + echo/chorus; kid = Ana whisper; cerberus = Guy -18Hz, 3 layers + growl); words.json has speaker per word; sections.json has sections, "dialogue", "sentences".
+Sections (s): hook 0 | split_roll 4.05 | arena 13.73 | fight 40.30 | K.O. 67.74 | dawn 69.24 | cliffhanger 76.48 | CTA 84.01 (script has no Round sections now; K.O./dawn/cliff/CTA marks come from sentence starts).
+Dialogue: children "Can we come in?" 20.73 and 82.20; kid_mimic "Come in." 51.94; kid "No." 55.29 / "You can't come in." 56.14 / "I won't." 75.21; cerberus "Never let them in." 71.66 / "Go home." 73.54.
+Music/SFX (music.wav 89.84 s): locks 7.40/9.81 on names; VS 12.85; cabin knocks; lamp dies = sizzle + thump + dip (26.49); hypnotic murky 150 Hz throb 25.26-29.39 ("repeat it ... latch"); floor glow swell; Cerberus rises growl; serpent hiss 35.03 (+ second 35.6); venom drool drips + sizzle from "drool" 35.95; snap hit + drums; off-key music-box lullaby after "humming" (44.8), dead stop + hit at "breaks" 58.44; strong beat; fire + clawed planks + growl from "splits" 62.65, drag at "down" 65.43, gate slam 66.79; K.O. hit 67.71; soft dawn bells; red sub-rumble -> cut 80.22 -> knock 81.08 -> children's line 82.20 -> silence.
+Captions: captions.ass (--font "Bebas Neue" --max-words 5 --max-chars 24 --size 92), 67 events; no cross-sentence chunk, no orphan, no hanging article/preposition. Speaker colours: children grey, kid white italic, cerberus red-orange.
+Mix: mix_test.sh -> mix-test.mp3 89.93 s, -14.2 LUFS.
+Rebuild: python make_voice.py --rate=+16%; python post_voice.py; python make_music.py; python ../../../tools/make_captions.py words.json --script ../script-anim.md --font "Bebas Neue" --max-words 5 --max-chars 24 --size 92 -o captions.ass; bash mix_test.sh

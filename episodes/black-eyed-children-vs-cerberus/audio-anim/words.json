@@ -2,1393 +2,1309 @@
  {
   "word": "Only",
   "start": 0.0,
-  "end": 0.253,
+  "end": 0.238,
   "speaker": "narrator"
  },
  {
   "word": "one",
-  "start": 0.265,
-  "end": 0.487,
+  "start": 0.25,
+  "end": 0.455,
   "speaker": "narrator"
  },
  {
   "word": "head",
-  "start": 0.499,
-  "end": 0.77,
+  "start": 0.467,
+  "end": 0.719,
   "speaker": "narrator"
  },
  {
   "word": "is",
-  "start": 0.782,
-  "end": 0.893,
+  "start": 0.731,
+  "end": 0.834,
   "speaker": "narrator"
  },
  {
   "word": "awake",
-  "start": 0.905,
-  "end": 1.435,
+  "start": 0.846,
+  "end": 1.338,
   "speaker": "narrator"
  },
  {
   "word": "Who",
-  "start": 1.82,
-  "end": 1.945,
+  "start": 1.725,
+  "end": 1.844,
   "speaker": "narrator"
  },
  {
   "word": "survives",
-  "start": 1.957,
-  "end": 2.745,
+  "start": 1.856,
+  "end": 2.59,
   "speaker": "narrator"
  },
  {
   "word": "Tonight",
-  "start": 4.217,
-  "end": 4.592,
+  "start": 4.056,
+  "end": 4.411,
   "speaker": "narrator"
  },
  {
   "word": "two",
-  "start": 4.839,
-  "end": 5.072,
+  "start": 4.641,
+  "end": 4.858,
   "speaker": "narrator"
  },
  {
   "word": "legends",
-  "start": 5.085,
-  "end": 5.528,
+  "start": 4.87,
+  "end": 5.283,
   "speaker": "narrator"
  },
  {
   "word": "collide",
-  "start": 5.54,
-  "end": 6.156,
+  "start": 5.294,
+  "end": 5.868,
   "speaker": "narrator"
  },
  {
   "word": "On",
-  "start": 6.787,
-  "end": 6.901,
+  "start": 6.505,
+  "end": 6.609,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 6.914,
-  "end": 7.0,
+  "start": 6.621,
+  "end": 6.701,
   "speaker": "narrator"
  },
  {
   "word": "left",
-  "start": 7.011,
-  "end": 7.431,
+  "start": 6.713,
+  "end": 7.103,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 7.616,
-  "end": 7.738,
+  "start": 7.274,
+  "end": 7.389,
   "speaker": "narrator"
  },
  {
   "word": "Black-Eyed",
-  "start": 7.751,
-  "end": 8.305,
+  "start": 7.401,
+  "end": 7.917,
   "speaker": "narrator"
  },
  {
   "word": "Children",
-  "start": 8.317,
-  "end": 8.847,
+  "start": 7.928,
+  "end": 8.421,
   "speaker": "narrator"
  },
  {
   "word": "On",
-  "start": 9.487,
-  "end": 9.616,
+  "start": 9.059,
+  "end": 9.18,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 9.629,
-  "end": 9.702,
+  "start": 9.192,
+  "end": 9.26,
   "speaker": "narrator"
  },
  {
   "word": "right",
-  "start": 9.715,
-  "end": 10.034,
+  "start": 9.271,
+  "end": 9.569,
   "speaker": "narrator"
  },
  {
   "word": "Cerberus",
-  "start": 10.294,
-  "end": 11.056,
+  "start": 9.811,
+  "end": 10.522,
   "speaker": "narrator"
  },
  {
   "word": "Who",
-  "start": 11.728,
-  "end": 11.867,
+  "start": 11.202,
+  "end": 11.326,
   "speaker": "narrator"
  },
  {
   "word": "wins",
-  "start": 11.88,
-  "end": 12.422,
+  "start": 11.338,
+  "end": 11.842,
   "speaker": "narrator"
  },
  {
   "word": "Comment",
-  "start": 12.765,
-  "end": 13.308,
+  "start": 12.186,
+  "end": 12.696,
   "speaker": "narrator"
  },
  {
   "word": "A",
-  "start": 14.333,
-  "end": 14.388,
+  "start": 13.724,
+  "end": 13.778,
   "speaker": "narrator"
  },
  {
   "word": "kid",
-  "start": 14.4,
-  "end": 14.635,
+  "start": 13.79,
+  "end": 14.007,
   "speaker": "narrator"
  },
  {
   "word": "flees",
-  "start": 14.646,
-  "end": 15.028,
+  "start": 14.019,
+  "end": 14.374,
   "speaker": "narrator"
  },
  {
   "word": "through",
-  "start": 15.041,
-  "end": 15.201,
+  "start": 14.386,
+  "end": 14.535,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 15.213,
-  "end": 15.311,
+  "start": 14.547,
+  "end": 14.638,
   "speaker": "narrator"
  },
  {
   "word": "woods",
-  "start": 15.324,
-  "end": 15.742,
+  "start": 14.65,
+  "end": 15.039,
   "speaker": "narrator"
  },
  {
   "word": "until",
-  "start": 15.964,
-  "end": 16.247,
+  "start": 15.246,
+  "end": 15.51,
   "speaker": "narrator"
  },
  {
   "word": "a",
-  "start": 16.26,
-  "end": 16.309,
+  "start": 15.521,
+  "end": 15.567,
   "speaker": "narrator"
  },
  {
   "word": "lamp",
-  "start": 16.321,
-  "end": 16.678,
+  "start": 15.579,
+  "end": 15.911,
   "speaker": "narrator"
  },
  {
   "word": "glows",
-  "start": 16.691,
-  "end": 17.072,
+  "start": 15.922,
+  "end": 16.278,
   "speaker": "narrator"
  },
  {
   "word": "in",
-  "start": 17.085,
-  "end": 17.208,
+  "start": 16.289,
+  "end": 16.404,
   "speaker": "narrator"
  },
  {
   "word": "an",
-  "start": 17.22,
-  "end": 17.306,
+  "start": 16.415,
+  "end": 16.496,
   "speaker": "narrator"
  },
  {
   "word": "abandoned",
-  "start": 17.319,
-  "end": 17.823,
+  "start": 16.506,
+  "end": 16.977,
   "speaker": "narrator"
  },
  {
   "word": "cabin",
-  "start": 17.836,
-  "end": 18.341,
+  "start": 16.988,
+  "end": 17.459,
   "speaker": "narrator"
  },
  {
   "word": "They",
-  "start": 18.735,
-  "end": 18.824,
+  "start": 17.852,
+  "end": 17.933,
   "speaker": "narrator"
  },
  {
   "word": "slip",
-  "start": 18.836,
-  "end": 19.169,
+  "start": 17.945,
+  "end": 18.255,
   "speaker": "narrator"
  },
  {
   "word": "inside",
-  "start": 19.181,
-  "end": 19.748,
+  "start": 18.266,
+  "end": 18.793,
   "speaker": "narrator"
  },
  {
   "word": "but",
-  "start": 19.982,
-  "end": 20.117,
+  "start": 19.011,
+  "end": 19.138,
   "speaker": "narrator"
  },
  {
   "word": "a",
-  "start": 20.129,
-  "end": 20.154,
+  "start": 19.149,
+  "end": 19.172,
   "speaker": "narrator"
  },
  {
   "word": "knock",
-  "start": 20.166,
-  "end": 20.523,
+  "start": 19.183,
+  "end": 19.515,
   "speaker": "narrator"
  },
  {
   "word": "comes",
-  "start": 20.535,
-  "end": 21.114,
+  "start": 19.527,
+  "end": 20.067,
   "speaker": "narrator"
  },
  {
   "word": "Can",
-  "start": 21.775,
-  "end": 21.927,
+  "start": 20.727,
+  "end": 20.88,
   "speaker": "children"
  },
  {
   "word": "we",
-  "start": 21.944,
-  "end": 22.129,
+  "start": 20.896,
+  "end": 21.083,
   "speaker": "children"
  },
  {
   "word": "come",
-  "start": 22.146,
-  "end": 22.484,
+  "start": 21.1,
+  "end": 21.437,
   "speaker": "children"
  },
  {
   "word": "in",
-  "start": 22.501,
-  "end": 22.89,
+  "start": 21.454,
+  "end": 21.842,
   "speaker": "children"
  },
  {
   "word": "Legend",
-  "start": 23.581,
-  "end": 23.956,
+  "start": 22.535,
+  "end": 22.882,
   "speaker": "narrator"
  },
  {
   "word": "says",
-  "start": 23.969,
-  "end": 24.227,
+  "start": 22.892,
+  "end": 23.134,
   "speaker": "narrator"
  },
  {
   "word": "they",
-  "start": 24.239,
-  "end": 24.362,
+  "start": 23.146,
+  "end": 23.26,
   "speaker": "narrator"
  },
  {
   "word": "cannot",
-  "start": 24.375,
-  "end": 24.731,
+  "start": 23.271,
+  "end": 23.604,
   "speaker": "narrator"
  },
  {
   "word": "enter",
-  "start": 24.744,
-  "end": 25.003,
+  "start": 23.615,
+  "end": 23.856,
   "speaker": "narrator"
  },
  {
   "word": "unless",
-  "start": 25.015,
-  "end": 25.323,
+  "start": 23.867,
+  "end": 24.154,
   "speaker": "narrator"
  },
  {
   "word": "invited",
-  "start": 25.335,
-  "end": 25.889,
+  "start": 24.166,
+  "end": 24.681,
   "speaker": "narrator"
  },
  {
   "word": "So",
-  "start": 26.278,
-  "end": 26.457,
+  "start": 25.066,
+  "end": 25.21,
+  "speaker": "narrator"
+ },
+ {
+  "word": "they",
+  "start": 25.22,
+  "end": 25.347,
+  "speaker": "narrator"
+ },
+ {
+  "word": "repeat",
+  "start": 25.359,
+  "end": 25.702,
+  "speaker": "narrator"
+ },
+ {
+  "word": "it",
+  "start": 25.714,
+  "end": 25.851,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 26.469,
-  "end": 26.592,
+  "start": 26.07,
+  "end": 26.184,
   "speaker": "narrator"
  },
  {
-  "word": "kid",
-  "start": 26.605,
-  "end": 26.851,
+  "word": "lamp",
+  "start": 26.195,
+  "end": 26.482,
   "speaker": "narrator"
  },
  {
-  "word": "stays",
-  "start": 26.864,
-  "end": 27.221,
-  "speaker": "narrator"
- },
- {
-  "word": "silent",
-  "start": 27.233,
-  "end": 27.738,
-  "speaker": "narrator"
- },
- {
-  "word": "but",
-  "start": 27.886,
-  "end": 28.008,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 28.021,
-  "end": 28.107,
-  "speaker": "narrator"
- },
- {
-  "word": "floor",
-  "start": 28.119,
-  "end": 28.464,
-  "speaker": "narrator"
- },
- {
-  "word": "begins",
-  "start": 28.476,
-  "end": 28.858,
-  "speaker": "narrator"
- },
- {
-  "word": "to",
-  "start": 28.87,
-  "end": 28.969,
-  "speaker": "narrator"
- },
- {
-  "word": "glow",
-  "start": 28.982,
-  "end": 29.424,
-  "speaker": "narrator"
- },
- {
-  "word": "Cerberus",
-  "start": 29.782,
-  "end": 30.387,
-  "speaker": "narrator"
- },
- {
-  "word": "who",
-  "start": 30.597,
-  "end": 30.708,
-  "speaker": "narrator"
- },
- {
-  "word": "keeps",
-  "start": 30.72,
-  "end": 31.041,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 31.052,
-  "end": 31.163,
-  "speaker": "narrator"
- },
- {
-  "word": "gate",
-  "start": 31.176,
-  "end": 31.397,
-  "speaker": "narrator"
- },
- {
-  "word": "of",
-  "start": 31.41,
-  "end": 31.496,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 31.508,
-  "end": 31.607,
-  "speaker": "narrator"
- },
- {
-  "word": "dead",
-  "start": 31.619,
-  "end": 31.964,
-  "speaker": "narrator"
- },
- {
-  "word": "climbs",
-  "start": 32.234,
-  "end": 32.653,
-  "speaker": "narrator"
- },
- {
-  "word": "through",
-  "start": 32.665,
-  "end": 32.826,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 32.838,
-  "end": 32.936,
-  "speaker": "narrator"
- },
- {
-  "word": "boards",
-  "start": 32.949,
-  "end": 33.33,
+  "word": "dies",
+  "start": 26.493,
+  "end": 26.953,
   "speaker": "narrator"
  },
  {
   "word": "and",
-  "start": 33.343,
-  "end": 33.478,
-  "speaker": "narrator"
- },
- {
-  "word": "blocks",
-  "start": 33.491,
-  "end": 33.873,
+  "start": 27.17,
+  "end": 27.273,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 33.884,
-  "end": 33.983,
+  "start": 27.285,
+  "end": 27.364,
   "speaker": "narrator"
  },
  {
-  "word": "door",
-  "start": 33.995,
-  "end": 34.414,
+  "word": "kid's",
+  "start": 27.376,
+  "end": 27.686,
   "speaker": "narrator"
  },
  {
-  "word": "Legend",
-  "start": 34.764,
-  "end": 35.163,
-  "speaker": "narrator"
- },
- {
-  "word": "also",
-  "start": 35.176,
-  "end": 35.508,
-  "speaker": "narrator"
- },
- {
-  "word": "says",
-  "start": 35.521,
-  "end": 35.804,
-  "speaker": "narrator"
- },
- {
-  "word": "music",
-  "start": 35.817,
-  "end": 36.186,
-  "speaker": "narrator"
- },
- {
-  "word": "puts",
-  "start": 36.197,
-  "end": 36.407,
-  "speaker": "narrator"
- },
- {
-  "word": "him",
-  "start": 36.42,
-  "end": 36.53,
-  "speaker": "narrator"
- },
- {
-  "word": "to",
-  "start": 36.542,
-  "end": 36.628,
-  "speaker": "narrator"
- },
- {
-  "word": "sleep",
-  "start": 36.641,
-  "end": 37.109,
-  "speaker": "narrator"
- },
- {
-  "word": "Round",
-  "start": 37.65,
-  "end": 37.986,
-  "speaker": "narrator"
- },
- {
-  "word": "one",
-  "start": 37.998,
-  "end": 38.367,
-  "speaker": "narrator"
- },
- {
-  "word": "Three",
-  "start": 38.676,
-  "end": 38.94,
-  "speaker": "narrator"
- },
- {
-  "word": "heads",
-  "start": 38.953,
-  "end": 39.236,
-  "speaker": "narrator"
- },
- {
-  "word": "snap",
-  "start": 39.249,
-  "end": 39.643,
-  "speaker": "narrator"
- },
- {
-  "word": "and",
-  "start": 39.654,
-  "end": 39.753,
-  "speaker": "narrator"
- },
- {
-  "word": "hurl",
-  "start": 39.766,
-  "end": 40.012,
-  "speaker": "narrator"
- },
- {
-  "word": "them",
-  "start": 40.024,
-  "end": 40.184,
-  "speaker": "narrator"
- },
- {
-  "word": "off",
-  "start": 40.197,
-  "end": 40.381,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 40.394,
-  "end": 40.467,
-  "speaker": "narrator"
- },
- {
-  "word": "porch",
-  "start": 40.48,
-  "end": 41.01,
-  "speaker": "narrator"
- },
- {
-  "word": "They",
-  "start": 41.415,
-  "end": 41.508,
-  "speaker": "narrator"
- },
- {
-  "word": "rise",
-  "start": 41.52,
-  "end": 41.902,
-  "speaker": "narrator"
- },
- {
-  "word": "unmarked",
-  "start": 41.914,
-  "end": 42.517,
-  "speaker": "narrator"
- },
- {
-  "word": "and",
-  "start": 42.74,
-  "end": 42.875,
-  "speaker": "narrator"
- },
- {
-  "word": "one",
-  "start": 42.888,
-  "end": 43.096,
-  "speaker": "narrator"
- },
- {
-  "word": "begins",
-  "start": 43.109,
-  "end": 43.503,
-  "speaker": "narrator"
- },
- {
-  "word": "to",
-  "start": 43.515,
-  "end": 43.614,
-  "speaker": "narrator"
- },
- {
-  "word": "hum",
-  "start": 43.626,
-  "end": 44.045,
-  "speaker": "narrator"
- },
- {
-  "word": "Round",
-  "start": 44.586,
-  "end": 44.919,
-  "speaker": "narrator"
- },
- {
-  "word": "two",
-  "start": 44.931,
-  "end": 45.35,
-  "speaker": "narrator"
- },
- {
-  "word": "The",
-  "start": 45.655,
-  "end": 45.718,
-  "speaker": "narrator"
- },
- {
-  "word": "lullaby",
-  "start": 45.73,
-  "end": 46.199,
+  "word": "hand",
+  "start": 27.697,
+  "end": 27.984,
   "speaker": "narrator"
  },
  {
   "word": "drifts",
-  "start": 46.21,
-  "end": 46.716,
+  "start": 27.995,
+  "end": 28.339,
   "speaker": "narrator"
  },
  {
-  "word": "and",
-  "start": 46.851,
-  "end": 46.974,
+  "word": "toward",
+  "start": 28.351,
+  "end": 28.58,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 46.987,
-  "end": 47.085,
+  "start": 28.591,
+  "end": 28.66,
   "speaker": "narrator"
  },
  {
-  "word": "left",
-  "start": 47.098,
-  "end": 47.381,
-  "speaker": "narrator"
- },
- {
-  "word": "head",
-  "start": 47.392,
-  "end": 47.615,
-  "speaker": "narrator"
- },
- {
-  "word": "sags",
-  "start": 47.626,
-  "end": 48.267,
+  "word": "latch",
+  "start": 28.672,
+  "end": 29.188,
   "speaker": "narrator"
  },
  {
   "word": "Then",
-  "start": 48.655,
-  "end": 48.865,
+  "start": 29.584,
+  "end": 29.796,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 48.878,
-  "end": 48.951,
-  "speaker": "narrator"
- },
- {
-  "word": "middle",
-  "start": 48.964,
-  "end": 49.247,
-  "speaker": "narrator"
- },
- {
-  "word": "falls",
-  "start": 49.26,
-  "end": 49.788,
-  "speaker": "narrator"
- },
- {
-  "word": "and",
-  "start": 49.949,
-  "end": 50.109,
-  "speaker": "narrator"
- },
- {
-  "word": "Cerberus",
-  "start": 50.121,
-  "end": 50.601,
-  "speaker": "narrator"
- },
- {
-  "word": "sinks",
-  "start": 50.614,
-  "end": 50.921,
-  "speaker": "narrator"
- },
- {
-  "word": "to",
-  "start": 50.934,
-  "end": 51.045,
-  "speaker": "narrator"
- },
- {
-  "word": "his",
-  "start": 51.057,
-  "end": 51.204,
-  "speaker": "narrator"
- },
- {
-  "word": "knees",
-  "start": 51.217,
-  "end": 51.759,
-  "speaker": "narrator"
- },
- {
-  "word": "Only",
-  "start": 52.143,
-  "end": 52.393,
-  "speaker": "narrator"
- },
- {
-  "word": "one",
-  "start": 52.405,
-  "end": 52.627,
-  "speaker": "narrator"
- },
- {
-  "word": "head",
-  "start": 52.639,
-  "end": 52.861,
-  "speaker": "narrator"
- },
- {
-  "word": "stays",
-  "start": 52.873,
-  "end": 53.193,
-  "speaker": "narrator"
- },
- {
-  "word": "awake",
-  "start": 53.206,
-  "end": 53.648,
-  "speaker": "narrator"
- },
- {
-  "word": "and",
-  "start": 53.882,
-  "end": 53.957,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 53.969,
-  "end": 54.055,
-  "speaker": "narrator"
- },
- {
-  "word": "children",
-  "start": 54.067,
-  "end": 54.486,
-  "speaker": "narrator"
- },
- {
-  "word": "step",
-  "start": 54.498,
-  "end": 54.806,
-  "speaker": "narrator"
- },
- {
-  "word": "closer",
-  "start": 54.819,
-  "end": 55.397,
-  "speaker": "narrator"
- },
- {
-  "word": "Round",
-  "start": 55.907,
-  "end": 56.241,
-  "speaker": "narrator"
- },
- {
-  "word": "three",
-  "start": 56.254,
-  "end": 56.696,
-  "speaker": "narrator"
- },
- {
-  "word": "They",
-  "start": 56.955,
-  "end": 57.044,
-  "speaker": "narrator"
- },
- {
-  "word": "speak",
-  "start": 57.056,
-  "end": 57.414,
-  "speaker": "narrator"
- },
- {
-  "word": "in",
-  "start": 57.425,
-  "end": 57.5,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 57.511,
-  "end": 57.586,
-  "speaker": "narrator"
- },
- {
-  "word": "kid's",
-  "start": 57.598,
-  "end": 57.968,
-  "speaker": "narrator"
- },
- {
-  "word": "own",
-  "start": 57.98,
-  "end": 58.176,
-  "speaker": "narrator"
- },
- {
-  "word": "voice",
-  "start": 58.189,
-  "end": 58.768,
-  "speaker": "narrator"
- },
- {
-  "word": "Come",
-  "start": 59.404,
-  "end": 59.733,
-  "speaker": "kid_mimic"
- },
- {
-  "word": "in",
-  "start": 59.755,
-  "end": 60.327,
-  "speaker": "kid_mimic"
- },
- {
-  "word": "But",
-  "start": 61.024,
-  "end": 61.098,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 61.111,
-  "end": 61.221,
-  "speaker": "narrator"
- },
- {
-  "word": "kid",
-  "start": 61.234,
-  "end": 61.493,
-  "speaker": "narrator"
- },
- {
-  "word": "answers",
-  "start": 61.504,
-  "end": 62.158,
-  "speaker": "narrator"
- },
- {
-  "word": "No.",
-  "start": 62.822,
-  "end": 63.291,
-  "speaker": "kid"
- },
- {
-  "word": "You",
-  "start": 63.66,
-  "end": 63.797,
-  "speaker": "kid"
- },
- {
-  "word": "can't",
-  "start": 63.811,
-  "end": 64.208,
-  "speaker": "kid"
- },
- {
-  "word": "come",
-  "start": 64.223,
-  "end": 64.506,
-  "speaker": "kid"
- },
- {
-  "word": "in",
-  "start": 64.521,
-  "end": 64.875,
-  "speaker": "kid"
- },
- {
-  "word": "The",
-  "start": 65.543,
-  "end": 65.601,
-  "speaker": "narrator"
- },
- {
-  "word": "song",
-  "start": 65.613,
-  "end": 65.983,
-  "speaker": "narrator"
- },
- {
-  "word": "breaks",
-  "start": 65.995,
-  "end": 66.451,
-  "speaker": "narrator"
- },
- {
-  "word": "and",
-  "start": 66.636,
-  "end": 66.844,
-  "speaker": "narrator"
- },
- {
-  "word": "all",
-  "start": 66.857,
-  "end": 67.091,
-  "speaker": "narrator"
- },
- {
-  "word": "three",
-  "start": 67.104,
-  "end": 67.423,
-  "speaker": "narrator"
- },
- {
-  "word": "heads",
-  "start": 67.436,
-  "end": 67.719,
-  "speaker": "narrator"
- },
- {
-  "word": "wake",
-  "start": 67.732,
-  "end": 68.174,
-  "speaker": "narrator"
- },
- {
-  "word": "Cerberus",
-  "start": 68.556,
-  "end": 69.019,
-  "speaker": "narrator"
- },
- {
-  "word": "seizes",
-  "start": 69.032,
-  "end": 69.425,
-  "speaker": "narrator"
- },
- {
-  "word": "them",
-  "start": 69.437,
-  "end": 69.66,
-  "speaker": "narrator"
- },
- {
-  "word": "and",
-  "start": 69.905,
-  "end": 69.992,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 70.004,
-  "end": 70.09,
-  "speaker": "narrator"
- },
- {
-  "word": "porch",
-  "start": 70.102,
-  "end": 70.435,
-  "speaker": "narrator"
- },
- {
-  "word": "splits",
-  "start": 70.448,
-  "end": 70.817,
-  "speaker": "narrator"
- },
- {
-  "word": "open",
-  "start": 70.829,
-  "end": 71.1,
-  "speaker": "narrator"
- },
- {
-  "word": "into",
-  "start": 71.113,
-  "end": 71.334,
-  "speaker": "narrator"
- },
- {
-  "word": "a",
-  "start": 71.346,
-  "end": 71.396,
-  "speaker": "narrator"
- },
- {
-  "word": "red",
-  "start": 71.408,
-  "end": 71.666,
-  "speaker": "narrator"
- },
- {
-  "word": "gate",
-  "start": 71.679,
-  "end": 72.073,
-  "speaker": "narrator"
- },
- {
-  "word": "He",
-  "start": 72.46,
-  "end": 72.542,
-  "speaker": "narrator"
- },
- {
-  "word": "drags",
-  "start": 72.555,
-  "end": 72.973,
-  "speaker": "narrator"
- },
- {
-  "word": "both",
-  "start": 72.985,
-  "end": 73.256,
-  "speaker": "narrator"
- },
- {
-  "word": "children",
-  "start": 73.268,
-  "end": 73.638,
-  "speaker": "narrator"
- },
- {
-  "word": "down",
-  "start": 73.65,
-  "end": 74.02,
-  "speaker": "narrator"
- },
- {
-  "word": "and",
-  "start": 74.241,
-  "end": 74.34,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 74.353,
-  "end": 74.45,
-  "speaker": "narrator"
- },
- {
-  "word": "gate",
-  "start": 74.463,
-  "end": 74.697,
-  "speaker": "narrator"
- },
- {
-  "word": "slams",
-  "start": 74.709,
-  "end": 75.104,
-  "speaker": "narrator"
- },
- {
-  "word": "shut",
-  "start": 75.115,
-  "end": 75.535,
-  "speaker": "narrator"
- },
- {
-  "word": "Cerberus",
-  "start": 76.096,
-  "end": 76.654,
-  "speaker": "narrator"
- },
- {
-  "word": "wins",
-  "start": 76.666,
-  "end": 77.257,
-  "speaker": "narrator"
- },
- {
-  "word": "At",
-  "start": 77.831,
-  "end": 77.981,
-  "speaker": "narrator"
- },
- {
-  "word": "dawn",
-  "start": 77.993,
-  "end": 78.387,
-  "speaker": "narrator"
- },
- {
-  "word": "he",
-  "start": 78.608,
-  "end": 78.719,
-  "speaker": "narrator"
- },
- {
-  "word": "turns",
-  "start": 78.732,
-  "end": 79.101,
-  "speaker": "narrator"
- },
- {
-  "word": "to",
-  "start": 79.114,
-  "end": 79.2,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 79.212,
-  "end": 79.311,
-  "speaker": "narrator"
- },
- {
-  "word": "kid",
-  "start": 79.323,
-  "end": 79.717,
-  "speaker": "narrator"
- },
- {
-  "word": "Never",
-  "start": 80.373,
-  "end": 80.797,
-  "speaker": "cerberus"
- },
- {
-  "word": "let",
-  "start": 80.832,
-  "end": 81.091,
-  "speaker": "cerberus"
- },
- {
-  "word": "them",
-  "start": 81.125,
-  "end": 81.349,
-  "speaker": "cerberus"
- },
- {
-  "word": "in",
-  "start": 81.383,
-  "end": 81.814,
-  "speaker": "cerberus"
- },
- {
-  "word": "Go",
-  "start": 82.261,
-  "end": 82.49,
-  "speaker": "cerberus"
- },
- {
-  "word": "home",
-  "start": 82.508,
-  "end": 83.222,
-  "speaker": "cerberus"
- },
- {
-  "word": "I",
-  "start": 83.926,
-  "end": 84.034,
-  "speaker": "kid"
- },
- {
-  "word": "won't",
-  "start": 84.049,
-  "end": 84.605,
-  "speaker": "kid"
- },
- {
-  "word": "But",
-  "start": 85.194,
-  "end": 85.28,
-  "speaker": "narrator"
- },
- {
-  "word": "next",
-  "start": 85.293,
-  "end": 85.601,
-  "speaker": "narrator"
- },
- {
-  "word": "night",
-  "start": 85.613,
-  "end": 85.921,
-  "speaker": "narrator"
- },
- {
-  "word": "a",
-  "start": 86.229,
-  "end": 86.266,
-  "speaker": "narrator"
- },
- {
-  "word": "red",
-  "start": 86.278,
-  "end": 86.537,
-  "speaker": "narrator"
- },
- {
-  "word": "glow",
-  "start": 86.549,
-  "end": 86.833,
-  "speaker": "narrator"
- },
- {
-  "word": "creeps",
-  "start": 86.844,
-  "end": 87.239,
-  "speaker": "narrator"
- },
- {
-  "word": "under",
-  "start": 87.251,
-  "end": 87.436,
-  "speaker": "narrator"
- },
- {
-  "word": "the",
-  "start": 87.448,
-  "end": 87.534,
-  "speaker": "narrator"
- },
- {
-  "word": "kid's",
-  "start": 87.547,
-  "end": 87.854,
+  "start": 29.807,
+  "end": 29.899,
   "speaker": "narrator"
  },
  {
   "word": "floor",
-  "start": 87.867,
-  "end": 88.335,
+  "start": 29.91,
+  "end": 30.22,
   "speaker": "narrator"
  },
  {
-  "word": "Then",
-  "start": 88.696,
-  "end": 89.015,
+  "word": "glows",
+  "start": 30.231,
+  "end": 30.758,
+  "speaker": "narrator"
+ },
+ {
+  "word": "and",
+  "start": 30.931,
+  "end": 31.091,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Cerberus",
+  "start": 31.102,
+  "end": 31.711,
+  "speaker": "narrator"
+ },
+ {
+  "word": "keeper",
+  "start": 31.905,
+  "end": 32.249,
+  "speaker": "narrator"
+ },
+ {
+  "word": "of",
+  "start": 32.261,
+  "end": 32.329,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 32.341,
+  "end": 32.421,
+  "speaker": "narrator"
+ },
+ {
+  "word": "gate",
+  "start": 32.432,
+  "end": 32.638,
+  "speaker": "narrator"
+ },
+ {
+  "word": "of",
+  "start": 32.65,
+  "end": 32.742,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 32.753,
+  "end": 32.845,
+  "speaker": "narrator"
+ },
+ {
+  "word": "dead",
+  "start": 32.857,
+  "end": 33.144,
+  "speaker": "narrator"
+ },
+ {
+  "word": "rises",
+  "start": 33.361,
+  "end": 33.958,
+  "speaker": "narrator"
+ },
+ {
+  "word": "His",
+  "start": 34.351,
+  "end": 34.491,
+  "speaker": "narrator"
+ },
+ {
+  "word": "tail",
+  "start": 34.503,
+  "end": 34.835,
+  "speaker": "narrator"
+ },
+ {
+  "word": "is",
+  "start": 34.846,
+  "end": 34.949,
+  "speaker": "narrator"
+ },
+ {
+  "word": "a",
+  "start": 34.961,
+  "end": 35.019,
+  "speaker": "narrator"
+ },
+ {
+  "word": "serpent",
+  "start": 35.029,
+  "end": 35.523,
+  "speaker": "narrator"
+ },
+ {
+  "word": "and",
+  "start": 35.684,
+  "end": 35.787,
+  "speaker": "narrator"
+ },
+ {
+  "word": "his",
+  "start": 35.797,
+  "end": 35.936,
+  "speaker": "narrator"
+ },
+ {
+  "word": "drool",
+  "start": 35.946,
+  "end": 36.256,
+  "speaker": "narrator"
+ },
+ {
+  "word": "withers",
+  "start": 36.268,
+  "end": 36.566,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 36.577,
+  "end": 36.658,
+  "speaker": "narrator"
+ },
+ {
+  "word": "grass",
+  "start": 36.669,
+  "end": 37.208,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Legend",
+  "start": 37.582,
+  "end": 37.951,
+  "speaker": "narrator"
+ },
+ {
+  "word": "also",
+  "start": 37.963,
+  "end": 38.271,
+  "speaker": "narrator"
+ },
+ {
+  "word": "says",
+  "start": 38.283,
+  "end": 38.547,
+  "speaker": "narrator"
+ },
+ {
+  "word": "music",
+  "start": 38.558,
+  "end": 38.902,
+  "speaker": "narrator"
+ },
+ {
+  "word": "puts",
+  "start": 38.914,
+  "end": 39.109,
+  "speaker": "narrator"
+ },
+ {
+  "word": "him",
+  "start": 39.12,
+  "end": 39.223,
+  "speaker": "narrator"
+ },
+ {
+  "word": "to",
+  "start": 39.235,
+  "end": 39.315,
+  "speaker": "narrator"
+ },
+ {
+  "word": "sleep",
+  "start": 39.327,
+  "end": 39.762,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Three",
+  "start": 40.304,
+  "end": 40.537,
+  "speaker": "narrator"
+ },
+ {
+  "word": "heads",
+  "start": 40.549,
+  "end": 40.801,
+  "speaker": "narrator"
+ },
+ {
+  "word": "snap",
+  "start": 40.813,
+  "end": 41.226,
+  "speaker": "narrator"
+ },
+ {
+  "word": "and",
+  "start": 41.432,
+  "end": 41.524,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 41.535,
+  "end": 41.604,
+  "speaker": "narrator"
+ },
+ {
+  "word": "children",
+  "start": 41.615,
+  "end": 41.982,
+  "speaker": "narrator"
+ },
+ {
+  "word": "fly",
+  "start": 41.994,
+  "end": 42.326,
+  "speaker": "narrator"
+ },
+ {
+  "word": "off",
+  "start": 42.338,
+  "end": 42.498,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 42.51,
+  "end": 42.602,
+  "speaker": "narrator"
+ },
+ {
+  "word": "porch",
+  "start": 42.613,
+  "end": 43.106,
+  "speaker": "narrator"
+ },
+ {
+  "word": "They",
+  "start": 43.505,
+  "end": 43.591,
+  "speaker": "narrator"
+ },
+ {
+  "word": "rise",
+  "start": 43.603,
+  "end": 43.946,
+  "speaker": "narrator"
+ },
+ {
+  "word": "unblinking",
+  "start": 43.958,
+  "end": 44.543,
+  "speaker": "narrator"
+ },
+ {
+  "word": "humming",
+  "start": 44.772,
+  "end": 45.163,
+  "speaker": "narrator"
+ },
+ {
+  "word": "The",
+  "start": 45.552,
+  "end": 45.612,
+  "speaker": "narrator"
+ },
+ {
+  "word": "lullaby",
+  "start": 45.623,
+  "end": 46.048,
+  "speaker": "narrator"
+ },
+ {
+  "word": "drifts",
+  "start": 46.059,
+  "end": 46.529,
+  "speaker": "narrator"
+ },
+ {
+  "word": "two",
+  "start": 46.735,
+  "end": 46.919,
+  "speaker": "narrator"
+ },
+ {
+  "word": "heads",
+  "start": 46.93,
+  "end": 47.183,
+  "speaker": "narrator"
+ },
+ {
+  "word": "sag",
+  "start": 47.194,
+  "end": 47.606,
+  "speaker": "narrator"
+ },
+ {
+  "word": "and",
+  "start": 47.848,
+  "end": 47.962,
   "speaker": "narrator"
  },
  {
   "word": "one",
-  "start": 89.237,
-  "end": 89.483,
+  "start": 47.974,
+  "end": 48.192,
   "speaker": "narrator"
  },
  {
-  "word": "knock",
-  "start": 89.496,
-  "end": 89.976,
+  "word": "fights",
+  "start": 48.203,
+  "end": 48.535,
   "speaker": "narrator"
  },
  {
-  "word": "Can",
-  "start": 91.217,
-  "end": 91.37,
-  "speaker": "children"
+  "word": "sleep",
+  "start": 48.547,
+  "end": 48.936,
+  "speaker": "narrator"
  },
  {
-  "word": "we",
-  "start": 91.387,
-  "end": 91.573,
-  "speaker": "children"
+  "word": "Now",
+  "start": 49.319,
+  "end": 49.575,
+  "speaker": "narrator"
  },
  {
-  "word": "come",
-  "start": 91.59,
-  "end": 91.927,
-  "speaker": "children"
+  "word": "they",
+  "start": 49.587,
+  "end": 49.724,
+  "speaker": "narrator"
+ },
+ {
+  "word": "speak",
+  "start": 49.735,
+  "end": 50.057,
+  "speaker": "narrator"
  },
  {
   "word": "in",
-  "start": 91.944,
-  "end": 92.332,
-  "speaker": "children"
- },
- {
-  "word": "Did",
-  "start": 93.025,
-  "end": 93.114,
+  "start": 50.069,
+  "end": 50.137,
   "speaker": "narrator"
  },
  {
-  "word": "hell",
-  "start": 93.126,
-  "end": 93.422,
+  "word": "the",
+  "start": 50.148,
+  "end": 50.217,
   "speaker": "narrator"
  },
  {
-  "word": "really",
-  "start": 93.434,
-  "end": 93.693,
+  "word": "kid's",
+  "start": 50.228,
+  "end": 50.561,
   "speaker": "narrator"
  },
  {
-  "word": "keep",
-  "start": 93.705,
-  "end": 93.927,
+  "word": "own",
+  "start": 50.573,
+  "end": 50.756,
+  "speaker": "narrator"
+ },
+ {
+  "word": "voice",
+  "start": 50.768,
+  "end": 51.306,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Come",
+  "start": 51.947,
+  "end": 52.276,
+  "speaker": "kid_mimic"
+ },
+ {
+  "word": "in",
+  "start": 52.3,
+  "end": 52.871,
+  "speaker": "kid_mimic"
+ },
+ {
+  "word": "But",
+  "start": 53.567,
+  "end": 53.639,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 53.651,
+  "end": 53.754,
+  "speaker": "narrator"
+ },
+ {
+  "word": "kid",
+  "start": 53.766,
+  "end": 54.006,
+  "speaker": "narrator"
+ },
+ {
+  "word": "answers",
+  "start": 54.018,
+  "end": 54.626,
+  "speaker": "narrator"
+ },
+ {
+  "word": "No.",
+  "start": 55.297,
+  "end": 55.766,
+  "speaker": "kid"
+ },
+ {
+  "word": "You",
+  "start": 56.135,
+  "end": 56.273,
+  "speaker": "kid"
+ },
+ {
+  "word": "can't",
+  "start": 56.286,
+  "end": 56.683,
+  "speaker": "kid"
+ },
+ {
+  "word": "come",
+  "start": 56.698,
+  "end": 56.981,
+  "speaker": "kid"
+ },
+ {
+  "word": "in",
+  "start": 56.996,
+  "end": 57.35,
+  "speaker": "kid"
+ },
+ {
+  "word": "The",
+  "start": 58.019,
+  "end": 58.077,
+  "speaker": "narrator"
+ },
+ {
+  "word": "song",
+  "start": 58.089,
+  "end": 58.432,
+  "speaker": "narrator"
+ },
+ {
+  "word": "breaks",
+  "start": 58.444,
+  "end": 58.869,
+  "speaker": "narrator"
+ },
+ {
+  "word": "and",
+  "start": 59.041,
+  "end": 59.236,
+  "speaker": "narrator"
+ },
+ {
+  "word": "all",
+  "start": 59.246,
+  "end": 59.464,
+  "speaker": "narrator"
+ },
+ {
+  "word": "three",
+  "start": 59.476,
+  "end": 59.774,
+  "speaker": "narrator"
+ },
+ {
+  "word": "heads",
+  "start": 59.786,
+  "end": 60.05,
+  "speaker": "narrator"
+ },
+ {
+  "word": "wake",
+  "start": 60.061,
+  "end": 60.473,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Cerberus",
+  "start": 60.866,
+  "end": 61.316,
+  "speaker": "narrator"
+ },
+ {
+  "word": "seizes",
+  "start": 61.327,
+  "end": 61.695,
   "speaker": "narrator"
  },
  {
   "word": "them",
-  "start": 93.939,
-  "end": 94.21,
+  "start": 61.706,
+  "end": 61.913,
   "speaker": "narrator"
  },
  {
-  "word": "Who's",
-  "start": 94.613,
-  "end": 94.823,
+  "word": "and",
+  "start": 62.141,
+  "end": 62.222,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 62.233,
+  "end": 62.314,
+  "speaker": "narrator"
+ },
+ {
+  "word": "porch",
+  "start": 62.325,
+  "end": 62.634,
+  "speaker": "narrator"
+ },
+ {
+  "word": "splits",
+  "start": 62.646,
+  "end": 62.979,
+  "speaker": "narrator"
+ },
+ {
+  "word": "into",
+  "start": 62.99,
+  "end": 63.219,
+  "speaker": "narrator"
+ },
+ {
+  "word": "a",
+  "start": 63.231,
+  "end": 63.277,
+  "speaker": "narrator"
+ },
+ {
+  "word": "red",
+  "start": 63.288,
+  "end": 63.541,
+  "speaker": "narrator"
+ },
+ {
+  "word": "gate",
+  "start": 63.552,
+  "end": 63.918,
+  "speaker": "narrator"
+ },
+ {
+  "word": "He",
+  "start": 64.314,
+  "end": 64.396,
+  "speaker": "narrator"
+ },
+ {
+  "word": "drags",
+  "start": 64.408,
+  "end": 64.797,
+  "speaker": "narrator"
+ },
+ {
+  "word": "both",
+  "start": 64.809,
+  "end": 65.061,
+  "speaker": "narrator"
+ },
+ {
+  "word": "children",
+  "start": 65.073,
+  "end": 65.416,
+  "speaker": "narrator"
+ },
+ {
+  "word": "down",
+  "start": 65.428,
+  "end": 65.772,
+  "speaker": "narrator"
+ },
+ {
+  "word": "and",
+  "start": 65.978,
+  "end": 66.07,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 66.081,
+  "end": 66.173,
+  "speaker": "narrator"
+ },
+ {
+  "word": "gate",
+  "start": 66.185,
+  "end": 66.403,
+  "speaker": "narrator"
+ },
+ {
+  "word": "slams",
+  "start": 66.414,
+  "end": 66.78,
+  "speaker": "narrator"
+ },
+ {
+  "word": "shut",
+  "start": 66.792,
+  "end": 67.183,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Cerberus",
+  "start": 67.741,
+  "end": 68.258,
+  "speaker": "narrator"
+ },
+ {
+  "word": "wins",
+  "start": 68.27,
+  "end": 68.82,
+  "speaker": "narrator"
+ },
+ {
+  "word": "At",
+  "start": 69.245,
+  "end": 69.385,
+  "speaker": "narrator"
+ },
+ {
+  "word": "dawn",
+  "start": 69.397,
+  "end": 69.763,
+  "speaker": "narrator"
+ },
+ {
+  "word": "he",
+  "start": 69.969,
+  "end": 70.072,
+  "speaker": "narrator"
+ },
+ {
+  "word": "turns",
+  "start": 70.084,
+  "end": 70.428,
+  "speaker": "narrator"
+ },
+ {
+  "word": "to",
+  "start": 70.439,
+  "end": 70.52,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 70.531,
+  "end": 70.623,
+  "speaker": "narrator"
+ },
+ {
+  "word": "kid",
+  "start": 70.634,
+  "end": 71.001,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Never",
+  "start": 71.66,
+  "end": 72.083,
+  "speaker": "cerberus"
+ },
+ {
+  "word": "let",
+  "start": 72.117,
+  "end": 72.376,
+  "speaker": "cerberus"
+ },
+ {
+  "word": "them",
+  "start": 72.411,
+  "end": 72.634,
+  "speaker": "cerberus"
+ },
+ {
+  "word": "in",
+  "start": 72.669,
+  "end": 73.1,
+  "speaker": "cerberus"
+ },
+ {
+  "word": "Go",
+  "start": 73.546,
+  "end": 73.776,
+  "speaker": "cerberus"
+ },
+ {
+  "word": "home",
+  "start": 73.794,
+  "end": 74.507,
+  "speaker": "cerberus"
+ },
+ {
+  "word": "I",
+  "start": 75.211,
+  "end": 75.321,
+  "speaker": "kid"
+ },
+ {
+  "word": "won't",
+  "start": 75.336,
+  "end": 75.89,
+  "speaker": "kid"
+ },
+ {
+  "word": "But",
+  "start": 76.48,
+  "end": 76.563,
   "speaker": "narrator"
  },
  {
   "word": "next",
-  "start": 94.836,
-  "end": 95.353,
+  "start": 76.574,
+  "end": 76.86,
+  "speaker": "narrator"
+ },
+ {
+  "word": "night",
+  "start": 76.872,
+  "end": 77.158,
+  "speaker": "narrator"
+ },
+ {
+  "word": "a",
+  "start": 77.446,
+  "end": 77.48,
+  "speaker": "narrator"
+ },
+ {
+  "word": "red",
+  "start": 77.491,
+  "end": 77.732,
+  "speaker": "narrator"
+ },
+ {
+  "word": "glow",
+  "start": 77.744,
+  "end": 78.007,
+  "speaker": "narrator"
+ },
+ {
+  "word": "creeps",
+  "start": 78.018,
+  "end": 78.385,
+  "speaker": "narrator"
+ },
+ {
+  "word": "under",
+  "start": 78.397,
+  "end": 78.569,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 78.58,
+  "end": 78.661,
+  "speaker": "narrator"
+ },
+ {
+  "word": "kid's",
+  "start": 78.672,
+  "end": 78.959,
+  "speaker": "narrator"
+ },
+ {
+  "word": "floor",
+  "start": 78.97,
+  "end": 79.405,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Then",
+  "start": 79.769,
+  "end": 80.068,
+  "speaker": "narrator"
+ },
+ {
+  "word": "one",
+  "start": 80.275,
+  "end": 80.503,
+  "speaker": "narrator"
+ },
+ {
+  "word": "knock",
+  "start": 80.515,
+  "end": 80.962,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Can",
+  "start": 82.205,
+  "end": 82.358,
+  "speaker": "children"
+ },
+ {
+  "word": "we",
+  "start": 82.374,
+  "end": 82.56,
+  "speaker": "children"
+ },
+ {
+  "word": "come",
+  "start": 82.577,
+  "end": 82.914,
+  "speaker": "children"
+ },
+ {
+  "word": "in",
+  "start": 82.931,
+  "end": 83.32,
+  "speaker": "children"
+ },
+ {
+  "word": "Did",
+  "start": 84.012,
+  "end": 84.103,
+  "speaker": "narrator"
+ },
+ {
+  "word": "hell",
+  "start": 84.115,
+  "end": 84.39,
+  "speaker": "narrator"
+ },
+ {
+  "word": "really",
+  "start": 84.401,
+  "end": 84.642,
+  "speaker": "narrator"
+ },
+ {
+  "word": "keep",
+  "start": 84.654,
+  "end": 84.86,
+  "speaker": "narrator"
+ },
+ {
+  "word": "them",
+  "start": 84.871,
+  "end": 85.123,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Who's",
+  "start": 85.528,
+  "end": 85.729,
+  "speaker": "narrator"
+ },
+ {
+  "word": "next",
+  "start": 85.739,
+  "end": 86.221,
   "speaker": "narrator"
  }
 ]

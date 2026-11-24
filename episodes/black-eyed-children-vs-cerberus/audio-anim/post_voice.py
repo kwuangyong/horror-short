@@ -11,13 +11,15 @@ for n, c in enumerate(raw["chars"]):
     flt.append(f"[{n+1}:a]aresample=48000,adelay={ms}:all=1[c{n}]"); labs.append(f"[c{n}]")
 flt.append("".join(labs) + f"amix=inputs={len(labs)}:normalize=0:duration=first,alimiter=limit=0.89")
 subprocess.run(["ffmpeg","-v","error","-y",*ins,"-filter_complex",";".join(flt),"-ar","48000",f"{H}/voice_dark.wav"], check=True)
-names = ["hook","split_roll","arena","R1","R2","R3","KO","dawn","cliffhanger","CTA"]
+names = ["hook","split_roll","arena","fight","ko_dawn","cliff_cta"]
 words = [{"word": w["word"], "start": round(w["start"]*k,3), "end": round(w["end"]*k,3), "speaker": w["speaker"]} for w in json.load(open(f"{H}/words_raw.json"))]
 json.dump(words, open(f"{H}/words.json","w"), ensure_ascii=False, indent=1)
 secs = [{"section": s["section"], "name": names[s["section"]], "start": round(s["start"]*k,2)} for s in raw["sections"]]
 sents = [dict(x, start=round(x["start"]*k,2)) for x in raw["sentences"]]
-cta = [x for x in sents if x["text"].startswith("Did hell")][0]["start"]
-secs.append({"section": 9, "name": "CTA", "start": cta})
+def first(prefix): return [x for x in sents if x["text"].startswith(prefix)][0]["start"]
+secs = [s for s in secs if s["name"] in ("hook","split_roll","arena","fight")]
+secs += [{"section": 4, "name": "KO", "start": first("Cerberus wins")}, {"section": 5, "name": "dawn", "start": first("At dawn")},
+         {"section": 6, "name": "cliffhanger", "start": first("But next night")}, {"section": 7, "name": "CTA", "start": first("Did hell")}]
 dial = [x for x in sents if x["speaker"] != "narrator"]
 json.dump({"scale": k, "duration": dur(f"{H}/voice_dark.wav"), "sections": secs, "dialogue": dial, "sentences": sents}, open(f"{H}/sections.json","w"), indent=1)
 print("scale", k, "voice_dark", dur(f"{H}/voice_dark.wav"), [(s["name"], s["start"]) for s in secs]); print(dial)

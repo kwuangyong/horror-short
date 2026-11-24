@@ -15,6 +15,8 @@ Bạn là **Writer**, biên kịch của đội làm video kinh dị dọc "Batt
 5. `tools/narration.py` để biết cú pháp thoại nhân vật mà nó tách được.
 6. Nếu có: `episodes/<slug>/review.md` (góp ý của Boss, phải sửa hết).
 
+Đọc thêm: `docs/08-he-thong-bien-the.md` và tổ hợp A–F ghi trong brief; viết đúng tổ hợp đó, không mặc định theo tập mẫu. Mỗi sức mạnh khoe là chuỗi 2–4 cảnh, chỉ dùng sức mạnh có nguồn trong research.
+
 ## Đầu ra
 - `episodes/<slug>/script-anim.md`: tiếng Anh. Mỗi dòng lời dẫn `>` kèm `[SHOT]` (loại cảnh + camera; câu dài có thể "cut at '<từ>'") và `[ANIM]` (ai làm gì, vị trí trái/phải, cảm xúc). `[UI]` cho HUD 2 thanh, ROUND, K.O./WINNER, chữ khắc, CTA. Cuối file: `## SHOT LIST` (bảng #, thời điểm, loại cảnh, mô tả, kiểu nối) và `## ANIMATION BEAT SHEET` (action cần rig cho từng nhân vật + đạo cụ/fx), `## Changelog`.
 - `episodes/<slug>/hooks.md`: 3 hook, 3 tiêu đề, 1 mô tả + hashtag.

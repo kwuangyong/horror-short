@@ -41,6 +41,7 @@ Ghi vào `episodes/<slug>/01-research.md` (mục "Xu hướng"): 5–10 video/ho
 - Monster phải ma mị, quỷ dị, máu me; ghi rõ **điểm yếu / điều kiện chết hẳn** (dùng cho R3 và cú lửng).
 - Guardian phải có **sức mạnh chiến đấu** và **giới hạn** (dùng cho R2).
 - Đánh dấu nhạy cảm (tín ngưỡng bản địa đang sống, bi kịch có thật) và bản quyền (creepypasta có tác giả, SCP CC BY-SA, hình ảnh phim/game).
+- **Bảng sức mạnh có nguồn** cho mỗi nhân vật (docs/08 mục G): tên sức mạnh · tác phẩm/truyền thuyết gốc + link · cách hình ảnh hóa · giới hạn. Không có nguồn thì không đưa vào.
 - Kiểm tra kho có sẵn trong `episodes/_format-dual-spin/01-research-*.md` trước, không lặp lại.
 
 ## Quy tắc

@@ -363,6 +363,10 @@
         o.smoke = Array.from({ length: 7 }, () => ({ e: $('ellipse', { rx: 40, ry: 26, fill: 'url(#gSmokeD)' }, g), x: (rg_() - 0.5) * 1.4, ph: rg_() * 4, sp: 0.18 + rg_() * 0.12 }));
         o.slamRing = $('ellipse', { cx: 0, cy: 0, rx: 100, ry: 20, fill: 'none', stroke: '#fff2c8', 'stroke-width': 10, opacity: 0 }, g);
       }
+      if (p.type === 'oillamp') { o.glowL = $('circle', { cx: 0, cy: -60, r: 300, fill: 'url(#gLamp)' }, g); $('rect', { x: -24, y: -8, width: 48, height: 14, rx: 4, fill: '#2a2022' }, g); $('rect', { x: -20, y: -66, width: 40, height: 58, rx: 8, fill: '#ffd890', opacity: 0.55 }, g); $('rect', { x: -22, y: -72, width: 44, height: 8, fill: '#2a2022' }, g); o.flame = $('polygon', { fill: '#ffe9a8' }, g); }
+      if (p.type === 'latch') { $('rect', { x: -40, y: -14, width: 80, height: 28, rx: 5, fill: '#2a2022' }, g); o.bar = $('rect', { x: -34, y: -7, width: 56, height: 14, rx: 4, fill: '#9a8a6a' }, g); $('circle', { cx: -34, cy: 0, r: 7, fill: '#c9a24a' }, g); }
+      if (p.type === 'aconite') { o.blades = []; for (let i = 0; i < 14; i++) { const e = $('path', { stroke: '#3f8a4a', 'stroke-width': 5, fill: 'none', 'stroke-linecap': 'round' }, g); o.blades.push([e, (i - 7) * 11, 26 + (i * 13) % 30]); } o.flowers = []; for (let i = 0; i < 3; i++) { const f = $('g', {}, g); $('path', { d: `M0 0 L0 -60`, stroke: '#3a6a3a', 'stroke-width': 4 }, f); $('path', { d: 'M-14 -62 Q0 -100 14 -62 Q8 -50 0 -54 Q-8 -50 -14 -62Z', fill: '#7a3fc4' }, f); $('path', { d: 'M-8 -64 Q0 -88 8 -64Z', fill: '#a574ee' }, f); f.__x = (i - 1) * 34; o.flowers.push(f); } }
+      if (p.type === 'scratch') { o.lines = []; for (const d of ['M-60 -90 L-50 20', 'M-30 -96 L-20 24', 'M0 -92 L12 22', 'M30 -88 L42 18']) o.lines.push($('path', { d, pathLength: 1, stroke: '#0a0608', 'stroke-width': 9, fill: 'none', 'stroke-linecap': 'round', 'stroke-dasharray': '1 1', 'stroke-dashoffset': 1 }, g), $('path', { d, pathLength: 1, stroke: '#c9b090', 'stroke-width': 3, fill: 'none', 'stroke-linecap': 'round', 'stroke-dasharray': '1 1', 'stroke-dashoffset': 1, opacity: 0.8 }, g)); }
       if (p.type === 'lyre') { $('path', { d: 'M-46 -90 Q-60 20 -30 60 L30 60 Q60 20 46 -90 L38 -90 Q48 10 24 46 L-24 46 Q-48 10 -38 -90Z', fill: '#6a4a38' }, g); $('rect', { x: -52, y: -100, width: 104, height: 12, rx: 5, fill: '#8a6448' }, g); o.strings = []; for (let i = 0; i < 6; i++) o.strings.push($('path', { stroke: '#e8d8b0', 'stroke-width': 2, fill: 'none' }, g)); o.glow = $('circle', { cx: 0, cy: -20, r: 130, fill: 'url(#gRed)', opacity: 0 }, g); }
       if (p.type === 'torch') { o.beam = $('polygon', { points: '40,0 400,-60 400,60', fill: '#fff0aa', opacity: 0.2 }, g); $('rect', { x: -60, y: -20, width: 100, height: 40, rx: 12, fill: '#3e466a' }, g); $('rect', { x: -60, y: -20, width: 100, height: 8, rx: 4, fill: '#6a74a0' }, g); $('rect', { x: -10, y: -20, width: 14, height: 40, fill: '#c4121f' }, g); $('rect', { x: 28, y: -28, width: 34, height: 56, rx: 8, fill: '#4a5482' }, g); $('ellipse', { cx: 64, cy: 0, rx: 6, ry: 22, fill: '#fff6c8' }, g); $('circle', { cx: 70, cy: 0, r: 60, fill: 'url(#gGold)', opacity: 0.7 }, g); }
       if (p.type === 'flashlight') { $('rect', { x: -6, y: -30, width: 12, height: 34, rx: 4, fill: '#3e466a' }, g); $('rect', { x: -9, y: -42, width: 18, height: 14, rx: 4, fill: '#fff0aa' }, g); }
@@ -393,6 +397,10 @@
         const sl = t >= ca && t < ca + 0.35 ? (t - ca) / 0.35 : -1; o.slamRing.setAttribute('opacity', sl >= 0 ? f2(1 - sl) : 0); if (sl >= 0) { o.slamRing.setAttribute('rx', f2(40 + sl * 420)); o.slamRing.setAttribute('ry', f2((40 + sl * 420) * 0.2)); }
         if (sl >= 0) o.g.setAttribute('opacity', 1);
       }
+      if (p.type === 'oillamp') { const v = trk(p.track || 'lamp', t, 1), fk = 1 + 0.18 * Math.sin(t * 17) * trk('lampFlick', t, 0), fv = Math.max(0, v) * fk; o.glowL.setAttribute('opacity', f2(clamp(v) * 0.9)); o.flame.setAttribute('points', fv < 0.03 ? '0,0' : `-9,-10 0,${f2(-14 - 40 * fv)} 9,-10 0,-4`); o.flame.setAttribute('opacity', f2(clamp(fv * 2))); }
+      if (p.type === 'latch') { const v = trk(p.track || 'latch', t, 0); o.bar.setAttribute('x', f2(-34 + 40 * v)); }
+      if (p.type === 'aconite') { const w = trk(p.track || 'wilt', t, 0), b = trk(p.bloomTrack || 'bloom', t, 0); o.blades.forEach(([e, dx, h]) => { const hh = h * (1 - 0.55 * w); e.setAttribute('d', `M${dx} 0 Q${f2(dx + 2 + 16 * w)} ${f2(-hh * 0.6)} ${f2(dx + 6 + 30 * w)} ${f2(-hh + 26 * w)}`); e.setAttribute('stroke', mixc('#3f8a4a', '#16120c', clamp(w * 1.4))); }); o.flowers.forEach((f, i) => { const bs = clamp(b * 1.3 - i * 0.2); f.setAttribute('transform', `translate(${f.__x} 0) scale(${f2(bs)})`); f.setAttribute('opacity', bs > 0.02 ? 1 : 0); }); }
+      if (p.type === 'scratch') { const v = trk(p.track || 'scratch', t, 0); for (let i = 0; i < o.lines.length; i++) o.lines[i].setAttribute('stroke-dashoffset', f2(1 - clamp(v * 4 - Math.floor(i / 2)))); }
       if (p.type === 'lyre') { const v = trk(p.track || 'lyre', t, 0); o.strings.forEach((e, i) => { const x = -34 + i * 13.6, w = 3.5 * v * Math.sin(t * 40 + i); e.setAttribute('d', `M${f2(x)} -88 Q${f2(x + w)} -20 ${f2(x)} 46`); }); o.glow.setAttribute('opacity', f2(0.7 * v)); }
       if (p.type === 'torch') { const tx = trk(p.xTrack || 'torchX', t, p.x); const r = (tx - p.x) * 0.45; o.g.setAttribute('transform', `translate(${f2(tx)} ${f2(p.y - 18)}) scale(${f2(sc_)}) rotate(${f2(r)})`); o.beam.setAttribute('opacity', f2(0.2 * (0.8 + 0.2 * Math.sin(t * 17)) * trk(p.beamTrack || 'torchBeam', t, 1))); }
       o.g.setAttribute('opacity', (p.type === 'ring' || p.type === 'limit') ? o.g.getAttribute('opacity') : a);
@@ -446,6 +454,7 @@
       if (f.type === 'smoke') for (let i = 0; i < (f.n || 10); i++) { const e = $('circle', { r: 1, fill: f.dark ? 'url(#gSmokeD)' : 'url(#gSmoke)' }, grp); it.parts.push({ e, d: r() * 0.9, dx: (r() - 0.5) * (f.spread || 90), vx: (r() - 0.5) * 40, r1: 30 + r() * 30 }); }
       if (f.type === 'soil') for (let i = 0; i < (f.n || 18); i++) { const e = $('rect', { width: 10 + r() * 12, height: 8 + r() * 10, rx: 3, fill: r() > 0.5 ? '#5a4056' : '#3d2a38' }, grp); it.parts.push({ e, vx: (r() - 0.5) * 520, vy: -(300 + r() * 520), rot: (r() - 0.5) * 900 }); }
       if (f.type === 'sparks') for (let i = 0; i < (f.n || 24); i++) { const e = $('circle', { r: 3 + r() * 4, fill: f.color || '#ffd65a' }, grp); const a = r() * 6.283, sp = 120 + r() * 360; it.parts.push({ e, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 60, g: -70 - r() * 120 }); }
+      if (f.type === 'drool') for (let i = 0; i < (f.n || 6); i++) { const e = $('ellipse', { rx: 6, ry: 9, fill: '#2f7a5a' }, grp); it.parts.push({ e, d: i / (f.n || 6) * 0.8, x: (r() - 0.5) * 50, h: f.h || 120 }); }
       if (f.type === 'notes') for (let i = 0; i < (f.n || 8); i++) { const e = $('text', { 'font-family': 'DejaVu Sans', 'font-size': 38, fill: f.color || '#b8bccf', 'text-anchor': 'middle' }, grp); e.textContent = i % 2 ? '\u266A' : '\u266B'; it.parts.push({ e, d: i / (f.n || 8) * 0.9, a: (r() - 0.5) * 50, w: 14 + r() * 24 }); }
       if (f.type === 'ripple') for (let i = 0; i < 4; i++) it.parts.push({ e: $('circle', { fill: 'none', stroke: f.color || '#ffe39a', 'stroke-width': 5 }, grp), d: i * 0.18 });
       if (f.type === 'flame') { it.fl1 = $('polygon', { fill: '#ff8a1e' }, grp); it.fl2 = $('polygon', { fill: '#ffe08a' }, grp); it.glow = $('circle', { fill: 'url(#gGold)' }, grp); }
@@ -465,6 +474,7 @@
       if (f.type === 'soil') it.parts.forEach((p) => { p.e.setAttribute('transform', `translate(${f2(X + p.vx * lt)} ${f2(Y + p.vy * lt + 1500 * lt * lt)}) rotate(${f2(p.rot * lt)})`); p.e.setAttribute('opacity', clamp(1.4 - u * 1.4)); });
       if (f.type === 'flame') { const R = f.r || 14, fl = 1 + 0.25 * Math.sin(lt * 31) + 0.15 * Math.sin(lt * 53), a = Math.sin(Math.PI * clamp(u)) ; const tear = (rr, k) => `${f2(X - rr)},${f2(Y)} ${f2(X - rr * 0.7)},${f2(Y - rr * 1.2 * fl * k)} ${f2(X + 0.12 * rr * Math.sin(lt * 17))},${f2(Y - rr * 2.6 * fl * k)} ${f2(X + rr * 0.7)},${f2(Y - rr * 1.2 * fl * k)} ${f2(X + rr)},${f2(Y)} ${f2(X)},${f2(Y + rr * 0.5)}`; it.fl1.setAttribute('points', tear(R, 1)); it.fl2.setAttribute('points', tear(R * 0.55, 0.8)); it.glow.setAttribute('cx', X); it.glow.setAttribute('cy', Y - R); it.glow.setAttribute('r', R * 5); it.grp.setAttribute('opacity', f2(a)); }
       if (f.type === 'sparks') it.parts.forEach((p) => { p.e.setAttribute('cx', f2(X + p.vx * lt * (1 - u * 0.5))); p.e.setAttribute('cy', f2(Y + p.vy * lt + 0.5 * p.g * lt * lt)); p.e.setAttribute('opacity', clamp(1.6 - u * 1.6)); });
+      if (f.type === 'drool') it.parts.forEach((p) => { const q = clamp((lt - p.d) / 0.5); p.e.setAttribute('cx', f2(X + p.x)); p.e.setAttribute('cy', f2(Y + p.h * q * q)); p.e.setAttribute('opacity', q <= 0 || q >= 1 ? 0 : 0.95); p.e.setAttribute('ry', f2(9 + 8 * q)); });
       if (f.type === 'notes') it.parts.forEach((p) => { const q = clamp((lt - p.d) / (dur * 0.5)); const x = X + (f.dx || 300) * q + p.w * Math.sin(q * 9), y = Y + (f.dy || -60) * q - 60 * Math.sin(q * 3) + p.a * q; p.e.setAttribute('x', f2(x)); p.e.setAttribute('y', f2(y)); p.e.setAttribute('opacity', q <= 0 || q >= 1 ? 0 : f2(Math.sin(q * Math.PI) * 0.9)); p.e.setAttribute('transform', `rotate(${f2(Math.sin(q * 7) * 20)} ${f2(x)} ${f2(y)})`); });
       if (f.type === 'ripple') it.parts.forEach((p) => { const q = clamp((lt - p.d) / (dur - 0.5)); p.e.setAttribute('cx', X); p.e.setAttribute('cy', Y); p.e.setAttribute('r', f2(30 + q * (f.r || 520))); p.e.setAttribute('opacity', q <= 0 ? 0 : f2(0.8 * (1 - q))); });
       if (f.type === 'impact') {
@@ -757,6 +767,35 @@
     povHand.setAttribute('transform', `translate(${f2(3 * Math.sin(Math.PI * step * t + 1))} ${f2(bob * 0.5 + breath * 1.4)})`);
     povHand.__fl.setAttribute('transform', `translate(${O[0]} ${O[1]}) rotate(${f2(th * 57.2958)})`);
   }
+
+  let pgG = null, pgEls = {};
+  function buildPovGate() {
+    pgG = $('g', { display: 'none' }, svg); const g = pgG;
+    const bg = $('radialGradient', { id: 'gPG', cx: 0.5, cy: 0.3, r: 0.8 }, defs); [[0, '#7a1a10', 1], [0.45, '#3a0a0c', 1], [1, '#050206', 1]].forEach((q) => $('stop', { offset: q[0], 'stop-color': q[1], 'stop-opacity': q[2] }, bg));
+    $('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#gPG)' }, g);
+    pgEls.swirl = $('g', {}, g); for (let i = 0; i < 6; i++) $('ellipse', { cx: 540, cy: 560, rx: 380 + i * 90, ry: 330 + i * 80, fill: 'none', stroke: i % 2 ? '#ff6a1a' : '#c4121f', 'stroke-width': 6 - i * 0.6, 'stroke-dasharray': '120 90', opacity: 0.5 - i * 0.05 }, pgEls.swirl);
+    $('ellipse', { cx: 540, cy: 520, rx: 330, ry: 280, fill: 'url(#gFire)' }, g);
+    $('ellipse', { cx: 540, cy: 520, rx: 250, ry: 210, fill: '#10183a' }, g); $('circle', { cx: 640, cy: 440, r: 60, fill: '#ece9d6' }, g);
+    for (let i = 0; i < 20; i++) $('circle', { cx: 340 + (i * 97) % 400, cy: 360 + (i * 61) % 300, r: 2, fill: '#dfe4ff' }, g);
+    pgEls.heads = $('g', {}, g);
+    const head = (cx, cy, s, rot) => { const h = $('g', { transform: `translate(${cx} ${cy}) rotate(${rot}) scale(${s})` }, pgEls.heads); $('polygon', { points: '-120,60 -90,-90 -30,-150 60,-130 150,-60 190,40 120,120 -60,130', fill: '#05040a' }, h); $('polygon', { points: '-90,-80 -70,-190 -30,-110', fill: '#05040a' }, h); $('polygon', { points: '50,-110 90,-200 120,-100', fill: '#05040a' }, h); $('polygon', { points: '150,40 190,40 160,120 90,110', fill: '#05040a' }, h); for (const ex of [-20, 70]) { $('circle', { cx: ex, cy: -30, r: 34, fill: 'url(#gRed)' }, h); $('ellipse', { cx: ex, cy: -30, rx: 14, ry: 9, fill: '#ff3838' }, h); } for (let k = 0; k < 5; k++) $('polygon', { points: `${-40 + k * 34},110 ${-26 + k * 34},110 ${-33 + k * 34},150`, fill: '#e8e4d4' }, h); return h; };
+    pgEls.h = [head(250, 150, 1.05, -14), head(540, 60, 1.25, 0), head(850, 160, 1.05, 14)];
+    pgEls.tail = $('path', { fill: 'none', stroke: '#1e3a30', 'stroke-width': 26, 'stroke-linecap': 'round' }, g); pgEls.tailHead = $('g', {}, g); $('polygon', { points: '-30,-18 40,-8 52,10 -20,24', fill: '#1e3a30' }, pgEls.tailHead); $('circle', { cx: 18, cy: -2, r: 5, fill: '#ffd86a' }, pgEls.tailHead);
+    pgEls.face = $('g', {}, g); $('ellipse', { cx: 0, cy: 0, rx: 90, ry: 104, fill: '#9c9aa6' }, pgEls.face); $('ellipse', { cx: -30, cy: 10, rx: 22, ry: 32, fill: '#050408' }, pgEls.face); $('ellipse', { cx: 30, cy: 10, rx: 22, ry: 32, fill: '#050408' }, pgEls.face); $('path', { d: 'M-50 -60 L-20 -10 M30 -70 L50 -20 M-10 60 L10 90', stroke: '#4a4856', 'stroke-width': 5, fill: 'none' }, pgEls.face); $('ellipse', { cx: 0, cy: 62, rx: 22, ry: 16, fill: '#16101a' }, pgEls.face);
+    pgEls.smoke = Array.from({ length: 14 }, (_, i) => $('circle', { r: 40, fill: 'url(#gSmokeD)' }, g));
+    pgEls.embers = Array.from({ length: 22 }, (_, i) => $('circle', { r: 3 + (i % 3), fill: '#ffb04a' }, g));
+    $('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#gVig)' }, g);
+  }
+  function updatePovGate(t, info) {
+    const lt = info.lt, u = clamp(lt / Math.max(0.5, info.dur));
+    pgEls.swirl.setAttribute('transform', `rotate(${f2(lt * 18)} 540 540)`); Array.from(pgEls.swirl.children).forEach((e, i) => e.setAttribute('stroke-dashoffset', f2(-lt * (60 + i * 25) * (i % 2 ? -1 : 1))));
+    pgEls.h.forEach((h, i) => { const k = 1 + 0.05 * Math.sin(t * 2 + i) + 0.2 * u; h.setAttribute('transform', h.getAttribute('transform').replace(/scale\([^)]*\)/, `scale(${f2((i === 1 ? 1.25 : 1.05) * k)})`)); });
+    let d = 'M760 -20'; for (let i = 1; i <= 9; i++) d += ` L${f2(760 + 70 * Math.sin(lt * 3 + i * 0.7))} ${f2(-20 + i * 70)}`; pgEls.tail.setAttribute('d', d); pgEls.tailHead.setAttribute('transform', `translate(${f2(760 + 70 * Math.sin(lt * 3 + 6.3))} 610) rotate(${f2(90 + 20 * Math.sin(lt * 4))})`);
+    const fy = 760 + 360 * u * u, fx = 260 + 40 * Math.sin(lt * 2), fo = clamp(1.3 - u * 1.3); pgEls.face.setAttribute('transform', `translate(${f2(fx)} ${f2(fy)}) scale(${f2(1.2 - 0.5 * u)}) rotate(${f2(-12 + 14 * Math.sin(lt * 3))})`); pgEls.face.setAttribute('opacity', f2(fo));
+    pgEls.smoke.forEach((e, i) => { const q = clamp((u - 0.25) * 1.6 - i * 0.03), x = fx + (i - 7) * 24 + 30 * Math.sin(q * 6 + i), y = fy - q * 340; e.setAttribute('cx', f2(x)); e.setAttribute('cy', f2(y)); e.setAttribute('r', f2(30 + 70 * q)); e.setAttribute('opacity', f2(q > 0 ? Math.sin(Math.min(1, q) * Math.PI) * 0.95 : 0)); });
+    pgEls.embers.forEach((e, i) => { const q = ((lt * (0.4 + (i % 5) * 0.12) + i * 0.173) % 1); e.setAttribute('cx', f2(540 + (((i * 83) % 600) - 300) * (0.4 + q))); e.setAttribute('cy', f2(1100 - q * 1000)); e.setAttribute('opacity', f2(Math.sin(q * Math.PI))); });
+  }
+
   // ---- OTS-KID foreground: the kid's hooded back, big and blurred at the bottom corner
   function buildOts() {
     otsG = $('g', { display: 'none' }, svg); const g = $('g', {}, otsG); otsG.__in = g;
@@ -813,11 +852,11 @@
   };
   // ------------------------------------------------------------------ public API
   G.loadTimeline = function (tl) {
-    TL = tl; props = []; fxList = []; textList = []; splits = []; hud = null; layers = {}; room = {}; povG = null; povTrees = [];
+    TL = tl; props = []; fxList = []; textList = []; splits = []; hud = null; layers = {}; room = {}; povG = null; povTrees = []; pgG = null; pgEls = {};
     document.body.innerHTML = ''; svg = $('svg', { xmlns: G.NS, width: W, height: H, viewBox: `0 0 ${W} ${H}` }); document.body.appendChild(svg);
     buildDefs(); buildArena(); setupActors(); buildProps(); buildFx();
     TL.shots = (TL.shots || []).slice().sort((a, b) => a.t - b.t); TL.scenes = TL.scenes || []; TL.slow = (TL.slow || []).slice();
-    TL.shots.forEach((sh, i) => { if (sh.scene) TL.scenes.push({ t0: sh.t, s: sh.scene }); if (sh.slow) TL.slow.push({ t0: sh.t, t1: i + 1 < TL.shots.length ? TL.shots[i + 1].t : TL.duration, rate: sh.slow }); if (sh.type === 'pov' && !povG) buildPov(sh); });
+    TL.shots.forEach((sh, i) => { if (sh.scene) TL.scenes.push({ t0: sh.t, s: sh.scene }); if (sh.slow) TL.slow.push({ t0: sh.t, t1: i + 1 < TL.shots.length ? TL.shots[i + 1].t : TL.duration, rate: sh.slow }); if (sh.type === 'pov' && !povG) buildPov(sh); if (sh.type === 'povgate' && !pgG) buildPovGate(); });
     TL.scenes.sort((a, b) => a.t0 - b.t0);
     for (const s of (TL.splits || (TL.split ? [TL.split] : []))) buildSplit(s);
     buildOts(); crashG = $('g', { display: 'none' }, svg); for (let i = 0; i < 30; i++) { const a = i / 30 * 6.283 + 0.1; $('polygon', { points: `${540 + Math.cos(a) * 200},${960 + Math.sin(a) * 200} ${540 + Math.cos(a + 0.012) * 1500},${960 + Math.sin(a + 0.012) * 1500} ${540 + Math.cos(a - 0.012) * 1500},${960 + Math.sin(a - 0.012) * 1500}`, fill: '#fff' }, crashG); }
@@ -835,12 +874,12 @@
     const shk = shakeAt(t);
     const sp = splits.find((s) => t >= (s.cfg.t0 || 0) && t <= s.cfg.end && s.cfg.opaque !== false);
     const sceneOn = !splits.length || splits.every((s) => !(t >= (s.cfg.t0 || 0) && t < s.cfg.shatter - 0.05 && s.cfg.opaque !== false));
-    const isPov = info && info.s.type === 'pov' && povG;
+    const isPov = info && info.s.type === 'pov' && povG, isPG = info && info.s.type === 'povgate' && pgG;
     const sc = sceneVis(t);
-    arena.setAttribute('display', sceneOn && !isPov ? 'inline' : 'none');
+    arena.setAttribute('display', sceneOn && !isPov && !isPG ? 'inline' : 'none'); if (pgG) { pgG.setAttribute('display', isPG ? 'inline' : 'none'); if (isPG) updatePovGate(t, info); }
     if (sceneOn) updateActors(t, ta);
     let cam = stateTrack(TL.cam || [], t, TL.camInit || { cx: 540, cy: 960, zoom: 1 }), shotX = null;
-    if (info && !isPov) { shotX = shotCam(t, info); cam = shotX; }
+    if (info && !isPov && !isPG) { shotX = shotCam(t, info); cam = shotX; }
     curShot = shotX;
     let sk = shk; const trs = trAt(t);
     if (shotX && shotX.whip) sk = [shk[0] + shotX.whip * shotX.whip * 520 * shotX.whipDir, shk[1]];

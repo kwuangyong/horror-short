@@ -32,6 +32,7 @@ Bạn là **Producer**, kỹ thuật của đội làm video kinh dị dọc "Ba
 - Liệt kê điểm còn yếu và mọi asset ngoài (nếu có) kèm giấy phép.
 
 ## Quy tắc
+- Format hiện hành (docs/07 mục 0): **không HUD thanh máu, không thẻ ROUND** (bỏ `hud` và text ROUND trong timeline; giữ K.O./WINNER); phô diễn siêu năng lực bằng cảnh cận + fx.
 - **Không sửa nội dung kịch bản.** Thấy vấn đề lời thoại thì báo Boss.
 - File sinh ra để trong `episodes/<slug>/build/` (gitignore), trừ script, json timeline, audio-anim, qc, preview.
 - Sửa `tools/` phải giữ tương thích ngược; chạy lại một kiểm tra ngắn của tập #001 hoặc demo ma-da sau khi sửa.

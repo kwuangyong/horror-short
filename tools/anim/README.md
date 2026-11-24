@@ -76,5 +76,13 @@ Common params: `scene` (switch scene at the cut), `push` (total zoom factor over
 - split roll already has BEC (`blackeyed`) and CERBERUS silhouettes; both rigs also work as `kind` of a locked card.
 - Sheet: `node tools/anim/make_ep002_sheet.js` -> `tools/anim/ep002-rigs-sheet.png`.
 
+## Episode #002 v2 additions (powers, no HUD)
+- New format (docs/07): **no HUD bars and no ROUND cards** (omit `hud` and the ROUND `text`); K.O./WINNER stay. The engine still supports `hud` for old episodes.
+- Cerberus: `mane` (snake mane) / `serp` (serpent-tail head: jaw + forked tongue) params; actions `snake-hiss`, `tail-strike`, `tail-coil`, `venom-drool`; marker `tailtip`.
+- BEC: `hypno-chant` (throat rattle, pair with `fx ripple` sound rings), `no-blink-stare`, `claw-planks` (marker `handR`), `dissolve-smoke`. Kid: `hand-drift`, `snap-awake`, `shake-head`.
+- Props: `oillamp` (track `lamp`, `lampFlick`), `latch` (track `latch`), `aconite` (grass withers with track `wilt`, purple flowers with `bloom`), `scratch` (gouges on planks, track `scratch`); fx `drool`, `notes`.
+- Shot `povgate`: looking up out of the burning gate (dog heads loom, serpent tail dangles, a grey face sinks into black smoke). Actor cue param `sil:[a,b]` silhouettes a rig (for the red-backlit bite).
+- Actor `scenes:['cabin',...]` limits an actor to scenes; `clipRect:[x,y,w,h]` clips an actor to a window.
+
 ## Known limits
 Fx are simple (no real particles beyond dust/soil/impact/speed lines). Silhouette/split-roll decoys are 7 generic shapes. Grim is very dark on dark ground (rim light is weak). Kid poses hide/cower are rough. Freeze skips actor time (see above).

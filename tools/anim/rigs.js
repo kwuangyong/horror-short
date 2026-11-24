@@ -324,6 +324,10 @@
     const CF = rgb(54, 58, 82), CFL = rgb(150, 166, 208), CFD = rgb(30, 32, 48), CFAR = rgb(36, 38, 56), CRIM = rgb(176, 194, 236);
     const body = joint(lift, -100, -140); rig.body = body; const B = body.c;
     const tail = joint(B, -170, -246); poly(tail.c, [[-170, -246], [-250, -300], [-330, -330], [-300, -250], [-250, -226], [-186, -150]], CF); const tip = joint(tail.c, -300, -300); poly(tip.c, [[-300, -306], [-376, -350], [-392, -280], [-330, -262]], CFD); rig.tail = tail; rig.tip = tip;
+    const SN = rgb(36, 52, 46), SNL = rgb(120, 160, 140);   // serpent tail head (jaw + forked tongue), strikes with P.serp
+    rig.sjaw = joint(tip.c, -384, -312); poly(rig.sjaw.c, [[-384, -316], [-452, -330], [-456, -308], [-392, -296]], SN); poly(rig.sjaw.c, [[-432, -312], [-440, -302], [-428, -302]], '#f4f1e6');
+    poly(tip.c, [[-376, -352], [-460, -338], [-456, -322], [-384, -314], [-374, -300], [-340, -330]], SN); poly(tip.c, [[-376, -352], [-440, -340], [-376, -338]], SNL); ell(tip.c, -430, -338, 5, 5, '#ffd86a');
+    rig.tongue = $('polygon', { fill: '#d23a4a', points: '0,0' }, tip.c);
     const leg = (hx, hy, col, w) => {
       const th = joint(B, hx, hy); if (col === CF) limb(th.c, [hx - 4, hy - 3], [hx - 4, hy + 79], w, w * 0.78, CRIM); limb(th.c, [hx, hy], [hx, hy + 82], w, w * 0.78, col);
       const sh = joint(th.c, hx, hy + 82); if (col === CF) limb(sh.c, [hx - 3, hy + 80], [hx - 3, hy + 160], w * 0.78, w * 0.58, CRIM); limb(sh.c, [hx, hy + 82], [hx, hy + 164], w * 0.78, w * 0.58, col); ell(sh.c, hx + 16, hy + 170, 42, 17, col);
@@ -333,6 +337,7 @@
     ell(B, 0, -212, 206, 112, CRIM); ell(B, 0, -200, 202, 108, CF); ell(B, 138, -228, 98, 108, CRIM); ell(B, 138, -216, 96, 104, CF); ell(B, -130, -200, 100, 110, CF);
     rig.spikes = spikeRow(B, 0, -208, 206, 112, 196, 340, 12, 30, mixc2(CF, CRIM, 0.45), 21).concat(spikeRow(B, 0, -208, 206, 112, 200, 336, 12, 18, CFD, 29));
     rig.RN = leg(-120, -150, CF, 74); rig.FN = leg(120, -146, CF, 74);
+    rig.manes = []; for (let i = 0; i < 7; i++) { const px = 96 + i * 18, py = -300 - (i % 2) * 10, j = joint(B, px, py); const L = 54 + (i % 3) * 14; poly(j.c, [[px - 6, py], [px + 6, py], [px + 14, py - L * 0.5], [px + 2, py - L], [px - 8, py - L * 0.5]], i % 2 ? SN : mixc2(SN, SNL, 0.35)); poly(j.c, [[px - 3, py - L], [px + 12, py - L - 8], [px + 7, py - L + 6]], SN); ell(j.c, px + 5, py - L - 2, 2.4, 2.4, '#ffd86a'); j.px0 = i; rig.manes.push(j); }
     rig.heads = [];
     const specs = [{ px: 112, py: -276, hx: 262, hy: -418, s: 0.8, col: CFAR }, { px: 150, py: -250, hx: 372, hy: -318, s: 1.0, col: CF }, { px: 136, py: -226, hx: 318, hy: -226, s: 0.82, col: CF }];
     const order = [0, 2, 1];
@@ -356,16 +361,18 @@
       rig.heads[i] = H;
     }
     rig.mk = {}; const mk = (n, p, x, y) => { rig.mk[n] = $('circle', { cx: x, cy: y, r: 1, fill: 'none' }, p); };
-    mk('head', rig.heads[1].hj.c, 372, -318); mk('head0', rig.heads[0].hj.c, 262, -418); mk('head2', rig.heads[2].hj.c, 318, -226); mk('body', B, 0, -200);
+    mk('tailtip', rig.tip.c, -440, -336); mk('head', rig.heads[1].hj.c, 372, -318); mk('head0', rig.heads[0].hj.c, 262, -418); mk('head2', rig.heads[2].hj.c, 318, -226); mk('body', B, 0, -200);
     rig.root = root;
     const A3 = (a, b, c) => [a, b, c];
-    rig.N = { bodyY: 0, bodyRot: 0, tail1: 0, tail2: 0, hackle: 1, FN: [4, -4], FF: [4, -4], RN: [8, -10], RF: [8, -10], hrot: A3(0, 0, 0), jaw: A3(0.06, 0.06, 0.06), eyeO: A3(1, 1, 1), anger: A3(0, 0, 0), ear: A3(0, 0, 0), sleepy: A3(0, 0, 0), glow: 1, shakeX: 0, shakeY: 0, sx: 1, sy: 1 };
+    rig.N = { bodyY: 0, bodyRot: 0, tail1: 0, tail2: 0, hackle: 1, FN: [4, -4], FF: [4, -4], RN: [8, -10], RF: [8, -10], mane: 0.35, serp: 0, hrot: A3(0, 0, 0), jaw: A3(0.06, 0.06, 0.06), eyeO: A3(1, 1, 1), anger: A3(0, 0, 0), ear: A3(0, 0, 0), sleepy: A3(0, 0, 0), glow: 1, shakeX: 0, shakeY: 0, sx: 1, sy: 1 };
     const hinge = [30, 30];
     rig.apply = (P, t) => {
       body.set(P.bodyRot, P.sx, P.sy, P.shakeX, P.bodyY + P.shakeY);
       tail.set(-P.tail1 + 5 * Math.sin(t * 1.5), 1, 1); tip.set(-P.tail2 + 8 * Math.sin(t * 2.1 + 1), 1, 1);
       for (const k of ['FN', 'FF', 'RN', 'RF']) { const L = rig[k], a = P[k]; L.th.set(-a[0]); L.sh.set(-(a[1] - a[0])); }
       rig.spikes.forEach((sp, i) => sp.set(sp.base + 2.5 * Math.sin(t * 8 + i) * (P.hackle > 1.2 ? 1.5 : 0.3), 1, P.hackle));
+      rig.manes.forEach((m, i) => m.set(-8 + 6 * i + P.mane * 14 * Math.sin(t * (7 + P.mane * 6) + i * 1.7), 1, 0.25 + 0.8 * clamp(P.mane, 0, 1.6), 0, 0));
+      rig.sjaw.set(clamp(P.serp) * 34 * (0.7 + 0.3 * Math.sin(t * 20)), 1, 1); { const w = clamp(P.serp), tp = [[-452, -318], [-452 - 40 * w, -318 + 8 * Math.sin(t * 30)], [-452 - 52 * w, -330], [-452 - 40 * w, -318 - 8 * Math.sin(t * 30)], [-452 - 52 * w, -306]]; rig.tongue.setAttribute('points', w < 0.05 ? '0,0' : tp.map((q) => f2(q[0]) + ',' + f2(q[1])).join(' ')); }
       for (let i = 0; i < 3; i++) {
         const H = rig.heads[i], sl = P.sleepy[i], breath = Math.sin(t * 1.6 + i * 2.1);
         H.hj.set(P.hrot[i] + 50 * sl + 2.2 * Math.sin(t * 1.2 + i * 1.9) + 1.5 * breath * sl);
@@ -398,6 +405,10 @@
       'open-gate': (c) => { const e = env_(c.lt, 0.5), st = Math.sin(c.lt * 9) * e; return { bodyRot: -6 * e, bodyY: -4 * e, hackle: 1.6, anger: N3(e), jaw: [0.5 * e, 0.8 * e, 0.5 * e], hrot: [-24 * e, -28 * e, -18 * e], ear: N3(24 * e), glow: 1.7, shakeX: 1.6 * Math.sin(c.lt * 50) * e, FN: [4 + 56 * Math.max(0, st), -4 + 40 * Math.max(0, st)], FF: [4, -4], RN: [8 - 12 * e, -10 + 10 * e], RF: [8 - 12 * e, -10 + 10 * e], tail1: 18 * e }; },
       'bite-hold': (c) => { const k = c.p.head === undefined ? 1 : c.p.head, e = env_(c.lt, 0.2), sh = Math.sin(c.lt * 15) * (c.p.shake === undefined ? 1 : c.p.shake); const j = [0.34 + 0.2 * Math.sin(c.lt * 7 + 1), 0.34 + 0.2 * Math.sin(c.lt * 7 + 3), 0.34 + 0.2 * Math.sin(c.lt * 7 + 5)], hr = [8 + 3 * Math.sin(c.lt * 9), 8, 12 + 3 * Math.sin(c.lt * 9 + 2)]; j[k] = 0.1; hr[k] = 20 * e + 4 * sh; return { bodyY: 16 * e, bodyRot: 6 * e, hackle: 1.5, anger: N3(0.9), jaw: j, hrot: hr, shakeX: 2.5 * sh * e, FN: [4 + 36 * e, -4 + 40 * e], FF: [4 + 30 * e, -4 + 34 * e], RN: [8 - 30 * e, -10 + 28 * e], RF: [8 - 28 * e, -10 + 26 * e], glow: 1.5, ear: N3(24), tail1: -18 * e }; },
       'drag-down': (c) => { const k = c.p.head === undefined ? 1 : c.p.head, e = env_(c.lt, 0.3), f = -2 * Math.PI * (c.p.speed || 0.9) * c.lt; const j = [0.3, 0.3, 0.3], hr = [10, 10, 14]; j[k] = 0.1; hr[k] = 24 + 3 * Math.sin(f * 2); const lp = (ph, ctr, A, B) => { const a1 = ctr + A * Math.sin(ph), lift = Math.max(0, Math.cos(ph)); return [a1, a1 - B * lift]; }; return { bodyY: 24 * e, bodyRot: -8 * e, hackle: 1.4, anger: N3(0.8), jaw: j, hrot: hr, ear: N3(22), glow: 1.4, tail1: -10 * e, FN: lp(f, 20 * e, 22, 18), FF: lp(f + Math.PI, 20 * e, 22, 18), RN: lp(f + 1.5, -8 * e, 20, 18), RF: lp(f + 1.5 + Math.PI, -8 * e, 20, 18), shakeX: 1.2 * Math.sin(c.lt * 18) * e }; },
+      'snake-hiss': (c) => { const e = env_(c.lt, 0.25); return { mane: 1.5 * e, hackle: 1.5, anger: N3(0.8 * e), jaw: [0.5 * e, 0.4 * e, 0.4 * e], hrot: [-12 * e, -8 * e, -4 * e], ear: N3(20 * e), glow: 1.4, bodyY: 10 * e, serp: 0.8 * e, tail1: 14 * Math.sin(c.lt * 6) * e, shakeX: 1.2 * Math.sin(c.lt * 45) * e }; },
+      'tail-strike': (c) => { const f = c.lt * 2.4, ph = f - Math.floor(f), k = ph < 0.3 ? EASE.outCubic(ph / 0.3) : 1 - EASE.inOut((ph - 0.3) / 0.7); return { mane: 1.2, hackle: 1.3, anger: N3(0.9), jaw: N3(0.4), serp: 1, tail1: 40 * k - 10, tail2: 30 * k, hrot: [4, 6, 8], bodyY: 8, glow: 1.4 }; },
+      'venom-drool': (c) => { const e = env_(c.lt, 0.4); return { bodyY: 20 * e, bodyRot: 8 * e, hackle: 1.1, anger: N3(0.7), jaw: [0.2, 0.4 + 0.2 * Math.sin(c.lt * 4), 0.2], hrot: [14 * e, 36 * e, 20 * e], mane: 0.8, ear: N3(14 * e), glow: 1.2, FN: [4 - 16 * e, -4 + 10 * e], FF: [4 - 14 * e, -4 + 8 * e], tail1: -12 * e }; },
+      'tail-coil': (c) => { const e = env_(c.lt, 0.2); return { mane: 1.4, hackle: 1.4, anger: N3(1), jaw: N3(0.4), serp: 0.9, tail1: 10 + 28 * Math.sin(c.lt * 6) * e, tail2: -40 * e, bodyY: 14, bodyRot: 4 * e, hrot: [10, 14, 20], glow: 1.5 }; },
       fade: (c) => CERB.idle(c),
       wounded: (c) => { const e = env_(c.lt, 0.4), tr = Math.sin(c.lt * 20) * e; return { bodyY: 26 * e, bodyRot: 5 * e, hackle: 0.7, anger: N3(0.15), eyeO: N3(1 - 0.35 * e), jaw: N3(0.1), hrot: [24 * e, 30 * e, 36 * e], ear: N3(30 * e), glow: 0.6, shakeX: 1.4 * tr, tail1: 12 * e, FN: [4 - 8 * e + 3 * tr, -4 + 20 * e], FF: [4 - 6 * e - 3 * tr, -4 + 18 * e], RN: [8 - 26 * e, -10 + 24 * e], RF: [8 - 26 * e, -10 + 24 * e] }; },
     };
@@ -454,6 +465,9 @@
     'dissolve-smoke': (c) => { const u = EASE.inOut(clamp(c.u)); return { dis: u, sy: 1 + 0.45 * u, sx: 1 - 0.3 * u, bodyY: -12 * u, shakeX: 3.2 * u * Math.sin(c.lt * 37), head: 8 * u * Math.sin(c.lt * 13), mouth: 0.3 * u }; },
     'turn-to-camera': (c) => { const e = EASE.inOut(clamp(c.lt / (c.p.dur || 1.0))); return { look: 1 - e, head: -10 * (1 - e) + 8 * e, headX: 8 * (1 - e) }; },
   };
+  BEC['no-blink-stare'] = BEC['idle-still'];
+  BEC['hypno-chant'] = (c) => { const a = c.amp === undefined ? 0.5 + 0.5 * Math.sin(c.t * 9) : c.amp; return { mouth: 0.12 + 0.12 * a, head: 8 + 1.5 * Math.sin(c.t * 40), headX: 1.4 * Math.sin(c.t * 44), bodyY: 0.5 * Math.sin(c.t * 1.1), aL: -4, aR: 4 }; };
+  BEC['claw-planks'] = (c) => { const e = EASE.smooth(clamp(c.lt / 0.3)), d = Math.sin(c.lt * 7) * e, slide = clamp(c.lt / (c.dur || 2)); return { bodyRot: -20 * e - 8 * slide, bodyY: 18 * e + 24 * slide, aR: 150 * e - 10 * d, fR: 14 * e + 20 * d, aL: 120 * e, fL: 10 * e, head: -12 * e, mouth: 0.5, shakeX: 1.6 * Math.sin(c.lt * 33) * e, lL: 40 * slide }; };
   BEC.idle = BEC['idle-still'];
 
   // =============================================================== THE KID v2 (no hood: messy dark hair, big eyes, baggy striped pyjamas, red scarf + shoes, big flashlight)
@@ -532,6 +546,8 @@
   KID['in-bed'] = (c) => ({ bodyRot: 88, bodyY: 62, head: -8, sleep: 0, lookY: -0.9, lookX: 0, wide: 0.4, mouth: 0.1 + 0.04 * Math.sin(c.t * 1.8), aL: -30, aR: 5, lL: -4, lR: 4, brow: 0.9, beam: 0, scarf: [150, 90], sy: 1 + 0.015 * Math.sin(c.t * 1.8) });
   KID['bed-turn'] = (c) => { const u = EASE.inOut(c.u); return { bodyRot: 88, bodyY: 62, head: -8 - 22 * u, sleep: 0, lookY: -0.9 + 0.2 * u, lookX: -1 * u, wide: 0.4 + 0.6 * u, mouth: 0.1 + 0.5 * u, aL: -30, aR: 5, lL: -4, lR: 4, brow: 1, beam: 0, scarf: [150, 90], shakeX: 0.6 * u * Math.sin(c.lt * 30) }; };
   KID['shake-head'] = (c) => { const e = env(c.lt, 0.12); return { head: 16 * Math.sin(c.lt * 15) * e, bodyRot: -4 * e, lookX: 0.8 * Math.sin(c.lt * 15) * e, wide: 1, mouth: 0.5, brow: 1, aL: -150 * e - 14 * (1 - e), aR: 80, beam: 0.3, scarf: [150, 110], hair: 0.8, shakeX: 1.2 * Math.sin(c.lt * 30) * e }; };
+  KID['hand-drift'] = (c) => { const u = EASE.inOut(clamp(c.u)); return { bodyRot: 2 * u, bodyY: 1 * Math.sin(c.t * 1.4), head: -3 * u, lookX: 0, lookY: 0, wide: 0.0, brow: 0.5, mouth: 0.08, aL: -14, aR: 40 + 70 * u, fx: 0, beam: 0.35 * (1 - u), scarf: [150, 100], hair: 0.1, shakeX: 0.4 * Math.sin(c.lt * 24) * u }; };
+  KID['snap-awake'] = (c) => { const e = EASE.outCubic(clamp(c.lt / 0.15)); return { bodyRot: -8 * e, head: -8 * e, wide: 1, mouth: 0.7 * e, brow: 1, aL: -60 * e, aR: 110 - 70 * e, beam: 0.6, scarf: [160, 100], shakeX: 1.6 * Math.sin(c.lt * 40) * e, lookX: 0.6 }; };
   KID.idle = KID['idle-scared'];
   const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, cerberus: CERB, bec: BEC };
   const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, cerberus: buildCerberus, bec: buildBec };

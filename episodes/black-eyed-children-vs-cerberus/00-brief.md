@@ -20,3 +20,9 @@ Theo `docs/07-format-battle-spin.md`. Tập mẫu định dạng: `episodes/vryk
 - Bé không có máu, không thẻ/HP. BEC là trẻ con: bạo lực ở mức ma mị (mắt đen, giọng phẳng, đứng im bất động), không gore với chúng. Cerberus có thể bị thương nhẹ mức hoạt hình.
 - Không dùng thiết kế phim *Black Eyed Kids* (2012), không dùng "Fluffy".
 - 210–235 từ, ~90–98 s, 30–35 cảnh, quy tắc 180° (BEC trái, Cerberus phải, bé phía Cerberus/trong chòi).
+
+## CẬP NHẬT (người dùng): ĐỔI SANG KẾT A — CERBERUS THẮNG
+- R2 giữ nguyên (bài hát ru làm từng đầu Cerberus gục; chúng mimic giọng bé dụ lời mời).
+- R3 đảo chiều bằng lore đã cài: bé **từ chối mời** ("No. You can't come in.") → luật giữ chúng ngoài ngưỡng cửa; đầu thứ ba của Cerberus chưa ngủ hẳn, bài hát đứt, cả ba đầu thức dậy → Cerberus ngoạm, đẩy chúng xuống vòng sáng âm phủ / đuổi khỏi hiên. K.O.: CERBERUS thắng.
+- Thoại cuối (bình minh): Cerberus (ba tầng giọng): "Never let them in. Go home." Bé: một câu rất ngắn.
+- Cú lửng (Black-Eyed Children không bị tiêu diệt, theo lore chỉ bị chặn): đêm sau ở nhà bé, tiếng gõ cửa, giọng phẳng "Can we come in?" — camera cho thấy **hai đứa trẻ mắt đen đứng ngoài cửa sổ/cửa kính**, nhìn thẳng vào camera. CTA: "Will the kid let them in? / Who's next?"

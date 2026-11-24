@@ -144,9 +144,9 @@ SC(tR3, 'cabin-in'); A('ki', 'gasp', tR3, tCome, { x: [KID_IN.x, KID_IN.x], y: [
 S(tR3, 'cu', { actor: 'ki', fill: 0.8, push: 1.1, hand: 1.5 });                                                                            // S21 REACTION-KID
 SC(tSpeak, 'cabin'); A('b0', 'mimic', tSpeak, tBut2, { x: [400, 400], voice: 'kid_mimic', flip: 1 }); A('b1', 'mimic', tSpeak, tBut2, { x: [470, 470], voice: 'kid_mimic', flip: 1 });
 S(tSpeak, 'cu', { actor: 'b0', fill: 0.95, whip: 0.2, hand: 1.5, tr: { type: 'whip', dur: 0.24, dir: -1 } });                                // whip -> CU-BEC mouths
-SC(tCome + 0.4, 'cabin-in'); A('ki', 'scared-back', tCome + 0.3, tBut2, { x: [KID_IN.x, KID_IN.x + 40], y: [KID_IN.y, KID_IN.y], flip: 1 }); TR('torchX', tCome + 0.4, tBut2 + 0.8, 520, 'out');
-S(tCome + 0.3, 'cu', { actor: 'ki', fill: 0.8, hand: 2, tr: { type: 'whip', dur: 0.2, dir: 1 } });                                        // S22 recoil, flashlight drops
-A('ki', 'talk', tBut2, tNo + 4, { x: [KID_IN.x + 40, KID_IN.x + 40], y: [KID_IN.y, KID_IN.y], voice: 'kid', beam: 0.8, flip: 1 });
+SC(tCome + 0.95, 'cabin-in'); A('ki', 'shake-head', tCome + 0.95, tBut2, { x: [KID_IN.x, KID_IN.x + 20], y: [KID_IN.y, KID_IN.y], flip: 1 }); TR('torchX', tCome + 1.0, tBut2 + 0.8, 520, 'out');   // the BEC CU holds through the mimic line; only then cut to the kid shaking their head
+S(tCome + 0.95, 'cu', { actor: 'ki', fill: 0.8, hand: 2, tr: { type: 'whip', dur: 0.2, dir: 1 } });                                        // S22 recoil, flashlight drops
+A('ki', 'talk', tBut2, tNo + 4, { x: [KID_IN.x + 20, KID_IN.x + 20], y: [KID_IN.y, KID_IN.y], voice: 'kid', beam: 0.8, flip: 1 });
 S(tBut2, 'cu', { actor: 'ki', fill: 0.85, push: 1.08, hand: 1.0 });                                                                          // S23 CU-KID "No."
 SC(tNo + 1.0, 'cabin-in'); A('bw0', 'idle-still', tNo - 0.2, tSong, { x: [290, 290], y: [660, 660], scale: 0.62, flip: 1, clipRect: [214, 344, 232, 302] }); A('bw1', 'idle-still', tNo - 0.2, tSong, { x: [390, 390], y: [664, 664], scale: 0.62, flip: 1, clipRect: [214, 344, 232, 302] });
 S(tNo + 1.0, 'ots', { scene: 'cabin-in', side: 'right', cx: 330, cy: 560, zoom: 1.5, push: 1.1, hand: 1.5, rack: { fg: 9, bg: 1 } });          // S23b OTS (kid answers)

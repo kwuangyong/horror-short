@@ -59,6 +59,9 @@
     defs = $('defs', {}, svg);
     const rg = (id, stops) => { const g = $('radialGradient', { id }, defs); stops.forEach((s) => $('stop', { offset: s[0], 'stop-color': s[1], 'stop-opacity': s[2] }, g)); };
     const lg = (id, stops, x2 = 0, y2 = 1) => { const g = $('linearGradient', { id, x1: 0, y1: 0, x2, y2 }, defs); stops.forEach((s) => $('stop', { offset: s[0], 'stop-color': s[1], 'stop-opacity': s[2] === undefined ? 1 : s[2] }, g)); };
+    rg('gFire', [[0, '#ffe08a', 0.95], [0.35, '#ff8a2a', 0.7], [0.7, '#e0301a', 0.35], [1, '#c4121f', 0]]);
+    rg('gSmokeD', [[0, '#0a0810', 0.85], [1, '#0a0810', 0]]);
+    rg('gLamp', [[0, '#ffd890', 0.7], [0.5, '#ffb050', 0.25], [1, '#ffb050', 0]]);
     rg('gRed', [[0, '#ff2a38', 0.9], [0.45, '#ff2a38', 0.35], [1, '#ff2a38', 0]]);
     rg('gWhite', [[0, '#ffffff', 1], [1, '#ffffff', 0]]);
     rg('gSmoke', [[0, '#e8ecf6', 0.75], [1, '#e8ecf6', 0]]);
@@ -147,9 +150,82 @@
     g = L('fog'); const fr = mulberry(21);
     for (let i = 0; i < 12; i++) { const e = $('ellipse', { cx: 0, cy: 1020 + fr() * 330, rx: 260 + fr() * 220, ry: 40 + fr() * 36, fill: 'url(#gFog)', opacity: 0.8 }, g); e.__fog = { x0: fr() * 3200, sp: 8 + fr() * 14 }; }
     layers.flies = L('flies'); for (let i = 0; i < 22; i++) { const e = $('g', {}, layers.flies); $('circle', { r: 26, fill: 'url(#gFly)' }, e); $('circle', { r: 4, fill: '#fff2a8' }, e); e.__f = { x: -100 + fr() * 1700, y: 600 + fr() * 800, ph: fr() * 6 }; }
-    buildRoom(); buildChurch(); arena.insertBefore(layers.room, arena.firstChild); arena.insertBefore(layers.church, arena.firstChild);
+    buildRoom(); buildCabin(); buildChurch(); arena.insertBefore(layers.cabin, layers.actors); arena.insertBefore(layers.cabinIn, arena.firstChild); arena.insertBefore(layers.winGlass, layers.mound); arena.insertBefore(layers.room, arena.firstChild); arena.insertBefore(layers.church, arena.firstChild);
   }
-  const PAR = { sky: 0.1, moon: 0.12, tower: 0.45, far: 0.35, near: 0.6, ftrees: 0.9, ground: 1, props: 1, hole: 1, actors: 1, mound: 1, fx: 1, fog: 1.12, flies: 1.2, room: 1, church: 0 };
+  const PAR = { cabin: 1, cabinIn: 1, winGlass: 1, sky: 0.1, moon: 0.12, tower: 0.45, far: 0.35, near: 0.6, ftrees: 0.9, ground: 1, props: 1, hole: 1, actors: 1, mound: 1, fx: 1, fog: 1.12, flies: 1.2, room: 1, church: 0 };
+
+
+  function buildCabin() {
+    const rr = mulberry(41);
+    const g = layers.cabin = $('g', {}, arena);
+    // ---- exterior: abandoned wooden cabin in the woods, porch, door (hinged at its left edge), windows, swinging oil lamp
+    $('ellipse', { cx: 700, cy: 1010, rx: 560, ry: 40, fill: '#04050e', opacity: 0.45 }, g);
+    $('polygon', { points: '300,1000 1100,1000 1160,1110 250,1110', fill: '#3a2a2c' }, g);                                       // porch deck
+    for (let i = 0; i < 12; i++) $('polygon', { points: `${300 + i * 67},1000 ${304 + i * 67},1000 ${296 + i * 70},1110 ${290 + i * 70},1110`, fill: '#241a1c', opacity: 0.8 }, g);
+    $('polygon', { points: '250,1110 1160,1110 1160,1126 250,1126', fill: '#2a1e20' }, g);
+    for (let i = 0; i < 3; i++) $('rect', { x: 262 - i * 14, y: 1112 + i * 10, width: 120 + i * 28, height: 12, fill: '#33252a' }, g);   // steps
+    $('rect', { x: 330, y: 540, width: 740, height: 462, fill: '#4a3a38' }, g);
+    for (let x = 330; x < 1070; x += 34) { $('rect', { x, y: 540, width: 3, height: 462, fill: '#241a1c' }, g); if (rr() > 0.5) $('rect', { x: x + 6, y: 560 + rr() * 300, width: 6, height: 40 + rr() * 80, fill: '#54423e', opacity: 0.8 }, g); }
+    $('polygon', { points: '290,545 700,380 1110,545', fill: '#2e2224' }, g); $('polygon', { points: '290,545 700,380 700,396 310,552', fill: '#4a3a3c' }, g);
+    for (let i = 0; i < 14; i++) $('rect', { x: 300 + i * 58, y: 470 + Math.abs(i - 7) * 8, width: 3, height: 70 - Math.abs(i - 7) * 8, fill: '#1e1618', opacity: 0.6 }, g);    // roof boards
+    $('rect', { x: 300, y: 540, width: 800, height: 22, fill: '#2a1e20' }, g);
+    for (const wx of [380, 880]) { $('rect', { x: wx - 8, y: 692, width: 176, height: 196, fill: '#2a1e20' }, g); $('rect', { x: wx, y: 700, width: 160, height: 180, fill: '#2a2018' }, g); $('rect', { x: wx, y: 700, width: 160, height: 180, fill: 'url(#gLamp)', opacity: 0.35 }, g); $('rect', { x: wx + 76, y: 700, width: 8, height: 180, fill: '#2a1e20' }, g); $('rect', { x: wx, y: 786, width: 160, height: 8, fill: '#2a1e20' }, g); }
+    const inn = $('rect', { x: 605, y: 670, width: 190, height: 330, fill: '#150d0c' }, g); $('rect', { x: 605, y: 670, width: 190, height: 330, fill: 'url(#gLamp)', opacity: 0.22 }, g);   // doorway interior
+    $('rect', { x: 595, y: 662, width: 210, height: 12, fill: '#2a1e20' }, g); $('rect', { x: 595, y: 662, width: 12, height: 340, fill: '#2a1e20' }, g); $('rect', { x: 793, y: 662, width: 12, height: 340, fill: '#2a1e20' }, g);
+    layers.cabinThresh = $('rect', { x: 598, y: 994, width: 204, height: 8, fill: '#ff6a2a', opacity: 0 }, g);
+    layers.cabinDoor = $('g', {}, g); const d = layers.cabinDoor;
+    layers.cabinDoorP = $('polygon', { fill: '#5a4440' }, d); layers.cabinDoorP2 = $('polygon', { fill: '#3e2e2c' }, d); layers.cabinKnob = $('circle', { r: 7, fill: '#c9a24a' }, d); layers.cabinDoorLines = $('g', {}, d); for (let i = 0; i < 5; i++) $('polygon', { fill: '#2a1e20', points: '0,0' }, layers.cabinDoorLines);
+    for (const px of [336, 1054]) { $('rect', { x: px - 12, y: 548, width: 24, height: 560, fill: '#3a2a2c' }, g); $('rect', { x: px - 12, y: 548, width: 7, height: 560, fill: '#54423e' }, g); }
+    $('rect', { x: 330, y: 598, width: 740, height: 20, fill: '#33252a' }, g);
+    layers.lamp = $('g', {}, g); const lp = layers.lamp; $('path', { d: 'M0 0 L0 74', stroke: '#2a2022', 'stroke-width': 4 }, lp); $('circle', { cx: 0, cy: 96, r: 210, fill: 'url(#gLamp)' }, lp); layers.lampGlow = lp.lastChild;
+    $('rect', { x: -16, y: 70, width: 32, height: 8, fill: '#2a2022' }, lp); $('rect', { x: -13, y: 78, width: 26, height: 40, rx: 4, fill: '#ffd890', opacity: 0.9 }, lp); $('rect', { x: -15, y: 114, width: 30, height: 8, fill: '#2a2022' }, lp); $('polygon', { points: '-2,100 2,100 0,86', fill: '#fff6d0' }, lp);
+    // ---- interior (scene 'cabin-in')
+    const I = layers.cabinIn = $('g', {}, arena);
+    $('rect', { x: -400, y: -300, width: 2000, height: 1330, fill: '#2a2022' }, I);
+    for (let x = -400; x < 1600; x += 56) { $('rect', { x, y: -300, width: 3, height: 1330, fill: '#150f10' }, I); if (rr() > 0.5) $('rect', { x: x + 8, y: 100 + rr() * 700, width: 8, height: 60 + rr() * 140, fill: '#33282a', opacity: 0.8 }, I); }
+    $('rect', { x: -400, y: 1000, width: 2000, height: 1000, fill: '#33241f' }, I); for (let y = 1000; y < 1500; y += 52) $('rect', { x: -400, y, width: 2000, height: 3, fill: '#150f10' }, I);
+    $('rect', { x: -400, y: 990, width: 2000, height: 14, fill: '#1c1214' }, I);
+    $('polygon', { points: '220,340 440,340 780,1040 -120,1040', fill: '#9fb4ff', opacity: 0.1 }, I);
+    $('rect', { x: 200, y: 330, width: 260, height: 330, fill: '#1c1214' }, I); $('rect', { x: 214, y: 344, width: 232, height: 302, fill: 'url(#gWindow)' }, I); $('circle', { cx: 392, cy: 420, r: 26, fill: '#ece9d6' }, I); $('rect', { x: 326, y: 344, width: 8, height: 302, fill: '#1c1214' }, I); $('rect', { x: 214, y: 486, width: 232, height: 8, fill: '#1c1214' }, I);
+    $('rect', { x: 680, y: 560, width: 300, height: 440, fill: '#14101c' }, I); $('rect', { x: 690, y: 570, width: 280, height: 430, fill: '#10142e' }, I);
+    for (let i = 0; i < 6; i++) { const x = 700 + i * 46; $('polygon', { points: `${x},1000 ${x + 22},760 ${x + 44},1000`, fill: '#07091a' }, I); }
+    $('rect', { x: 680, y: 552, width: 300, height: 14, fill: '#1c1214' }, I); $('rect', { x: 680, y: 552, width: 14, height: 450, fill: '#1c1214' }, I); $('rect', { x: 966, y: 552, width: 14, height: 450, fill: '#1c1214' }, I);
+    layers.cabinInDoor = $('g', {}, I); layers.cabinInDoorP = $('polygon', { fill: '#4a3834' }, layers.cabinInDoor); layers.cabinInDoorS = $('polygon', { fill: '#33241f' }, layers.cabinInDoor);
+    layers.cabinGateLeak = $('ellipse', { cx: 830, cy: 1010, rx: 260, ry: 40, fill: 'url(#gFire)', opacity: 0 }, I);
+    $('rect', { x: 20, y: 880, width: 240, height: 16, fill: '#2a1c18' }, I); $('rect', { x: 36, y: 896, width: 14, height: 110, fill: '#2a1c18' }, I); $('rect', { x: 230, y: 896, width: 14, height: 110, fill: '#2a1c18' }, I);   // old table
+    // ---- window glass layer for the bedroom (drawn over actors so the BECs stand "behind the glass")
+    const W2 = layers.winGlass = $('g', {}, arena); layers.winGlassG = W2;
+    $('polygon', { points: '90,270 280,270 150,740 90,740', fill: '#fff', opacity: 0.06 }, W2); $('polygon', { points: '310,270 350,270 250,740 200,740', fill: '#fff', opacity: 0.05 }, W2);
+    $('rect', { x: 258, y: 270, width: 5, height: 470, fill: '#4a3446', opacity: 0.9 }, W2); $('rect', { x: 90, y: 420, width: 340, height: 5, fill: '#4a3446', opacity: 0.9 }, W2);
+    layers.winGlassFog = $('ellipse', { cx: 260, cy: 650, rx: 190, ry: 130, fill: 'url(#gBreath)', opacity: 0 }, W2);
+    // ---- bedroom: vent + floor cracks leaking flickering red light (under-world glow)
+    const R = layers.room; layers.vent = $('g', { opacity: 0 }, R);
+    $('polygon', { points: '560,1034 760,1034 900,1300 420,1300', fill: 'url(#gFire)', opacity: 0.4 }, layers.vent);
+    $('rect', { x: 575, y: 905, width: 130, height: 84, rx: 6, fill: '#1a1214' }, layers.vent); for (let i = 0; i < 5; i++) $('rect', { x: 584, y: 914 + i * 14, width: 112, height: 6, fill: '#ff6a2a' }, layers.vent); $('circle', { cx: 640, cy: 947, r: 96, fill: 'url(#gFire)', opacity: 0.55 }, layers.vent);
+    layers.ventLines = $('g', {}, layers.vent); for (const d of ['M470 1040 L520 1100 L500 1160 L560 1230', 'M640 1040 L610 1110 L660 1170', 'M760 1040 L790 1100 L750 1160 L810 1240']) $('path', { d, stroke: '#ff7a2a', 'stroke-width': 5, fill: 'none', 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, layers.ventLines);
+  }
+  function updateCabin(t, sc) {
+    const o = trk('door', t, 0), kn = (TL.knocks || []).reduce((a, k) => (t >= k && t - k < 0.4 ? Math.max(a, 1 - (t - k) / 0.4) : a), 0);
+    if (sc === 'cabin') {
+      const w = 190 * (1 - 0.86 * o), x0 = 605, yt = 670 - 34 * o, yb = 1000 + 14 * o, sh = 3 * kn * Math.sin(t * 80);
+      layers.cabinDoorP.setAttribute('points', `${x0},${f2(yt)} ${f2(x0 + w + sh)},${f2(670 + 6 * o)} ${f2(x0 + w + sh)},${f2(yb - 6 * o)} ${x0},${f2(yb)}`); layers.cabinDoorP2.setAttribute('points', `${x0},${f2(yt)} ${f2(x0 + w * 0.18)},${f2(yt)} ${f2(x0 + w * 0.18)},${f2(yb)} ${x0},${f2(yb)}`);
+      layers.cabinKnob.setAttribute('cx', f2(x0 + w * 0.84 + sh)); layers.cabinKnob.setAttribute('cy', 850);
+      Array.from(layers.cabinDoorLines.children).forEach((e, i) => { const xx = x0 + w * (0.18 + 0.16 * i); e.setAttribute('points', `${f2(xx)},${f2(yt + 4)} ${f2(xx + 3)},${f2(yt + 4)} ${f2(xx + 3)},${f2(yb)} ${f2(xx)},${f2(yb)}`); });
+      layers.cabinThresh.setAttribute('opacity', f2(trk('thresh', t, 0) * (0.6 + 0.4 * Math.sin(t * 7))));
+      const sw = 7 * Math.sin(t * 1.5) + 2 * Math.sin(t * 3.1); layers.lamp.setAttribute('transform', `translate(520 618) rotate(${f2(sw)})`); layers.lampGlow.setAttribute('opacity', f2(0.8 + 0.2 * Math.sin(t * 13) * Math.sin(t * 5.7)));
+    }
+    if (sc === 'cabin-in') {
+      const w = 220 * (1 - 0.0 * o), a = -o * 75;   // inward-swinging leaf, hinge on the left of the doorway
+      layers.cabinInDoorP.setAttribute('points', `680,560 ${f2(680 + 220 * Math.cos(a * Math.PI / 180) * (1 - 0.0))},${f2(560 - 60 * Math.sin(-a * Math.PI / 180))} ${f2(680 + 220 * Math.cos(a * Math.PI / 180))},${f2(1000 + 40 * Math.sin(-a * Math.PI / 180))} 680,1000`);
+      layers.cabinInDoorS.setAttribute('points', '0,0'); layers.cabinInDoor.setAttribute('transform', `translate(${f2(2 * kn * Math.sin(t * 80))} 0)`);
+      layers.cabinGateLeak.setAttribute('opacity', f2(trk('gateLeak', t, 0) * (0.6 + 0.4 * Math.sin(t * 9))));
+    }
+    if (sc === 'room') {
+      const v = trk('vent', t, 0), fl = clamp(0.55 + 0.35 * Math.sin(t * 11) + 0.25 * Math.sin(t * 23 + 1) * Math.sin(t * 3.7), 0.15, 1);
+      layers.vent.setAttribute('opacity', f2(v * fl));
+      const wfg = trk('winBreath', t, 0); layers.winGlassFog.setAttribute('opacity', f2(wfg * 0.5 * (0.6 + 0.4 * Math.sin(t * 2.4))));
+    }
+  }
 
   function buildRoom() {
     const g = layers.room = $('g', {}, arena);
@@ -229,12 +305,12 @@
     layers.dogEyeLid = $('rect', { x: 240, y: 12, width: 48, height: 34, fill: '#c6dcff' }, d);
     for (let i = 0; i < 18; i++) $('circle', { cx: 160 + (i * 61) % 420, cy: 1000 + (i * 89) % 420, r: 3, fill: '#e6f1ff', opacity: 0.55 }, g);   // drifting motes
   }
-  const SCN_VIS = { forest: ['sky', 'moon', 'far', 'near', 'ground', 'ftrees', 'actors', 'fx', 'fog', 'flies'], grave: ['sky', 'moon', 'far', 'near', 'ground', 'props', 'hole', 'actors', 'mound', 'fx', 'fog', 'flies', 'tower'], room: ['room', 'actors', 'fx'], church: ['church'], void: [] };
+  const SCN_VIS = { cabin: ['sky', 'moon', 'far', 'near', 'ground', 'cabin', 'actors', 'fx', 'fog', 'flies'], 'cabin-in': ['cabinIn', 'actors', 'fx'], forest: ['sky', 'moon', 'far', 'near', 'ground', 'ftrees', 'actors', 'fx', 'fog', 'flies'], grave: ['sky', 'moon', 'far', 'near', 'ground', 'props', 'hole', 'actors', 'mound', 'fx', 'fog', 'flies', 'tower'], room: ['room', 'actors', 'winGlass', 'fx'], church: ['church'], void: [] };
   const sceneAt = (t) => { if (TL.__sceneT !== undefined) t = TL.__sceneT; let sc = 'grave'; for (const s of (TL.scenes || [])) if (t >= s.t0) sc = s.s; return sc; };
   function sceneVis(t) { const sc = sceneAt(t), vis = SCN_VIS[sc]; for (const name in PAR) layers[name].setAttribute('display', vis.includes(name) ? 'inline' : 'none'); if (room.blanket) room.blanket.setAttribute('display', sc === 'room' ? 'inline' : 'none'); return sc; }
   function updateScene(t, cam, shk, ta = t) {
     let sc = sceneAt(t);
-    const vis = { forest: ['sky', 'moon', 'far', 'near', 'ground', 'ftrees', 'actors', 'fx', 'fog', 'flies'], grave: ['sky', 'moon', 'far', 'near', 'ground', 'props', 'hole', 'actors', 'mound', 'fx', 'fog', 'flies', 'tower'], room: ['room', 'actors', 'fx'], church: ['church'], void: [] }[sc];
+    const vis = SCN_VIS[sc];
     const dawn = trk('dawn', t, 0);
     for (const name in PAR) {
       const l = layers[name]; l.setAttribute('display', vis.includes(name) ? 'inline' : 'none'); if (!vis.includes(name)) continue;
@@ -263,6 +339,7 @@
       room.door.setAttribute('transform', `translate(${f2(room.doorBase[0] + 3 * kn * Math.sin(t * 90))} ${room.doorBase[1]})`);
       room.blanket.setAttribute('transform', `translate(${f2(trk('blanket', t, 0))} ${f2(trk('blanketY', t, 0))}) rotate(${f2(trk('blanketR', t, 0))} 600 1000)`);
     }
+    updateCabin(t, sc);
     if (sc === 'church') { layers.spirit.setAttribute('opacity', f2(0.7 + 0.3 * Math.sin(t * 2.1))); const o = trk('dogEye', t, 0); layers.dogEyeLid.setAttribute('height', f2(32 * (1 - o))); layers.dogEye.setAttribute('opacity', clamp(o * 1.2)); }
     return sc;
   }
@@ -275,6 +352,15 @@
       if (p.type === 'garlic') { o.sway = []; const r = mulberry(5); for (let i = 0; i < 9; i++) { const s = $('g', {}, g); const a = -50 + i * 12; $('path', { d: `M0 0 Q${6 + i} -40 ${(i - 4) * 9} -${70 + r() * 40}`, stroke: '#3f7a52', 'stroke-width': 7, fill: 'none', 'stroke-linecap': 'round' }, s); o.sway.push([s, i]); } for (let i = 0; i < 7; i++) { const fx = (i - 3) * 14, fy = -80 - r() * 40; for (let k = 0; k < 6; k++) { const a = k / 6 * 6.28; $('ellipse', { cx: fx + Math.cos(a) * 9, cy: fy + Math.sin(a) * 9, rx: 7, ry: 4, fill: '#f4f1e6', transform: `rotate(${a * 57.3} ${fx + Math.cos(a) * 9} ${fy + Math.sin(a) * 9})` }, g); } $('circle', { cx: fx, cy: fy, r: 5, fill: '#ffe58a' }, g); } $('ellipse', { cx: 0, cy: 4, rx: 60, ry: 10, fill: '#04050e', opacity: 0.5 }, g); g.insertBefore(g.lastChild, g.firstChild); }
       if (p.type === 'ring') { o.fill = $('ellipse', { cx: 0, cy: 0, rx: 100, ry: 20, fill: 'url(#gRingFill)' }, g); o.ring = $('ellipse', { cx: 0, cy: 0, rx: 100, ry: 20, fill: 'none', stroke: '#ff3a46', 'stroke-width': 5 }, g); o.ring2 = $('ellipse', { cx: 0, cy: 0, rx: 100, ry: 20, fill: 'none', stroke: '#ff7a84', 'stroke-width': 2.5 }, g); }
       if (p.type === 'limit') { $('rect', { x: -22, y: -330, width: 44, height: 330, fill: 'url(#gLimit)', opacity: 0.55 }, g); $('rect', { x: -4, y: -330, width: 8, height: 330, fill: '#ff6a74' }, g); $('ellipse', { cx: 0, cy: 6, rx: 70, ry: 14, fill: 'url(#gRed)' }, g); o.rects = Array.from(g.children); }
+      if (p.type === 'gate') {
+        const rg_ = mulberry(61 + (p.seed || 0)); o.void = $('ellipse', { cx: 0, cy: 0, rx: 100, ry: 20, fill: '#0a0408' }, g); o.glowE = $('ellipse', { cx: 0, cy: 0, rx: 100, ry: 20, fill: 'url(#gFire)' }, g);
+        o.rings = [0, 1, 2].map((i) => $('ellipse', { cx: 0, cy: 0, rx: 100, ry: 20, fill: 'none', stroke: i === 1 ? '#ffb04a' : '#ff4a1a', 'stroke-width': 7 - i * 2, 'stroke-dasharray': i === 0 ? '60 26' : i === 1 ? '14 14' : '90 40', 'stroke-linecap': 'round' }, g));
+        o.spirals = [0, 1, 2].map(() => $('path', { fill: 'none', stroke: '#ffd27a', 'stroke-width': 3, 'stroke-linecap': 'round', opacity: 0.8 }, g));
+        o.embers = Array.from({ length: 16 }, () => ({ e: $('circle', { r: 3 + rg_() * 3, fill: '#ffb04a' }, g), x: (rg_() - 0.5) * 1.6, ph: rg_() * 3, sp: 0.5 + rg_() * 0.9 }));
+        o.smoke = Array.from({ length: 7 }, () => ({ e: $('ellipse', { rx: 40, ry: 26, fill: 'url(#gSmokeD)' }, g), x: (rg_() - 0.5) * 1.4, ph: rg_() * 4, sp: 0.18 + rg_() * 0.12 }));
+        o.slamRing = $('ellipse', { cx: 0, cy: 0, rx: 100, ry: 20, fill: 'none', stroke: '#fff2c8', 'stroke-width': 10, opacity: 0 }, g);
+      }
+      if (p.type === 'torch') { o.beam = $('polygon', { points: '40,0 400,-60 400,60', fill: '#fff0aa', opacity: 0.2 }, g); $('rect', { x: -60, y: -20, width: 100, height: 40, rx: 12, fill: '#3e466a' }, g); $('rect', { x: -60, y: -20, width: 100, height: 8, rx: 4, fill: '#6a74a0' }, g); $('rect', { x: -10, y: -20, width: 14, height: 40, fill: '#c4121f' }, g); $('rect', { x: 28, y: -28, width: 34, height: 56, rx: 8, fill: '#4a5482' }, g); $('ellipse', { cx: 64, cy: 0, rx: 6, ry: 22, fill: '#fff6c8' }, g); $('circle', { cx: 70, cy: 0, r: 60, fill: 'url(#gGold)', opacity: 0.7 }, g); }
       if (p.type === 'flashlight') { $('rect', { x: -6, y: -30, width: 12, height: 34, rx: 4, fill: '#3e466a' }, g); $('rect', { x: -9, y: -42, width: 18, height: 14, rx: 4, fill: '#fff0aa' }, g); }
       props.push(o);
     }
@@ -292,6 +378,18 @@
       if (p.type === 'ring') { const r = trk(p.track || 'ring', t, 0), rx = 40 + 300 * r, pulse = 1 + 0.04 * Math.sin(t * 5); o.g.setAttribute('opacity', clamp(r * 3)); for (const [e, k] of [[o.fill, 1], [o.ring, 1], [o.ring2, 0.82]]) { e.setAttribute('rx', f2(rx * pulse * k)); e.setAttribute('ry', f2(rx * pulse * k * 0.18)); } }
       if (p.type === 'limit') o.g.setAttribute('opacity', trk(p.track || 'limit', t, 0) * (0.7 + 0.3 * Math.sin(t * 6)));
       if (p.type === 'blanket') { /* handled in room */ }
+      if (p.type === 'gate') {
+        const op = trk(p.track || 'gate', t, 0), ca = p.closeAt === undefined ? 1e9 : p.closeAt, cl = clamp((t - ca) / 0.22), open = op * (1 - cl * cl), R0 = 40 + 330 * open, fl = 1 + 0.05 * Math.sin(t * 9);
+        o.g.setAttribute('opacity', clamp(open * 3));
+        for (const e of [o.void, o.glowE]) { e.setAttribute('rx', f2(R0 * fl)); e.setAttribute('ry', f2(R0 * fl * 0.2)); }
+        o.rings.forEach((e, i) => { e.setAttribute('rx', f2(R0 * (1 - i * 0.12))); e.setAttribute('ry', f2(R0 * (1 - i * 0.12) * 0.2)); e.setAttribute('stroke-dashoffset', f2(-t * (i % 2 ? -90 : 70))); });
+        o.spirals.forEach((e, k) => { let d = ''; for (let i = 0; i <= 28; i++) { const u = i / 28, a = u * 9 + t * (1.6 + k * 0.4) + k * 2.1, r = R0 * (1 - u) * 0.95; d += (i ? 'L' : 'M') + f2(Math.cos(a) * r) + ' ' + f2(Math.sin(a) * r * 0.2); } e.setAttribute('d', d); e.setAttribute('opacity', f2(0.6 * open)); });
+        o.embers.forEach((q) => { const u = ((t * q.sp + q.ph) % 3) / 3; q.e.setAttribute('cx', f2(q.x * R0 * 0.8 + 18 * Math.sin(u * 9 + q.ph))); q.e.setAttribute('cy', f2(-u * 260 * (0.5 + open))); q.e.setAttribute('opacity', f2(Math.sin(u * Math.PI) * open)); });
+        o.smoke.forEach((q) => { const u = ((t * q.sp + q.ph) % 1); q.e.setAttribute('cx', f2(q.x * R0 * 0.7 + 30 * Math.sin(u * 5 + q.ph))); q.e.setAttribute('cy', f2(-u * 300 * (0.4 + open))); q.e.setAttribute('rx', f2(30 + 80 * u * (0.5 + open))); q.e.setAttribute('ry', f2(20 + 60 * u)); q.e.setAttribute('opacity', f2(0.9 * Math.sin(u * Math.PI) * open)); });
+        const sl = t >= ca && t < ca + 0.35 ? (t - ca) / 0.35 : -1; o.slamRing.setAttribute('opacity', sl >= 0 ? f2(1 - sl) : 0); if (sl >= 0) { o.slamRing.setAttribute('rx', f2(40 + sl * 420)); o.slamRing.setAttribute('ry', f2((40 + sl * 420) * 0.2)); }
+        if (sl >= 0) o.g.setAttribute('opacity', 1);
+      }
+      if (p.type === 'torch') { const tx = trk(p.xTrack || 'torchX', t, p.x); const r = (tx - p.x) * 0.45; o.g.setAttribute('transform', `translate(${f2(tx)} ${f2(p.y - 18)}) scale(${f2(sc_)}) rotate(${f2(r)})`); o.beam.setAttribute('opacity', f2(0.2 * (0.8 + 0.2 * Math.sin(t * 17)) * trk(p.beamTrack || 'torchBeam', t, 1))); }
       o.g.setAttribute('opacity', (p.type === 'ring' || p.type === 'limit') ? o.g.getAttribute('opacity') : a);
     }
   }
@@ -299,7 +397,7 @@
   // ------------------------------------------------------------------ actors
   function setupActors() {
     for (const name in TL.actors) {
-      const d = TL.actors[name], rig = RIGS[d.kind](); const wrap = $('g', {}, layers.actors); wrap.__z = d.z || 0; wrap.appendChild(rig.root);
+      const d = TL.actors[name], rig = RIGS[d.kind](d.variant || 0); const wrap = $('g', {}, layers.actors); wrap.__z = d.z || 0; wrap.appendChild(rig.root);
       d.rig = rig; d.wrap = wrap; d.cues = TL.cues.filter((c) => c.actor === name).sort((a, b) => a.t0 - b.t0);
     }
   }
@@ -337,7 +435,7 @@
       const r = mulberry((f.seed || 1) * 977 + Math.round(f.t0 * 100)); const grp = $('g', { display: 'none' }, layers.fx); const it = { f, grp, parts: [] };
       const fill = f.fill || 'url(#gFog)';
       if (f.type === 'dust' || f.type === 'powder') for (let i = 0; i < (f.n || 14); i++) { const e = $('circle', { r: 1, fill: f.type === 'powder' ? 'url(#gSmoke)' : fill }, grp); it.parts.push({ e, vx: (r() - 0.5) * (f.spread || 380), vy: -(30 + r() * 90), r0: 14 + r() * 20, r1: 40 + r() * 50, dx: (r() - 0.5) * 120 }); }
-      if (f.type === 'smoke') for (let i = 0; i < (f.n || 10); i++) { const e = $('circle', { r: 1, fill: 'url(#gSmoke)' }, grp); it.parts.push({ e, d: r() * 0.9, dx: (r() - 0.5) * (f.spread || 90), vx: (r() - 0.5) * 40, r1: 30 + r() * 30 }); }
+      if (f.type === 'smoke') for (let i = 0; i < (f.n || 10); i++) { const e = $('circle', { r: 1, fill: f.dark ? 'url(#gSmokeD)' : 'url(#gSmoke)' }, grp); it.parts.push({ e, d: r() * 0.9, dx: (r() - 0.5) * (f.spread || 90), vx: (r() - 0.5) * 40, r1: 30 + r() * 30 }); }
       if (f.type === 'soil') for (let i = 0; i < (f.n || 18); i++) { const e = $('rect', { width: 10 + r() * 12, height: 8 + r() * 10, rx: 3, fill: r() > 0.5 ? '#5a4056' : '#3d2a38' }, grp); it.parts.push({ e, vx: (r() - 0.5) * 520, vy: -(300 + r() * 520), rot: (r() - 0.5) * 900 }); }
       if (f.type === 'sparks') for (let i = 0; i < (f.n || 24); i++) { const e = $('circle', { r: 3 + r() * 4, fill: f.color || '#ffd65a' }, grp); const a = r() * 6.283, sp = 120 + r() * 360; it.parts.push({ e, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 60, g: -70 - r() * 120 }); }
       if (f.type === 'ripple') for (let i = 0; i < 4; i++) it.parts.push({ e: $('circle', { fill: 'none', stroke: f.color || '#ffe39a', 'stroke-width': 5 }, grp), d: i * 0.18 });

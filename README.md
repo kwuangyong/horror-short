@@ -24,6 +24,7 @@ Nghiên cứu cách làm video kinh dị ngắn (TikTok / Reels / YouTube Shorts
 
 - Kịch bản tiếng Anh ~100 giây, có hook, 3 manh mối, điểm chọn A/B và 2 cái kết: [`examples/ma-da/script.md`](examples/ma-da/script.md)
 - Template trống để viết tập mới: [`templates/script-template.md`](templates/script-template.md)
+- Prompt cho Gemini (gom đủ mọi tiêu chí, ra đúng định dạng script.md): [`templates/gemini-prompt.md`](templates/gemini-prompt.md)
 
 ## Công cụ (`tools/`)
 

@@ -82,3 +82,6 @@ Nâng cấp lần sau: cảnh "Legend says a dog lies buried here" gần như đ
 
 # Review · Cổng 2 · script-anim v6 (Boss)
 227 từ (217 lời dẫn + 10 thoại), 35 cảnh có MATCH/[REPOSITION], 180° giữ đúng. Thoại cuối Grim ↔ bé tách đúng bằng narration.py (2 character lines). Cú lửng: xác Vrykolakas lấp ló sau cửa sổ, cắt đen trước khi bé thấy. Cảnh chó chôn sáng rõ. **ĐẠT 10/10.**
+
+# Review · Cổng 3 · anim v6 (Boss)
+**ĐẠT.** 96.8 s, −14.2 LUFS, 180° check pass. Bé v2, Grim/bé nói, cảnh chó chôn sáng, phụ đề Bebas Neue né mặt. Còn yếu: xác sau cửa sổ hơi hoạt hình chưa đủ rợn; rừng POV phẳng; phụ đề cận có lúc đè mặt đất.

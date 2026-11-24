@@ -698,7 +698,7 @@
   }
   G.checkSides = function () {        // 180-degree rule report: frames of VERSUS shots where `left` actor is not on the left
     const sd = TL.sides, bad = []; if (!sd) return bad;
-    for (let t = 0; t < TL.duration; t += 0.1) { const info = shotInfo(t); if (!info || info.s.type !== 'versus') continue; G.renderFrame(t); const a = TL.actors[sd.left], b = TL.actors[sd.right]; if (a.pos && b.pos && a.pos.x > b.pos.x) bad.push([+t.toFixed(2), Math.round(a.pos.x), Math.round(b.pos.x), arena.getAttribute('transform') ? 'mirrored' : 'NOT mirrored']); }
+    for (let t = 0; t < TL.duration; t += 0.1) { const info = shotInfo(t); if (!info || info.s.type !== 'versus') continue; G.renderFrame(t); const a = TL.actors[sd.left], b = TL.actors[sd.right]; if (a.pos && b.pos) { const leftOnScreen = TL.__mirrored ? a.pos.x > b.pos.x : a.pos.x < b.pos.x; if (!leftOnScreen) bad.push([+t.toFixed(2), Math.round(a.pos.x), Math.round(b.pos.x), TL.__mirrored ? 'mirrored' : 'NOT mirrored']); } }
     return bad;
   };
   // ------------------------------------------------------------------ public API
@@ -737,6 +737,8 @@
     if (trs.blur > 0) sk = [sk[0] + trs.off, sk[1]];
     let mirror = false;                                         // 180-degree rule: keep sides[left] on the left in VERSUS shots (mirror the whole world if needed)
     if (TL.sides && info && info.s.type === 'versus' && !isPov) { const a = TL.actors[TL.sides.left], b = TL.actors[TL.sides.right]; if (a && b && a.pos && b.pos && a.pos.x > b.pos.x) mirror = true; }
+    for (const w of (TL.mirror || [])) if (t >= w[0] && t < w[1]) mirror = true;
+    TL.__mirrored = mirror;
     arena.setAttribute('transform', mirror ? `translate(1080 0) scale(-1 1)` : '');
     updateScene(t, cam, sk, ta);
     if (sceneOn && !isPov) { updateProps(t, sc); updateFx(ta); }

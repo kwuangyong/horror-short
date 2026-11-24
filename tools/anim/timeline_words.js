@@ -13,3 +13,6 @@ function cueOnWord(words, word, o) {          // o: {actor, action, len, lead=0,
 module.exports = { wordTime, cueOnWord, find };
 // cut on a word: cutOnWord(words, 'bites', {type:'cu', actor:'grim', zoom:3, lead:0.05}) -> shot object for TL.shots
 module.exports.cutOnWord = (words, word, o) => { const { nth, lead, ...rest } = o; return Object.assign({ t: wordTime(words, word, nth || 1) - (lead || 0) }, rest); };
+
+// voice intervals for `talk`: wordIntervals(words, t0, t1) -> [[start,end],...] for words spoken by one character (use with voices:{grim:{words:[...]}})
+module.exports.wordIntervals = (words, t0, t1) => words.filter((w) => w.start >= t0 && w.end <= t1).map((w) => [w.start, w.end]);

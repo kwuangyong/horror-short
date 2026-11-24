@@ -56,5 +56,16 @@ Common params: `scene` (switch scene at the cut), `push` (total zoom factor over
 - timeline_words.js `cutOnWord(words,'bites',{type:'cu',actor:'grim',lead:0.05})` builds a shot that cuts when the word is spoken. Top-level `slow:[{t0,t1,rate}]` and `freeze` also work outside shots.
 - Test: episodes/vrykolakas-vs-church-grim/anim-test/make_cine_timeline.js -> cine-test.mp4 (12 s: POV 4 s, OTS 2 s, LOW 2 s, ECU 1 s, VERSUS + crash-zoom 3 s). Render ~49 ms/frame (blur filters on cut frames only).
 
+## v6 additions (continuity, new kid, Grim talks, window monster)
+- **Kid v2** (no hood): messy dark hair that bounces with running, big eyes with highlights, baggy striped pyjamas, red scarf + shoes. New actions `talk` (mouth follows voice amplitude), `wave`, `look-back`; OTS back view shows hair nape + scarf + striped sleeve; POV shows the striped sleeve. Sheet: `tools/anim/kid-v2-sheet.png`.
+- **Talk**: `talk` action for grim / vry / kid; cue param `voice:'name'` + top-level `voices:{name:{words:[[s,e],..]}}` (word intervals, e.g. `wordIntervals(words,t0,t1)`) or `{fps,v:[..]}` from `node tools/anim/envelope.js voice.wav out.json`.
+- **Bedroom window monster**: tracks `winMon` (rises behind the glass), `winGlow` (hollow eyes), `winBreath` (fog on the pane), `winScratch` (claws drag, scratches drawn), `winLean`; use `insert` shot with `push` for the slow push-in.
+- **Transitions** (`tr` on the incoming shot): `{type:'whip',dur,dir}` horizontal blur across the cut; `{type:'dip',dur}` dip to black; `{type:'fade',dur}` crossfade (rendered through `renderFrameAsync`; render.js uses it automatically). **Match-cut**: actor time never resets across cuts (cues are global) and `anchor:{actor,at:'head'|'eye'|'body',sx,sy}` puts a marker at the same screen position across the cut.
+- **180 degree rule**: top-level `sides:{left:'vry',right:'grim'}`; VERSUS shots mirror the world if the left actor is on the right; `node tools/anim/render.js --timeline tl.json --check` reports any frame where sides are swapped.
+- **Dynamic captions**: `python3 tools/anim/captions_dyn.py captions.ass timeline.json out.ass` moves captions to y=1590 (83 %) in cu/ecu/reaction/low shots (shot param `cap:'low'|'top'|'mid'` overrides).
+- **Look**: church cut-away is moonlit with a glowing silver-blue spirit dog; POV forest has volumetric trunks, 2-tone canopies, mist between depth layers, blurred near trees and a warm flashlight glow on the nearest trunks.
+- Layout tip: put the tomb/kid at y~940 (further back) so the kid's head clears Grim's back, and keep Grim's nose x at least 60 px from the kid's head.
+- Fonts: Oswald / Anton / League Gothic are not in the apt registry; `fonts-bebas-neue` installed (condensed bold caps) -> `make_captions.py --font "Bebas Neue" --size 104`.
+
 ## Known limits
 Fx are simple (no real particles beyond dust/soil/impact/speed lines). Silhouette/split-roll decoys are 7 generic shapes. Grim is very dark on dark ground (rim light is weak). Kid poses hide/cower are rough. Freeze skips actor time (see above).

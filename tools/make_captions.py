@@ -35,6 +35,7 @@ def line_end_indexes(script: str) -> set[int]:
 
 RED_ASS = "&H002F26E3&"    # BGR of (227, 38, 47)
 WHITE_ASS = "&H00EBF2F5&"
+AMBER_ASS = "&H0000BFFF&"   # BGR of (255, 191, 0)
 
 
 def ts(t: float) -> str:
@@ -152,14 +153,17 @@ Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
         nxt = chunks[i + 1][0]["start"] if i + 1 < len(chunks) else c[-1]["end"] + 0.5
         end = min(nxt, c[-1]["end"] + 0.6)
         parts = []
+        spk = c[0].get("speaker", "narrator")
+        base = AMBER_ASS if spk == "grim" else WHITE_ASS      # Grim = amber, kid = white italic
+        pre = f"{{\\c{base}}}" + ("{\\i1}" if spk == "kid" else "") if spk != "narrator" else ""
         for w in c:
             txt = re.sub(r"[\"“”]", "", w["word"]).upper()
             if w.get("key"):
-                parts.append(f"{{\\c{RED_ASS}}}{txt}{{\\c{WHITE_ASS}}}")
+                parts.append(f"{{\\c{RED_ASS}}}{txt}{{\\c{base}}}")
             else:
                 parts.append(txt)
         anim = f"{{\\pos({x},{y})\\fscx78\\fscy78\\t(0,90,\\fscx104\\fscy104)\\t(90,140,\\fscx100\\fscy100)}}"
-        lines.append(f"Dialogue: 0,{ts(start)},{ts(end)},Cap,,0,0,0,,{anim}{' '.join(parts)}")
+        lines.append(f"Dialogue: 0,{ts(start)},{ts(end)},Cap,,0,0,0,,{anim}{pre}{' '.join(parts)}")
     return header + "\n".join(lines) + "\n"
 
 

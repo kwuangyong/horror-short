@@ -13,6 +13,7 @@ const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i < 0 ?
   const dump = arg('dump', null), tmp = path.resolve(arg('dump-dir', fs.mkdtempSync(path.join(require('os').tmpdir(), 'anim-'))));
   fs.mkdirSync(tmp, { recursive: true });
   const jobs = dump ? String(dump).split(',').map((s) => ({ t: +s, name: 'd_' + (+s).toFixed(2).padStart(6, '0') })) : Array.from({ length: total }, (_, i) => ({ t: i / fps, name: 'f' + String(i).padStart(5, '0') }));
+  if (arg('check', false)) { const b0 = await chromium.launch(); const pg = await b0.newPage({ viewport: { width: 1080, height: 1920 } }); await pg.goto('file://' + path.join(__dirname, 'index.html')); await pg.evaluate((x) => window.loadTimeline(x), tl); const bad = await pg.evaluate(() => window.checkSides()); console.log(bad.length ? '180-RULE: ' + bad.length + ' frames with sides swapped (t, left.x, right.x):\n' + bad.map((q) => q.join(' ')).join('\n') : '180-RULE OK'); await b0.close(); return; }
   const ext = png || dump ? 'png' : 'jpg', url = 'file://' + path.join(__dirname, 'index.html');
   const browser = await chromium.launch(); const t0 = Date.now();
   const run = async (w) => {
@@ -20,7 +21,7 @@ const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i < 0 ?
     const page = await ctx.newPage(); page.on('pageerror', (e) => { console.error('PAGE ERROR', e.message); });
     await page.goto(url); await page.evaluate((x) => window.loadTimeline(x), tl);
     for (let i = w; i < jobs.length; i += workers) {
-      await page.evaluate((t) => window.renderFrame(t), jobs[i].t);
+      await page.evaluate((t) => (window.renderFrameAsync ? window.renderFrameAsync(t) : window.renderFrame(t)), jobs[i].t);
       await page.screenshot(Object.assign({ path: path.join(tmp, jobs[i].name + '.' + ext) }, ext === 'jpg' ? { type: 'jpeg', quality: 93 } : { type: 'png' }));
     }
     await ctx.close();

@@ -92,7 +92,7 @@ t_all = T(len(buf)/SR)
 kn = find("knock", 0, sec[8]); on = find("One", 0, sec[8])
 t_cut = on.start - 0.06
 t_k = kn.end + 0.12
-last5 = [w for w in W if sec[5] <= w["start"] < sec[6]][-1]; t_ko = last5["end"] + 0.2
+last5 = [w for w in W if sec[5] <= w["start"] < sec[6]-0.05][-1]; t_ko = last5["end"] + 0.2
 t_dawn = sec[7]
 fm = 48 + 3*np.sin(2*np.pi*0.05*t_all)
 drone = np.sin(2*np.pi*np.cumsum(fm)/SR)*0.5 + 0.35*np.sin(2*np.pi*np.cumsum(fm*1.5*(1+0.002*np.sin(2*np.pi*0.11*t_all)))/SR) \
@@ -146,16 +146,29 @@ put(IMP, t_ko, 1.0); put(boom(2.5, 60, 24), t_ko, 0.9)
 # false peace: bell + wrong-note piano
 notes = [(t_dawn+0.3, 392.0, 0), (t_dawn+1.5, 493.9, 0.35), (t_dawn+2.8, 587.3, -0.4), (t_dawn+4.3, 523.3, 0.5), (t_dawn+5.4, 369.99, 0.3), (t_dawn+7.0, 440.0, 0.45)]
 for tt, f, dt in notes:
-    if tt < t_cut - 0.3: put(pnote(f, 3.5, dt), tt, 0.8)
+    if tt < t_cut - 0.3: put(pnote(f, 3.5, dt), tt, 0.6)
 for k in range(4):
     tt = t_dawn + 0.5 + k*2.4
-    if tt < t_cut - 0.3: put(lp(bell(311.1, 6), 1800, 1), tt, 0.55)
+    if tt < t_cut - 0.3: put(lp(bell(311.1, 6), 1800, 1), tt, 0.4)
 # hard cut before "One knock", then one wooden door knock
 buf[int(t_cut*SR):int((t_cut+0.04)*SR)] *= np.linspace(1, 0, int(0.04*SR))
 buf[int((t_cut+0.04)*SR):] = 0
 put(KNK, t_k, 1.0)
+# nails scraping glass (3 faint strokes) + low breath ~1.5 s: the corpse behind the window
+def scratch():
+    d = 1.3; t = T(d); n = rng.standard_normal(len(t))
+    x = n - lp(n, 2500, 1); x = lp(x, 7500, 1)
+    sq = np.sin(2*np.pi*(3100 + 900*np.sin(2*np.pi*3.1*t))*t)*0.35
+    am = np.zeros(len(t))
+    for a0, a1 in [(0.0, 0.38), (0.5, 0.95), (0.98, 1.3)]:
+        m = (t >= a0) & (t < a1); u = (t[m]-a0)/(a1-a0); am[m] = np.sin(np.pi*u)**0.8*(0.6+0.4*np.sin(2*np.pi*28*t[m]))
+    return (x*0.5 + sq)*am*0.35
+def breath():
+    d = 1.5; t = T(d); n = lp(rng.standard_normal(len(t)), 700, 2)*14
+    e = np.where(t < 0.7, np.sin(np.pi*t/0.7), 0)**2*0.8 + np.where(t >= 0.7, np.sin(np.pi*(t-0.7)/0.8), 0)**2*1.0
+    return n*e*(1 + 0.3*np.sin(2*np.pi*55*t))*0.55
+put(breath(), t_k + 0.2, 0.2); put(scratch(), t_k + 0.45, 0.28)
 # faint return of drone for CTA
-put(lp(rng.standard_normal(int(4*SR)), 120, 2)*np.hanning(int(4*SR))*10, sec[9]+0.5, 0.10)
 out = buf[:int(TOTAL*SR)]
 pk = np.max(np.abs(out)); out = np.tanh(out/pk*1.4)/np.tanh(1.4)*0.9
 wav(f"{H}/music.wav", out)

@@ -21,8 +21,13 @@ It charges through wild garlic, and the stench cripples it.
 Legend says a dog lies buried here, and Grim grows stronger.
 He pounces, and one last bite ends it.
 Grim wins.
-At dawn, Grim buries the body, and the kid runs home.
+At dawn, Grim buries the body.
+The kid runs home.
 Next night, the kid lies in bed. Then, one knock.
 Nobody burned it.
 Is it really dead?
 Who's next?
+
+# --- Character lines (record with a second voice) ---
+"Go home, child. Never come back after dark."
+"Thank you."

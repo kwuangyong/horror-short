@@ -1,6 +1,6 @@
 {
- "scale": 1.063961031519758,
- "duration": 89.672542,
+ "scale": 1.0639251175071005,
+ "duration": 95.804063,
  "sections": [
   {
    "section": 0,
@@ -20,7 +20,7 @@
   {
    "section": 3,
    "name": "R1",
-   "start": 39.68
+   "start": 39.67
   },
   {
    "section": 4,
@@ -35,189 +35,266 @@
   {
    "section": 6,
    "name": "KO",
-   "start": 75.68
+   "start": 75.69
   },
   {
    "section": 7,
-   "name": "peace",
+   "name": "dawn",
    "start": 77.12
   },
   {
    "section": 8,
    "name": "cliffhanger",
-   "start": 81.08
+   "start": 87.6
   },
   {
    "section": 9,
    "name": "CTA",
-   "start": 85.63
+   "start": 91.76
+  }
+ ],
+ "dialogue": [
+  {
+   "section": 7,
+   "speaker": "grim",
+   "text": "Go home, child.",
+   "start": 79.84
+  },
+  {
+   "section": 7,
+   "speaker": "grim",
+   "text": "Never come back after dark.",
+   "start": 81.84
+  },
+  {
+   "section": 7,
+   "speaker": "kid",
+   "text": "Thank you.",
+   "start": 84.59
   }
  ],
  "sentences": [
   {
    "section": 0,
+   "speaker": "narrator",
    "text": "It turns to the kid.",
    "start": 0.0
   },
   {
    "section": 0,
+   "speaker": "narrator",
    "text": "Who survives?",
    "start": 1.56
   },
   {
    "section": 1,
+   "speaker": "narrator",
    "text": "Tonight, two legends collide.",
    "start": 3.98
   },
   {
    "section": 1,
+   "speaker": "narrator",
    "text": "On the left, the Vrykolakas.",
    "start": 6.62
   },
   {
    "section": 1,
+   "speaker": "narrator",
    "text": "On the right, the Church Grim.",
    "start": 9.25
   },
   {
    "section": 1,
+   "speaker": "narrator",
    "text": "Who wins?",
    "start": 11.62
   },
   {
    "section": 1,
+   "speaker": "narrator",
    "text": "Comment.",
    "start": 12.67
   },
   {
    "section": 2,
+   "speaker": "narrator",
    "text": "A kid chases fireflies deep into the woods, until the path vanishes.",
    "start": 14.25
   },
   {
    "section": 2,
+   "speaker": "narrator",
    "text": "Then the trees part, and an old graveyard waits.",
    "start": 18.87
   },
   {
    "section": 2,
+   "speaker": "narrator",
    "text": "The ground shakes, and the Vrykolakas claws its way out.",
    "start": 22.16
   },
   {
    "section": 2,
+   "speaker": "narrator",
    "text": "It sees the kid, and starts walking.",
    "start": 25.84
   },
   {
    "section": 2,
+   "speaker": "narrator",
    "text": "But Church Grim leaps the wall and blocks its path.",
    "start": 28.51
   },
   {
    "section": 2,
+   "speaker": "narrator",
    "text": "Garlic makes it flinch, and the headstone warns: only fire ends it.",
    "start": 31.82
   },
   {
    "section": 2,
+   "speaker": "narrator",
    "text": "But Grim is strong only inside these walls.",
    "start": 36.44
   },
   {
    "section": 3,
+   "speaker": "narrator",
    "text": "Round one.",
-   "start": 39.68
+   "start": 39.67
   },
   {
    "section": 3,
+   "speaker": "narrator",
    "text": "Grim lunges, and his jaws close on its throat.",
    "start": 40.73
   },
   {
    "section": 3,
+   "speaker": "narrator",
    "text": "Claws rake his side, but he holds, and the dead man crawls away.",
    "start": 44.03
   },
   {
    "section": 4,
+   "speaker": "narrator",
    "text": "Round two.",
    "start": 48.61
   },
   {
    "section": 4,
+   "speaker": "narrator",
    "text": "It grabs Grim by the neck and hurls him over the wall.",
    "start": 49.72
   },
   {
    "section": 4,
+   "speaker": "narrator",
    "text": "Outside, his power dies, so every claw lands.",
    "start": 52.86
   },
   {
    "section": 4,
+   "speaker": "narrator",
    "text": "Grim falls, and the Vrykolakas turns to the kid.",
    "start": 56.77
   },
   {
    "section": 5,
+   "speaker": "narrator",
    "text": "Round three.",
    "start": 60.25
   },
   {
    "section": 5,
+   "speaker": "narrator",
    "text": "Grim crawls back inside, and his strength returns.",
    "start": 61.34
   },
   {
    "section": 5,
+   "speaker": "narrator",
    "text": "It charges through wild garlic, and the stench cripples it.",
    "start": 64.91
   },
   {
    "section": 5,
+   "speaker": "narrator",
    "text": "Legend says a dog lies buried here, and Grim grows stronger.",
-   "start": 68.49
+   "start": 68.48
   },
   {
    "section": 5,
+   "speaker": "narrator",
    "text": "He pounces, and one last bite ends it.",
    "start": 72.6
   },
   {
    "section": 6,
+   "speaker": "narrator",
    "text": "Grim wins.",
-   "start": 75.68
+   "start": 75.69
   },
   {
    "section": 7,
-   "text": "At dawn, Grim buries the body, and the kid runs home.",
+   "speaker": "narrator",
+   "text": "At dawn, Grim buries the body.",
    "start": 77.12
   },
   {
+   "section": 7,
+   "speaker": "grim",
+   "text": "Go home, child.",
+   "start": 79.84
+  },
+  {
+   "section": 7,
+   "speaker": "grim",
+   "text": "Never come back after dark.",
+   "start": 81.84
+  },
+  {
+   "section": 7,
+   "speaker": "kid",
+   "text": "Thank you.",
+   "start": 84.59
+  },
+  {
+   "section": 7,
+   "speaker": "narrator",
+   "text": "The kid runs home.",
+   "start": 85.93
+  },
+  {
    "section": 8,
+   "speaker": "narrator",
    "text": "Next night, the kid lies in bed.",
-   "start": 81.08
+   "start": 87.6
   },
   {
    "section": 8,
+   "speaker": "narrator",
    "text": "Then, one knock.",
-   "start": 83.77
+   "start": 90.06
   },
   {
-   "section": 9,
+   "section": 8,
+   "speaker": "narrator",
    "text": "Nobody burned it.",
-   "start": 85.63
+   "start": 91.76
   },
   {
-   "section": 9,
+   "section": 8,
+   "speaker": "narrator",
    "text": "Is it really dead?",
-   "start": 87.01
+   "start": 93.16
   },
   {
-   "section": 9,
+   "section": 8,
+   "speaker": "narrator",
    "text": "Who's next?",
-   "start": 88.3
+   "start": 94.43
   }
  ]
 }

@@ -158,13 +158,30 @@
     $('rect', { x: -400, y: 1020, width: 1900, height: 14, fill: '#10142e' }, g);
     $('rect', { x: -400, y: 1034, width: 1900, height: 900, fill: 'url(#gFloor)' }, g);
     for (let x = -400; x < 1500; x += 120) $('rect', { x, y: 1034, width: 3, height: 900, fill: '#000', opacity: 0.25 }, g);
-    // window with moon
-    const w = $('g', { transform: 'translate(120 330)' }, g);
-    $('polygon', { points: '40,300 300,300 560,900 -120,900', fill: '#9fb4ff', opacity: 0.07 }, w);
-    $('rect', { x: -14, y: -14, width: 288, height: 388, rx: 8, fill: '#4a3446' }, w); $('rect', { x: 0, y: 0, width: 260, height: 360, fill: 'url(#gWindow)' }, w);
-    $('circle', { cx: 150, cy: 110, r: 110, fill: 'url(#gMoon)' }, w); $('circle', { cx: 150, cy: 110, r: 52, fill: '#ece9d6' }, w);
-    for (let i = 0; i < 14; i++) $('circle', { cx: 20 + (i * 53) % 230, cy: 20 + (i * 97) % 300, r: 1.6, fill: '#dfe4ff', opacity: 0.7 }, w);
-    $('rect', { x: 124, y: 0, width: 12, height: 360, fill: '#4a3446' }, w); $('rect', { x: 0, y: 174, width: 260, height: 12, fill: '#4a3446' }, w); $('rect', { x: -26, y: 372, width: 312, height: 18, rx: 6, fill: '#5a4056' }, w);
+    // big window; Vrykolakas lurks behind the glass (face, hollow eyes, claws scratching, breath fogging the pane)
+    const w = $('g', { transform: 'translate(90 270)' }, g); room.win = w;
+    const gg = $('radialGradient', { id: 'gEyeGlow' }, defs); [[0, '#e8fff0', 0.85], [0.5, '#bfe8d0', 0.3], [1, '#bfe8d0', 0]].forEach((q) => $('stop', { offset: q[0], 'stop-color': q[1], 'stop-opacity': q[2] }, gg));
+    const gw = $('radialGradient', { id: 'gBreath' }, defs); [[0, '#e8f0ff', 0.6], [0.6, '#cfdcff', 0.3], [1, '#cfdcff', 0]].forEach((q) => $('stop', { offset: q[0], 'stop-color': q[1], 'stop-opacity': q[2] }, gw));
+    $('polygon', { points: '60,470 300,470 700,1200 -260,1200', fill: '#9fb4ff', opacity: 0.09 }, w);
+    $('rect', { x: -20, y: -20, width: 380, height: 510, rx: 10, fill: '#4a3446' }, w); $('rect', { x: 0, y: 0, width: 340, height: 470, fill: 'url(#gWindow)' }, w);
+    $('circle', { cx: 262, cy: 96, r: 150, fill: 'url(#gMoon)' }, w); $('circle', { cx: 262, cy: 96, r: 52, fill: '#ece9d6' }, w);
+    for (let i = 0; i < 16; i++) $('circle', { cx: 16 + (i * 53) % 310, cy: 14 + (i * 97) % 220, r: 1.6, fill: '#dfe4ff', opacity: 0.7 }, w);
+    room.mon = $('g', {}, w); const m = room.mon;
+    $('ellipse', { cx: 170, cy: 270, rx: 190, ry: 230, fill: 'url(#gMoon)', opacity: 0.9 }, m);                                         // moon back-light halo
+    $('polygon', { points: '40,470 90,360 250,360 300,470', fill: '#a9a58f' }, m); $('polygon', { points: '170,360 250,360 300,470 190,470', fill: '#8f8b78' }, m);   // shroud
+    $('ellipse', { cx: 170, cy: 260, rx: 84, ry: 104, fill: '#5e756c' }, m); $('ellipse', { cx: 166, cy: 254, rx: 79, ry: 99, fill: '#869f95' }, m); $('ellipse', { cx: 150, cy: 236, rx: 52, ry: 70, fill: '#9bb4a9', opacity: 0.45 }, m);
+    for (const sd of [-1, 1]) for (let i = 0; i < 3; i++) $('path', { d: `M${170 + sd * 78} ${220 + i * 16} Q${170 + sd * (96 + i * 6)} ${268 + i * 22} ${170 + sd * (90 + i * 4)} ${320 + i * 18}`, stroke: '#46564f', 'stroke-width': 5, fill: 'none', 'stroke-linecap': 'round' }, m);
+    $('path', { d: 'M158 176 Q150 140 140 120 M178 176 Q186 138 198 116', stroke: '#46564f', 'stroke-width': 5, fill: 'none', 'stroke-linecap': 'round' }, m);
+    room.eyeG = [];
+    for (const sd of [-1, 1]) { $('ellipse', { cx: 170 + sd * 30, cy: 244, rx: 25, ry: 34, fill: '#0c1216' }, m); const gl = $('circle', { cx: 170 + sd * 30, cy: 248, r: 40, fill: 'url(#gEyeGlow)', opacity: 0 }, m); $('circle', { cx: 170 + sd * 30, cy: 252, r: 5, fill: '#e8fff0' }, m); room.eyeG.push(gl); }
+    $('polygon', { points: '162,266 178,266 170,290', fill: '#3c4f48' }, m); $('path', { d: 'M132 318 Q170 334 208 318 L204 330 Q170 350 136 330Z', fill: '#1a1014' }, m);
+    for (let tx = 140; tx <= 200; tx += 12) $('polygon', { points: `${tx},322 ${tx + 8},322 ${tx + 4},334`, fill: '#e8e4cc' }, m);
+    room.hand = $('g', {}, m);                                                                                                         // clawing hand
+    $('ellipse', { cx: 0, cy: 0, rx: 34, ry: 28, fill: '#76918a' }, room.hand); for (let i = -2; i <= 2; i++) $('polygon', { points: `${i * 12 - 4},8 ${i * 12 + 4},8 ${i * 9},58`, fill: '#e6deba' }, room.hand);
+    room.scr = []; for (const d of ['M70 96 Q84 210 66 336', 'M118 84 Q134 200 114 332', 'M168 100 Q184 220 160 344']) room.scr.push($('path', { d, pathLength: 1, stroke: '#eaf0ff', 'stroke-width': 4.5, fill: 'none', 'stroke-linecap': 'round', 'stroke-dasharray': '1 1', 'stroke-dashoffset': 1, opacity: 0.85 }, w));
+    room.fog = $('g', {}, w); for (const [cx, cy, r] of [[170, 330, 130], [130, 300, 90], [220, 310, 100], [170, 250, 70]]) $('circle', { cx, cy, r, fill: 'url(#gBreath)' }, room.fog);
+    $('polygon', { points: '0,0 150,0 40,470 0,470', fill: '#fff', opacity: 0.05 }, w); $('polygon', { points: '200,0 250,0 120,470 70,470', fill: '#fff', opacity: 0.04 }, w);   // glass reflections
+    $('rect', { x: 168, y: 0, width: 5, height: 470, fill: '#4a3446', opacity: 0.85 }, w); $('rect', { x: 0, y: 150, width: 340, height: 5, fill: '#4a3446', opacity: 0.85 }, w); $('rect', { x: -34, y: 482, width: 408, height: 20, rx: 6, fill: '#5a4056' }, w);
     // door
     room.door = $('g', {}, g); const d = room.door; room.doorBase = [860, 1034];
     $('rect', { x: 0, y: -640, width: 250, height: 640, fill: '#2a1c28' }, d);
@@ -185,25 +202,35 @@
     for (const x of [420, 540, 660, 780]) $('path', { d: `M${x} 950 Q${x + 12} 990 ${x} 1040`, stroke: '#8a0d18', 'stroke-width': 4, fill: 'none', opacity: 0.6 }, room.blanket);
   }
   function buildChurch() {
-    const g = layers.church = $('g', {}, arena); $('rect', { x: -200, y: -200, width: 1500, height: 2400, fill: 'url(#gEarth)' }, g);
+    const g = layers.church = $('g', {}, arena);
+    const gs = $('radialGradient', { id: 'gSpirit' }, defs); [[0, '#d8ecff', 0.95], [0.4, '#9cc4ff', 0.45], [1, '#9cc4ff', 0]].forEach((q) => $('stop', { offset: q[0], 'stop-color': q[1], 'stop-opacity': q[2] }, gs));
+    const ge = $('linearGradient', { id: 'gEarthL', x1: 0, y1: 0, x2: 0, y2: 1 }, defs); [[0, '#3a3560'], [0.5, '#262244'], [1, '#14101f']].forEach((q) => $('stop', { offset: q[0], 'stop-color': q[1] }, ge));
+    $('rect', { x: -200, y: -200, width: 1500, height: 2400, fill: 'url(#gEarthL)' }, g);
+    // night sky through the collapsed church floor + moon
+    $('rect', { x: -200, y: -200, width: 1500, height: 560, fill: 'url(#gSky)' }, g); $('circle', { cx: 880, cy: 190, r: 230, fill: 'url(#gMoon)' }, g); $('circle', { cx: 880, cy: 190, r: 74, fill: '#ece9d6' }, g);
+    for (let i = 0; i < 40; i++) $('circle', { cx: (i * 191) % 1300, cy: 20 + (i * 97) % 300, r: 1.6, fill: '#dfe4ff', opacity: 0.6 }, g);
+    // ruined walls, arch, broken floor slab
     const rr = mulberry(12);
-    for (let r = 0; r < 4; r++) for (let x = -60 + (r % 2) * 60; x < 1200; x += 180) $('rect', { x, y: 380 + r * 90, width: 172, height: 82, rx: 8, fill: r % 2 ? '#4a4258' : '#3c3550' }, g);
-    $('rect', { x: -200, y: 380, width: 1500, height: 360, fill: '#000', opacity: 0.18 }, g);
-    $('rect', { x: -200, y: 740, width: 1500, height: 1200, fill: '#120c18' }, g);
-    for (let i = 0; i < 40; i++) $('circle', { cx: rr() * 1100, cy: 760 + rr() * 900, r: 3 + rr() * 8, fill: '#2a1c28' }, g);
-    for (let i = 0; i < 5; i++) $('polygon', { points: `${100 + i * 220},380 ${140 + i * 220},380 ${300 + i * 220 - 100},1000 ${100 + i * 220 - 120},1000`, fill: '#ffd98a', opacity: 0.04 }, g);
-    // buried dog (curled)
-    const d = $('g', { transform: 'translate(540 1200)' }, g);
-    $('ellipse', { cx: 0, cy: 0, rx: 260, ry: 130, fill: '#06060e' }, d); $('ellipse', { cx: -20, cy: -30, rx: 240, ry: 100, fill: '#101226' }, d);
-    $('polygon', { points: '-200,-20 -300,-120 -250,40', fill: '#06060e' }, d); $('ellipse', { cx: 190, cy: 40, rx: 110, ry: 80, fill: '#101226' }, d);
-    $('polygon', { points: '140,-20 170,-100 210,-30', fill: '#101226' }, d); $('polygon', { points: '210,-26 250,-90 270,-10', fill: '#101226' }, d);
-    $('rect', { x: 250, y: 40, width: 120, height: 40, rx: 20, fill: '#101226' }, d);
-    layers.dogEye = $('g', {}, d); $('circle', { cx: 260, cy: 30, r: 52, fill: 'url(#gRed)' }, layers.dogEye); $('ellipse', { cx: 260, cy: 30, rx: 18, ry: 12, fill: '#ff3838' }, layers.dogEye);
-    layers.dogEyeLid = $('rect', { x: 240, y: 14, width: 44, height: 32, fill: '#101226' }, d);
+    for (let x = -60; x < 1200; x += 150) { const h = 120 + (rr() * 150 | 0); $('rect', { x, y: 360 - h, width: 138, height: h, fill: '#5d5a86' }, g); $('rect', { x: x + 6, y: 360 - h, width: 40, height: h, fill: '#7a77a8', opacity: 0.6 }, g); }
+    $('path', { d: 'M120 360 L120 230 A120 120 0 0 1 360 230 L360 360Z', fill: '#2b2850' }, g); $('path', { d: 'M700 360 L700 250 A100 100 0 0 1 900 250 L900 360Z', fill: '#2b2850' }, g);
+    $('polygon', { points: '-200,360 1300,360 1300,430 1060,470 760,420 520,480 250,420 -200,450', fill: '#6c6a98' }, g);                  // broken floor edge
+    for (let r2 = 0; r2 < 4; r2++) for (let x = -80 + (r2 % 2) * 80; x < 1200; x += 220) $('rect', { x, y: 470 + r2 * 92, width: 208, height: 84, rx: 8, fill: r2 % 2 ? '#68668e' : '#7a78a2' }, g);
+    $('rect', { x: -200, y: 470, width: 1500, height: 380, fill: '#14101f', opacity: 0.22 }, g);
+    // moon beams pouring through the cracks onto the buried dog
+    for (const [x0, w0, x1, w1, op] of [[180, 60, 300, 260, 0.28], [520, 90, 560, 330, 0.34], [820, 50, 780, 240, 0.26]]) $('polygon', { points: `${x0},360 ${x0 + w0},360 ${x1 + w1},1230 ${x1},1230`, fill: '#cfe2ff', opacity: op, style: 'mix-blend-mode:screen' }, g);
+    $('rect', { x: -200, y: 850, width: 1500, height: 1100, fill: '#1c1730' }, g);
+    for (let i = 0; i < 46; i++) $('circle', { cx: rr() * 1100, cy: 880 + rr() * 900, r: 3 + rr() * 9, fill: '#2f2a4c' }, g);
+    // buried dog spirit: silver-blue glow, curled body
+    const d = $('g', { transform: 'translate(540 1210)' }, g); layers.spirit = $('circle', { cx: 60, cy: -20, r: 460, fill: 'url(#gSpirit)' }, d);
+    $('ellipse', { cx: 0, cy: 0, rx: 262, ry: 132, fill: '#7fa4de', opacity: 0.55 }, d); $('ellipse', { cx: -20, cy: -30, rx: 242, ry: 104, fill: '#b9d3ff', opacity: 0.8 }, d); $('ellipse', { cx: -20, cy: -48, rx: 200, ry: 60, fill: '#e6f1ff', opacity: 0.6 }, d);
+    $('polygon', { points: '-200,-20 -306,-124 -252,44', fill: '#a9c6f4', opacity: 0.85 }, d); $('ellipse', { cx: 190, cy: 40, rx: 112, ry: 82, fill: '#c6dcff', opacity: 0.95 }, d);
+    $('polygon', { points: '140,-20 170,-104 212,-30', fill: '#c6dcff' }, d); $('polygon', { points: '210,-26 252,-92 272,-10', fill: '#b4cef8' }, d); $('rect', { x: 250, y: 40, width: 122, height: 42, rx: 21, fill: '#c6dcff' }, d);
+    layers.dogEye = $('g', {}, d); $('circle', { cx: 262, cy: 30, r: 58, fill: 'url(#gRed)' }, layers.dogEye); $('ellipse', { cx: 262, cy: 30, rx: 19, ry: 13, fill: '#ff3838' }, layers.dogEye); $('ellipse', { cx: 258, cy: 26, rx: 5, ry: 4, fill: '#fff' }, layers.dogEye);
+    layers.dogEyeLid = $('rect', { x: 240, y: 12, width: 48, height: 34, fill: '#c6dcff' }, d);
+    for (let i = 0; i < 18; i++) $('circle', { cx: 160 + (i * 61) % 420, cy: 1000 + (i * 89) % 420, r: 3, fill: '#e6f1ff', opacity: 0.55 }, g);   // drifting motes
   }
-
   const SCN_VIS = { forest: ['sky', 'moon', 'far', 'near', 'ground', 'ftrees', 'actors', 'fx', 'fog', 'flies'], grave: ['sky', 'moon', 'far', 'near', 'ground', 'props', 'hole', 'actors', 'mound', 'fx', 'fog', 'flies', 'tower'], room: ['room', 'actors', 'fx'], church: ['church'], void: [] };
-  const sceneAt = (t) => { let sc = 'grave'; for (const s of (TL.scenes || [])) if (t >= s.t0) sc = s.s; return sc; };
+  const sceneAt = (t) => { if (TL.__sceneT !== undefined) t = TL.__sceneT; let sc = 'grave'; for (const s of (TL.scenes || [])) if (t >= s.t0) sc = s.s; return sc; };
   function sceneVis(t) { const sc = sceneAt(t), vis = SCN_VIS[sc]; for (const name in PAR) layers[name].setAttribute('display', vis.includes(name) ? 'inline' : 'none'); if (room.blanket) room.blanket.setAttribute('display', sc === 'room' ? 'inline' : 'none'); return sc; }
   function updateScene(t, cam, shk, ta = t) {
     let sc = sceneAt(t);
@@ -227,11 +254,16 @@
     }
     if (room.blanket) room.blanket.setAttribute('display', sc === 'room' ? 'inline' : 'none');
     if (sc === 'room') {
+      const mo = trk('winMon', t, 0), br = trk('winBreath', t, 0), sc2 = trk('winScratch', t, 0), lean = trk('winLean', t, 0), gl = trk('winGlow', t, 0);
+      room.mon.setAttribute('transform', `translate(${f2(170 + 6 * Math.sin(t * 0.9))} ${f2(300 + (1 - mo) * 260 + 4 * Math.sin(t * 1.3))}) scale(${f2(1 + 0.3 * lean)}) translate(-170 -300)`); room.mon.setAttribute('opacity', f2(clamp(mo * 1.5)));
+      room.eyeG.forEach((e) => e.setAttribute('opacity', f2(clamp(gl * (0.6 + 0.4 * Math.sin(t * 2.4))))));
+      room.scr.forEach((p, i) => p.setAttribute('stroke-dashoffset', f2(1 - clamp(sc2 * 3 - i)))); const hp = clamp(sc2 * 3), hi = Math.min(2, Math.floor(hp * 0.9999)), hq = hp - hi; room.hand.setAttribute('transform', `translate(${f2(66 + 52 * hi + 8 * Math.sin(hq * 6))} ${f2(96 + 240 * clamp(hq))}) rotate(${f2(-8 + 6 * Math.sin(t * 9))})`); room.hand.setAttribute('opacity', sc2 > 0.01 && sc2 < 0.99 ? 1 : 0);
+      const pulse = 0.5 + 0.5 * Math.sin(t * 2.4); room.fog.setAttribute('opacity', f2(br * (0.55 + 0.45 * pulse))); room.fog.setAttribute('transform', `translate(170 300) scale(${f2(0.7 + 0.7 * br + 0.18 * pulse)}) translate(-170 -300)`);
       const kn = (TL.knocks || []).reduce((a, k) => (t >= k && t - k < 0.5 ? Math.max(a, 1 - (t - k) / 0.5) : a), 0);
       room.door.setAttribute('transform', `translate(${f2(room.doorBase[0] + 3 * kn * Math.sin(t * 90))} ${room.doorBase[1]})`);
       room.blanket.setAttribute('transform', `translate(${f2(trk('blanket', t, 0))} ${f2(trk('blanketY', t, 0))}) rotate(${f2(trk('blanketR', t, 0))} 600 1000)`);
     }
-    if (sc === 'church') { const o = trk('dogEye', t, 0); layers.dogEyeLid.setAttribute('height', f2(32 * (1 - o))); layers.dogEye.setAttribute('opacity', clamp(o * 1.2)); }
+    if (sc === 'church') { layers.spirit.setAttribute('opacity', f2(0.7 + 0.3 * Math.sin(t * 2.1))); const o = trk('dogEye', t, 0); layers.dogEyeLid.setAttribute('height', f2(32 * (1 - o))); layers.dogEye.setAttribute('opacity', clamp(o * 1.2)); }
     return sc;
   }
 
@@ -486,12 +518,12 @@
       o.g.setAttribute('opacity', op); o.g.setAttribute('transform', `translate(${tx.x} ${tx.y}) scale(${f2(sc)})`);
     }
   }
-  function updateOverlay(t) {
+  function updateOverlay(t, dip = 0) {
     let fl = 0, fc = '#fff'; for (const f of (TL.flash || [])) { const lt = t - f.t0; if (lt >= 0 && lt < f.dur) { const a = (f.amp || 1) * (1 - lt / f.dur); if (a > fl) { fl = a; fc = f.color || '#fff'; } } }
     flashEl.setAttribute('opacity', fl); flashEl.setAttribute('fill', fc);
     const tc = TL.tints || []; let ta = 0, tcol = '#c4121f'; for (const tt of tc) { if (t >= tt.t0 && t <= tt.t1) { const k = Math.min(clamp((t - tt.t0) / (tt.fadeIn || 0.3)), clamp((tt.t1 - t) / (tt.fadeOut || 0.3))); ta = Math.max(ta, tt.a * k); tcol = tt.color || tcol; } }
     tintEl.setAttribute('opacity', ta); tintEl.setAttribute('fill', tcol);
-    let bl = 0; for (const b of (TL.black || [])) if (t >= b[0] && t < b[1]) bl = b[2] === undefined ? 1 : b[2]; blackEl.setAttribute('opacity', bl);
+    let bl = 0; for (const b of (TL.black || [])) if (t >= b[0] && t < b[1]) bl = b[2] === undefined ? 1 : b[2]; blackEl.setAttribute('opacity', Math.max(bl, dip));
     // glitch (rewind) windows
     let gl = 0; for (const w of (TL.glitch || [])) if (t >= w[0] && t < w[1]) gl = 1;
     glitchG.setAttribute('display', gl ? 'inline' : 'none');
@@ -526,7 +558,7 @@
     return { x: M.a * x + M.c * y + M.e, y: M.b * x + M.d * y + M.f };
   }
   function shotInfo(t) {
-    const L = TL.shots; if (!L || !L.length) return null; let i = -1; for (let k = 0; k < L.length; k++) if (L[k].t <= t) i = k; if (i < 0) return null;
+    const L = TL.shots; if (!L || !L.length) return null; let i = -1; for (let k = 0; k < L.length; k++) if (L[k].t <= t) i = k; if (TL.__force !== undefined) i = TL.__force; if (i < 0) return null;
     const s = L[i], t1 = i + 1 < L.length ? L[i + 1].t : TL.duration; return { s, i, t1, dur: Math.max(1e-3, t1 - s.t), lt: t - s.t, u: clamp((t - s.t) / Math.max(1e-3, t1 - s.t)) };
   }
   function shotCam(t, info) {
@@ -543,6 +575,7 @@
     }
     if (s.push) zoom *= 1 + (s.push - 1) * ease(s.pushEase || 'inOut', u);
     if (s.pan) { cx += s.pan[0] * ease('inOut', u); cy += s.pan[1] * ease('inOut', u); }
+    if (s.anchor) { const an = s.anchor, zz = zoom * (s.crash && t >= s.crash.at ? 1 + (s.crash.k - 1) * EASE.outCubic(clamp((t - s.crash.at) / (s.crash.dur || 0.12))) : 1) * (s.push ? 1 + (s.push - 1) * ease(s.pushEase || 'inOut', u) : 1), mk = markerWorld(an.actor, an.at || 'body'); if (mk) { cx = mk.x - ((an.sx === undefined ? 540 : an.sx) - 540) / zz + (s.pan ? 0 : 0); cy = mk.y - ((an.sy === undefined ? 960 : an.sy) - 960) / zz; } }
     if (s.dutch !== undefined) rot = lerp(s.dutch, s.dutchTo === undefined ? s.dutch : s.dutchTo, u);
     if (s.hand) { const a = s.hand; cx += a * (Math.sin(t * 1.9) + 0.5 * Math.sin(t * 4.3 + 1)); cy += a * (Math.sin(t * 1.3 + 2) + 0.5 * Math.sin(t * 3.7)); rot += a * 0.05 * Math.sin(t * 1.1 + 1); }
     let crash = 0;
@@ -653,6 +686,21 @@
   }
   function updateCrash(sh) { if (!crashG) return; const w = sh ? sh.crash : 0; crashG.setAttribute('display', w > 0.01 ? 'inline' : 'none'); if (w > 0.01) Array.from(crashG.children).forEach((e) => e.setAttribute('opacity', f2(0.55 * w))); }
 
+  // ---- transitions between shots: tr:{type:'whip'|'dip'|'fade', dur, dir}. whip = horizontal motion blur across the cut, dip = dip-to-black, fade = crossfade (async path)
+  function trAt(t) {
+    const out = { blur: 0, off: 0, dip: 0, fade: null }, L = TL.shots || [];
+    for (let i = 1; i < L.length; i++) { const s = L[i], tr = s.tr; if (!tr) continue; const d = tr.dur || 0.3, dt = t - s.t;
+      if (tr.type === 'whip' && Math.abs(dt) < d / 2) { const w = 1 - Math.abs(dt) / (d / 2); out.blur = Math.max(out.blur, 16 * w * (tr.amp || 1)); out.off = -(tr.dir || 1) * 620 * dt / d; }
+      if (tr.type === 'dip' && Math.abs(dt) < d / 2) out.dip = Math.max(out.dip, 1 - Math.abs(dt) / (d / 2));
+      if (tr.type === 'fade' && dt >= 0 && dt < d) out.fade = { i, u: dt / d };
+    }
+    return out;
+  }
+  G.checkSides = function () {        // 180-degree rule report: frames of VERSUS shots where `left` actor is not on the left
+    const sd = TL.sides, bad = []; if (!sd) return bad;
+    for (let t = 0; t < TL.duration; t += 0.1) { const info = shotInfo(t); if (!info || info.s.type !== 'versus') continue; G.renderFrame(t); const a = TL.actors[sd.left], b = TL.actors[sd.right]; if (a.pos && b.pos && a.pos.x > b.pos.x) bad.push([+t.toFixed(2), Math.round(a.pos.x), Math.round(b.pos.x), arena.getAttribute('transform') ? 'mirrored' : 'NOT mirrored']); }
+    return bad;
+  };
   // ------------------------------------------------------------------ public API
   G.loadTimeline = function (tl) {
     TL = tl; props = []; fxList = []; textList = []; splits = []; hud = null; layers = {}; room = {}; povG = null; povTrees = [];
@@ -684,17 +732,33 @@
     let cam = stateTrack(TL.cam || [], t, TL.camInit || { cx: 540, cy: 960, zoom: 1 }), shotX = null;
     if (info && !isPov) { shotX = shotCam(t, info); cam = shotX; }
     curShot = shotX;
-    let sk = shk;
+    let sk = shk; const trs = trAt(t);
     if (shotX && shotX.whip) sk = [shk[0] + shotX.whip * shotX.whip * 520 * shotX.whipDir, shk[1]];
+    if (trs.blur > 0) sk = [sk[0] + trs.off, sk[1]];
+    let mirror = false;                                         // 180-degree rule: keep sides[left] on the left in VERSUS shots (mirror the whole world if needed)
+    if (TL.sides && info && info.s.type === 'versus' && !isPov) { const a = TL.actors[TL.sides.left], b = TL.actors[TL.sides.right]; if (a && b && a.pos && b.pos && a.pos.x > b.pos.x) mirror = true; }
+    arena.setAttribute('transform', mirror ? `translate(1080 0) scale(-1 1)` : '');
     updateScene(t, cam, sk, ta);
     if (sceneOn && !isPov) { updateProps(t, sc); updateFx(ta); }
-    const bl = (shotX && shotX.whip ? 16 * shotX.whip : 0) + (shotX && shotX.rack && shotX.rack.bg ? shotX.rack.bg : 0);
+    const bl = (shotX && shotX.whip ? 16 * shotX.whip : 0) + (shotX && shotX.rack && shotX.rack.bg ? shotX.rack.bg : 0) + trs.blur;
     arena.style.filter = bl > 0.3 ? `blur(${f2(bl)}px)` : '';
-    if (povG) { povG.setAttribute('display', isPov ? 'inline' : 'none'); if (isPov) { updatePov(t, info); const wb = info.s.whip && info.lt < info.s.whip ? 12 * (1 - info.lt / info.s.whip) : 0; povG.style.filter = wb > 0.3 ? `blur(${f2(wb)}px)` : ''; } }
+    if (povG) { povG.setAttribute('display', isPov ? 'inline' : 'none'); if (isPov) { updatePov(t, info); const wb = (info.s.whip && info.lt < info.s.whip ? 12 * (1 - info.lt / info.s.whip) : 0) + trs.blur * 0.75; povG.style.filter = wb > 0.3 ? `blur(${f2(wb)}px)` : ''; } }
     updateOts(t, info || { s: {} }); updateCrash(shotX);
     splits.forEach((s) => updateSplit(s, t));
-    updateText(t); updateHud(t); updateOverlay(t);
+    updateText(t); updateHud(t); updateOverlay(t, trs.dip);
     return true;
+  };
+  // crossfade-capable frame renderer (async): the outgoing shot is rendered, rasterised to a canvas and faded out over the new shot
+  G.renderFrameAsync = async function (t) {
+    let xf = document.getElementById('xfade');
+    if (!xf) { xf = document.createElement('canvas'); xf.id = 'xfade'; xf.width = W; xf.height = H; xf.style.cssText = 'position:absolute;left:0;top:0;width:1080px;height:1920px;pointer-events:none;display:none'; document.body.appendChild(xf); }
+    const tr = TL.shots && TL.shots.length ? trAt(t) : { fade: null };
+    if (!tr.fade) { xf.style.display = 'none'; G.renderFrame(t); return true; }
+    TL.__force = tr.fade.i - 1; TL.__sceneT = TL.shots[tr.fade.i].t - 0.001; G.renderFrame(t);
+    const img = new Image(); img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(new XMLSerializer().serializeToString(svg)); await img.decode();
+    xf.getContext('2d').clearRect(0, 0, W, H); xf.getContext('2d').drawImage(img, 0, 0, W, H);
+    delete TL.__force; delete TL.__sceneT; G.renderFrame(t);
+    xf.style.display = 'block'; xf.style.opacity = String(1 - ease('inOut', tr.fade.u)); return true;
   };
   G.ANIM_READY = true;
 })(window);

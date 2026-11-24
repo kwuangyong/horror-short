@@ -3,1314 +3,1368 @@
   "word": "It",
   "start": 0.0,
   "end": 0.099,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "turns",
   "start": 0.111,
   "end": 0.468,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "to",
   "start": 0.48,
   "end": 0.563,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 0.575,
   "end": 0.67,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "kid",
   "start": 0.682,
   "end": 1.099,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Who",
   "start": 1.466,
   "end": 1.587,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "survives",
   "start": 1.599,
   "end": 2.361,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Tonight",
   "start": 3.742,
   "end": 4.107,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "two",
   "start": 4.345,
   "end": 4.571,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "legends",
   "start": 4.583,
   "end": 5.012,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "collide",
   "start": 5.024,
   "end": 5.619,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "On",
   "start": 6.216,
   "end": 6.334,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 6.345,
   "end": 6.441,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "left",
   "start": 6.453,
   "end": 6.869,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 7.048,
   "end": 7.155,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Vrykolakas",
   "start": 7.167,
   "end": 8.072,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "On",
   "start": 8.69,
   "end": 8.788,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 8.8,
   "end": 8.871,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "right",
   "start": 8.883,
   "end": 9.193,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 9.395,
   "end": 9.514,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Church",
   "start": 9.526,
   "end": 9.871,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Grim",
   "start": 9.883,
   "end": 10.312,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Who",
   "start": 10.918,
   "end": 11.047,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "wins",
   "start": 11.059,
   "end": 11.583,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Comment",
   "start": 11.907,
   "end": 12.436,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "A",
   "start": 13.393,
   "end": 13.455,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "kid",
   "start": 13.467,
   "end": 13.705,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "chases",
   "start": 13.717,
   "end": 14.145,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "fireflies",
   "start": 14.157,
   "end": 14.824,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "deep",
   "start": 14.836,
   "end": 15.086,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "into",
   "start": 15.098,
   "end": 15.3,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 15.312,
   "end": 15.407,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "woods",
   "start": 15.419,
   "end": 15.812,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "until",
   "start": 16.05,
   "end": 16.3,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 16.312,
   "end": 16.395,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "path",
   "start": 16.407,
   "end": 16.717,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "vanishes",
   "start": 16.729,
   "end": 17.384,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Then",
   "start": 17.742,
   "end": 17.921,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 17.933,
   "end": 18.029,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "trees",
   "start": 18.04,
   "end": 18.374,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "part",
   "start": 18.386,
   "end": 18.731,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 18.945,
   "end": 19.064,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "an",
   "start": 19.076,
   "end": 19.183,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "old",
   "start": 19.195,
   "end": 19.41,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "graveyard",
   "start": 19.421,
   "end": 19.945,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "waits",
   "start": 19.957,
   "end": 20.469,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "The",
   "start": 20.83,
   "end": 20.883,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "ground",
   "start": 20.895,
   "end": 21.24,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "shakes",
   "start": 21.252,
   "end": 21.74,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 21.895,
   "end": 22.026,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 22.038,
   "end": 22.109,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Vrykolakas",
   "start": 22.121,
   "end": 22.788,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "claws",
   "start": 22.8,
   "end": 23.145,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "its",
   "start": 23.157,
   "end": 23.288,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "way",
   "start": 23.3,
   "end": 23.538,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "out",
   "start": 23.55,
   "end": 23.919,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "It",
   "start": 24.289,
   "end": 24.385,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "sees",
   "start": 24.397,
   "end": 24.719,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 24.731,
   "end": 24.826,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "kid",
   "start": 24.838,
   "end": 25.171,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 25.397,
   "end": 25.54,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "starts",
   "start": 25.552,
   "end": 25.897,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "walking",
   "start": 25.909,
   "end": 26.433,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "But",
   "start": 26.803,
   "end": 26.916,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Church",
   "start": 26.928,
   "end": 27.273,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Grim",
   "start": 27.285,
   "end": 27.618,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "leaps",
   "start": 27.63,
   "end": 27.904,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 27.916,
   "end": 28.023,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "wall",
   "start": 28.035,
   "end": 28.392,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 28.404,
   "end": 28.511,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "blocks",
   "start": 28.523,
   "end": 28.892,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "its",
   "start": 28.904,
   "end": 29.047,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "path",
   "start": 29.059,
   "end": 29.571,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Garlic",
   "start": 29.912,
   "end": 30.247,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "makes",
   "start": 30.259,
   "end": 30.485,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "it",
   "start": 30.497,
   "end": 30.58,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "flinch",
   "start": 30.592,
   "end": 31.056,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 31.282,
   "end": 31.39,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 31.401,
   "end": 31.461,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "headstone",
   "start": 31.473,
   "end": 32.009,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "warns",
   "start": 32.02,
   "end": 32.485,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "only",
   "start": 32.723,
   "end": 32.985,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "fire",
   "start": 32.997,
   "end": 33.413,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "ends",
   "start": 33.425,
   "end": 33.663,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "it",
   "start": 33.675,
   "end": 33.89,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "But",
   "start": 34.25,
   "end": 34.352,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Grim",
   "start": 34.364,
   "end": 34.685,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "is",
   "start": 34.697,
   "end": 34.804,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "strong",
   "start": 34.816,
   "end": 35.245,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "only",
   "start": 35.256,
   "end": 35.53,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "inside",
   "start": 35.542,
   "end": 36.006,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "these",
   "start": 36.018,
   "end": 36.209,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "walls",
   "start": 36.221,
   "end": 36.78,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Round",
   "start": 37.294,
   "end": 37.62,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "one",
   "start": 37.632,
   "end": 37.989,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Grim",
   "start": 38.28,
   "end": 38.516,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "lunges",
   "start": 38.528,
   "end": 39.028,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 39.206,
   "end": 39.349,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "his",
   "start": 39.361,
   "end": 39.528,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "jaws",
   "start": 39.54,
   "end": 39.909,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "close",
   "start": 39.921,
   "end": 40.266,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "on",
   "start": 40.278,
   "end": 40.397,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "its",
   "start": 40.409,
   "end": 40.587,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "throat",
   "start": 40.599,
   "end": 40.992,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Claws",
   "start": 41.377,
   "end": 41.704,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "rake",
   "start": 41.716,
   "end": 41.954,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "his",
   "start": 41.966,
   "end": 42.096,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "side",
   "start": 42.108,
   "end": 42.489,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "but",
   "start": 42.739,
   "end": 42.846,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "he",
   "start": 42.858,
   "end": 42.989,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "holds",
   "start": 43.001,
   "end": 43.454,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 43.644,
   "end": 43.763,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 43.775,
   "end": 43.882,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "dead",
   "start": 43.894,
   "end": 44.132,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "man",
   "start": 44.144,
   "end": 44.43,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "crawls",
   "start": 44.442,
   "end": 44.763,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "away",
   "start": 44.775,
   "end": 45.204,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Round",
   "start": 45.693,
   "end": 46.017,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "two",
   "start": 46.029,
   "end": 46.434,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "It",
   "start": 46.726,
   "end": 46.817,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "grabs",
   "start": 46.829,
   "end": 47.222,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Grim",
   "start": 47.234,
   "end": 47.532,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "by",
   "start": 47.544,
   "end": 47.675,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 47.687,
   "end": 47.782,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "neck",
   "start": 47.794,
   "end": 48.091,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 48.103,
   "end": 48.187,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "hurls",
   "start": 48.198,
   "end": 48.508,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "him",
   "start": 48.52,
   "end": 48.639,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "over",
   "start": 48.651,
   "end": 48.841,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 48.853,
   "end": 48.937,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "wall",
   "start": 48.948,
   "end": 49.353,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Outside",
   "start": 49.677,
   "end": 50.228,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "his",
   "start": 50.418,
   "end": 50.585,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "power",
   "start": 50.597,
   "end": 50.942,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "dies",
   "start": 50.954,
   "end": 51.382,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "so",
   "start": 51.585,
   "end": 51.835,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "every",
   "start": 51.847,
   "end": 52.12,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "claw",
   "start": 52.132,
   "end": 52.394,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "lands",
   "start": 52.406,
   "end": 52.978,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Grim",
   "start": 53.363,
   "end": 53.596,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "falls",
   "start": 53.608,
   "end": 54.12,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 54.251,
   "end": 54.382,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 54.394,
   "end": 54.454,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Vrykolakas",
   "start": 54.465,
   "end": 55.156,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "turns",
   "start": 55.168,
   "end": 55.513,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "to",
   "start": 55.525,
   "end": 55.62,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 55.632,
   "end": 55.727,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "kid",
   "start": 55.739,
   "end": 56.132,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Round",
   "start": 56.626,
   "end": 56.949,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "three",
   "start": 56.961,
   "end": 57.39,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Grim",
   "start": 57.646,
   "end": 57.858,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "crawls",
   "start": 57.87,
   "end": 58.239,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "back",
   "start": 58.251,
   "end": 58.513,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "inside",
-  "start": 58.525,
+  "start": 58.524,
   "end": 59.084,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
-  "start": 59.299,
-  "end": 59.442,
-  "eleni": false
+  "start": 59.298,
+  "end": 59.441,
+  "speaker": "narrator"
  },
  {
   "word": "his",
   "start": 59.453,
   "end": 59.584,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "strength",
   "start": 59.596,
   "end": 59.953,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "returns",
   "start": 59.965,
   "end": 60.632,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "It",
   "start": 61.007,
   "end": 61.093,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "charges",
   "start": 61.105,
   "end": 61.569,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "through",
   "start": 61.581,
   "end": 61.783,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "wild",
   "start": 61.795,
   "end": 62.188,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "garlic",
   "start": 62.2,
-  "end": 62.653,
-  "eleni": false
+  "end": 62.652,
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 62.855,
   "end": 62.926,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "the",
   "start": 62.938,
-  "end": 63.022,
-  "eleni": false
+  "end": 63.021,
+  "speaker": "narrator"
  },
  {
   "word": "stench",
-  "start": 63.034,
-  "end": 63.379,
-  "eleni": false
+  "start": 63.033,
+  "end": 63.378,
+  "speaker": "narrator"
  },
  {
   "word": "cripples",
-  "start": 63.391,
-  "end": 63.772,
-  "eleni": false
+  "start": 63.39,
+  "end": 63.771,
+  "speaker": "narrator"
  },
  {
   "word": "it",
-  "start": 63.784,
-  "end": 63.998,
-  "eleni": false
+  "start": 63.783,
+  "end": 63.997,
+  "speaker": "narrator"
  },
  {
   "word": "Legend",
-  "start": 64.367,
-  "end": 64.734,
-  "eleni": false
+  "start": 64.366,
+  "end": 64.733,
+  "speaker": "narrator"
  },
  {
   "word": "says",
-  "start": 64.746,
-  "end": 64.96,
-  "eleni": false
+  "start": 64.745,
+  "end": 64.959,
+  "speaker": "narrator"
  },
  {
   "word": "a",
-  "start": 64.972,
+  "start": 64.971,
   "end": 65.055,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "dog",
   "start": 65.067,
   "end": 65.388,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "lies",
   "start": 65.4,
-  "end": 65.722,
-  "eleni": false
+  "end": 65.721,
+  "speaker": "narrator"
  },
  {
   "word": "buried",
-  "start": 65.734,
+  "start": 65.733,
   "end": 66.055,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "here",
   "start": 66.067,
-  "end": 66.353,
-  "eleni": false
+  "end": 66.352,
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 66.567,
   "end": 66.686,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "Grim",
   "start": 66.698,
   "end": 67.019,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "grows",
   "start": 67.031,
-  "end": 67.341,
-  "eleni": false
+  "end": 67.34,
+  "speaker": "narrator"
  },
  {
   "word": "stronger",
-  "start": 67.353,
+  "start": 67.352,
   "end": 67.9,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "He",
-  "start": 68.241,
+  "start": 68.24,
   "end": 68.311,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "pounces",
   "start": 68.323,
   "end": 68.954,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "and",
   "start": 69.144,
   "end": 69.323,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "one",
   "start": 69.335,
   "end": 69.561,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "last",
   "start": 69.573,
   "end": 69.894,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "bite",
   "start": 69.906,
   "end": 70.144,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "ends",
   "start": 70.156,
   "end": 70.394,
-  "eleni": false
+  "speaker": "narrator"
  },
  {
   "word": "it",
   "start": 70.406,
-  "end": 70.633,
-  "eleni": false
+  "end": 70.632,
+  "speaker": "narrator"
  },
  {
   "word": "Grim",
-  "start": 71.135,
-  "end": 71.383,
-  "eleni": false
+  "start": 71.139,
+  "end": 71.386,
+  "speaker": "narrator"
  },
  {
   "word": "wins",
-  "start": 71.394,
-  "end": 71.954,
-  "eleni": false
+  "start": 71.398,
+  "end": 71.958,
+  "speaker": "narrator"
  },
  {
   "word": "At",
-  "start": 72.484,
-  "end": 72.624,
-  "eleni": false
+  "start": 72.488,
+  "end": 72.632,
+  "speaker": "narrator"
  },
  {
   "word": "dawn",
-  "start": 72.636,
-  "end": 73.005,
-  "eleni": false
+  "start": 72.644,
+  "end": 73.013,
+  "speaker": "narrator"
  },
  {
   "word": "Grim",
-  "start": 73.219,
-  "end": 73.493,
-  "eleni": false
+  "start": 73.227,
+  "end": 73.513,
+  "speaker": "narrator"
  },
  {
   "word": "buries",
-  "start": 73.505,
-  "end": 73.85,
-  "eleni": false
+  "start": 73.525,
+  "end": 73.882,
+  "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 73.862,
-  "end": 73.957,
-  "eleni": false
+  "start": 73.894,
+  "end": 73.989,
+  "speaker": "narrator"
  },
  {
   "word": "body",
-  "start": 73.969,
-  "end": 74.374,
-  "eleni": false
+  "start": 74.001,
+  "end": 74.454,
+  "speaker": "narrator"
  },
  {
-  "word": "and",
-  "start": 74.553,
-  "end": 74.672,
-  "eleni": false
- },
- {
-  "word": "the",
-  "start": 74.683,
-  "end": 74.767,
-  "eleni": false
- },
- {
-  "word": "kid",
-  "start": 74.779,
-  "end": 75.017,
-  "eleni": false
- },
- {
-  "word": "runs",
-  "start": 75.029,
-  "end": 75.303,
-  "eleni": false
+  "word": "Go",
+  "start": 75.044,
+  "end": 75.192,
+  "speaker": "grim"
  },
  {
   "word": "home",
-  "start": 75.314,
-  "end": 75.695,
-  "eleni": false
+  "start": 75.209,
+  "end": 75.646,
+  "speaker": "grim"
  },
  {
-  "word": "Next",
-  "start": 76.212,
-  "end": 76.494,
-  "eleni": false
+  "word": "child",
+  "start": 75.905,
+  "end": 76.586,
+  "speaker": "grim"
  },
  {
-  "word": "night",
-  "start": 76.506,
-  "end": 76.791,
-  "eleni": false
+  "word": "Never",
+  "start": 76.922,
+  "end": 77.25,
+  "speaker": "grim"
  },
  {
-  "word": "the",
-  "start": 76.994,
-  "end": 77.113,
-  "eleni": false
+  "word": "come",
+  "start": 77.282,
+  "end": 77.554,
+  "speaker": "grim"
+ },
+ {
+  "word": "back",
+  "start": 77.57,
+  "end": 77.921,
+  "speaker": "grim"
+ },
+ {
+  "word": "after",
+  "start": 77.937,
+  "end": 78.305,
+  "speaker": "grim"
+ },
+ {
+  "word": "dark",
+  "start": 78.337,
+  "end": 78.88,
+  "speaker": "grim"
+ },
+ {
+  "word": "Thank",
+  "start": 79.51,
+  "end": 79.765,
+  "speaker": "kid"
+ },
+ {
+  "word": "you",
+  "start": 79.779,
+  "end": 80.123,
+  "speaker": "kid"
+ },
+ {
+  "word": "The",
+  "start": 80.771,
+  "end": 80.827,
+  "speaker": "narrator"
  },
  {
   "word": "kid",
-  "start": 77.125,
-  "end": 77.387,
-  "eleni": false
+  "start": 80.839,
+  "end": 81.113,
+  "speaker": "narrator"
+ },
+ {
+  "word": "runs",
+  "start": 81.125,
+  "end": 81.422,
+  "speaker": "narrator"
+ },
+ {
+  "word": "home",
+  "start": 81.434,
+  "end": 81.827,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Next",
+  "start": 82.337,
+  "end": 82.618,
+  "speaker": "narrator"
+ },
+ {
+  "word": "night",
+  "start": 82.63,
+  "end": 82.916,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 83.118,
+  "end": 83.237,
+  "speaker": "narrator"
+ },
+ {
+  "word": "kid",
+  "start": 83.249,
+  "end": 83.511,
+  "speaker": "narrator"
  },
  {
   "word": "lies",
-  "start": 77.399,
-  "end": 77.72,
-  "eleni": false
+  "start": 83.523,
+  "end": 83.844,
+  "speaker": "narrator"
  },
  {
   "word": "in",
-  "start": 77.732,
-  "end": 77.863,
-  "eleni": false
+  "start": 83.856,
+  "end": 83.987,
+  "speaker": "narrator"
  },
  {
   "word": "bed",
-  "start": 77.875,
-  "end": 78.268,
-  "eleni": false
+  "start": 83.999,
+  "end": 84.392,
+  "speaker": "narrator"
  },
  {
   "word": "Then",
-  "start": 78.73,
-  "end": 79.04,
-  "eleni": false
+  "start": 84.654,
+  "end": 84.964,
+  "speaker": "narrator"
  },
  {
   "word": "one",
-  "start": 79.254,
-  "end": 79.492,
-  "eleni": false
+  "start": 85.178,
+  "end": 85.417,
+  "speaker": "narrator"
  },
  {
   "word": "knock",
-  "start": 79.504,
-  "end": 79.968,
-  "eleni": false
+  "start": 85.428,
+  "end": 85.893,
+  "speaker": "narrator"
  },
  {
   "word": "Nobody",
-  "start": 80.477,
-  "end": 80.853,
-  "eleni": false
+  "start": 86.253,
+  "end": 86.629,
+  "speaker": "narrator"
  },
  {
   "word": "burned",
-  "start": 80.865,
-  "end": 81.175,
-  "eleni": false
+  "start": 86.641,
+  "end": 86.95,
+  "speaker": "narrator"
  },
  {
   "word": "it",
-  "start": 81.186,
-  "end": 81.401,
-  "eleni": false
+  "start": 86.962,
+  "end": 87.177,
+  "speaker": "narrator"
  },
  {
   "word": "Is",
-  "start": 81.781,
-  "end": 81.864,
-  "eleni": false
+  "start": 87.557,
+  "end": 87.641,
+  "speaker": "narrator"
  },
  {
   "word": "it",
-  "start": 81.876,
-  "end": 81.995,
-  "eleni": false
+  "start": 87.653,
+  "end": 87.772,
+  "speaker": "narrator"
  },
  {
   "word": "really",
-  "start": 82.007,
-  "end": 82.257,
-  "eleni": false
+  "start": 87.784,
+  "end": 88.034,
+  "speaker": "narrator"
  },
  {
   "word": "dead",
-  "start": 82.269,
-  "end": 82.626,
-  "eleni": false
+  "start": 88.045,
+  "end": 88.402,
+  "speaker": "narrator"
  },
  {
   "word": "Who's",
-  "start": 82.993,
-  "end": 83.197,
-  "eleni": false
+  "start": 88.761,
+  "end": 88.965,
+  "speaker": "narrator"
  },
  {
   "word": "next",
-  "start": 83.209,
-  "end": 83.709,
-  "eleni": false
+  "start": 88.977,
+  "end": 89.477,
+  "speaker": "narrator"
  }
 ]

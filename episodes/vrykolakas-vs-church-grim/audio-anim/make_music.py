@@ -167,7 +167,7 @@ def breath():
     d = 1.5; t = T(d); n = lp(rng.standard_normal(len(t)), 700, 2)*14
     e = np.where(t < 0.7, np.sin(np.pi*t/0.7), 0)**2*0.8 + np.where(t >= 0.7, np.sin(np.pi*(t-0.7)/0.8), 0)**2*1.0
     return n*e*(1 + 0.3*np.sin(2*np.pi*55*t))*0.55
-put(breath(), t_k + 0.2, 0.2); put(scratch(), t_k + 0.45, 0.28)
+put(breath(), t_k + 0.2, 0.05); put(scratch(), t_k + 0.45, 0.07)
 # faint return of drone for CTA
 out = buf[:int(TOTAL*SR)]
 pk = np.max(np.abs(out)); out = np.tanh(out/pk*1.4)/np.tanh(1.4)*0.9

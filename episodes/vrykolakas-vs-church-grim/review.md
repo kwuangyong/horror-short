@@ -79,3 +79,6 @@ Nâng cấp lần sau: cụm phụ đề lẻ ("IT", "IT GRABS GRIM'S" cắt sau
 # Review · Cổng 3 · bản HOẠT HÌNH CINEMATIC v5.1 (Boss)
 **ĐẠT.** 89.7 s, −14.2 LUFS, 55 cảnh cut theo từ. POV đèn pin, OTS qua vai bé, low-angle trồi mộ, ECU hàm/mắt, versus, high-angle, phòng ngủ + gõ cửa. Phụ đề không vượt câu.
 Nâng cấp lần sau: cảnh "Legend says a dog lies buried here" gần như đen; Grim che bé ở vài cảnh rộng; phụ đề đè mặt ở cảnh cận; rừng POV vẫn phẳng; font Inter (chưa có Oswald).
+
+# Review · Cổng 2 · script-anim v6 (Boss)
+227 từ (217 lời dẫn + 10 thoại), 35 cảnh có MATCH/[REPOSITION], 180° giữ đúng. Thoại cuối Grim ↔ bé tách đúng bằng narration.py (2 character lines). Cú lửng: xác Vrykolakas lấp ló sau cửa sổ, cắt đen trước khi bé thấy. Cảnh chó chôn sáng rõ. **ĐẠT 10/10.**

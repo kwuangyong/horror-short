@@ -242,6 +242,23 @@
       update(o, t) { const p = o.p, h = p.h || 620, rise = clamp(C.trk(p.track || 'rise', t, 0)), shk = rise > 0 && rise < 1 ? 6 * Math.sin(t * 70) : 0; o.inner.setAttribute('transform', `rotate(${f2(p.tilt === undefined ? 8 : p.tilt)}) translate(${f2(shk)} ${f2(h * (1 - EASE.outCubic(rise)) + 40)})`); o.crack.setAttribute('opacity', f2(rise * (0.6 + 0.4 * Math.sin(t * 4 + (p.seed || 0))))); o.crackG.setAttribute('opacity', f2(rise * 0.8)); o.dust.setAttribute('opacity', f2(rise > 0 && rise < 1 ? 1 : 0)); o.g.setAttribute('display', rise <= 0.001 ? 'none' : 'inline'); } },
   };
   PROPS.spire = PROPS.monolith;
+  // generic vector prop (ep #003): {type:'shape', x,y,scale,z,scene, track?, rotTrack?, rotK?, attach?:{actor,marker,track}, shapes:[ {k:'poly',pts,fill,op,stroke,sw} | {k:'ell',cx,cy,rx,ry,fill,op} | {k:'glow',cx,cy,r,color,op}
+  //   each shape may carry track (opacity multiplier 0..1 from tl.tracks), txTrack/tyTrack + txK/tyK (px offset), syTrack + pivot:[x,y] (scale about pivot), flick (0..1 flicker amount) }
+  PROPS.shape = {
+    build(o) { const p = o.p; o.inner = $('g', {}, o.g); o.els = (p.shapes || []).map((s) => { let e;
+        if (s.k === 'poly') e = $('polygon', { points: P(s.pts), fill: s.fill || '#000', stroke: s.stroke || 'none', 'stroke-width': s.sw || 0, 'stroke-linejoin': 'round' }, o.inner);
+        else if (s.k === 'ell') e = $('ellipse', { cx: s.cx, cy: s.cy, rx: s.rx, ry: s.ry, fill: s.fill || '#000', stroke: s.stroke || 'none', 'stroke-width': s.sw || 0 }, o.inner);
+        else e = $('circle', { cx: s.cx, cy: s.cy, r: s.r, fill: radial(s.color || '#fff') }, o.inner);
+        return { s, e }; }); },
+    update(o, t) { const p = o.p;
+      let tx = 0, ty = 0; if (p.attach) { const m = C.markerWorld(p.attach.actor, p.attach.marker), q = clamp(C.trk(p.attach.track || 'attach', t, 1)); if (m) { const sc = p.scale || 1; tx = (m.x - p.x) / sc * q; ty = (m.y - p.y) / sc * q; } }
+      o.inner.setAttribute('transform', `translate(${f2(tx)} ${f2(ty)}) rotate(${f2((p.rotTrack ? C.trk(p.rotTrack, t, 0) : 0) * (p.rotK || 1))})`);
+      for (const { s, e } of o.els) { let a = s.op === undefined ? 1 : s.op; if (s.track) a *= clamp(C.trk(s.track, t, 1)); if (s.flick) a *= 1 - s.flick * 0.5 * (1 + Math.sin(t * 47 + (s.cx || 0)) * Math.sin(t * 29)); e.setAttribute('opacity', f2(a));
+        let tr = ''; const dx = s.txTrack ? C.trk(s.txTrack, t, 0) * (s.txK || 1) : 0, dy = s.tyTrack ? C.trk(s.tyTrack, t, 0) * (s.tyK || 1) : 0; if (dx || dy) tr += `translate(${f2(dx)} ${f2(dy)}) `;
+        if (s.syTrack) { const sy = C.trk(s.syTrack, t, 1), pv = s.pivot || [0, 0]; tr += `translate(${pv[0]} ${pv[1]}) scale(${s.sxTrack ? f2(C.trk(s.sxTrack, t, 1)) : 1} ${f2(sy)}) translate(${-pv[0]} ${-pv[1]})`; }
+        if (s.rot !== undefined) tr += ` rotate(${s.rot} ${(s.pivot || [0, 0])[0]} ${(s.pivot || [0, 0])[1]})`;
+        e.setAttribute('transform', tr); } },
+  };
 
   // ---------------------------------------------------------------- actor aura + rim light
   // actor { aura:{colors:[outer..inner], r=230, h=190 (center height above feet), motes:true}, rim:'#ffe39a', rimPx=7 }  cue param aura:[a,b] scales it.

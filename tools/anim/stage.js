@@ -424,7 +424,7 @@
   function poseFor(d, ta) {
     const cues = d.cues; let idx = -1; for (let i = 0; i < cues.length; i++) if (cues[i].t0 <= ta) idx = i;
     const N = d.rig.N, acts = ACTIONS[d.kind];
-    const at = (c) => { const lt = ta - c.t0, dur = Math.max(1e-3, c.t1 - c.t0); const fn = acts[c.action] || acts.idle; return Object.assign({}, N, fn({ t: ta, lt, dur, u: clamp(lt / dur), p: c.params || {}, amp: ampAt(c.params && c.params.voice, ta) })); };
+    const at = (c) => { const lt = ta - c.t0, dur = Math.max(1e-3, c.t1 - c.t0); const fn = acts[c.action] || acts.idle; return Object.assign({}, N, fn({ t: ta, lt, dur, u: clamp(lt / dur), p: c.params || {}, amp: ampAt(c.params && c.params.voice, ta) }), (c.params && c.params.pose) || {}); };
     if (idx < 0) return Object.assign({}, N, acts.idle({ t: ta, lt: ta, dur: 1, u: 0, p: {} }));
     let P = at(cues[idx]);
     if (idx > 0) { const bl = (cues[idx].params && cues[idx].params.blend) || 0.18, lt = ta - cues[idx].t0; if (lt < bl) P = mixP(at(cues[idx - 1]), P, EASE.smooth(lt / bl)); }
@@ -851,6 +851,7 @@
     }
     return out;
   }
+  G.markerAt = (t, actor, name) => { G.renderFrame(t); return markerWorld(actor, name); };   // debug: world position of a rig marker at time t
   G.checkSides = function () {        // 180-degree rule report: frames of VERSUS shots where `left` actor is not on the left
     const sd = TL.sides, bad = []; if (!sd) return bad;
     for (let t = 0; t < TL.duration; t += 0.1) { const info = shotInfo(t); if (!info || info.s.type !== 'versus') continue; G.renderFrame(t); const a = TL.actors[sd.left], b = TL.actors[sd.right]; if (a.pos && b.pos) { const leftOnScreen = TL.__mirrored ? a.pos.x > b.pos.x : a.pos.x < b.pos.x; if (!leftOnScreen) bad.push([+t.toFixed(2), Math.round(a.pos.x), Math.round(b.pos.x), TL.__mirrored ? 'mirrored' : 'NOT mirrored']); } }

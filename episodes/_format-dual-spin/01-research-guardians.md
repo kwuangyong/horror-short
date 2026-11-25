@@ -3,11 +3,11 @@
 Nguồn gốc: brief `episodes/_format-dual-spin/00-brief.md`. Ngày: 2026-11-23.
 Quy ước: "CHƯA XÁC MINH" = không tìm được nguồn đủ tin cậy cho chi tiết đó. Nguồn đa số là Wikipedia (CC BY-SA, ghi nguồn), bài báo, trang bảo tàng; một số nguồn thương mại/blog được đánh dấu "yếu".
 
-> **Phạm vi (cập nhật 2026-11-25):** chỉ giữ thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây** (châu Âu, Mỹ, Canada, Nga–Slav, Mỹ Latinh) và **Nhật Bản**. Đã gỡ toàn bộ mục Việt Nam, Đông Nam Á, Trung Quốc, Ấn Độ. Danh sách chuẩn: [`docs/09-kho-nhan-vat.md`](../../docs/09-kho-nhan-vat.md).
+> **Phạm vi (cập nhật 2026-11-25):** chỉ giữ thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây** (châu Âu, Mỹ, Canada, Nga–Slav, Mỹ Latinh), **Ai Cập cổ**, **Lưỡng Hà** và **Nhật Bản**. Đã gỡ toàn bộ mục Việt Nam, Đông Nam Á, Trung Quốc, Hàn, Ấn Độ. Danh sách chuẩn: [`docs/09-kho-nhan-vat.md`](../../docs/09-kho-nhan-vat.md).
 
 **Lưu ý chung cho cả kho**
 - Đa số hộ vệ là folklore/thần thoại cổ → public domain về nội dung. Rủi ro nằm ở **ảnh**: tranh, ảnh bảo tàng, ảnh stock, tượng đương đại. Kiểm tra giấy phép từng ảnh.
-- Một số hộ vệ không "đánh ma" trực tiếp (Baku, Jizō). Dùng cho kết "giúp được nhưng lệch" hoặc đảo ngược.
+- Một số hộ vệ không "đánh ma" trực tiếp (Baku, Jizō, Bastet). Dùng cho kết "giúp được nhưng lệch" hoặc đảo ngược.
 
 ---
 
@@ -87,6 +87,36 @@ Quy ước: "CHƯA XÁC MINH" = không tìm được nguồn đủ tin cậy cho
 - Bản quyền: folklore. Wikipedia CC BY-SA. Tránh Domovoi trong game.
 - Nguồn: [Wikipedia – Domovoy](https://en.wikipedia.org/wiki/Domovoy) · [UBC EJAS – The Domovoy (academic)](https://ojs.library.ubc.ca/index.php/EJAS/article/view/199552)
 
+**16. Lamassu · 𒆳 (Assyria)** · Lưỡng Hà
+- Lore: thần hộ mệnh gốc Sumer (lama), thành thú lai người đầu, thân bò/sư, cánh chim; đứng canh cổng thành và cung điện.
+- Sức mạnh: canh cổng, đẩy lùi điều ác. Tượng Ashurnasirpal II được tạc để nhìn thẳng từ trước, bước từ bên.
+- Điểm yếu: CHƯA XÁC MINH. Không có truyền thuyết riêng về cách đánh ma.
+- Khắc chế: cái ác ở cổng (chung).
+- Hình ảnh: tượng đá bò-người cánh, nền cát vàng, ánh đèn nâu đá.
+- Nhạy cảm: **Thấp**.
+- Bản quyền: lịch sử cổ public domain; ảnh Met (dùng nếu giấy phép cho phép).
+- Nguồn: [Wikipedia – Lamassu](https://en.wikipedia.org/wiki/Lamassu) · [Met – Human-headed winged bull](https://www.metmuseum.org/toah/works-of-art/32.143.1) · [Livius – Lamassu](https://www.livius.org/articles/mythology/lamassu-bull-man/)
+
+**17. Bes · Ancient Egypt** · Ai Cập cổ
+- Lore: thần bảo vệ nhà, mẹ, con, sinh nở; hình khắc trên đồ gia dụng khắp nơi.
+- Sức mạnh: nhảy múa, lắc trống, la hét để dọa quỷ quanh nôi và sản phụ.
+- Điểm yếu: nguồn gốc không rõ (có thể là sư tử đứng); CHƯA XÁC MINH giới hạn cụ thể.
+- Khắc chế: quỷ nhắm vào trẻ sơ sinh, phù thủy/ma nhập nhà.
+- Hình ảnh: người lùn mặt sư tử, đầu đội lông vũ, múa giữa phòng sinh, đèn dầu.
+- Nhạy cảm: **Thấp**.
+- Bản quyền: public domain (cổ). Ảnh bảo tàng check.
+- Nguồn: [Wikipedia – Bes](https://www.wikipedia.org/wiki/Bes) · [World History Encyclopedia – Bes](https://www.worldhistory.org/Bes)
+
+**18. Bastet · Ai Cập** · Ai Cập cổ
+- Lore: con gái thần Ra; ban ngày đi thuyền Ra, ban đêm hóa mèo đánh rắn Apep (kẻ thù lớn của Ra).
+- Sức mạnh: chiến đấu rắn Apep; bảo vệ vua Hạ Ai Cập.
+- Điểm yếu: cha mẹ mâu thuẫn giữa các nguồn; chi tiết trận thắng không thống nhất (CHƯA XÁC MINH).
+- Khắc chế: Apep (rắn hỗn loạn, bóng tối); không phải ma, dùng như "ác vũ trụ".
+- Hình ảnh: nữ đầu mèo, cầm sistrum, mèo đen đánh rắn dưới thuyền vàng.
+- Nhạy cảm: **Thấp**.
+- Bản quyền: public domain; tranh Book of the Dead cổ public domain, ảnh bảo tàng check.
+- Nguồn: [World History Encyclopedia – Bastet](https://www.worldhistory.org/Bastet/) · [The Collector – Bastet](https://www.thecollector.com/who-is-bastet-egyptian-cat-goddess) · [Wikipedia mirror – Bastet](https://EN.wikipedia.com/wiki/Bastet)
+
 **21. Muối · salt (vật thiêng)** · Âu, Đông Âu, Đức
 - Lore: rải muối ngăn phù thủy, quỷ, mắt ác; cho ba hạt muối vào bình sữa để giữ sữa khỏi phù thủy (dân gian Đức).
 - Sức mạnh: rào chắn, tẩy uế, rải ngưỡng cửa.
@@ -138,6 +168,9 @@ Quy ước: "CHƯA XÁC MINH" = không tìm được nguồn đủ tin cậy cho
 | 13 | Inari Kitsune | JP | CHƯA XÁC MINH | Cáo ám/lừa người | CAO | Folklore |
 | 14 | Church Grim | Anh/Bắc Âu | Trộm mộ, phù thủy, quỷ | Là linh hồn bị hy sinh | Trung bình | PD lore |
 | 15 | Domovoi | Slav | Tà ma, trộm, cháy | Bị bỏ bê thì đốt nhà | Trung bình | Folklore |
+| 16 | Lamassu | Lưỡng Hà | Cái ác ở cổng | CHƯA XÁC MINH | Thấp | PD |
+| 17 | Bes | Ai Cập | Quỷ quanh nôi | Nguồn gốc không rõ | Thấp | PD |
+| 18 | Bastet | Ai Cập | Rắn Apep (ác vũ trụ) | Chi tiết trận mâu thuẫn | Thấp | PD |
 | 21 | Muối | Âu | Phù thủy, quỷ, mắt ác | Ít liên quan ma | Thấp | Folklore |
 | 22 | Sắt lạnh | Anh/Celtic | Tiên, phù thủy | Ma không nhất quán | Thấp | Folklore |
 | 23 | Rowan | Scotland/Bắc Âu | Phù thủy, tà ma, tiên | Phải buộc đúng cách | Thấp | Folklore |

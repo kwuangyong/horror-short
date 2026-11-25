@@ -2,7 +2,7 @@
 
 Slug: `_format-dual-spin` · Trọng tâm: điểm yếu / thứ khắc chế theo truyền thuyết, để ghép cặp với hộ vệ (vòng 2).
 
-> **Phạm vi (cập nhật 2026-11-25):** chỉ giữ thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây** (châu Âu, Mỹ, Canada, Nga–Slav, Mỹ Latinh) và **Nhật Bản**. Đã gỡ toàn bộ mục Việt Nam, Đông Nam Á, Trung Quốc, Ấn Độ. Danh sách chuẩn: [`docs/09-kho-nhan-vat.md`](../../docs/09-kho-nhan-vat.md).
+> **Phạm vi (cập nhật 2026-11-25):** chỉ giữ thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây** (châu Âu, Mỹ, Canada, Nga–Slav, Mỹ Latinh), **Ai Cập cổ**, **Lưỡng Hà** và **Nhật Bản**. Đã gỡ toàn bộ mục Việt Nam, Đông Nam Á, Trung Quốc, Hàn, Ấn Độ. Danh sách chuẩn: [`docs/09-kho-nhan-vat.md`](../../docs/09-kho-nhan-vat.md).
 
 ## Ghi chú phương pháp và giới hạn
 - Phiên tìm kiếm này KHÔNG mở được en.wikipedia.org, britannica.com, thesmartlocal.com, atlasobscura.com, folklore.usc.edu, mythlok.com, thecanadianencyclopedia.ca (lỗi DNS, không resolve). Phần lớn thông tin lấy từ **đoạn tóm tắt của kết quả tìm kiếm**, chưa đọc toàn văn trang. Mọi link Wikipedia dưới đây là link từ kết quả tìm kiếm, CHƯA XÁC MINH nội dung chi tiết.

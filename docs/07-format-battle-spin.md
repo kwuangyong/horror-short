@@ -70,7 +70,7 @@ Trận đánh phải hoành tráng như phim điện ảnh / anime, phô diễn 
 - **Phụ đề động** `tools/anim/captions_dyn.py`: tự dời phụ đề xuống dải thấp (y≈1590) ở các cảnh cận `cu`, `ecu`, `reaction`, `low` để không đè mặt nhân vật. Khi letterbox bật, kiểm tra phụ đề không chui vào dải đen.
 
 ## 9. Chọn nhân vật
-Theo [docs/09](09-kho-nhan-vat.md): chỉ nhân vật nổi tiếng trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây** + **Nhật Bản**. Không lấy Việt Nam và châu Á khác. Không lấy nhân vật có bản quyền, tín ngưỡng bản địa đang sống, hình ảnh từ phim/game.
+Theo [docs/09](09-kho-nhan-vat.md): chỉ nhân vật nổi tiếng trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây**, **Ai Cập cổ**, **Lưỡng Hà** + **Nhật Bản**. Không lấy Việt Nam và châu Á khác. Không lấy nhân vật có bản quyền, tín ngưỡng bản địa đang sống, hình ảnh từ phim/game.
 
 ## 10. Tập tham chiếu
 - `tools/anim/demo/sakuga_demo.js` → `sakuga-demo.mp4`: mẫu đúng luật mới (hook, split-roll + 2 intro, VS, 1v1 một chiến trường, đủ 5 đòn, bé chạy đi nấp).

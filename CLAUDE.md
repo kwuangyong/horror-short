@@ -5,7 +5,7 @@ Phiên chính chạy **Opus** (`.claude/settings.json`) và đóng vai **Boss**:
 **Luật bắt buộc** (đọc trước mọi tập):
 - [`docs/07-format-battle-spin.md`](docs/07-format-battle-spin.md): engine hoạt ảnh khớp xương (cấm ảnh tĩnh, HP, ROUND), hook in medias res, Split-Roll + 2 màn tự giới thiệu ~5 s, bé chạy đi nấp, Sakuga Cinematic, continuity, tempo x1.25, 70–85 s, 50–56 cảnh.
 - [`docs/08-he-thong-bien-the.md`](docs/08-he-thong-bien-the.md): tổ hợp A–F + luật chống lặp, ghi `episodes/_registry.md`; sức mạnh có nguồn.
-- [`docs/09-kho-nhan-vat.md`](docs/09-kho-nhan-vat.md): chỉ nhân vật nổi tiếng trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây + Nhật Bản**.
+- [`docs/09-kho-nhan-vat.md`](docs/09-kho-nhan-vat.md): chỉ nhân vật nổi tiếng trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây, Ai Cập cổ, Lưỡng Hà + Nhật Bản**.
 - Engine: [`tools/anim/README.md`](tools/anim/README.md); mẫu timeline đúng luật: `tools/anim/demo/sakuga_demo.js`.
 
 Thiết kế đội agent: [`docs/06-dan-nhac-agent.md`](docs/06-dan-nhac-agent.md).

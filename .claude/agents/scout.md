@@ -37,7 +37,7 @@ Ghi vào `episodes/<slug>/02-assets.md` một bảng:
 Ghi vào `episodes/<slug>/01-research.md` (mục "Xu hướng"): 5–10 video/hook liên quan đang chạy tốt, câu hook nguyên văn, độ dài, lượt xem nếu thấy. Nếu công cụ vidIQ có sẵn, dùng để lấy số liệu; không có thì dùng WebSearch.
 
 ## Phạm vi format Battle Spin (xem docs/09-kho-nhan-vat.md)
-- Chỉ nhân vật **nổi tiếng** trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây** + **Nhật Bản**. Không Việt Nam, Trung Quốc, Hàn, Đông Nam Á, Nam Á, Trung Đông, Ai Cập.
+- Chỉ nhân vật **nổi tiếng** trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây**, **Ai Cập cổ**, **Lưỡng Hà** + **Nhật Bản**. Không Việt Nam, Trung Quốc, Hàn, Đông Nam Á, Nam Á.
 - Bắt buộc **bảng sức mạnh có nguồn** (≥ 3 sức mạnh mỗi nhân vật, link Public Domain / truyền thuyết), dùng làm chuỗi khoe sức mạnh 2–4 cảnh.
 - Monster phải ma mị, quỷ dị, máu me; ghi rõ **điểm yếu / điều kiện chết hẳn** (dùng cho cú đảo chiều và cú lửng).
 - Guardian phải có **sức mạnh chiến đấu** (đòn năng lượng hình ảnh hóa được) và **giới hạn** (dùng cho nhịp monster lật kèo).

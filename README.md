@@ -18,7 +18,7 @@ Toàn bộ video dựng bằng **engine hoạt ảnh khớp xương SVG** (`tool
 |---|---|---|
 | 07 | [Format Battle Spin](docs/07-format-battle-spin.md) | Engine, mở đầu + 2 intro, THE KID, Sakuga, continuity 180°, tempo, sức mạnh có nguồn, phụ đề động |
 | 08 | [Hệ thống biến thể](docs/08-he-thong-bien-the.md) | Bảng A–F, luật chống lặp, `episodes/_registry.md`, tạo hình nhân vật |
-| 09 | [Kho nhân vật](docs/09-kho-nhan-vat.md) | Monster + Guardian nổi tiếng: thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây** + **Nhật Bản**. Không lấy châu Á khác |
+| 09 | [Kho nhân vật](docs/09-kho-nhan-vat.md) | Monster + Guardian nổi tiếng: thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây**, **Ai Cập cổ**, **Lưỡng Hà** + **Nhật Bản**. Không lấy châu Á khác |
 | 06 | [Dàn nhạc agent](docs/06-dan-nhac-agent.md) | Boss (Opus) + scout (Haiku) + writer, producer (Sonnet); quy trình 3 cổng trong [`CLAUDE.md`](CLAUDE.md) |
 
 Tham khảo: [01 · Phân tích video mẫu](docs/01-phan-tich-video-mau.md) · [05 · Giọng đọc trầm](docs/05-giong-doc-tram.md) · [Kỹ thuật khoe sức mạnh kiểu anime](docs/research/anime-power-techniques.md).

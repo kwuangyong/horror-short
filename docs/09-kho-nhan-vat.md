@@ -1,12 +1,13 @@
-# 09 · Kho nhân vật: Monster + Guardian nổi tiếng (phương Tây + Nhật Bản)
+# 09 · Kho nhân vật: Monster + Guardian nổi tiếng (phương Tây + Ai Cập + Lưỡng Hà + Nhật Bản)
 
 Danh sách chuẩn cho vòng quay. **Chỉ lấy** nhân vật nổi tiếng trong:
 - **Thần thoại và truyền thuyết phương Tây**: Hy Lạp – La Mã, Bắc Âu, Celtic/Anh, Germanic, Slav/Nga, Romania, Pháp, Tây Ban Nha, Mỹ Latinh.
 - **Văn học kinh dị phương Tây thuộc Public Domain**: dùng bản gốc, không lấy ngoại hình từ phim.
 - **Truyền thuyết đô thị phương Tây**: Mỹ, Canada, Anh.
+- **Ai Cập cổ** và **Lưỡng Hà** (Sumer, Akkad, Babylon, Assyria): thần thoại cổ đã tắt, nguồn văn bản cổ thuộc Public Domain (Sách Người Chết, Sử thi Gilgamesh, Enuma Elish).
 - **Nhật Bản**: yokai, toshi densetsu (truyền thuyết đô thị Nhật). Đây là ngoại lệ châu Á duy nhất.
 
-**Không lấy**: Việt Nam, Trung Quốc, Hàn Quốc, Đông Nam Á, Nam Á, Trung Đông, Ai Cập. Các mục cũ thuộc nhóm này đã bị gỡ khỏi `episodes/_format-dual-spin/01-research-*.md` (2026-11-25).
+**Không lấy**: Việt Nam, Trung Quốc, Hàn Quốc, Đông Nam Á, Nam Á, Trung Đông hiện đại (ngoài thần thoại Lưỡng Hà cổ). Các mục cũ thuộc nhóm này đã bị gỡ khỏi `episodes/_format-dual-spin/01-research-*.md` (2026-11-25).
 
 Cột **Research**: ✅ = đã có mục trong `episodes/_format-dual-spin/01-research-*.md` · ➕ = cần `scout` tra bảng sức mạnh có nguồn trước khi dùng (Cổng 1). Mỗi tập vẫn phải có **≥ 3 sức mạnh có nguồn** cho mỗi bên ([docs/08 mục G](08-he-thong-bien-the.md)).
 
@@ -88,6 +89,17 @@ Cột **Research**: ✅ = đã có mục trong `episodes/_format-dual-spin/01-re
 | Mothman (sự kiện 1966–67) | Mắt đỏ, điềm báo thảm họa. Không lấy hình từ phim | ✅ |
 | Dungarvon Whooper (Canada) | Tiếng hú trong rừng | ✅ |
 
+### Ai Cập cổ – Lưỡng Hà
+| Monster | Nét kinh dị / quyền năng chính | Điểm yếu theo truyền thuyết | Research |
+|---|---|---|---|
+| Ammit | Kẻ nuốt tim: đầu cá sấu, thân sư tử, mông hà mã; ăn tim nặng tội | Tim nhẹ hơn lông Ma'at thì không được ăn | ➕ |
+| Apep (Apophis) | Rắn hỗn mang khổng lồ nuốt mặt trời mỗi đêm | Bị Ra/Set/mèo Bastet chém, nghi lễ "Book of Overthrowing Apep" | ➕ |
+| Lamashtu | Nữ quỷ sư tử–chim, bắt trẻ sơ sinh, gây bệnh | Bùa Pazuzu, bùa Lamashtu | ➕ |
+| Humbaba (Huwawa) | Quái giữ Rừng Tuyết Tùng, 7 hào quang, hơi thở lửa | Mất 7 hào quang thì bị chặt đầu (Gilgamesh) | ➕ |
+| Tiamat | Mẹ hỗn mang, sinh 11 quái vật | Gió của Marduk thổi phình bụng, tên xuyên tim (Enuma Elish) | ➕ |
+| Gallu / Utukku | Quỷ âm phủ kéo người xuống Kur | Thế mạng (Inanna's Descent) | ➕ |
+| Xác ướp bị nguyền (Mummy) | Truyền thuyết đô thị phương Tây về "lời nguyền pharaoh" | Không lấy hình phim Universal 1932 / 1999 | ➕ |
+
 ### Nhật Bản
 | Monster | Nét kinh dị / quyền năng chính | Điểm yếu | Research |
 |---|---|---|---|
@@ -134,6 +146,18 @@ Cột **Research**: ✅ = đã có mục trong `episodes/_format-dual-spin/01-re
 | Matagot | Mèo phép giữ của | Phải được cho ăn miếng đầu tiên | ✅ |
 | Domovoi | Thần giữ nhà Slav (lửa cam) | Bị bỏ bê thì đốt nhà | ✅ |
 
+### Ai Cập cổ – Lưỡng Hà
+| Guardian | Quyền năng / hào quang gợi ý | Giới hạn | Research |
+|---|---|---|---|
+| Anubis | Dẫn hồn, cân tim, canh nghĩa địa (đen–vàng kim) | Chỉ phán xử người chết, không đuổi theo người sống | ➕ |
+| Bastet | Mèo thần chém rắn Apep, giữ nhà (vàng–xanh lam) | Tích trận với Apep mâu thuẫn giữa các nguồn | ✅ |
+| Sekhmet | Nữ thần sư tử, hơi thở lửa sa mạc (đỏ–cam) | Say bia nhuộm đỏ thì ngừng tàn sát | ➕ |
+| Horus | Mắt Udjat, chim ưng (vàng–trắng) | Từng mất một mắt khi đánh Set | ➕ |
+| Bes | Thần lùn xua quỷ quanh nôi trẻ (vàng đất) | Nguồn gốc không rõ, sức chiến đấu thấp | ✅ |
+| Lamassu | Bò–sư tử có cánh đầu người canh cổng (đồng–lam) | Chỉ ở ngưỡng cổng | ✅ |
+| Pazuzu | Quỷ gió tây nam, khắc tinh của Lamashtu (xanh lục–đồng) | Bản thân là quỷ; tránh hình phim *The Exorcist* | ➕ |
+| Gilgamesh & Enkidu | Đôi anh hùng hạ Humbaba và Bò Trời (đồng–lửa) | Enkidu bị thần phạt chết; Gilgamesh không thể bất tử | ➕ |
+
 ### Nhật Bản
 | Guardian | Quyền năng / hào quang gợi ý | Giới hạn | Research |
 |---|---|---|---|
@@ -146,7 +170,7 @@ Cột **Research**: ✅ = đã có mục trong `episodes/_format-dual-spin/01-re
 ## 3. Cấm / thận trọng (giữ như docs/07)
 - **Có chủ bản quyền**: Slenderman, Siren Head, Jeff the Killer, The Rake, Smile Dog, Samara, SCP-096 dạng hình phim, mọi thiết kế lấy từ phim/game (Fluffy, God of War, Marvel, Universal Monsters).
 - **Tín ngưỡng bản địa đang sống**: Wendigo, Skinwalker, Wampus Cat, Ogopogo. Không dùng.
-- **Thận trọng tôn giáo**: Golem (Do Thái), Jizō, Inari, thiên thần Kitô giáo. Chỉ dùng khi Boss duyệt riêng, không chế giễu.
+- **Thận trọng tôn giáo**: Golem (Do Thái), Jizō, Inari, thiên thần Kitô giáo; thần Ai Cập có cộng đồng Kemetic hiện đại thờ, không chế giễu. Chỉ dùng khi Boss duyệt riêng, không chế giễu.
 - **Cryptid ngộ nghĩnh**: không làm monster chính (Bigfoot, Hodag, Loveland Frogman, Lizard Man).
 
 ## 4. Cặp đấu gợi ý (xung đột lore tự nhiên, chưa dùng)
@@ -162,3 +186,7 @@ Cột **Research**: ✅ = đã có mục trong `episodes/_format-dual-spin/01-re
 | Dullahan | Church Grim | Kỵ sĩ báo tử đối chó giữ nghĩa địa |
 | Krampus | Tomte | Hai nhân vật mùa đông vùng Alps–Scandinavia |
 | Bloody Mary | Gargoyle | Ma trong gương đối tượng đá nhà thờ |
+| Lamashtu | Pazuzu | Cặp khắc tinh có thật trong bùa Lưỡng Hà, quỷ đấu quỷ để cứu đứa bé |
+| Apep | Bastet | Mèo thần chém rắn hỗn mang ngay trên sông đêm |
+| Humbaba | Gilgamesh & Enkidu | Bảy hào quang bị lột từng lớp, rất hợp chuỗi `pillar` + `slash` |
+| Ammit | Anubis | Cân tim: kẻ nuốt tim đối người dẫn hồn |

@@ -18,7 +18,7 @@ Câu chuyện là đêm sống sót: hộ vệ có giúp được bạn trước
 - Video tiếng Anh, khán giả toàn cầu.
 
 ## CẬP NHẬT PHẠM VI (quyết định của người dùng)
-- Chỉ lấy nhân vật nổi tiếng trong **thần thoại, truyền thuyết, truyền thuyết đô thị phương Tây** + **Nhật Bản**. Không lấy Việt Nam và châu Á khác.
+- Chỉ lấy nhân vật nổi tiếng trong **thần thoại, truyền thuyết, truyền thuyết đô thị phương Tây**, **Ai Cập cổ**, **Lưỡng Hà** + **Nhật Bản**. Không lấy Việt Nam và châu Á khác.
 - Danh sách chuẩn: [`docs/09-kho-nhan-vat.md`](../../docs/09-kho-nhan-vat.md). Các mục ngoài phạm vi đã bị xóa khỏi file research (2026-11-25).
 - Truyền thuyết của người bản địa Bắc Mỹ (Wendigo, Skinwalker, Thunderbird...) là tín ngưỡng sống: nhạy cảm cao, ưu tiên tránh hoặc xử lý rất cẩn trọng.
 

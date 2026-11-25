@@ -424,7 +424,7 @@
   function poseFor(d, ta) {
     const cues = d.cues; let idx = -1; for (let i = 0; i < cues.length; i++) if (cues[i].t0 <= ta) idx = i;
     const N = d.rig.N, acts = ACTIONS[d.kind];
-    const at = (c) => { const lt = ta - c.t0, dur = Math.max(1e-3, c.t1 - c.t0); const fn = acts[c.action] || acts.idle; return Object.assign({}, N, fn({ t: ta, lt, dur, u: clamp(lt / dur), p: c.params || {}, amp: ampAt(c.params && c.params.voice, ta) }), (c.params && c.params.pose) || {}); };
+    const at = (c) => { const lt = ta - c.t0, dur = Math.max(1e-3, c.t1 - c.t0); const fn = acts[c.action] || acts.idle; return Object.assign({}, N, d.pose || {}, fn({ t: ta, lt, dur, u: clamp(lt / dur), p: c.params || {}, amp: ampAt(c.params && c.params.voice, ta) }), (c.params && c.params.pose) || {}); };
     if (idx < 0) return Object.assign({}, N, acts.idle({ t: ta, lt: ta, dur: 1, u: 0, p: {} }));
     let P = at(cues[idx]);
     if (idx > 0) { const bl = (cues[idx].params && cues[idx].params.blend) || 0.18, lt = ta - cues[idx].t0; if (lt < bl) P = mixP(at(cues[idx - 1]), P, EASE.smooth(lt / bl)); }

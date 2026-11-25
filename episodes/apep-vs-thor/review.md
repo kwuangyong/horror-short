@@ -25,3 +25,8 @@ Cần sửa ở v2 (không vi phạm luật):
 2. #20: bé đứng chồng chân Thor lúc Thor đáp xuống → dời bé sang phải / sau Thor.
 3. #14 emerge: phụ đề intro chồng label thẻ → kết thúc phụ đề Thor trước emerge hoặc dời `cap:'low'`.
 4. #52 bóng rắn của bé tương phản thấp; #20 xe dê mờ; #34 răng chưa chạm vai.
+
+## Cổng 3 – Bản dựng v2 (tempo chậm ~20%, Apep khổng lồ): ĐẠT
+94.0 s · −14.2 LUFS · 56 shot · `180-RULE OK`. Apep scale 2.8 + `serpent-coils` (vòng thân cuộn khắp sa mạc), Thor ≈ 1/4.5 chiều cao Apep. Đã sửa: totality sáng hơn, bé không chồng chân Thor, phụ đề intro không đè thẻ, bóng rắn rõ, xe dê rõ, răng chạm vai.
+Boss phát hiện thêm: cảnh mở truyện (#15) bị quy đổi thời gian 2 lần (STORY đã là giây v2) nên 20.9–23.9 s vẫn hiện sảnh Thrudheim → đã sửa (`RAW` cho shot #15), dựng lại.
+Còn yếu (để v3 nếu cần): vòng thân còn đều nhau như vòng cung; Thor nhỏ trong cảnh rộng; hàm Apep che mặt Thor lúc cắn; cầu năng lượng beam-clash chưa nằm đúng giữa miệng và búa.

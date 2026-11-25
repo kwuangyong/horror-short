@@ -48,3 +48,19 @@ Video: `build/anim/apep-vs-thor.mp4` (1080x1920, 30 fps); preview `preview/apep-
 
 ## Assets
 None external. Everything is vector/code and audio is synthesized (no licences).
+
+---
+# v2 (tempo -20%, colossal Apep) - 94.04 s
+Video `build/anim/apep-vs-thor.mp4`; preview `preview/apep-vs-thor.mp4` (10.0 MB), sheet `preview/apep-vs-thor-sheet.jpg`; v1 kept as `preview/apep-vs-thor-v1.mp4` + `-sheet-v1.jpg`, v1 audio data in `audio-anim/v1/`.
+| Check | Result |
+|---|---|
+| `--check` | `180-RULE OK`; `sakuga_demo` still OK |
+| Duration | 94.04 s (ffprobe preview 94.037) - above the 70-85 s rule by user request (slower tempo) |
+| Shots | 56 (PASS 50-56) |
+| Loudness | -14.2 LUFS |
+| Audio | narrator +12% (v1 +40%), gaps 0.32-0.34 s, drums 125 BPM, cues re-placed from new words; low drum pulse + riser under last section, hard cut at 89.6 s then whisper 90.0 s; hook narration-free until 4.4 s |
+| Intro/VS timing | Apep intro 4.4-10.6, Thor 12.3-18.9, emerge 18.95, VS 19.0, story 20.24; captions cut before each emerge (captions_dyn `--cut`) PASS |
+Milestones (frames viewed): hook squeeze with Thor face + hammer visible PASS; Duat intro with coils filling the river PASS; locks, intros, VS PASS; Thor lands + cart PASS; block PASS; kid runs out PASS (kid hidden in 1v1); terrain + coil arcs rise at "roared" PASS; slash/pillar/orbs/beam/beam-clash PASS; slow-mo + crash on the eye PASS; hiding spot PASS; serpent shadow + eye PASS.
+Fixes: C1 totality brighter (sky/ground dark caps 0.5/0.24, tint 0.1, bigger corona/rays; sun moved right of Apep's head so it is visible) PASS; C2 kid moved right/behind (x 1560-1620, z behind Thor) PASS; C3 captions clear of card labels PASS; C4 shadow black + warm light patch + caption on top PASS, cart bigger and white PASS, fangs: main Apep head strikes onto Thor's shoulder, jaw/fangs touch shoulder, Thor's face partly under the jaw PASS (weak).
+Giant Apep: scale 2.8 (Thor ~1/4.5 of reared height), new prop `serpent-coils` (far/mid/near arcs, scale bands, veins, spikes, slither, `rise` track), rig params `len`, `lam`, `rearK`, `coilLift`, `layer 3`, marker `fang`, actor-level `pose` defaults, eclipse params `skyDarkMax/gDarkMax/rayK/coronaR`.
+Weak points: coil arcs are uniform "hoops"; Thor tiny in wide shots; beam-clash orb sits mid-frame, not exactly mouth-to-hammer; bite hides Thor's face; length exceeds 85 s.

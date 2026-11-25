@@ -38,3 +38,6 @@ cd episodes/apep-vs-thor/audio-anim && export HTTPS_PROXY=...; python3 make_voic
 cd .. && python3 ../../tools/make_captions.py audio-anim/words.json --script script-anim.md --font "Bebas Neue" --size 104 --max-words 4 --max-chars 24 -o audio-anim/captions.ass
 Captions: 71 events, no chunk crosses a sentence; none in the hook. Last chunk of a sentence lingers up to ~1.5 s until the next line (e.g. 14.74-16.89). Speaker colours added to tools/make_captions.py (apep violet, thor blue, kid white).
 Needs: edge-tts, numpy, scipy, ffmpeg with rubberband.
+
+## v2 (tempo -20%)
+94.22 s mix, -14.2 LUFS. `python3 make_voice.py` (default +12%), `python3 post_voice.py` (needs v1/sections.json for silences), `python3 make_music.py` (125 BPM, v1 word hints mapped via v1/words.json), `bash mix_test.sh`. Cues: see cues.json. v1 files in v1/.

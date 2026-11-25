@@ -199,7 +199,7 @@
       if (d.eclipse) { const e = d.eclipse; o.ecl = { e, skyDark: $('rect', { x: -1600, y: -1600, width: 4300, height: 1600 + d.horizon + 60, fill: e.dark || '#07020f', opacity: 0 }, g) };
         const x = e.x === undefined ? 540 : e.x, y = e.y === undefined ? 420 : e.y, R = e.r || 120; o.ecl.x = x; o.ecl.y = y; o.ecl.R = R;
         o.ecl.glare = $('circle', { cx: x, cy: y, r: R * 3.4, fill: radial(e.sun || '#ffe9a8', [[0, 0.7], [0.3, 0.25], [1, 0]]) }, g);
-        o.ecl.cor = $('g', { opacity: 0 }, g); o.ecl.corG = $('circle', { cx: x, cy: y, r: R * 3.6, fill: radial(e.corona || '#d8c8ff', [[0, 0.95], [0.3, 0.5], [1, 0]]) }, o.ecl.cor);
+        o.ecl.cor = $('g', { opacity: 0 }, g); o.ecl.corG = $('circle', { cx: x, cy: y, r: R * (e.coronaR || 3.6), fill: radial(e.corona || '#d8c8ff', [[0, 0.95], [0.3, e.coronaMid || 0.5], [1, 0]]) }, o.ecl.cor);
         o.ecl.rays = Array.from({ length: 28 }, (_, i) => $('polygon', { fill: i % 3 ? (e.corona || '#d8c8ff') : '#fff', opacity: 0.55 }, o.ecl.cor));
         o.ecl.sun = $('circle', { cx: x, cy: y, r: R, fill: e.sun || '#fff3c4' }, g); o.ecl.moon = $('circle', { cx: x, cy: y, r: R * 1.025, fill: e.moon || '#05030a' }, g);
         o.ecl.ring = $('circle', { cx: x, cy: y, r: R * 1.04, fill: 'none', stroke: e.corona || '#d8c8ff', 'stroke-width': 4, opacity: 0 }, g); }
@@ -218,9 +218,9 @@
     if (!C.domainG) return; const key = sc && sc.startsWith('domain-') ? sc.slice(7) : null;
     for (const k in C.domainG) { const o = C.domainG[k], on = k === key; o.g.setAttribute('display', on ? 'inline' : 'none'); if (!on) continue; const d = o.d;
       if (o.ecl) { const E = o.ecl, k = clamp(C.trk(E.e.track || 'eclipse', t, 0)), off = (1 - k) * E.R * 2.7 * (E.e.dir || 1), tot = sm01((k - 0.86) / 0.14);
-        E.moon.setAttribute('cx', f2(E.x - off)); E.moon.setAttribute('cy', f2(E.y + (1 - k) * E.R * 0.35)); E.skyDark.setAttribute('opacity', f2(0.78 * Math.pow(k, 1.3))); E.gDark.setAttribute('opacity', f2(0.55 * Math.pow(k, 1.5)));
+        E.moon.setAttribute('cx', f2(E.x - off)); E.moon.setAttribute('cy', f2(E.y + (1 - k) * E.R * 0.35)); E.skyDark.setAttribute('opacity', f2((E.e.skyDarkMax === undefined ? 0.78 : E.e.skyDarkMax) * Math.pow(k, 1.3))); E.gDark.setAttribute('opacity', f2((E.e.gDarkMax === undefined ? 0.55 : E.e.gDarkMax) * Math.pow(k, 1.5)));
         E.glare.setAttribute('opacity', f2(clamp(1 - k * 1.05) * 0.9)); E.sun.setAttribute('opacity', f2(1)); E.ring.setAttribute('opacity', f2(tot * 0.7)); E.cor.setAttribute('opacity', f2(tot * (0.85 + 0.15 * Math.sin(t * 5))));
-        E.rays.forEach((p, i) => { const a = i / E.rays.length * 6.283 + 0.2 * Math.sin(t * 0.6 + i), len = E.R * (1.4 + 2.6 * hash(i * 3.1 + 1)) * (1 + 0.1 * Math.sin(t * 4 + i * 2)), w = E.R * 0.09 * (1 + hash(i)); const c = Math.cos(a), s2 = Math.sin(a); p.setAttribute('points', P([[E.x + c * E.R * 1.02 - s2 * w, E.y + s2 * E.R * 1.02 + c * w], [E.x + c * len, E.y + s2 * len], [E.x + c * E.R * 1.02 + s2 * w, E.y + s2 * E.R * 1.02 - c * w]])); }); }
+        E.rays.forEach((p, i) => { const a = i / E.rays.length * 6.283 + 0.2 * Math.sin(t * 0.6 + i), len = E.R * (E.e.rayK || 1) * (1.4 + 2.6 * hash(i * 3.1 + 1)) * (1 + 0.1 * Math.sin(t * 4 + i * 2)), w = E.R * 0.09 * (1 + hash(i)); const c = Math.cos(a), s2 = Math.sin(a); p.setAttribute('points', P([[E.x + c * E.R * 1.02 - s2 * w, E.y + s2 * E.R * 1.02 + c * w], [E.x + c * len, E.y + s2 * len], [E.x + c * E.R * 1.02 + s2 * w, E.y + s2 * E.R * 1.02 - c * w]])); }); }
       if (o.sig) { o.sig.setAttribute('transform', `translate(540 ${d.horizon + 230}) scale(1 0.22)`); o.sigIn.setAttribute('transform', `rotate(${f2(t * 14)})`); }
       o.mist.forEach((e, i) => e.setAttribute('cx', f2(((i * 517 + t * (12 + i * 3)) % 2600) - 700)));
       o.motes.forEach((m) => { const q = (t * m.sp + m.ph) % 1; m.e.setAttribute('cx', f2(m.x + 20 * Math.sin(t + m.ph * 9))); m.e.setAttribute('cy', f2(d.horizon + 300 - q * 1300)); m.e.setAttribute('opacity', f2(Math.sin(q * Math.PI) * 0.8)); });
@@ -259,6 +259,37 @@
         if (s.rot !== undefined) tr += ` rotate(${s.rot} ${(s.pivot || [0, 0])[0]} ${(s.pivot || [0, 0])[1]})`;
         e.setAttribute('transform', tr); } },
   };
+
+  // serpent coils (ep #003 v2): giant body arcs rising out of the sand and diving back in (dune ridges made of scales).
+  // {type:'serpent-coils', x,y,scale,z,scene, track:'rise', body,body2,sheen,vein,sand,haze, sp:slither speed,
+  //  arcs:[{x0,x1,y (ground offset), h, w (body thickness), d (0 near..1 far = hazed), ph, delay (0..0.7 of the rise track), lean}]}
+  // Body = dark flat stroke + travelling scale bands + sheen + glowing vein + back spikes; clipped at the ground so it emerges from the sand.
+  const mixHex = (a, b, k) => { const p = (h) => [1, 3, 5].map((i) => parseInt(h.slice(i, i + 2), 16)); const A = p(a), B = p(b); return '#' + A.map((v, i) => Math.round(v + (B[i] - v) * k).toString(16).padStart(2, '0')).join(''); };
+  PROPS['serpent-coils'] = {
+    build(o) { const p = o.p; o.arcs = (p.arcs || []).map((a, i) => { const hz = p.haze || '#6a4a78', d = a.d || 0, col = (c) => mixHex(c, hz, 0.55 * d);
+        const cid = gid('clipCoil'), cp = $('clipPath', { id: cid, clipPathUnits: 'userSpaceOnUse' }, C.defs); $('rect', { x: -4000, y: -6000, width: 8000, height: 6000 }, cp);
+        const g = $('g', { transform: `translate(0 ${a.y || 0})`, 'clip-path': `url(#${cid})` }, o.g), inner = $('g', {}, g), mk = (st) => $('path', Object.assign({ fill: 'none', 'stroke-linecap': 'butt' }, st), inner);
+        const shadow = $('ellipse', { cx: (a.x0 + a.x1) / 2, cy: 6, rx: Math.abs(a.x1 - a.x0) * 0.62, ry: 26, fill: '#000', opacity: 0.28 }, o.g); o.g.insertBefore(shadow, g);
+        const e = { a, g, inner, shadow, body: mk({ stroke: col(p.body || '#1d1230'), 'stroke-width': a.w }), belly: mk({ stroke: col(p.body2 || '#3a2460'), 'stroke-width': a.w * 0.34, opacity: 0.9 }),
+          bands: mk({ stroke: col(p.body2 || '#3a2460'), 'stroke-width': a.w * 0.96, 'stroke-dasharray': `${a.w * 0.07} ${a.w * 0.24}`, opacity: 0.75 }), bands2: mk({ stroke: col(p.sheen || '#7a56b8'), 'stroke-width': a.w * 0.9, 'stroke-dasharray': `${a.w * 0.03} ${a.w * 0.28}`, opacity: 0.32 }),
+          sheen: mk({ stroke: col(p.sheen || '#7a56b8'), 'stroke-width': a.w * 0.2, opacity: 0.5 }), vg: mk({ stroke: p.vein || '#b07aff', 'stroke-width': 16, opacity: 0.2 }), vn: mk({ stroke: p.vein || '#b07aff', 'stroke-width': 5, opacity: 0.8, 'stroke-dasharray': `${a.w * 0.5} ${a.w * 0.12}` }),
+          spk: Array.from({ length: 9 }, () => $('polygon', { fill: col(p.body || '#1d1230') }, inner)) };
+        const m1 = $('ellipse', { cx: a.x0, cy: 4, rx: a.w * 0.95, ry: a.w * 0.2, fill: p.sand || '#46283e' }, o.g), m2 = $('ellipse', { cx: a.x1, cy: 4, rx: a.w * 0.95, ry: a.w * 0.2, fill: p.sand || '#46283e' }, o.g); e.m1 = m1; e.m2 = m2; e.mg = g;
+        // mounds sit on the same ground offset as the arc
+        [m1, m2].forEach((m) => m.setAttribute('transform', `translate(0 ${a.y || 0})`)); shadow.setAttribute('transform', `translate(0 ${a.y || 0})`);
+        return e; }); },
+    update(o, t) { const p = o.p, R = clamp(C.trk(p.track || 'rise', t, 1)), sp = p.sp === undefined ? 1 : p.sp;
+      o.g.setAttribute('display', R <= 0.001 ? 'none' : 'inline');
+      o.arcs.forEach((e, i) => { const a = e.a, r = EASE.outCubic(clamp((R - (a.delay || 0)) / (1 - (a.delay || 0) * 0.9))), W = a.x1 - a.x0, hh = a.h * (1 + 0.05 * Math.sin(t * 0.9 * sp + (a.ph || i))), lean = (a.lean || 0) * W + 0.07 * W * Math.sin(t * 0.7 * sp + (a.ph || i) * 1.7);
+        const c1 = [a.x0 + W * 0.06 + lean * 0.5, -hh * 4 / 3], c2 = [a.x1 - W * 0.06 + lean * 0.5, -hh * 4 / 3], dd = `M${f2(a.x0)} 0 C${f2(c1[0])} ${f2(c1[1])} ${f2(c2[0])} ${f2(c2[1])} ${f2(a.x1)} 0`;
+        e.inner.setAttribute('transform', `translate(${f2((a.x1 > a.x0 ? 1 : -1) * 0)} ${f2((1 - r) * (a.h + a.w))})`);
+        [e.body, e.belly, e.bands, e.bands2, e.sheen, e.vg, e.vn].forEach((q) => q.setAttribute('d', dd));
+        e.belly.setAttribute('transform', `translate(0 ${f2(a.w * 0.33)})`); e.sheen.setAttribute('transform', `translate(0 ${f2(-a.w * 0.26)})`); e.vg.setAttribute('transform', `translate(0 ${f2(-a.w * 0.12)})`); e.vn.setAttribute('transform', `translate(0 ${f2(-a.w * 0.12)})`);
+        e.bands.setAttribute('stroke-dashoffset', f2(-t * 26 * sp - i * 9)); e.bands2.setAttribute('stroke-dashoffset', f2(-t * 26 * sp - i * 9 - a.w * 0.12)); e.vn.setAttribute('stroke-dashoffset', f2(-t * 60 * sp)); e.vn.setAttribute('opacity', f2((0.5 + 0.4 * Math.sin(t * 2.3 + i)) * (1 - 0.5 * (a.d || 0)))); e.vg.setAttribute('opacity', f2(0.14 + 0.1 * Math.sin(t * 2.3 + i)));
+        const bz = (u) => { const v = 1 - u; return [v * v * v * a.x0 + 3 * v * v * u * c1[0] + 3 * v * u * u * c2[0] + u * u * u * a.x1, 3 * v * v * u * c1[1] + 3 * v * u * u * c2[1]]; };
+        e.spk.forEach((s, k) => { const u = 0.1 + k * 0.1, b = bz(u), b2 = bz(u + 0.01), tx = b2[0] - b[0], ty = b2[1] - b[1], L = Math.hypot(tx, ty) || 1, nx = ty / L, ny = -tx / L, up = ny < 0 ? 1 : -1, bw = a.w * 0.1, hs = a.w * (0.2 + 0.16 * ((k * 7) % 3) / 2), px = b[0] + nx * up * a.w * 0.46, py = b[1] + ny * up * a.w * 0.46;
+          s.setAttribute('points', P([[px - tx / L * bw, py - ty / L * bw], [px + tx / L * bw, py + ty / L * bw], [px + nx * up * hs - tx / L * bw * 0.6, py + ny * up * hs - ty / L * bw * 0.6]])); });
+        e.g.setAttribute('display', r <= 0.002 ? 'none' : 'inline'); e.m1.setAttribute('display', r <= 0.002 ? 'none' : 'inline'); e.m2.setAttribute('display', r <= 0.002 ? 'none' : 'inline'); e.shadow.setAttribute('opacity', f2(0.28 * r)); }); } };
 
   // ---------------------------------------------------------------- actor aura + rim light
   // actor { aura:{colors:[outer..inner], r=230, h=190 (center height above feet), motes:true}, rim:'#ffe39a', rimPx=7 }  cue param aura:[a,b] scales it.

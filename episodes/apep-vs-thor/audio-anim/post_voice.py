@@ -24,7 +24,7 @@ for u in U:
         if g1 is not None:
             if u["text"].startswith("I am Thor"): g1 = 1.7           # lock GUARDIAN + Thor card must fit
             elif u["text"].startswith("A kid"): g1 = 1.35            # VS slam sits here
-            start = max(start, prev_end + max(0.4, g1 if g1 > 0.6 else 0.0) * (1.0 if g1 in (1.7, 1.35) else 1.25))
+            start = max(start, prev_end + (g1 if g1 in (1.7, 1.35) else g1*1.2 if g1 > 0.6 else 0.0))
     out[int(start*SR): int(start*SR)+len(x)] += x
     for w in u["words"]:
         words.append({"word": w["word"], "start": round(start+w["start"], 3), "end": round(start+w["end"], 3), "speaker": "narrator" if u["speaker"] == "narrator" else u["speaker"].split("_")[0]})

@@ -1,5 +1,5 @@
 {
- "duration": 95.10508333333334,
+ "duration": 92.09008333333331,
  "sections": [
   {
    "section": 0,
@@ -28,31 +28,31 @@
   },
   {
    "name": "fight",
-   "start": 35.51
+   "start": 34.61
   },
   {
    "name": "totality",
-   "start": 56.72
+   "start": 55.04
   },
   {
    "name": "beams",
-   "start": 61.05
+   "start": 59.19
   },
   {
    "name": "finale",
-   "start": 70.49
+   "start": 68.39
   },
   {
    "name": "dawn",
-   "start": 75.1
+   "start": 72.97
   },
   {
    "name": "cliffhanger",
-   "start": 89.82
+   "start": 86.96
   },
   {
    "name": "whisper",
-   "start": 93.05
+   "start": 90.03
   }
  ],
  "dialogue": [
@@ -108,32 +108,32 @@
    "section": 2,
    "speaker": "thor_hoarse",
    "text": "Go home, little one.",
-   "start": 83.18,
-   "end": 85.36,
+   "start": 80.69,
+   "end": 82.87,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "thor_hoarse",
    "text": "Never sleep under a dark sun.",
-   "start": 85.68,
-   "end": 88.15,
+   "start": 83.19,
+   "end": 85.66,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "kid",
    "text": "...Okay.",
-   "start": 88.65,
-   "end": 89.32,
+   "start": 85.98,
+   "end": 86.64,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "apep_whisper",
    "text": "I always come back.",
-   "start": 93.05,
-   "end": 94.71,
+   "start": 90.03,
+   "end": 91.69,
    "late": 0.0
   }
  ],
@@ -198,160 +198,160 @@
    "section": 2,
    "speaker": "narrator",
    "text": "So they walked out beneath an eclipse.",
-   "start": 24.15,
-   "end": 26.12,
+   "start": 23.97,
+   "end": 25.94,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Then Apep rose, and the world shook.",
-   "start": 26.62,
-   "end": 28.95,
+   "start": 26.26,
+   "end": 28.59,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "But thunder fell first, and Thor caught the strike on his hammer.",
-   "start": 29.45,
-   "end": 32.87,
+   "start": 28.91,
+   "end": 32.33,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "The kid ran for the ruins.",
-   "start": 33.37,
-   "end": 35.01,
+   "start": 32.65,
+   "end": 34.29,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "He buckled his belt, and his strength doubled.",
-   "start": 35.51,
-   "end": 37.9,
+   "start": 34.61,
+   "end": 37.0,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "His hammer never misses.",
-   "start": 38.4,
-   "end": 39.88,
+   "start": 37.32,
+   "end": 38.8,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "But Apep roared, so the sand split and the dunes buckled.",
-   "start": 40.38,
-   "end": 43.61,
+   "start": 39.12,
+   "end": 42.35,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Then its stare froze him, and the coils closed in.",
-   "start": 45.98,
-   "end": 48.88,
+   "start": 44.63,
+   "end": 47.53,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Venom burned through his veins, so he staggered, step after step.",
-   "start": 52.43,
-   "end": 56.22,
+   "start": 50.94,
+   "end": 54.72,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Now the eclipse reached totality, and darkness swallowed the ruins.",
-   "start": 56.72,
-   "end": 60.55,
+   "start": 55.04,
+   "end": 58.87,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Thor roared back with lightning, yet the chaos beam pushed harder.",
-   "start": 61.05,
-   "end": 64.46,
+   "start": 59.19,
+   "end": 62.61,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "So he tore an ox head from the old altar, and hooked it to his hammer as bait.",
-   "start": 65.99,
-   "end": 69.99,
+   "start": 64.07,
+   "end": 68.07,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Apep lunged for the bait, and Thor's lightning blasted it skyward.",
-   "start": 70.49,
-   "end": 74.18,
+   "start": 68.39,
+   "end": 72.08,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "The beast spat out the dark, and sunlight spilled across the sand.",
-   "start": 75.1,
-   "end": 78.78,
+   "start": 72.97,
+   "end": 76.64,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "The kid stood on the sand again, though their shadow had changed.",
-   "start": 79.28,
-   "end": 82.68,
+   "start": 76.96,
+   "end": 80.37,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "thor_hoarse",
    "text": "Go home, little one.",
-   "start": 83.18,
-   "end": 85.36,
+   "start": 80.69,
+   "end": 82.87,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "thor_hoarse",
    "text": "Never sleep under a dark sun.",
-   "start": 85.68,
-   "end": 88.15,
+   "start": 83.19,
+   "end": 85.66,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "kid",
    "text": "...Okay.",
-   "start": 88.65,
-   "end": 89.32,
+   "start": 85.98,
+   "end": 86.64,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "At the next sunset, the dunes began to breathe.",
-   "start": 89.82,
-   "end": 92.55,
+   "start": 86.96,
+   "end": 89.69,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "apep_whisper",
    "text": "I always come back.",
-   "start": 93.05,
-   "end": 94.71,
+   "start": 90.03,
+   "end": 91.69,
    "late": 0.0
   }
  ]

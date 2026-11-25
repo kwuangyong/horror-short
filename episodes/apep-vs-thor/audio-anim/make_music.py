@@ -7,7 +7,7 @@ H = os.path.dirname(os.path.abspath(__file__)); SR = 44100
 rng = np.random.default_rng(3)
 W = json.load(open(f"{H}/words.json")); S = json.load(open(f"{H}/sections.json"))
 TOTAL = S["duration"] + 2.0
-BPM = 155; BEAT = 60/BPM; BAR = 4*BEAT
+BPM = 125; BEAT = 60/BPM; BAR = 4*BEAT
 def T(n): return np.arange(int(n*SR))/SR
 def lp(x, fc, order=2):
     a = np.exp(-2*np.pi*fc/SR)
@@ -20,7 +20,11 @@ def put(x, t, g=1.0):
     i = int(t*SR)
     if i < 0 or i >= len(buf): return
     x = x[:len(buf)-i]; buf[i:i+len(x)] += x*g
+W1 = json.load(open(f"{H}/v1/words.json"))              # v2 is ~20% slower: v1 'after' hints are mapped word-by-word to v2 times
+_a = [0.0] + [w["start"] for w in W1]; _b = [0.0] + [w["start"] for w in W]
+def V(t): return float(np.interp(t, _a, _b)) if t <= _a[-1] else t - _a[-1] + _b[-1]
 def fw(word, after=0.0, nth=0):
+    after = V(after) if after else 0.0
     c = [w for w in W if w["word"].lower().strip(".,?!'\"") == word.lower() and w["start"] >= after]
     return c[nth]
 def sent(prefix): return [s for s in S["sentences"] if s["text"].startswith(prefix)][0]
@@ -100,10 +104,12 @@ def ratchet(t0, t1, iv=0.045):
 ratchet(3.0, 4.1); put(boom(0.9, 110, 50), 4.1, 1.0); put(tick(900, 0.08), 4.1, 1.0); put(impact(), 4.1, 0.7)   # lock MONSTER
 put(hiss(1.3), 4.45, 0.6); put(rumble(4.5, 0.7), 4.3, 0.5)                         # Apep intro bed
 put(boom(0.8, 90, 40), 5.0, 0.5)
-ratchet(9.4, 10.1); put(boom(0.9, 95, 45), 10.1, 1.0); put(tick(700, 0.08), 10.1, 1.0); put(impact(), 10.1, 0.7)  # lock GUARDIAN
-put(thunder(3.0), 10.7, 0.6); put(boom(0.9, 70, 30), 10.9, 0.7)                  # Thor intro bed
-put(thunder(2.2), 13.0, 0.35)
-t_vs = 16.1; put(impact(), t_vs, 1.0); put(boom(2.5, 60, 24), t_vs, 0.8)       # VS
+tA_end = sent("Tonight")["end"]; tT0 = sent("I am Thor")["start"]; tT_end = sent("Crawl")["end"]
+E2s = tA_end + 0.02; lockR = tA_end + 0.85
+ratchet(E2s + 0.3, lockR); put(boom(0.9, 95, 45), lockR, 1.0); put(tick(700, 0.08), lockR, 1.0); put(impact(), lockR, 0.7)  # lock GUARDIAN
+put(thunder(3.0), tT0 - 0.6, 0.6); put(boom(0.9, 70, 30), tT0 - 0.4, 0.7)       # Thor intro bed
+put(thunder(2.2), tT0 + 2.0, 0.35)
+t_vs = tT_end + 0.12; put(impact(), t_vs, 1.0); put(boom(2.5, 60, 24), t_vs, 0.8)       # VS
 put(lp(noise(3), 250, 2)*np.exp(-T(3)/1.2)*6, t_vs, 0.5)
 # drums during intros (light, 155 BPM)
 def drumhit(t, kind, g):
@@ -118,7 +124,7 @@ def drums(t0, t1, g0, g1, skip=()):
         if k and not any(a <= t < b for a, b in skip): drumhit(t, k, g0+(g1-g0)*p)
         if i % 8 == 7 and rng.random() < 0.5 and not any(a <= t+BEAT/4 < b for a, b in skip): drumhit(t+BEAT/4, "t", (g0+(g1-g0)*p)*0.8)
         i += 1; t += BEAT/2
-drums(5.2, 9.3, 0.25, 0.5); drums(11.2, 16.0, 0.3, 0.6)
+drums(5.4, tA_end - 0.1, 0.25, 0.5); drums(tT0 + 0.2, tT_end - 0.1, 0.3, 0.6)
 # ---------- story ----------
 put(impact(), t_story, 0.8)                                         # shatter into story
 put(hiss(1.0), fw("hiss")["start"], 0.7)
@@ -138,7 +144,7 @@ t_mis = fw("misses")["start"]; put(impact(), t_mis - 0.1, 0.7); put(tick(3200, 0
 # roar: deep earthquake rumble + split sand
 t_roar = fw("roared", 31)["start"]; put(rumble(4.2, 1.3), t_roar - 0.2, 0.8); put(impact(3.0), t_roar + 0.1, 0.9)
 put(fire_burst(1.4, 500), fw("split")["start"], 0.6); put(boom(1.5, 60, 25), fw("buckled", 33)["start"], 0.7)
-put(whoosh(0.8, 200, 2500, 0.5), fw("orbs", 0)["start"] if False else 34.2, 0.4)   # black orbs (#28)
+put(whoosh(0.8, 200, 2500, 0.5), fw("buckled", 33)["start"] + 0.05, 0.4)   # black orbs (#28)
 # hypnotic stare: murky throb
 h0 = fw("stare")["start"] - 0.1; h1 = fw("in", 38)["end"] + 0.1; th = T(h1-h0)
 hyp = np.sin(2*np.pi*np.cumsum(150+6*np.sin(2*np.pi*0.8*th))/SR) + 0.6*np.sin(2*np.pi*np.cumsum(151.5+4*np.sin(2*np.pi*0.6*th))/SR) + 0.4*np.sin(2*np.pi*np.cumsum(75+3*np.sin(2*np.pi*0.5*th))/SR)
@@ -182,7 +188,16 @@ for dt, f in [(0.0, 523.25), (0.35, 659.25), (0.7, 783.99), (1.05, 1046.5)]: put
 t_sh = fw("shadow")["start"]; put(rumble(t_cut - t_sh - 0.2, 0.5), t_sh, 0.5)
 put(hiss(1.2), fw("Okay")["end"] + 0.3, 0.45)
 # dunes breathe: slow swells, a heartbeat
-for j in range(3): put(boom(0.7, 70, 36, 8, 0.22), fw("dunes", 70)["start"] + j*0.62, 0.45 + 0.1*j)
+for j in range(3): put(boom(0.7, 70, 36, 8, 0.22), fw("dunes", 70)["start"] + j*0.78, 0.45 + 0.1*j)
+# stronger end (v2): a low war-drum pulse + tension riser stay under the last section, so the cut before the whisper is a real drop
+t_pulse = fw("shadow")["start"]; n = 0; tp = t_pulse
+while tp < t_cut - 0.3:
+    p = (tp - t_pulse)/(t_cut - t_pulse); put(boom(0.8, 75, 38, 7, 0.3), tp, 0.28 + 0.5*p)
+    if n % 2: put(tom(88, 0.4), tp + BEAT*0.5, 0.18 + 0.3*p)
+    n += 1; tp += BEAT
+rd = t_cut - fw("breathe", 60)["start"] + 2.6; tr_ = T(rd)
+riser = np.sin(2*np.pi*np.cumsum(55*(2**(tr_/rd)))/SR)*0.5 + hp(noise(rd), 2000)*(tr_/rd)**2*0.5
+put(riser*(tr_/rd)**1.6, t_cut - rd, 0.55)
 # ---------- HARD CUT ----------
 buf[int(t_cut*SR):] = 0
 out = buf[:int(TOTAL*SR)]
@@ -191,7 +206,7 @@ pk = np.max(np.abs(out)); out = np.tanh(out/pk*1.4)/np.tanh(1.4)*0.9
 x = np.stack([out, out], 1); x = np.clip(x, -1, 1)
 with wave.open(f"{H}/music.wav", "wb") as f:
     f.setnchannels(2); f.setsampwidth(2); f.setframerate(SR); f.writeframes((x*32767).astype("<i2").tobytes())
-cues = dict(lockL=4.1, lockR=10.1, VS=t_vs, story=round(t_story, 2), rise=round(t_rose, 2), belt=round(t_belt, 2), hammer=round(t_h, 2), roar=round(t_roar, 2),
+cues = dict(lockL=4.1, lockR=round(lockR, 2), E2=round(E2s, 2), T0=round(tT0, 2), Tend=round(tT_end, 2), VS=t_vs, story=round(t_story, 2), rise=round(t_rose, 2), belt=round(t_belt, 2), hammer=round(t_h, 2), roar=round(t_roar, 2),
             stare=round(h0, 2), totality=round(t_tot, 2), drums_back=round(t_tot+BAR, 2), charge=round(t_rb, 2), fire=round(t_ch, 2), bait=round(t_bait, 2), chargeL=round(t_l2-0.3, 2),
             blast=round(t_bl, 2), crash=round(t_sk+0.2, 2), sunlight=round(t_sun, 2), cut=round(t_cut, 2), whisper=round(t_whisper, 2))
 print("music.wav", round(len(out)/SR, 2)); print(json.dumps(cues)); json.dump(cues, open(f"{H}/cues.json", "w"), indent=1)

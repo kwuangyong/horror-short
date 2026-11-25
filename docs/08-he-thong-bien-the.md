@@ -7,7 +7,7 @@ Mục tiêu: các tập **không lặp mô típ**. Mỗi tập Boss chọn **1 �
 - **Không bao giờ** lặp nguyên tổ hợp A+B+C.
 - E (kiểu mở đầu) và F (thời tiết) không trùng tập liền trước.
 
-Luật nền theo [`docs/07`](07-format-battle-spin.md): hook in medias res, Split-Roll + 2 intro ~5 s, bé chạy đi nấp rồi bị ẩn suốt 1v1, một chiến trường duy nhất, Sakuga Cinematic, tempo x1.25. Nhân vật lấy từ [`docs/09`](09-kho-nhan-vat.md).
+Luật nền theo [`docs/07`](07-format-battle-spin.md): hook in medias res, Split-Roll + 2 intro ~5 s, bé chạy đi nấp rồi bị ẩn suốt 1v1, một chiến trường duy nhất, Sakuga Cinematic, tempo vừa. Nhân vật lấy từ [`docs/09`](09-kho-nhan-vat.md).
 
 ## A. Hình dạng trận đấu
 | # | Kiểu | Diễn biến |

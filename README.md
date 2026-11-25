@@ -4,7 +4,7 @@ Bộ quy chuẩn, đội agent và engine hoạt hình để làm video kinh d�
 - Hook *in medias res* + **"WHO SURVIVES?"**, tua ngược glitch.
 - **Split-Roll MONSTER | GUARDIAN**, mỗi bên có màn tự giới thiệu ~5 s trong lãnh địa riêng, sau đó **VS · "WHO WINS? COMMENT"**.
 - Trận 1v1 kiểu **Sakuga Cinematic** (beam, beam-clash, orbs, slash, pillar, letterbox, tàn lửa) trên một chiến trường duy nhất. THE KID chạy đi nấp và không xuất hiện trong khung giao chiến.
-- Tempo x1.25: 70–85 s, 50–56 cảnh, −14 LUFS.
+- Tempo vừa, dễ hiểu: 85–100 s, 50–60 cảnh, −14 LUFS.
 
 Toàn bộ video dựng bằng **engine hoạt ảnh khớp xương SVG** (`tools/anim/`, Playwright Chromium). Không dùng ảnh tĩnh, Ken Burns, thanh HP hay thẻ ROUND.
 

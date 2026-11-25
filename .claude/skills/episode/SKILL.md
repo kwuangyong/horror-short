@@ -28,13 +28,13 @@ Giao `writer` viết `episodes/<slug>/script-anim.md` + `hooks.md` theo `.claude
 **Cổng 2** (Boss tự đọc toàn bộ, ghi `review.md`), chấm theo bảng 5 mục trong `CLAUDE.md`. Dưới 8 → trả `writer` (tối đa 3 vòng). Dừng ở đây nếu `--until script`.
 
 ## 4. Âm thanh
-Giao `producer` làm `episodes/<slug>/audio-anim/` theo docs/07 mục 6: lời dẫn rate +35–40%, nghỉ 0.15–0.25 s; giọng intro đa tầng cho mỗi nhân vật; trống ~155 BPM + beam SFX; nhạc tắt trước câu thì thầm cuối; words.json, captions; mix-test.mp3 −14 LUFS.
+Giao `producer` làm `episodes/<slug>/audio-anim/` theo docs/07 mục 6: lời dẫn rate +10–15%, nghỉ 0.30–0.35 s; giọng intro đa tầng cho mỗi nhân vật; trống ~125 BPM + beam SFX; nhạc tắt trước câu thì thầm cuối; words.json, captions; mix-test.mp3 −14 LUFS.
 edge-tts cần host `speech.platform.bing.com`; nếu bị chặn, đọc `read_documentation` topic `environment.network` rồi đề xuất mở host đó.
 Gửi `mix-test.mp3` cho người dùng nghe. Dừng ở đây nếu `--until audio`.
 
 ## 5. Dựng hoạt hình
 Giao `producer`: rig mới nếu thiếu (turnaround cho Boss duyệt trước) → `episodes/<slug>/anim/make_timeline.js` (theo `sakuga_demo.js`) → `--check` = `180-RULE OK` → `build-anim.sh` → `preview/<slug>.mp4` (< 15 MB), `preview/<slug>-sheet.jpg`, `qc-anim.md`.
-**Cổng 3**: xem các mốc trong bảng "Cổng 3" của `CLAUDE.md`. Thời lượng 70–85 s, 50–56 cảnh. Lỗi hình → producer; lỗi nội dung → writer.
+**Cổng 3**: xem các mốc trong bảng "Cổng 3" của `CLAUDE.md`. Thời lượng 85–100 s, 50–60 cảnh. Lỗi hình → producer; lỗi nội dung → writer.
 
 ## 6. Chốt
 Commit + push lên nhánh làm việc. Gửi `preview/<slug>.mp4` cho người dùng bằng SendUserFile. Báo (≤ 15 dòng): thời lượng, LUFS, số cảnh, tổ hợp A–F, điểm Cổng 2, điểm còn yếu, lệnh dựng lại.

@@ -3,7 +3,7 @@
 Phiên chính chạy **Opus** (`.claude/settings.json`) và đóng vai **Boss**: lập kế hoạch, giao việc, quản lý tiến độ, kiểm duyệt. Boss **không tự làm** việc của agent con, trừ khi sửa nhỏ (≤ 5 dòng) nhanh hơn giao lại.
 
 **Luật bắt buộc** (đọc trước mọi tập):
-- [`docs/07-format-battle-spin.md`](docs/07-format-battle-spin.md): engine hoạt ảnh khớp xương (cấm ảnh tĩnh, HP, ROUND), hook in medias res, Split-Roll + 2 màn tự giới thiệu ~5 s, bé chạy đi nấp, Sakuga Cinematic, continuity, tempo x1.25, 70–85 s, 50–56 cảnh.
+- [`docs/07-format-battle-spin.md`](docs/07-format-battle-spin.md): engine hoạt ảnh khớp xương (cấm ảnh tĩnh, HP, ROUND), hook in medias res, Split-Roll + 2 màn tự giới thiệu ~5 s, bé chạy đi nấp, Sakuga Cinematic, continuity, tempo vừa (dễ hiểu), 85–100 s, 50–60 cảnh.
 - [`docs/08-he-thong-bien-the.md`](docs/08-he-thong-bien-the.md): tổ hợp A–F + luật chống lặp, ghi `episodes/_registry.md`; sức mạnh có nguồn.
 - [`docs/09-kho-nhan-vat.md`](docs/09-kho-nhan-vat.md): chỉ nhân vật nổi tiếng trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây, Ai Cập cổ, Lưỡng Hà + Nhật Bản**.
 - Engine: [`tools/anim/README.md`](tools/anim/README.md); mẫu timeline đúng luật: `tools/anim/demo/sakuga_demo.js`.
@@ -16,8 +16,8 @@ Thiết kế đội agent: [`docs/06-dan-nhac-agent.md`](docs/06-dan-nhac-agent.
 |---|---|---|---|
 | **Boss** (phiên chính) | Opus | Brief + tổ hợp biến thể, giao việc, duyệt 3 cổng, quyết định cuối | `00-brief.md`, `review.md`, `_registry.md` |
 | `scout` | Haiku | Lore, **bảng sức mạnh có nguồn**, nhạc/SFX/phông có giấy phép, xu hướng | `01-research.md`, `01-research-powers.md`, `02-assets.md` |
-| `writer` | Sonnet | Kịch bản tiếng Anh có [SHOT]/[ANIM]/[FX], 2 màn tự giới thiệu, SHOT LIST 50–56 cảnh, hook, tiêu đề | `script-anim.md`, `hooks.md` |
-| `producer` | Sonnet | Âm thanh (edge-tts nhanh, giọng intro đa tầng, trống 155 BPM, beam SFX, phụ đề động), rig mới, timeline, dựng `tools/anim`, QC | `audio-anim/`, `anim/`, `build-anim.sh`, `qc-anim.md`, `preview/` |
+| `writer` | Sonnet | Kịch bản tiếng Anh có [SHOT]/[ANIM]/[FX], 2 màn tự giới thiệu, SHOT LIST 50–60 cảnh, hook, tiêu đề | `script-anim.md`, `hooks.md` |
+| `producer` | Sonnet | Âm thanh (edge-tts tempo vừa, giọng intro đa tầng, trống 125 BPM, beam SFX, phụ đề động), rig mới, timeline, dựng `tools/anim`, QC | `audio-anim/`, `anim/`, `build-anim.sh`, `qc-anim.md`, `preview/` |
 
 Mọi tập nằm trong `episodes/<slug>/`. Agent trao đổi qua file, không qua chat dài; agent trả cho Boss bản tóm tắt ngắn.
 
@@ -37,9 +37,9 @@ Mọi tập nằm trong `episodes/<slug>/`. Agent trao đổi qua file, không q
 | Tiêu chí | 2 điểm khi |
 |---|---|
 | Hook + mở đầu | Hook 0–3 s in medias res (khung có thật trong trận) + "WHO SURVIVES?" + tua ngược; Split-Roll có 2 màn tự giới thiệu ngôi thứ nhất ~5 s (thực thể gì, nguồn gốc, quyền năng), 2–3 góc máy mỗi màn, VS + "WHO WINS? COMMENT" |
-| Mạch lạc + tempo | Lời dẫn liền ý có từ nối, ~180–215 từ cho 70–85 s, mỗi câu ≤ 1 từ khóa `*...*` |
+| Mạch lạc + tempo | Lời dẫn liền ý có từ nối, ~200–240 từ cho 85–100 s, mỗi câu ≤ 1 từ khóa `*...*` |
 | Lore + sức mạnh | Đúng tổ hợp A/B/C; mỗi bên ≥ 3 sức mạnh có nguồn, mỗi lần khoe là chuỗi 2–4 cảnh có `[FX]`; chi tiết sáng tạo ghi "câu chuyện" |
-| Phân cảnh Sakuga | 50–56 cảnh (~1.3–1.5 s/cảnh), một chiến trường duy nhất (địa hình monster trồi lên), mọi shot có push+pan, whip-pan theo hướng đạn, slow-mo + crash-zoom ở đòn kết, 180° |
+| Phân cảnh Sakuga | 50–60 cảnh (~1.6–1.8 s/cảnh), một chiến trường duy nhất (địa hình monster trồi lên), mọi shot có push+pan, whip-pan theo hướng đạn, slow-mo + crash-zoom ở đòn kết, 180° |
 | Bé + kết + an toàn | Bé có cảnh chạy ra khỏi khung khi guardian chắn đòn đầu rồi bị ẩn suốt 1v1; chỉ cắt về chỗ nấp khi có biến cố và lúc kết; không máu trên bé; cú lửng dựa lore và lộ diện bằng hình |
 
 ## Cổng 3: mốc bắt buộc phải xem

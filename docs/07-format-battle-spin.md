@@ -53,12 +53,12 @@ Trận đánh phải hoành tráng như phim điện ảnh / anime, phô diễn 
 - **Quy tắc trục 180°**: Monster luôn TRÁI, Guardian luôn PHẢI (`sides:{left,right}`). `node tools/anim/render.js --timeline … --check` phải in **`180-RULE OK`** trước khi dựng.
 - Sau 2–3 cảnh cận phải có 1 cảnh rộng định vị.
 
-## 6. Tempo nhanh x1.25
-- Lời dẫn: edge-tts `en-US-ChristopherNeural` (`--proxy "$HTTPS_PROXY"`, host `speech.platform.bing.com` được mở), pitch −10Hz, **`rate +35%` đến `+40%`**, **khoảng nghỉ giữa câu 0.15–0.25 s**, rồi `tools/voice_fx.sh deep`.
+## 6. Tempo vừa (cập nhật 2026-11-25: chậm hơn bản tempo vừa cũ ~20% để người xem kịp hiểu)
+- Lời dẫn: edge-tts `en-US-ChristopherNeural` (`--proxy "$HTTPS_PROXY"`, host `speech.platform.bing.com` được mở), pitch −10Hz, **`rate +10%` đến `+15%`** (mặc định +12%), **khoảng nghỉ giữa câu 0.30–0.35 s**, rồi `tools/voice_fx.sh deep`.
 - Giọng tự giới thiệu: mỗi nhân vật một giọng riêng **đa tầng** (2–3 lớp: giọng chính hạ pitch + lớp thì thầm lệch thời gian + lớp gầm/vọng), tempo chậm hơn lời dẫn một chút để nghe uy lực.
-- Nhạc nền tổng hợp bằng code: **trống chiến trận dồn dập ~155 BPM**, SFX **nạp / phóng tia plasma** (beam charge/fire) khớp mốc fx, hit ở mỗi lần khóa thẻ / VS / va chạm. **Ngắt nhạc đột ngột** trước câu thì thầm cú lửng cuối. Mix **−14 LUFS** (loudnorm 2 lượt + limiter).
-- **Tổng thời lượng ~70–85 s**, **~50–56 cảnh**, trung bình **~1.3–1.5 s/cảnh**.
-- Lời dẫn + thoại: ~180–215 từ (tùy độ dài 2 màn tự giới thiệu, mỗi màn ~12–16 từ). Kể liền mạch có từ nối (but, so, until, then, as…), câu 6–14 từ, mỗi câu ≤ 1 từ khóa `*...*`.
+- Nhạc nền tổng hợp bằng code: **trống chiến trận ~125 BPM**, SFX **nạp / phóng tia plasma** (beam charge/fire) khớp mốc fx, hit ở mỗi lần khóa thẻ / VS / va chạm. **Ngắt nhạc đột ngột** trước câu thì thầm cú lửng cuối. Mix **−14 LUFS** (loudnorm 2 lượt + limiter).
+- **Tổng thời lượng ~85–100 s**, **~50–60 cảnh**, trung bình **~1.6–1.8 s/cảnh**.
+- Lời dẫn + thoại: ~200–240 từ (tùy độ dài 2 màn tự giới thiệu, mỗi màn ~12–16 từ). Kể liền mạch có từ nối (but, so, until, then, as…), câu 6–14 từ, mỗi câu ≤ 1 từ khóa `*...*`.
 
 ## 7. Sức mạnh có nguồn gốc
 - Mỗi bên khoe **≥ 3 sức mạnh có nguồn truyền thuyết / văn học Public Domain** (kèm link nguồn trong `01-research-powers.md`).

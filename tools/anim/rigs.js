@@ -549,7 +549,306 @@
   KID['hand-drift'] = (c) => { const u = EASE.inOut(clamp(c.u)); return { bodyRot: 2 * u, bodyY: 1 * Math.sin(c.t * 1.4), head: -3 * u, lookX: 0, lookY: 0, wide: 0.0, brow: 0.5, mouth: 0.08, aL: -14, aR: 40 + 70 * u, fx: 0, beam: 0.35 * (1 - u), scarf: [150, 100], hair: 0.1, shakeX: 0.4 * Math.sin(c.lt * 24) * u }; };
   KID['snap-awake'] = (c) => { const e = EASE.outCubic(clamp(c.lt / 0.15)); return { bodyRot: -8 * e, head: -8 * e, wide: 1, mouth: 0.7 * e, brow: 1, aL: -60 * e, aR: 110 - 70 * e, beam: 0.6, scarf: [160, 100], shakeX: 1.6 * Math.sin(c.lt * 40) * e, lookX: 0.6 }; };
   KID.idle = KID['idle-scared'];
-  const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, cerberus: CERB, bec: BEC };
-  const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, cerberus: buildCerberus, bec: buildBec };
+
+  // =============================================================== APEP (Egyptian chaos serpent, ep #003 monster, screen-LEFT, faces +x)
+  // Local origin = ground point where the raised neck leaves the sand. The body is 17 spine joints (tail tip = 0 ... head = 16) following
+  // a ground slither wave + a Bezier neck (rear / reach / headRot), optionally wrapped into a helix (coil) around a point (wrapX, wrapY).
+  // Spine is Catmull-Rom resampled (4 sub-steps/segment) and drawn as flat vector quads+circles (no outlines).
+  // layer: 0 = whole snake, 1 = only back parts (head hidden), 2 = only front arcs + head -> use two actors around Thor for the squeeze.
+  function buildApep() {
+    const rig = newRig(); const root = $('g'); const lift = $('g', {}, root);
+    const OB = rgb(24, 15, 40), OB2 = rgb(44, 26, 70), SHEEN = rgb(80, 50, 122), BEL = rgb(118, 92, 156), SPK = rgb(66, 40, 104), FANG = rgb(238, 232, 212), VEIN = '#b07aff', ACID = '#c8ff3c';
+    const body = joint(lift, 0, 0); rig.body = body; const B = body.c;
+    const NJ = 17, SUB = 4, M = (NJ - 1) * SUB + 1;
+    const PLY = (g, col) => poly(g, [[0, 0], [1, 0], [1, 1]], col);
+    // ---- spikes (behind the body), asymmetric: a few skipped, sizes vary
+    rig.spk = []; const spg = $('g', {}, B);
+    for (let i = 1; i < NJ; i++) { const h = hash(i * 3.7 + 2); if (h < 0.18) continue; rig.spk.push({ k: i * SUB - 1, h: (30 + 60 * hash(i * 5.1)) * (0.6 + 0.6 * i / NJ), lean: 0.5 + hash(i * 1.3), e: PLY(spg, SPK), e2: PLY(spg, VEIN) }); }
+    // ---- body samples (type-layered so strips never get covered by the next circle)
+    const gQ = $('g', {}, B), gBel = $('g', {}, B), gSh = $('g', {}, B), gRid = $('g', {}, B), gVn = $('g', {}, B), gGs = $('g', {}, B);
+    rig.Q = []; rig.Ce = []; rig.Be = []; rig.Sh = [];
+    for (let k = 0; k < M; k++) { rig.Q.push(PLY(gQ, OB)); rig.Ce.push(ell(gQ, 0, 0, 5, 5, OB)); }
+    for (let k = 0; k < M - 1; k++) rig.Be.push(PLY(gBel, BEL));
+    for (let k = 0; k < M - 1; k++) rig.Sh.push(PLY(gSh, SHEEN));
+    rig.rid = []; for (let i = 0; i < NJ; i++) rig.rid.push($('polyline', { fill: 'none', stroke: i % 2 ? OB2 : VEIN, 'stroke-width': 5, 'stroke-linecap': 'round', opacity: i % 2 ? 0.9 : 0.5 }, gRid));
+    rig.vnG = $('polyline', { fill: 'none', stroke: VEIN, 'stroke-width': 16, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: 0.25 }, gVn);
+    rig.vn = $('polyline', { fill: 'none', stroke: '#e3c8ff', 'stroke-width': 5, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: 0.85 }, gVn);
+    // knife-cut gashes (cartoon, cut open pale violet, no gore)
+    rig.gash = [11, 27, 41, 55].map((k) => ({ k, a: $('line', { stroke: '#0b0516', 'stroke-width': 11, 'stroke-linecap': 'round' }, gGs), b: $('line', { stroke: '#e6d2ff', 'stroke-width': 4, 'stroke-linecap': 'round' }, gGs), c: $('line', { stroke: '#e6d2ff', 'stroke-width': 3, 'stroke-linecap': 'round', opacity: 0.7 }, gGs) }));
+    // ---- head
+    const hd = joint(B, 0, 0); rig.head = hd; const Hc = hd.c; rig.hdg = hd.g;
+    // hood: fan behind the skull, spiky rim, glowing pattern
+    const hood = joint(Hc, -26, -8); rig.hood = hood;
+    const fan = (rx, ry, cx, cy, n, col, sd) => { const pts = []; for (let i = 0; i <= n * 2; i++) { const a = -Math.PI * 0.62 + (Math.PI * 1.24) * i / (n * 2), rr = i % 2 ? 0.8 : 1 + 0.12 * hash(sd + i); pts.push([cx + Math.cos(a) * rx * rr * (a > 0 ? 1 : 1), cy + Math.sin(a) * ry * rr]); } pts.push([cx + 10, cy + ry * 0.35]); pts.push([cx + 10, cy - ry * 0.35]); return poly(hood.c, pts, col); };
+    const fanL = (rx, ry, cx, cy, col) => ell(hood.c, cx, cy, rx, ry, col);
+    fan(120, 250, -34, -10, 11, OB2, 3); fanL(86, 190, -26, -8, rgb(70, 40, 108));
+    for (let i = 0; i < 3; i++) $('path', { d: `M-20 ${-150 + i * 8} Q${-110 - i * 6} ${-20 - i * 8} -20 ${150 - i * 8}`, stroke: VEIN, 'stroke-width': 5, fill: 'none', opacity: 0.55 }, hood.c);
+    $('circle', { cx: -42, cy: -10, r: 44, fill: 'none', stroke: VEIN, 'stroke-width': 5, opacity: 0.6 }, hood.c); $('circle', { cx: -42, cy: -10, r: 14, fill: VEIN, opacity: 0.5 }, hood.c);
+    // upper cavity, tongue, jaw, skull
+    const hinge = [36, 42]; rig.hinge = hinge;
+    rig.cav = PLY(Hc, rgb(78, 8, 56)); rig.gul = $('ellipse', { cx: 70, cy: 44, rx: 40, ry: 22, fill: 'url(#gViolet)' }, Hc);
+    rig.tng = PLY(Hc, rgb(206, 38, 128));
+    const jaw = joint(Hc, hinge[0], hinge[1]); rig.jaw = jaw;
+    poly(jaw.c, [[10, 26], [302, 20], [298, 42], [252, 72], [170, 92], [70, 100], [0, 86]], OB);
+    poly(jaw.c, [[0, 86], [70, 100], [170, 92], [252, 72], [298, 42], [288, 46], [244, 80], [170, 102], [66, 110], [-8, 94]], BEL);
+    poly(jaw.c, [[88, 100], [104, 146], [128, 96]], SPK); poly(jaw.c, [[160, 94], [176, 130], [196, 90]], SPK);
+    rig.lt = $('g', {}, jaw.c); for (const x of [110, 150, 190, 232, 268]) poly(rig.lt, [[x, 26], [x + 13, 26], [x + 6, 2]], FANG);
+    poly(Hc, [[-60, -74], [10, -108], [90, -110], [150, -92], [215, -70], [270, -50], [312, -26], [318, 6], [300, 22], [220, 26], [120, 32], [40, 40], [-60, 66]], OB);
+    poly(Hc, [[0, -106], [90, -110], [150, -92], [215, -70], [270, -50], [312, -26], [302, -14], [262, -34], [200, -56], [140, -76], [80, -92], [10, -90]], SHEEN);
+    poly(Hc, [[-20, -90], [-96, -156], [-62, -66]], SPK); poly(Hc, [[20, -102], [30, -160], [58, -104]], SPK); poly(Hc, [[78, -108], [112, -172], [128, -100]], SPK);   // asymmetric horns
+    $('polyline', { points: '20,-80 80,-98 140,-80 200,-54 250,-40', fill: 'none', stroke: VEIN, 'stroke-width': 5, 'stroke-linecap': 'round', opacity: 0.8 }, Hc);
+    ell(Hc, 292, -14, 9, 5, rgb(8, 4, 16)); ell(Hc, 292, -15, 4, 2, ACID, { opacity: 0.7 });
+    rig.ut = $('g', {}, Hc);
+    const lipY = (x) => 40 - 0.054 * (x - 40);
+    for (const x of [86, 112, 138, 166, 192]) poly(rig.ut, [[x, lipY(x) - 2], [x + 14, lipY(x) - 2], [x + 6, lipY(x) + 22]], FANG);
+    poly(rig.ut, [[226, 24], [258, 20], [252, 66], [244, 94], [238, 126], [234, 92], [228, 58]], FANG);      // big jagged fang
+    poly(rig.ut, [[150, 34], [174, 31], [166, 70], [160, 92]], FANG);
+    // gash across the snout
+    $('line', { x1: 214, y1: -66, x2: 252, y2: -30, stroke: '#0b0516', 'stroke-width': 10, 'stroke-linecap': 'round' }, Hc); $('line', { x1: 214, y1: -66, x2: 252, y2: -30, stroke: '#e6d2ff', 'stroke-width': 4, 'stroke-linecap': 'round' }, Hc);
+    // eye (hypnotic): halo, almond, slit pupil, spiral
+    const ex = 176, ey = -58;
+    rig.glow = $('circle', { cx: ex, cy: ey, r: 76, fill: 'url(#gAcid)' }, Hc);
+    const eye = joint(Hc, ex, ey); rig.eye = eye;
+    rig.eyeEll = poly(eye.c, [[ex - 36, ey + 10], [ex - 8, ey - 20], [ex + 26, ey - 22], [ex + 50, ey - 4], [ex + 22, ey + 16], [ex - 10, ey + 20]], ACID); G.reg(rig.eyeEll, ACID);
+    rig.pupil = ell(eye.c, ex + 8, ey - 1, 6, 19, rgb(12, 4, 22));
+    const sp = joint(eye.c, ex + 8, ey - 1); rig.spiral = sp; const sp1 = [], sp2 = []; for (let i = 0; i <= 48; i++) { const a = i / 48 * 4 * Math.PI, rr = 3 + 24 * i / 48; sp1.push([ex + 8 + Math.cos(a) * rr, ey - 1 + Math.sin(a) * rr]); sp2.push([ex + 8 + Math.cos(a + Math.PI) * rr, ey - 1 + Math.sin(a + Math.PI) * rr]); }
+    rig.spG = $('g', { opacity: 0 }, sp.c); const pl = (pts, col, w) => $('polyline', { points: pts.map((q) => f2(q[0]) + ',' + f2(q[1])).join(' '), fill: 'none', stroke: col, 'stroke-width': w, 'stroke-linecap': 'round' }, rig.spG);
+    ell(rig.spG, ex + 8, ey - 1, 28, 28, rgb(70, 20, 110), { opacity: 0.8 }); pl(sp1, '#ffffff', 5); pl(sp2, '#1a0630', 5);
+    poly(Hc, [[ex - 52, ey - 6], [ex + 58, ey - 36], [ex + 62, ey - 20], [ex - 46, ey + 2]], OB);                // angry brow
+    poly(Hc, [[ex + 20, ey - 32], [ex + 56, ey - 98], [ex + 66, ey - 30]], SPK); poly(Hc, [[ex - 22, ey - 18], [ex - 34, ey - 62], [ex - 6, ey - 24]], SPK);
+    rig.mk = {}; const mk = (n, p, x, y) => { rig.mk[n] = $('circle', { cx: x, cy: y, r: 1, fill: 'none' }, p); };
+    mk('head', Hc, 130, -10); mk('eye', Hc, ex + 10, ey); mk('mouth', Hc, 280, 28); mk('tail', B, -900, 0); mk('body', B, 0, -120); rig.dynHead = true;
+    rig.root = root;
+    rig.N = { bodyY: 0, shakeX: 0, shakeY: 0, rear: 0.2, reach: 150, headRot: 0, headDrop: 0, hs: 1, waveA: 34, waveP: 0, tailUp: 0, tailSwing: 0, sway: 0, coil: 0, wrapX: 520, wrapY: 0, wrapR: 170, wrapH: 700, turns: 2, squeeze: 0, layer: 0, jaw: 0.04, unhinge: 0, tongue: 0, eyeGlow: 1, hypno: 0, hood: 0.3, sink: 0, hurt: 0, girth: 1, bulge: -1, bulgeAmp: 0, eye: 1 };
+    const wprof = (s) => (s < 0.55 ? 8 + 142 * Math.pow(Math.sin(s / 0.55 * Math.PI / 2), 0.7) : lerp(150, 116, (s - 0.55) / 0.45));
+    const sm = (x) => x * x * (3 - 2 * x);
+    function spine(P, t) {
+      const pts = [], zz = [], TLEN = 900, A = P.waveA, ph = P.waveP, lam = 330;
+      for (let i = 0; i <= 9; i++) { const x = -TLEN * (1 - i / 9), env = clamp(-x / 170), tt = 1 - i / 9; let y = -A * (0.5 + 0.5 * Math.sin(2 * Math.PI * x / lam - ph)) * env; y -= P.tailUp * tt * tt * 460; pts.push([x + P.tailSwing * tt * tt * 160, y]); }
+      const hy = -P.rear * 620 + P.headDrop, hx = P.reach, a = P.headRot * rad, L2 = 80 + 140 * P.rear;
+      const p0 = pts[9], p1 = [-40 + hx * 0.25 + P.sway, hy * 0.68], p2 = [hx - Math.cos(a) * L2, hy - Math.sin(a) * L2], p3 = [hx, hy];
+      for (let j = 1; j <= 7; j++) { const u = j / 7, v = 1 - u; pts.push([v * v * v * p0[0] + 3 * v * v * u * p1[0] + 3 * v * u * u * p2[0] + u * u * u * p3[0] + P.sway * 0.5 * Math.sin(Math.PI * u), v * v * v * p0[1] + 3 * v * v * u * p1[1] + 3 * v * u * u * p2[1] + u * u * u * p3[1]]); }
+      for (let i = 0; i < NJ; i++) zz.push(0);
+      if (P.coil > 0.001) {
+        const c0 = 3, R = P.wrapR * (1 - 0.14 * P.squeeze), sq = P.squeeze;
+        for (let j = c0; j < NJ; j++) {
+          const q = (j - c0) / (NJ - 1 - c0), w = sm(clamp(P.coil * 1.8 - (1 - q) * 0.8)), th = Math.PI + P.turns * 2 * Math.PI * q + 0.15 * Math.sin(t * 3 + j) * sq;
+          const hx2 = P.wrapX + Math.cos(th) * R, hy2 = P.wrapY - P.wrapH * Math.pow(q, 0.92) - 6 * Math.sin(t * 11 + j) * sq;
+          pts[j] = [lerp(pts[j][0], hx2, w), lerp(pts[j][1], hy2, w)]; zz[j] = Math.sin(th) * w;
+        }
+      }
+      return { pts, zz };
+    }
+    function resample(p, z) {
+      const out = [], oz = [];
+      for (let i = 0; i < p.length - 1; i++) { const p0 = p[Math.max(0, i - 1)], p1 = p[i], p2 = p[i + 1], p3 = p[Math.min(p.length - 1, i + 2)];
+        for (let k = 0; k < SUB; k++) { const u = k / SUB, u2 = u * u, u3 = u2 * u, f = (a, b, c, d) => 0.5 * (2 * b + (-a + c) * u + (2 * a - 5 * b + 4 * c - d) * u2 + (-a + 3 * b - 3 * c + d) * u3); out.push([f(p0[0], p1[0], p2[0], p3[0]), f(p0[1], p1[1], p2[1], p3[1])]); oz.push(lerp(z[i], z[i + 1], u)); } }
+      out.push(p[p.length - 1].slice()); oz.push(z[z.length - 1]); return { out, oz };
+    }
+    const setP = (e, pts) => e.setAttribute('points', pts.map((q) => f2(q[0]) + ',' + f2(q[1])).join(' '));
+    rig.apply = (P, t) => {
+      body.set(0, 1, 1, P.shakeX, P.bodyY + P.sink * 900 + P.shakeY);
+      const { pts, zz } = spine(P, t), { out, oz } = resample(pts, zz), n = out.length, layer = Math.round(P.layer);
+      const tan = [], nor = [], wd = [];
+      for (let k = 0; k < n; k++) { const a = out[Math.max(0, k - 1)], b = out[Math.min(n - 1, k + 1)], dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy) || 1; tan.push([dx / L, dy / L]); nor.push([-dy / L, dx / L]);
+        const s = k / (n - 1); let w = wprof(s) * P.girth; if (P.bulge >= 0) w *= 1 + P.bulgeAmp * 0.5 * Math.exp(-Math.pow((s - P.bulge) / 0.05, 2)); w *= 1 + 0.05 * P.squeeze * Math.sin(t * 10 + k * 0.7); wd.push(w); }
+      const front = (k) => oz[k] > 0.05, show = (fr) => (layer === 0 ? 1 : layer === 2 ? (fr ? 1 : 0) : (fr ? 0 : 1));
+      const at = (k, off) => [out[k][0] + nor[k][0] * wd[k] * 0.5 * off, out[k][1] + nor[k][1] * wd[k] * 0.5 * off];
+      for (let k = 0; k < n; k++) {
+        const fr = front(k) || (k < n - 1 && front(k + 1)), vis = show(fr);
+        rig.Ce[k].setAttribute('cx', f2(out[k][0])); rig.Ce[k].setAttribute('cy', f2(out[k][1])); rig.Ce[k].setAttribute('rx', f2(wd[k] / 2)); rig.Ce[k].setAttribute('ry', f2(wd[k] / 2)); rig.Ce[k].setAttribute('display', vis ? 'inline' : 'none');
+        if (k < n - 1) {
+          setP(rig.Q[k], [at(k, 1), at(k + 1, 1), at(k + 1, -1), at(k, -1)]); rig.Q[k].setAttribute('display', vis ? 'inline' : 'none');
+          const bsh = [at(k, 0.55), at(k + 1, 0.55), at(k + 1, 0.97), at(k, 0.97)]; setP(rig.Be[k], bsh); rig.Be[k].setAttribute('display', vis ? 'inline' : 'none');
+          const ssh = [at(k, -0.62), at(k + 1, -0.62), at(k + 1, -0.84), at(k, -0.84)]; setP(rig.Sh[k], ssh); rig.Sh[k].setAttribute('display', vis ? 'inline' : 'none');
+        }
+      }
+      for (let i = 0; i < NJ; i++) { const k = Math.min(n - 1, i * SUB), tg = tan[k], pa = at(k, -0.95), pb = at(k, 0.6), pm = [(pa[0] + pb[0]) / 2 + tg[0] * wd[k] * 0.22, (pa[1] + pb[1]) / 2 + tg[1] * wd[k] * 0.22]; setP(rig.rid[i], [pa, pm, pb]); rig.rid[i].setAttribute('display', show(front(k)) ? 'inline' : 'none'); rig.rid[i].setAttribute('opacity', (i % 2 ? 0.9 : 0.35 + 0.3 * Math.sin(t * 3 + i)) * 1); }
+      const vp = []; for (let k = 0; k < n; k++) vp.push(at(k, -0.34 + 0.12 * Math.sin(k * 0.8 + t * 2))); setP(rig.vn, vp); setP(rig.vnG, vp);
+      const vv = layer === 0 ? 1 : 0; rig.vn.setAttribute('display', vv ? 'inline' : 'none'); rig.vnG.setAttribute('display', vv ? 'inline' : 'none'); rig.vnG.setAttribute('opacity', f2(0.18 + 0.12 * Math.sin(t * 3)));
+      rig.spk.forEach((s) => { const k = Math.max(1, Math.min(n - 2, s.k)), tg = tan[k], w = wd[k], base = at(k, -0.96), hh = s.h * (w / 150 + 0.25), bw = Math.max(8, w * 0.1); const vis = show(front(k)); setP(s.e, [[base[0] - tg[0] * bw, base[1] - tg[1] * bw], [base[0] + tg[0] * bw, base[1] + tg[1] * bw], [base[0] + nor[k][0] * -hh - tg[0] * hh * s.lean * 0.7, base[1] + nor[k][1] * -hh - tg[1] * hh * s.lean * 0.7]]); setP(s.e2, [[base[0] - tg[0] * bw * 0.4, base[1] - tg[1] * bw * 0.4], [base[0] + tg[0] * bw * 0.4, base[1] + tg[1] * bw * 0.4], [base[0] + nor[k][0] * -hh * 0.55 - tg[0] * hh * s.lean * 0.4, base[1] + nor[k][1] * -hh * 0.55 - tg[1] * hh * s.lean * 0.4]]); s.e.setAttribute('display', vis ? 'inline' : 'none'); s.e2.setAttribute('display', vis ? 'inline' : 'none'); s.e2.setAttribute('opacity', f2(0.35 + 0.3 * Math.sin(t * 4 + s.k))); });
+      rig.gash.forEach((g) => { const k = Math.min(n - 2, g.k), tg = tan[k], a = at(k, -0.85), b = at(k, 0.55); const A2 = [a[0] + tg[0] * wd[k] * 0.28, a[1] + tg[1] * wd[k] * 0.28], B2 = [b[0] - tg[0] * wd[k] * 0.28, b[1] - tg[1] * wd[k] * 0.28]; const vis = show(front(k)) ? 'inline' : 'none'; for (const e of [g.a, g.b, g.c]) { e.setAttribute('display', vis); e.setAttribute('x1', f2(A2[0])); e.setAttribute('y1', f2(A2[1])); e.setAttribute('x2', f2(B2[0])); e.setAttribute('y2', f2(B2[1])); } g.c.setAttribute('x1', f2(A2[0] + tg[0] * 14)); g.c.setAttribute('y1', f2(A2[1] + tg[1] * 14)); g.c.setAttribute('x2', f2(B2[0] + tg[0] * 14)); g.c.setAttribute('y2', f2(B2[1] + tg[1] * 14)); g.b.setAttribute('opacity', f2(0.75 + 0.25 * P.hurt)); });
+      // tail marker
+      rig.mk.tail.setAttribute('cx', f2(out[0][0])); rig.mk.tail.setAttribute('cy', f2(out[0][1]));
+      // head
+      const hp = out[n - 1], hv = layer === 1 ? 'none' : 'inline'; hd.g.setAttribute('display', hv);
+      hd.set(P.headRot, P.hs * (1 + 0.13 * P.unhinge), P.hs * (1 + 0.04 * P.unhinge), hp[0], hp[1]);
+      const hdv = clamp(P.hood); hood.set(0, 0.5 + 0.5 * hdv + 0.02 * Math.sin(t * 3), 0.2 + 0.8 * hdv + 0.02 * Math.sin(t * 2.3));
+      const ja = clamp(P.jaw, 0, 1.2) * 34 + clamp(P.unhinge) * 38; jaw.set(ja);
+      const aa = ja * rad, hx = hinge[0], hy = hinge[1], jt = (px, py) => { const dx = px - hx, dy = py - hy; return [hx + dx * Math.cos(aa) - dy * Math.sin(aa), hy + dx * Math.sin(aa) + dy * Math.cos(aa)]; };
+      const l0 = jt(24, 26), l1 = jt(298, 22); setP(rig.cav, [[30, 26], [300, 16], l1, l0]); rig.cav.setAttribute('opacity', ja > 4 ? 1 : 0);
+      rig.gul.setAttribute('opacity', f2(clamp((ja - 8) / 24) * (0.5 + 0.5 * clamp(P.unhinge + P.eyeGlow * 0.3)))); rig.gul.setAttribute('cx', f2(lerp(70, 70, 0) + 0)); rig.gul.setAttribute('cy', f2(lerp(46, 46 + ja * 0.9, 0.5)));
+      rig.lt.setAttribute('opacity', ja > 6 ? 1 : 0); rig.ut.setAttribute('opacity', 1);
+      const tg = clamp(P.tongue), tl = 70 + tg * 230, tp = [], tq = [];
+      for (let i = 0; i <= 8; i++) { const s = i / 8, x = 80 + tl * s, yy = 34 + ja * 0.45 + Math.sin(s * 8 - t * 34) * 9 * tg * s, w = 9 * (1 - 0.5 * s); tp.push([x, yy - w]); tq.push([x, yy + w]); }
+      const tip = tp[8], fk = 30 * tg; setP(rig.tng, tp.concat([[tip[0] + fk, tip[1] - 14 * tg - 2], [tip[0] + fk * 0.2, tip[1] + 8], [tip[0] + fk, tip[1] + 22 * tg + 6]], tq.reverse())); rig.tng.setAttribute('opacity', tg > 0.02 ? 1 : 0);
+      const bl = P.eye * (1 - blink(t, 4.9)) * (1 - 0.55 * P.hurt); eye.set(0, 1, Math.max(0.08, bl)); rig.glow.setAttribute('r', f2(76 * P.eyeGlow * (1 + 0.08 * Math.sin(t * 6)))); rig.glow.setAttribute('opacity', f2(clamp(0.45 + 0.45 * P.eyeGlow)));
+      rig.spG.setAttribute('opacity', f2(clamp(P.hypno))); rig.spiral.set(t * 260 * (P.hypno > 0.02 ? 1 : 0)); rig.pupil.setAttribute('opacity', f2(1 - 0.8 * clamp(P.hypno)));
+    };
+    return rig;
+  }
+  const APEP = {
+    idle: (c) => ({ waveP: c.t * 3.4, waveA: 34, rear: 0.22 + 0.04 * Math.sin(c.t * 1.3), reach: 150 + 30 * Math.sin(c.t * 0.9), headRot: 5 + 4 * Math.sin(c.t * 1.1), sway: 26 * Math.sin(c.t * 1.2), tailSwing: Math.sin(c.t * 1.7), hood: 0.3, tongue: 0.7 * Math.pow(Math.max(0, Math.sin(c.t * 2.6)), 8), jaw: 0.05 }),
+    'rise-from-sand': (c) => Object.assign(KO(c.u, [[0, { sink: 1, rear: 0.1, reach: 120, headRot: 0, hood: 0, jaw: 0, eyeGlow: 0.2, waveA: 10 }], [0.35, { sink: 0.55, rear: 0.45, hood: 0.3, eyeGlow: 0.8, waveA: 24 }], [0.72, { sink: 0.08, rear: 0.97, reach: 100, headRot: -10, hood: 0.95, eyeGlow: 1.6, jaw: 0.35, waveA: 34 }], [1, { sink: 0, rear: 0.9, reach: 130, headRot: 2, hood: 1, eyeGlow: 1.3, jaw: 0.1 }]], 'inOut'), { waveP: c.t * 3, shakeX: 6 * Math.sin(c.lt * 47) * clamp(1 - c.u * 1.3) }),
+    strike: (c) => Object.assign(KO(c.u, [[0, { rear: 0.95, reach: 110, headRot: -8, hood: 1, jaw: 0.1, tongue: 0.4 }], [0.28, { rear: 1, reach: 30, headRot: -24, hood: 1, jaw: 0.2, tongue: 0.9, eyeGlow: 1.6 }], [0.44, { rear: c.p.rear2 === undefined ? 0.36 : c.p.rear2, reach: c.p.reach || 760, headRot: 16, hood: 0.7, jaw: 1, tongue: 0, eyeGlow: 1.6 }], [0.7, { jaw: 0.9 }], [1, { rear: 0.82, reach: 140, headRot: 0, hood: 0.8, jaw: 0.15, eyeGlow: 1.2 }]], 'inOut'), { waveP: c.t * 3, shakeX: 7 * Math.sin(c.lt * 60) * (c.u > 0.4 && c.u < 0.55 ? 1 : 0) }),
+    'coil-squeeze': (c) => { const e = EASE.outCubic(clamp(c.lt / 0.55)), p = c.p; return { coil: e, wrapX: p.wrapX === undefined ? 520 : p.wrapX, wrapY: p.wrapY || 0, wrapR: p.wrapR || 170, wrapH: p.wrapH || 700, turns: p.turns || 2, squeeze: clamp((c.lt - 0.4) / 0.4) * (0.55 + 0.45 * Math.sin(c.lt * 9)), layer: p.layer || 0, headRot: p.headRot === undefined ? 14 : p.headRot, hood: 1, jaw: 0.35 + 0.1 * Math.sin(c.lt * 7), tongue: 0.6 * Math.pow(Math.max(0, Math.sin(c.lt * 6)), 4), eyeGlow: 1.7, hypno: p.hypno || 0, waveP: c.t * 2, shakeX: 1.5 * Math.sin(c.lt * 40) * e }; },
+    'hypno-gaze': (c) => { const e = env(c.lt, 0.4); return { rear: 0.82, reach: 130 + 14 * Math.sin(c.t * 1.4), headRot: 8 * e, hs: 1 + 0.05 * e, hood: 1, hypno: e, eyeGlow: 1 + 0.9 * e, jaw: 0.05, sway: 30 * Math.sin(c.t * 1.1), tongue: 0.3 * Math.pow(Math.max(0, Math.sin(c.t * 3)), 6), waveP: c.t * 2.2, waveA: 30 }; },
+    roar: (c) => { const e = env(c.lt, 0.25), tr = Math.sin(c.lt * 55) * e; return { rear: 0.96, reach: 70 * (1 - e) + 90, headRot: -30 * e + 2 * tr, jaw: 1.0 + 0.08 * tr, hood: 1, eyeGlow: 1.7, shakeX: 5 * tr, shakeY: 2.5 * Math.sin(c.lt * 71) * e, hs: 1 + 0.06 * e, tongue: 0.25, waveP: c.t * 3, waveA: 40 }; },
+    swallow: (c) => Object.assign(KO(c.u, [[0, { rear: 0.95, reach: 90, headRot: -14, hood: 1, jaw: 0.3, unhinge: 0, eyeGlow: 1.5 }], [0.3, { rear: 1, reach: 20, headRot: -28, jaw: 0.8, unhinge: 0.5 }], [0.5, { rear: 0.38, reach: c.p.reach || 620, headRot: 28, jaw: 1.1, unhinge: 1, hood: 0.8, eyeGlow: 1.8 }], [0.68, { jaw: 0.5, unhinge: 0.6, rear: 0.5, reach: 400, headRot: 10 }], [0.85, { jaw: 0.08, unhinge: 0, rear: 0.78, reach: 160, headRot: -6, hood: 0.7 }], [1, { rear: 0.85, reach: 140, headRot: 0 }]], 'inOut'), { bulge: clamp((c.u - 0.62) / 0.3), bulgeAmp: c.u > 0.62 && c.u < 0.96 ? 0.9 : 0, waveP: c.t * 3, shakeX: 5 * Math.sin(c.lt * 55) * (c.u > 0.42 && c.u < 0.56 ? 1 : 0) }),
+    recoil: (c) => { const e = EASE.outCubic(clamp(c.lt / 0.16)) * (1 - 0.45 * EASE.smooth(clamp((c.lt - 0.2) / 0.6))); return { rear: 0.9, reach: 140 - 120 * e, headRot: -32 * e, jaw: 0.8 * e, hood: 1, eye: 1, hurt: e, eyeGlow: 1.2 - 0.6 * e, shakeX: 6 * Math.sin(c.lt * 60) * (1 - EASE.smooth(clamp(c.lt / 0.6))), waveP: c.t * 3, tailUp: 0.4 * e }; },
+    hurt: (c) => { const f = Math.sin(c.lt * 28) * Math.exp(-c.lt * 2.4); return { rear: 0.7 + 0.1 * f, reach: 100, headRot: -12 + 8 * f, jaw: 0.5 + 0.2 * f, hood: 0.9, hurt: 1, eyeGlow: 0.9, shakeX: 5 * f, waveP: c.t * 6, waveA: 40, tailUp: 0.25, tongue: 0.3 }; },
+    sink: (c) => Object.assign(KO(c.u, [[0, { rear: 0.85, reach: 140, headRot: 0, hood: 0.7, eyeGlow: 1.2 }], [0.35, { rear: 0.45, reach: 200, headRot: 22, hood: 0.3, eyeGlow: 0.7, jaw: 0.1 }], [0.75, { sink: 0.5, rear: 0.2, headRot: 10, eyeGlow: 0.4 }], [1, { sink: 1, rear: 0.1, headRot: 0, eyeGlow: 0.2 }]], 'inOut'), { waveP: c.t * 2.4, waveA: 28 }),
+    talk: (c) => { const a = c.amp || 0; return { rear: 0.55 + 0.02 * Math.sin(c.t * 1.4), reach: 150, headRot: 4 + 3 * Math.sin(c.t * 1.2), jaw: 0.05 + 0.65 * a, hood: 0.6 + 0.2 * a, tongue: 0.35 * Math.pow(Math.max(0, Math.sin(c.t * 5)), 6) + 0.15 * a, eyeGlow: 1.15, hypno: c.p.hypno || 0, sway: 22 * Math.sin(c.t * 1.1), waveP: c.t * 2.6, waveA: 30, hs: 1.04 }; },
+  };
+  APEP.fade = APEP.idle;
+
+  // =============================================================== THOR (Eddic thunder god, ep #003 guardian, screen-RIGHT: flip -1 to face left)
+  // Local origin = feet, +x = facing. Red hair + big red beard, short-handled Mjolnir, Megingjord belt (glowing runes), iron gloves (Jarngreipr),
+  // Viking-age tunic + grey fur mantle + slate-blue cloak. NOT Marvel (no red cape, no winged helmet, no armour plates).
+  // Arm angles: degrees from straight down, + = forward/up (180 = straight up). The hammer continues along the forearm (head at the far end).
+  function buildThor() {
+    const rig = newRig(); const root = $('g'); const lift = $('g', {}, root);
+    const TUN = rgb(64, 86, 134), TUND = rgb(40, 54, 88), TUNL = rgb(106, 132, 184), WOOL = rgb(96, 88, 78), WOOLD = rgb(66, 60, 54), LEA = rgb(108, 72, 46), LEAD = rgb(66, 43, 28), FURC = rgb(170, 154, 134), FURD = rgb(112, 100, 88);
+    const SKIN = rgb(234, 186, 150), SKIND = rgb(198, 144, 112), HAIR = rgb(206, 64, 28), HAIRD = rgb(146, 38, 16), HAIRL = rgb(246, 124, 56), STEEL = rgb(142, 152, 170), STEELD = rgb(76, 84, 102), STEELL = rgb(208, 220, 236), GOLD = rgb(255, 208, 96), CLK = rgb(46, 60, 98), CLKL = rgb(88, 68, 56);
+    rig.skin = [];
+    const skin = (el, base) => { rig.skin.push([el, base]); return el; };
+    const body = joint(lift, 0, -215); rig.body = body; const B = body.c;
+    rig.cloak = $('path', { fill: CLK }, B); G.reg(rig.cloak, CLK); rig.cloak2 = $('path', { fill: CLKL }, B); G.reg(rig.cloak2, CLKL);
+    const leg = (hx, wool, boot) => { const th = joint(B, hx, -215); limb(th.c, [hx, -215], [hx, -112], 58, 48, wool); const sh = joint(th.c, hx, -112); limb(sh.c, [hx, -112], [hx, -36], 46, 40, wool);
+      for (let k = 0; k < 3; k++) poly(sh.c, [[hx - 21, -102 + k * 17], [hx + 21, -102 + k * 17], [hx + 21, -96 + k * 17], [hx - 21, -96 + k * 17]], LEAD);
+      poly(sh.c, [[hx - 22, -72], [hx + 22, -72], [hx + 24, -32], [hx + 64, -12], [hx + 64, 2], [hx - 24, 2]], boot); ell(sh.c, hx, -72, 28, 12, FURC); ell(sh.c, hx, -66, 26, 8, FURD);
+      return { th, sh }; };
+    rig.lB = leg(-26, WOOLD, LEAD); rig.lF = leg(26, WOOL, LEA);
+    // ---- arms
+    const arm = (sx, sy, parent, front, withHammer) => {
+      const up = joint(parent, sx, sy); limb(up.c, [sx, sy], [sx, sy + 108], 52, 44, front ? TUN : TUND); poly(up.c, [[sx - 22, sy + 94], [sx + 22, sy + 94], [sx + 21, sy + 108], [sx - 21, sy + 108]], LEAD);
+      const fo = joint(up.c, sx, sy + 108); const n0 = rig.fills.length; limb(fo.c, [sx, sy + 108], [sx, sy + 200], 40, 34, front ? SKIN : SKIND); rig.fills.slice(n0).forEach(([el, cc]) => skin(el, cc));
+      poly(fo.c, [[sx - 22, sy + 132], [sx + 22, sy + 132], [sx + 24, sy + 204], [sx - 24, sy + 204]], front ? STEEL : STEELD); poly(fo.c, [[sx - 22, sy + 132], [sx - 8, sy + 132], [sx - 8, sy + 204], [sx - 24, sy + 204]], STEELL, { opacity: 0.5 });
+      for (const dy of [140, 170]) poly(fo.c, [[sx - 24, sy + dy], [sx + 24, sy + dy], [sx + 24, sy + dy + 5], [sx - 24, sy + dy + 5]], STEELD); ell(fo.c, sx, sy + 156, 5, 5, GOLD);
+      ell(fo.c, sx, sy + 214, 24, 27, front ? STEEL : STEELD); poly(fo.c, [[sx - 20, sy + 204], [sx + 20, sy + 204], [sx + 22, sy + 212], [sx - 22, sy + 212]], STEELD); for (const dx of [-12, 0, 12]) ell(fo.c, sx + dx, sy + 226, 6, 7, STEELL, { opacity: 0.8 });
+      return { up, fo, sx, sy };
+    };
+    rig.aL = arm(-72, -425, B, false);
+    // ---- torso
+    poly(B, [[-88, -440], [88, -440], [96, -400], [66, -250], [80, -160], [-80, -160], [-66, -250], [-96, -400]], TUN);
+    poly(B, [[-88, -440], [-20, -440], [-34, -250], [-66, -250], [-96, -400]], TUND, { opacity: 0.5 });
+    poly(B, [[-80, -184], [80, -184], [82, -160], [-82, -160]], LEAD); for (let x = -64; x <= 64; x += 32) ell(B, x, -172, 5, 5, GOLD);
+    poly(B, [[56, -440], [80, -420], [-34, -246], [-62, -262]], LEA); ell(B, 54, -418, 7, 7, GOLD);
+    poly(B, [[-30, -440], [30, -440], [0, -378]], SKIND);
+    // belt (Megingjord)
+    rig.beltG = $('ellipse', { cx: 0, cy: -272, rx: 130, ry: 56, fill: 'url(#gGold)', opacity: 0.2 }, B);
+    poly(B, [[-72, -296], [72, -296], [76, -248], [-76, -248]], LEA); poly(B, [[-72, -296], [72, -296], [72, -286], [-72, -286]], rgb(140, 98, 62));
+    poly(B, [[-28, -302], [28, -302], [30, -244], [-30, -244]], STEELD); poly(B, [[-22, -296], [22, -296], [22, -250], [-22, -250]], STEEL); ell(B, 0, -273, 10, 10, STEELL);
+    rig.runes = $('path', { d: 'M-64 -282 l8 -10 l8 10 M-62 -262 l6 0 l0 12 M-46 -280 l10 24 M-40 -280 l-10 24 M44 -282 l8 -10 l8 10 M46 -262 l6 0 l0 12 M62 -280 l-10 24 M56 -280 l10 24', stroke: GOLD, 'stroke-width': 4.5, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, B);
+    rig.runesW = $('path', { d: 'M-14 -290 l14 -8 l14 8 l-14 38 z', stroke: GOLD, 'stroke-width': 3.5, fill: 'none', 'stroke-linejoin': 'round' }, B);
+    rig.aR = arm(70, -425, B, true);
+    // hammer: pivot at the front hand, head at the far end of the forearm direction
+    const hx = rig.aR.sx, hy = rig.aR.sy + 214, hmJ = joint(rig.aR.fo.c, hx, hy); rig.hmJ = hmJ; rig.hm = hmJ.g; const Hm = hmJ.c;
+    poly(Hm, [[hx - 9, hy - 40], [hx + 9, hy - 40], [hx + 9, hy + 118], [hx - 9, hy + 118]], LEA); for (let k = 0; k < 5; k++) poly(Hm, [[hx - 10, hy - 30 + k * 16], [hx + 10, hy - 30 + k * 16], [hx + 10, hy - 25 + k * 16], [hx - 10, hy - 25 + k * 16]], LEAD);
+    ell(Hm, hx, hy - 42, 14, 10, GOLD); $('path', { d: `M${hx} ${hy - 48} q-34 -26 -12 -58 q22 -24 30 6`, stroke: LEAD, 'stroke-width': 5, fill: 'none', 'stroke-linecap': 'round' }, Hm);
+    const hcx = hx, hcy = hy + 158; rig.hcx = hcx; rig.hcy = hcy;
+    rig.hglow = $('circle', { cx: hcx, cy: hcy, r: 130, fill: 'url(#gBlue)', opacity: 0 }, Hm);
+    poly(Hm, [[hcx - 78, hcy - 50], [hcx + 78, hcy - 50], [hcx + 88, hcy - 36], [hcx + 88, hcy + 36], [hcx + 78, hcy + 50], [hcx - 78, hcy + 50], [hcx - 88, hcy + 36], [hcx - 88, hcy - 36]], STEEL);
+    poly(Hm, [[hcx - 78, hcy - 50], [hcx + 78, hcy - 50], [hcx + 66, hcy - 34], [hcx - 66, hcy - 34]], STEELL); poly(Hm, [[hcx + 66, hcy - 34], [hcx + 78, hcy - 50], [hcx + 88, hcy - 36], [hcx + 88, hcy + 36], [hcx + 78, hcy + 50], [hcx + 66, hcy + 34]], STEELD);
+    poly(Hm, [[hcx - 88, hcy - 36], [hcx - 78, hcy - 50], [hcx - 66, hcy - 34], [hcx - 66, hcy + 34], [hcx - 78, hcy + 50], [hcx - 88, hcy + 36]], rgb(110, 120, 140));
+    poly(Hm, [[hx - 14, hcy - 54], [hx + 14, hcy - 54], [hx + 14, hcy - 44], [hx - 14, hcy - 44]], GOLD);
+    rig.hrune = $('path', { d: `M${hcx - 52} ${hcy - 14} l16 -14 l16 14 l-16 14 z M${hcx} ${hcy - 20} l0 40 M${hcx + 20} ${hcy - 18} l16 36 M${hcx + 52} ${hcy - 18} l-16 36`, stroke: '#bfe6ff', 'stroke-width': 4.5, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.35 }, Hm);
+    rig.crkH = [0, 1, 2].map(() => $('polyline', { fill: 'none', stroke: '#e4f6ff', 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0 }, Hm));
+    // ---- mantle (grey fur) + neck
+    skin(poly(B, [[-26, -472], [26, -472], [30, -440], [-30, -440]], SKIND), SKIND);
+    const mant = [[-104, -412], [-98, -440], [-82, -434], [-76, -458], [-58, -450], [-44, -470], [-26, -454], [0, -472], [26, -454], [44, -470], [58, -450], [76, -458], [82, -434], [98, -440], [104, -412], [116, -380], [92, -372], [98, -348], [72, -352], [62, -328], [32, -352], [0, -334], [-32, -352], [-62, -328], [-72, -352], [-98, -348], [-92, -372], [-116, -380]];
+    poly(B, mant, FURD); poly(B, mant.map((q) => [q[0] * 0.93, -400 + (q[1] + 400) * 0.9 - 4]), FURC);
+    for (let i = 0; i < 9; i++) poly(B, [[-80 + i * 20, -420], [-72 + i * 20, -392], [-66 + i * 20, -420]], FURD, { opacity: 0.55 });
+    // ---- head
+    const hd = joint(B, 0, -450); rig.head = hd; const Hc = hd.c;
+    const hairB = joint(Hc, 0, -545); rig.hairB = hairB;
+    poly(hairB.c, [[-62, -572], [54, -578], [74, -540], [82, -470], [94, -420], [72, -392], [44, -440], [-46, -440], [-78, -392], [-92, -428], [-82, -500]], HAIRD);
+    poly(hairB.c, [[-70, -470], [-60, -420], [-84, -400], [-88, -440]], HAIR); poly(hairB.c, [[78, -470], [70, -418], [92, -398], [92, -440]], HAIR);
+    skin(ell(Hc, -46, -510, 9, 14, SKIND), SKIND);
+    skin(ell(Hc, 6, -512, 50, 60, SKIN), SKIN); skin(ell(Hc, 22, -496, 22, 40, SKIN, { opacity: 0.0 }), SKIN);
+    skin(poly(Hc, [[-2, -520], [18, -520], [26, -496], [4, -494]], SKIND), SKIND);
+    rig.venomV = $('g', { opacity: 0 }, Hc); for (const d of ['M-30 -540 q8 14 -2 30 q-6 10 4 22', 'M40 -534 q-10 16 2 30 q8 12 -4 26', 'M-4 -560 q4 14 -4 24']) $('path', { d, stroke: '#7fd04a', 'stroke-width': 3.5, fill: 'none', 'stroke-linecap': 'round' }, rig.venomV);
+    const beard = joint(Hc, 6, -476); rig.beard = beard;
+    poly(beard.c, [[-48, -504], [58, -504], [66, -464], [56, -424], [34, -384], [8, -352], [-16, -384], [-42, -424], [-58, -464]], HAIR);
+    poly(beard.c, [[-30, -470], [-18, -470], [-14, -380], [-28, -392]], HAIRL, { opacity: 0.8 }); poly(beard.c, [[20, -470], [32, -470], [30, -392], [18, -380]], HAIRL, { opacity: 0.8 }); poly(beard.c, [[-6, -440], [6, -440], [8, -358], [-4, -362]], HAIRD);
+    for (const bx of [-18, 26]) { poly(beard.c, [[bx - 7, -378], [bx + 7, -378], [bx + 4, -318], [bx - 3, -318]], HAIRD); ell(beard.c, bx, -366, 8, 5, GOLD); ell(beard.c, bx, -322, 6, 8, HAIR); }
+    rig.mouth = ell(Hc, 8, -476, 16, 4, rgb(54, 18, 18)); rig.teeth = poly(Hc, [[-6, -480], [22, -480], [22, -474], [-6, -474]], rgb(246, 240, 226));
+    rig.mou = joint(Hc, 8, -482);
+    poly(rig.mou.c, [[-44, -494], [8, -500], [60, -494], [72, -482], [40, -476], [8, -484], [-22, -476], [-56, -482]], HAIR); poly(rig.mou.c, [[-40, -490], [8, -495], [56, -490], [40, -484], [8, -490], [-24, -484]], HAIRL, { opacity: 0.55 });
+    // eyes
+    rig.eyes = []; const mkEye = (cx, cy) => { const gl = $('circle', { cx, cy, r: 32, fill: 'url(#gBlue)', opacity: 0.7 }, Hc); const e = joint(Hc, cx, cy); const w = ell(e.c, cx, cy, 11, 9, rgb(240, 250, 255)); const ir = ell(e.c, cx + 2, cy, 6.5, 7.5, rgb(150, 218, 255)); G.reg(ir, rgb(150, 218, 255)); ell(e.c, cx + 3, cy, 3, 4, rgb(16, 20, 40)); ell(e.c, cx - 1, cy - 3, 2, 2, '#fff'); rig.eyes.push({ gl, e, ir }); };
+    mkEye(-14, -520); mkEye(30, -520);
+    rig.browL = joint(Hc, -18, -528); poly(rig.browL.c, [[-40, -542], [-2, -524], [-2, -513], [-40, -530]], HAIRD); rig.browR = joint(Hc, 34, -528); poly(rig.browR.c, [[48, -542], [10, -524], [10, -513], [48, -530]], HAIRD);
+    // front hair + leather band (no winged helmet)
+    poly(Hc, [[-60, -556], [-42, -594], [-22, -566], [0, -604], [18, -568], [42, -598], [54, -562], [64, -540], [46, -538], [26, -554], [6, -542], [-14, -554], [-34, -540], [-52, -536]], HAIR);
+    poly(Hc, [[-56, -548], [58, -552], [60, -540], [-56, -536]], LEA); ell(Hc, 4, -544, 6, 6, GOLD);
+    poly(Hc, [[-8, -588], [10, -594], [22, -566], [4, -566]], HAIRL, { opacity: 0.7 });
+    // lightning arcs around the body
+    rig.crkB = [0, 1, 2, 3].map(() => $('polyline', { fill: 'none', stroke: '#e4f6ff', 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0 }, B));
+    rig.mk = {}; const mk = (n, p, x, y) => { rig.mk[n] = $('circle', { cx: x, cy: y, r: 1, fill: 'none' }, p); };
+    mk('head', Hc, 6, -512); mk('eye', Hc, 8, -520); mk('mouth', Hc, 8, -476); mk('hand', rig.aR.fo.c, hx, hy); mk('hammer', Hm, hcx, hcy); mk('body', B, 0, -300);
+    rig.root = root;
+    rig.N = { bodyY: 0, bodyRot: 0, shakeX: 0, shakeY: 0, sx: 1, sy: 1, head: 0, aL: [-14, -8], aR: [18, 22], lF: [4, 2], lB: [-4, -2], hammer: 1, hAng: -18, hglow: 0, crackle: 0, eye: 1, eyeGlow: 1, belt: 0.35, mouth: 0, brow: 0, beard: 0, hair: 0, cloak: 1, trail: 0, lift: 0, venom: 0 };
+    const FRn = (t) => Math.floor(t * 30);
+    const zig = (x0, y0, x1, y1, n, amp, sd) => { const pts = []; for (let i = 0; i <= n; i++) { const s = i / n, nx = -(y1 - y0), ny = (x1 - x0), L = Math.hypot(nx, ny) || 1, o = (i === 0 || i === n ? 0 : (hash(sd + i * 7.3) - 0.5) * 2 * amp); pts.push([x0 + (x1 - x0) * s + nx / L * o, y0 + (y1 - y0) * s + ny / L * o]); } return pts.map((q) => f2(q[0]) + ',' + f2(q[1])).join(' '); };
+    rig.apply = (P, t) => {
+      body.set(P.bodyRot, P.sx, P.sy, P.shakeX, P.bodyY + P.shakeY);
+      for (const [L, a] of [[rig.lF, P.lF], [rig.lB, P.lB]]) { L.th.set(-a[0]); L.sh.set(-(a[1] - a[0])); }
+      for (const [A, a] of [[rig.aL, P.aL], [rig.aR, P.aR]]) { A.up.set(-a[0]); A.fo.set(-(a[1] - a[0])); }
+      rig.hmJ.set(P.hAng); rig.hm.setAttribute('display', P.hammer > 0.02 ? 'inline' : 'none'); rig.hm.setAttribute('opacity', f2(clamp(P.hammer)));
+      const hg = clamp(P.hglow + P.crackle * 0.5); rig.hglow.setAttribute('opacity', f2(hg * (0.75 + 0.25 * Math.sin(t * 40)))); rig.hrune.setAttribute('opacity', f2(0.3 + 0.7 * clamp(P.hglow + P.crackle)));
+      hd.set(P.head + 0.6 * Math.sin(t * 1.3), 1.14, 1.14);
+      beard.set(P.beard + 2.2 * Math.sin(t * 1.7), 1, 1 + 0.03 * P.mouth, 0, 0); rig.hairB.set(P.hair + 1.6 * Math.sin(t * 1.4 + 1));
+      const mo = clamp(P.mouth, 0, 1.2); rig.mouth.setAttribute('ry', f2(3 + mo * 15)); rig.mouth.setAttribute('cy', f2(-476 + mo * 6)); rig.teeth.setAttribute('opacity', mo > 0.25 ? 1 : 0); rig.mou.set(0, 1, 1, 0, -mo * 1.5);
+      const bl = P.eye * (1 - blink(t, 3.7)); rig.eyes.forEach((E, i) => { E.e.set(0, 1, Math.max(0.08, bl)); E.gl.setAttribute('r', f2(32 * P.eyeGlow)); E.gl.setAttribute('opacity', f2(clamp(0.2 + 0.5 * P.eyeGlow))); E.ir.setAttribute('fill', G.mixc(rgb(150, 218, 255), rgb(150, 190, 90), clamp(P.venom))); });
+      rig.browL.set(P.brow * 5, 1, 1, 0, P.brow * 5); rig.browR.set(-P.brow * 5, 1, 1, 0, P.brow * 5);
+      const bg = clamp(P.belt, 0, 2.2); rig.beltG.setAttribute('opacity', f2(clamp(bg * 0.45) * (0.8 + 0.2 * Math.sin(t * 9)))); rig.runes.setAttribute('stroke', G.mixc(rgb(255, 196, 80), '#ffffff', clamp(bg - 1) * 0.8)); rig.runes.setAttribute('opacity', f2(0.35 + 0.65 * clamp(bg))); rig.runes.setAttribute('stroke-width', f2(4 + 1.5 * clamp(bg - 1, 0, 1))); rig.runesW.setAttribute('opacity', f2(0.3 + 0.7 * clamp(bg)));
+      // cloak
+      const tr = P.trail, fl = P.cloak * 7, f = (i) => fl * Math.sin(t * 3.1 + i * 1.7) - P.lift * (1 + i * 0.5) * 20;
+      const cp = [[-24, -440], [-96, -432], [-122 - 0.3 * tr, -300], [-148 - tr, -136 + f(0)], [-122 - 0.8 * tr, -104 + f(1)], [-88 - 0.6 * tr, -128 + f(2)], [-56 - 0.4 * tr, -98 + f(3)], [-20, -132 + f(4) * 0.4], [-8, -300]];
+      rig.cloak.setAttribute('d', 'M' + cp.map((q) => f2(q[0]) + ' ' + f2(q[1])).join('L') + 'Z');
+      rig.cloak2.setAttribute('d', 'M' + [cp[1], cp[2], cp[3], cp[4], [cp[4][0] + 22, cp[4][1] - 30], [cp[2][0] + 22, cp[2][1]]].map((q) => f2(q[0]) + ' ' + f2(q[1])).join('L') + 'Z');
+      // crackle
+      const fr = FRn(t), cr = clamp(P.crackle);
+      rig.crkH.forEach((e, i) => { const a = hash(fr * 3 + i) * 6.283, a2 = a + 0.9 + hash(fr + i * 5), r0 = 52, r1 = 118 + 40 * hash(fr * 2 + i); e.setAttribute('points', zig(rig.hcx + Math.cos(a) * r0, rig.hcy + Math.sin(a) * r0 * 0.7, rig.hcx + Math.cos(a2) * r1, rig.hcy + Math.sin(a2) * r1 * 0.8, 6, 16, fr * 11 + i)); e.setAttribute('opacity', f2(cr > 0.02 && hash(fr + i * 9) > 0.15 ? cr : 0)); });
+      rig.crkB.forEach((e, i) => { const sx0 = [-70, 70, -30, 40][i] + (hash(fr * 4 + i) - 0.5) * 60, sy0 = [-430, -430, -300, -200][i], ex = sx0 + (hash(fr * 5 + i + 3) - 0.5) * 220, ey = sy0 + (hash(fr * 7 + i + 1) - 0.5) * 200 - 40; e.setAttribute('points', zig(sx0, sy0, ex, ey, 5, 14, fr * 13 + i)); e.setAttribute('opacity', f2(cr > 0.3 && hash(fr + i * 17) > 0.35 ? clamp(cr) : 0)); });
+      // venom: sickly skin + green veins
+      const v = clamp(P.venom); rig.skin.forEach(([el, base]) => el.setAttribute('fill', v > 0 ? G.mixc(base, rgb(150, 178, 110), v * 0.65) : base)); rig.venomV.setAttribute('opacity', f2(v));
+    };
+    return rig;
+  }
+  const THOR = {
+    idle: (c) => ({ bodyY: 2 * Math.sin(c.t * 2.1), sy: 1 + 0.008 * Math.sin(c.t * 2.1), head: 2 * Math.sin(c.t * 1.2), aL: [-12 + 3 * Math.sin(c.t * 1.5), -6], aR: [20 + 3 * Math.sin(c.t * 1.3), 26 + 4 * Math.sin(c.t * 1.7)], hAng: -18, belt: 0.35, cloak: 1, beard: 3 * Math.sin(c.t * 1.1), crackle: 0.08 * Math.max(0, Math.sin(c.t * 0.8)), lF: [6, 3], lB: [-6, -3] }),
+    'land-hero': (c) => KO(c.u, [[0, { bodyY: -20, aL: [150, 160], aR: [165, 175], lF: [-10, -30], lB: [-24, -50], cloak: 3, lift: 1.4, trail: -30, hAng: -10, eyeGlow: 1.8, mouth: 0.6, head: -8, crackle: 0.5 }],
+      [0.4, { bodyY: -10, aL: [140, 150], aR: [155, 165], lF: [0, -10], lB: [-10, -30], lift: 1.4 }],
+      [0.5, { bodyY: 98, bodyRot: 10, head: 18, aL: [30, 60], aR: [50, 70], lF: [74, 6], lB: [-8, -86], cloak: 2, lift: 0.1, trail: 40, mouth: 0.2, crackle: 1, hglow: 1, shakeY: 6 }],
+      [0.7, { bodyY: 92, bodyRot: 8, head: 8, crackle: 0.6, shakeY: 0 }],
+      [1, { bodyY: 2, bodyRot: 0, head: 0, aL: [-14, -8], aR: [22, 26], lF: [6, 3], lB: [-6, -3], cloak: 1, lift: 0, trail: 0, mouth: 0, crackle: 0.2, hglow: 0.3, eyeGlow: 1.2, hAng: -18 }]], 'inOut'),
+    walk: (c) => { const sp = c.p.speed || 1.0, f = 2 * Math.PI * sp * c.lt; return { bodyY: 3 * Math.abs(Math.sin(f)), bodyRot: 2, head: 2 * Math.sin(f), lF: legPh(f, 2, 24, 24), lB: legPh(f + Math.PI, 2, 24, 24), aL: [-22 * Math.sin(f) - 6, -16 * Math.sin(f)], aR: [18 + 10 * Math.sin(f), 22 + 10 * Math.sin(f)], trail: 20, cloak: 1.4, beard: 5 * Math.sin(f) }; },
+    run: (c) => { const sp = c.p.speed || 2.2, f = 2 * Math.PI * sp * c.lt; return { bodyY: 6 * Math.abs(Math.sin(f)) - 8, bodyRot: 10, head: 4 - 4 * Math.sin(f), lF: legPh(f, 6, 52, 58), lB: legPh(f + Math.PI, 6, 52, 58), aL: [-50 * Math.sin(f), -80 * Math.sin(f) - 20], aR: [32 + 16 * Math.sin(f), 52 + 14 * Math.sin(f)], hAng: -50, trail: 90, cloak: 2.4, beard: 12, hair: 10, eyeGlow: 1.4, mouth: 0.25, brow: 1 }; },
+    'throw-hammer': (c) => KO(c.u, [[0, { bodyRot: 0, aL: [-14, -8], aR: [30, 34], lF: [6, 3], lB: [-6, -3], hammer: 1, hAng: -18, brow: 1, eyeGlow: 1.4 }],
+      [0.28, { bodyRot: -12, head: -6, aL: [60, 80], aR: [196, 222], lF: [14, 6], lB: [-20, -26], hAng: -4, crackle: 1, hglow: 1, brow: 1, mouth: 0.4, eyeGlow: 1.8, cloak: 2, trail: -20 }],
+      [0.5, { bodyRot: 14, head: 6, aL: [-40, -30], aR: [96, 90], lF: [30, 16], lB: [-24, -30], hAng: 0, hammer: 1, mouth: 0.8, trail: 60 }],
+      [0.56, { hammer: 0, crackle: 0.5 }],
+      [0.8, { bodyRot: 10, aR: [92, 88], hammer: 0, crackle: 0, hglow: 0 }],
+      [1, { bodyRot: 4, aL: [-14, -8], aR: [70, 62], hammer: 0, lF: [14, 8], lB: [-12, -8], mouth: 0.1, trail: 0 }]], 'inOut'),
+    'catch-hammer': (c) => KO(c.u, [[0, { bodyRot: 4, aR: [96, 90], aL: [-20, -14], hammer: 0, lF: [14, 8], lB: [-12, -8], eyeGlow: 1.2 }],
+      [0.22, { aR: [100, 94], hammer: 0 }], [0.28, { hammer: 1, hglow: 1, crackle: 1, bodyRot: -6, aR: [66, 60], shakeX: 6, eyeGlow: 1.8 }],
+      [0.5, { aR: [40, 40], bodyRot: -2, shakeX: 0, crackle: 0.6, hglow: 0.6, mouth: 0.3 }], [1, { aR: [22, 26], bodyRot: 0, lF: [6, 3], lB: [-6, -3], crackle: 0.2, hglow: 0.2, aL: [-12, -6], hAng: -18, mouth: 0 }]], 'inOut'),
+    swing: (c) => KO(c.u, [[0, { bodyRot: 0, aR: [22, 26], aL: [-14, -8], lF: [6, 3], lB: [-6, -3] }], [0.32, { bodyRot: -14, head: -8, aR: [176, 198], aL: [150, 170], lF: [10, 4], lB: [-16, -20], hAng: -4, crackle: 0.8, hglow: 1, brow: 1, mouth: 0.5, cloak: 2, trail: -20, eyeGlow: 1.8 }],
+      [0.5, { bodyRot: 16, head: 8, aR: [74, 62], aL: [60, 80], lF: [34, 20], lB: [-24, -30], hAng: 0, crackle: 1, mouth: 0.9, trail: 80, shakeX: 4 }], [0.66, { bodyRot: 12, aR: [70, 58], shakeX: 0 }], [1, { bodyRot: 4, aR: [40, 40], aL: [-14, -8], lF: [10, 6], lB: [-8, -6], crackle: 0.3, mouth: 0.1, hAng: -18, trail: 0 }]], 'inOut'),
+    'lightning-call': (c) => { const e = env(c.lt, 0.35); return { bodyRot: -5 * e, head: -22 * e + 2 * Math.sin(c.t * 1.3), aR: [lerp(22, 172, e), lerp(26, 178, e)], aL: [lerp(-14, 40, e), lerp(-8, 60, e)], lF: [6 + 14 * e, 3 + 10 * e], lB: [-6 - 14 * e, -3 - 14 * e], hAng: -2, hglow: e, crackle: e, eyeGlow: 1 + 1.0 * e, belt: 0.4 + 0.9 * e, mouth: 0.5 * e, brow: e, cloak: 2.2 * e + 1, trail: 20 * e, lift: 0.6 * e, hair: 8 * e, beard: 8 * e, shakeX: 1.2 * e * Math.sin(c.lt * 50) }; },
+    'belt-power': (c) => { const e = env(c.lt, 0.25), p = 0.5 + 0.5 * Math.sin(c.lt * 14); return { bodyRot: -2 * e, bodyY: -4 * e, sx: 1 + 0.05 * e + 0.015 * p * e, sy: 1 + 0.05 * e + 0.015 * p * e, head: -8 * e, aR: [lerp(22, 24, e), lerp(26, 70 , e)], aL: [lerp(-14, -26, e), lerp(-8, 56, e)], lF: [6 + 16 * e, 3 + 14 * e], lB: [-6 - 16 * e, -3 - 14 * e], hAng: -6, belt: 0.4 + 1.8 * e, crackle: 0.9 * e, hglow: 0.8 * e, eyeGlow: 1 + 1.1 * e, mouth: 0.55 * e, brow: e, cloak: 2.4 * e + 1, trail: 30 * e, hair: 9 * e, beard: 9 * e, shakeX: 2 * e * Math.sin(c.lt * 45) }; },
+    block: (c) => { const e = EASE.outCubic(clamp(c.lt / 0.14)), w = Math.sin(c.lt * 40) * (1 - 0.6 * clamp(c.lt / c.dur)); return { bodyRot: -8 * e, bodyY: 10 * e, head: 6 * e, aR: [100 * e + 22 * (1 - e), 120 * e + 26 * (1 - e)], aL: [70 * e - 14 * (1 - e), 110 * e - 8 * (1 - e)], hAng: -80 * e - 18 * (1 - e), lF: [20 * e + 6, 14 * e + 3], lB: [-24 * e - 6, -20 * e - 3], crackle: 0.9 * e, hglow: 0.8 * e, brow: e, mouth: 0.5 * e, eyeGlow: 1.6, shakeX: 2.5 * w * e, trail: -20 * e }; },
+    strangled: (c) => { const tr = Math.sin(c.lt * 31), e = env(c.lt, 0.3); return { bodyRot: -3 * e, bodyY: 6 * e, head: -20 * e + 3 * tr, aR: [lerp(22, 140, e) + 4 * tr, lerp(26, 150, e) + 4 * tr], aL: [lerp(-14, -90, e) - 4 * tr, lerp(-8, -100, e) - 4 * tr], hAng: -4, mouth: 0.7 * e, eye: 1 - 0.45 * e, eyeGlow: 1.0 + 0.4 * Math.sin(c.lt * 9), brow: e, belt: 0.5 + 0.7 * (0.5 + 0.5 * Math.sin(c.lt * 7)), crackle: 0.4 * e * (0.5 + 0.5 * Math.sin(c.lt * 5)), venom: 0.15 * e, shakeX: 2.5 * tr * e, shakeY: 1.4 * Math.sin(c.lt * 37) * e, lF: [10 + 4 * tr, 8], lB: [-10 - 4 * tr, -8], cloak: 2, beard: 6 * tr }; },
+    'stagger-venom': (c) => { const e = env(c.lt, 0.4), w = Math.sin(c.lt * 3.4); return { bodyRot: -6 * e + 8 * w * e, bodyY: 16 * e, head: 26 * e + 6 * w, aR: [lerp(22, 12, e), lerp(26, 8, e)], aL: [-8 + 14 * w, 6 + 10 * w], hAng: -2, lF: [8 + 12 * w, 4 + 14 * Math.max(0, w)], lB: [-10 - 10 * w, -6 - 14 * Math.max(0, -w)], venom: 0.95 * e, eyeGlow: 1 - 0.55 * e, eye: 1 - 0.3 * e, mouth: 0.25 * e + 0.1 * Math.sin(c.lt * 6), brow: 0.4 * e, belt: 0.35 - 0.2 * e + 0.15 * Math.max(0, Math.sin(c.lt * 6)), crackle: 0.1 * Math.max(0, Math.sin(c.lt * 8)), cloak: 0.4, trail: -10 * e, beard: -6 * e, hair: -6 * e, shakeX: 1.2 * Math.sin(c.lt * 23) * e }; },
+    kneel: (c) => { const e = EASE.outCubic(clamp(c.lt / 0.45)); return { bodyY: 112 * e, bodyRot: 8 * e, head: 22 * e + 2 * Math.sin(c.t * 2.4), aR: [lerp(22, 30, e), lerp(26, 10, e)], aL: [lerp(-14, 52, e), lerp(-8, 22, e)], hAng: lerp(-18, 4, e), lF: [lerp(6, 90, e), lerp(3, 0, e)], lB: [lerp(-6, 6, e), lerp(-3, -88, e)], eyeGlow: 1 - 0.4 * e, eye: 1 - 0.35 * e, mouth: 0.2 * e, venom: 0.9 * e, belt: 0.2, cloak: 0.3, trail: -20 * e, shakeX: 1.4 * Math.sin(c.lt * 15) * e, beard: 4 * Math.sin(c.t * 2) }; },
+    recoil: (c) => { const e = EASE.outCubic(clamp(c.lt / 0.16)) * (1 - 0.5 * EASE.smooth(clamp((c.lt - 0.2) / 0.6))); return { bodyRot: -14 * e, head: -12 * e, aL: [-14 - 30 * e, -8], aR: [22 + 30 * e, 26 + 20 * e], lF: [6 + 12 * e, 3 + 10 * e], lB: [-6 - 16 * e, -3], mouth: 0.8 * e, brow: e, trail: -40 * e, shakeX: 4 * Math.sin(c.lt * 60) * (1 - EASE.smooth(clamp(c.lt / 0.6))), crackle: 0.5 * e }; },
+    talk: (c) => { const a = c.amp || 0; return { bodyY: 1.5 * Math.sin(c.t * 2), head: 2 * Math.sin(c.t * 1.5) - 2 * a, mouth: 0.08 + 0.75 * a, brow: 0.5 * a, aL: [-12, -6], aR: [20 + 3 * Math.sin(c.t * 1.3), 26], hAng: -18, belt: 0.4, beard: 4 * a + 2 * Math.sin(c.t * 1.2), venom: c.p.venom || 0, eyeGlow: c.p.eyeGlow === undefined ? 1.1 : c.p.eyeGlow, bodyRot: c.p.venom ? 3 : 0, crackle: 0.1 }; },
+  };
+  THOR.fade = THOR.idle;
+
+  const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, cerberus: CERB, bec: BEC, apep: APEP, thor: THOR };
+  const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, cerberus: buildCerberus, bec: buildBec, apep: buildApep, thor: buildThor };
   Object.assign(G, { ACTIONS, RIGS });
 })(window);

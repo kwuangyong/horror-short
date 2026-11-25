@@ -66,6 +66,9 @@
     rg('gWhite', [[0, '#ffffff', 1], [1, '#ffffff', 0]]);
     rg('gSmoke', [[0, '#e8ecf6', 0.75], [1, '#e8ecf6', 0]]);
     rg('gGold', [[0, '#ffe39a', 0.95], [0.5, '#ffd070', 0.35], [1, '#ffd070', 0]]);
+    rg('gBlue', [[0, '#d8f0ff', 0.95], [0.4, '#6ab8ff', 0.4], [1, '#6ab8ff', 0]]);
+    rg('gAcid', [[0, '#d4ff4a', 0.8], [0.35, '#9a5cff', 0.4], [1, '#9a5cff', 0]]);
+    rg('gViolet', [[0, '#c48cff', 0.9], [0.5, '#7a2cc8', 0.4], [1, '#7a2cc8', 0]]);
     rg('gMoon', [[0, '#c8d2ff', 0.55], [0.4, '#c8d2ff', 0.18], [1, '#c8d2ff', 0]]);
     rg('gFog', [[0, '#8e98c8', 0.34], [1, '#8e98c8', 0]]);
     rg('gFly', [[0, '#ffd65a', 0.85], [1, '#ffd65a', 0]]);
@@ -510,6 +513,8 @@
     horseman: (m) => { m.E(0, 106, 120, 56); m.P('96,66 150,-10 192,0 172,76'); m.P('150,-6 166,-50 178,-4'); for (const x of [-90, -50, 50, 90]) m.P(`${x - 10},130 ${x + 10},130 ${x + 8},224 ${x - 12},224`); m.P('-20,46 40,46 30,-84 -30,-84'); m.P('-30,-84 -100,60 -44,44'); m.E(78, -64, 24, 22); m.P('110,-210 118,-210 118,40 110,40'); m.eyes([[170, 12]], 6); m.eyes([[70, -66], [86, -66]], 4, '#ffb347'); },
     blackeyed: (m) => { m.P('-62,-124 0,-196 62,-124 62,-60 -62,-60'); m.P('-50,-60 50,-60 70,170 -70,170'); m.P('-50,-52 -84,70 -64,76 -36,-30'); m.P('50,-52 84,70 64,76 36,-30'); m.E(0, -112, 38, 44, '#aab0c2'); m.E(-15, -112, 12, 17, '#000'); m.E(15, -112, 12, 17, '#000'); },
     strigoi: (m) => { m.P('-30,-110 30,-110 160,180 -160,180'); m.P('-30,-100 -176,40 -156,196 -20,60'); m.P('30,-100 176,40 156,196 20,60'); m.E(0, -150, 32, 40); m.P('-30,-162 -54,-196 -26,-140'); m.P('30,-162 54,-196 26,-140'); m.P('-9,-124 -4,-108 1,-124', '#f2f0ea'); m.P('4,-124 9,-108 14,-124', '#f2f0ea'); m.eyes([[-12, -152], [12, -152]], 5); },
+    apep: (m) => { m.E(-60, 196, 150, 34); m.E(50, 160, 110, 30); m.S('M-70 196 Q-190 90 -70 0 Q40 -80 -30 -170', 74); m.P('-70,-230 -20,-216 40,-170 60,-120 -4,-92 -80,-120 -120,-180'); m.P('-30,-188 50,-212 150,-190 192,-166 150,-148 40,-150'); m.P('150,-148 160,-100 170,-148'); m.P('-60,-226 -80,-262 -40,-228'); m.eyes([[56, -184]], 7); },
+    thor: (m) => { m.P('-74,-150 74,-150 58,0 -58,0'); m.P('-74,-150 -150,20 -104,52 -58,0'); m.P('-34,0 -4,0 -10,200 -40,200'); m.P('6,0 36,0 42,200 12,200'); m.E(0, -196, 38, 42); m.P('-46,-206 -36,-262 -10,-236 14,-270 40,-236 52,-206'); m.P('-40,-184 40,-184 46,-140 0,-96 -46,-140'); m.P('62,-142 104,-214 126,-198 84,-122'); m.P('84,-262 176,-240 168,-200 76,-224'); m.P('-60,-84 60,-84 62,-64 -60,-64', '#2b2f40'); m.eyes([[-14, -200], [16, -200]], 5); },
     cerberus: (m) => { m.E(0, 110, 130, 66); m.P('-60,70 -120,-10 -76,-10 -30,60'); m.P('-14,60 -14,-50 14,-50 14,60'); m.P('60,70 120,-10 76,-10 30,60'); for (const [cx, cy] of [[-100, -26], [0, -70], [100, -26]]) { m.E(cx, cy, 34, 30); m.P(`${cx - 17},${cy + 6} ${cx + 17},${cy + 6} ${cx + 12},${cy + 42} ${cx - 12},${cy + 42}`); m.P(`${cx - 30},${cy - 14} ${cx - 22},${cy - 54} ${cx - 6},${cy - 22}`); m.P(`${cx + 30},${cy - 14} ${cx + 22},${cx === 0 ? cy - 54 : cy - 54} ${cx + 6},${cy - 22}`); m.eyes([[cx - 10, cy - 6], [cx + 10, cy - 6]], 4); } for (const x of [-90, -40, 40, 90]) m.P(`${x - 12},150 ${x + 12},150 ${x + 8},230 ${x - 14},230`); },
     talos: (m) => { m.E(0, -190, 36, 40); m.P('-124,-146 124,-146 100,-100 -100,-100'); m.P('-70,-100 70,-100 55,40 -55,40'); m.P('-124,-146 -156,40 -112,44 -90,-100'); m.P('124,-146 156,40 112,44 90,-100'); m.P('-52,40 -4,40 -10,214 -62,214'); m.P('4,40 52,40 62,214 10,214'); m.E(0, -20, 22, 22, '#22242e'); m.eyes([[-14, -192], [14, -192]], 5); m.eyes([[0, -20]], 9); m.P('-8,206 8,206 6,236 -6,236', '#ffd98a'); },
     griffin: (m) => { m.E(0, 50, 100, 60); m.P('-20,-10 -140,-180 -210,-120 -130,0 -60,36'); m.P('20,-10 100,-120 130,-80 70,10'); m.P('40,-30 70,-120 110,-140 120,-90 80,-20'); m.E(78, -140, 36, 34); m.P('104,-150 160,-116 104,-114'); m.P('80,-168 100,-206 112,-160'); for (const x of [-70, -30, 40, 80]) m.P(`${x - 12},90 ${x + 12},90 ${x + 8},190 ${x - 14},190`); m.P('-100,40 -196,0 -176,76'); m.eyes([[88, -144]], 5); },
@@ -519,9 +524,9 @@
     matagot: (m) => { m.Pa('M-134,200 Q-110,-70 0,-76 Q110,-70 134,200 L96,200 Q60,70 0,60 Q-60,70 -96,200Z'); m.E(0, -108, 52, 44); m.P('-42,-130 -38,-196 -6,-142'); m.P('42,-130 38,-196 6,-142'); m.S('M120 190 Q210 120 160 20', 14); for (const s of [-1, 1]) for (const y of [-96, -84]) m.S(`M${s * 40} ${y} L${s * 100} ${y - 12}`, 3, '#9aa0b8'); m.eyes([[-20, -112], [20, -112]], 7); },
     tomte: (m) => { m.P('-58,-76 58,-76 8,-236 40,-250 36,-210'); m.E(0, -48, 40, 36); m.P('-62,-60 62,-60 44,100 0,170 -44,100'); m.E(0, 130, 70, 70); m.E(0, -34, 14, 11, '#caa08a'); m.P('-44,178 -8,178 -14,214 -50,214'); m.P('8,178 44,178 50,214 14,214'); m.eyes([[-16, -56], [16, -56]], 4); },
   };
-  const MON_NAMES = ['koschei', 'chupacabra', 'jersey', 'draugr', 'babayaga', 'kelpie', 'horseman', 'blackeyed', 'strigoi'];
-  const GUA_NAMES = ['cerberus', 'talos', 'griffin', 'garmr', 'domovoi', 'brownie', 'matagot', 'tomte'];
-  const LABELS = { koschei: 'KOSCHEI', chupacabra: 'CHUPACABRA', jersey: 'JERSEY DEVIL', draugr: 'DRAUGR', babayaga: 'BABA YAGA', kelpie: 'KELPIE', horseman: 'HEADLESS HORSEMAN', blackeyed: 'BLACK-EYED CHILD', strigoi: 'STRIGOI', cerberus: 'CERBERUS', talos: 'TALOS', griffin: 'GRIFFIN', garmr: 'GARMR', domovoi: 'DOMOVOI', brownie: 'BROWNIE', matagot: 'MATAGOT', tomte: 'TOMTE' };
+  const MON_NAMES = ['koschei', 'chupacabra', 'jersey', 'draugr', 'babayaga', 'kelpie', 'horseman', 'blackeyed', 'strigoi', 'apep'];
+  const GUA_NAMES = ['cerberus', 'talos', 'griffin', 'garmr', 'domovoi', 'brownie', 'matagot', 'tomte', 'thor'];
+  const LABELS = { koschei: 'KOSCHEI', chupacabra: 'CHUPACABRA', jersey: 'JERSEY DEVIL', draugr: 'DRAUGR', babayaga: 'BABA YAGA', kelpie: 'KELPIE', horseman: 'HEADLESS HORSEMAN', blackeyed: 'BLACK-EYED CHILD', strigoi: 'STRIGOI', apep: 'APEP', thor: 'THOR', cerberus: 'CERBERUS', talos: 'TALOS', griffin: 'GRIFFIN', garmr: 'GARMR', domovoi: 'DOMOVOI', brownie: 'BROWNIE', matagot: 'MATAGOT', tomte: 'TOMTE' };
   function drawDecoy(g, name, eyeCol) {
     const m = {
       P: (pts, fill) => $('polygon', { points: pts, fill: fill || SIL }, g), E: (cx, cy, rx, ry, fill) => $('ellipse', { cx, cy, rx, ry, fill: fill || SIL }, g), Pa: (d) => $('path', { d, fill: SIL }, g),
@@ -669,7 +674,7 @@
 
   // ------------------------------------------------------------------ SHOT SYSTEM (hard cuts between camera set-ups)
   let povLamp = null, povFogL = [], povRev = null, povBeamG = null, povGrp = [], povG = null, povW = null, povHand = null, povTrees = [], povFlies = [], povBeam = null, povCone = [], povDark = null, povFog = [], otsG = null, crashG = null, curShot = null;
-  const HEADSZ = { vry: 150, grim: 250, kid: 150, bec: 120, cerberus: 340 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262], bec: [0, -262], cerberus: [424, -405] };
+  const HEADSZ = { vry: 150, grim: 250, kid: 150, bec: 120, cerberus: 340, apep: 400, thor: 230 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262], bec: [0, -262], cerberus: [424, -405], apep: [330, -250], thor: [8, -500] };
   function markerWorld(actor, name) {
     const d = TL.actors[actor]; if (!d || !d.rig || !d.rig.mk || !d.rig.mk[name]) return null;
     const m = d.rig.mk[name], c1 = m.getCTM(), c2 = layers.actors.getCTM(); if (!c1 || !c2) return null;
@@ -686,7 +691,7 @@
     switch (s.type) {
       case 'versus': { const a = TL.actors[s.a].pos, b = TL.actors[s.b].pos; if (a && b) { const ha = a.x + HEADOFF[TL.actors[s.a].kind][0] * a.flip * a.sc, hb = b.x + HEADOFF[TL.actors[s.b].kind][0] * b.flip * b.sc; cx = (ha + hb) / 2 + (s.dx || 0); const span = Math.abs(ha - hb) + (s.margin || 340); zoom = s.zoom || Math.min(s.maxZoom || 1.7, Math.max(s.minZoom || 1.2, 980 / span)); cy = s.cy || 960; } break; }
       case 'follow': { if (P) { cx = P.x + (s.dx || 0); cy = P.y + (s.dy === undefined ? -150 : s.dy); } break; }
-      case 'cu': case 'reaction': { if (P) { const o = HEADOFF[A.kind], sc = P.sc; cx = P.x + o[0] * P.flip * sc + (s.dx || 0); cy = P.y + o[1] * sc + (s.dy || 0); zoom = s.zoom || ((s.fill || 0.6) * 1080 / (HEADSZ[A.kind] * sc)); } break; }
+      case 'cu': case 'reaction': { if (P) { const o = HEADOFF[A.kind], sc = P.sc; cx = P.x + o[0] * P.flip * sc + (s.dx || 0); cy = P.y + o[1] * sc + (s.dy || 0); if (A.rig && A.rig.dynHead) { const hm = markerWorld(s.actor, 'head'); if (hm) { cx = hm.x + (s.dx || 0); cy = hm.y + (s.dy || 0); } } zoom = s.zoom || ((s.fill || 0.6) * 1080 / (HEADSZ[A.kind] * sc)); } break; }
       case 'ecu': { const mk = markerWorld(s.actor, s.at || 'eye'); if (mk) { cx = mk.x + (s.dx || 0); cy = mk.y + (s.dy || 0); } zoom = s.zoom || 5; break; }
       case 'low': { const x = s.x !== undefined ? s.x : (P ? P.x : 540), feet = P ? P.y : 1080; cx = x + (s.dx || 0); zoom = s.zoom || 1.6; cy = feet - ((s.ground || 0.88) * 1920 - 960) / zoom; sy = s.sy || 1.12; break; }
       case 'high': { const x = s.x !== undefined ? s.x : (P ? P.x : 540), feet = P ? P.y : 1080; cx = x + (s.dx || 0); zoom = s.zoom || 1.5; sy = s.sy || 0.74; cy = feet - ((s.ground || 0.62) * 1920 - 960) / (zoom * sy) ; break; }

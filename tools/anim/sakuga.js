@@ -11,6 +11,7 @@
   function linear(cols, x2 = 0, y2 = 1) { const id = gid('sgL'); const g = $('linearGradient', { id, x1: 0, y1: 0, x2, y2 }, C.defs); cols.forEach((c, i) => $('stop', { offset: i / Math.max(1, cols.length - 1), 'stop-color': c }, g)); return `url(#${id})`; }
   const P = (pts) => pts.map((q) => f2(q[0]) + ',' + f2(q[1])).join(' ');
   const FR = (t) => Math.floor(t * 30);
+  const sm01 = (x) => { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); };
 
   // ---------------------------------------------------------------- beams (shared by beam + beam-clash)
   // A beam = outer halo + mid body + vibrating white core + 2 lightning strands wrapped along it + head orb.
@@ -161,6 +162,30 @@
     runes(g, d, r) {            // floating rune stones
       for (let i = 0; i < 10; i++) { const x = -200 + i * 170 + r() * 60, y = 300 + r() * 450, s = 40 + r() * 40; const e = $('g', { 'data-float': i, 'data-x': x, 'data-y': y }, g); $('polygon', { points: P([[-s, -s * 1.3], [s * 0.8, -s * 1.5], [s, s * 1.2], [-s * 0.9, s * 1.4]]), fill: d.rock || '#1a1f3a' }, e); $('path', { d: `M${-s * 0.3} ${-s * 0.7} L${s * 0.2} 0 L${-s * 0.3} ${s * 0.7} M${s * 0.2} 0 L${s * 0.5} ${-s * 0.5}`, stroke: d.glow, 'stroke-width': 5, fill: 'none' }, e); }
     },
+    ruins(g, d, r) {            // desert ruins (ep #003): 3 dune layers, broken temple columns, toppled pharaoh head, obelisk
+      const rock = d.rock || '#241a2c', sand = d.sand || ['#33233a', '#2a1c33', '#21162b'], hz = d.horizon;
+      const dune = (amp, y0, col, seed, step) => { const pts = [[-1600, hz + 120]]; for (let x = -1600; x <= 2700; x += step) pts.push([x, y0 - amp * (0.55 + 0.45 * Math.sin(x * 0.0042 + seed) * Math.cos(x * 0.0017 + seed * 2.3)) - amp * 0.25 * Math.sin(x * 0.011 + seed * 5)]); pts.push([2700, hz + 120]); $('polygon', { points: P(pts), fill: col }, g); };
+      dune(190, hz - 20, sand[0], 1.3, 60);
+      // obelisk (far left) + temple pylon
+      { const x = 150, b = hz + 10, h = 860, w = 92; $('polygon', { points: P([[x - w / 2, b], [x - w * 0.34, b - h], [x, b - h - 70], [x + w * 0.34, b - h], [x + w / 2, b]]), fill: rock }, g);
+        $('polygon', { points: P([[x - w / 2, b], [x - w * 0.34, b - h], [x - w * 0.18, b - h], [x - w * 0.26, b]]), fill: '#fff', opacity: 0.05 }, g);
+        for (let i = 0; i < 6; i++) $('rect', { x: x - 10, y: b - h * (0.14 + i * 0.13), width: 20, height: 7, fill: d.glow, opacity: 0.5, 'data-pulse': i }, g); }
+      dune(120, hz + 10, sand[1], 4.1, 50);
+      // broken temple columns
+      const cols = [[330, 560], [470, 300], [640, 720], [1010, 420], [1130, 640]];
+      cols.forEach(([x, h], i) => { const b = hz + 30 + (i % 2) * 14, w = 84 + (i % 3) * 10; $('rect', { x: x - w / 2 - 12, y: b - 26, width: w + 24, height: 26, fill: rock }, g);
+        const top = b - h, pts = [[x - w / 2, b - 26], [x - w / 2, top + 20], [x - w * 0.2, top - 10 + 22 * r()], [x + w * 0.1, top + 12], [x + w * 0.3, top - 16 + 12 * r()], [x + w / 2, top + 26], [x + w / 2, b - 26]]; $('polygon', { points: P(pts), fill: rock }, g);
+        for (let k = -1; k <= 1; k++) $('rect', { x: x + k * 24 - 3, y: top + 40, width: 6, height: h - 80, fill: '#000', opacity: 0.2 }, g);
+        if (i % 2 === 0) { $('rect', { x: x - w / 2 - 14, y: top - 38, width: w + 28, height: 36, fill: rock }, g); for (let k = 0; k < 4; k++) $('rect', { x: x - w / 2 - 8 + k * (w + 16) / 4, y: top - 30, width: 10, height: 20, fill: d.glow, opacity: 0.35 }, g); }
+        else { const fx = x + 130 + 30 * r(), fb = hz + 70; $('polygon', { points: P([[fx - 70, fb], [fx - 60, fb - 56], [fx + 30, fb - 70], [fx + 70, fb - 20], [fx + 80, fb]]), fill: rock }, g); } });
+      // toppled pharaoh head (profile, nemes headdress), lying tilted on the sand
+      { const x = 840, y = hz + 40, tg = $('g', { transform: `translate(${x} ${y}) rotate(-24)` }, g);
+        $('polygon', { points: P([[-120, 20], [-110, -150], [-20, -210], [90, -170], [130, -60], [120, 20]]), fill: rock }, tg);
+        $('polygon', { points: P([[-120, -60], [-150, 30], [-110, 60], [-100, -20]]), fill: rock }, tg); $('polygon', { points: P([[60, -140], [112, -100], [120, -20], [96, 30], [64, -10]]), fill: rock }, tg);
+        for (let k = 0; k < 6; k++) $('line', { x1: -100 + k * 24, y1: -160 + k * 8, x2: -96 + k * 22, y2: 12, stroke: '#000', 'stroke-width': 4, opacity: 0.25 }, tg);
+        $('ellipse', { cx: 86, cy: -90, rx: 16, ry: 8, fill: d.glow, opacity: 0.6, 'data-pulse': 3 }, tg); $('polyline', { points: P([[10, -190], [30, -120], [10, -60], [34, 10]]), fill: 'none', stroke: '#000', 'stroke-width': 4, opacity: 0.35 }, tg); }
+      dune(80, hz + 40, sand[2], 7.7, 40);
+    },
     none() {},
   };
   function buildDomains() {
@@ -171,9 +196,18 @@
       const g = $('g', { display: 'none' }, L.domain); const o = { d, g };
       $('rect', { x: -1600, y: -1600, width: 4300, height: 1600 + d.horizon + 60, fill: linear(d.sky) }, g);
       $('ellipse', { cx: 540, cy: d.horizon - 160, rx: 1100, ry: 700, fill: radial(d.glow, [[0, 0.55], [0.5, 0.18], [1, 0]]) }, g);
+      if (d.eclipse) { const e = d.eclipse; o.ecl = { e, skyDark: $('rect', { x: -1600, y: -1600, width: 4300, height: 1600 + d.horizon + 60, fill: e.dark || '#07020f', opacity: 0 }, g) };
+        const x = e.x === undefined ? 540 : e.x, y = e.y === undefined ? 420 : e.y, R = e.r || 120; o.ecl.x = x; o.ecl.y = y; o.ecl.R = R;
+        o.ecl.glare = $('circle', { cx: x, cy: y, r: R * 3.4, fill: radial(e.sun || '#ffe9a8', [[0, 0.7], [0.3, 0.25], [1, 0]]) }, g);
+        o.ecl.cor = $('g', { opacity: 0 }, g); o.ecl.corG = $('circle', { cx: x, cy: y, r: R * 3.6, fill: radial(e.corona || '#d8c8ff', [[0, 0.95], [0.3, 0.5], [1, 0]]) }, o.ecl.cor);
+        o.ecl.rays = Array.from({ length: 28 }, (_, i) => $('polygon', { fill: i % 3 ? (e.corona || '#d8c8ff') : '#fff', opacity: 0.55 }, o.ecl.cor));
+        o.ecl.sun = $('circle', { cx: x, cy: y, r: R, fill: e.sun || '#fff3c4' }, g); o.ecl.moon = $('circle', { cx: x, cy: y, r: R * 1.025, fill: e.moon || '#05030a' }, g);
+        o.ecl.ring = $('circle', { cx: x, cy: y, r: R * 1.04, fill: 'none', stroke: e.corona || '#d8c8ff', 'stroke-width': 4, opacity: 0 }, g); }
       o.motif = $('g', {}, g); MOTIF[d.motif](o.motif, d, r);
+      if (o.ecl) o.ecl.gDark = null;
       $('rect', { x: -1600, y: d.horizon + 40, width: 4300, height: 3000, fill: linear(d.floor) }, g);
       $('ellipse', { cx: 540, cy: d.horizon + 220, rx: 900, ry: 120, fill: radial(d.glow, [[0, 0.35], [1, 0]]) }, g);
+      if (o.ecl) o.ecl.gDark = $('rect', { x: -1600, y: -1600, width: 4300, height: 1600 + d.horizon + 3000, fill: o.ecl.e.dark || '#07020f', opacity: 0 }, g);
       if (d.sigil) { o.sig = $('g', {}, g); const sg = $('g', {}, o.sig); o.sigIn = sg; $('ellipse', { cx: 0, cy: 0, rx: 420, ry: 420, fill: 'none', stroke: d.sigil, 'stroke-width': 6, opacity: 0.7 }, sg); $('ellipse', { cx: 0, cy: 0, rx: 340, ry: 340, fill: 'none', stroke: d.sigil, 'stroke-width': 3, 'stroke-dasharray': '30 18', opacity: 0.7 }, sg); for (let i = 0; i < 6; i++) { const a = i / 6 * 6.283, b = (i + 2) / 6 * 6.283; $('line', { x1: f2(Math.cos(a) * 340), y1: f2(Math.sin(a) * 340), x2: f2(Math.cos(b) * 340), y2: f2(Math.sin(b) * 340), stroke: d.sigil, 'stroke-width': 3, opacity: 0.6 }, sg); } for (let i = 0; i < 24; i++) { const a = i / 24 * 6.283; $('rect', { x: f2(Math.cos(a) * 380 - 6), y: f2(Math.sin(a) * 380 - 14), width: 12, height: 28, fill: d.sigil, opacity: 0.8, transform: `rotate(${f2(a * 57.3 + 90)} ${f2(Math.cos(a) * 380)} ${f2(Math.sin(a) * 380)})` }, sg); } }
       o.mist = Array.from({ length: 7 }, (_, i) => $('ellipse', { cx: 0, cy: d.horizon + 60 + i * 60, rx: 520 + r() * 300, ry: 46, fill: radial(d.mist || '#8e98c8', [[0, 0.22], [1, 0]]) }, g));
       o.motes = Array.from({ length: 26 }, (_, i) => ({ e: $('circle', { r: 3 + (i % 3) * 2, fill: d.motes || d.glow }, g), x: -100 + r() * 1300, ph: r(), sp: 0.08 + r() * 0.12 }));
@@ -183,6 +217,10 @@
   function updateDomains(t, sc) {
     if (!C.domainG) return; const key = sc && sc.startsWith('domain-') ? sc.slice(7) : null;
     for (const k in C.domainG) { const o = C.domainG[k], on = k === key; o.g.setAttribute('display', on ? 'inline' : 'none'); if (!on) continue; const d = o.d;
+      if (o.ecl) { const E = o.ecl, k = clamp(C.trk(E.e.track || 'eclipse', t, 0)), off = (1 - k) * E.R * 2.7 * (E.e.dir || 1), tot = sm01((k - 0.86) / 0.14);
+        E.moon.setAttribute('cx', f2(E.x - off)); E.moon.setAttribute('cy', f2(E.y + (1 - k) * E.R * 0.35)); E.skyDark.setAttribute('opacity', f2(0.78 * Math.pow(k, 1.3))); E.gDark.setAttribute('opacity', f2(0.55 * Math.pow(k, 1.5)));
+        E.glare.setAttribute('opacity', f2(clamp(1 - k * 1.05) * 0.9)); E.sun.setAttribute('opacity', f2(1)); E.ring.setAttribute('opacity', f2(tot * 0.7)); E.cor.setAttribute('opacity', f2(tot * (0.85 + 0.15 * Math.sin(t * 5))));
+        E.rays.forEach((p, i) => { const a = i / E.rays.length * 6.283 + 0.2 * Math.sin(t * 0.6 + i), len = E.R * (1.4 + 2.6 * hash(i * 3.1 + 1)) * (1 + 0.1 * Math.sin(t * 4 + i * 2)), w = E.R * 0.09 * (1 + hash(i)); const c = Math.cos(a), s2 = Math.sin(a); p.setAttribute('points', P([[E.x + c * E.R * 1.02 - s2 * w, E.y + s2 * E.R * 1.02 + c * w], [E.x + c * len, E.y + s2 * len], [E.x + c * E.R * 1.02 + s2 * w, E.y + s2 * E.R * 1.02 - c * w]])); }); }
       if (o.sig) { o.sig.setAttribute('transform', `translate(540 ${d.horizon + 230}) scale(1 0.22)`); o.sigIn.setAttribute('transform', `rotate(${f2(t * 14)})`); }
       o.mist.forEach((e, i) => e.setAttribute('cx', f2(((i * 517 + t * (12 + i * 3)) % 2600) - 700)));
       o.motes.forEach((m) => { const q = (t * m.sp + m.ph) % 1; m.e.setAttribute('cx', f2(m.x + 20 * Math.sin(t + m.ph * 9))); m.e.setAttribute('cy', f2(d.horizon + 300 - q * 1300)); m.e.setAttribute('opacity', f2(Math.sin(q * Math.PI) * 0.8)); });

@@ -68,7 +68,7 @@ Ghi chú: bảng có 5 dòng, mỗi dòng có nguồn. Dòng nhật thực chỉ
 ## 10. Nguồn
 Các link dưới đây đều lấy từ kết quả WebSearch. Trạng thái: **tóm tắt** = chỉ có đoạn snippet; **không mở được** = WebFetch thất bại do DNS.
 
-- [S1] Wikipedia, "Apep": https://en.wikipedia.com/wiki/Apep (link trong kết quả tìm kiếm; cũng có https://wikipedia.com/wiki/Apep). Trạng thái: tóm tắt tìm kiếm; trang gốc **không mở được** (en.wikipedia.org không resolve).
+- [S1] Wikipedia, "Apep": https://en.wikipedia.org/wiki/Apep (link trong kết quả tìm kiếm; cũng có https://en.wikipedia.org/wiki/Apep). Trạng thái: tóm tắt tìm kiếm; trang gốc **không mở được** (en.wikipedia.org không resolve).
 - [S2] World History Encyclopedia, "Apophis": https://www.worldhistory.org/Apophis/. Trạng thái: tóm tắt tìm kiếm; trang **không mở được**.
 - [S3] British Museum, object EA 10188-13 (Bremner-Rhind papyrus): https://www.britishmuseum.org/collection/object/Y_EA10188-13. Trạng thái: chỉ có trong kết quả tìm kiếm; **không mở được**.
 - [S4] sacred-texts.com, Budge "Legends of the Gods" (leg04): https://sacred-texts.com/egy/leg/leg04.htm. Trạng thái: kết quả tìm kiếm cho thấy đây là trang Budge, không chứa bản dịch đầy đủ sách Apep; **không mở được**.
@@ -78,7 +78,7 @@ Các link dưới đây đều lấy từ kết quả WebSearch. Trạng thái: 
 - [S8] Geraldine Pinch, *Handbook of Egyptian Mythology* (PDF): https://archive.org/download/handbook-of-egyptian-mythology-by-geraldine-pinch/Handbook%20of%20Egyptian%20Mythology%20by%20Geraldine%20Pinch.pdf. Trạng thái: chỉ có trong kết quả; chưa đọc.
 - [S9] Attalus, "Apep": https://www.attalus.org/egypt/apep.html. Trạng thái: chỉ có trong kết quả; chưa đọc.
 - [S10] Intertextual.bible, "Book of Overthrowing Apophis": https://intertextual.bible/book/book-of-overthrowing-apophis. Trạng thái: chỉ có trong kết quả; chưa đọc.
-- [S11] Wikipedia, "Set (deity)": https://EN.wikipedia.com/wiki/Setekh. Trạng thái: chỉ có trong kết quả; chưa đọc (dùng cho chi tiết Set đâm giáo).
+- [S11] Wikipedia, "Set (deity)": https://en.wikipedia.org/wiki/Set_(deity). Trạng thái: chỉ có trong kết quả; chưa đọc (dùng cho chi tiết Set đâm giáo).
 
 **Số nguồn có tóm tắt từ kết quả tìm kiếm: ≥ 3** (S1, S2, S6, S7, S8, S10). Chưa có nguồn nào được mở đầy đủ. Cổng 1 nên yêu cầu mở lại S2, S3, S4 khi có quyền domain.
 

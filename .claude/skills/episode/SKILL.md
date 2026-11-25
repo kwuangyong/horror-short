@@ -1,48 +1,42 @@
 ---
 name: episode
-description: Boss (Opus) sản xuất trọn một tập "Battle Spin" (Guardian vs Monster, hoạt hình cutout có góc quay kiểu phim) bằng đội agent scout (Haiku), writer (Sonnet), producer (Sonnet). Dùng khi người dùng gõ /episode <monster> vs <guardian> hoặc yêu cầu làm một tập mới.
-argument-hint: <monster> vs <guardian> [--ending A|B] [--until script|audio|render]
+description: Boss (Opus) sản xuất trọn một tập "Battle Spin" (Monster vs Guardian, hoạt hình khớp xương SVG, Sakuga Cinematic) bằng đội agent scout (Haiku), writer (Sonnet), producer (Sonnet). Dùng khi người dùng gõ /episode <monster> vs <guardian> hoặc yêu cầu làm một tập mới.
+argument-hint: <monster> vs <guardian> [--until script|audio|render]
 ---
 
 Bạn là **Boss**. Làm một tập Battle Spin cho: **$ARGUMENTS**
 
-Đọc trước (bắt buộc): `docs/07-format-battle-spin.md` (luật nền), **`docs/08-he-thong-bien-the.md` (chọn tổ hợp biến thể, sức mạnh từ truyện gốc, tạo hình)**, `episodes/_registry.md` (tổ hợp đã dùng), `docs/research/anime-power-techniques.md` (kỹ thuật khoe sức mạnh), `CLAUDE.md` (quy trình 3 cổng), `tools/anim/README.md` (engine hoạt hình). Tập mẫu: `episodes/vrykolakas-vs-church-grim/`.
+Đọc trước (bắt buộc): `docs/07-format-battle-spin.md` (luật nền), `docs/08-he-thong-bien-the.md` (tổ hợp biến thể, sức mạnh có nguồn, tạo hình), `docs/09-kho-nhan-vat.md` (phạm vi nhân vật), `episodes/_registry.md`, `docs/research/anime-power-techniques.md`, `CLAUDE.md` (3 cổng), `tools/anim/README.md`. Mẫu timeline đúng luật: `tools/anim/demo/sakuga_demo.js`. Mẫu âm thanh: `episodes/black-eyed-children-vs-cerberus/audio-anim/`.
 
-## 0. Chọn cặp và kiểu kết
-- Nếu thiếu monster hoặc guardian: chọn từ vòng gợi ý trong docs/07 mục 4, ưu tiên cặp có **xung đột lore tự nhiên** và chưa dùng ở tập trước (xem `episodes/`).
-- Kết A (guardian thắng + monster hồi sinh lấp ló) hoặc Kết B (monster thắng + guardian giải thoát bé + "Do you think the kid survived?"). Không có `--ending` thì Boss chọn theo lore.
-- Đặt `<slug>` = `<monster>-vs-<guardian>` (kebab-case).
+## 0. Chọn cặp
+- Cả hai nhân vật phải nằm trong `docs/09` (thần thoại / truyền thuyết / truyền thuyết đô thị phương Tây + Nhật Bản). Nhân vật ngoài phạm vi (Việt Nam, châu Á khác, có bản quyền, tín ngưỡng sống) → từ chối và đề xuất cặp trong docs/09 mục 4.
+- Thiếu monster hoặc guardian: chọn cặp có xung đột lore tự nhiên, chưa dùng.
+- `<slug>` = `<monster>-vs-<guardian>` (kebab-case).
 
 ## 0b. Chọn tổ hợp biến thể
-Chọn 1 ô mỗi bảng A–F trong docs/08 theo luật chống lặp, khớp lore cặp đấu; thêm dòng vào `episodes/_registry.md`. `--ending` cũ (A/B) chỉ là gợi ý cho bảng A/B/C.
+Chọn 1 ô mỗi bảng A–F trong docs/08 theo luật chống lặp (không trùng A/B/C trong 3 tập liên tiếp, không lặp A+B+C, E/F khác tập trước), khớp lore. Thêm dòng vào `episodes/_registry.md` với Format = `sakuga`.
 
 ## 1. Brief
-Tạo `episodes/<slug>/00-brief.md`: cặp đấu, lý do chọn, lore dùng ở R2 (giới hạn guardian) và R3 (điểm yếu monster), kiểu kết + cú lửng (điều kiện lore bị bỏ sót, monster phải **lộ diện**), nơi bé lạc vào, thoại cuối guardian ↔ bé dự kiến.
+`episodes/<slug>/00-brief.md`: cặp đấu, lý do chọn, tổ hợp A–F; khoảnh khắc hook (theo ô E); lãnh địa của mỗi bên (motif, màu); chiến trường duy nhất + địa hình monster trồi lên; danh sách sức mạnh dự kiến (≥ 3 mỗi bên); giới hạn guardian + điểm yếu monster; số phận bé + chỗ nấp; cú lửng (điều kiện lore, lộ diện bằng hình); nội dung 2 màn tự giới thiệu.
 
 ## 2. Trinh sát (song song, một lượt)
-- Nếu cặp đã có trong `episodes/_format-dual-spin/01-research-*.md` với độ tin cậy ≥ TB: dùng luôn, chỉ giao `scout` phần còn thiếu.
-- Nếu chưa: `scout` loại `lore` cho monster + `scout` loại `lore` cho guardian → `episodes/<slug>/01-research.md`.
-- Research phải có **bảng sức mạnh có nguồn** cho cả hai nhân vật (docs/08 mục G).
-- **Cổng 1**: ≥ 3 nguồn, mỗi sức mạnh dùng trong tập có nguồn, có điểm yếu monster + giới hạn guardian, không vướng bản quyền/nhạy cảm (docs/07 mục 4).
+- `scout` loại `lore` cho monster + `scout` loại `lore` cho guardian → `episodes/<slug>/01-research.md` và **`01-research-powers.md`** (bảng: sức mạnh · nguồn + link · hình ảnh hóa bằng fx nào · giới hạn). Dùng lại phần có sẵn trong `episodes/_format-dual-spin/01-research-*.md`.
+- **Cổng 1**: ≥ 3 nguồn; mỗi bên ≥ 3 sức mạnh có link; điểm yếu + giới hạn; trong phạm vi docs/09.
 
 ## 3. Kịch bản
-Giao `writer` viết `episodes/<slug>/script-anim.md` theo docs/07 mục 2, 3, 5, 6 và lấy `episodes/vrykolakas-vs-church-grim/script-anim.md` làm mẫu định dạng: mỗi câu `>` có `[SHOT]` + `[ANIM]`; thoại nhân vật theo cú pháp `(grim's voice …)` / `(kid's voice …)` mà `tools/narration.py` tách được; mục `## SHOT LIST` (30–35 cảnh) và `## ANIMATION BEAT SHEET`; kèm `hooks.md` (3 hook, 3 tiêu đề, mô tả + hashtag).
-**Cổng 2** (Boss tự đọc toàn bộ lời dẫn, ghi `review.md`), chấm mỗi mục 0–2:
-| Hook | Mạch lạc (câu liền ý, có từ nối) | Lore (R2 dùng giới hạn guardian, R3 dùng điểm yếu đã cài) | Phân cảnh (180°, match-on-action, không bị đứt) | Kết lửng đúng kiểu A/B + an toàn |
-Dưới 8 → trả `writer` (tối đa 3 vòng). Dừng ở đây nếu `--until script`.
+Giao `writer` viết `episodes/<slug>/script-anim.md` + `hooks.md` theo `.claude/agents/writer.md`.
+**Cổng 2** (Boss tự đọc toàn bộ, ghi `review.md`), chấm theo bảng 5 mục trong `CLAUDE.md`. Dưới 8 → trả `writer` (tối đa 3 vòng). Dừng ở đây nếu `--until script`.
 
 ## 4. Âm thanh
-Giao `producer` làm `episodes/<slug>/audio-anim/` theo docs/07 mục 7, tái dùng script trong `episodes/vrykolakas-vs-church-grim/audio-anim/` (make_voice.py, post_voice.py, make_music.py, mix_test.sh): voice_dark.wav 90–98 s, thoại guardian và bé bằng giọng riêng, words.json, sections.json, captions.ass, music.wav (cue theo mốc), mix-test.mp3 −14 LUFS, README.md.
-edge-tts cần environment cho phép `speech.platform.bing.com` (environment `horror-short`); nếu bị chặn, đọc `read_documentation` topic `environment.network` rồi đề xuất mở host đó.
+Giao `producer` làm `episodes/<slug>/audio-anim/` theo docs/07 mục 6: lời dẫn rate +35–40%, nghỉ 0.15–0.25 s; giọng intro đa tầng cho mỗi nhân vật; trống ~155 BPM + beam SFX; nhạc tắt trước câu thì thầm cuối; words.json, captions; mix-test.mp3 −14 LUFS.
+edge-tts cần host `speech.platform.bing.com`; nếu bị chặn, đọc `read_documentation` topic `environment.network` rồi đề xuất mở host đó.
 Gửi `mix-test.mp3` cho người dùng nghe. Dừng ở đây nếu `--until audio`.
 
 ## 5. Dựng hoạt hình
-Giao `producer` viết `episodes/<slug>/anim/make_timeline.js` (sinh timeline từ words.json bằng `cutOnWord`/`cueOnWord`, đủ shots/cues/props/scenes/hud/splits theo SHOT LIST) và `episodes/<slug>/build-anim.sh` (theo mẫu `build-anim-v5.sh` của tập #001), rồi dựng:
-- `build/anim/<slug>.mp4` (1080x1920, 30 fps), `preview/<slug>.mp4` (< 15 MB), `preview/<slug>-sheet.jpg` (20 khung theo thứ tự thời gian), `qc-anim.md`.
-- Nếu monster/guardian chưa có rig trong `tools/anim/rigs.js`: producer phải thêm rig mới (cùng phong cách, các action trong beat sheet) và silhouette cho split roll, xuất một turnaround PNG để Boss duyệt trước khi dựng cả tập.
-**Cổng 3** (Boss xem sheet + khung tại các mốc: split roll lock, monster xuất hiện, guardian chắn, R2 lật kèo, monster quay sang bé, R3, K.O., thoại cuối, cú lửng): lỗi lời/hình → producer; lỗi nội dung → writer.
+Giao `producer`: rig mới nếu thiếu (turnaround cho Boss duyệt trước) → `episodes/<slug>/anim/make_timeline.js` (theo `sakuga_demo.js`) → `--check` = `180-RULE OK` → `build-anim.sh` → `preview/<slug>.mp4` (< 15 MB), `preview/<slug>-sheet.jpg`, `qc-anim.md`.
+**Cổng 3**: xem các mốc trong bảng "Cổng 3" của `CLAUDE.md`. Thời lượng 70–85 s, 50–56 cảnh. Lỗi hình → producer; lỗi nội dung → writer.
 
 ## 6. Chốt
-Commit + push lên nhánh làm việc. Gửi `preview/<slug>.mp4` cho người dùng bằng SendUserFile. Báo (≤ 15 dòng): thời lượng, LUFS, số cảnh, kiểu kết, điểm Cổng 2, điểm còn yếu, lệnh dựng lại.
+Commit + push lên nhánh làm việc. Gửi `preview/<slug>.mp4` cho người dùng bằng SendUserFile. Báo (≤ 15 dòng): thời lượng, LUFS, số cảnh, tổ hợp A–F, điểm Cổng 2, điểm còn yếu, lệnh dựng lại.
 
-Giữ người dùng cập nhật một dòng sau mỗi cổng.
+Báo người dùng một dòng sau mỗi cổng.

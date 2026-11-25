@@ -91,7 +91,7 @@ Chỉ làm tới kịch bản (chưa dựng):
 Gọi lẻ từng agent khi cần:
 
 ```text
-Dùng scout tìm 5 SFX tiếng nước nhỏ giọt CC0 cho tập ma-da
+Dùng scout tìm 5 SFX tiếng nước nhỏ giọt CC0 cho tập kelpie-vs-church-grim
 ```
 
 ## Mở rộng sau này

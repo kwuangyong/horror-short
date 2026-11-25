@@ -50,7 +50,7 @@ Các mẫu dưới đây rút từ kết quả tìm kiếm và bài hướng d�
 ## Khoảng trống cơ hội
 
 1. Dual-wheel đối đầu (quái ngẫu nhiên vs hộ vệ ngẫu nhiên) với kết quả khắc chế/yếu thế rõ: chưa thấy ai làm dạng Short. Có thể là khung "tập" lặp lại được.
-2. Hộ vệ có nguồn gốc Đông Á/Việt Nam (thần bảo hộ, linh thú, bùa, tổ tiên) đối đầu quái Latin/Âu/Nhật: các kênh tìm được chủ yếu dùng quái Âu-Mỹ (Halloween, Minecraft). Khoảng trống rõ ở góc nhìn văn hóa.
+2. ~~Hộ vệ Đông Á/Việt Nam~~ (ngoài phạm vi từ 2026-11-25: chỉ phương Tây + Nhật, xem docs/09).
 3. Kinh dị người lớn có vòng quay: mảng hiện nay bị chiếm bởi kids Shorts (nhẹ) và Monster School (dài, Minecraft). Short kinh dị dân gian có vòng quay có vẻ chưa có chủ.
 4. Bộ luật sống sót đi kèm vòng quay: kết hợp "rules horror" với roulette là ý chưa thấy trong kết quả. Mỗi tập là một bộ luật do hộ vệ quyết định.
 5. Cú twist theo khắc chế: hộ vệ "thua" một cách có chủ đích (không xúc phạm thần, theo ràng buộc brief) có thể làm khác biệt khi đa số kênh chỉ để quái thắng hoặc người thắng ngẫu nhiên.

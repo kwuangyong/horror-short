@@ -3,6 +3,8 @@
 Mục đích: áp dụng cho hoạt hình cutout flat-vector 2D (SVG rig, render từng khung) trong format Battle Spin (docs/07).
 Trạng thái: nghiên cứu bằng tìm kiếm web. Nhiều trang không tải được (xem mục "Tình trạng nguồn" cuối file), nên các dòng có "CHƯA XÁC MINH" chỉ dựa trên kiến thức chung, cần kiểm lại trước khi trích dẫn.
 
+> **Đã có trong engine (`tools/anim/sakuga.js`, 2026-11-25):** `beam` (mục beam/kamehameha), `beam-clash` (#17), `orbs`, `slash`, `pillar`, `glint` (mắt lóe), aura + rim light, letterbox `cinema`, `embers`, domain + địa hình trồi lên. Cách dùng: `tools/anim/README.md` mục "Sakuga Cinematic".
+
 Cách đọc bảng: cột **Nguồn** là mã [Sn] ở mục "Nguồn". "—" nghĩa là không có nguồn trong kết quả tìm được. Tên tác phẩm trong cột "Ví dụ" chỉ dùng để tham chiếu, không chép hình.
 
 ## 1. Khung hình & camera

@@ -52,7 +52,7 @@
 
 - **Flat vector 2D** (không có nét viền, đổ bóng phẳng, gradient nhẹ), nhân vật đơn giản kiểu "minimal cartoon". Dễ sản xuất hàng loạt và dễ giữ đồng bộ giữa các tập.
 - **Bảng màu**: xanh navy đêm (#1b2140 ~ #2a3159), đỏ rượu vang/đỏ tía (#5a1a2e ~ #8c2a45) cho cảnh căng thẳng, trắng ngà cho con ma, đỏ tươi (#e3262f) làm màu nhấn.
-- **Chuyển động** chủ yếu là: zoom chậm (Ken Burns), trượt ngang, rung nhẹ (camera shake), nhấp nháy đèn, vignette co lại, nhân vật xuất hiện/tiến gần dần. Gần như không có hoạt hình nhân vật phức tạp → **chi phí thấp**.
+- **Chuyển động** (của video mẫu, KHÔNG áp dụng cho Battle Spin: xem docs/07) chủ yếu là: zoom chậm (Ken Burns), trượt ngang, rung nhẹ (camera shake), nhấp nháy đèn, vignette co lại, nhân vật xuất hiện/tiến gần dần. Gần như không có hoạt hình nhân vật phức tạp → **chi phí thấp**.
 - **Lớp giao diện (HUD) cố định trên cùng**: nhãn đỏ "HORROR SPIN · LA LLORONA" + đồng hồ **1:13 AM → 1:17 AM** chạy theo truyện. Đồng hồ đóng vai trò *thanh tiến trình* ngầm, cho người xem cảm giác "sắp đến lúc".
 - **Đồ họa thông tin (infographic) chen giữa**: thẻ RULE, hộp THE TRICK, thanh đo CRYING, bộ đếm DON'T BREATHE, dấu BROKEN. Đây là điểm khác biệt lớn so với các video kinh dị đọc truyện thông thường – chúng biến câu chuyện thành "game" và làm mắt luôn có thứ mới để nhìn mỗi 2–4 giây.
 

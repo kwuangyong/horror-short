@@ -3,7 +3,7 @@
 (function (G) {
   const { $, clamp, lerp, ease, EASE, mulberry, rgb, mixc, hash, f2, ACTIONS, RIGS, setSil } = G;
   const W = 1080, H = 1920, GROUND = 880;
-  let TL = null, svg, defs, arena, layers = {}, fxList = [], textList = [], flashEl, tintEl, blackEl, glitchG, vigEl, splits = [], hud = null, props = [], room = {}, scenesCache = null;
+  let TL = null, svg, defs, arena, layers = {}, fxList = [], textList = [], flashEl, tintEl, blackEl, glitchG, vigEl, splits = [], props = [], room = {}, scenesCache = null;
 
   // ------------------------------------------------------------------ helpers
   const mixP = (a, b, w) => { const o = {}; for (const k in a) { const x = a[k], y = b[k] === undefined ? x : b[k]; o[k] = Array.isArray(x) ? x.map((v, i) => lerp(v, y[i], w)) : lerp(x, y, w); } return o; };
@@ -343,6 +343,7 @@
       room.blanket.setAttribute('transform', `translate(${f2(trk('blanket', t, 0))} ${f2(trk('blanketY', t, 0))}) rotate(${f2(trk('blanketR', t, 0))} 600 1000)`);
     }
     updateCabin(t, sc);
+    if (G.SAKUGA) G.SAKUGA.updateDomains(t, sc);
     if (sc === 'church') { layers.spirit.setAttribute('opacity', f2(0.7 + 0.3 * Math.sin(t * 2.1))); const o = trk('dogEye', t, 0); layers.dogEyeLid.setAttribute('height', f2(32 * (1 - o))); layers.dogEye.setAttribute('opacity', clamp(o * 1.2)); }
     return sc;
   }
@@ -370,6 +371,7 @@
       if (p.type === 'lyre') { $('path', { d: 'M-46 -90 Q-60 20 -30 60 L30 60 Q60 20 46 -90 L38 -90 Q48 10 24 46 L-24 46 Q-48 10 -38 -90Z', fill: '#6a4a38' }, g); $('rect', { x: -52, y: -100, width: 104, height: 12, rx: 5, fill: '#8a6448' }, g); o.strings = []; for (let i = 0; i < 6; i++) o.strings.push($('path', { stroke: '#e8d8b0', 'stroke-width': 2, fill: 'none' }, g)); o.glow = $('circle', { cx: 0, cy: -20, r: 130, fill: 'url(#gRed)', opacity: 0 }, g); }
       if (p.type === 'torch') { o.beam = $('polygon', { points: '40,0 400,-60 400,60', fill: '#fff0aa', opacity: 0.2 }, g); $('rect', { x: -60, y: -20, width: 100, height: 40, rx: 12, fill: '#3e466a' }, g); $('rect', { x: -60, y: -20, width: 100, height: 8, rx: 4, fill: '#6a74a0' }, g); $('rect', { x: -10, y: -20, width: 14, height: 40, fill: '#c4121f' }, g); $('rect', { x: 28, y: -28, width: 34, height: 56, rx: 8, fill: '#4a5482' }, g); $('ellipse', { cx: 64, cy: 0, rx: 6, ry: 22, fill: '#fff6c8' }, g); $('circle', { cx: 70, cy: 0, r: 60, fill: 'url(#gGold)', opacity: 0.7 }, g); }
       if (p.type === 'flashlight') { $('rect', { x: -6, y: -30, width: 12, height: 34, rx: 4, fill: '#3e466a' }, g); $('rect', { x: -9, y: -42, width: 18, height: 14, rx: 4, fill: '#fff0aa' }, g); }
+      if (G.SAKUGA && G.SAKUGA.hasProp(p.type)) G.SAKUGA.buildProp(o);
       props.push(o);
     }
   }
@@ -381,6 +383,7 @@
       let tx = x;
       if (p.follow && TL.actors[p.follow] && TL.actors[p.follow].pos) tx = TL.actors[p.follow].pos.x + (p.dx || 0);
       o.g.setAttribute('transform', `translate(${f2(tx)} ${f2(y)}) scale(${f2(sc_)})`);
+      if (G.SAKUGA && G.SAKUGA.hasProp(p.type)) G.SAKUGA.updateProp(o, t);
       if (p.type === 'tomb') o.glow.setAttribute('opacity', trk(p.glowTrack || 'inscr', t, 0));
       if (p.type === 'garlic') o.sway.forEach(([s, i]) => s.setAttribute('transform', `rotate(${f2(3 * Math.sin(t * 1.6 + i))})`));
       if (p.type === 'ring') { const r = trk(p.track || 'ring', t, 0), rx = 40 + 300 * r, pulse = 1 + 0.04 * Math.sin(t * 5); o.g.setAttribute('opacity', clamp(r * 3)); for (const [e, k] of [[o.fill, 1], [o.ring, 1], [o.ring2, 0.82]]) { e.setAttribute('rx', f2(rx * pulse * k)); e.setAttribute('ry', f2(rx * pulse * k * 0.18)); } }
@@ -412,6 +415,7 @@
     for (const name in TL.actors) {
       const d = TL.actors[name], rig = RIGS[d.kind](d.variant || 0); const wrap = $('g', {}, layers.actors); wrap.__z = d.z || 0; wrap.appendChild(rig.root);
       d.rig = rig; d.wrap = wrap; d.cues = TL.cues.filter((c) => c.actor === name).sort((a, b) => a.t0 - b.t0);
+      if (G.SAKUGA) G.SAKUGA.setupActor(d);
     }
   }
   function poseFor(d, ta) {
@@ -440,6 +444,7 @@
       if (cr) { const id = 'clipRct_' + name; let cp = document.getElementById(id); if (!cp) { cp = $('clipPath', { id, clipPathUnits: 'userSpaceOnUse' }, defs); $('rect', {}, cp); } const rc = cp.firstChild; rc.setAttribute('x', cr[0]); rc.setAttribute('y', cr[1]); rc.setAttribute('width', cr[2]); rc.setAttribute('height', cr[3]); d.wrap.setAttribute('clip-path', `url(#${id})`); }
       setSil(d.rig, clamp(track(a, 'sil', ta, 0)), '#07040a');
       d.pos = { x, y, flip, sc };
+      if (G.SAKUGA) G.SAKUGA.updateActor(d, ta);
     }
     // z-order of actors + props + blanket
     const els = Array.from(layers.actors.children); els.sort((p, q) => (p.__z || 0) - (q.__z || 0)); els.forEach((e) => layers.actors.appendChild(e));
@@ -448,6 +453,7 @@
   // ------------------------------------------------------------------ fx
   function buildFx() {
     for (const f of (TL.fx || [])) {
+      if (f.dur === undefined) f.dur = { beam: 1.2, 'beam-clash': 2.4, orbs: ((f.n || 5) - 1) * (f.stagger || 0.12) + (f.fly || 0.55) + 0.5, slash: (f.fly || 0.32) + 0.55, pillar: 0.75, glint: 0.5 }[f.type];
       const r = mulberry((f.seed || 1) * 977 + Math.round(f.t0 * 100)); const grp = $('g', { display: 'none' }, layers.fx); const it = { f, grp, parts: [] };
       const fill = f.fill || 'url(#gFog)';
       if (f.type === 'dust' || f.type === 'powder') for (let i = 0; i < (f.n || 14); i++) { const e = $('circle', { r: 1, fill: f.type === 'powder' ? 'url(#gSmoke)' : fill }, grp); it.parts.push({ e, vx: (r() - 0.5) * (f.spread || 380), vy: -(30 + r() * 90), r0: 14 + r() * 20, r1: 40 + r() * 50, dx: (r() - 0.5) * 120 }); }
@@ -461,6 +467,7 @@
       if (f.type === 'impact') { it.star = $('polygon', { fill: '#fff' }, grp); it.ring = $('circle', { fill: 'none', stroke: '#ffd9dc', 'stroke-width': 10 }, grp); it.core = $('circle', { fill: 'url(#gWhite)' }, grp);
         for (let i = 0; i < 14; i++) it.parts.push({ e: $('polygon', { fill: i % 3 ? '#fff' : '#ff4a56' }, grp), a: r() * 6.283, l0: 90 + r() * 80, l1: 220 + r() * 260, w: 7 + r() * 8 }); }
       if (f.type === 'speed') for (let i = 0; i < (f.n || 22); i++) it.parts.push({ e: $('polygon', { fill: '#fff' }, grp), a: (i / (f.n || 22)) * 6.283 + r() * 0.2, l0: 160 + r() * 120, l1: 420 + r() * 360, w: 5 + r() * 7 });
+      if (G.SAKUGA && G.SAKUGA.hasFx(f.type)) G.SAKUGA.buildFx(it);
       fxList.push(it);
     }
   }
@@ -469,6 +476,7 @@
       const f = it.f, lt = t - f.t0, dur = f.dur || 1, u = lt / dur;
       if (lt < 0 || u > 1) { it.grp.setAttribute('display', 'none'); continue; }
       it.grp.setAttribute('display', 'inline'); const X = f.x, Y = f.y;
+      if (G.SAKUGA && G.SAKUGA.hasFx(f.type)) { G.SAKUGA.updateFx(it, t); continue; }
       if (f.type === 'dust' || f.type === 'powder') it.parts.forEach((p) => { const e = EASE.outCubic(u); p.e.setAttribute('cx', f2(X + p.dx + p.vx * e)); p.e.setAttribute('cy', f2(Y + p.vy * e * 1.4)); p.e.setAttribute('r', f2(lerp(p.r0, p.r1, e))); p.e.setAttribute('opacity', f2(1.6 * (1 - u))); });
       if (f.type === 'smoke') it.parts.forEach((p) => { const life = 1.1, q = ((lt - p.d * 0.9) / life); const qq = q - Math.floor(q); const act = lt - p.d * 0.9 > 0; p.e.setAttribute('cx', f2(X + p.dx + p.vx * qq)); p.e.setAttribute('cy', f2(Y - 160 * qq)); p.e.setAttribute('r', f2(10 + p.r1 * qq)); p.e.setAttribute('opacity', act ? f2(0.9 * Math.sin(qq * Math.PI) * (1 - u * 0.4)) : 0); });
       if (f.type === 'soil') it.parts.forEach((p) => { p.e.setAttribute('transform', `translate(${f2(X + p.vx * lt)} ${f2(Y + p.vy * lt + 1500 * lt * lt)}) rotate(${f2(p.rot * lt)})`); p.e.setAttribute('opacity', clamp(1.4 - u * 1.4)); });
@@ -575,13 +583,18 @@
     const fade = cfg.fadeIn ? clamp((t - t0) / cfg.fadeIn) : 1, fout = cfg.fadeOut ? clamp((cfg.end - t) / cfg.fadeOut) : 1;
     inst.g.setAttribute('opacity', Math.min(fade, fout));
     let zz = 1, zcx = 540, zcy = 960; for (const z of (cfg.zooms || [])) if (t >= z.t0 && t <= z.t1) { const e = ease(z.ease || 'inOut', (t - z.t0) / (z.t1 - z.t0)); zz = lerp(z.z0, z.z1, e); zcx = z.cx; zcy = z.cy; }
+    let wh = 0;                                   // dive = zoom THROUGH the locked card into its territory (whiteout at the end); emerge = the reverse, back out of the card
+    for (const [k, z] of [['dive', cfg.dive], ['emerge', cfg.emerge]]) { if (!z) continue; const u = clamp((t - z.t0) / (z.t1 - z.t0)); if (t < z.t0 || t > z.t1 + (k === 'dive' ? 1 : 0)) continue; const K = z.k || 9; zcx = z.side === 'R' ? 810 : 270; zcy = 760; if (k === 'dive') { zz = lerp(1, K, EASE.inCubic(u)); wh = Math.max(wh, clamp((u - 0.55) / 0.45)); } else { zz = lerp(K, 1, EASE.outCubic(u)); wh = Math.max(wh, clamp(1 - u / 0.35)); } }
+    if (!inst.white) inst.white = $('rect', { x: -W * 5, y: -H * 5, width: W * 11, height: H * 11, fill: cfg.whiteColor || '#fff6e8', opacity: 0 }, inst.g);
+    inst.white.setAttribute('opacity', f2(wh)); inst.g.appendChild(inst.white);
     inst.g.setAttribute('transform', zz === 1 ? '' : `translate(${zcx} ${zcy}) scale(${f2(zz)}) translate(${-zcx} ${-zcy})`);
     const T0 = t0 + 0.05;
     for (const h of [cfg.left, cfg.right]) {
-      const lockT = h.lockT, s = clamp((t - T0) / (lockT - T0)), p = cum(s) / 0.5333, M = (h.N - 1) * h.S;
-      let bounce = 0, lt = t - lockT; if (lt > 0) bounce = 22 * Math.exp(-lt * 8) * Math.sin(lt * 26);
-      for (const c of h.cards) { const y = 760 - c.__i * h.S + p * M + bounce; c.setAttribute('transform', `translate(0 ${f2(y)})`); c.setAttribute('display', y < -420 || y > H + 420 ? 'none' : 'inline'); }
-      const v = s >= 1 ? 0 : (cum(Math.min(1, s + 0.01)) - cum(s)) / 0.01 / 0.5333 * M / (lockT - T0), sp = clamp(Math.abs(v) / 3500);
+      const lockT = h.locked ? T0 - 9 : h.lockT, s = h.locked ? 1 : clamp((t - T0) / (lockT - T0)), p = cum(s) / 0.5333, M = (h.N - 1) * h.S;
+      let bounce = 0, lt = h.spin ? -1 : t - lockT; if (lt > 0 && !h.locked) bounce = 22 * Math.exp(-lt * 8) * Math.sin(lt * 26);   // locked = already locked when this instance starts (no flash); spin = cards/s, keeps rolling
+      const off = h.spin ? ((t - T0) * h.spin * h.S) % ((h.N - 2) * h.S) : p * M;
+      for (const c of h.cards) { const y = 760 - c.__i * h.S + off + bounce; c.setAttribute('transform', `translate(0 ${f2(y)})`); c.setAttribute('display', y < -420 || y > H + 420 ? 'none' : 'inline'); }
+      const v = h.spin ? h.spin * h.S : s >= 1 ? 0 : (cum(Math.min(1, s + 0.01)) - cum(s)) / 0.01 / 0.5333 * M / (lockT - T0), sp = clamp(Math.abs(v) / 3500);
       Array.from(h.streaks.children).forEach((e, i) => { e.setAttribute('opacity', 0.16 * sp); e.setAttribute('height', 200 + 500 * sp); e.setAttribute('y', f2(((i * 531 + t * v * 1.1) % (H + 700)) - 600)); });
       h.parts.forEach((q) => { const yy = ((q.ph - t * q.sp * (q.mon ? -1 : 1)) % 2200 + 2200) % 2200 - 100; q.e.setAttribute('cx', f2(q.x + 14 * Math.sin(t * 2 + q.ph))); q.e.setAttribute('cy', f2(yy)); q.e.setAttribute('opacity', 0.35 + 0.35 * Math.sin(t * 3 + q.ph)); });
       if (h.rays) h.rays.setAttribute('transform', `rotate(${f2(t * 5)} ${h.cx} 760)`);
@@ -590,7 +603,7 @@
         const act = ACTIONS[h.kind][lt < 0 ? 'idle' : (h.idle || 'idle')]; h.rig.apply(Object.assign({}, h.rig.N, act({ t, lt: Math.max(0, lt), dur: 99, u: 0, p: {} })), t);
       }
       let shx = 0, shy = 0; if (lt > 0 && lt < 0.5) { const a = 22 * (1 - lt / 0.5); shx = (hash(t * 91) - 0.5) * 2 * a; shy = (hash(t * 57 + 3) - 0.5) * 2 * a; }
-      h.flash.setAttribute('opacity', lt > 0 ? (h.mon ? 0.7 : 0.95) * Math.max(0, 1 - lt / 0.3) : 0);
+      h.flash.setAttribute('opacity', lt > 0 && !h.locked ? (h.mon ? 0.7 : 0.95) * Math.max(0, 1 - lt / 0.3) : 0);
       h.ring.setAttribute('opacity', lt > 0 && lt < 0.55 ? 1 - lt / 0.55 : 0); h.ring.setAttribute('r', f2(10 + lt * 1100));
       h.splat.forEach((q) => { const u = clamp(lt / 0.5); if (lt <= 0) { q.e.setAttribute('opacity', 0); return; } const e = EASE.outCubic(u), d0 = 120 * e, d1 = q.l * e, w = q.w * (h.mon ? 1 - u * 0.4 : 1 - u), ca = Math.cos(q.a), sa = Math.sin(q.a); q.e.setAttribute('points', `${f2(h.cx + ca * d0 - sa * w)},${f2(760 + sa * d0 + ca * w)} ${f2(h.cx + ca * d1)},${f2(760 + sa * d1)} ${f2(h.cx + ca * d0 + sa * w)},${f2(760 + sa * d0 - ca * w)}`); q.e.setAttribute('opacity', h.mon ? clamp(1.4 - u * 0.7) : clamp(1.4 - u * 1.4)); });
       const pl = clamp((t - T0) / 0.3); h.plate.setAttribute('opacity', pl); h.plate.setAttribute('transform', `translate(${h.cx} 258) scale(${f2(lerp(1.5, 1, EASE.outBack(pl)))}) translate(${-h.cx} -258)`);
@@ -606,7 +619,7 @@
     inst.shards.forEach((s) => { if (sd < 0) { s.e.setAttribute('opacity', 0); return; } const u = clamp(sd / 1.0); s.e.setAttribute('opacity', clamp(1 - u * 1.1)); s.e.setAttribute('transform', `translate(${f2(540 + s.vx * sd)} ${f2(s.y + s.vy * sd + 700 * sd * sd)}) rotate(${f2(s.rot * sd)}) scale(${f2(1 + sd * 2)})`); });
   }
 
-  // ------------------------------------------------------------------ text / hud / overlays
+  // ------------------------------------------------------------------ text / overlays
   function buildText() {
     for (const tx of (TL.text || [])) {
       const g = $('g', { opacity: 0 }, svg); const o = { tx, g }; const fs = tx.size || 80;
@@ -652,18 +665,6 @@
     let dx = 0, dy = 0; const fr = Math.floor(t * 30);
     for (const s of (TL.shake || [])) { const lt = t - s.t0; if (lt >= 0 && lt < s.dur) { const a = (s.amp || 20) * Math.pow(1 - lt / s.dur, s.hold ? 0.3 : 1.5); dx += (hash(fr * 1.37 + 1) - 0.5) * 2 * a; dy += (hash(fr * 2.11 + 7) - 0.5) * 2 * a * 0.8; } }
     return [dx, dy];
-  }
-  function buildHud() {
-    const h = TL.hud; if (!h) return; hud = { cfg: h, g: $('g', {}, svg) };
-    const bar = (x, col, side, lab) => { const g = $('g', {}, hud.g); $('rect', { x, y: 74, width: 440, height: 40, rx: 20, fill: '#0a0c1c', opacity: 0.85 }, g); const f = $('rect', { x: x + 4, y: 78, width: 432, height: 32, rx: 16, fill: col }, g); const l = $('text', { x: side < 0 ? x + 6 : x + 434, y: 64, 'text-anchor': side < 0 ? 'start' : 'end', 'font-family': 'Inter', 'font-weight': 800, 'font-size': 28, fill: '#e8e6f0', 'letter-spacing': 3 }, g); l.textContent = lab; const pc = $('text', { x: x + 220, y: 104, 'text-anchor': 'middle', 'font-family': 'Inter', 'font-weight': 800, 'font-size': 26, fill: '#fff' }, g); return { f, l, pc, x, side, col }; };
-    hud.L = bar(50, '#c4121f', -1, h.leftLabel || 'VRYKOLAKAS'); hud.R = bar(590, '#4a68d8', 1, h.rightLabel || 'GRIM');
-  }
-  function updateHud(t) {
-    if (!hud) return; const c = hud.cfg; hud.g.setAttribute('display', inWin(c.vis, t) ? 'inline' : 'none');
-    const L = numTrack(c.left, t, c.leftInit === undefined ? 1 : c.leftInit), R = numTrack(c.right, t, c.rightInit === undefined ? 1 : c.rightInit);
-    const fl = (v, bar, win) => { const low = v <= 0.36 && v > 0 && win && inWin(win, t), blink = low && Math.floor(t * 4) % 2 === 0; bar.f.setAttribute('fill', blink ? '#ffffff' : bar.col); bar.pc.textContent = Math.round(v * 100) + '%'; };
-    hud.L.f.setAttribute('width', f2(Math.max(0, 432 * L))); hud.R.f.setAttribute('width', f2(Math.max(0, 432 * R))); hud.R.f.setAttribute('x', f2(hud.R.x + 4 + 432 * (1 - R)));
-    fl(L, hud.L, c.blinkL); fl(R, hud.R, c.blinkR);
   }
 
   // ------------------------------------------------------------------ SHOT SYSTEM (hard cuts between camera set-ups)
@@ -852,18 +853,21 @@
   };
   // ------------------------------------------------------------------ public API
   G.loadTimeline = function (tl) {
-    TL = tl; props = []; fxList = []; textList = []; splits = []; hud = null; layers = {}; room = {}; povG = null; povTrees = []; pgG = null; pgEls = {};
+    TL = tl; props = []; fxList = []; textList = []; splits = []; layers = {}; room = {}; povG = null; povTrees = []; pgG = null; pgEls = {};
     document.body.innerHTML = ''; svg = $('svg', { xmlns: G.NS, width: W, height: H, viewBox: `0 0 ${W} ${H}` }); document.body.appendChild(svg);
-    buildDefs(); buildArena(); setupActors(); buildProps(); buildFx();
+    buildDefs(); buildArena();
+    if (G.SAKUGA) { G.SAKUGA.init({ TL, svg, defs, arena, layers, PAR, SCN_VIS, trk, track, markerWorld, sceneAt }); G.SAKUGA.buildDomains(); }
+    setupActors(); buildProps(); buildFx();
     TL.shots = (TL.shots || []).slice().sort((a, b) => a.t - b.t); TL.scenes = TL.scenes || []; TL.slow = (TL.slow || []).slice();
     TL.shots.forEach((sh, i) => { if (sh.scene) TL.scenes.push({ t0: sh.t, s: sh.scene }); if (sh.slow) TL.slow.push({ t0: sh.t, t1: i + 1 < TL.shots.length ? TL.shots[i + 1].t : TL.duration, rate: sh.slow }); if (sh.type === 'pov' && !povG) buildPov(sh); if (sh.type === 'povgate' && !pgG) buildPovGate(); });
     TL.scenes.sort((a, b) => a.t0 - b.t0);
     for (const s of (TL.splits || (TL.split ? [TL.split] : []))) buildSplit(s);
     buildOts(); crashG = $('g', { display: 'none' }, svg); for (let i = 0; i < 30; i++) { const a = i / 30 * 6.283 + 0.1; $('polygon', { points: `${540 + Math.cos(a) * 200},${960 + Math.sin(a) * 200} ${540 + Math.cos(a + 0.012) * 1500},${960 + Math.sin(a + 0.012) * 1500} ${540 + Math.cos(a - 0.012) * 1500},${960 + Math.sin(a - 0.012) * 1500}`, fill: '#fff' }, crashG); }
-    buildText(); buildHud();
+    buildText();   // no HUD / HP bars (docs/07): a `hud` key in old timelines is ignored
     $('rect', { x: 0, y: 0, width: W, height: H, fill: 'url(#gVig)' }, svg); vigEl = svg.lastChild;
+    if (G.SAKUGA) G.SAKUGA.buildOverlay();
     tintEl = $('rect', { x: 0, y: 0, width: W, height: H, fill: '#c4121f', opacity: 0 }, svg);
-    if (hud) svg.appendChild(hud.g); textList.forEach((o) => svg.appendChild(o.g));
+    textList.forEach((o) => svg.appendChild(o.g));
     glitchG = $('g', { display: 'none' }, svg); for (let i = 0; i < 10; i++) $('rect', { x: 0, y: 0, width: W, height: 20, fill: '#fff', opacity: 0.2 }, glitchG);
     blackEl = $('rect', { x: 0, y: 0, width: W, height: H, fill: '#000', opacity: 0 }, svg);
     flashEl = $('rect', { x: 0, y: 0, width: W, height: H, fill: '#fff', opacity: 0 }, svg);
@@ -873,7 +877,7 @@
     const ta = actorTime(t), info = shotInfo(t);
     const shk = shakeAt(t);
     const sp = splits.find((s) => t >= (s.cfg.t0 || 0) && t <= s.cfg.end && s.cfg.opaque !== false);
-    const sceneOn = !splits.length || splits.every((s) => !(t >= (s.cfg.t0 || 0) && t < s.cfg.shatter - 0.05 && s.cfg.opaque !== false));
+    const sceneOn = !splits.length || splits.every((s) => !(t >= (s.cfg.t0 || 0) && t < s.cfg.shatter - 0.05 && t <= s.cfg.end && s.cfg.opaque !== false));
     const isPov = info && info.s.type === 'pov' && povG, isPG = info && info.s.type === 'povgate' && pgG;
     const sc = sceneVis(t);
     arena.setAttribute('display', sceneOn && !isPov && !isPG ? 'inline' : 'none'); if (pgG) { pgG.setAttribute('display', isPG ? 'inline' : 'none'); if (isPG) updatePovGate(t, info); }
@@ -896,7 +900,7 @@
     if (povG) { povG.setAttribute('display', isPov ? 'inline' : 'none'); if (isPov) { updatePov(t, info); const wb = (info.s.whip && info.lt < info.s.whip ? 12 * (1 - info.lt / info.s.whip) : 0) + trs.blur * 0.75; povG.style.filter = wb > 0.3 ? `blur(${f2(wb)}px)` : ''; } }
     updateOts(t, info || { s: {} }); updateCrash(shotX);
     splits.forEach((s) => updateSplit(s, t));
-    updateText(t); updateHud(t); updateOverlay(t, trs.dip);
+    updateText(t); updateOverlay(t, trs.dip); if (G.SAKUGA) G.SAKUGA.updateOverlay(t);
     return true;
   };
   // crossfade-capable frame renderer (async): the outgoing shot is rendered, rasterised to a canvas and faded out over the new shot

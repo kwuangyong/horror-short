@@ -15,12 +15,11 @@ Câu chuyện là đêm sống sót: hộ vệ có giúp được bạn trước
 ## Ràng buộc
 - Không dùng nhân vật có chủ bản quyền (Siren Head, Smile Dog, Jeff the Killer, Slenderman...).
 - Cẩn trọng tôn giáo đang được thờ phụng (không biến thần thành trò cười, không đặt thần thua quái vật một cách xúc phạm); ghi chú mức nhạy cảm.
-- Video tiếng Anh, khán giả toàn cầu; ưu tiên có yếu tố Việt Nam/Á Đông làm điểm khác biệt.
+- Video tiếng Anh, khán giả toàn cầu.
 
 ## CẬP NHẬT PHẠM VI (quyết định của người dùng)
-- **KHÔNG** dùng quái vật/hộ vệ Việt Nam và châu Á, **trừ Nhật Bản**.
-- Tập trung chủ yếu: **châu Âu (phương Tây), Mỹ, Canada, Nga**.
-- Mục cũ ngoài phạm vi (Ma Da, Ma Lai, Krasue, Pontianak, Jiangshi, Chung Quỳ, Garuda...) giữ trong file research để tham khảo nhưng không đưa vào vòng quay.
+- Chỉ lấy nhân vật nổi tiếng trong **thần thoại, truyền thuyết, truyền thuyết đô thị phương Tây** + **Nhật Bản**. Không lấy Việt Nam và châu Á khác.
+- Danh sách chuẩn: [`docs/09-kho-nhan-vat.md`](../../docs/09-kho-nhan-vat.md). Các mục ngoài phạm vi đã bị xóa khỏi file research (2026-11-25).
 - Truyền thuyết của người bản địa Bắc Mỹ (Wendigo, Skinwalker, Thunderbird...) là tín ngưỡng sống: nhạy cảm cao, ưu tiên tránh hoặc xử lý rất cẩn trọng.
 
 ## TIÊU CHÍ CHỌN QUÁI VẬT (quyết định của người dùng)

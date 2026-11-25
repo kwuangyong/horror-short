@@ -36,10 +36,11 @@ Ghi vào `episodes/<slug>/02-assets.md` một bảng:
 ### `trend`: soi xu hướng
 Ghi vào `episodes/<slug>/01-research.md` (mục "Xu hướng"): 5–10 video/hook liên quan đang chạy tốt, câu hook nguyên văn, độ dài, lượt xem nếu thấy. Nếu công cụ vidIQ có sẵn, dùng để lấy số liệu; không có thì dùng WebSearch.
 
-## Phạm vi format Battle Spin (xem docs/07-format-battle-spin.md mục 4)
-- Chỉ châu Âu, Mỹ, Canada, Nga/Slav, Nhật. Không Việt Nam và châu Á khác.
-- Monster phải ma mị, quỷ dị, máu me; ghi rõ **điểm yếu / điều kiện chết hẳn** (dùng cho R3 và cú lửng).
-- Guardian phải có **sức mạnh chiến đấu** và **giới hạn** (dùng cho R2).
+## Phạm vi format Battle Spin (xem docs/09-kho-nhan-vat.md)
+- Chỉ nhân vật **nổi tiếng** trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây** + **Nhật Bản**. Không Việt Nam, Trung Quốc, Hàn, Đông Nam Á, Nam Á, Trung Đông, Ai Cập.
+- Bắt buộc **bảng sức mạnh có nguồn** (≥ 3 sức mạnh mỗi nhân vật, link Public Domain / truyền thuyết), dùng làm chuỗi khoe sức mạnh 2–4 cảnh.
+- Monster phải ma mị, quỷ dị, máu me; ghi rõ **điểm yếu / điều kiện chết hẳn** (dùng cho cú đảo chiều và cú lửng).
+- Guardian phải có **sức mạnh chiến đấu** (đòn năng lượng hình ảnh hóa được) và **giới hạn** (dùng cho nhịp monster lật kèo).
 - Đánh dấu nhạy cảm (tín ngưỡng bản địa đang sống, bi kịch có thật) và bản quyền (creepypasta có tác giả, SCP CC BY-SA, hình ảnh phim/game).
 - **Bảng sức mạnh có nguồn** cho mỗi nhân vật (docs/08 mục G): tên sức mạnh · tác phẩm/truyền thuyết gốc + link · cách hình ảnh hóa · giới hạn. Không có nguồn thì không đưa vào.
 - Kiểm tra kho có sẵn trong `episodes/_format-dual-spin/01-research-*.md` trước, không lặp lại.

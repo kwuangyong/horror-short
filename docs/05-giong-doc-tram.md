@@ -2,6 +2,8 @@
 
 Toàn bộ nội dung video làm bằng **tiếng Anh** (kịch bản, phụ đề, chữ trên màn hình). Giọng kể chuyện cần **trầm, chậm, gần mic, nghe như đang thì thầm sát tai** chứ không phải giọng phát thanh viên.
 
+> **Ưu tiên luật format:** tốc độ đọc của Battle Spin theo [docs/07](07-format-battle-spin.md) mục 6 (edge-tts `rate +35%…+40%`, nghỉ 0,15–0,25 s giữa câu, tempo x1.25). Các số "120–140 từ/phút, nghỉ 0,4–0,8 s" bên dưới chỉ dùng cho câu thì thầm cú lửng cuối và thoại nhân vật.
+
 ## 1. Giọng đọc "nguy hiểm" gồm những gì
 
 | Yếu tố | Mục tiêu |
@@ -20,7 +22,7 @@ Toàn bộ nội dung video làm bằng **tiếng Anh** (kịch bản, phụ đ�
 - Với model **v3** có thể dùng *audio tags* trong văn bản: `[whispers]`, `[pause]`, `[slowly]`, `[sinister laugh]`. Xuất sẵn văn bản có tag:
 
 ```bash
-python tools/narration.py examples/ma-da/script.md --elevenlabs -o voice_el.txt
+python tools/narration.py episodes/<slug>/script-anim.md --elevenlabs -o voice_el.txt
 ```
 
 - Thoại nhân vật (giọng đứa trẻ, giọng quái vật) được script tách riêng ở cuối file → tạo bằng **giọng thứ hai**, rồi xử lý bằng preset `demon` bên dưới.
@@ -33,7 +35,7 @@ pip install edge-tts
 ```
 
 ```bash
-python tools/narration.py examples/ma-da/script.md -o voice.txt
+python tools/narration.py episodes/<slug>/script-anim.md -o voice.txt
 ```
 
 ```bash
@@ -65,4 +67,4 @@ Mẹo: hạ cao độ tối đa 2–3 cung với giọng TTS. Hạ nhiều hơn 
 
 - Giọng luôn nằm **trên** nhạc 18–22 dB. Khi có câu thoại quan trọng, giảm nhỏ nhạc nền (ducking).
 - Ngay **trước** cú lật hoặc jumpscare: tắt nhạc 0,5–1 s, chỉ còn giọng thì thầm → rồi stinger.
-- Tổng thể: −14 LUFS, true peak −1 dBTP (`tools/render.py` tự làm việc này với 2 lần chuẩn hóa).
+- Tổng thể: −14 LUFS, true peak −1 dBTP (`audio-anim/mix_test.sh` làm việc này: loudnorm 2 lượt + limiter).

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Export the narration from a script.md for text-to-speech.
 
-    python tools/narration.py examples/ma-da/script.md                 # plain text
-    python tools/narration.py examples/ma-da/script.md --elevenlabs    # ElevenLabs v3 audio tags
+    python tools/narration.py episodes/<slug>/script-anim.md            # plain text
+    python tools/narration.py episodes/<slug>/script-anim.md --elevenlabs # ElevenLabs v3 audio tags
 
 Plain mode drops delivery notes "(whisper, slow)" and the *keyword* marks, and puts each
 sentence on its own line (most TTS engines pause at line breaks).

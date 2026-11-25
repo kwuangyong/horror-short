@@ -8,10 +8,12 @@ Deterministic: `window.renderFrame(t)` redraws the whole scene for time `t` (no 
     python3 tools/anim/sheet.py DIR sheet.jpg 6                                                  # contact sheet of a frame dir
 
 Speed (4 cores, scale 1, JPEG q93): ~90 ms/frame wall => 100 s episode (3000 f) ~ 4.5-5 min + ~1 min encode. `--scale 0.5` ~70 ms/frame.
-Example: `episodes/vrykolakas-vs-church-grim/anim-test/make_timeline.js` (writes timeline.json) -> 15 s test.
+Reference timeline (official format, docs/07): `tools/anim/demo/sakuga_demo.js` -> `sakuga_demo.json` -> `demo/sakuga-demo.mp4` (26 s, silent).
+
+**Rules (docs/07):** every official episode is rendered with this engine. No still images / Ken Burns, no HP bars, no ROUND cards. Monster always screen-LEFT, guardian screen-RIGHT (`sides`, `--check` must print `180-RULE OK`).
 
 ## Files
-core.js (svg/joint/easing/keyframes) | rigs.js (Grim, Vrykolakas, Kid rigs + action library) | stage.js (arena, camera, fx, split-roll, text, HUD, timeline eval) | timeline_words.js (map cues to words.json) | render.js | sheet.py
+core.js (svg/joint/easing/keyframes) | rigs.js (rigs + action library) | stage.js (arena, camera, shots, fx, split-roll, text, timeline eval) | **sakuga.js** (energy fx, domains, rising terrain, aura/rim, letterbox, embers) | timeline_words.js (map cues to words.json) | render.js | captions_dyn.py | sheet.py
 
 ## Timeline JSON (all times in seconds, wall clock)
     { fps, duration, camInit:{cx,cy,zoom},
@@ -20,7 +22,6 @@ core.js (svg/joint/easing/keyframes) | rigs.js (Grim, Vrykolakas, Kid rigs + act
       cam:[{t0,t1,cx,cy,zoom,ease}], shake:[{t0,dur,amp}], flash:[{t0,dur,amp,color}], freeze:[{t0,dur}],
       fx:[{type:'dust'|'soil'|'impact'|'speed', t0,x,y,dur,n,r,spread,seed}],
       text:[{t0,t1,text,x,y,size,color,shadow,anim:'slam'|'fade'}],
-      hud:{t0,t1,leftLabel,rightLabel,left:[{t0,t1,v}],right:[...],leftInit,rightInit},   // 2 bars: monster/guardian, v=0..1
       split:{end,shatter, left:{kind,lockT,N,tagText,label,fx,fy,fscale,idle}, right:{...}} }   // optional slot-roll intro
 - An actor shows the pose of its latest cue (t0 <= t), held after t1; cue params: `x:[a,b]`, `y:[a,b]` (tweened over t0..t1, persist after), `arc` (parabola height on y), `ease`, `flip`, `scale`, `alpha:[a,b]`, `clipY` (clip below world y, for rising from soil), `blend` (crossfade s from previous pose, default .18), plus action params (`speed` for walk/run).
 - `freeze`: actors hold their pose during the freeze, then continue at wall time (pose jumps by dur; hide it with a flash/shake). Camera/fx/text keep running.
@@ -39,7 +40,7 @@ Action = `fn({t,lt,dur,u,p}) -> partial pose`; add new ones in rigs.js (`ACTIONS
 - `props:[{type:'tomb'|'garlic'|'ring'|'limit', x,y,scale,z,scene,vis,follow,track}]` (z sorts with actors; tomb = hiding place for the kid).
 - actor `vis:[[t0,t1],...]` visibility windows; cue params `z`, `rot:[a,b]` (spin about the body), `flip`.
 - `splits:[{t0,shatter,end,left,right,fadeIn,opaque}]` (several slot-roll instances). Left column = MONSTER (blood drips, claw marks, red), right = GUARDIAN (gold halo, rays, rising sparks); titles on top; 17 named silhouettes (Koschei, Chupacabra, Jersey Devil, Draugr, Baba Yaga, Kelpie, Headless Horseman, Black-Eyed Child, Strigoi | Cerberus, Talos, Griffin, Garmr, Domovoi, Brownie, Matagot, Tomte). Lock: monster = blood splat, guardian = holy flash.
-- `text:[{..., bg:{fill,stroke,..}, glow, shadow, anim:'slam'|'pop'|'blink'|'fade'}]`, multi-line with `\n`; `tints:[{t0,t1,a,color}]`, `black:[[t0,t1,alpha]]`, `glitch:[[t0,t1]]`, `hud:{vis,leftInit,rightInit,left:[..],right:[..],blinkL,blinkR}`.
+- `text:[{..., bg:{fill,stroke,..}, glow, shadow, anim:'slam'|'pop'|'blink'|'fade'}]`, multi-line with `\n`; `tints:[{t0,t1,a,color}]`, `black:[[t0,t1,alpha]]`, `glitch:[[t0,t1]]`.
 - fx types: dust powder smoke soil sparks ripple impact speed.
 - extra actions: grim shake-fur sit down weak dangle bite-shake crawl paw-line stalk dig bristle alert stand-up | vry circle fall-back pinned crawl-back stand-up neck-grab slash-down victory lunge-at cover-face kneel-cough disgust hand dead | kid hide(behind tomb) peek cower(hug knees) gasp scared-back chase lost bed-wake.
 - `peek.sh TIMELINE out.jpg t1,t2,...` = quick low-res contact sheet of chosen times.
@@ -77,12 +78,31 @@ Common params: `scene` (switch scene at the cut), `push` (total zoom factor over
 - Sheet: `node tools/anim/make_ep002_sheet.js` -> `tools/anim/ep002-rigs-sheet.png`.
 
 ## Episode #002 v2 additions (powers, no HUD)
-- New format (docs/07): **no HUD bars and no ROUND cards** (omit `hud` and the ROUND `text`); K.O./WINNER stay. The engine still supports `hud` for old episodes.
+- **HUD removed from the engine** (docs/07): a `hud` key in an old timeline is ignored. No ROUND text.
 - Cerberus: `mane` (snake mane) / `serp` (serpent-tail head: jaw + forked tongue) params; actions `snake-hiss`, `tail-strike`, `tail-coil`, `venom-drool`; marker `tailtip`.
 - BEC: `hypno-chant` (throat rattle, pair with `fx ripple` sound rings), `no-blink-stare`, `claw-planks` (marker `handR`), `dissolve-smoke`. Kid: `hand-drift`, `snap-awake`, `shake-head`.
 - Props: `oillamp` (track `lamp`, `lampFlick`), `latch` (track `latch`), `aconite` (grass withers with track `wilt`, purple flowers with `bloom`), `scratch` (gouges on planks, track `scratch`); fx `drool`, `notes`.
 - Shot `povgate`: looking up out of the burning gate (dog heads loom, serpent tail dangles, a grey face sinks into black smoke). Actor cue param `sil:[a,b]` silhouettes a rig (for the red-backlit bite).
 - Actor `scenes:['cabin',...]` limits an actor to scenes; `clipRect:[x,y,w,h]` clips an actor to a window.
+
+## Sakuga Cinematic (sakuga.js, docs/07 sections 2, 4, 5)
+Energy fx (in `fx:[]`, world coordinates, follow the camera and the 180-degree mirror; `dur` gets a sensible default):
+- `{type:'beam', t0, x,y, x2,y2, w=70, color, charge=0.35, grow=0.14, hit=true, r}`: charge orb + converging streaks -> halo / body / vibrating white core / 3 lightning strands wrapped along it -> burst at the target.
+- `{type:'beam-clash', t0, dur=2.4, x,y (left origin), x2,y2 (right origin), colorL, colorR, w, amp=0.09, freq=4.5, win:'L'|'R', winAt}`: two beams meet, the clash orb pushes back and forth with sparks and shock rings; `win` drives it into the loser and explodes there.
+- `{type:'orbs', t0, x,y, x2,y2, n=5, stagger=0.12, fly=0.55, arc=260, r=26, color}`: homing orbs on alternating arcs with comet trails, small burst on each hit.
+- `{type:'slash', t0, x,y, x2,y2, r=230, fly=0.32, color, flipV, hit}`: crescent energy blade with afterimages.
+- `{type:'pillar', t0, x,y (ground), w=180, h=1700, color, dur=0.75}`: column of light erupting skyward + ground ring + motes. In intros keep it ~0.75 s so faces stay clear.
+- `{type:'glint', t0, actor, at:'eye', color, r=90, dur=0.5}`: lens-flare star locked on a rig marker.
+
+Domains (territories + the single battlefield): `domains:{ key:{ sky:[top,bottom], glow, floor:[top,bottom], motif:'monoliths'|'spires'|'columns'|'runes'|'none', rock, sigil:color|null, motes, mist, horizon=900 } }`, used as scene `domain-<key>` (shot `scene:'domain-mon'`). Layers: gradient sky, glow, motif silhouettes, floor, rotating ground sigil, mist, rising motes.
+
+Rising terrain on the battlefield (no backdrop swap mid-fight): prop `{type:'monolith'|'spire', x,y, scale, h, w, tilt, color (crack glow), rock, track:'rise', scene}`; track 0..1 raises it out of the ground with shake + dust.
+
+Actors: `aura:{colors:[outer..inner], r=230, h=190, motes:true, on=1}` (layered glow + flame silhouette + rising motes behind the rig; cue param `aura:[a,b]` scales it), `rim:'#color', rimPx=7` (drop-shadow rim light). Hide THE KID during the 1v1 with actor `vis` windows.
+
+Screen overlays: `cinema:[[t0,t1]]` (150 px letterbox bars, slide in/out 0.25 s), `embers:[[t0,t1,color]]` (floating ember particles). Hook rewind = `glitch:[[t0,t1]]` + flash.
+
+Split-roll extensions (per instance in `splits:[]`): half `spin: cards/s` (keeps rolling, silhouettes), half `locked:true` (already locked when this instance starts: no flash, name shown), instance `dive:{t0,t1,side:'L'|'R',k=9}` (zoom THROUGH the card into its territory, whiteout at the end) and `emerge:{t0,t1,side}` (reverse, back out of the card). Intro flow = 3 instances: [spin both -> lock L -> dive L] · [emerge L (L locked) -> lock R -> dive R] · [emerge R (both locked) -> VS -> shatter]. See `demo/sakuga_demo.js`.
 
 ## Known limits
 Fx are simple (no real particles beyond dust/soil/impact/speed lines). Silhouette/split-roll decoys are 7 generic shapes. Grim is very dark on dark ground (rim light is weak). Kid poses hide/cower are rough. Freeze skips actor time (see above).

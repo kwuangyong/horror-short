@@ -1,59 +1,78 @@
-# 07 · Format "Battle Spin": Guardian vs Monster (hoạt hình)
+# 07 · Format "Battle Spin": Monster vs Guardian (hoạt hình khớp xương, Sakuga Cinematic)
 
-Format chốt sau tập thử #001 (`episodes/vrykolakas-vs-church-grim/`). Đây là **luật chung cho mọi tập**; brief từng tập chỉ ghi phần riêng (cặp đấu, lore, kiểu kết).
+Luật chung **bắt buộc** cho mọi tập chính thức (cập nhật 2026-11-25, thay toàn bộ bản cũ). Brief từng tập chỉ ghi phần riêng: cặp đấu, tổ hợp biến thể ([docs/08](08-he-thong-bien-the.md)), sức mạnh có nguồn. Nhân vật lấy từ [docs/09](09-kho-nhan-vat.md).
 
-## 0. Cập nhật mới nhất (ưu tiên hơn các mục bên dưới nếu mâu thuẫn)
-- **Bỏ kiểu game đối kháng**: KHÔNG thẻ ROUND 1/2/3, KHÔNG thanh HP, KHÔNG khung VERSUS-SIDE làm chủ đạo. Trận đánh kể như phim: 3 nhịp (guardian áp đảo → monster lật kèo bằng giới hạn guardian → đảo chiều bằng lore) nhưng không gắn nhãn.
-- **Phô diễn siêu năng lực**: mỗi nhân vật phải có ít nhất 2 khoảnh khắc khoe sức mạnh siêu nhiên theo lore (vd. Cerberus: đuôi rắn, bờm rắn, nước dãi độc làm cỏ héo; Black-Eyed Children: giọng thôi miên ép người mở cửa, đèn tắt/nhấp nháy khi chúng tới), quay bằng cảnh cận/hiệu ứng rõ.
-- **Nhiều góc quay hơn, nhịp nhanh hơn**: ~40–45 cảnh, 2–2.5 s/cảnh; khoảnh khắc lớn (vd. kéo xuống địa ngục) quay bằng chuỗi 3–5 cảnh: cận hàm, góc từ dưới cổng nhìn lên, ECU tay cào sàn, cảnh rộng cổng đóng.
-- Giọng đọc nhanh hơn ~10%.
+## 1. Engine hoạt ảnh động thật (cấm ảnh tĩnh)
+- 100% tập chính thức dựng bằng **engine hoạt ảnh khớp xương SVG** `tools/anim/`: `rigs.js` (nhân vật) · `stage.js` (cảnh, camera, shot, split-roll) · `sakuga.js` (đòn năng lượng, lãnh địa, hào quang, letterbox) · `render.js` (Playwright Chromium → mp4) · `episodes/<slug>/anim/make_timeline.js` (sinh timeline, cắt và cue theo mốc từ trong `words.json` bằng `timeline_words.js`).
+- **CẤM**: ảnh tĩnh + Ken Burns (công cụ `render.py` cũ đã bị xóa), thanh máu HP, thẻ ROUND 1/2/3, khung game đối kháng. Chữ K.O. / WINNER chỉ dùng khi thật cần.
+- Nhân vật chưa có rig → producer thêm rig vào `rigs.js` trước (turnaround + 3 pose khoe sức mạnh, Boss duyệt).
 
-## 1. Ý tưởng
-Hai vòng quay chọn ra **1 MONSTER** và **1 GUARDIAN**. Một đứa bé lạc vào nơi nguy hiểm, monster xuất hiện, guardian tới đánh nhau để bảo vệ bé. Kết luôn **lửng** để kéo bình luận.
+## 2. Mở đầu: Hook → Split-Roll → 2 màn tự giới thiệu ~5 s → VS
+| # | Đoạn | Thời lượng | Luật |
+|---|---|---|---|
+| 1 | **Hook** | 0–3 s | *In medias res*: khoảnh khắc cao trào nhất giữa trận (vd. `beam-clash` hai luồng chưởng đụng độ, hoặc đòn bắt giữ chí mạng). Chữ **"WHO SURVIVES?"** (slam), letterbox, rồi **tua ngược glitch** (`glitch` + flash) để vào Split-Roll. Khung này phải có thật trong trận. |
+| 2 | **Split-Roll quay** | ~1–1.3 s | Hai cột `MONSTER` (trái) \| `GUARDIAN` (phải) quay tốc độ cao (`spin`). |
+| 3 | **Khóa MONSTER → intro Monster** | ~5 s | Khóa cột trái (văng máu) → **zoom xuyên thẻ** (`dive`, side `L`) → ẩn Split-Roll, mở cảnh toàn màn hình tại **lãnh địa riêng của Monster** (scene `domain-<key>`). Monster **tự giới thiệu ở ngôi thứ nhất** bằng giọng riêng đa tầng: nó là thực thể gì, nguồn gốc, quyền năng đáng sợ nhất. Có bảng danh hiệu (tên + dòng nguồn gốc), VFX năng lượng, **2–3 góc máy động `low` → `cu` → `ecu`**. `pillar` chỉ chớp ~0.75 s lúc cắt vào để không che mặt. |
+| 4 | **Quay lại → khóa GUARDIAN → intro Guardian** | ~1.3 s + ~5 s | `emerge` ra khỏi thẻ trái (cột trái giữ trạng thái khóa `locked`) → cột phải quay rồi khóa (lóe sáng) → `dive` side `R` vào **lãnh địa riêng của Guardian**: tự giới thiệu tương tự, giọng riêng, bảng danh hiệu, hào quang. |
+| 5 | **VS** | ~1.3 s | `emerge` về Split-Roll đã khóa cả hai → đập chữ **VS** + **"WHO WINS? COMMENT"** → nổ tung (`shatter`) vào câu chuyện. Đây là lời kêu gọi duy nhất ở phần mở đầu. |
 
-## 2. Luật câu chuyện
+Mẫu đầy đủ: [`tools/anim/demo/sakuga_demo.js`](../tools/anim/demo/sakuga_demo.js), thử `--check` với nó trước khi viết timeline tập mới.
+
+## 3. Câu chuyện và THE KID
 | Thành phần | Luật |
 |---|---|
-| **THE KID** | Chỉ là **bối cảnh**: không thẻ giới thiệu, không thanh HP, không lời dẫn xoay quanh bé. Gọi "a kid / the kid / they". Không bao giờ có máu trên người bé. |
-| **Ngoại hình bé** (cố định mọi tập) | Tóc rối sẫm màu (KHÔNG trùm mũ), mắt to, pyjama sọc rộng, khăn quàng đỏ, giày đỏ, đèn pin to quá khổ. Giới tính trung tính. Không áo mưa vàng (tránh giống Six – *Little Nightmares*). |
-| **Mở đầu** | Hook 0–3 s (khung có thật trong trận, thường là lúc bé gặp nguy) → **1 khung cảnh chia đôi**: cột trái **MONSTER** (máu nhỏ giọt, vết cào, khóa = văng máu), cột phải **GUARDIAN** (hào quang vàng, tia sáng, khóa = lóe sáng), tiêu đề trên đầu mỗi cột → "Who wins? Comment." |
-| **Thân bài** | Bé lạc vào (rừng / nghĩa địa / hồ…) → monster xuất hiện, tiến về bé → guardian chắn trước bé → cài 1–2 chi tiết lore (điểm yếu monster, giới hạn guardian) → **ROUND 1** guardian áp đảo → **ROUND 2** monster lật kèo bằng **giới hạn của guardian** và quay sang bé → **ROUND 3** đảo chiều bằng lore đã cài. |
-| **Tương tác** | Chỉ một lời kêu gọi: "Who wins? Comment." ở màn chia đôi. Không có điểm chọn A/B giữa trận. |
-| **HUD** | 2 thanh máu: MONSTER (trái, đỏ) / GUARDIAN (phải, xanh). Cộng trừ phải nhất quán với từng đòn. |
-| **Thoại cuối** | Sau trận, guardian nói 1–2 câu với bé (giọng trầm khàn, vd. "Go home, child. Never come back after dark."), bé đáp 1 câu rất ngắn. |
+| **THE KID** | Chỉ là **bối cảnh**: không thẻ, không HP, không lời dẫn xoay quanh bé. Gọi "a kid / the kid / they". |
+| **Ngoại hình bé** (cố định) | Tóc rối sẫm màu (không trùm mũ), mắt to, pyjama sọc rộng, khăn quàng đỏ, giày đỏ, đèn pin to quá khổ. Giới tính trung tính. |
+| **Giải phóng sân đấu** | Ngay khi Guardian xuất hiện **chắn đòn đầu tiên**, bắt buộc có **1 cảnh riêng THE KID quay lưng chạy vút ra khỏi khung** (`follow` hoặc `wide`, nấp sau rặng đá / vật cản ở xa). Sau đó **ẩn hoàn toàn THE KID** khỏi khung chiến trường (actor `vis`) suốt màn 1v1. |
+| **Cắt về chỗ nấp** | Chỉ khi có **đòn lạc / biến cố số phận** (bảng B) và **lúc kết trận**: cảnh `insert`/`wide` tới chỗ nấp xa. |
+| **An toàn tuyệt đối** | Không bao giờ có máu trên người bé. Biến thể bé tử nạn rồi được cứu hồn (B2) chỉ thể hiện bằng ẩn ý: đèn pin lăn rồi tắt phụt, tay buông, chớp trắng. |
+| **Thoại cuối** | Guardian nói 1–2 câu với bé (giọng trầm), bé đáp 1 câu rất ngắn (nếu tổ hợp B cho phép). |
+| **Diễn biến + kết** | Theo tổ hợp A (trận) · B (bé) · C (kết lửng) trong docs/08. Cú lửng dựa trên điều kiện lore có thật, đã cài từ trước, **monster/hậu quả lộ diện bằng hình**. |
 
-## 3. Hai kiểu kết (chọn theo lore của cặp đấu)
-- **Kết A – Guardian thắng**: bé về nhà an toàn, NHƯNG cú lửng cuối cho thấy monster chưa chết hẳn, theo đúng lore của nó (điều kiện bị bỏ sót). Phải **cho thấy monster** lấp ló (sau cửa sổ, dưới mặt nước, trong đống tro), không chỉ là âm thanh. Ví dụ tập #001: Vrykolakas chỉ chết hẳn khi bị đốt → không ai đốt → đêm sau một tiếng gõ cửa, xác nó lấp ló sau cửa sổ phòng bé.
-- **Kết B – Monster thắng**: guardian dùng sức mạnh cuối cùng giải thoát bé (dịch chuyển, ánh sáng, mở đường…), cảnh cuối mơ hồ → CTA **"Do you think the kid survived? Comment."**
-- Luật vàng của cú lửng: dựa trên **điều kiện lore có thật**, đã được cài từ trước (bia khắc, lời dẫn).
+## 4. Phong cách chiến đấu "Sakuga Cinematic"
+Trận đánh phải hoành tráng như phim điện ảnh / anime, phô diễn sức mạnh bằng **đòn năng lượng và va chạm động** (`tools/anim/sakuga.js`, kiểu `fx`):
 
-## 4. Chọn quái vật và hộ vệ
-- Phạm vi: **châu Âu, Mỹ, Canada, Nga/Slav, Nhật**. Không lấy Việt Nam và châu Á khác.
-- Monster phải **ma mị, quỷ dị, máu me**. Loại cryptid ngộ nghĩnh (Bigfoot, Hodag, Loveland Frogmen, Lizard Man…).
-- Không dùng nhân vật có chủ bản quyền (Slenderman, Siren Head, Jeff the Killer, The Rake, Smile Dog, Samara, Mothman bản phim). Không dùng tín ngưỡng bản địa Bắc Mỹ đang sống (Wendigo, Skinwalker, Wampus Cat, Ogopogo). SCP chỉ dùng nếu ghi nguồn CC BY-SA đầy đủ (series riêng).
-- Kho đã nghiên cứu: `episodes/_format-dual-spin/01-research-*.md` (monsters, monsters-west, monsters-usa, guardians, guardians-west).
-- Vòng HORROR gợi ý: Koschei, Baba Yaga, Rusalka, Upyr, Poludnitsa, Headless Horseman, Boo Hag, Rougarou, Chasse-galerie, Vrykolakas, Strigoi, Draugr, Nachzehrer, Kelpie, Nuckelavee, Kuchisake-onna; thêm Chupacabra, Jersey Devil, Black-Eyed Children, Bloody Mary, Bunny Man, The Hook, Dover Demon, Hat Man.
-- Vòng GUARDIAN gợi ý: Church Grim, Domovoi, Cerberus, Garmr, Talos, Argus, Ladon, Griffin, Fylgja, Matagot, Tomte/Nisse, Brownie. Tránh Golem (nhạy cảm).
+| fx | Hình ảnh |
+|---|---|
+| `beam` | Đại pháo tia nhiều lớp: nạp năng lượng (cầu sáng + tia hội tụ) → hào quang ngoài + thân màu + lõi trắng rung + tia sét quấn dọc thân → nổ tại mục tiêu |
+| `beam-clash` | Hai luồng đại pháo từ hai phía đụng độ giữa màn hình, cầu năng lượng giằng co đẩy qua lại, tia lửa, vòng sóng xung kích; `win:'L'\|'R'` đẩy hẳn về một phía rồi nổ |
+| `orbs` | Loạt cầu năng lượng bay vòng cung có đuôi sáng, đuổi mục tiêu, nổ nhỏ khi trúng |
+| `slash` | Lưỡi chém năng lượng bán nguyệt bay xuyên màn hình, có vệt mờ |
+| `pillar` | Cột hào quang bùng thẳng lên trời khi tung chiêu / thức tỉnh. **Ở intro chỉ ~0.75 s** lúc cắt vào |
+| `glint` | Mắt lóe vệt sáng (khóa vào marker `eye` của rig) |
+| `cinema` | Dải đen điện ảnh trên/dưới trong các phân cảnh hành động |
+| `embers` | Hạt tàn lửa bay khắp màn hình trong phân cảnh hành động |
 
-## 5. Lời dẫn
-- Tiếng Anh, ngôi thứ ba, giọng bình luận viên trận tử thần.
-- **Kể liền mạch** (có từ nối: but, so, until, then, as…), câu 6–14 từ; câu cực ngắn chỉ ở khoảnh khắc nhấn ("One knock.").
-- 210–235 từ (lời dẫn + thoại) cho ~90–98 s.
-- Mỗi câu kèm `[SHOT]` (loại cảnh + camera) và `[ANIM]` (ai làm gì, vị trí trái/phải).
+**Tạo hình đối lập rõ** (chi tiết docs/08 mục H):
+- **Guardian**: `rim` light sáng rõ trên nền tối, `aura` 2–3 lớp màu theo thần thoại gốc, ký hiệu/phù chú phát sáng, mắt lóe vệt sáng (`glint`), khối vững.
+- **Monster**: tỉ lệ kinh dị bất đối xứng (tay dài, gai nhọn, xúc tu/đốt xương), gân sáng hoặc nhầy/máu mức hoạt hình, mắt phát sáng dị dạng, `aura` màu bệnh hoạn (xanh độc, đỏ máu, tím).
 
-## 6. Ngữ pháp hình ảnh (cinematic)
-- Mở phần bé bằng **POV-KID** (tay + đèn pin, chùm sáng quét, nhún theo bước), rồi **OTS** qua vai bé khi thấy monster.
-- Đánh nhau: **VERSUS-SIDE** (đối kháng ngang) xen **CU/ECU** (mắt, hàm, móng), **crash-zoom** ở đòn mạnh, **slow-mo** ở đòn quyết định.
-- **30–35 cảnh**, 2.5–3.5 s/cảnh. Mỗi cut có lý do: match-on-action, theo hướng nhìn, whip-pan nối. **Quy tắc 180°**: monster luôn bên trái, guardian bên phải, bé ở phía guardian. Sau 2–3 cảnh cận phải có 1 cảnh rộng định vị.
-- Bé không bị che trong cảnh rộng. Phụ đề không đè mặt ở cảnh cận.
-- Phong cách: flat-vector, không viền, navy (#141a33 / #1b2140 / #2a3159) + đỏ thẫm (#c4121f), trăng glow, sương, đom đóm. Máu ở mức hoạt hình.
+## 5. Continuity: chống rời rạc khung hình
+- **Một chiến trường thống nhất duy nhất** cho toàn bộ màn 1v1 (một scene `domain-<field>` hoặc một scene có sẵn). Địa hình đặc trưng của Monster (cột đá R'lyeh, khe địa ngục, gai đá…) phải **trồi trực tiếp lên ngay trên bối cảnh chính** (prop `monolith`/`spire` với track `rise`), không cắt nhảy đổi phông giữa trận. Lãnh địa riêng chỉ dùng ở 2 màn tự giới thiệu.
+- **Không khung hình nào đứng máy tĩnh**: mọi shot có `push` + `pan`. Nối trái ↔ phải bằng `whip-pan` (`tr:{type:'whip',dir}`) **bám theo hướng bay của đạn chưởng / lưỡi chém**, `follow` camera, `dutch` khi không gian biến dạng, `slow` (slow-mo) + `crash` (crash-zoom) ở đòn kết liễu.
+- **Quy tắc trục 180°**: Monster luôn TRÁI, Guardian luôn PHẢI (`sides:{left,right}`). `node tools/anim/render.js --timeline … --check` phải in **`180-RULE OK`** trước khi dựng.
+- Sau 2–3 cảnh cận phải có 1 cảnh rộng định vị.
 
-## 7. Âm thanh
-- Lời dẫn: edge-tts `en-US-ChristopherNeural` (miễn phí, cần `--proxy "$HTTPS_PROXY"` và host `speech.platform.bing.com` được mở trong environment), pitch −10Hz, rate chỉnh cho đủ thời lượng, rồi `tools/voice_fx.sh deep`.
-- Thoại guardian: giọng nam trầm hơn + hạ pitch + trộn tiếng gầm; thoại bé: giọng trẻ con edge-tts, thì thầm.
-- Mốc từng từ từ sự kiện WordBoundary của edge-tts (faster-whisper không tải được model trong môi trường này).
-- Nhạc tổng hợp bằng code (drone, ratchet + lock hit đúng lúc đọc tên, VS hit, trống R1–R2, nhịp tim R3, K.O. hit, chuông bình minh, nhạc tắt phụt trước cú lửng). Mix −14 LUFS (loudnorm 2 lượt + limiter).
-- Phụ đề: `tools/make_captions.py --max-words 4 --max-chars 24 --size 84`; không cụm nào vượt câu.
+## 6. Tempo nhanh x1.25
+- Lời dẫn: edge-tts `en-US-ChristopherNeural` (`--proxy "$HTTPS_PROXY"`, host `speech.platform.bing.com` được mở), pitch −10Hz, **`rate +35%` đến `+40%`**, **khoảng nghỉ giữa câu 0.15–0.25 s**, rồi `tools/voice_fx.sh deep`.
+- Giọng tự giới thiệu: mỗi nhân vật một giọng riêng **đa tầng** (2–3 lớp: giọng chính hạ pitch + lớp thì thầm lệch thời gian + lớp gầm/vọng), tempo chậm hơn lời dẫn một chút để nghe uy lực.
+- Nhạc nền tổng hợp bằng code: **trống chiến trận dồn dập ~155 BPM**, SFX **nạp / phóng tia plasma** (beam charge/fire) khớp mốc fx, hit ở mỗi lần khóa thẻ / VS / va chạm. **Ngắt nhạc đột ngột** trước câu thì thầm cú lửng cuối. Mix **−14 LUFS** (loudnorm 2 lượt + limiter).
+- **Tổng thời lượng ~70–85 s**, **~50–56 cảnh**, trung bình **~1.3–1.5 s/cảnh**.
+- Lời dẫn + thoại: ~180–215 từ (tùy độ dài 2 màn tự giới thiệu, mỗi màn ~12–16 từ). Kể liền mạch có từ nối (but, so, until, then, as…), câu 6–14 từ, mỗi câu ≤ 1 từ khóa `*...*`.
 
-## 8. Ví dụ tham chiếu
-`episodes/vrykolakas-vs-church-grim/`: `script-anim.md` (kịch bản mới nhất), `audio-anim/` (giọng + nhạc), `anim/make_timeline_v*.js` (timeline), `build-anim-v*.sh` (dựng), `review.md` (lịch sử duyệt).
+## 7. Sức mạnh có nguồn gốc
+- Mỗi bên khoe **≥ 3 sức mạnh có nguồn truyền thuyết / văn học Public Domain** (kèm link nguồn trong `01-research-powers.md`).
+- Mỗi lần khoe là **chuỗi 2–4 cảnh**: chuẩn bị → kích hoạt → tác động → hậu quả.
+- Chi tiết sáng tạo thêm để dẫn chuyện phải ghi chú rõ là *"câu chuyện"* trong research và kịch bản, không trình bày như sự thật dân gian.
+
+## 8. Phụ đề
+- `tools/make_captions.py --font "Bebas Neue" --size 104 --max-words 4 --max-chars 24`; không cụm nào vượt câu.
+- **Phụ đề động** `tools/anim/captions_dyn.py`: tự dời phụ đề xuống dải thấp (y≈1590) ở các cảnh cận `cu`, `ecu`, `reaction`, `low` để không đè mặt nhân vật. Khi letterbox bật, kiểm tra phụ đề không chui vào dải đen.
+
+## 9. Chọn nhân vật
+Theo [docs/09](09-kho-nhan-vat.md): chỉ nhân vật nổi tiếng trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây** + **Nhật Bản**. Không lấy Việt Nam và châu Á khác. Không lấy nhân vật có bản quyền, tín ngưỡng bản địa đang sống, hình ảnh từ phim/game.
+
+## 10. Tập tham chiếu
+- `tools/anim/demo/sakuga_demo.js` → `sakuga-demo.mp4`: mẫu đúng luật mới (hook, split-roll + 2 intro, VS, 1v1 một chiến trường, đủ 5 đòn, bé chạy đi nấp).
+- `episodes/black-eyed-children-vs-cerberus/`: mẫu pipeline âm thanh (`audio-anim/`), `build-anim.sh`. Tập này dựng **trước** luật mới (chưa có intro lãnh địa, đòn chưởng), không lấy làm mẫu hình ảnh.
+- `episodes/vrykolakas-vs-church-grim/`: tập lưu trữ (bản v6 còn HUD/ROUND), chỉ để tham khảo lịch sử.

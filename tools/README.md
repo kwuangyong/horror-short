@@ -1,67 +1,45 @@
 # tools/
 
-Cần có: Python 3.10+, `pip install pillow faster-whisper`, và `ffmpeg` (có libass, rubberband). Phông chữ: đặt file `Oswald-Bold.ttf` (hoặc Anton / Bebas Neue) vào `fonts/`.
+Công cụ sản xuất cho format Battle Spin. **Mọi tập chính thức dựng bằng engine hoạt ảnh khớp xương SVG `tools/anim/`** (xem [`anim/README.md`](anim/README.md)). Không dùng ảnh tĩnh + Ken Burns, không thanh HP, không thẻ ROUND (các công cụ cũ `render.py`, `make_cards.py` đã bị xóa).
 
-## Quy trình đầy đủ cho một tập
+Cần có: Node 18+ với Playwright Chromium (đã cài sẵn trong cloud), Python 3.10+, `ffmpeg` (có libass), `edge-tts`, phông `fonts-bebas-neue`.
 
-```bash
-python tools/narration.py my-episode/script.md -o my-episode/voice.txt
-```
+| File | Việc làm |
+|---|---|
+| `narration.py` | Tách lời dẫn + thoại nhân vật từ `script-anim.md` ra văn bản cho TTS (`(grim's voice …)`, `(kid's voice …)`) |
+| `voice_fx.sh` | Làm giọng trầm và ghê hơn: preset `deep`, `demon`, `whisper`, `radio` |
+| `transcribe_words.py` | Mốc từng từ bằng faster-whisper. Dự phòng: trong cloud dùng WordBoundary của edge-tts |
+| `make_captions.py` (+ `common.py`) | Phụ đề `.ass`: chữ HOA, 1–4 từ mỗi cụm, từ khóa `*...*` tô đỏ, pop |
+| `anim/` | Engine hoạt ảnh: `rigs.js` (nhân vật khớp xương), `stage.js` (cảnh, camera, shot, split-roll), `sakuga.js` (đòn năng lượng, lãnh địa, hào quang, letterbox), `render.js` (Playwright → mp4, `--check` luật 180°), `timeline_words.js` (khớp cue theo `words.json`), `captions_dyn.py` (phụ đề động) |
 
-Đưa `voice.txt` vào TTS (ElevenLabs / edge-tts) → `voice.mp3`, rồi:
-
-```bash
-bash tools/voice_fx.sh my-episode/voice.mp3 my-episode/voice_dark.wav deep
-```
-
-```bash
-python tools/transcribe_words.py my-episode/voice_dark.wav --lang en -o my-episode/words.json
-```
+## Chuỗi lệnh cho một tập (`episodes/<slug>/`)
 
 ```bash
-python tools/make_captions.py my-episode/words.json --script my-episode/script.md -o my-episode/captions.ass
+python tools/narration.py episodes/<slug>/script-anim.md -o episodes/<slug>/audio-anim/voice.txt
 ```
 
 ```bash
-python tools/make_cards.py choice "OPEN THE DOOR" "STAY QUIET" --countdown 5 --bg my-episode/door.png -o my-episode/choice.png
+bash tools/voice_fx.sh episodes/<slug>/audio-anim/voice_narr.mp3 episodes/<slug>/audio-anim/voice_dark.wav deep
 ```
 
 ```bash
-python tools/render.py my-episode/project.json --voice voice_dark.wav
+python tools/make_captions.py episodes/<slug>/audio-anim/words.json --script episodes/<slug>/script-anim.md --font "Bebas Neue" --size 104 --max-words 4 --max-chars 24 -o episodes/<slug>/build/captions.ass
 ```
 
-## Định dạng `project.json`
-
-Mọi đường dẫn đều tính tương đối so với vị trí file project.json. Ví dụ đầy đủ: `examples/ma-da/project.json`.
-
-```jsonc
-{
-  "width": 1080, "height": 1920, "fps": 30,
-  "output": "build/out.mp4",
-  "hud": { "label": "GHOST MAP · THE MA DA" },   // nhãn đỏ + đồng hồ trên cùng
-  "voice": "voice_dark.wav",
-  "music": "drone.mp3", "music_volume": 0.18,      // nhạc tự lặp, fade ở cuối
-  "captions": "captions.ass",
-  "loudness": -14,                                 // LUFS, chuẩn hóa 2 lần
-  "sfx": [ { "file": "knock.wav", "at": 46.0, "volume": 0.8 } ],
-  "scenes": [
-    {
-      "image": "house.png", "duration": 3.5,
-      "zoom": [1.0, 1.12],        // Ken Burns: từ → đến
-      "pan": "left",              // none | left | right | up | down
-      "shake": 14,                // biên độ rung (px), hoặc true
-      "flash": true,              // flash trắng ở đầu cảnh
-      "fade_in": 0.8, "fade_out": 0.6,
-      "clock": "2:47 AM",         // đồng hồ HUD (giữ nguyên cho các cảnh sau)
-      "hud": false                // ẩn HUD ở cảnh này
-    }
-  ]
-}
+```bash
+node episodes/<slug>/anim/make_timeline.js
 ```
 
-## Quy ước trong script.md
+```bash
+node tools/anim/render.js --timeline episodes/<slug>/anim/timeline.json --check
+```
 
-- Lời dẫn = những dòng bắt đầu bằng `>` nằm sau tiêu đề `## ` đầu tiên.
-- `*word*` = từ khóa được tô đỏ trong phụ đề (chỉ tô đúng chỗ đã đánh dấu, các lần lặp khác không bị tô).
-- `(whisper, slow)` = chỉ dẫn cách đọc: bị bỏ khỏi phụ đề, chuyển thành audio tag khi dùng `narration.py --elevenlabs`.
-- `(child's voice …)` = thoại nhân vật: được tách riêng để thu bằng giọng thứ hai.
+```bash
+python3 tools/anim/captions_dyn.py episodes/<slug>/build/captions.ass episodes/<slug>/anim/timeline.json episodes/<slug>/build/captions-dyn.ass
+```
+
+```bash
+bash episodes/<slug>/build-anim.sh
+```
+
+Lệnh `--check` phải in `180-RULE OK` trước khi dựng. Mẫu dựng đầy đủ: `episodes/black-eyed-children-vs-cerberus/build-anim.sh`. Mẫu timeline theo luật mới: `tools/anim/demo/sakuga_demo.js`.

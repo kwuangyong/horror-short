@@ -132,6 +132,7 @@ Cột **Research**: ✅ = đã có mục trong `episodes/_format-dual-spin/01-re
 | Guardian | Quyền năng / hào quang gợi ý | Giới hạn | Research |
 |---|---|---|---|
 | Garmr | Chó canh cổng Hel (xanh băng–đỏ máu) | Bị xích tới Ragnarök | ✅ |
+| Thor | Búa Mjölnir ném đi rồi bay về, sấm sét, đai Megingjörð nhân đôi sức, găng sắt Járngreipr; kẻ giết rắn Jörmungandr (xanh điện–trắng) | Nọc rắn: ở Ragnarök giết Jörmungandr xong, đi 9 bước rồi gục vì nọc. **Không lấy thiết kế Marvel** (áo choàng đỏ, giáp Marvel, tóc vàng) | ➕ |
 | Valkyrie | Chọn người chết, dẫn hồn về Valhalla (xanh băng–trắng) | Chỉ đón người chết trận | ➕ |
 | Fylgja | Linh thú hộ thân | Thấy nó lúc thức là điềm chết | ✅ |
 | Landvættir | Linh hồn giữ đất (rồng, bò, chim, khổng lồ) | Sợ đầu rồng trên mũi tàu | ✅ |

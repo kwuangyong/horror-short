@@ -4,17 +4,17 @@ kid whisper) -> clips/u_NN.wav + units.json (raw word times scaled to the fx cli
 Usage: python make_voice.py [--rate +38%] [--pitch -10Hz]"""
 import asyncio, json, os, re, subprocess, argparse
 import numpy as np, edge_tts
-ap = argparse.ArgumentParser(); ap.add_argument("--rate", default="+40%"); ap.add_argument("--pitch", default="-10Hz")
+ap = argparse.ArgumentParser(); ap.add_argument("--rate", default="+12%"); ap.add_argument("--pitch", default="-10Hz")
 a = ap.parse_args()
 HERE = os.path.dirname(os.path.abspath(__file__)); SCRIPT = os.path.join(HERE, "..", "script-anim.md")
 ROOT = os.path.abspath(os.path.join(HERE, "..", "..", "..")); CL = f"{HERE}/clips"
 SR = 24000; PROXY = os.environ.get("HTTPS_PROXY")
 VOICES = {"narrator": ("en-US-ChristopherNeural", None, None),
-          "apep": ("en-US-GuyNeural", "+34%", "-20Hz"),
-          "apep_whisper": ("en-US-GuyNeural", "-12%", "-14Hz"),
-          "thor": ("en-GB-RyanNeural", "+38%", "-22Hz"),
-          "thor_hoarse": ("en-GB-RyanNeural", "-8%", "-14Hz"),
-          "kid": ("en-US-AnaNeural", "-8%", "+0Hz")}
+          "apep": ("en-US-GuyNeural", "+8%", "-20Hz"),
+          "apep_whisper": ("en-US-GuyNeural", "-28%", "-14Hz"),
+          "thor": ("en-GB-RyanNeural", "+10%", "-22Hz"),
+          "thor_hoarse": ("en-GB-RyanNeural", "-24%", "-14Hz"),
+          "kid": ("en-US-AnaNeural", "-22%", "+0Hz")}  # v2: ~20% slower than v1 (narrator +12% vs +40%)
 # anchor (final time, s) = start of the shot the line introduces, minus ~0.2 s; key = text prefix
 ANCH = {"I am Apep": 4.4, "I am Thor": 10.9, "A kid slept": 17.4, "So they walked": 19.9, "Then Apep rose": 21.3,
         "But thunder": 22.7, "The kid ran": 25.1, "He buckled": 27.6, "His hammer": 28.8, "But Apep roared": 31.4,

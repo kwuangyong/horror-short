@@ -1,5 +1,5 @@
 {
- "duration": 74.8133541666667,
+ "duration": 95.10508333333334,
  "sections": [
   {
    "section": 0,
@@ -14,45 +14,45 @@
   {
    "name": "intro_apep",
    "start": 4.4,
-   "end": 9.38
+   "end": 10.6
   },
   {
    "name": "intro_thor",
-   "start": 10.9,
-   "end": 16.37
+   "start": 12.3,
+   "end": 18.89
   },
   {
    "section": 2,
    "name": "story",
-   "start": 17.4
+   "start": 20.24
   },
   {
    "name": "fight",
-   "start": 28.54
+   "start": 35.51
   },
   {
    "name": "totality",
-   "start": 44.91
+   "start": 56.72
   },
   {
    "name": "beams",
-   "start": 48.5
+   "start": 61.05
   },
   {
    "name": "finale",
-   "start": 55.87
+   "start": 70.49
   },
   {
    "name": "dawn",
-   "start": 59.6
+   "start": 75.1
   },
   {
    "name": "cliffhanger",
-   "start": 70.62
+   "start": 89.82
   },
   {
    "name": "whisper",
-   "start": 73.05
+   "start": 93.05
   }
  ],
  "dialogue": [
@@ -61,80 +61,80 @@
    "speaker": "apep",
    "text": "I am Apep, serpent of chaos.",
    "start": 4.4,
-   "end": 6.16,
+   "end": 6.53,
    "late": 0.0
   },
   {
    "section": 1,
    "speaker": "apep",
    "text": "Each night I devour the sun.",
-   "start": 6.36,
-   "end": 7.86,
+   "start": 6.87,
+   "end": 8.69,
    "late": 0.0
   },
   {
    "section": 1,
    "speaker": "apep",
    "text": "Tonight, I devour you.",
-   "start": 8.06,
-   "end": 9.38,
+   "start": 9.03,
+   "end": 10.6,
    "late": 0.0
   },
   {
    "section": 1,
    "speaker": "thor",
    "text": "I am Thor, son of Odin.",
-   "start": 10.9,
-   "end": 12.8,
+   "start": 12.3,
+   "end": 14.5,
    "late": 0.0
   },
   {
    "section": 1,
    "speaker": "thor",
    "text": "I hooked the World Serpent.",
-   "start": 12.95,
-   "end": 14.59,
+   "start": 14.82,
+   "end": 16.71,
    "late": 0.0
   },
   {
    "section": 1,
    "speaker": "thor",
    "text": "Crawl back, worm.",
-   "start": 14.74,
-   "end": 16.37,
+   "start": 17.03,
+   "end": 18.89,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "thor_hoarse",
    "text": "Go home, little one.",
-   "start": 65.6,
-   "end": 67.47,
-   "late": 1.6
+   "start": 83.18,
+   "end": 85.36,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "thor_hoarse",
    "text": "Never sleep under a dark sun.",
-   "start": 67.62,
-   "end": 69.73,
+   "start": 85.68,
+   "end": 88.15,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "kid",
    "text": "...Okay.",
-   "start": 69.88,
-   "end": 70.47,
-   "late": 2.88
+   "start": 88.65,
+   "end": 89.32,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "apep_whisper",
    "text": "I always come back.",
-   "start": 73.05,
-   "end": 74.41,
-   "late": 0.65
+   "start": 93.05,
+   "end": 94.71,
+   "late": 0.0
   }
  ],
  "sentences": [
@@ -143,216 +143,216 @@
    "speaker": "apep",
    "text": "I am Apep, serpent of chaos.",
    "start": 4.4,
-   "end": 6.16,
+   "end": 6.53,
    "late": 0.0
   },
   {
    "section": 1,
    "speaker": "apep",
    "text": "Each night I devour the sun.",
-   "start": 6.36,
-   "end": 7.86,
+   "start": 6.87,
+   "end": 8.69,
    "late": 0.0
   },
   {
    "section": 1,
    "speaker": "apep",
    "text": "Tonight, I devour you.",
-   "start": 8.06,
-   "end": 9.38,
+   "start": 9.03,
+   "end": 10.6,
    "late": 0.0
   },
   {
    "section": 1,
    "speaker": "thor",
    "text": "I am Thor, son of Odin.",
-   "start": 10.9,
-   "end": 12.8,
+   "start": 12.3,
+   "end": 14.5,
    "late": 0.0
   },
   {
    "section": 1,
    "speaker": "thor",
    "text": "I hooked the World Serpent.",
-   "start": 12.95,
-   "end": 14.59,
+   "start": 14.82,
+   "end": 16.71,
    "late": 0.0
   },
   {
    "section": 1,
    "speaker": "thor",
    "text": "Crawl back, worm.",
-   "start": 14.74,
-   "end": 16.37,
+   "start": 17.03,
+   "end": 18.89,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "A kid slept at the desert's edge, until a hiss called their name.",
-   "start": 17.4,
-   "end": 20.16,
+   "start": 20.24,
+   "end": 23.65,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "So they walked out beneath an eclipse.",
-   "start": 20.31,
-   "end": 21.93,
-   "late": 0.41
+   "start": 24.15,
+   "end": 26.12,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Then Apep rose, and the world shook.",
-   "start": 22.08,
-   "end": 23.96,
-   "late": 0.78
+   "start": 26.62,
+   "end": 28.95,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "But thunder fell first, and Thor caught the strike on his hammer.",
-   "start": 24.11,
-   "end": 26.9,
-   "late": 1.41
+   "start": 29.45,
+   "end": 32.87,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "The kid ran for the ruins.",
-   "start": 27.05,
-   "end": 28.39,
-   "late": 1.95
+   "start": 33.37,
+   "end": 35.01,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "He buckled his belt, and his strength doubled.",
-   "start": 28.54,
-   "end": 30.46,
-   "late": 0.94
+   "start": 35.51,
+   "end": 37.9,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "His hammer never misses.",
-   "start": 30.61,
-   "end": 31.85,
-   "late": 1.81
+   "start": 38.4,
+   "end": 39.88,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "But Apep roared, so the sand split and the dunes buckled.",
-   "start": 32.0,
-   "end": 34.6,
-   "late": 0.6
+   "start": 40.38,
+   "end": 43.61,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Then its stare froze him, and the coils closed in.",
-   "start": 36.5,
-   "end": 38.86,
+   "start": 45.98,
+   "end": 48.88,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Venom burned through his veins, so he staggered, step after step.",
-   "start": 41.7,
-   "end": 44.76,
+   "start": 52.43,
+   "end": 56.22,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Now the eclipse reached totality, and darkness swallowed the ruins.",
-   "start": 44.91,
-   "end": 48.0,
-   "late": 0.41
+   "start": 56.72,
+   "end": 60.55,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Thor roared back with lightning, yet the chaos beam pushed harder.",
-   "start": 48.5,
-   "end": 51.28,
+   "start": 61.05,
+   "end": 64.46,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "So he tore an ox head from the old altar, and hooked it to his hammer as bait.",
-   "start": 52.5,
-   "end": 55.72,
+   "start": 65.99,
+   "end": 69.99,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Apep lunged for the bait, and Thor's lightning blasted it skyward.",
-   "start": 55.87,
-   "end": 58.86,
-   "late": 0.87
+   "start": 70.49,
+   "end": 74.18,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "The beast spat out the dark, and sunlight spilled across the sand.",
-   "start": 59.6,
-   "end": 62.57,
+   "start": 75.1,
+   "end": 78.78,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "The kid stood on the sand again, though their shadow had changed.",
-   "start": 62.72,
-   "end": 65.45,
-   "late": 1.62
+   "start": 79.28,
+   "end": 82.68,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "thor_hoarse",
    "text": "Go home, little one.",
-   "start": 65.6,
-   "end": 67.47,
-   "late": 1.6
+   "start": 83.18,
+   "end": 85.36,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "thor_hoarse",
    "text": "Never sleep under a dark sun.",
-   "start": 67.62,
-   "end": 69.73,
+   "start": 85.68,
+   "end": 88.15,
    "late": 0.0
   },
   {
    "section": 2,
    "speaker": "kid",
    "text": "...Okay.",
-   "start": 69.88,
-   "end": 70.47,
-   "late": 2.88
+   "start": 88.65,
+   "end": 89.32,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "At the next sunset, the dunes began to breathe.",
-   "start": 70.62,
-   "end": 72.85,
-   "late": 1.02
+   "start": 89.82,
+   "end": 92.55,
+   "late": 0.0
   },
   {
    "section": 2,
    "speaker": "apep_whisper",
    "text": "I always come back.",
-   "start": 73.05,
-   "end": 74.41,
-   "late": 0.65
+   "start": 93.05,
+   "end": 94.71,
+   "late": 0.0
   }
  ]
 }

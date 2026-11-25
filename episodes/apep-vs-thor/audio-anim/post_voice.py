@@ -7,13 +7,24 @@ U = json.load(open(f"{H}/units.json"))
 def load(p):
     r = subprocess.run(["ffmpeg","-v","error","-i",p,"-f","f32le","-ac","1","-ar",str(SR),"pipe:1"], capture_output=True, check=True)
     return np.frombuffer(r.stdout, dtype=np.float32)
-t = 0.0; out = np.zeros(int(90*SR), np.float32); words = []; sents = []; prev_end = None; log = []
+V1 = json.load(open(f"{H}/v1/sections.json"))["sentences"]   # v1 pacing: line-start silences are kept, stretched x1.25 (v2 is ~20% slower)
+def v1gap(text):
+    for i, x in enumerate(V1):
+        if x["text"] == text and i > 0: return x["start"] - V1[i-1]["end"]
+    return None
+t = 0.0; out = np.zeros(int(130*SR), np.float32); words = []; sents = []; prev_end = None; log = []
 for u in U:
     x = load(f"{H}/clips/{u['file']}")
-    gap = 0.2 if u["speaker"].startswith("apep") else 0.15
+    gap = 0.34 if u["speaker"].startswith("apep") else 0.32          # v2: 0.30-0.35 s between sentences
     start = (prev_end + gap) if prev_end is not None else 0.0
-    if u["anchor"] is not None: start = max(start, u["anchor"]); late = start - u["anchor"]
-    else: late = 0.0
+    late = 0.0
+    if prev_end is None: start = 4.4                                  # first intro line (hook + split-roll are narration-free)
+    elif u["line_first"]:
+        g1 = v1gap(u["text"])
+        if g1 is not None:
+            if u["text"].startswith("I am Thor"): g1 = 1.7           # lock GUARDIAN + Thor card must fit
+            elif u["text"].startswith("A kid"): g1 = 1.35            # VS slam sits here
+            start = max(start, prev_end + max(0.4, g1 if g1 > 0.6 else 0.0) * (1.0 if g1 in (1.7, 1.35) else 1.25))
     out[int(start*SR): int(start*SR)+len(x)] += x
     for w in u["words"]:
         words.append({"word": w["word"], "start": round(start+w["start"], 3), "end": round(start+w["end"], 3), "speaker": "narrator" if u["speaker"] == "narrator" else u["speaker"].split("_")[0]})

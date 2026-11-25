@@ -1,0 +1,84 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Cap,Bebas Neue,104,&H00EBF2F5&,&H00EBF2F5&,&H00000000,&H96000000,-1,0,0,0,100,100,1,0,1,5,4,5,40,40,0,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:04.40,0:00:05.10,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00D060B0&}I AM APEP
+Dialogue: 0,0:00:05.10,0:00:06.36,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00D060B0&}SERPENT OF CHAOS
+Dialogue: 0,0:00:06.36,0:00:06.88,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00D060B0&}EACH NIGHT I
+Dialogue: 0,0:00:06.88,0:00:08.06,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00D060B0&}DEVOUR THE SUN.
+Dialogue: 0,0:00:08.06,0:00:09.88,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00D060B0&}TONIGHT I DEVOUR YOU
+Dialogue: 0,0:00:10.90,0:00:11.88,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00FFB040&}I AM THOR
+Dialogue: 0,0:00:11.88,0:00:12.95,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00FFB040&}SON OF ODIN
+Dialogue: 0,0:00:12.95,0:00:13.35,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00FFB040&}I HOOKED
+Dialogue: 0,0:00:13.35,0:00:14.74,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00FFB040&}THE WORLD SERPENT
+Dialogue: 0,0:00:14.74,0:00:16.89,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00FFB040&}CRAWL BACK WORM
+Dialogue: 0,0:00:17.40,0:00:17.96,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}A KID SLEPT
+Dialogue: 0,0:00:17.96,0:00:18.90,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AT THE DESERT'S EDGE
+Dialogue: 0,0:00:18.90,0:00:19.41,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}UNTIL{\c&H00EBF2F5&} A HISS
+Dialogue: 0,0:00:19.41,0:00:20.31,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}CALLED THEIR NAME
+Dialogue: 0,0:00:20.31,0:00:20.85,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}SO THEY WALKED
+Dialogue: 0,0:00:20.85,0:00:22.08,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}OUT BENEATH AN {\c&H002F26E3&}ECLIPSE{\c&H00EBF2F5&}
+Dialogue: 0,0:00:22.08,0:00:23.07,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THEN APEP ROSE
+Dialogue: 0,0:00:23.07,0:00:24.11,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THE WORLD SHOOK
+Dialogue: 0,0:00:24.11,0:00:25.29,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BUT THUNDER FELL FIRST
+Dialogue: 0,0:00:25.29,0:00:25.65,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THOR
+Dialogue: 0,0:00:25.65,0:00:26.27,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}CAUGHT THE STRIKE
+Dialogue: 0,0:00:26.27,0:00:27.05,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ON HIS HAMMER
+Dialogue: 0,0:00:27.05,0:00:27.61,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE KID RAN
+Dialogue: 0,0:00:27.61,0:00:28.54,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}FOR THE RUINS
+Dialogue: 0,0:00:28.54,0:00:29.46,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}HE BUCKLED HIS BELT
+Dialogue: 0,0:00:29.46,0:00:30.61,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND HIS STRENGTH DOUBLED
+Dialogue: 0,0:00:30.61,0:00:32.00,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}HIS HAMMER NEVER MISSES
+Dialogue: 0,0:00:32.00,0:00:32.79,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BUT APEP ROARED
+Dialogue: 0,0:00:32.79,0:00:33.68,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}SO THE SAND SPLIT
+Dialogue: 0,0:00:33.68,0:00:35.14,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THE DUNES BUCKLED
+Dialogue: 0,0:00:36.50,0:00:37.05,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THEN ITS STARE
+Dialogue: 0,0:00:37.05,0:00:37.70,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}FROZE HIM
+Dialogue: 0,0:00:37.70,0:00:38.22,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THE COILS
+Dialogue: 0,0:00:38.22,0:00:39.37,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}CLOSED IN
+Dialogue: 0,0:00:41.70,0:00:42.24,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}VENOM BURNED
+Dialogue: 0,0:00:42.24,0:00:43.09,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THROUGH HIS VEINS
+Dialogue: 0,0:00:43.09,0:00:43.91,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}SO HE STAGGERED
+Dialogue: 0,0:00:43.91,0:00:44.91,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}STEP AFTER STEP
+Dialogue: 0,0:00:44.91,0:00:45.86,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}NOW THE ECLIPSE REACHED
+Dialogue: 0,0:00:45.86,0:00:47.02,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H002F26E3&}TOTALITY{\c&H00EBF2F5&} AND DARKNESS
+Dialogue: 0,0:00:47.02,0:00:48.50,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}SWALLOWED THE RUINS
+Dialogue: 0,0:00:48.50,0:00:48.90,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THOR ROARED
+Dialogue: 0,0:00:48.90,0:00:49.80,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BACK WITH LIGHTNING
+Dialogue: 0,0:00:49.80,0:00:50.35,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}YET THE CHAOS
+Dialogue: 0,0:00:50.35,0:00:51.83,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BEAM PUSHED HARDER
+Dialogue: 0,0:00:52.50,0:00:52.98,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}SO HE TORE
+Dialogue: 0,0:00:52.98,0:00:53.50,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AN OX HEAD
+Dialogue: 0,0:00:53.50,0:00:54.37,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}FROM THE OLD ALTAR
+Dialogue: 0,0:00:54.37,0:00:54.67,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND HOOKED
+Dialogue: 0,0:00:54.67,0:00:54.95,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}IT TO HIS
+Dialogue: 0,0:00:54.95,0:00:55.87,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}HAMMER AS {\c&H002F26E3&}BAIT{\c&H00EBF2F5&}
+Dialogue: 0,0:00:55.87,0:00:56.45,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}APEP LUNGED
+Dialogue: 0,0:00:56.45,0:00:57.11,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}FOR THE BAIT
+Dialogue: 0,0:00:57.11,0:00:57.86,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND THOR'S LIGHTNING
+Dialogue: 0,0:00:57.86,0:00:59.40,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BLASTED IT SKYWARD
+Dialogue: 0,0:00:59.60,0:01:00.19,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE BEAST SPAT
+Dialogue: 0,0:01:00.19,0:01:00.89,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}OUT THE DARK
+Dialogue: 0,0:01:00.89,0:01:01.74,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AND SUNLIGHT SPILLED
+Dialogue: 0,0:01:01.74,0:01:02.73,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ACROSS THE SAND
+Dialogue: 0,0:01:02.73,0:01:03.25,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE KID STOOD
+Dialogue: 0,0:01:03.25,0:01:04.14,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}ON THE SAND AGAIN
+Dialogue: 0,0:01:04.14,0:01:04.72,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THOUGH THEIR SHADOW
+Dialogue: 0,0:01:04.72,0:01:05.60,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}HAD CHANGED
+Dialogue: 0,0:01:05.60,0:01:07.62,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00FFB040&}GO HOME LITTLE ONE
+Dialogue: 0,0:01:07.62,0:01:08.69,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00FFB040&}NEVER SLEEP UNDER
+Dialogue: 0,0:01:08.69,0:01:09.88,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00FFB040&}A DARK SUN.
+Dialogue: 0,0:01:09.88,0:01:10.62,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00EBF2F5&}{\i1}OKAY
+Dialogue: 0,0:01:10.62,0:01:11.60,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}AT THE NEXT SUNSET
+Dialogue: 0,0:01:11.60,0:01:12.00,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}THE DUNES
+Dialogue: 0,0:01:12.00,0:01:13.05,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}BEGAN TO BREATHE
+Dialogue: 0,0:01:13.05,0:01:14.85,Cap,,0,0,0,,{\pos(540,1344)\fscx78\fscy78\t(0,90,\fscx104\fscy104)\t(90,140,\fscx100\fscy100)}{\c&H00D060B0&}I ALWAYS COME BACK

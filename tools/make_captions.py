@@ -36,7 +36,8 @@ def line_end_indexes(script: str) -> set[int]:
 RED_ASS = "&H002F26E3&"    # BGR of (227, 38, 47)
 WHITE_ASS = "&H00EBF2F5&"
 AMBER_ASS = "&H0000BFFF&"   # BGR of (255, 191, 0)
-SPEAKER_COLOR = {"grim": AMBER_ASS, "cerberus": "&H001E5AFF&", "children": "&H00C8BEB4&", "kid_mimic": "&H00C8BEB4&"}
+SPEAKER_COLOR = {"grim": AMBER_ASS, "cerberus": "&H001E5AFF&", "children": "&H00C8BEB4&", "kid_mimic": "&H00C8BEB4&",
+                 "apep": "&H00D060B0&", "thor": "&H00FFB040&", "kid": "&H00EBF2F5&"}
 
 
 def ts(t: float) -> str:

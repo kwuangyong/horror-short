@@ -2,7 +2,7 @@
 
 Toàn bộ nội dung video làm bằng **tiếng Anh** (kịch bản, phụ đề, chữ trên màn hình). Giọng kể chuyện cần **trầm, chậm, gần mic, nghe như đang thì thầm sát tai** chứ không phải giọng phát thanh viên.
 
-> **Ưu tiên luật format:** tốc độ đọc của Battle Spin theo [docs/07](07-format-battle-spin.md) mục 6 (edge-tts `rate +10%…+15%`, nghỉ 0,30–0,35 s giữa câu, tempo vừa). Các số "120–140 từ/phút, nghỉ 0,4–0,8 s" bên dưới chỉ dùng cho câu thì thầm cú lửng cuối và thoại nhân vật.
+> **Ưu tiên luật format:** tốc độ đọc của Battle Spin theo [docs/07](07-format-battle-spin.md) mục 12 (edge-tts `rate +10%…+15%`, nghỉ 0,30–0,35 s giữa câu, tempo vừa). Các số "120–140 từ/phút, nghỉ 0,4–0,8 s" bên dưới chỉ dùng cho câu thì thầm cú lửng cuối và thoại nhân vật.
 
 ## 1. Giọng đọc "nguy hiểm" gồm những gì
 

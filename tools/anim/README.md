@@ -13,6 +13,8 @@ Reference timeline (official format, docs/07): `tools/anim/demo/sakuga_demo.js` 
 **Rules (docs/07):** every official episode is rendered with this engine. No still images / Ken Burns, no HP bars, no ROUND cards. Monster always screen-LEFT, guardian screen-RIGHT (`sides`, `--check` must print `180-RULE OK`).
 
 ## Files
+**Rule tools:** `episode_kit.js` (Node: `opening(tl,cfg)` builds hook text + rewind glitch + 3 split-roll instances (dive L / emerge+dive R / emerge+VS) + intro title plates + ≤0.75 s pillars + VS/CTA and returns `cuts` for `captions_dyn.py --cut`; `kidFlee()` own shot of the kid running off-frame; `hideDuring()`; `chain()` 2-4 shot power chains) · `validate.js` (`node tools/anim/validate.js timeline.json --script script-anim.md [--strict]`: checks a timeline against docs/07, must be 0 FAIL before the full render).
+
 core.js (svg/joint/easing/keyframes) | rigs.js (rigs + action library) | stage.js (arena, camera, shots, fx, split-roll, text, timeline eval) | **sakuga.js** (energy fx, domains, rising terrain, aura/rim, letterbox, embers) | timeline_words.js (map cues to words.json) | render.js | captions_dyn.py | sheet.py
 
 ## Timeline JSON (all times in seconds, wall clock)
@@ -85,7 +87,7 @@ Common params: `scene` (switch scene at the cut), `push` (total zoom factor over
 - Shot `povgate`: looking up out of the burning gate (dog heads loom, serpent tail dangles, a grey face sinks into black smoke). Actor cue param `sil:[a,b]` silhouettes a rig (for the red-backlit bite).
 - Actor `scenes:['cabin',...]` limits an actor to scenes; `clipRect:[x,y,w,h]` clips an actor to a window.
 
-## Sakuga Cinematic (sakuga.js, docs/07 sections 2, 4, 5)
+## Sakuga Cinematic (sakuga.js, docs/07 sections 3, 10, 11)
 Energy fx (in `fx:[]`, world coordinates, follow the camera and the 180-degree mirror; `dur` gets a sensible default):
 - `{type:'beam', t0, x,y, x2,y2, w=70, color, charge=0.35, grow=0.14, hit=true, r}`: charge orb + converging streaks -> halo / body / vibrating white core / 3 lightning strands wrapped along it -> burst at the target.
 - `{type:'beam-clash', t0, dur=2.4, x,y (left origin), x2,y2 (right origin), colorL, colorR, w, amp=0.09, freq=4.5, win:'L'|'R', winAt}`: two beams meet, the clash orb pushes back and forth with sparks and shock rings; `win` drives it into the loser and explodes there.

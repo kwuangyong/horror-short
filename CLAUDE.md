@@ -28,7 +28,7 @@ Mọi tập nằm trong `episodes/<slug>/`. Agent trao đổi qua file, không q
 3. **Cổng 1 – Duyệt research**: ≥ 3 nguồn; **mỗi bên ≥ 3 sức mạnh có link Public Domain / truyền thuyết**; có điểm yếu monster + giới hạn guardian; nhân vật nằm trong docs/09, không bản quyền. Thiếu → giao lại `scout`.
 4. **Viết**: `writer` viết `script-anim.md` + `hooks.md`.
 5. **Cổng 2 – Duyệt kịch bản** (Boss tự đọc toàn bộ): chấm theo bảng dưới, ghi `review.md`. < 8/10 → trả `writer` (tối đa 3 vòng).
-6. **Dựng**: `producer` làm âm thanh, gửi mix-test cho người dùng nghe; thêm rig nếu thiếu (Boss duyệt turnaround); viết timeline; chạy `--check` phải ra `180-RULE OK`; dựng.
+6. **Dựng**: `producer` làm âm thanh, gửi mix-test cho người dùng nghe; thêm rig nếu thiếu (Boss duyệt turnaround); viết timeline (mở đầu bằng `tools/anim/episode_kit.js`); chạy `--check` phải ra `180-RULE OK` và `tools/anim/validate.js` phải 0 FAIL; dựng.
 7. **Cổng 3 – Duyệt bản dựng**: xem sheet trong `preview/` + khung tại các mốc bắt buộc (bảng Cổng 3). Lỗi nội dung → `writer`; lỗi kỹ thuật → `producer`.
 8. **Chốt**: commit + push, gửi preview, báo người dùng: thời lượng, LUFS, số cảnh, điểm Cổng 2, việc còn lại.
 
@@ -38,12 +38,12 @@ Mọi tập nằm trong `episodes/<slug>/`. Agent trao đổi qua file, không q
 |---|---|
 | Hook + mở đầu | Hook 0–3 s in medias res (khung có thật trong trận) + "WHO SURVIVES?" + tua ngược; Split-Roll có 2 màn tự giới thiệu ngôi thứ nhất ~5 s (thực thể gì, nguồn gốc, quyền năng), 2–3 góc máy mỗi màn, VS + "WHO WINS? COMMENT" |
 | Mạch lạc + tempo | Lời dẫn liền ý có từ nối, ~200–240 từ cho 85–100 s, mỗi câu ≤ 1 từ khóa `*...*` |
-| Lore + sức mạnh | Đúng tổ hợp A/B/C; mỗi bên ≥ 3 sức mạnh có nguồn, mỗi lần khoe là chuỗi 2–4 cảnh có `[FX]`; chi tiết sáng tạo ghi "câu chuyện" |
+| Lore + sức mạnh + xung đột | Đúng tổ hợp A/B/C; guardian có giới hạn có nguồn bị khai thác, đòn quyết định dựa điểm yếu đã cài (docs/07 mục 4); mỗi bên ≥ 3 sức mạnh có nguồn, mỗi lần khoe là chuỗi 2–4 cảnh theo công thức loại sức mạnh (mục 10); chi tiết sáng tạo ghi "(story)" |
 | Phân cảnh Sakuga | 50–60 cảnh (~1.6–1.8 s/cảnh), một chiến trường duy nhất (địa hình monster trồi lên), mọi shot có push+pan, whip-pan theo hướng đạn, slow-mo + crash-zoom ở đòn kết, 180° |
-| Bé + kết + an toàn | Bé có cảnh chạy ra khỏi khung khi guardian chắn đòn đầu rồi bị ẩn suốt 1v1; chỉ cắt về chỗ nấp khi có biến cố và lúc kết; không máu trên bé; cú lửng dựa lore và lộ diện bằng hình |
+| Bé + thoại + kết + an toàn | Bé chạy ra khỏi khung khi guardian chắn đòn đầu rồi bị ẩn suốt 1v1, chỉ cắt về chỗ nấp khi có biến cố và lúc kết, không máu; thoại đúng mục 6 (intro công thức, thoại cuối gài lore, thì thầm ≤ 5 từ); cú lửng 3 nhịp, dựa lore, lộ diện bằng hình (mục 7) |
 
 ## Cổng 3: mốc bắt buộc phải xem
-Hook (beam-clash/đòn chí mạng + chữ) · Split-Roll khóa MONSTER · intro Monster (low, cu, ecu, pillar không che mặt) · khóa GUARDIAN · intro Guardian · VS · guardian chắn đòn đầu · **bé chạy ra khỏi khung** · địa hình monster trồi lên · từng đòn `beam` / `beam-clash` / `orbs` / `slash` / `pillar` · đòn kết liễu (slow-mo + crash) · cảnh chỗ nấp của bé · cú lửng. Kiểm tra: không ảnh tĩnh, không HP, không ROUND, phụ đề không đè mặt, `180-RULE OK`.
+Hook (beam-clash/đòn chí mạng + chữ) · Split-Roll khóa MONSTER · intro Monster (low, cu, ecu, pillar không che mặt) · khóa GUARDIAN · intro Guardian · VS · guardian chắn đòn đầu · **bé chạy ra khỏi khung** · địa hình monster trồi lên · từng đòn `beam` / `beam-clash` / `orbs` / `slash` / `pillar` · đòn kết liễu (slow-mo + crash) · cảnh chỗ nấp của bé · cú lửng. Kiểm tra: không ảnh tĩnh, không HP, không ROUND, phụ đề không đè mặt, `180-RULE OK`, `validate.js` 0 FAIL (WARN do Boss quyết).
 
 ## Quy tắc giao việc
 

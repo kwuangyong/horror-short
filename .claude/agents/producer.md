@@ -23,18 +23,19 @@ Bạn là **Producer**, kỹ thuật của đội làm video kinh dị dọc "Ba
 
 ## Hoạt hình
 1. Nhân vật chưa có trong `tools/anim/rigs.js`: thêm rig khớp xương (flat-vector, không viền) theo docs/08 mục H. Monster: bất đối xứng, tay dài, gai, xúc tu/đốt xương, mắt phát sáng dị dạng. Guardian: khối vững, ký hiệu phát sáng. Thêm marker `eye`/`mouth`/`hand` cho `glint` và origin của chưởng. Thêm silhouette vào split-roll (`DECOYS`, `MON_NAMES`/`GUA_NAMES`, `LABELS` trong `stage.js`). Xuất turnaround PNG cho Boss duyệt trước.
-2. `episodes/<slug>/anim/make_timeline.js` theo mẫu `sakuga_demo.js`, sinh từ `words.json` (`cutOnWord`, `cueOnWord`), bám SHOT LIST:
+2. `episodes/<slug>/anim/make_timeline.js` theo tập mẫu `episodes/apep-vs-thor/anim/make_timeline.js`; **phần mở đầu dựng bằng `tools/anim/episode_kit.js` `opening()`** (hook text + glitch, 3 instance split-roll, bảng danh hiệu, pillar ≤ 0.75 s, VS + CTA; trả về `cuts` cho `captions_dyn --cut`), bé chạy đi bằng `kidFlee()`, chuỗi sức mạnh bằng `chain()`; sinh từ `words.json` (`cutOnWord`, `cueOnWord`), bám SHOT LIST:
    - `domains`: lãnh địa monster, lãnh địa guardian, **một chiến trường**; địa hình monster = prop `monolith`/`spire` + track `rise` trên chiến trường.
    - actor `aura` + `rim` cho cả hai (guardian sáng, monster bệnh hoạn).
-   - Monster khổng lồ theo lore: scale lớn (guardian ~1/4–1/5), thân thành địa hình (`serpent-coils` hoặc prop tương tự), cảnh rộng cực xa + góc thấp; mặt guardian không bị che (docs/07 mục 4).
+   - Monster khổng lồ theo lore: scale lớn (guardian ~1/4–1/5), thân thành địa hình (`serpent-coils` hoặc prop tương tự), cảnh rộng cực xa + góc thấp; mặt guardian không bị che (docs/07 mục 8).
    - Bé: actor `vis` tắt suốt 1v1 sau cảnh chạy ra khỏi khung; bật lại chỉ ở cảnh chỗ nấp.
    - Mọi shot có `push` + `pan`; nối bằng `tr:{type:'whip',dir}` theo hướng đạn; `dutch`, `follow`, `slow` + `crash` ở đòn kết; `cinema` + `embers` trong hành động.
    - `sides:{left:<monster>, right:<guardian>}`.
+   - Animation theo docs/07 mục 9 (anticipation → action → follow-through, impact frame = flash + shake + recoil, không pose đứng im), sức mạnh theo bảng công thức mục 10.
 3. `episodes/<slug>/build-anim.sh` (theo mẫu tập #003 `apep-vs-thor`): `--check` → mix → captions + captions_dyn → render → mux + burn → preview < 15 MB → sheet 20 khung.
 4. Kiểm tra nhanh trước khi render cả tập: `node tools/anim/render.js --timeline … --dump t1,t2 --dump-dir DIR --scale 0.5` rồi `python3 tools/anim/sheet.py DIR sheet.jpg 6`.
 
 ## Kiểm tra kỹ thuật bắt buộc (ghi `episodes/<slug>/qc-anim.md`)
-- `--check` in **`180-RULE OK`**.
+- `--check` in **`180-RULE OK`** và **`node tools/anim/validate.js anim/timeline.json --script script-anim.md` = 0 FAIL** (dán kết quả WARN vào qc).
 - Thời lượng 85–100 s (`ffprobe`), 50–60 cảnh (đếm `shots`), loudness ≈ −14 LUFS.
 - TỰ XEM khung tại mọi mốc trong bảng "Cổng 3" của `CLAUDE.md` bằng Read: không ảnh tĩnh, không HP, không ROUND, không shot đứng máy, `pillar` intro không che mặt, bé không xuất hiện trong khung 1v1, phụ đề không đè mặt.
 - Liệt kê điểm còn yếu và mọi asset ngoài (nếu có) kèm giấy phép.

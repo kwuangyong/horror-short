@@ -10,6 +10,8 @@ Cần có: Node 18+ với Playwright Chromium (đã cài sẵn trong cloud), Pyt
 | `voice_fx.sh` | Làm giọng trầm và ghê hơn: preset `deep`, `demon`, `whisper`, `radio` |
 | `transcribe_words.py` | Mốc từng từ bằng faster-whisper. Dự phòng: trong cloud dùng WordBoundary của edge-tts |
 | `make_captions.py` (+ `common.py`) | Phụ đề `.ass`: chữ HOA, 1–4 từ mỗi cụm, từ khóa `*...*` tô đỏ, pop |
+| `anim/validate.js` | Kiểm tra timeline theo luật docs/07 (bắt buộc 0 FAIL trước khi dựng) |
+| `anim/episode_kit.js` | Dựng sẵn phần mở đầu chuẩn (hook, Split-Roll, 2 intro, VS), cảnh bé chạy đi, chuỗi sức mạnh |
 | `anim/` | Engine hoạt ảnh: `rigs.js` (nhân vật khớp xương), `stage.js` (cảnh, camera, shot, split-roll), `sakuga.js` (đòn năng lượng, lãnh địa, hào quang, letterbox), `render.js` (Playwright → mp4, `--check` luật 180°), `timeline_words.js` (khớp cue theo `words.json`), `captions_dyn.py` (phụ đề động) |
 
 ## Chuỗi lệnh cho một tập (`episodes/<slug>/`)
@@ -42,4 +44,8 @@ python3 tools/anim/captions_dyn.py episodes/<slug>/build/captions.ass episodes/<
 bash episodes/<slug>/build-anim.sh
 ```
 
-Lệnh `--check` phải in `180-RULE OK` trước khi dựng. Mẫu dựng đầy đủ: `episodes/apep-vs-thor/build-anim.sh` (tập mẫu chuẩn). Mẫu timeline theo luật mới: `tools/anim/demo/sakuga_demo.js`.
+```bash
+node tools/anim/validate.js episodes/<slug>/anim/timeline.json --script episodes/<slug>/script-anim.md
+```
+
+Lệnh `--check` phải in `180-RULE OK` và `validate.js` phải 0 FAIL trước khi dựng. Mẫu dựng đầy đủ: `episodes/apep-vs-thor/build-anim.sh` (tập mẫu chuẩn). Mẫu timeline theo luật mới: `tools/anim/demo/sakuga_demo.js`.

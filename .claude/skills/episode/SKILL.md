@@ -17,7 +17,7 @@ Bạn là **Boss**. Làm một tập Battle Spin cho: **$ARGUMENTS**
 Chọn 1 ô mỗi bảng A–F trong docs/08 theo luật chống lặp (không trùng A/B/C trong 3 tập liên tiếp, không lặp A+B+C, E/F khác tập trước), khớp lore. Thêm dòng vào `episodes/_registry.md` với Format = `sakuga`.
 
 ## 1. Brief
-`episodes/<slug>/00-brief.md`: cặp đấu, lý do chọn, tổ hợp A–F; khoảnh khắc hook (theo ô E); lãnh địa của mỗi bên (motif, màu); chiến trường duy nhất + địa hình monster trồi lên; danh sách sức mạnh dự kiến (≥ 3 mỗi bên); giới hạn guardian + điểm yếu monster; số phận bé + chỗ nấp; cú lửng (điều kiện lore, lộ diện bằng hình); nội dung 2 màn tự giới thiệu.
+`episodes/<slug>/00-brief.md`: cặp đấu, lý do chọn, tổ hợp A–F; khoảnh khắc hook (theo ô E); lãnh địa của mỗi bên (motif, màu); chiến trường duy nhất + địa hình monster trồi lên; danh sách sức mạnh dự kiến (≥ 3 mỗi bên); giới hạn guardian + điểm yếu monster; số phận bé + chỗ nấp; cú lửng (điều kiện lore, lộ diện bằng hình); nội dung 2 màn tự giới thiệu (công thức docs/07 mục 6.1); kế hoạch chuỗi sức mạnh theo loại (docs/07 mục 10); thoại trong trận (≤ 1 câu mỗi bên) + thoại cuối có lời dặn gài cú lửng; cú lửng 3 nhịp (docs/07 mục 7).
 
 ## 2. Trinh sát (song song, một lượt)
 - `scout` loại `lore` cho monster + `scout` loại `lore` cho guardian → `episodes/<slug>/01-research.md` và **`01-research-powers.md`** (bảng: sức mạnh · nguồn + link · hình ảnh hóa bằng fx nào · giới hạn). Dùng lại phần có sẵn trong `episodes/_format-dual-spin/01-research-*.md`.
@@ -28,12 +28,12 @@ Giao `writer` viết `episodes/<slug>/script-anim.md` + `hooks.md` theo `.claude
 **Cổng 2** (Boss tự đọc toàn bộ, ghi `review.md`), chấm theo bảng 5 mục trong `CLAUDE.md`. Dưới 8 → trả `writer` (tối đa 3 vòng). Dừng ở đây nếu `--until script`.
 
 ## 4. Âm thanh
-Giao `producer` làm `episodes/<slug>/audio-anim/` theo docs/07 mục 6: lời dẫn rate +10–15%, nghỉ 0.30–0.35 s; giọng intro đa tầng cho mỗi nhân vật; trống ~125 BPM + beam SFX; nhạc tắt trước câu thì thầm cuối; words.json, captions; mix-test.mp3 −14 LUFS.
+Giao `producer` làm `episodes/<slug>/audio-anim/` theo docs/07 mục 12: lời dẫn rate +10–15%, nghỉ 0.30–0.35 s; giọng intro đa tầng cho mỗi nhân vật; trống ~125 BPM + beam SFX; nhạc tắt trước câu thì thầm cuối; words.json, captions; mix-test.mp3 −14 LUFS.
 edge-tts cần host `speech.platform.bing.com`; nếu bị chặn, đọc `read_documentation` topic `environment.network` rồi đề xuất mở host đó.
 Gửi `mix-test.mp3` cho người dùng nghe. Dừng ở đây nếu `--until audio`.
 
 ## 5. Dựng hoạt hình
-Giao `producer`: rig mới nếu thiếu (turnaround cho Boss duyệt trước) → `episodes/<slug>/anim/make_timeline.js` (theo `sakuga_demo.js`) → `--check` = `180-RULE OK` → `build-anim.sh` → `preview/<slug>.mp4` (< 15 MB), `preview/<slug>-sheet.jpg`, `qc-anim.md`.
+Giao `producer`: rig mới nếu thiếu (turnaround cho Boss duyệt trước) → `episodes/<slug>/anim/make_timeline.js` (theo `sakuga_demo.js`) → `--check` = `180-RULE OK` → `node tools/anim/validate.js episodes/<slug>/anim/timeline.json --script episodes/<slug>/script-anim.md` = 0 FAIL → `build-anim.sh` → `preview/<slug>.mp4` (< 15 MB), `preview/<slug>-sheet.jpg`, `qc-anim.md`.
 **Cổng 3**: xem các mốc trong bảng "Cổng 3" của `CLAUDE.md`. Thời lượng 85–100 s, 50–60 cảnh. Lỗi hình → producer; lỗi nội dung → writer.
 
 ## 6. Chốt

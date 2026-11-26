@@ -1,58 +1,59 @@
 {
- "duration": 100.18,
+ "duration": 100.52,
  "sections": [
   {
    "section": 0,
    "name": "hook",
-   "start": 0.0
+   "start": 0.0,
+   "end": 11.43
   },
   {
    "section": 1,
    "name": "split_roll",
-   "start": 3.0
+   "start": 11.43
   },
   {
    "name": "intro_typhon",
-   "start": 4.5,
-   "end": 11.4
+   "start": 12.93,
+   "end": 19.8
   },
   {
    "name": "intro_cthulhu",
-   "start": 13.05,
-   "end": 18.92
+   "start": 21.45,
+   "end": 27.27
   },
   {
    "section": 2,
    "name": "story",
-   "start": 20.37
+   "start": 28.77
   },
   {
    "name": "fight",
-   "start": 33.96
+   "start": 38.19
   },
   {
    "name": "rlyeh",
-   "start": 46.28
+   "start": 49.55
   },
   {
    "name": "climax",
-   "start": 70.68
+   "start": 71.81
   },
   {
    "name": "aftermath",
-   "start": 80.78
+   "start": 81.12
   },
   {
    "name": "cliffhanger",
-   "start": 90.01
+   "start": 90.34
   },
   {
    "name": "stars_cut",
-   "start": 93.32
+   "start": 93.66
   },
   {
    "name": "whisper",
-   "start": 97.04
+   "start": 97.37
   }
  ],
  "dialogue": [
@@ -60,297 +61,318 @@
    "section": 1,
    "speaker": "typhon",
    "text": "I am Typhon, father of all monsters.",
-   "start": 4.5,
-   "end": 7.05
+   "start": 12.93,
+   "end": 15.48
   },
   {
    "section": 1,
    "speaker": "typhon",
    "text": "Even Olympus fled my fire.",
-   "start": 7.29,
-   "end": 9.19
+   "start": 15.7,
+   "end": 17.62
   },
   {
    "section": 1,
    "speaker": "typhon",
    "text": "Tonight, the sea and shore burn.",
-   "start": 9.43,
-   "end": 11.4
+   "start": 17.84,
+   "end": 19.8
   },
   {
    "section": 1,
    "speaker": "cthulhu",
    "text": "I am Cthulhu, dreamer of R'lyeh.",
-   "start": 13.05,
-   "end": 15.3
+   "start": 21.45,
+   "end": 23.7
   },
   {
    "section": 1,
    "speaker": "cthulhu",
    "text": "You woke me from the deep.",
-   "start": 15.54,
-   "end": 17.12
+   "start": 23.92,
+   "end": 25.49
   },
   {
    "section": 1,
    "speaker": "cthulhu",
    "text": "Now face the abyss.",
-   "start": 17.36,
-   "end": 18.92
+   "start": 25.71,
+   "end": 27.27
   },
   {
    "section": 2,
    "speaker": "typhon",
    "text": "Burn in my fire!",
-   "start": 58.02,
-   "end": 59.27
+   "start": 60.14,
+   "end": 61.39
   },
   {
    "section": 2,
    "speaker": "cthulhu",
    "text": "Drown in madness.",
-   "start": 74.1,
-   "end": 75.51
+   "start": 74.8,
+   "end": 76.22
   },
   {
    "section": 2,
    "speaker": "cthulhu",
-   "text": "Go home, little one.",
-   "start": 83.82,
-   "end": 85.54
+   "text": "Go home, sailors.",
+   "start": 84.17,
+   "end": 85.99
   },
   {
    "section": 2,
    "speaker": "cthulhu",
    "text": "Do not sail when the stars align.",
-   "start": 85.78,
-   "end": 87.93
+   "start": 86.21,
+   "end": 88.36
   },
   {
    "section": 2,
-   "speaker": "kid",
-   "text": "...Are you staying?",
-   "start": 88.38,
-   "end": 89.46
+   "speaker": "fisherman",
+   "text": "...Are we safe?",
+   "start": 88.81,
+   "end": 89.79
   },
   {
    "section": 2,
    "speaker": "cthulhu_whisper",
    "text": "The stars are almost right.",
-   "start": 97.04,
-   "end": 99.18
+   "start": 97.37,
+   "end": 99.52
   }
  ],
  "sentences": [
   {
+   "section": 0,
+   "speaker": "narrator",
+   "text": "Midnight on the black sea.",
+   "start": 0.35,
+   "end": 1.65
+  },
+  {
+   "section": 0,
+   "speaker": "narrator",
+   "text": "A fishing fleet hauled their nets.",
+   "start": 1.87,
+   "end": 3.57
+  },
+  {
+   "section": 0,
+   "speaker": "narrator",
+   "text": "Until the ocean boiled, and Typhon woke, marching for the shore.",
+   "start": 4.02,
+   "end": 7.62
+  },
+  {
+   "section": 0,
+   "speaker": "narrator",
+   "text": "The tremors woke a deeper god from the abyss.",
+   "start": 8.07,
+   "end": 10.28
+  },
+  {
    "section": 1,
    "speaker": "typhon",
    "text": "I am Typhon, father of all monsters.",
-   "start": 4.5,
-   "end": 7.05
+   "start": 12.93,
+   "end": 15.48
   },
   {
    "section": 1,
    "speaker": "typhon",
    "text": "Even Olympus fled my fire.",
-   "start": 7.29,
-   "end": 9.19
+   "start": 15.7,
+   "end": 17.62
   },
   {
    "section": 1,
    "speaker": "typhon",
    "text": "Tonight, the sea and shore burn.",
-   "start": 9.43,
-   "end": 11.4
+   "start": 17.84,
+   "end": 19.8
   },
   {
    "section": 1,
    "speaker": "cthulhu",
    "text": "I am Cthulhu, dreamer of R'lyeh.",
-   "start": 13.05,
-   "end": 15.3
+   "start": 21.45,
+   "end": 23.7
   },
   {
    "section": 1,
    "speaker": "cthulhu",
    "text": "You woke me from the deep.",
-   "start": 15.54,
-   "end": 17.12
+   "start": 23.92,
+   "end": 25.49
   },
   {
    "section": 1,
    "speaker": "cthulhu",
    "text": "Now face the abyss.",
-   "start": 17.36,
-   "end": 18.92
+   "start": 25.71,
+   "end": 27.27
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "On a moonless night, a fishing fleet drifted near the rocky shore.",
-   "start": 20.37,
-   "end": 23.69
+   "text": "Typhon blasted a firestorm straight at the fishing fleet.",
+   "start": 28.77,
+   "end": 31.53
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "Suddenly the sea boiled, and Typhon rose in a firestorm.",
-   "start": 24.14,
-   "end": 27.43
+   "text": "Cthulhu rose to shield the trawlers, sweeping them ashore.",
+   "start": 31.98,
+   "end": 35.08
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "Yet the tremors woke Cthulhu, who rose to shield the boats.",
-   "start": 27.88,
-   "end": 31.0
-  },
-  {
-   "section": 2,
-   "speaker": "narrator",
-   "text": "The kid scrambled up the rocks to hide.",
-   "start": 31.35,
-   "end": 33.31
+   "text": "The sailors scrambled up the rocks to hide.",
+   "start": 35.43,
+   "end": 37.54
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Typhon beat his black wings, hurling hurricanes across the waves.",
-   "start": 33.96,
-   "end": 37.56
+   "start": 38.19,
+   "end": 41.82
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "Then Cthulhu spread his narrow wings, flooding the sky with darkness.",
-   "start": 37.96,
-   "end": 41.73
+   "text": "Cthulhu spread his narrow wings, flooding the sky with darkness.",
+   "start": 42.22,
+   "end": 45.72
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "Furious, Typhon tore volcanic rock from the seabed and hurled it.",
-   "start": 42.13,
-   "end": 45.73
+   "text": "Furious, Typhon tore volcanic rock and hurled it.",
+   "start": 46.12,
+   "end": 49.05
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "So Cthulhu summoned R'lyeh, raising impossible stone from the abyss.",
-   "start": 46.28,
-   "end": 50.05
+   "text": "Cthulhu summoned R'lyeh, raising impossible stone from the abyss.",
+   "start": 49.55,
+   "end": 53.05
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "But Typhon unleashed a hundred-headed roar that cracked the stone.",
-   "start": 50.5,
-   "end": 53.65
+   "text": "Typhon's hundred-headed roar cracked the stone.",
+   "start": 53.5,
+   "end": 55.71
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "His serpent coils crushed Cthulhu, blasting him into green mist.",
-   "start": 54.05,
-   "end": 57.67
+   "start": 56.16,
+   "end": 59.79
   },
   {
    "section": 2,
    "speaker": "typhon",
    "text": "Burn in my fire!",
-   "start": 58.02,
-   "end": 59.27
+   "start": 60.14,
+   "end": 61.39
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "Meanwhile, a flaming tidal wave slammed the rocky shore.",
-   "start": 59.82,
-   "end": 62.99
+   "text": "A flaming tidal wave slammed the rocky shore.",
+   "start": 61.94,
+   "end": 64.39
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "Yet Cthulhu was never flesh, so the mist reformed instantly.",
-   "start": 63.44,
-   "end": 66.59
+   "text": "Yet Cthulhu was never flesh; the mist reformed instantly.",
+   "start": 64.84,
+   "end": 67.96
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "Then his psychic call pierced Typhon's hundred raging minds.",
-   "start": 66.99,
-   "end": 70.18
+   "text": "His psychic call pierced Typhon's hundred raging minds.",
+   "start": 68.36,
+   "end": 71.31
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "Trapped in the waves, Typhon fired his final firestorm.",
-   "start": 70.68,
-   "end": 73.75
+   "text": "Trapped, Typhon fired his final firestorm.",
+   "start": 71.81,
+   "end": 74.45
   },
   {
    "section": 2,
    "speaker": "cthulhu",
    "text": "Drown in madness.",
-   "start": 74.1,
-   "end": 75.51
+   "start": 74.8,
+   "end": 76.22
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "As R'lyeh's stone dragged him down, the deep sea quenched his flames.",
-   "start": 76.11,
-   "end": 79.88
+   "text": "R'lyeh's stone dragged him down, and the sea quenched his flames.",
+   "start": 76.77,
+   "end": 80.22
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "At last, the storm broke over the safe shore.",
-   "start": 80.78,
-   "end": 83.32
+   "start": 81.12,
+   "end": 83.67
   },
   {
    "section": 2,
    "speaker": "cthulhu",
-   "text": "Go home, little one.",
-   "start": 83.82,
-   "end": 85.54
+   "text": "Go home, sailors.",
+   "start": 84.17,
+   "end": 85.99
   },
   {
    "section": 2,
    "speaker": "cthulhu",
    "text": "Do not sail when the stars align.",
-   "start": 85.78,
-   "end": 87.93
+   "start": 86.21,
+   "end": 88.36
   },
   {
    "section": 2,
-   "speaker": "kid",
-   "text": "...Are you staying?",
-   "start": 88.38,
-   "end": 89.46
+   "speaker": "fisherman",
+   "text": "...Are we safe?",
+   "start": 88.81,
+   "end": 89.79
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "By midnight, the boats floated on glassy water.",
-   "start": 90.01,
-   "end": 92.67
+   "text": "By midnight, the fleet floated on glassy water.",
+   "start": 90.34,
+   "end": 93.01
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Until the stars above slowly shifted into line.",
-   "start": 93.32,
-   "end": 95.99
+   "start": 93.66,
+   "end": 96.32
   },
   {
    "section": 2,
    "speaker": "cthulhu_whisper",
    "text": "The stars are almost right.",
-   "start": 97.04,
-   "end": 99.18
+   "start": 97.37,
+   "end": 99.52
   }
  ]
 }

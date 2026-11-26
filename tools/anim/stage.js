@@ -676,7 +676,7 @@
 
   // ------------------------------------------------------------------ SHOT SYSTEM (hard cuts between camera set-ups)
   let povLamp = null, povFogL = [], povRev = null, povBeamG = null, povGrp = [], povG = null, povW = null, povHand = null, povTrees = [], povFlies = [], povBeam = null, povCone = [], povDark = null, povFog = [], otsG = null, crashG = null, curShot = null;
-  const HEADSZ = { vry: 150, grim: 250, kid: 150, bec: 120, cerberus: 340, apep: 400, thor: 230, typhon: 280, cthulhu: 250 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262], bec: [0, -262], cerberus: [424, -405], apep: [330, -250], thor: [8, -500], typhon: [12, -524], cthulhu: [8, -520] };
+  const HEADSZ = { vry: 150, grim: 250, kid: 150, fisherman: 165, bec: 120, cerberus: 340, apep: 400, thor: 230, typhon: 280, cthulhu: 250 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262], fisherman: [0, -295], bec: [0, -262], cerberus: [424, -405], apep: [330, -250], thor: [8, -500], typhon: [12, -524], cthulhu: [8, -520] };
   function markerWorld(actor, name) {
     const d = TL.actors[actor]; if (!d || !d.rig || !d.rig.mk || !d.rig.mk[name]) return null;
     const m = d.rig.mk[name], c1 = m.getCTM(), c2 = layers.actors.getCTM(); if (!c1 || !c2) return null;

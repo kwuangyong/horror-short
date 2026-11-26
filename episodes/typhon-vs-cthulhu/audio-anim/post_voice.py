@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Place voice clips on battle-spin anchors -> voice_dark.wav, words.json, sections.json."""
+"""Place voice clips on Story Hook + Split-Roll + Battle Spin anchors -> voice_dark.wav, words.json, sections.json."""
 import json, os, subprocess
 import numpy as np
 
@@ -16,33 +16,35 @@ def load(p):
 
 # Extra breathing room before key dramatic beats (seconds added after prev_end)
 EXTRA_GAP = {
+    "Until the ocean": 0.45,
+    "The tremors woke": 0.45,
+    "I am Typhon": 2.65,          # WHO SURVIVES? slam + glitch + split-roll spin + lock L + dive L
     "I am Cthulhu": 1.65,         # emerge L -> lock R -> dive R
-    "On a moonless": 1.45,        # emerge R -> VS slam -> shatter
-    "Suddenly the sea": 0.45,
-    "Yet the tremors": 0.45,
-    "The kid scrambled": 0.35,
+    "Typhon blasted": 1.50,       # emerge R -> VS slam -> shatter back to ocean
+    "Cthulhu rose": 0.45,
+    "The sailors scrambled": 0.35,
     "Typhon beat": 0.65,          # 1v1 establishing shot
-    "Then Cthulhu spread": 0.40,
+    "Cthulhu spread": 0.40,
     "Furious, Typhon": 0.40,
-    "So Cthulhu summoned": 0.55,
-    "But Typhon unleashed": 0.45,
-    "His serpent coils": 0.40,
+    "Cthulhu summoned": 0.50,
+    "Typhon's hundred-headed": 0.45,
+    "His serpent coils": 0.45,
     "Burn in my fire": 0.35,
-    "Meanwhile, a flaming": 0.55,
+    "A flaming tidal": 0.55,
     "Yet Cthulhu was never": 0.45,
-    "Then his psychic": 0.40,
-    "Trapped in the waves": 0.50,
+    "His psychic": 0.40,
+    "Trapped, Typhon": 0.50,
     "Drown in madness": 0.35,
-    "As R'lyeh's stone": 0.60,
+    "R'lyeh's stone": 0.55,
     "At last, the storm": 0.90,   # Typhon sinks + monoliths subside
-    "Go home, little": 0.50,
-    "...Are you staying": 0.45,
+    "Go home, sailors": 0.50,
+    "...Are we safe": 0.45,
     "By midnight": 0.55,
     "Until the stars": 0.65,      # Beat 2: music cuts dead here
     "The stars are almost": 1.05, # Beat 3: green mist + eyes snap open
 }
 
-out = np.zeros(int(140 * SR), np.float32)
+out = np.zeros(int(150 * SR), np.float32)
 words = []
 sents = []
 prev_end = None
@@ -50,11 +52,11 @@ prev_end = None
 for u in U:
     x = load(f"{H}/clips/{u['file']}")
     if prev_end is None:
-        start = 4.5  # first intro line (hook 0-3s + split-roll lock L)
+        start = 0.35  # Story Hook narration opens right over the midnight fishing fleet
     else:
-        gap = 0.24
+        gap = 0.22
         if u["line_first"]:
-            gap = 0.32
+            gap = 0.30
             for pref, g in EXTRA_GAP.items():
                 if u["text"].startswith(pref):
                     gap = g
@@ -89,15 +91,21 @@ json.dump(words, open(f"{H}/words.json", "w"), ensure_ascii=False, indent=1)
 def first(p):
     return [s for s in sents if s["text"].startswith(p)][0]
 
+t_hook_end = round(first("The tremors woke")["end"] + 1.15, 2)
+t_ty0 = first("I am Typhon")["start"]
+t_ty1 = first("Tonight, the sea")["end"]
+t_ct0 = first("I am Cthulhu")["start"]
+t_ct1 = first("Now face")["end"]
+
 secs = [
-    {"section": 0, "name": "hook", "start": 0.0},
-    {"section": 1, "name": "split_roll", "start": 3.0},
-    {"name": "intro_typhon", "start": first("I am Typhon")["start"], "end": first("Tonight, the sea")["end"]},
-    {"name": "intro_cthulhu", "start": first("I am Cthulhu")["start"], "end": first("Now face")["end"]},
-    {"section": 2, "name": "story", "start": first("On a moonless")["start"]},
+    {"section": 0, "name": "hook", "start": 0.0, "end": t_hook_end},
+    {"section": 1, "name": "split_roll", "start": t_hook_end},
+    {"name": "intro_typhon", "start": t_ty0, "end": t_ty1},
+    {"name": "intro_cthulhu", "start": t_ct0, "end": t_ct1},
+    {"section": 2, "name": "story", "start": first("Typhon blasted")["start"]},
     {"name": "fight", "start": first("Typhon beat")["start"]},
-    {"name": "rlyeh", "start": first("So Cthulhu summoned")["start"]},
-    {"name": "climax", "start": first("Trapped in the waves")["start"]},
+    {"name": "rlyeh", "start": first("Cthulhu summoned")["start"]},
+    {"name": "climax", "start": first("Trapped, Typhon")["start"]},
     {"name": "aftermath", "start": first("At last, the storm")["start"]},
     {"name": "cliffhanger", "start": first("By midnight")["start"]},
     {"name": "stars_cut", "start": first("Until the stars")["start"]},
@@ -109,4 +117,4 @@ json.dump(
 )
 for s in sents:
     print(f"{s['start']:6.2f}-{s['end']:6.2f} {s['speaker']:15s} {s['text'][:52]}")
-print("voice_dark duration:", end)
+print(f"hookEnd={t_hook_end} | intro_typhon={t_ty0}-{t_ty1} | intro_cthulhu={t_ct0}-{t_ct1} | duration={end}")

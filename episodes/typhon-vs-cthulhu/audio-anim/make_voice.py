@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """typhon-vs-cthulhu voice: edge-tts + multi-layer blend FX (narrator blend, Typhon layered volcanic roar,
-Cthulhu deep abyssal psychic boom, Cthulhu whisper, kid whisper) -> clips/u_NN.wav + units.json."""
+Cthulhu deep abyssal psychic boom, Cthulhu whisper, fisherman raspy whisper) -> clips/u_NN.wav + units.json."""
 import asyncio, json, os, re, subprocess, argparse
 import numpy as np, edge_tts
 
@@ -21,7 +21,7 @@ VOICES = {
     "typhon": ("en-US-GuyNeural", "+8%", "-20Hz"),
     "cthulhu": ("en-GB-RyanNeural", "+6%", "-22Hz"),
     "cthulhu_whisper": ("en-GB-RyanNeural", "-24%", "-16Hz"),
-    "kid": ("en-US-AnaNeural", "-18%", "+0Hz"),
+    "fisherman": ("en-US-RogerNeural", "-18%", "-8Hz"),
 }
 
 items = []
@@ -41,8 +41,8 @@ for line in open(SCRIPT, encoding="utf-8"):
             spk = "cthulhu_whisper"
         elif "cthulhu" in notes:
             spk = "cthulhu"
-        elif "kid" in notes:
-            spk = "kid"
+        elif "fisherman" in notes or "sailor" in notes:
+            spk = "fisherman"
         else:
             spk = "narrator"
         if body:
@@ -60,15 +60,23 @@ async def synth(text, spk):
     v, r, p = VOICES[spk]
     r = r or a.rate
     p = p or a.pitch
-    c = edge_tts.Communicate(text, v, rate=r, pitch=p, boundary="WordBoundary", proxy=PROXY)
-    audio = b""
-    wb = []
-    async for ch in c.stream():
-        if ch["type"] == "audio":
-            audio += ch["data"]
-        elif ch["type"] == "WordBoundary":
-            wb.append((ch["text"], ch["offset"] / 1e7, (ch["offset"] + ch["duration"]) / 1e7))
-    return audio, wb
+    for attempt in range(4):
+        try:
+            c = edge_tts.Communicate(text, v, rate=r, pitch=p, boundary="WordBoundary", proxy=PROXY)
+            audio = b""
+            wb = []
+            async for ch in c.stream():
+                if ch["type"] == "audio":
+                    audio += ch["data"]
+                elif ch["type"] == "WordBoundary":
+                    wb.append((ch["text"], ch["offset"] / 1e7, (ch["offset"] + ch["duration"]) / 1e7))
+            if audio:
+                return audio, wb
+        except Exception as exc:
+            if attempt == 3:
+                raise
+            await asyncio.sleep(1.5 * (attempt + 1))
+    raise RuntimeError(f"Empty audio for {text}")
 
 def decode(b):
     p = subprocess.run(
@@ -99,7 +107,7 @@ def ff(*args):
 def char_fx(spk, raw, out):
     d = dur(raw)
     if spk == "narrator":
-        # Multi-layer dark cinematic blend: main deep + low shadow (-3.5 st) + subtle chorus/echo
+        # Multi-layer dark cinematic blend: main deep + low shadow (-3.5 st) + subtle airy presence/echo
         ff(
             "-i", raw, "-filter_complex",
             "[0:a]aresample=48000,asplit=3[a][b][c];"
@@ -143,11 +151,11 @@ def char_fx(spk, raw, out):
             "[l0][l1]amix=inputs=2:normalize=0:duration=first,aecho=0.8:0.7:85|190:0.3|0.18,volume=1.9,alimiter=limit=0.85",
             "-ar", "48000", out,
         )
-    else:  # kid whisper
+    else:  # fisherman raspy whisper
         ff(
             "-i", raw, "-af",
-            "aresample=48000,asetrate=48000*1.08,aresample=48000,atempo=0.9259,highpass=f=170,equalizer=f=5500:t=q:w=1:g=4,"
-            "acompressor=threshold=-24dB:ratio=3:makeup=5,aecho=0.8:0.5:55:0.12,volume=2.1,alimiter=limit=0.82",
+            "aresample=48000,asetrate=48000*0.95,aresample=48000,atempo=1.0526,highpass=f=130,equalizer=f=3800:t=q:w=1.2:g=4.5,"
+            "acompressor=threshold=-24dB:ratio=3:makeup=5,aecho=0.8:0.5:55:0.14,volume=1.8,alimiter=limit=0.84",
             "-ar", "48000", out,
         )
 

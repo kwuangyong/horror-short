@@ -10,27 +10,39 @@ const arg = (k, d) => { const i = process.argv.indexOf('--' + k); return i < 0 ?
   const tl = JSON.parse(fs.readFileSync(tlPath, 'utf8'));
   const fps = +arg('fps', tl.fps || 30), scale = +arg('scale', 1), workers = +arg('workers', 4), png = !!arg('png', false);
   const total = Math.round((tl.duration) * fps), out = arg('out', 'out.mp4');
-  const dump = arg('dump', null), tmp = path.resolve(arg('dump-dir', fs.mkdtempSync(path.join(require('os').tmpdir(), 'anim-'))));
+  const dump = arg('dump', null), framesDir = arg('frames-dir', null), resume = !!arg('resume', false), maxFrames = +arg('max-frames', 0);
+  const tmp = path.resolve(arg('dump-dir', framesDir || fs.mkdtempSync(path.join(require('os').tmpdir(), 'anim-'))));
   fs.mkdirSync(tmp, { recursive: true });
-  const jobs = dump ? String(dump).split(',').map((s) => ({ t: +s, name: 'd_' + (+s).toFixed(2).padStart(6, '0') })) : Array.from({ length: total }, (_, i) => ({ t: i / fps, name: 'f' + String(i).padStart(5, '0') }));
-  if (arg('check', false)) { const b0 = await chromium.launch(); const pg = await b0.newPage({ viewport: { width: 1080, height: 1920 } }); await pg.goto('file://' + path.join(__dirname, 'index.html')); await pg.evaluate((x) => window.loadTimeline(x), tl); const bad = await pg.evaluate(() => window.checkSides()); console.log(bad.length ? '180-RULE: ' + bad.length + ' frames with sides swapped (t, left.x, right.x):\n' + bad.map((q) => q.join(' ')).join('\n') : '180-RULE OK'); await b0.close(); return; }
   const ext = png || dump ? 'png' : 'jpg', url = 'file://' + path.join(__dirname, 'index.html');
-  const browser = await chromium.launch(); const t0 = Date.now();
-  const run = async (w) => {
-    const ctx = await browser.newContext({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: scale });
-    const page = await ctx.newPage(); page.on('pageerror', (e) => { console.error('PAGE ERROR', e.message); });
-    await page.goto(url); await page.evaluate((x) => window.loadTimeline(x), tl);
-    for (let i = w; i < jobs.length; i += workers) {
-      await page.evaluate((t) => (window.renderFrameAsync ? window.renderFrameAsync(t) : window.renderFrame(t)), jobs[i].t);
-      await page.screenshot(Object.assign({ path: path.join(tmp, jobs[i].name + '.' + ext) }, ext === 'jpg' ? { type: 'jpeg', quality: 93 } : { type: 'png' }));
-    }
-    await ctx.close();
-  };
-  await Promise.all(Array.from({ length: Math.min(workers, jobs.length) }, (_, w) => run(w)));
-  await browser.close();
-  const secs = (Date.now() - t0) / 1000;
-  console.log(`rendered ${jobs.length} frames in ${secs.toFixed(1)} s = ${(secs / jobs.length * 1000).toFixed(0)} ms/frame (workers=${workers}, scale=${scale})`);
+  let jobs = dump ? String(dump).split(',').map((s) => ({ t: +s, name: 'd_' + (+s).toFixed(2).padStart(6, '0') })) : Array.from({ length: total }, (_, i) => ({ t: i / fps, name: 'f' + String(i).padStart(5, '0') }));
+  if (arg('check', false)) { const b0 = await chromium.launch(); const pg = await b0.newPage({ viewport: { width: 1080, height: 1920 } }); await pg.goto('file://' + path.join(__dirname, 'index.html')); await pg.evaluate((x) => window.loadTimeline(x), tl); const bad = await pg.evaluate(() => window.checkSides()); console.log(bad.length ? '180-RULE: ' + bad.length + ' frames with sides swapped (t, left.x, right.x):\n' + bad.map((q) => q.join(' ')).join('\n') : '180-RULE OK'); await b0.close(); return; }
+  if (resume) {
+    jobs = jobs.filter((j) => { const p = path.join(tmp, j.name + '.' + ext); return !fs.existsSync(p) || fs.statSync(p).size === 0; });
+  }
+  const remainingAfter = maxFrames > 0 && jobs.length > maxFrames ? jobs.length - maxFrames : 0;
+  if (maxFrames > 0 && jobs.length > maxFrames) jobs = jobs.slice(0, maxFrames);
+  const t0 = Date.now();
+  if (jobs.length > 0) {
+    const browser = await chromium.launch();
+    const run = async (w) => {
+      const ctx = await browser.newContext({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: scale });
+      const page = await ctx.newPage(); page.on('pageerror', (e) => { console.error('PAGE ERROR', e.message); });
+      await page.goto(url); await page.evaluate((x) => window.loadTimeline(x), tl);
+      for (let i = w; i < jobs.length; i += workers) {
+        await page.evaluate((t) => (window.renderFrameAsync ? window.renderFrameAsync(t) : window.renderFrame(t)), jobs[i].t);
+        await page.screenshot(Object.assign({ path: path.join(tmp, jobs[i].name + '.' + ext) }, ext === 'jpg' ? { type: 'jpeg', quality: 93 } : { type: 'png' }));
+      }
+      await ctx.close();
+    };
+    await Promise.all(Array.from({ length: Math.min(workers, jobs.length) }, (_, w) => run(w)));
+    await browser.close();
+    const secs = (Date.now() - t0) / 1000;
+    console.log(`rendered ${jobs.length} frames in ${secs.toFixed(1)} s = ${(secs / jobs.length * 1000).toFixed(0)} ms/frame (workers=${workers}, scale=${scale})`);
+  } else {
+    console.log('all frames already rendered in ' + tmp);
+  }
   if (dump) { console.log('dumped to ' + tmp); return; }
+  if (remainingAfter > 0) { console.log(`chunk complete, ${remainingAfter} frames remaining in ${tmp}`); return; }
   const a = ['-y', '-framerate', String(fps), '-i', path.join(tmp, 'f%05d.' + ext)];
   const au = arg('audio', null); if (au) a.push('-i', au);
   a.push('-vf', 'scale=1080:1920:flags=lanczos,format=yuv420p', '-c:v', 'libx264', '-preset', 'medium', '-crf', String(arg('crf', 20)), '-r', String(fps));

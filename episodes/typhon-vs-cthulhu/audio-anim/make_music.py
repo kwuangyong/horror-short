@@ -1,12 +1,11 @@
 #!/usr/bin/env python3
-"""typhon-vs-cthulhu score + SFX (pure numpy, 128 BPM war drums + storm/volcano/psychic/beam-clash SFX) -> music.wav."""
+"""typhon-vs-cthulhu score + SFX (pure numpy, Story Hook ocean tension + 128 BPM war drums + dual beam-clash SFX + hard cut) -> music.wav."""
 import json, os, wave
 import numpy as np
 
 H = os.path.dirname(os.path.abspath(__file__))
 SR = 44100
 rng = np.random.default_rng(4)
-W = json.load(open(f"{H}/words.json"))
 S = json.load(open(f"{H}/sections.json"))
 TOTAL = S["duration"] + 1.5
 BPM = 128
@@ -16,7 +15,6 @@ def T(n):
     return np.arange(int(n * SR)) / SR
 
 def lp(x, fc, order=2):
-    # Fast FFT lowpass filter (zero-dependency, exact rolloff)
     n = len(x)
     if n == 0:
         return x
@@ -42,6 +40,9 @@ def put(x, t, g=1.0):
 
 def sent(prefix):
     return [s for s in S["sentences"] if s["text"].startswith(prefix)][0]
+
+def sec(name):
+    return [s for s in S["sections"] if s["name"] == name][0]
 
 # ---------- SFX ----------
 def boom(d=1.4, f0=80, f1=32, k=6, dec=0.42):
@@ -104,21 +105,25 @@ def rumble(d, g=1.0):
     return x * (0.65 + 0.35 * np.sin(2 * np.pi * 6 * t)) * np.minimum(t / 0.5, 1) * np.minimum((d - t) / 0.6, 1) * g
 
 # ---------- Anchors ----------
-t_ty0 = sent("I am Typhon")["start"]
-t_ty1 = sent("Tonight, the sea")["end"]
-t_ct0 = sent("I am Cthulhu")["start"]
-t_ct1 = sent("Now face")["end"]
-t_story = sent("On a moonless")["start"]
-t_erupt = sent("Suddenly the sea")["start"]
-t_shield = sent("Yet the tremors")["start"]
-t_fight = sent("Typhon beat")["start"]
-t_rlyeh = sent("So Cthulhu summoned")["start"]
+t_boil = sent("Until the ocean")["start"]
+t_trem = sent("The tremors woke")["start"]
+t_hook_end = sec("hook")["end"]
+t_ty0 = sec("intro_typhon")["start"]
+t_ty1 = sec("intro_typhon")["end"]
+t_ct0 = sec("intro_cthulhu")["start"]
+t_ct1 = sec("intro_cthulhu")["end"]
+t_story = sec("story")["start"]
+t_shield = sent("Cthulhu rose")["start"]
+t_fight = sec("fight")["start"]
+t_rlyeh = sec("rlyeh")["start"]
+t_roar = sent("Typhon's hundred-headed")["start"]
 t_crush = sent("His serpent coils")["start"]
 t_reform = sent("Yet Cthulhu was never")["start"]
-t_climax = sent("Trapped in the waves")["start"]
-t_after = sent("At last, the storm")["start"]
-t_mid = sent("By midnight")["start"]
-t_cut = sent("Until the stars")["start"] - 0.05  # HARD MUSIC CUT DEAD at shot #58!
+t_climax = sec("climax")["start"]
+t_drown = sent("Drown in madness")["start"]
+t_quench = sent("R'lyeh's stone")["start"]
+t_after = sec("aftermath")["start"]
+t_cut = sent("Until the stars")["start"] - 0.05  # HARD MUSIC CUT DEAD at stars align!
 t_whisp = sent("The stars are almost")["start"]
 
 # ---------- Ocean storm drone bed (cuts dead at t_cut) ----------
@@ -131,17 +136,18 @@ drone = (
 storm = lp(noise(len(t_all) / SR), 420, 2) * 5.5 * (0.55 + 0.45 * np.sin(2 * np.pi * 0.14 * t_all + 1)) ** 1.5
 lvl = np.interp(
     t_all,
-    [0, 3.0, t_story, t_fight, t_climax, t_after, t_after + 1.5, t_cut - 0.1, t_cut, TOTAL],
-    [0.55, 0.5, 0.55, 0.85, 0.95, 0.35, 0.25, 0.25, 0.0, 0.0],
+    [0, t_boil, t_hook_end, t_story, t_fight, t_climax, t_after, t_after + 1.5, t_cut - 0.1, t_cut, TOTAL],
+    [0.42, 0.72, 0.52, 0.68, 0.86, 0.96, 0.34, 0.24, 0.24, 0.0, 0.0],
 )
-buf += (drone * 0.55 + storm * 0.32) * lvl
+buf += (drone * 0.55 + storm * 0.34) * lvl
 
-# ---------- Hook 0-3s (beam-clash + WHO SURVIVES + rewind) ----------
-put(impact(), 0.0, 0.95)
-put(beam_body(2.5, 115, 0.65), 0.05, 0.7)
-put(psychic_pulse(1.8, 520, 220), 0.2, 0.55)
-put(impact(), 2.0, 0.9)
-put(whoosh(0.55, 400, 4800, rev=True), 2.55, 0.9)
+# ---------- Story Hook 0..t_hook_end ----------
+put(thunder(2.4), 0.1, 0.45)
+put(rumble(2.4, 0.65), t_boil - 0.1, 0.7)
+put(fire_burst(1.5), t_boil + 0.15, 0.8)
+put(psychic_pulse(1.8, 420, 140), t_trem, 0.75)
+put(impact(), t_hook_end - 1.0, 0.95)
+put(whoosh(0.55, 400, 4800, rev=True), t_hook_end - 0.45, 0.9)
 
 # ---------- Split-roll ratchets + locks ----------
 def ratchet(t0, t1, iv=0.045):
@@ -151,23 +157,23 @@ def ratchet(t0, t1, iv=0.045):
         iv = min(iv * 1.06, 0.18)
         t += iv
 
-lockL = 4.1
-ratchet(3.0, lockL)
+lockL = round(t_ty0 - 0.5, 2)
+ratchet(t_hook_end, lockL)
 put(boom(0.9, 110, 48), lockL, 1.0)
-put(impact(), lockL, 0.7)
+put(impact(), lockL, 0.72)
 put(fire_burst(1.5), t_ty0 - 0.1, 0.55)
 put(rumble(4.8, 0.6), t_ty0, 0.45)
 
-lockR = t_ty1 + 0.85
+lockR = round(t_ty1 + 0.85, 2)
 ratchet(t_ty1 + 0.3, lockR)
 put(boom(0.9, 95, 42), lockR, 1.0)
-put(impact(), lockR, 0.7)
+put(impact(), lockR, 0.72)
 put(psychic_pulse(2.2, 380, 140), t_ct0 - 0.1, 0.6)
 put(thunder(2.6), t_ct0, 0.45)
 
 t_vs = t_ct1 + 0.12
 put(impact(), t_vs, 1.0)
-put(boom(2.2, 62, 24), t_vs, 0.8)
+put(boom(2.2, 62, 24), t_vs, 0.82)
 
 # ---------- War drums (128 BPM) ----------
 def drumhit(t, kind, g):
@@ -193,29 +199,32 @@ def drums(t0, t1, g0, g1):
 
 drums(t_ty0 + 0.4, t_ty1, 0.35, 0.45)
 drums(t_ct0 + 0.4, t_ct1, 0.35, 0.45)
-drums(t_erupt, t_fight, 0.45, 0.65)
-drums(t_fight, t_climax, 0.68, 0.85)
-drums(t_climax, t_after - 0.4, 0.88, 0.95)
+drums(t_story, t_fight, 0.48, 0.66)
+drums(t_fight, t_climax, 0.70, 0.86)
+drums(t_climax, t_after - 0.4, 0.88, 0.96)
 
 # ---------- Story & Battle SFX ----------
-put(fire_burst(1.6), t_erupt, 0.85)
-put(impact(), t_shield, 0.9)
-put(whoosh(1.0, 260, 2600), t_shield + 1.4, 0.7)
-put(fire_burst(1.2), t_fight + 1.0, 0.75)
-put(psychic_pulse(1.6), t_fight + 4.5, 0.7)
-put(rumble(2.5, 0.7), t_rlyeh, 0.75)
+put(fire_burst(1.6), t_story + 0.4, 0.85)
+put(impact(), t_shield, 0.92)
+put(whoosh(1.0, 260, 2600), t_shield + 1.2, 0.75)
+put(fire_burst(1.2), t_fight + 1.0, 0.78)
+put(psychic_pulse(1.6), t_fight + 4.2, 0.72)
+put(rumble(2.5, 0.72), t_rlyeh, 0.78)
 put(impact(), t_rlyeh + 0.3, 0.85)
-put(boom(1.8, 70, 26), t_crush, 0.85)
-put(fire_burst(1.4), t_crush + 1.8, 0.8)
+# Mid-fight beam-clash #1 SFX
+put(beam_body(2.1, 108, 0.7), t_roar + 0.95, 0.78)
+put(impact(2.0), t_roar + 2.8, 0.88)
+put(boom(1.8, 70, 26), t_crush, 0.88)
+put(fire_burst(1.4), t_crush + 2.0, 0.82)
 put(psychic_pulse(2.0, 560, 180), t_reform, 0.85)
-put(beam_body(3.6, 112, 0.75), t_climax + 2.2, 0.85)
-put(impact(2.8), t_climax + 5.6, 1.0)
+# Final beam-clash #2 SFX
+put(beam_body(max(2.5, t_quench + 2.1 - t_drown), 114, 0.8), t_drown, 0.88)
+put(impact(2.8), t_quench + 1.8, 1.0)
 put(thunder(2.4), t_after - 1.2, 0.65)
 # Subtle eerie chime after hard cut when stars align & eyes open
 put(psychic_pulse(1.4, 740, 480), t_cut + 0.4, 0.28)
 put(boom(1.8, 52, 24), t_whisp - 0.3, 0.55)
 
-# Normalize safely and write 16-bit WAV
 peak = np.max(np.abs(buf)) or 1.0
 buf = np.tanh((buf / peak) * 1.15) * 0.92
 pcm = (buf * 32767).astype(np.int16)

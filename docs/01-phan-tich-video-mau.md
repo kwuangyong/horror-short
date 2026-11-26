@@ -74,4 +74,4 @@
 ## 7. Những thứ KHÔNG nên sao chép
 
 - Tên/brand "Horror Spin", logo mascot và thiết kế intro của kênh gốc → hãy tự tạo **format series riêng** (xem [03-quy-trinh-san-xuat.md](03-quy-trinh-san-xuat.md#buoc-0)).
-- Một số quái vật trong intro là **nhân vật có bản quyền** (ví dụ Siren Head – Trevor Henderson; Samara – The Ring). Truyền thuyết dân gian (La Llorona, Kuchisake-onna, ma da, ma lai…) và SCP (giấy phép CC BY-SA, cần ghi nguồn) an toàn hơn nhiều.
+- Một số quái vật trong intro là **nhân vật có bản quyền** (ví dụ Siren Head – Trevor Henderson; Samara – The Ring). Truyền thuyết dân gian (La Llorona, Kuchisake-onna, Baba Yaga…) và SCP (giấy phép CC BY-SA, cần ghi nguồn) an toàn hơn nhiều.

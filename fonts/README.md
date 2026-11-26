@@ -1,2 +1,3 @@
-Put condensed bold .ttf fonts here (e.g. Oswald-Bold.ttf, Anton-Regular.ttf, BebasNeue-Regular.ttf from Google Fonts).
-The tools pick them up automatically; otherwise a system bold font is used.
+# fonts/
+
+Phụ đề dùng **Bebas Neue** (`make_captions.py --font "Bebas Neue" --size 92`). Trong cloud đã cài sẵn gói `fonts-bebas-neue`; trên máy khác, đặt file `.ttf` chữ đậm hẹp (BebasNeue-Regular.ttf, Oswald-Bold.ttf, Anton-Regular.ttf từ Google Fonts, giấy phép OFL) vào thư mục này. Nếu không có, công cụ dùng font đậm của hệ thống.

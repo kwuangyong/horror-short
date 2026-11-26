@@ -57,7 +57,7 @@ Ghi chú: Human đang là "he". Nếu muốn mascot trung tính cho khán giả 
 
 # Review · Cổng 3 · BATTLE SPIN #001 bản hoàn chỉnh (Boss)
 Lần 1: KHÔNG ĐẠT (phụ đề ghép xuyên câu "DEAD GRANDMA SAID", đồng hồ HUD đứng yên, flash K.O. xóa trắng).
-Lần 2: **ĐẠT.** 99.2 s, −14.2 LUFS, 45 cảnh căn theo words.json. Phụ đề không vượt ranh giới câu (sửa trong tools/make_captions.py, ma-da demo vẫn chạy). Đồng hồ 2:00 → 3:30 → 5:40. K.O. chỉ nháy 0.07 s rồi thẻ WINNER rõ.
+Lần 2: **ĐẠT.** 99.2 s, −14.2 LUFS, 45 cảnh căn theo words.json. Phụ đề không vượt ranh giới câu (sửa trong tools/make_captions.py). Đồng hồ 2:00 → 3:30 → 5:40. K.O. chỉ nháy 0.07 s rồi thẻ WINNER rõ.
 Còn có thể nâng cấp: tranh riêng cho "kid crawls"; spin thành bánh xe quay thật; tên VRYKOLAKAS sát mép ở màn VS; tay bàn tay cú lửng.
 
 ---

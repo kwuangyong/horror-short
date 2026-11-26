@@ -21,6 +21,7 @@ Cột **Research**: ✅ = đã có mục trong `episodes/_format-dual-spin/01-re
 | Minotaur | Nửa người nửa bò, mê cung | Sợi chỉ Ariadne, kiếm Theseus | ➕ |
 | Scylla | Sáu đầu chó trên cổ rắn, vồ thủy thủ | Né sang Charybdis (đổi người lấy tàu) | ➕ |
 | Lamia / Empusa | Quỷ nữ ăn trẻ con, đổi hình | Bị gọi đúng tên thì bỏ chạy (Empusa) | ➕ |
+| Typhon | Cha của mọi quái vật: trăm đầu rồng phun lửa, bão tố hủy diệt, chạm tới trời sao | Bị Zeus đánh bằng sét và đè dưới núi lửa Etna | ➕ |
 | Vrykolakas | Xác sống gõ cửa, ăn sinh lực | Tỏi, không mở lần gõ đầu, đốt xác | ✅ (tập #001) |
 
 ### Bắc Âu – Germanic

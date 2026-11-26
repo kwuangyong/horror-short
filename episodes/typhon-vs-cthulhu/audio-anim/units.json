@@ -1,0 +1,1517 @@
+[
+ {
+  "section": 1,
+  "text": "I am Typhon, father of all monsters.",
+  "speaker": "typhon",
+  "line_first": true,
+  "file": "u_00.wav",
+  "dur": 2.551021,
+  "k": 1.1180107373726305,
+  "words": [
+   {
+    "word": "I",
+    "start": 0.0,
+    "end": 0.11156740949315215
+   },
+   {
+    "word": "am",
+    "start": 0.12451844587487669,
+    "end": 0.24097715234403416
+   },
+   {
+    "word": "Typhon",
+    "start": 0.2668311506457762,
+    "end": 0.8103241203510463
+   },
+   {
+    "word": "father",
+    "start": 1.004392896187137,
+    "end": 1.4055250866598004
+   },
+   {
+    "word": "of",
+    "start": 1.431426041412512,
+    "end": 1.5478847478816695
+   },
+   {
+    "word": "all",
+    "start": 1.5737857026343811,
+    "end": 1.7808032788307218
+   },
+   {
+    "word": "monsters",
+    "start": 1.8067053515941707,
+    "end": 2.453707109397611
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "Even Olympus fled my fire.",
+  "speaker": "typhon",
+  "line_first": false,
+  "file": "u_01.wav",
+  "dur": 1.900958,
+  "k": 1.154515575575069,
+  "words": [
+   {
+    "word": "Even",
+    "start": 0.0,
+    "end": 0.2675574452854214
+   },
+   {
+    "word": "Olympus",
+    "start": 0.29430526214034464,
+    "end": 0.7887265573803678
+   },
+   {
+    "word": "fled",
+    "start": 0.8020508216380797,
+    "end": 1.0826454416414202
+   },
+   {
+    "word": "my",
+    "start": 1.109393258496343,
+    "end": 1.2430284363691575
+   },
+   {
+    "word": "fire",
+    "start": 1.2697739441929297,
+    "end": 1.8176389199418985
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "Tonight, the sea and shore burn.",
+  "speaker": "typhon",
+  "line_first": false,
+  "file": "u_02.wav",
+  "dur": 1.963083,
+  "k": 1.1616734965603963,
+  "words": [
+   {
+    "word": "Tonight",
+    "start": 0.0,
+    "end": 0.3483072750451956
+   },
+   {
+    "word": "the",
+    "start": 0.550003997558991,
+    "end": 0.6710108790017012
+   },
+   {
+    "word": "sea",
+    "start": 0.6979233688965158,
+    "end": 0.9533939575660919
+   },
+   {
+    "word": "and",
+    "start": 0.9802588188475478,
+    "end": 1.1012657002902582
+   },
+   {
+    "word": "shore",
+    "start": 1.1147225260744138,
+    "end": 1.4374249683574227
+   },
+   {
+    "word": "burn",
+    "start": 1.464288667965382,
+    "end": 1.8273116356405057
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "I am Cthulhu, dreamer of R'lyeh.",
+  "speaker": "cthulhu",
+  "line_first": true,
+  "file": "u_03.wav",
+  "dur": 2.253125,
+  "k": 1.2001198455324247,
+  "words": [
+   {
+    "word": "I",
+    "start": 0.0,
+    "end": 0.058405832482577996
+   },
+   {
+    "word": "am",
+    "start": 0.07255644558125081,
+    "end": 0.24237340372408891
+   },
+   {
+    "word": "Cthulhu",
+    "start": 0.2565252169426073,
+    "end": 0.7943289227218251
+   },
+   {
+    "word": "dreamer",
+    "start": 1.0491047649695946,
+    "end": 1.4736963652403565
+   },
+   {
+    "word": "of",
+    "start": 1.4877977734253627,
+    "end": 1.5868568655954545
+   },
+   {
+    "word": "R'lyeh",
+    "start": 1.6010098789338183,
+    "end": 2.1671160110302274
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "You woke me from the deep.",
+  "speaker": "cthulhu",
+  "line_first": false,
+  "file": "u_04.wav",
+  "dur": 1.57975,
+  "k": 1.324830526242225,
+  "words": [
+   {
+    "word": "You",
+    "start": 0.0,
+    "end": 0.07109835502131524
+   },
+   {
+    "word": "woke",
+    "start": 0.08672075658676359,
+    "end": 0.4147819156474946
+   },
+   {
+    "word": "me",
+    "start": 0.43045863526451883,
+    "end": 0.5710562748619749
+   },
+   {
+    "word": "from",
+    "start": 0.5866786764274232,
+    "end": 0.8522515540568872
+   },
+   {
+    "word": "the",
+    "start": 0.8678739556223356,
+    "end": 0.9616057153539729
+   },
+   {
+    "word": "deep",
+    "start": 0.9772281169194212,
+    "end": 1.4771860367600809
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "Now face the abyss.",
+  "speaker": "cthulhu",
+  "line_first": false,
+  "file": "u_05.wav",
+  "dur": 1.5665,
+  "k": 1.3264182895850973,
+  "words": [
+   {
+    "word": "Now",
+    "start": 0.0,
+    "end": 0.270975760937059
+   },
+   {
+    "word": "face",
+    "start": 0.28667126855771946,
+    "end": 0.6776874425627999
+   },
+   {
+    "word": "the",
+    "start": 0.6933298934518769,
+    "end": 0.8497358324865932
+   },
+   {
+    "word": "abyss",
+    "start": 0.8653769569573808,
+    "end": 1.4597781529777023
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "On a moonless night, a fishing fleet drifted near the rocky shore.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_06.wav",
+  "dur": 3.312292,
+  "k": 1.0154953629186785,
+  "words": [
+   {
+    "word": "On",
+    "start": 0.0,
+    "end": 0.11047709452574027
+   },
+   {
+    "word": "a",
+    "start": 0.12181713124345314,
+    "end": 0.1558362259012289
+   },
+   {
+    "word": "moonless",
+    "start": 0.16713361181369918,
+    "end": 0.5864905458938708
+   },
+   {
+    "word": "night",
+    "start": 0.5978305826115837,
+    "end": 0.8924928100882449
+   },
+   {
+    "word": "a",
+    "start": 1.1304995357723102,
+    "end": 1.198495074282619
+   },
+   {
+    "word": "fishing",
+    "start": 1.209835111000332,
+    "end": 1.572493892482665
+   },
+   {
+    "word": "fleet",
+    "start": 1.5838765800056205,
+    "end": 1.8445623636297486
+   },
+   {
+    "word": "drifted",
+    "start": 1.8558597495422189,
+    "end": 2.2298575522469024
+   },
+   {
+    "word": "near",
+    "start": 2.2411975889646145,
+    "end": 2.399868739420658
+   },
+   {
+    "word": "the",
+    "start": 2.411208776138371,
+    "end": 2.5018833725887433
+   },
+   {
+    "word": "rocky",
+    "start": 2.513223409306456,
+    "end": 2.807885636783117
+   },
+   {
+    "word": "shore",
+    "start": 2.8192266889961926,
+    "end": 3.2725600669288974
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Suddenly the sea boiled, and Typhon rose in a firestorm.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_07.wav",
+  "dur": 3.288292,
+  "k": 1.0095688682503743,
+  "words": [
+   {
+    "word": "Suddenly",
+    "start": 0.0,
+    "end": 0.3915444594031034
+   },
+   {
+    "word": "the",
+    "start": 0.4028173053859871,
+    "end": 0.5155104303044352
+   },
+   {
+    "word": "sea",
+    "start": 0.5267842858561871,
+    "end": 0.7408542782488647
+   },
+   {
+    "word": "boiled",
+    "start": 0.7521281338006167,
+    "end": 1.1577638189438029
+   },
+   {
+    "word": "and",
+    "start": 1.349288119370713,
+    "end": 1.495759399483082
+   },
+   {
+    "word": "Typhon",
+    "start": 1.507033255034834,
+    "end": 2.036593518755754
+   },
+   {
+    "word": "rose",
+    "start": 2.047868383876374,
+    "end": 2.340810944101112
+   },
+   {
+    "word": "in",
+    "start": 2.35212720154533,
+    "end": 2.4422726153602747
+   },
+   {
+    "word": "a",
+    "start": 2.45350406901956,
+    "end": 2.5098289257481166
+   },
+   {
+    "word": "firestorm",
+    "start": 2.521103790868737,
+    "end": 3.230956901357281
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Yet the tremors woke Cthulhu, who rose to shield the boats.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_08.wav",
+  "dur": 3.120292,
+  "k": 1.0097896198810696,
+  "words": [
+   {
+    "word": "Yet",
+    "start": 0.0,
+    "end": 0.12113267981823331
+   },
+   {
+    "word": "the",
+    "start": 0.13240799071382534,
+    "end": 0.21129780476703391
+   },
+   {
+    "word": "tremors",
+    "start": 0.2225741254522458,
+    "end": 0.6508511479843044
+   },
+   {
+    "word": "woke",
+    "start": 0.6620850575054814,
+    "end": 0.910029810560699
+   },
+   {
+    "word": "Cthulhu",
+    "start": 0.9213061312459111,
+    "end": 1.4171966471459663
+   },
+   {
+    "word": "who",
+    "start": 1.64259077841,
+    "end": 1.7665424542504011
+   },
+   {
+    "word": "rose",
+    "start": 1.7778187749356131,
+    "end": 2.037039848676043
+   },
+   {
+    "word": "to",
+    "start": 2.0483161693612546,
+    "end": 2.138481294310055
+   },
+   {
+    "word": "shield",
+    "start": 2.149715203831232,
+    "end": 2.487826091624871
+   },
+   {
+    "word": "the",
+    "start": 2.4991024123100822,
+    "end": 2.5667159056780795
+   },
+   {
+    "word": "boats",
+    "start": 2.577992226363291,
+    "end": 3.051331110682542
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "The kid scrambled up the rocks to hide.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_09.wav",
+  "dur": 1.968292,
+  "k": 1.0055345579939974,
+  "words": [
+   {
+    "word": "The",
+    "start": 0.0,
+    "end": 0.057985155821281845
+   },
+   {
+    "word": "kid",
+    "start": 0.06925619268183657,
+    "end": 0.31615615358624066
+   },
+   {
+    "word": "scrambled",
+    "start": 0.3273427255439239,
+    "end": 0.7986870496036101
+   },
+   {
+    "word": "up",
+    "start": 0.8099158540127291,
+    "end": 0.9333452210064923
+   },
+   {
+    "word": "the",
+    "start": 0.9445740254156112,
+    "end": 1.0343592116334532
+   },
+   {
+    "word": "rocks",
+    "start": 1.0455880160425721,
+    "end": 1.3598175654156963
+   },
+   {
+    "word": "to",
+    "start": 1.3710463698248156,
+    "end": 1.4496037571680966
+   },
+   {
+    "word": "hide",
+    "start": 1.4608315560426575,
+    "end": 1.9209470756932248
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Typhon beat his black wings, hurling hurricanes across the waves.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_10.wav",
+  "dur": 3.600292,
+  "k": 1.0076148984303939,
+  "words": [
+   {
+    "word": "Typhon",
+    "start": 0.0,
+    "end": 0.42911765899741117
+   },
+   {
+    "word": "beat",
+    "start": 0.4403696945681834,
+    "end": 0.6203125859745785
+   },
+   {
+    "word": "his",
+    "start": 0.6315646215453506,
+    "end": 0.7777524138543275
+   },
+   {
+    "word": "black",
+    "start": 0.7890044494250996,
+    "end": 1.0701290060871798
+   },
+   {
+    "word": "wings",
+    "start": 1.0813800340430535,
+    "end": 1.4862306316982998
+   },
+   {
+    "word": "hurling",
+    "start": 1.7223913811328218,
+    "end": 1.9923062220498635
+   },
+   {
+    "word": "hurricanes",
+    "start": 2.0035159377949014,
+    "end": 2.520800236276605
+   },
+   {
+    "word": "across",
+    "start": 2.5320522718473777,
+    "end": 2.891896742449332
+   },
+   {
+    "word": "the",
+    "start": 2.9031900902309395,
+    "end": 2.993161032126688
+   },
+   {
+    "word": "waves",
+    "start": 3.0043717554866247,
+    "end": 3.5329070819242014
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Then Cthulhu spread his narrow wings, flooding the sky with darkness.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_11.wav",
+  "dur": 3.768292,
+  "k": 1.0073963575605682,
+  "words": [
+   {
+    "word": "Then",
+    "start": 0.0,
+    "end": 0.19400774852687275
+   },
+   {
+    "word": "Cthulhu",
+    "start": 0.20525633625539408,
+    "end": 0.6774733788619104
+   },
+   {
+    "word": "spread",
+    "start": 0.6887229739867892,
+    "end": 0.9810351454747089
+   },
+   {
+    "word": "his",
+    "start": 0.992284740599588,
+    "end": 1.1384408263435477
+   },
+   {
+    "word": "narrow",
+    "start": 1.1496904214684267,
+    "end": 1.4757503709346256
+   },
+   {
+    "word": "wings",
+    "start": 1.487000973455862,
+    "end": 1.9030133584813593
+   },
+   {
+    "word": "flooding",
+    "start": 2.1390795691376,
+    "end": 2.465139518603799
+   },
+   {
+    "word": "the",
+    "start": 2.476390121125035,
+    "end": 2.543843366434576
+   },
+   {
+    "word": "sky",
+    "start": 2.5550929615594544,
+    "end": 2.9148593857532727
+   },
+   {
+    "word": "with",
+    "start": 2.926107973481794,
+    "end": 3.0947622420791543
+   },
+   {
+    "word": "darkness",
+    "start": 3.1060128446003903,
+    "end": 3.713136377825988
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Furious, Typhon tore volcanic rock from the seabed and hurled it.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_12.wav",
+  "dur": 3.600292,
+  "k": 1.0182781182238145,
+  "words": [
+   {
+    "word": "Furious",
+    "start": 0.0,
+    "end": 0.5314556423509004
+   },
+   {
+    "word": "Typhon",
+    "start": 0.7360450270300745,
+    "end": 1.1792505779869897
+   },
+   {
+    "word": "tore",
+    "start": 1.1906216897331954,
+    "end": 1.4179095119456964
+   },
+   {
+    "word": "volcanic",
+    "start": 1.4292806236919018,
+    "end": 1.9634092461031396
+   },
+   {
+    "word": "rock",
+    "start": 1.9747803578493448,
+    "end": 2.2475516087685494
+   },
+   {
+    "word": "from",
+    "start": 2.2589227205147546,
+    "end": 2.372588015461488
+   },
+   {
+    "word": "the",
+    "start": 2.3839163595267276,
+    "end": 2.452098225766758
+   },
+   {
+    "word": "seabed",
+    "start": 2.4634693375129633,
+    "end": 2.9180449819379657
+   },
+   {
+    "word": "and",
+    "start": 2.929416093684171,
+    "end": 3.0430813886309043
+   },
+   {
+    "word": "hurled",
+    "start": 3.0544525003771095,
+    "end": 3.327223751296314
+   },
+   {
+    "word": "it",
+    "start": 3.3385520953615537,
+    "end": 3.5203992565483175
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "So Cthulhu summoned R'lyeh, raising impossible stone from the abyss.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_13.wav",
+  "dur": 3.768292,
+  "k": 1.0120748433303492,
+  "words": [
+   {
+    "word": "So",
+    "start": 0.0,
+    "end": 0.17635336673375118
+   },
+   {
+    "word": "Cthulhu",
+    "start": 0.18765520650922116,
+    "end": 0.695969796571889
+   },
+   {
+    "word": "summoned",
+    "start": 0.7072716363473591,
+    "end": 1.04614769236419
+   },
+   {
+    "word": "R'lyeh",
+    "start": 1.05740702499624,
+    "end": 1.418844253420591
+   },
+   {
+    "word": "raising",
+    "start": 1.712556469553805,
+    "end": 2.051432525570636
+   },
+   {
+    "word": "impossible",
+    "start": 2.06269287027753,
+    "end": 2.604869460448344
+   },
+   {
+    "word": "stone",
+    "start": 2.6161713002238143,
+    "end": 2.966349196016115
+   },
+   {
+    "word": "from",
+    "start": 2.9776500237167416,
+    "end": 3.113183038436169
+   },
+   {
+    "word": "the",
+    "start": 3.124485890286482,
+    "end": 3.1922523976461954
+   },
+   {
+    "word": "abyss",
+    "start": 3.2035542374216655,
+    "end": 3.7118688274843334
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "But Typhon unleashed a hundred-headed roar that cracked the stone.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_14.wav",
+  "dur": 3.144292,
+  "k": 1.00658949699209,
+  "words": [
+   {
+    "word": "But",
+    "start": 0.0,
+    "end": 0.10585932657050248
+   },
+   {
+    "word": "Typhon",
+    "start": 0.11709991148341313,
+    "end": 0.6450973728251411
+   },
+   {
+    "word": "unleashed",
+    "start": 0.6563379577380518,
+    "end": 1.083257728149822
+   },
+   {
+    "word": "a",
+    "start": 1.0944983130627326,
+    "end": 1.1394173693660048
+   },
+   {
+    "word": "hundred-headed",
+    "start": 1.1506569476894184,
+    "end": 1.7011355788569678
+   },
+   {
+    "word": "roar",
+    "start": 1.7123761637698782,
+    "end": 1.9820163252766345
+   },
+   {
+    "word": "that",
+    "start": 1.9932146334306713,
+    "end": 2.150494242335685
+   },
+   {
+    "word": "cracked",
+    "start": 2.161734827248596,
+    "end": 2.4987742082949485
+   },
+   {
+    "word": "the",
+    "start": 2.510014793207859,
+    "end": 2.588654597660366
+   },
+   {
+    "word": "stone",
+    "start": 2.5998529058144033,
+    "end": 3.0716917325294455
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "His serpent coils crushed Cthulhu, blasting him into green mist.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_15.wav",
+  "dur": 3.624292,
+  "k": 1.0145447419986937,
+  "words": [
+   {
+    "word": "His",
+    "start": 0.0,
+    "end": 0.13856990267798822
+   },
+   {
+    "word": "serpent",
+    "start": 0.14994092014630958,
+    "end": 0.5009734008778576
+   },
+   {
+    "word": "coils",
+    "start": 0.512260211132593,
+    "end": 0.9085667509758327
+   },
+   {
+    "word": "crushed",
+    "start": 0.9198961721097323,
+    "end": 1.293543869685173
+   },
+   {
+    "word": "Cthulhu",
+    "start": 1.3048732908190726,
+    "end": 1.825715197742652
+   },
+   {
+    "word": "blasting",
+    "start": 2.0635417325277596,
+    "end": 2.482506100094056
+   },
+   {
+    "word": "him",
+    "start": 2.4937929103487915,
+    "end": 2.6070414671743958
+   },
+   {
+    "word": "into",
+    "start": 2.618370888308295,
+    "end": 2.84482539108034
+   },
+   {
+    "word": "green",
+    "start": 2.856154812214239,
+    "end": 3.1279259849771393
+   },
+   {
+    "word": "mist",
+    "start": 3.1392127952318742,
+    "end": 3.558177162798171
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Burn in my fire!",
+  "speaker": "typhon",
+  "line_first": true,
+  "file": "u_16.wav",
+  "dur": 1.255625,
+  "k": 1.2825041494658893,
+  "words": [
+   {
+    "word": "Burn",
+    "start": 0.0,
+    "end": 0.21455097416691493
+   },
+   {
+    "word": "in",
+    "start": 0.2294075022343278,
+    "end": 0.31848767544792955
+   },
+   {
+    "word": "my",
+    "start": 0.34814558390432826,
+    "end": 0.5114506847682684
+   },
+   {
+    "word": "fire",
+    "start": 0.5411098757288165,
+    "end": 1.1793685857769078
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Meanwhile, a flaming tidal wave slammed the rocky shore.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_17.wav",
+  "dur": 3.168292,
+  "k": 1.0190437695998285,
+  "words": [
+   {
+    "word": "Meanwhile",
+    "start": 0.0,
+    "end": 0.5368237657937763
+   },
+   {
+    "word": "a",
+    "start": 0.7188504591385457,
+    "end": 0.7757039300882898
+   },
+   {
+    "word": "flaming",
+    "start": 0.7870835918634109,
+    "end": 1.1965262070946956
+   },
+   {
+    "word": "tidal",
+    "start": 1.2078640880752634,
+    "end": 1.5717900942936023
+   },
+   {
+    "word": "wave",
+    "start": 1.5832115368632769,
+    "end": 1.8561878866448311
+   },
+   {
+    "word": "slammed",
+    "start": 1.867524748581629,
+    "end": 2.265588721081562
+   },
+   {
+    "word": "the",
+    "start": 2.276968382856683,
+    "end": 2.345201515581549
+   },
+   {
+    "word": "rocky",
+    "start": 2.3565811773566696,
+    "end": 2.6636526935814953
+   },
+   {
+    "word": "shore",
+    "start": 2.675032355356616,
+    "end": 3.129949798806293
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Yet Cthulhu was never flesh, so the mist reformed instantly.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_18.wav",
+  "dur": 3.144292,
+  "k": 1.0073016178119494,
+  "words": [
+   {
+    "word": "Yet",
+    "start": 0.0,
+    "end": 0.15566973508548237
+   },
+   {
+    "word": "Cthulhu",
+    "start": 0.16691827225158845,
+    "end": 0.6278423684348338
+   },
+   {
+    "word": "was",
+    "start": 0.6390909056009397,
+    "end": 0.7852332462179509
+   },
+   {
+    "word": "never",
+    "start": 0.7964817833840568,
+    "end": 1.0550641670893266
+   },
+   {
+    "word": "flesh",
+    "start": 1.0663127042554328,
+    "end": 1.471037428577714
+   },
+   {
+    "word": "so",
+    "start": 1.628428306360831,
+    "end": 1.7633221098117358
+   },
+   {
+    "word": "the",
+    "start": 1.7745716542794598,
+    "end": 1.8645146230355065
+   },
+   {
+    "word": "mist",
+    "start": 1.8757631602016125,
+    "end": 2.111849476876288
+   },
+   {
+    "word": "reformed",
+    "start": 2.123098014042394,
+    "end": 2.5165752085001865
+   },
+   {
+    "word": "instantly",
+    "start": 2.527781438998345,
+    "end": 3.1123941154359547
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Then his psychic call pierced Typhon's hundred raging minds.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_19.wav",
+  "dur": 3.192292,
+  "k": 1.0199559081953247,
+  "words": [
+   {
+    "word": "Then",
+    "start": 0.0,
+    "end": 0.1730093409570265
+   },
+   {
+    "word": "his",
+    "start": 0.18439918858384366,
+    "end": 0.35515612691027215
+   },
+   {
+    "word": "psychic",
+    "start": 0.36654597453708937,
+    "end": 0.7991347741004314
+   },
+   {
+    "word": "call",
+    "start": 0.8104817835791044,
+    "end": 1.1178281572633262
+   },
+   {
+    "word": "pierced",
+    "start": 1.1292180048901435,
+    "end": 1.4593430538720913
+   },
+   {
+    "word": "Typhon's",
+    "start": 1.4707339214548167,
+    "end": 1.937448405794558
+   },
+   {
+    "word": "hundred",
+    "start": 1.948838253421375,
+    "end": 2.2106690947023804
+   },
+   {
+    "word": "raging",
+    "start": 2.2220589423291974,
+    "end": 2.597699523714362
+   },
+   {
+    "word": "minds",
+    "start": 2.609089371341179,
+    "end": 3.1327092357109536
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Trapped in the waves, Typhon fired his final firestorm.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_20.wav",
+  "dur": 3.072292,
+  "k": 1.0120788964381304,
+  "words": [
+   {
+    "word": "Trapped",
+    "start": 0.0,
+    "end": 0.27418870366706466
+   },
+   {
+    "word": "in",
+    "start": 0.2854905887035893,
+    "end": 0.3306546094571409
+   },
+   {
+    "word": "the",
+    "start": 0.3419554824147691,
+    "end": 0.4210241461989979
+   },
+   {
+    "word": "waves",
+    "start": 0.43232603123552255,
+    "end": 0.8615739931873446
+   },
+   {
+    "word": "Typhon",
+    "start": 1.0535734564728296,
+    "end": 1.4828214184246518
+   },
+   {
+    "word": "fired",
+    "start": 1.4941233034611763,
+    "end": 1.8330007165922446
+   },
+   {
+    "word": "his",
+    "start": 1.8442600943151188,
+    "end": 1.9797936518105277
+   },
+   {
+    "word": "final",
+    "start": 1.991096548925949,
+    "end": 2.3073712040628642
+   },
+   {
+    "word": "firestorm",
+    "start": 2.3186720770204925,
+    "end": 3.030290051078553
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Drown in madness.",
+  "speaker": "cthulhu",
+  "line_first": true,
+  "file": "u_21.wav",
+  "dur": 1.407458,
+  "k": 1.366795824229182,
+  "words": [
+   {
+    "word": "Drown",
+    "start": 0.0,
+    "end": 0.3308784891154812
+   },
+   {
+    "word": "in",
+    "start": 0.3469943786789674,
+    "end": 0.4759283291659788
+   },
+   {
+    "word": "madness",
+    "start": 0.4920455855252894,
+    "end": 1.2979425733864207
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "As R'lyeh's stone dragged him down, the deep sea quenched his flames.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_22.wav",
+  "dur": 3.768292,
+  "k": 1.009893671903789,
+  "words": [
+   {
+    "word": "As",
+    "start": 0.0,
+    "end": 0.13827060198237914
+   },
+   {
+    "word": "R'lyeh's",
+    "start": 0.14959050015074876,
+    "end": 0.6568095968644266
+   },
+   {
+    "word": "stone",
+    "start": 0.6680446639643564,
+    "end": 0.9949129091747682
+   },
+   {
+    "word": "dragged",
+    "start": 1.0061903918089177,
+    "end": 1.3217821642788516
+   },
+   {
+    "word": "him",
+    "start": 1.3330596469130014,
+    "end": 1.4570240951391915
+   },
+   {
+    "word": "down",
+    "start": 1.4683005678796692,
+    "end": 1.795168813090081
+   },
+   {
+    "word": "the",
+    "start": 2.0318636523362033,
+    "end": 2.1558281005623936
+   },
+   {
+    "word": "deep",
+    "start": 2.167105583196543,
+    "end": 2.392521929914844
+   },
+   {
+    "word": "sea",
+    "start": 2.4037994125489934,
+    "end": 2.6292157592672947
+   },
+   {
+    "word": "quenched",
+    "start": 2.640493241901444,
+    "end": 3.001151519480085
+   },
+   {
+    "word": "his",
+    "start": 3.0124279922205623,
+    "end": 3.1363924404467527
+   },
+   {
+    "word": "flames",
+    "start": 3.147712338615122,
+    "end": 3.6999979404375067
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "At last, the storm broke over the safe shore.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_23.wav",
+  "dur": 2.544292,
+  "k": 1.007357803916393,
+  "words": [
+   {
+    "word": "At",
+    "start": 0.0,
+    "end": 0.12155450833924474
+   },
+   {
+    "word": "last",
+    "start": 0.1328026655777752,
+    "end": 0.5712551497323852
+   },
+   {
+    "word": "the",
+    "start": 0.7174066493557912,
+    "end": 0.8298529642179586
+   },
+   {
+    "word": "storm",
+    "start": 0.8411011214564891,
+    "end": 1.2008537771801309
+   },
+   {
+    "word": "broke",
+    "start": 1.2121029417764653,
+    "end": 1.5044039263076694
+   },
+   {
+    "word": "over",
+    "start": 1.5156530909040038,
+    "end": 1.6730527477659403
+   },
+   {
+    "word": "the",
+    "start": 1.6843019123622744,
+    "end": 1.7630017407932426
+   },
+   {
+    "word": "safe",
+    "start": 1.7742509053895772,
+    "end": 2.0215985479210126
+   },
+   {
+    "word": "shore",
+    "start": 2.0328477125173463,
+    "end": 2.5050466831031555
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Go home, little one.",
+  "speaker": "cthulhu",
+  "line_first": true,
+  "file": "u_24.wav",
+  "dur": 1.718917,
+  "k": 1.2768976104989476,
+  "words": [
+   {
+    "word": "Go",
+    "start": 0.0,
+    "end": 0.12710409067921258
+   },
+   {
+    "word": "home",
+    "start": 0.1421612673022162,
+    "end": 0.6240305030642566
+   },
+   {
+    "word": "little",
+    "start": 0.9101079206180512,
+    "end": 1.2564127677662498
+   },
+   {
+    "word": "one",
+    "start": 1.2715235740888946,
+    "end": 1.6629986742084932
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Do not sail when the stars align.",
+  "speaker": "cthulhu",
+  "line_first": false,
+  "file": "u_25.wav",
+  "dur": 2.147208,
+  "k": 1.2153147654647076,
+  "words": [
+   {
+    "word": "Do",
+    "start": 0.0,
+    "end": 0.07428530482918658
+   },
+   {
+    "word": "not",
+    "start": 0.08861629654354644,
+    "end": 0.3035750956851166
+   },
+   {
+    "word": "sail",
+    "start": 0.3179559153048605,
+    "end": 0.7765853249221044
+   },
+   {
+    "word": "when",
+    "start": 0.7908652734163147,
+    "end": 0.9485013210152111
+   },
+   {
+    "word": "the",
+    "start": 0.9628323127295708,
+    "end": 1.0344848406718392
+   },
+   {
+    "word": "stars",
+    "start": 1.0488668756063484,
+    "end": 1.4501735336809187
+   },
+   {
+    "word": "align",
+    "start": 1.464453482175129,
+    "end": 2.0663879476769096
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "...Are you staying?",
+  "speaker": "kid",
+  "line_first": true,
+  "file": "u_26.wav",
+  "dur": 1.081604,
+  "k": 1.043305976447892,
+  "words": [
+   {
+    "word": "Are",
+    "start": 0.0,
+    "end": 0.10328624836236487
+   },
+   {
+    "word": "you",
+    "start": 0.11919770780917169,
+    "end": 0.2782580503664644
+   },
+   {
+    "word": "staying",
+    "start": 0.2941684665072947,
+    "end": 0.9939659502097183
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "By midnight, the boats floated on glassy water.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_27.wav",
+  "dur": 2.664292,
+  "k": 1.018476466559419,
+  "words": [
+   {
+    "word": "By",
+    "start": 0.0,
+    "end": 0.08784359524074992
+   },
+   {
+    "word": "midnight",
+    "start": 0.0992159034663524,
+    "end": 0.5993723820937515
+   },
+   {
+    "word": "the",
+    "start": 0.7698826566957299,
+    "end": 0.8721967655733559
+   },
+   {
+    "word": "boats",
+    "start": 0.8835283347402959,
+    "end": 1.224547865467786
+   },
+   {
+    "word": "floated",
+    "start": 1.235921192169855,
+    "end": 1.622390235217559
+   },
+   {
+    "word": "on",
+    "start": 1.633763561919628,
+    "end": 1.7815271831174682
+   },
+   {
+    "word": "glassy",
+    "start": 1.7929005098195374,
+    "end": 2.19074287956931
+   },
+   {
+    "word": "water",
+    "start": 2.202115187794913,
+    "end": 2.6227031924723576
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Until the stars above slowly shifted into line.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_28.wav",
+  "dur": 2.664292,
+  "k": 1.0115643865088908,
+  "words": [
+   {
+    "word": "Until",
+    "start": 0.0,
+    "end": 0.2686118187579574
+   },
+   {
+    "word": "the",
+    "start": 0.2799079582621022,
+    "end": 0.38152769340201237
+   },
+   {
+    "word": "stars",
+    "start": 0.3928238329061571,
+    "end": 0.8105574388300956
+   },
+   {
+    "word": "above",
+    "start": 0.8218110926300071,
+    "end": 1.1266288239098907
+   },
+   {
+    "word": "slowly",
+    "start": 1.1379249634140354,
+    "end": 1.5443624298338292
+   },
+   {
+    "word": "shifted",
+    "start": 1.5556595809023606,
+    "end": 1.9620970473221544
+   },
+   {
+    "word": "into",
+    "start": 1.973393186826299,
+    "end": 2.165337529166361
+   },
+   {
+    "word": "line",
+    "start": 2.176591182966272,
+    "end": 2.560437381942163
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "The stars are almost right.",
+  "speaker": "cthulhu_whisper",
+  "line_first": true,
+  "file": "u_29.wav",
+  "dur": 2.142979,
+  "k": 1.1038222947160579,
+  "words": [
+   {
+    "word": "The",
+    "start": 0.0,
+    "end": 0.036333782593638654
+   },
+   {
+    "word": "stars",
+    "start": 0.054455233205992194,
+    "end": 0.5628106566368202
+   },
+   {
+    "word": "are",
+    "start": 0.5809784677855517,
+    "end": 0.7806775820564021
+   },
+   {
+    "word": "almost",
+    "start": 0.7988453932051338,
+    "end": 1.397944943662274
+   },
+   {
+    "word": "right",
+    "start": 1.416111650988711,
+    "end": 2.0333779087722883
+   }
+  ]
+ }
+]

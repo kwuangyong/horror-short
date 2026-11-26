@@ -1,0 +1,1424 @@
+[
+ {
+  "word": "I",
+  "start": 4.5,
+  "end": 4.612,
+  "speaker": "typhon"
+ },
+ {
+  "word": "am",
+  "start": 4.625,
+  "end": 4.741,
+  "speaker": "typhon"
+ },
+ {
+  "word": "Typhon",
+  "start": 4.767,
+  "end": 5.31,
+  "speaker": "typhon"
+ },
+ {
+  "word": "father",
+  "start": 5.504,
+  "end": 5.906,
+  "speaker": "typhon"
+ },
+ {
+  "word": "of",
+  "start": 5.931,
+  "end": 6.048,
+  "speaker": "typhon"
+ },
+ {
+  "word": "all",
+  "start": 6.074,
+  "end": 6.281,
+  "speaker": "typhon"
+ },
+ {
+  "word": "monsters",
+  "start": 6.307,
+  "end": 6.954,
+  "speaker": "typhon"
+ },
+ {
+  "word": "Even",
+  "start": 7.291,
+  "end": 7.559,
+  "speaker": "typhon"
+ },
+ {
+  "word": "Olympus",
+  "start": 7.585,
+  "end": 8.08,
+  "speaker": "typhon"
+ },
+ {
+  "word": "fled",
+  "start": 8.093,
+  "end": 8.374,
+  "speaker": "typhon"
+ },
+ {
+  "word": "my",
+  "start": 8.4,
+  "end": 8.534,
+  "speaker": "typhon"
+ },
+ {
+  "word": "fire",
+  "start": 8.561,
+  "end": 9.109,
+  "speaker": "typhon"
+ },
+ {
+  "word": "Tonight",
+  "start": 9.432,
+  "end": 9.78,
+  "speaker": "typhon"
+ },
+ {
+  "word": "the",
+  "start": 9.982,
+  "end": 10.103,
+  "speaker": "typhon"
+ },
+ {
+  "word": "sea",
+  "start": 10.13,
+  "end": 10.385,
+  "speaker": "typhon"
+ },
+ {
+  "word": "and",
+  "start": 10.412,
+  "end": 10.533,
+  "speaker": "typhon"
+ },
+ {
+  "word": "shore",
+  "start": 10.547,
+  "end": 10.869,
+  "speaker": "typhon"
+ },
+ {
+  "word": "burn",
+  "start": 10.896,
+  "end": 11.259,
+  "speaker": "typhon"
+ },
+ {
+  "word": "I",
+  "start": 13.045,
+  "end": 13.103,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "am",
+  "start": 13.118,
+  "end": 13.287,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "Cthulhu",
+  "start": 13.302,
+  "end": 13.839,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "dreamer",
+  "start": 14.094,
+  "end": 14.519,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "of",
+  "start": 14.533,
+  "end": 14.632,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "R'lyeh",
+  "start": 14.646,
+  "end": 15.212,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "You",
+  "start": 15.538,
+  "end": 15.609,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "woke",
+  "start": 15.625,
+  "end": 15.953,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "me",
+  "start": 15.969,
+  "end": 16.109,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "from",
+  "start": 16.125,
+  "end": 16.39,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "the",
+  "start": 16.406,
+  "end": 16.5,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "deep",
+  "start": 16.515,
+  "end": 17.015,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "Now",
+  "start": 17.358,
+  "end": 17.629,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "face",
+  "start": 17.645,
+  "end": 18.036,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "the",
+  "start": 18.051,
+  "end": 18.208,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "abyss",
+  "start": 18.223,
+  "end": 18.818,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "On",
+  "start": 20.374,
+  "end": 20.485,
+  "speaker": "narrator"
+ },
+ {
+  "word": "a",
+  "start": 20.496,
+  "end": 20.53,
+  "speaker": "narrator"
+ },
+ {
+  "word": "moonless",
+  "start": 20.542,
+  "end": 20.961,
+  "speaker": "narrator"
+ },
+ {
+  "word": "night",
+  "start": 20.972,
+  "end": 21.267,
+  "speaker": "narrator"
+ },
+ {
+  "word": "a",
+  "start": 21.505,
+  "end": 21.573,
+  "speaker": "narrator"
+ },
+ {
+  "word": "fishing",
+  "start": 21.584,
+  "end": 21.947,
+  "speaker": "narrator"
+ },
+ {
+  "word": "fleet",
+  "start": 21.958,
+  "end": 22.219,
+  "speaker": "narrator"
+ },
+ {
+  "word": "drifted",
+  "start": 22.23,
+  "end": 22.604,
+  "speaker": "narrator"
+ },
+ {
+  "word": "near",
+  "start": 22.616,
+  "end": 22.774,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 22.786,
+  "end": 22.876,
+  "speaker": "narrator"
+ },
+ {
+  "word": "rocky",
+  "start": 22.888,
+  "end": 23.182,
+  "speaker": "narrator"
+ },
+ {
+  "word": "shore",
+  "start": 23.194,
+  "end": 23.647,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Suddenly",
+  "start": 24.137,
+  "end": 24.528,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 24.54,
+  "end": 24.652,
+  "speaker": "narrator"
+ },
+ {
+  "word": "sea",
+  "start": 24.664,
+  "end": 24.878,
+  "speaker": "narrator"
+ },
+ {
+  "word": "boiled",
+  "start": 24.889,
+  "end": 25.294,
+  "speaker": "narrator"
+ },
+ {
+  "word": "and",
+  "start": 25.486,
+  "end": 25.632,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Typhon",
+  "start": 25.644,
+  "end": 26.173,
+  "speaker": "narrator"
+ },
+ {
+  "word": "rose",
+  "start": 26.185,
+  "end": 26.478,
+  "speaker": "narrator"
+ },
+ {
+  "word": "in",
+  "start": 26.489,
+  "end": 26.579,
+  "speaker": "narrator"
+ },
+ {
+  "word": "a",
+  "start": 26.59,
+  "end": 26.647,
+  "speaker": "narrator"
+ },
+ {
+  "word": "firestorm",
+  "start": 26.658,
+  "end": 27.368,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Yet",
+  "start": 27.875,
+  "end": 27.996,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 28.007,
+  "end": 28.086,
+  "speaker": "narrator"
+ },
+ {
+  "word": "tremors",
+  "start": 28.098,
+  "end": 28.526,
+  "speaker": "narrator"
+ },
+ {
+  "word": "woke",
+  "start": 28.537,
+  "end": 28.785,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Cthulhu",
+  "start": 28.796,
+  "end": 29.292,
+  "speaker": "narrator"
+ },
+ {
+  "word": "who",
+  "start": 29.518,
+  "end": 29.642,
+  "speaker": "narrator"
+ },
+ {
+  "word": "rose",
+  "start": 29.653,
+  "end": 29.912,
+  "speaker": "narrator"
+ },
+ {
+  "word": "to",
+  "start": 29.923,
+  "end": 30.014,
+  "speaker": "narrator"
+ },
+ {
+  "word": "shield",
+  "start": 30.025,
+  "end": 30.363,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 30.374,
+  "end": 30.442,
+  "speaker": "narrator"
+ },
+ {
+  "word": "boats",
+  "start": 30.453,
+  "end": 30.926,
+  "speaker": "narrator"
+ },
+ {
+  "word": "The",
+  "start": 31.345,
+  "end": 31.403,
+  "speaker": "narrator"
+ },
+ {
+  "word": "kid",
+  "start": 31.415,
+  "end": 31.661,
+  "speaker": "narrator"
+ },
+ {
+  "word": "scrambled",
+  "start": 31.673,
+  "end": 32.144,
+  "speaker": "narrator"
+ },
+ {
+  "word": "up",
+  "start": 32.155,
+  "end": 32.279,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 32.29,
+  "end": 32.38,
+  "speaker": "narrator"
+ },
+ {
+  "word": "rocks",
+  "start": 32.391,
+  "end": 32.705,
+  "speaker": "narrator"
+ },
+ {
+  "word": "to",
+  "start": 32.716,
+  "end": 32.795,
+  "speaker": "narrator"
+ },
+ {
+  "word": "hide",
+  "start": 32.806,
+  "end": 33.266,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Typhon",
+  "start": 33.964,
+  "end": 34.393,
+  "speaker": "narrator"
+ },
+ {
+  "word": "beat",
+  "start": 34.404,
+  "end": 34.584,
+  "speaker": "narrator"
+ },
+ {
+  "word": "his",
+  "start": 34.595,
+  "end": 34.741,
+  "speaker": "narrator"
+ },
+ {
+  "word": "black",
+  "start": 34.753,
+  "end": 35.034,
+  "speaker": "narrator"
+ },
+ {
+  "word": "wings",
+  "start": 35.045,
+  "end": 35.45,
+  "speaker": "narrator"
+ },
+ {
+  "word": "hurling",
+  "start": 35.686,
+  "end": 35.956,
+  "speaker": "narrator"
+ },
+ {
+  "word": "hurricanes",
+  "start": 35.967,
+  "end": 36.484,
+  "speaker": "narrator"
+ },
+ {
+  "word": "across",
+  "start": 36.496,
+  "end": 36.856,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 36.867,
+  "end": 36.957,
+  "speaker": "narrator"
+ },
+ {
+  "word": "waves",
+  "start": 36.968,
+  "end": 37.497,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Then",
+  "start": 37.964,
+  "end": 38.158,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Cthulhu",
+  "start": 38.169,
+  "end": 38.641,
+  "speaker": "narrator"
+ },
+ {
+  "word": "spread",
+  "start": 38.653,
+  "end": 38.945,
+  "speaker": "narrator"
+ },
+ {
+  "word": "his",
+  "start": 38.956,
+  "end": 39.102,
+  "speaker": "narrator"
+ },
+ {
+  "word": "narrow",
+  "start": 39.114,
+  "end": 39.44,
+  "speaker": "narrator"
+ },
+ {
+  "word": "wings",
+  "start": 39.451,
+  "end": 39.867,
+  "speaker": "narrator"
+ },
+ {
+  "word": "flooding",
+  "start": 40.103,
+  "end": 40.429,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 40.44,
+  "end": 40.508,
+  "speaker": "narrator"
+ },
+ {
+  "word": "sky",
+  "start": 40.519,
+  "end": 40.879,
+  "speaker": "narrator"
+ },
+ {
+  "word": "with",
+  "start": 40.89,
+  "end": 41.059,
+  "speaker": "narrator"
+ },
+ {
+  "word": "darkness",
+  "start": 41.07,
+  "end": 41.677,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Furious",
+  "start": 42.132,
+  "end": 42.664,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Typhon",
+  "start": 42.868,
+  "end": 43.311,
+  "speaker": "narrator"
+ },
+ {
+  "word": "tore",
+  "start": 43.323,
+  "end": 43.55,
+  "speaker": "narrator"
+ },
+ {
+  "word": "volcanic",
+  "start": 43.561,
+  "end": 44.096,
+  "speaker": "narrator"
+ },
+ {
+  "word": "rock",
+  "start": 44.107,
+  "end": 44.38,
+  "speaker": "narrator"
+ },
+ {
+  "word": "from",
+  "start": 44.391,
+  "end": 44.505,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 44.516,
+  "end": 44.584,
+  "speaker": "narrator"
+ },
+ {
+  "word": "seabed",
+  "start": 44.596,
+  "end": 45.05,
+  "speaker": "narrator"
+ },
+ {
+  "word": "and",
+  "start": 45.062,
+  "end": 45.175,
+  "speaker": "narrator"
+ },
+ {
+  "word": "hurled",
+  "start": 45.187,
+  "end": 45.459,
+  "speaker": "narrator"
+ },
+ {
+  "word": "it",
+  "start": 45.471,
+  "end": 45.653,
+  "speaker": "narrator"
+ },
+ {
+  "word": "So",
+  "start": 46.282,
+  "end": 46.459,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Cthulhu",
+  "start": 46.47,
+  "end": 46.978,
+  "speaker": "narrator"
+ },
+ {
+  "word": "summoned",
+  "start": 46.99,
+  "end": 47.329,
+  "speaker": "narrator"
+ },
+ {
+  "word": "R'lyeh",
+  "start": 47.34,
+  "end": 47.701,
+  "speaker": "narrator"
+ },
+ {
+  "word": "raising",
+  "start": 47.995,
+  "end": 48.334,
+  "speaker": "narrator"
+ },
+ {
+  "word": "impossible",
+  "start": 48.345,
+  "end": 48.887,
+  "speaker": "narrator"
+ },
+ {
+  "word": "stone",
+  "start": 48.899,
+  "end": 49.249,
+  "speaker": "narrator"
+ },
+ {
+  "word": "from",
+  "start": 49.26,
+  "end": 49.396,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 49.407,
+  "end": 49.475,
+  "speaker": "narrator"
+ },
+ {
+  "word": "abyss",
+  "start": 49.486,
+  "end": 49.994,
+  "speaker": "narrator"
+ },
+ {
+  "word": "But",
+  "start": 50.501,
+  "end": 50.607,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Typhon",
+  "start": 50.618,
+  "end": 51.146,
+  "speaker": "narrator"
+ },
+ {
+  "word": "unleashed",
+  "start": 51.157,
+  "end": 51.584,
+  "speaker": "narrator"
+ },
+ {
+  "word": "a",
+  "start": 51.595,
+  "end": 51.64,
+  "speaker": "narrator"
+ },
+ {
+  "word": "hundred-headed",
+  "start": 51.651,
+  "end": 52.202,
+  "speaker": "narrator"
+ },
+ {
+  "word": "roar",
+  "start": 52.213,
+  "end": 52.483,
+  "speaker": "narrator"
+ },
+ {
+  "word": "that",
+  "start": 52.494,
+  "end": 52.651,
+  "speaker": "narrator"
+ },
+ {
+  "word": "cracked",
+  "start": 52.663,
+  "end": 53.0,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 53.011,
+  "end": 53.089,
+  "speaker": "narrator"
+ },
+ {
+  "word": "stone",
+  "start": 53.101,
+  "end": 53.572,
+  "speaker": "narrator"
+ },
+ {
+  "word": "His",
+  "start": 54.045,
+  "end": 54.184,
+  "speaker": "narrator"
+ },
+ {
+  "word": "serpent",
+  "start": 54.195,
+  "end": 54.546,
+  "speaker": "narrator"
+ },
+ {
+  "word": "coils",
+  "start": 54.557,
+  "end": 54.954,
+  "speaker": "narrator"
+ },
+ {
+  "word": "crushed",
+  "start": 54.965,
+  "end": 55.339,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Cthulhu",
+  "start": 55.35,
+  "end": 55.871,
+  "speaker": "narrator"
+ },
+ {
+  "word": "blasting",
+  "start": 56.109,
+  "end": 56.528,
+  "speaker": "narrator"
+ },
+ {
+  "word": "him",
+  "start": 56.539,
+  "end": 56.652,
+  "speaker": "narrator"
+ },
+ {
+  "word": "into",
+  "start": 56.663,
+  "end": 56.89,
+  "speaker": "narrator"
+ },
+ {
+  "word": "green",
+  "start": 56.901,
+  "end": 57.173,
+  "speaker": "narrator"
+ },
+ {
+  "word": "mist",
+  "start": 57.184,
+  "end": 57.603,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Burn",
+  "start": 58.019,
+  "end": 58.234,
+  "speaker": "typhon"
+ },
+ {
+  "word": "in",
+  "start": 58.249,
+  "end": 58.338,
+  "speaker": "typhon"
+ },
+ {
+  "word": "my",
+  "start": 58.367,
+  "end": 58.531,
+  "speaker": "typhon"
+ },
+ {
+  "word": "fire",
+  "start": 58.56,
+  "end": 59.199,
+  "speaker": "typhon"
+ },
+ {
+  "word": "Meanwhile",
+  "start": 59.825,
+  "end": 60.362,
+  "speaker": "narrator"
+ },
+ {
+  "word": "a",
+  "start": 60.544,
+  "end": 60.601,
+  "speaker": "narrator"
+ },
+ {
+  "word": "flaming",
+  "start": 60.612,
+  "end": 61.022,
+  "speaker": "narrator"
+ },
+ {
+  "word": "tidal",
+  "start": 61.033,
+  "end": 61.397,
+  "speaker": "narrator"
+ },
+ {
+  "word": "wave",
+  "start": 61.408,
+  "end": 61.681,
+  "speaker": "narrator"
+ },
+ {
+  "word": "slammed",
+  "start": 61.693,
+  "end": 62.091,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 62.102,
+  "end": 62.17,
+  "speaker": "narrator"
+ },
+ {
+  "word": "rocky",
+  "start": 62.182,
+  "end": 62.489,
+  "speaker": "narrator"
+ },
+ {
+  "word": "shore",
+  "start": 62.5,
+  "end": 62.955,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Yet",
+  "start": 63.443,
+  "end": 63.599,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Cthulhu",
+  "start": 63.61,
+  "end": 64.071,
+  "speaker": "narrator"
+ },
+ {
+  "word": "was",
+  "start": 64.082,
+  "end": 64.229,
+  "speaker": "narrator"
+ },
+ {
+  "word": "never",
+  "start": 64.24,
+  "end": 64.498,
+  "speaker": "narrator"
+ },
+ {
+  "word": "flesh",
+  "start": 64.51,
+  "end": 64.914,
+  "speaker": "narrator"
+ },
+ {
+  "word": "so",
+  "start": 65.072,
+  "end": 65.207,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 65.218,
+  "end": 65.308,
+  "speaker": "narrator"
+ },
+ {
+  "word": "mist",
+  "start": 65.319,
+  "end": 65.555,
+  "speaker": "narrator"
+ },
+ {
+  "word": "reformed",
+  "start": 65.566,
+  "end": 65.96,
+  "speaker": "narrator"
+ },
+ {
+  "word": "instantly",
+  "start": 65.971,
+  "end": 66.556,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Then",
+  "start": 66.988,
+  "end": 67.161,
+  "speaker": "narrator"
+ },
+ {
+  "word": "his",
+  "start": 67.172,
+  "end": 67.343,
+  "speaker": "narrator"
+ },
+ {
+  "word": "psychic",
+  "start": 67.354,
+  "end": 67.787,
+  "speaker": "narrator"
+ },
+ {
+  "word": "call",
+  "start": 67.798,
+  "end": 68.105,
+  "speaker": "narrator"
+ },
+ {
+  "word": "pierced",
+  "start": 68.117,
+  "end": 68.447,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Typhon's",
+  "start": 68.458,
+  "end": 68.925,
+  "speaker": "narrator"
+ },
+ {
+  "word": "hundred",
+  "start": 68.936,
+  "end": 69.198,
+  "speaker": "narrator"
+ },
+ {
+  "word": "raging",
+  "start": 69.21,
+  "end": 69.585,
+  "speaker": "narrator"
+ },
+ {
+  "word": "minds",
+  "start": 69.597,
+  "end": 70.12,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Trapped",
+  "start": 70.68,
+  "end": 70.954,
+  "speaker": "narrator"
+ },
+ {
+  "word": "in",
+  "start": 70.965,
+  "end": 71.011,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 71.022,
+  "end": 71.101,
+  "speaker": "narrator"
+ },
+ {
+  "word": "waves",
+  "start": 71.112,
+  "end": 71.541,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Typhon",
+  "start": 71.733,
+  "end": 72.163,
+  "speaker": "narrator"
+ },
+ {
+  "word": "fired",
+  "start": 72.174,
+  "end": 72.513,
+  "speaker": "narrator"
+ },
+ {
+  "word": "his",
+  "start": 72.524,
+  "end": 72.66,
+  "speaker": "narrator"
+ },
+ {
+  "word": "final",
+  "start": 72.671,
+  "end": 72.987,
+  "speaker": "narrator"
+ },
+ {
+  "word": "firestorm",
+  "start": 72.999,
+  "end": 73.71,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Drown",
+  "start": 74.102,
+  "end": 74.433,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "in",
+  "start": 74.449,
+  "end": 74.578,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "madness",
+  "start": 74.594,
+  "end": 75.4,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "As",
+  "start": 76.11,
+  "end": 76.248,
+  "speaker": "narrator"
+ },
+ {
+  "word": "R'lyeh's",
+  "start": 76.259,
+  "end": 76.766,
+  "speaker": "narrator"
+ },
+ {
+  "word": "stone",
+  "start": 76.778,
+  "end": 77.105,
+  "speaker": "narrator"
+ },
+ {
+  "word": "dragged",
+  "start": 77.116,
+  "end": 77.431,
+  "speaker": "narrator"
+ },
+ {
+  "word": "him",
+  "start": 77.443,
+  "end": 77.567,
+  "speaker": "narrator"
+ },
+ {
+  "word": "down",
+  "start": 77.578,
+  "end": 77.905,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 78.141,
+  "end": 78.265,
+  "speaker": "narrator"
+ },
+ {
+  "word": "deep",
+  "start": 78.277,
+  "end": 78.502,
+  "speaker": "narrator"
+ },
+ {
+  "word": "sea",
+  "start": 78.513,
+  "end": 78.739,
+  "speaker": "narrator"
+ },
+ {
+  "word": "quenched",
+  "start": 78.75,
+  "end": 79.111,
+  "speaker": "narrator"
+ },
+ {
+  "word": "his",
+  "start": 79.122,
+  "end": 79.246,
+  "speaker": "narrator"
+ },
+ {
+  "word": "flames",
+  "start": 79.257,
+  "end": 79.81,
+  "speaker": "narrator"
+ },
+ {
+  "word": "At",
+  "start": 80.778,
+  "end": 80.899,
+  "speaker": "narrator"
+ },
+ {
+  "word": "last",
+  "start": 80.911,
+  "end": 81.349,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 81.495,
+  "end": 81.608,
+  "speaker": "narrator"
+ },
+ {
+  "word": "storm",
+  "start": 81.619,
+  "end": 81.979,
+  "speaker": "narrator"
+ },
+ {
+  "word": "broke",
+  "start": 81.99,
+  "end": 82.282,
+  "speaker": "narrator"
+ },
+ {
+  "word": "over",
+  "start": 82.294,
+  "end": 82.451,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 82.462,
+  "end": 82.541,
+  "speaker": "narrator"
+ },
+ {
+  "word": "safe",
+  "start": 82.552,
+  "end": 82.799,
+  "speaker": "narrator"
+ },
+ {
+  "word": "shore",
+  "start": 82.811,
+  "end": 83.283,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Go",
+  "start": 83.822,
+  "end": 83.949,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "home",
+  "start": 83.964,
+  "end": 84.446,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "little",
+  "start": 84.732,
+  "end": 85.079,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "one",
+  "start": 85.094,
+  "end": 85.485,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "Do",
+  "start": 85.781,
+  "end": 85.855,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "not",
+  "start": 85.87,
+  "end": 86.085,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "sail",
+  "start": 86.099,
+  "end": 86.558,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "when",
+  "start": 86.572,
+  "end": 86.73,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "the",
+  "start": 86.744,
+  "end": 86.816,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "stars",
+  "start": 86.83,
+  "end": 87.231,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "align",
+  "start": 87.246,
+  "end": 87.847,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "Are",
+  "start": 88.378,
+  "end": 88.482,
+  "speaker": "kid"
+ },
+ {
+  "word": "you",
+  "start": 88.498,
+  "end": 88.657,
+  "speaker": "kid"
+ },
+ {
+  "word": "staying",
+  "start": 88.672,
+  "end": 89.372,
+  "speaker": "kid"
+ },
+ {
+  "word": "By",
+  "start": 90.01,
+  "end": 90.098,
+  "speaker": "narrator"
+ },
+ {
+  "word": "midnight",
+  "start": 90.109,
+  "end": 90.609,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 90.78,
+  "end": 90.882,
+  "speaker": "narrator"
+ },
+ {
+  "word": "boats",
+  "start": 90.893,
+  "end": 91.234,
+  "speaker": "narrator"
+ },
+ {
+  "word": "floated",
+  "start": 91.246,
+  "end": 91.632,
+  "speaker": "narrator"
+ },
+ {
+  "word": "on",
+  "start": 91.644,
+  "end": 91.791,
+  "speaker": "narrator"
+ },
+ {
+  "word": "glassy",
+  "start": 91.803,
+  "end": 92.201,
+  "speaker": "narrator"
+ },
+ {
+  "word": "water",
+  "start": 92.212,
+  "end": 92.633,
+  "speaker": "narrator"
+ },
+ {
+  "word": "Until",
+  "start": 93.324,
+  "end": 93.593,
+  "speaker": "narrator"
+ },
+ {
+  "word": "the",
+  "start": 93.604,
+  "end": 93.706,
+  "speaker": "narrator"
+ },
+ {
+  "word": "stars",
+  "start": 93.717,
+  "end": 94.135,
+  "speaker": "narrator"
+ },
+ {
+  "word": "above",
+  "start": 94.146,
+  "end": 94.451,
+  "speaker": "narrator"
+ },
+ {
+  "word": "slowly",
+  "start": 94.462,
+  "end": 94.869,
+  "speaker": "narrator"
+ },
+ {
+  "word": "shifted",
+  "start": 94.88,
+  "end": 95.286,
+  "speaker": "narrator"
+ },
+ {
+  "word": "into",
+  "start": 95.298,
+  "end": 95.49,
+  "speaker": "narrator"
+ },
+ {
+  "word": "line",
+  "start": 95.501,
+  "end": 95.885,
+  "speaker": "narrator"
+ },
+ {
+  "word": "The",
+  "start": 97.039,
+  "end": 97.075,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "stars",
+  "start": 97.093,
+  "end": 97.601,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "are",
+  "start": 97.619,
+  "end": 97.819,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "almost",
+  "start": 97.837,
+  "end": 98.436,
+  "speaker": "cthulhu"
+ },
+ {
+  "word": "right",
+  "start": 98.455,
+  "end": 99.072,
+  "speaker": "cthulhu"
+ }
+]

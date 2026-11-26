@@ -47,6 +47,8 @@ Trận đánh phải hoành tráng như phim điện ảnh / anime, phô diễn 
 - **Guardian**: `rim` light sáng rõ trên nền tối, `aura` 2–3 lớp màu theo thần thoại gốc, ký hiệu/phù chú phát sáng, mắt lóe vệt sáng (`glint`), khối vững.
 - **Monster**: tỉ lệ kinh dị bất đối xứng (tay dài, gai nhọn, xúc tu/đốt xương), gân sáng hoặc nhầy/máu mức hoạt hình, mắt phát sáng dị dạng, `aura` màu bệnh hoạn (xanh độc, đỏ máu, tím).
 
+**Quy mô khổng lồ (chuẩn từ tập #003 v2)**: monster có lore khổng lồ (rắn thế giới, rồng, titan, Kraken, Cthulhu…) phải **áp đảo khung hình**: guardian chỉ cao ~1/4–1/5 monster khi nó vươn lên; **thân monster thành địa hình của chiến trường** (prop `serpent-coils` hoặc tương tự: vòng thân / xúc tu trồi lên khỏi đất và lặn xuống, từ tiền cảnh tới chân trời, có lớp sương xa); quay nhiều **góc thấp nhìn lên đầu monster** và **cảnh rộng cực xa** để đọc được quy mô; intro trong lãnh địa cũng phải cho thấy quy mô. Monster cỡ người (Vrykolakas, Bloody Mary…) giữ cỡ người. Mặt guardian không được bị thân monster che trong cảnh siết/cắn.
+
 ## 5. Continuity: chống rời rạc khung hình
 - **Một chiến trường thống nhất duy nhất** cho toàn bộ màn 1v1 (một scene `domain-<field>` hoặc một scene có sẵn). Địa hình đặc trưng của Monster (cột đá R'lyeh, khe địa ngục, gai đá…) phải **trồi trực tiếp lên ngay trên bối cảnh chính** (prop `monolith`/`spire` với track `rise`), không cắt nhảy đổi phông giữa trận. Lãnh địa riêng chỉ dùng ở 2 màn tự giới thiệu.
 - **Không khung hình nào đứng máy tĩnh**: mọi shot có `push` + `pan`. Nối trái ↔ phải bằng `whip-pan` (`tr:{type:'whip',dir}`) **bám theo hướng bay của đạn chưởng / lưỡi chém**, `follow` camera, `dutch` khi không gian biến dạng, `slow` (slow-mo) + `crash` (crash-zoom) ở đòn kết liễu.
@@ -66,13 +68,15 @@ Trận đánh phải hoành tráng như phim điện ảnh / anime, phô diễn 
 - Chi tiết sáng tạo thêm để dẫn chuyện phải ghi chú rõ là *"câu chuyện"* trong research và kịch bản, không trình bày như sự thật dân gian.
 
 ## 8. Phụ đề
-- `tools/make_captions.py --font "Bebas Neue" --size 104 --max-words 4 --max-chars 24`; không cụm nào vượt câu.
+- `tools/make_captions.py --font "Bebas Neue" --size 92 --max-words 4 --max-chars 22` (cỡ 104 tràn khung với cụm dài); không cụm nào vượt câu.
+- `captions_dyn.py … --cut t1,t2`: cắt phụ đề intro trước mỗi lần `emerge` để không đè nhãn thẻ Split-Roll.
 - **Phụ đề động** `tools/anim/captions_dyn.py`: tự dời phụ đề xuống dải thấp (y≈1590) ở các cảnh cận `cu`, `ecu`, `reaction`, `low` để không đè mặt nhân vật. Khi letterbox bật, kiểm tra phụ đề không chui vào dải đen.
 
 ## 9. Chọn nhân vật
 Theo [docs/09](09-kho-nhan-vat.md): chỉ nhân vật nổi tiếng trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây**, **Ai Cập cổ**, **Lưỡng Hà** + **Nhật Bản**. Không lấy Việt Nam và châu Á khác. Không lấy nhân vật có bản quyền, tín ngưỡng bản địa đang sống, hình ảnh từ phim/game.
 
 ## 10. Tập tham chiếu
+- **`episodes/apep-vs-thor/` (tập #003 v2) = TẬP MẪU CHUẨN**: brief, research + bảng sức mạnh, kịch bản, âm thanh tempo vừa (`audio-anim/`), timeline (`anim/make_timeline.js`), `build-anim.sh`, QC, review 3 cổng; preview `preview/apep-vs-thor.mp4` (94 s). Lưu ý khi tái dùng timeline: hàm `M()` quy đổi giây v1→v2; mốc lấy từ `sections.json`/`words.json` đã là giây hiện tại thì phải dùng `RAW = true` (lỗi cảnh đầu truyện v2).
 - `tools/anim/demo/sakuga_demo.js` → `sakuga-demo.mp4`: mẫu đúng luật mới (hook, split-roll + 2 intro, VS, 1v1 một chiến trường, đủ 5 đòn, bé chạy đi nấp).
-- `episodes/black-eyed-children-vs-cerberus/`: mẫu pipeline âm thanh (`audio-anim/`), `build-anim.sh`. Tập này dựng **trước** luật mới (chưa có intro lãnh địa, đòn chưởng), không lấy làm mẫu hình ảnh.
+- `episodes/black-eyed-children-vs-cerberus/`: tập legacy (trước luật mới), chỉ tham khảo.
 - `episodes/vrykolakas-vs-church-grim/`: tập lưu trữ (bản v6 còn HUD/ROUND), chỉ để tham khảo lịch sử.

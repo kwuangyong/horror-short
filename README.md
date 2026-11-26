@@ -3,14 +3,17 @@
 Bộ quy chuẩn, đội agent và engine hoạt hình để làm video kinh dị dọc (TikTok / Reels / YouTube Shorts) tiếng Anh theo format **Battle Spin**:
 - Hook *in medias res* + **"WHO SURVIVES?"**, tua ngược glitch.
 - **Split-Roll MONSTER | GUARDIAN**, mỗi bên có màn tự giới thiệu ~5 s trong lãnh địa riêng, sau đó **VS · "WHO WINS? COMMENT"**.
+- Monster khổng lồ theo lore áp đảo khung hình, thân thành địa hình chiến trường.
 - Trận 1v1 kiểu **Sakuga Cinematic** (beam, beam-clash, orbs, slash, pillar, letterbox, tàn lửa) trên một chiến trường duy nhất. THE KID chạy đi nấp và không xuất hiện trong khung giao chiến.
 - Tempo vừa, dễ hiểu: 85–100 s, 50–60 cảnh, −14 LUFS.
 
 Toàn bộ video dựng bằng **engine hoạt ảnh khớp xương SVG** (`tools/anim/`, Playwright Chromium). Không dùng ảnh tĩnh, Ken Burns, thanh HP hay thẻ ROUND.
 
-▶ **Demo engine (26 s, không tiếng):** [`tools/anim/demo/sakuga-demo.mp4`](tools/anim/demo/sakuga-demo.mp4)
+▶ **Tập mẫu chuẩn #003 · APEP vs THOR (94 s):** [`episodes/apep-vs-thor/preview/apep-vs-thor.mp4`](episodes/apep-vs-thor/preview/apep-vs-thor.mp4): tempo vừa, Apep khổng lồ cuộn quanh sa mạc, nhật thực, đủ 3 cổng duyệt.
 
-![Khung hình demo](tools/anim/demo/sakuga-demo-sheet.jpg)
+![Khung hình tập #003](episodes/apep-vs-thor/preview/apep-vs-thor-sheet.jpg)
+
+Demo engine tối giản (26 s, không tiếng): [`tools/anim/demo/sakuga-demo.mp4`](tools/anim/demo/sakuga-demo.mp4).
 
 ## Luật bắt buộc
 
@@ -39,7 +42,8 @@ Boss chọn tổ hợp biến thể, giao `scout` tra lore + bảng sức mạnh
 | `tools/` | Âm thanh và phụ đề: `narration.py`, `voice_fx.sh`, `make_captions.py`, `transcribe_words.py`. Xem [README](tools/README.md) |
 | `episodes/_format-dual-spin/` | Kho research monster/guardian (đã lọc theo phạm vi docs/09) |
 | `episodes/_registry.md` | Tổ hợp biến thể đã dùng |
-| `episodes/black-eyed-children-vs-cerberus/` | Tập #002 (legacy): mẫu pipeline âm thanh và build |
+| `episodes/apep-vs-thor/` | **Tập #003 = tập mẫu chuẩn** (brief → research → kịch bản → âm thanh → rig → timeline → build → review) |
+| `episodes/black-eyed-children-vs-cerberus/` | Tập #002 (legacy) |
 | `episodes/vrykolakas-vs-church-grim/` | Tập #001 (legacy, lưu trữ) |
 
 ## Bản quyền

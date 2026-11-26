@@ -78,6 +78,7 @@ Nửa đêm trăng tròn · mưa bão sấm chớp · tuyết rơi · sương m�
 ## H. Tạo hình nhân vật
 - **Guardian = năng lượng, phép thuật**: `rim` light sáng rõ trên nền tối; `aura` 2–3 lớp gradient theo nguồn gốc (Hy Lạp vàng–trắng, Bắc Âu xanh băng–trắng, Slav lửa cam, Celtic/Anh bạc–xanh trăng, Nhật trắng–đỏ son); ký hiệu/phù chú phát sáng khi dùng sức mạnh; mắt lóe vệt sáng (`glint`); tư thế hero (góc thấp, ngực mở). Shape language: khối vững, đường cong mạnh.
 - **Monster = kinh dị**: tỉ lệ bất đối xứng (tay quá dài, gai nhọn, nhiều xúc tu / đốt xương, cổ gãy, miệng xé tới mang tai); gân sáng hoặc nhầy/máu **mức hoạt hình** (không gore thực tế); mắt phát sáng dị dạng hoặc đen kịt; `aura` màu bệnh hoạn; chuyển động giật cục. Shape language: tam giác, gai nhọn.
+- **Quy mô**: monster khổng lồ theo lore → áp đảo khung hình, thân thành địa hình chiến trường (docs/07 mục 4 "Quy mô khổng lồ"). Guardian vẫn phải đọc rõ: rim light + aura, mặt không bị che.
 - Ngoại lệ an toàn: monster hình trẻ con → kinh dị bằng mắt, da, tư thế, không máu. THE KID không bao giờ có máu.
 - Mỗi nhân vật mới: turnaround + bảng màu + 3 pose khoe sức mạnh, Boss duyệt trước khi dựng.
 

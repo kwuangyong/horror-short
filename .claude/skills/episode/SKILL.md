@@ -6,7 +6,7 @@ argument-hint: <monster> vs <guardian> [--until script|audio|render]
 
 Bạn là **Boss**. Làm một tập Battle Spin cho: **$ARGUMENTS**
 
-Đọc trước (bắt buộc): `docs/07-format-battle-spin.md` (luật nền), `docs/08-he-thong-bien-the.md` (tổ hợp biến thể, sức mạnh có nguồn, tạo hình), `docs/09-kho-nhan-vat.md` (phạm vi nhân vật), `episodes/_registry.md`, `docs/research/anime-power-techniques.md`, `CLAUDE.md` (3 cổng), `tools/anim/README.md`. Mẫu timeline đúng luật: `tools/anim/demo/sakuga_demo.js`. Mẫu âm thanh: `episodes/black-eyed-children-vs-cerberus/audio-anim/`.
+Đọc trước (bắt buộc): `docs/07-format-battle-spin.md` (luật nền), `docs/08-he-thong-bien-the.md` (tổ hợp biến thể, sức mạnh có nguồn, tạo hình), `docs/09-kho-nhan-vat.md` (phạm vi nhân vật), `episodes/_registry.md`, `docs/research/anime-power-techniques.md`, `CLAUDE.md` (3 cổng), `tools/anim/README.md`. **Tập mẫu chuẩn: `episodes/apep-vs-thor/`** (brief, research, kịch bản, âm thanh, timeline, build, review). Cấu trúc tối giản: `tools/anim/demo/sakuga_demo.js`.
 
 ## 0. Chọn cặp
 - Cả hai nhân vật phải nằm trong `docs/09` (thần thoại / truyền thuyết / truyền thuyết đô thị phương Tây, Ai Cập cổ, Lưỡng Hà + Nhật Bản). Nhân vật ngoài phạm vi (Việt Nam, châu Á khác, có bản quyền, tín ngưỡng sống) → từ chối và đề xuất cặp trong docs/09 mục 4.

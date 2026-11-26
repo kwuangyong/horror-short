@@ -23,7 +23,7 @@ bash tools/voice_fx.sh episodes/<slug>/audio-anim/voice_narr.mp3 episodes/<slug>
 ```
 
 ```bash
-python tools/make_captions.py episodes/<slug>/audio-anim/words.json --script episodes/<slug>/script-anim.md --font "Bebas Neue" --size 104 --max-words 4 --max-chars 24 -o episodes/<slug>/build/captions.ass
+python tools/make_captions.py episodes/<slug>/audio-anim/words.json --script episodes/<slug>/script-anim.md --font "Bebas Neue" --size 92 --max-words 4 --max-chars 22 -o episodes/<slug>/build/captions.ass
 ```
 
 ```bash
@@ -42,4 +42,4 @@ python3 tools/anim/captions_dyn.py episodes/<slug>/build/captions.ass episodes/<
 bash episodes/<slug>/build-anim.sh
 ```
 
-Lệnh `--check` phải in `180-RULE OK` trước khi dựng. Mẫu dựng đầy đủ: `episodes/black-eyed-children-vs-cerberus/build-anim.sh`. Mẫu timeline theo luật mới: `tools/anim/demo/sakuga_demo.js`.
+Lệnh `--check` phải in `180-RULE OK` trước khi dựng. Mẫu dựng đầy đủ: `episodes/apep-vs-thor/build-anim.sh` (tập mẫu chuẩn). Mẫu timeline theo luật mới: `tools/anim/demo/sakuga_demo.js`.

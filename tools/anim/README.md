@@ -113,3 +113,13 @@ Fx are simple (no real particles beyond dust/soil/impact/speed lines). Silhouett
 - Split roll: silhouettes `apep` / `thor`; for locked cards use apep `idle:'idle-card'`, fscale ~0.4, fx 10, fy 255; thor fscale 0.5, fy 270.
 - Domain motif `ruins` (dunes, broken columns, obelisk, toppled pharaoh head; colours `rock`, `sand:[3]`) and per-domain `eclipse:{x,y,r,track,dir,sun,moon,corona,dark}` (track 0..1 = none..total: moon slides over the sun, sky darkens, corona + rays at totality).
 - Sheet: `node episodes/apep-vs-thor/anim/make_rigs_sheet.js`.
+
+## Episode #003 v2 additions (giant monster, medium tempo)
+- **`serpent-coils` prop** (sakuga.js): giant body arcs rising out of the ground and diving back in (dune ridges made of scales). `{type:'serpent-coils', x,y,scale,z,scene, track:'rise', body,body2,sheen,vein,sand,haze, sp, arcs:[{x0,x1,y,h,w,d (0 near..1 far, hazed),ph,delay,lean}]}`. Use far / mid / near sets (near set with high z passes in front of the actors). Reusable for any colossal serpent / tentacle monster.
+- **`shape` prop** (sakuga.js): generic vector prop for one-off objects (tent, altar, ox head, flashlight, hollow, thunder cart, serpent shadow, eye under sand). `shapes:[{k:'poly'|'ell'|'glow',…, track, txTrack/tyTrack, syTrack+pivot, flick}]`, optional `attach:{actor,marker,track}` to follow a rig marker.
+- **apep** v2 params: `len` (body length factor), `lam` (wave length), `rearK` (rear height factor), `coilLift` (raise head above the last coil in a squeeze so the victim's face stays visible), `layer` 3, marker `fang`.
+- **Actor-level `pose:{}`** defaults (merged under every action) and **cue `pose:{}`** overrides (e.g. boost Thor `eyeGlow`, add `venom`).
+- **`captions_dyn.py --cut t1,t2`**: captions spanning those times end there (keep split-roll card labels clear at each `emerge`).
+- Timeline tip (`episodes/apep-vs-thor/anim/make_timeline.js`): the helper `M(t)` remaps v1 seconds to v2 audio; times taken from `sections.json` / `words.json` are already current, so wrap those shots in `RAW = true … RAW = false`.
+- Scale guide for colossal monsters: apep scale ~2.8 with thor scale 0.8 (Thor ≈ 1/4.5 of Apep's reared height); establishing shots zoom ~0.55–0.62, low angles `ground 0.84`.
+

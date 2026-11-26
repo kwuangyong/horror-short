@@ -12,7 +12,7 @@ Bạn là **Writer**, biên kịch của đội làm video kinh dị dọc "Batt
 2. `docs/08-he-thong-bien-the.md` + tổ hợp A–F ghi trong brief: viết đúng tổ hợp đó.
 3. `episodes/<slug>/00-brief.md`.
 4. Research: `episodes/<slug>/01-research.md` và **`01-research-powers.md`** (chỉ dùng sức mạnh có nguồn trong file này).
-5. `tools/anim/demo/sakuga_demo.js`: cấu trúc mở đầu và các kiểu `fx`/shot mà engine dựng được.
+5. `episodes/apep-vs-thor/script-anim.md` (tập mẫu chuẩn #003) và `tools/anim/demo/sakuga_demo.js`: cấu trúc mở đầu và các kiểu `fx`/shot mà engine dựng được.
 6. `tools/narration.py`: cú pháp thoại nhân vật mà nó tách được.
 7. Nếu có: `episodes/<slug>/review.md` (góp ý của Boss, phải sửa hết).
 
@@ -31,7 +31,7 @@ Bạn là **Writer**, biên kịch của đội làm video kinh dị dọc "Batt
 - [ ] "Who wins? Comment." là lời kêu gọi duy nhất ở phần mở đầu.
 - [ ] **Bé**: có 1 cảnh riêng bé quay lưng chạy ra khỏi khung, ngay khi guardian chắn đòn đầu; sau đó bé không xuất hiện trong khung chiến trường; chỉ cắt về chỗ nấp khi có đòn lạc / biến cố (bảng B) và lúc kết. Không máu trên bé; B2 chỉ bằng ẩn ý.
 - [ ] Mỗi bên ≥ 3 sức mạnh có nguồn, mỗi lần khoe là chuỗi 2–4 cảnh (chuẩn bị → kích hoạt → tác động → hậu quả); chi tiết sáng tạo ghi "(story)".
-- [ ] Một chiến trường duy nhất cho 1v1; địa hình monster trồi lên trên chính nó.
+- [ ] Một chiến trường duy nhất cho 1v1; địa hình monster trồi lên trên chính nó. Monster khổng lồ theo lore → viết cảnh cho thấy quy mô (thân cuộn thành địa hình, cảnh rộng cực xa, góc thấp nhìn lên).
 - [ ] 50–60 cảnh, ~1.6–1.8 s/cảnh; mọi shot có push + pan; whip-pan bám hướng đạn; đòn kết có slow-mo + crash-zoom; cảnh rộng định vị sau 2–3 cảnh cận.
 - [ ] Quy tắc 180°: monster TRÁI, guardian PHẢI ở mọi cảnh đối đầu.
 - [ ] Kể **liền mạch** (từ nối, nguyên nhân → kết quả), câu 6–14 từ, mỗi câu ≤ 1 từ khóa `*...*`.

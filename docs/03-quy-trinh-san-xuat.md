@@ -40,20 +40,20 @@ Theo [02-cong-thuc-kich-ban.md](02-cong-thuc-kich-ban.md). Nguồn quái vật a
 
 | Công cụ | Ghi chú |
 |---|---|
+| **Kokoro-82M** (mã nguồn mở, offline — **mặc định**) | Chạy nhanh trên CPU, không giới hạn, miễn phí thương mại (Apache 2.0). Dùng sẵn `tools/tts_kokoro.py` với giọng trộn **60% `am_onyx` + 40% `bm_george`**. |
 | **ElevenLabs** (trả phí, có gói free nhỏ) | Chất lượng cao nhất, nhiều giọng trầm kể chuyện, chỉnh "stability" thấp để giọng có cảm xúc hơn. |
 | **CapCut Text-to-speech** | Miễn phí trong CapCut, đủ dùng cho bắt đầu. |
 | **edge-tts** (Python, miễn phí) | Giọng Microsoft Neural, ví dụ `en-US-ChristopherNeural`, `en-US-GuyNeural`, `en-GB-RyanNeural`. |
-| **Kokoro / Piper** (offline, mã nguồn mở) | Chạy trên máy, không giới hạn. |
 | **Tự đọc** | Tốt nhất về tính "nguyên bản" khi kiếm tiền; dùng mic tốt, đọc thầm, gần mic. |
 
-Mẹo: tốc độ ~0.9×, thêm dấu "…" hoặc xuống dòng để TTS ngắt nghỉ. Sau đó thêm hiệu ứng: EQ cắt dưới 80 Hz, compressor, reverb phòng nhỏ 10–15%.
+Mẹo: tốc độ ~0.86–0.9×, thêm dấu "…" hoặc xuống dòng để TTS ngắt nghỉ. Sau đó chạy qua `tools/voice_fx.sh` (hoặc thêm cờ `--fx deep` ngay trong `tts_kokoro.py`).
 
 ```bash
-pip install edge-tts
+pip install kokoro-onnx soundfile
 ```
 
 ```bash
-edge-tts --voice en-US-ChristopherNeural --rate=-15% --pitch=-8Hz --file voice.txt --write-media voice.mp3
+python tools/tts_kokoro.py voice.txt -o voice_dark.wav --fx deep
 ```
 
 ## Bước 3 · Timestamp từng từ (để làm phụ đề tự động)

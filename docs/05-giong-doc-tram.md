@@ -25,22 +25,26 @@ python tools/narration.py examples/ma-da/script.md --elevenlabs -o voice_el.txt
 
 - Thoại nhân vật (giọng đứa trẻ, giọng quái vật) được script tách riêng ở cuối file → tạo bằng **giọng thứ hai**, rồi xử lý bằng preset `demon` bên dưới.
 
-### Miễn phí
-- **edge-tts** (giọng Microsoft Neural, cần Internet). Giọng nam tiếng Anh trầm nên thử: `en-US-ChristopherNeural`, `en-US-EricNeural`, `en-US-GuyNeural`, `en-GB-RyanNeural`, `en-GB-ThomasNeural`.
+### Miễn phí & Mã nguồn mở (khuyên dùng: Kokoro-82M Blend)
+- **Kokoro-82M** (mã nguồn mở Apache 2.0, chạy offline trên CPU): cấu hình chuẩn của repo là **trộn giọng `60% am_onyx + 40% bm_george`** (trầm Mỹ + lạnh Anh), tốc độ `0.86`, đi kèm `tools/tts_kokoro.py` (tự tải model lần đầu vào `~/.cache/horror-short/kokoro/`).
 
 ```bash
-pip install edge-tts
+pip install kokoro-onnx soundfile
 ```
 
 ```bash
 python tools/narration.py examples/ma-da/script.md -o voice.txt
+python tools/tts_kokoro.py voice.txt -o voice_dark.wav --fx deep
 ```
 
+- Các giọng lẻ khác của Kokoro có thể đổi qua `--voice`: `am_onyx`, `am_fenrir`, `am_michael`, `bm_george`, `bm_lewis`.
+- **edge-tts** (giọng Microsoft Neural, cần Internet — phương án dự phòng): `en-US-ChristopherNeural`, `en-US-EricNeural`, `en-US-GuyNeural`, `en-GB-RyanNeural`, `en-GB-ThomasNeural`.
+
 ```bash
+pip install edge-tts
 edge-tts --voice en-US-ChristopherNeural --rate=-15% --pitch=-8Hz --file voice.txt --write-media voice.mp3
 ```
 
-- **Kokoro** (mã nguồn mở, chạy offline): giọng `am_onyx`, `am_michael`, `bm_george`, `bm_lewis`.
 - **CapCut TTS**: có sẵn vài giọng "deep"/"narrator" trong mục Text-to-speech.
 
 ### Tự đọc

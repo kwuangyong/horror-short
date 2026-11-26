@@ -30,6 +30,7 @@ Nghiên cứu cách làm video kinh dị ngắn (TikTok / Reels / YouTube Shorts
 | Script | Việc làm |
 |---|---|
 | `narration.py` | Lấy lời dẫn từ script.md ra file văn bản cho TTS (có chế độ audio tag cho ElevenLabs) |
+| `tts_kokoro.py` | Tạo giọng đọc tiếng Anh offline bằng Kokoro-82M (mặc định trộn `60% am_onyx + 40% bm_george`) |
 | `voice_fx.sh` | Làm giọng trầm và ghê hơn: preset `deep`, `demon`, `whisper`, `radio` |
 | `transcribe_words.py` | Lấy mốc thời gian từng từ trong giọng đọc (faster-whisper) |
 | `make_captions.py` | Tạo phụ đề `.ass`: chữ HOA, 1–3 từ mỗi cụm, từ khóa `*...*` tô đỏ, hiệu ứng pop |
@@ -39,7 +40,7 @@ Nghiên cứu cách làm video kinh dị ngắn (TikTok / Reels / YouTube Shorts
 Chi tiết cách dùng: [`tools/README.md`](tools/README.md).
 
 ```bash
-pip install pillow faster-whisper
+pip install pillow faster-whisper kokoro-onnx soundfile
 ```
 
 ```bash

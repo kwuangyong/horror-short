@@ -1,6 +1,6 @@
 # tools/
 
-Cần có: Python 3.10+, `pip install pillow faster-whisper`, và `ffmpeg` (có libass, rubberband). Phông chữ: đặt file `Oswald-Bold.ttf` (hoặc Anton / Bebas Neue) vào `fonts/`.
+Cần có: Python 3.10+, `pip install pillow faster-whisper kokoro-onnx soundfile`, và `ffmpeg` (có libass, rubberband). Phông chữ: đặt file `Oswald-Bold.ttf` (hoặc Anton / Bebas Neue) vào `fonts/`.
 
 ## Quy trình đầy đủ cho một tập
 
@@ -8,11 +8,13 @@ Cần có: Python 3.10+, `pip install pillow faster-whisper`, và `ffmpeg` (có 
 python tools/narration.py my-episode/script.md -o my-episode/voice.txt
 ```
 
-Đưa `voice.txt` vào TTS (ElevenLabs / edge-tts) → `voice.mp3`, rồi:
+Tạo giọng đọc tiếng Anh offline bằng **Kokoro-82M** (mặc định trộn `60% am_onyx + 40% bm_george`) và xử lý trầm luôn với `--fx deep`:
 
 ```bash
-bash tools/voice_fx.sh my-episode/voice.mp3 my-episode/voice_dark.wav deep
+python tools/tts_kokoro.py my-episode/voice.txt -o my-episode/voice_dark.wav --fx deep
 ```
+
+*(Hoặc nếu dùng ElevenLabs / edge-tts ra `voice.mp3` thì chạy riêng: `bash tools/voice_fx.sh my-episode/voice.mp3 my-episode/voice_dark.wav deep`.)*
 
 ```bash
 python tools/transcribe_words.py my-episode/voice_dark.wav --lang en -o my-episode/words.json

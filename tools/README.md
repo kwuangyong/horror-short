@@ -6,6 +6,7 @@ Cần có: Node 18+ với Playwright Chromium (đã cài sẵn trong cloud), Pyt
 
 | File | Việc làm |
 |---|---|
+| `tts_kokoro.py` | Giọng đọc tiếng Anh **offline** bằng Kokoro-82M (mặc định trộn `60% am_onyx + 40% bm_george`, `--fx deep` xử lý trầm luôn). Cần `pip install kokoro-onnx soundfile`; model tự tải vào `~/.cache/horror-short/kokoro/` |
 | `narration.py` | Tách lời dẫn + thoại nhân vật từ `script-anim.md` ra văn bản cho TTS (`(grim's voice …)`, `(kid's voice …)`) |
 | `voice_fx.sh` | Làm giọng trầm và ghê hơn: preset `deep`, `demon`, `whisper`, `radio` |
 | `transcribe_words.py` | Mốc từng từ bằng faster-whisper. Dự phòng: trong cloud dùng WordBoundary của edge-tts |
@@ -19,6 +20,14 @@ Cần có: Node 18+ với Playwright Chromium (đã cài sẵn trong cloud), Pyt
 ```bash
 python tools/narration.py episodes/<slug>/script-anim.md -o episodes/<slug>/audio-anim/voice.txt
 ```
+
+Giọng: edge-tts (online, có mốc từng từ) hoặc Kokoro offline:
+
+```bash
+python tools/tts_kokoro.py episodes/<slug>/audio-anim/voice.txt -o episodes/<slug>/audio-anim/voice_dark.wav --fx deep
+```
+
+Nếu dùng edge-tts ra mp3 thì xử lý trầm riêng:
 
 ```bash
 bash tools/voice_fx.sh episodes/<slug>/audio-anim/voice_narr.mp3 episodes/<slug>/audio-anim/voice_dark.wav deep

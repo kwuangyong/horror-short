@@ -26,7 +26,7 @@ Mục tiêu: dùng đúng model cho đúng việc. Opus đắt nhưng giỏi ph�
 ## Vai trò
 
 ### Boss · Opus (phiên chính)
-- Viết brief, chọn hướng twist, quyết đáp án A/B.
+- Chọn cặp (docs/09) + tổ hợp biến thể A–F (docs/08), viết brief.
 - Giao việc: prompt tự đủ (slug, file vào/ra, tiêu chí xong).
 - Duyệt 3 cổng: research → kịch bản → bản dựng. **Chỉ Boss được chuyển cổng.**
 - Quy tắc bảo vệ chi phí: Boss không tự đi tìm tài liệu hay chạy render; giao xuống.
@@ -38,9 +38,9 @@ Mục tiêu: dùng đúng model cho đúng việc. Opus đắt nhưng giỏi ph�
 - Không sáng tác, không đoán giấy phép.
 
 ### `writer` · Sonnet
-- Kịch bản tiếng Anh theo khung 10 nhịp + điểm chọn A/B (doc 02, 04).
+- Kịch bản tiếng Anh `script-anim.md` theo nhịp tập docs/07 mục 2 (hook, 2 intro, 1v1, kết lửng), thoại theo mục 6.
 - 3 phương án hook, 3 tiêu đề, mô tả + hashtag.
-- Shotlist kèm prompt ảnh theo style prompt cố định (doc 03, bước 4).
+- SHOT LIST 50–60 cảnh + ANIMATION BEAT SHEET cho engine `tools/anim` (không dùng ảnh tĩnh).
 - Tự kiểm checklist trước khi nộp; sửa theo `review.md`.
 
 ### `producer` · Sonnet

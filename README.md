@@ -53,7 +53,7 @@ Boss chọn tổ hợp biến thể, giao `scout` tra lore + bảng sức mạnh
 | Thư mục | Nội dung |
 |---|---|
 | `tools/anim/` | Engine: `rigs.js`, `stage.js`, `sakuga.js`, `episode_kit.js` (mở đầu chuẩn), `validate.js` (kiểm luật), `render.js` (`--check` luật 180°), `timeline_words.js`, `captions_dyn.py`, demo. Xem [README](tools/anim/README.md) |
-| `tools/` | Âm thanh và phụ đề: `narration.py`, `voice_fx.sh`, `make_captions.py`, `transcribe_words.py`. Xem [README](tools/README.md) |
+| `tools/` | Âm thanh và phụ đề: `narration.py`, `tts_kokoro.py` (giọng offline Kokoro), `voice_fx.sh`, `make_captions.py`, `transcribe_words.py`. Xem [README](tools/README.md) |
 | `episodes/_format-dual-spin/` | Kho research monster/guardian (đã lọc theo phạm vi docs/09) |
 | `episodes/_registry.md` | Tổ hợp biến thể đã dùng |
 | `episodes/apep-vs-thor/` | **Tập #003 = tập mẫu chuẩn** (brief → research → kịch bản → âm thanh → rig → timeline → build → review) |

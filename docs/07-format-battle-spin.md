@@ -127,7 +127,7 @@ Quy tắc: whip-pan **bám hướng bay**; mỗi chuỗi ≥ 1 cảnh cận và 
 - Sau 2–3 cảnh cận phải có 1 cảnh rộng định vị. Bé không bị che trong cảnh rộng (trước khi chạy đi).
 
 ## 12. Âm thanh & tempo (tempo vừa, dễ hiểu)
-- Lời dẫn: edge-tts `en-US-ChristopherNeural` (`--proxy "$HTTPS_PROXY"`, host `speech.platform.bing.com`), pitch −10Hz, **rate +10–15% (mặc định +12%)**, nghỉ giữa câu **0.30–0.35 s**, rồi `tools/voice_fx.sh deep`.
+- Lời dẫn: edge-tts `en-US-ChristopherNeural` (`--proxy "$HTTPS_PROXY"`, host `speech.platform.bing.com`), pitch −10Hz, **rate +10–15% (mặc định +12%)**, nghỉ giữa câu **0.30–0.35 s**, rồi `tools/voice_fx.sh deep`. **Phương án offline / không có mạng**: Kokoro-82M blend `60% am_onyx + 40% bm_george` qua `tools/tts_kokoro.py --fx deep` (khi đó lấy mốc từng từ bằng `tools/transcribe_words.py`).
 - Giọng nhân vật đa tầng, chậm hơn lời dẫn ~20%: **monster** = giọng chính hạ pitch + lớp thì thầm lệch ~40 ms + lớp rít/gầm méo + lớp bóng trầm; **guardian** = trầm vang + reverb sảnh + lớp sấm/gầm hợp lore (+ biến thể khàn khi bị thương); **bé** = giọng trẻ con thì thầm.
 - Nhạc tổng hợp bằng code: drone + **trống chiến trận ~125 BPM**, ratchet khi Split-Roll quay, hit khi khóa thẻ / VS / va chạm, **SFX nạp + phóng plasma** khớp `beam`/`beam-clash`, whoosh cho ném/chém, rumble cho động đất; đỉnh trận = sub drop + trống tắt 1 ô nhịp; nhịp trống nền giữ căng ở đoạn cuối; **tắt phụt** trước câu thì thầm. Mix **−14 LUFS** (loudnorm 2 lượt + limiter), true peak ≤ −1 dBTP.
 - **85–100 s**, **50–60 cảnh** (~1.6–1.8 s/cảnh), lời dẫn + thoại **~200–240 từ**.

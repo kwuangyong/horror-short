@@ -311,6 +311,46 @@
         $('circle', { cx: bx, cy: by + 8, r: 72, fill: radial('#FF1E2D', [[0, 0.85], [0.5, 0.25], [1, 0]]), 'data-pulse': idx }, g);
       }
     },
+    city(g, d, r) {             // Stormy night city skyline: skyscrapers, lit windows, broken towers, siren strobes, burning street glow
+      const hz = d.horizon;
+      // Brooding storm clouds overhead
+      for (let i = 0; i < 8; i++) {
+        const cx = -300 + i * 260 + r() * 80, cy = 80 + (i % 3) * 95;
+        $('ellipse', { cx, cy, rx: 250 + r() * 140, ry: 68 + r() * 44, fill: '#19263e', opacity: 0.65 }, g);
+      }
+      // Distant skyline silhouettes
+      for (let i = 0; i < 18; i++) {
+        const x = -700 + i * 165 + r() * 30, w = 110 + r() * 95, h = 420 + r() * 680;
+        $('rect', { x, y: hz + 40 - h, width: w, height: h, fill: '#0b1020' }, g);
+        if (i % 3 === 0) $('rect', { x: x + w * 0.48, y: hz + 40 - h - 95, width: 6, height: 95, fill: '#18223a' }, g);
+      }
+      // Midground skyscrapers with glowing windows & damaged rooftops
+      for (let i = 0; i < 15; i++) {
+        const x = -640 + i * 190 + r() * 25, w = 135 + r() * 85, h = 340 + r() * 580, top = hz + 45 - h;
+        const col = i % 2 ? '#11182c' : '#0e1424';
+        if (i === 5 || i === 10) {
+          $('polygon', { points: P([[x, hz + 50], [x, top + 70], [x + w * 0.25, top + 120], [x + w * 0.5, top + 30], [x + w * 0.78, top + 110], [x + w, top + 60], [x + w, hz + 50]]), fill: col }, g);
+        } else {
+          $('rect', { x, y: top, width: w, height: h + 10, fill: col }, g);
+        }
+        const cols = Math.floor((w - 24) / 26), rows = Math.floor((h - 90) / 36);
+        for (let rr = 0; rr < rows; rr++) {
+          for (let cc = 0; cc < cols; cc++) {
+            if (r() > 0.56) continue;
+            const wc = r() > 0.72 ? '#5ce8ff' : '#ffd27a';
+            $('rect', { x: x + 14 + cc * 26, y: top + 90 + rr * 36, width: 14, height: 18, fill: wc, opacity: f2(0.35 + 0.45 * r()) }, g);
+          }
+        }
+      }
+      // Street-level fires & emergency red/blue police siren glows
+      for (const [sx, sc, idx] of [[-120, '#ff2a38', 0], [320, '#ff6a1a', 1], [780, '#2a8cff', 2], [1220, '#ff2a38', 3], [1640, '#ff6a1a', 4]]) {
+        $('ellipse', { cx: sx, cy: hz + 35, rx: 280, ry: 110, fill: radial(sc, [[0, 0.52], [0.55, 0.18], [1, 0]]), 'data-pulse': idx }, g);
+      }
+      // Road lane markings along city avenue
+      for (let i = -4; i < 12; i++) {
+        $('rect', { x: i * 240, y: hz + 150, width: 110, height: 12, rx: 3, fill: '#d8b44a', opacity: 0.35 }, g);
+      }
+    },
     forest(g, d, r) {           // night storm forest: wind-swept storm clouds + 3 depth layers of dark pine silhouettes
       const hz = d.horizon, cFar = d.rock || '#0E1B2E', cMid = '#0A1322', cNear = '#060B14';
       // brooding storm cloud deck overhead

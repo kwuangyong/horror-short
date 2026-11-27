@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Place voice clips on Battle Spin anchors (3.0 s silent/SFX lab-breach hook + Split-Roll + 2 Intros + Story + Cliffhanger)
+"""Place voice clips on Battle Spin anchors (3.0 s lab-breach hook + Split-Roll + 2 Intros + City Battle + Cliffhanger)
 -> voice_dark.wav, words.json, sections.json."""
 import json, os, subprocess
 import numpy as np
@@ -16,29 +16,28 @@ def load(p):
     return np.frombuffer(r.stdout, dtype=np.float32)
 
 EXTRA_GAP = {
-    "I am Pegasus": 1.65,         # emerge L -> spin & lock R -> dive R
-    "Containment failed": 1.55,   # emerge R -> VS slam + CTA -> shatter into breached lab
-    "A lost kid": 0.45,
+    "I am Pegasus": 1.60,         # emerge L -> spin & lock R -> dive R
+    "Containment failed": 1.50,   # emerge R -> VS slam + CTA -> shatter into breached lab
+    "It tore through": 0.40,
     "Radiant wings": 0.40,
-    "High above": 0.70,           # 1v1 establishing wide shot
-    "Diving like": 0.45,
-    "Then Pegasus": 0.45,
-    "Yet nothing": 0.55,
-    "Worse, its body": 0.45,
+    "High above": 0.65,           # 1v1 establishing wide shot over city skyline
+    "Diving like": 0.42,
+    "Then Pegasus": 0.42,
+    "Yet nothing": 0.50,
+    "Worse, its body": 0.42,
     "Your thunder": 0.35,
-    "Bone glands": 0.45,
-    "Then its back": 0.50,
-    "Now matched": 0.55,
-    "Pegasus could": 0.50,
-    "Choosing its": 0.50,
+    "Bone glands": 0.42,
+    "Then its back": 0.48,
+    "Now matched": 0.50,
+    "Pegasus could": 0.48,
+    "Choosing its": 0.48,
     "Only Zeus": 0.35,
-    "Below, the kid": 0.90,
-    "...Go get him": 0.45,
-    "Alone in the": 1.25,         # Beat 1 false peace -> Beat 2 music cuts dead
-    "Bring your god": 1.20,       # Beat 3: winged 682 glares at Olympus
+    "Above the shattered": 0.85,
+    "Alone in the": 1.15,         # Beat 1 false peace -> Beat 2 music cuts dead
+    "Bring your god": 1.10,       # Beat 3: winged 682 glares at Olympus
 }
 
-out = np.zeros(int(140 * SR), np.float32)
+out = np.zeros(int(130 * SR), np.float32)
 words = []
 sents = []
 prev_end = None
@@ -46,11 +45,11 @@ prev_end = None
 for u in U:
     x = load(f"{H}/clips/{u['file']}")
     if prev_end is None:
-        start = 4.65  # 0-3.0s hook (no narration) + 3.0-4.65s split-roll spin + lock L + dive L
+        start = 4.60
     else:
-        gap = 0.24
+        gap = 0.22
         if u["line_first"]:
-            gap = 0.32
+            gap = 0.30
             for pref, g in EXTRA_GAP.items():
                 if u["text"].startswith(pref):
                     gap = g
@@ -74,7 +73,7 @@ for u in U:
     })
     prev_end = start + len(x) / SR
 
-end = round(prev_end + 1.10, 2)
+end = round(prev_end + 1.25, 2)
 out = out[: int(end * SR)]
 subprocess.run(
     ["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(SR), "-ac", "1", "-i", "pipe:0", "-af", "alimiter=limit=0.89", "voice_dark.wav"],
@@ -101,7 +100,7 @@ secs = [
     {"name": "wings", "start": first("Then its back")["start"]},
     {"name": "climax", "start": first("Now matched")["start"]},
     {"name": "retreat", "start": first("Choosing its")["start"]},
-    {"name": "aftermath", "start": first("Below, the kid")["start"]},
+    {"name": "aftermath", "start": first("Above the shattered")["start"]},
     {"name": "cliffhanger", "start": first("Alone in the")["start"]},
     {"name": "whisper", "start": first("Bring your god")["start"]},
 ]

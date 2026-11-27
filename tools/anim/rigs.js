@@ -1541,7 +1541,606 @@
   };
   FISHERMAN.fade = FISHERMAN.idle;
 
-  const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, fisherman: FISHERMAN, cerberus: CERB, bec: BEC, apep: APEP, thor: THOR, typhon: TYPHON, cthulhu: CTHULHU };
-  const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, fisherman: buildFisherman, cerberus: buildCerberus, bec: buildBec, apep: buildApep, thor: buildThor, typhon: buildTyphon, cthulhu: buildCthulhu };
+  // ================================================================== SCP-682 (Hard-to-Destroy Reptile: pale exposed bone skull, jagged jaws, dual-tone chartreuse/crimson eyes, ragged dark mane, olive-slate muscular predator body, exposed crimson bloody ribcage with curved pale ribs, white dorsal bone spines & spiked tail, dynamic obsidian-chitin armor, tattered skeletal bone-wings, bio-spike glands, scorched damage & crimson/acid regen)
+  function buildScp682() {
+    const uid = ++_rigUid;
+    const rig = newRig();
+    const root = $('g'); rig.root = root; rig.mk = {};
+    const defs = $('defs', {}, root);
+    const mkRad = (id, stops) => { const g = $('radialGradient', { id: `${id}_${uid}` }, defs); stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a }, g)); return `url(#${id}_${uid})`; };
+    const mkLin = (id, stops, x1 = 0, y1 = 0, x2 = 0, y2 = 1) => { const g = $('linearGradient', { id: `${id}_${uid}`, x1, y1, x2, y2 }, defs); stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a === undefined ? 1 : a }, g)); return `url(#${id}_${uid})`; };
+    const gEye = mkRad('s682Eye', [[0, '#F4FF99', 1], [0.28, '#D9FF3F', 0.92], [0.62, '#FF3B1F', 0.55], [1, '#8F0E16', 0]]);
+    const gAcid = mkRad('s682Acid', [[0, '#C6FF5E', 0.95], [0.45, '#7CFF3B', 0.55], [1, '#2B3028', 0]]);
+    const gEmber = mkRad('s682Emb', [[0, '#FFD27A', 1], [0.38, '#FF6A1A', 0.85], [1, '#5A1006', 0]]);
+    const gWMem = mkLin('s682Wm', [[0, '#1F1218', 0.96], [0.5, '#3D0D14', 0.94], [1, '#5A121C', 0.86]], 0, 0, 1, 1);
+
+    const HIDE_D = '#151814', HIDE = '#2B3028', HIDE_M = '#434A3C', HIDE_L = '#68735E';
+    const BONE = '#E8E2D0', BONE_D = '#C7BEA6', BONE_L = '#FFFBF0', BONE_S = '#6E6655';
+    const GORE_D = '#8F0E16', GORE = '#D92626', GORE_L = '#FF4D4D';
+    const MANE = '#1B1A1E', MANE_L = '#2F2D35';
+    const ACID_C = '#D9FF3F', ACID = '#5CE62E', EYE_RIM = '#FF3B1F';
+    const ARM_D = '#0E1116', ARM = '#1F242B', ARM_M = '#3A4352', ARM_L = '#8FA0B8', ARM_B = '#E5DFCC';
+    const W_BONE = '#E6DEC8', W_MEM = '#3D0D14', W_EDGE = '#1F1218', W_VEIN = '#66FF33';
+    const pathR = (p, d, fill, extra) => G.reg($('path', Object.assign({ d, fill }, extra || {}), p), fill);
+
+    const body = joint(root, -40, -175); rig.body = body; const B = body.c;
+
+    // ---- MASSIVE TATTERED SKELETAL BONE-WINGS (dynamic evolution: P.wings 0..1)
+    const mkHorrorWing = (sx, sy, dir, isFront) => {
+      const w = joint(B, sx, sy);
+      const wg = w.c;
+      const apexX = sx + dir * 185, apexY = sy - 275;
+      const tips = [
+        [sx + dir * 390, sy - 220],
+        [sx + dir * 360, sy - 70],
+        [sx + dir * 285, sy + 36],
+        [sx + dir * 195, sy + 88],
+        [sx + dir * 110, sy + 96],
+      ];
+      const memD = `M${sx} ${sy - 8} Q${sx + dir * 92} ${sy - 168} ${apexX} ${apexY}`
+        + ` Q${sx + dir * 295} ${sy - 278} ${tips[0][0]} ${tips[0][1]}`
+        + ` Q${sx + dir * 320} ${sy - 135} ${tips[1][0]} ${tips[1][1]}`
+        + ` Q${sx + dir * 265} ${sy - 26} ${tips[2][0]} ${tips[2][1]}`
+        + ` Q${sx + dir * 196} ${sy + 34} ${tips[3][0]} ${tips[3][1]}`
+        + ` Q${sx + dir * 125} ${sy + 58} ${tips[4][0]} ${tips[4][1]}`
+        + ` Q${sx + dir * 55} ${sy + 48} ${sx} ${sy + 72} Z`;
+      pathR(wg, memD, isFront ? W_MEM : W_EDGE);
+      $('path', { d: memD, fill: gWMem, opacity: isFront ? 0.85 : 0.65 }, wg);
+      // tattered holes & toxic-green pulsing veins
+      const veins = [];
+      for (let i = 0; i < 4; i++) {
+        const mx = (tips[i][0] + tips[i + 1][0]) * 0.5, my = (tips[i][1] + tips[i + 1][1]) * 0.5;
+        veins.push($('path', { d: `M${f2(apexX)} ${f2(apexY)} Q${f2((apexX + mx) * 0.52)} ${f2((apexY + my) * 0.46)} ${f2(mx - dir * 14)} ${f2(my - 14)}`, stroke: W_VEIN, 'stroke-width': isFront ? 3 : 2, fill: 'none', opacity: isFront ? 0.65 : 0.35, 'stroke-linecap': 'round' }, wg));
+      }
+      // leading skeletal bone arm + apex claw
+      $('path', { d: `M${sx} ${sy} Q${sx + dir * 95} ${sy - 165} ${apexX} ${apexY}`, stroke: isFront ? W_BONE : BONE_D, 'stroke-width': 16, fill: 'none', 'stroke-linecap': 'round' }, wg);
+      $('path', { d: `M${sx} ${sy} Q${sx + dir * 95} ${sy - 165} ${apexX} ${apexY}`, stroke: BONE_L, 'stroke-width': 4, fill: 'none', 'stroke-linecap': 'round', opacity: 0.7 }, wg);
+      pathR(wg, `M${apexX - dir * 6} ${apexY + 4} Q${apexX + dir * 16} ${apexY - 46} ${apexX + dir * 42} ${apexY - 56} Q${apexX + dir * 24} ${apexY - 18} ${apexX + dir * 14} ${apexY + 8} Z`, BONE_L);
+      // 5 pale bone wing-fingers
+      tips.forEach(([tx, ty], i) => {
+        const cx = (apexX + tx) * 0.5 + dir * (14 - i * 3), cy = (apexY + ty) * 0.5 - 20;
+        $('path', { d: `M${apexX} ${apexY} Q${f2(cx)} ${f2(cy)} ${tx} ${ty}`, stroke: isFront ? W_BONE : BONE_D, 'stroke-width': 8.5 - i * 1.0, fill: 'none', 'stroke-linecap': 'round' }, wg);
+        $('path', { d: `M${apexX} ${apexY} Q${f2(cx)} ${f2(cy)} ${tx} ${ty}`, stroke: BONE_L, 'stroke-width': 2.2, fill: 'none', opacity: isFront ? 0.6 : 0.3 }, wg);
+      });
+      w.veins = veins;
+      return w;
+    };
+    rig.wB = mkHorrorWing(-25, -285, -1, false);
+
+    // ---- ARTICULATED SPIKED TAIL (3 segments with sharp pale bone spines)
+    const tail = joint(B, -145, -205); rig.tail = tail;
+    pathR(tail.c, 'M-140 -238 Q-205 -242 -260 -224 L-256 -178 Q-200 -168 -140 -174 Z', HIDE);
+    pathR(tail.c, 'M-144 -235 Q-205 -238 -258 -220 L-256 -208 Q-202 -224 -144 -222 Z', HIDE_L, { opacity: 0.45 });
+    for (const [tx, ty, h] of [[-168, -236, 34], [-204, -234, 30], [-238, -228, 26]]) {
+      poly(tail.c, [[tx - 10, ty + 4], [tx + 10, ty + 2], [tx - 16, ty - h]], BONE);
+      poly(tail.c, [[tx - 4, ty + 2], [tx + 4, ty + 2], [tx - 14, ty - h * 0.85]], BONE_L, { opacity: 0.65 });
+    }
+    const tail2 = joint(tail.c, -252, -200); rig.tail2 = tail2;
+    pathR(tail2.c, 'M-246 -222 Q-312 -218 -366 -188 L-358 -156 Q-305 -168 -248 -178 Z', HIDE);
+    for (const [tx, ty, h] of [[-276, -218, 24], [-314, -210, 22], [-348, -196, 18]]) {
+      poly(tail2.c, [[tx - 8, ty + 4], [tx + 8, ty + 2], [tx - 14, ty - h]], BONE);
+    }
+    const tail3 = joint(tail2.c, -356, -172); rig.tail3 = tail3;
+    pathR(tail3.c, 'M-352 -188 Q-410 -174 -452 -140 Q-410 -144 -352 -156 Z', HIDE_M);
+    poly(tail3.c, [[-386, -178], [-372, -174], [-398, -206]], BONE_L);
+    poly(tail3.c, [[-416, -166], [-404, -162], [-434, -186]], BONE_L);
+    poly(tail3.c, [[-436, -150], [-424, -142], [-468, -134]], BONE_L);
+
+    // ---- MUSCULAR CLAWED REPTILIAN LIMBS (lB rear-far, aL front-far, lF rear-near, aR front-near)
+    const mkLimb = (sx, sy, dark, isFront) => {
+      const c1 = dark ? HIDE_D : HIDE, c2 = dark ? HIDE : HIDE_M, cHi = dark ? HIDE_M : HIDE_L;
+      const th = joint(B, sx, sy);
+      pathR(th.c, `M${sx - 34} ${sy - 18} C${sx - 50} ${sy + 26} ${sx - 38} ${sy + 76} ${sx - 24} ${sy + 104} L${sx + 30} ${sy + 102} C${sx + 48} ${sy + 64} ${sx + 46} ${sy + 16} ${sx + 32} ${sy - 18} Z`, c1);
+      pathR(th.c, `M${sx - 18} ${sy - 12} C${sx - 26} ${sy + 28} ${sx - 16} ${sy + 68} ${sx - 6} ${sy + 94} L${sx + 16} ${sy + 92} C${sx + 24} ${sy + 52} ${sx + 22} ${sy + 18} ${sx + 14} ${sy - 12} Z`, cHi, { opacity: 0.32 });
+      // ragged dark hair tuft on upper leg
+      if (!dark) pathR(th.c, `M${sx - 36} ${sy - 8} L${sx - 52} ${sy + 22} L${sx - 30} ${sy + 18} L${sx - 44} ${sy + 44} L${sx - 24} ${sy + 32} Z`, MANE);
+      const sh = joint(th.c, sx + 4, sy + 96);
+      pathR(sh.c, `M${sx - 22} ${sy + 90} C${sx - 34} ${sy + 132} ${sx - 28} ${sy + 164} ${sx - 18} ${sy + 184} L${sx + 28} ${sy + 184} C${sx + 38} ${sy + 154} ${sx + 38} ${sy + 124} ${sx + 26} ${sy + 90} Z`, c2);
+      // splayed clawed reptilian paw + 4 razor bone claws
+      pathR(sh.c, `M${sx - 26} ${sy + 174} L${sx + 44} ${sy + 174} L${sx + 54} ${sy + 194} L${sx - 30} ${sy + 194} Z`, c1);
+      const claws = isFront ? [[-18, 22, -8], [2, 30, 8], [22, 34, 18], [40, 28, 26]] : [[-20, 18, -6], [0, 24, 6], [20, 28, 16], [38, 22, 22]];
+      for (const [cx, ln, dx] of claws) {
+        pathR(sh.c, `M${sx + cx - 5} ${sy + 184} Q${sx + cx + dx * 0.6} ${sy + 184 + ln * 0.5} ${sx + cx + dx} ${sy + 184 + ln} Q${sx + cx + 4} ${sy + 184 + ln * 0.55} ${sx + cx + 6} ${sy + 184} Z`, dark ? BONE_D : BONE_L);
+      }
+      return { th, sh };
+    };
+    rig.lB = mkLimb(-115, -182, true, false);
+    rig.aL = mkLimb(72, -188, true, true);
+
+    // ---- MASSIVE PREDATOR TORSO (low-slung hunched crocodile-beast silhouette)
+    pathR(B, 'M-168 -216 C-152 -282 -82 -318 8 -314 C82 -310 132 -282 146 -228 C154 -184 128 -142 74 -132 C12 -120 -74 -124 -136 -146 C-166 -158 -176 -184 -168 -216 Z', HIDE);
+    // weathered upper hide scale contour & wet moonlight rim
+    pathR(B, 'M-150 -238 C-118 -292 -48 -312 24 -306 C82 -300 124 -274 136 -236 C96 -262 32 -272 -44 -268 C-98 -264 -132 -254 -150 -238 Z', HIDE_M, { opacity: 0.78 });
+    pathR(B, 'M-136 -256 C-92 -298 -22 -310 42 -302 C82 -296 112 -280 124 -260 C84 -282 28 -290 -36 -284 C-86 -280 -116 -270 -136 -256 Z', HIDE_L, { opacity: 0.42 });
+    // deep scar crevices
+    for (const d of ['M-112 -224 Q-92 -248 -68 -244', 'M-24 -284 Q4 -266 28 -276', 'M68 -254 Q94 -238 112 -218']) {
+      $('path', { d, stroke: HIDE_D, 'stroke-width': 5, fill: 'none', 'stroke-linecap': 'round', opacity: 0.75 }, B);
+    }
+
+    // ---- ICONIC EXPOSED BLOODY RIBCAGE (crimson muscle cavity + 6 curved pale bone ribs)
+    pathR(B, 'M-78 -244 C-46 -266 24 -266 64 -242 C78 -216 74 -172 48 -154 C8 -140 -52 -144 -82 -166 C-96 -190 -94 -226 -78 -244 Z', GORE_D);
+    pathR(B, 'M-68 -236 C-40 -254 18 -254 54 -234 C64 -212 60 -178 40 -164 C8 -152 -44 -156 -70 -174 C-80 -194 -78 -220 -68 -236 Z', GORE, { opacity: 0.9 });
+    // wet arterial muscle striations
+    for (let i = 0; i < 4; i++) {
+      const yy = -232 + i * 20;
+      $('path', { d: `M-66 ${yy} Q-6 ${yy - 10} 52 ${yy + 4}`, stroke: GORE_L, 'stroke-width': 3.5, fill: 'none', opacity: 0.65, 'stroke-linecap': 'round' }, B);
+    }
+    // 6 curved pale bone ribs arching over the exposed crimson flesh
+    for (let i = 0; i < 6; i++) {
+      const rx = -62 + i * 22;
+      const ribD = `M${rx} -248 C${rx + 14} -224 ${rx + 16} -186 ${rx + 2} -156 L${rx - 10} -158 C${rx + 4} -186 ${rx + 2} -222 ${rx - 10} -246 Z`;
+      pathR(B, ribD, BONE);
+      $('path', { d: `M${rx - 2} -244 C${rx + 10} -222 ${rx + 11} -188 ${rx - 1} -160`, stroke: BONE_L, 'stroke-width': 2.5, fill: 'none', opacity: 0.78 }, B);
+      $('path', { d: `M${rx - 8} -240 C${rx + 2} -218 ${rx + 3} -188 ${rx - 8} -162`, stroke: BONE_S, 'stroke-width': 2, fill: 'none', opacity: 0.55 }, B);
+    }
+
+    // ---- SHARP WHITE DORSAL BONE SPINES + RAGGED DARK MANE ALONG BACK/SHOULDERS
+    for (const [sx, sy, h, lean] of [[-126, -256, 42, -16], [-94, -278, 52, -14], [-58, -296, 60, -12], [-20, -308, 66, -10], [18, -310, 62, -8], [54, -302, 54, -6], [88, -286, 44, -4]]) {
+      poly(B, [[sx - 12, sy + 12], [sx + 14, sy + 8], [sx + lean, sy - h]], BONE);
+      poly(B, [[sx - 3, sy + 8], [sx + 8, sy + 6], [sx + lean * 0.9, sy - h * 0.9]], BONE_L, { opacity: 0.7 });
+      poly(B, [[sx - 12, sy + 12], [sx - 2, sy + 8], [sx + lean * 0.7, sy - h * 0.7]], BONE_D, { opacity: 0.55 });
+    }
+    // ragged matted dark mane draping over shoulders and upper back
+    rig.maneBack = pathR(B, 'M-64 -290 L-96 -252 L-72 -258 L-88 -226 L-44 -256 L-56 -218 L-16 -254 L-12 -214 L24 -252 L38 -206 L64 -248 L88 -198 L108 -238 L128 -206 L124 -268 C82 -298 12 -310 -64 -290 Z', MANE);
+    pathR(B, 'M-36 -284 L-62 -250 L-24 -262 L-32 -232 L12 -260 L26 -226 L62 -256 L84 -222 L106 -262 C68 -292 12 -298 -36 -284 Z', MANE_L, { opacity: 0.55 });
+
+    // ---- DYNAMIC BIO-SPIKE GLANDS (P.spikes 0..1)
+    rig.spikesG = $('g', { opacity: 0 }, B);
+    for (const [gx, gy, ang, len] of [[-52, -292, -38, 64], [-18, -304, -22, 74], [18, -306, -8, 78], [54, -296, 8, 70], [88, -280, 22, 62]]) {
+      ell(rig.spikesG, gx, gy + 6, 20, 12, GORE_D);
+      ell(rig.spikesG, gx, gy + 4, 13, 7, ACID, { opacity: 0.75 });
+      const spg = $('g', { transform: `translate(${gx} ${gy}) rotate(${ang})` }, rig.spikesG);
+      poly(spg, [[-9, 6], [9, 6], [0, -len]], BONE_L);
+      poly(spg, [[-9, 6], [9, 6], [0, -len * 0.35]], GORE);
+    }
+
+    // ---- DYNAMIC LIGHTNING-PROOF OBSIDIAN-CHITIN ARMOR (P.armor 0..1)
+    rig.armorG = $('g', { opacity: 0 }, B);
+    // interlocking obsidian plates across back, shoulders, and ribcage flank
+    for (const pts of [
+      [[-132, -252], [-66, -306], [-38, -256], [-98, -214]],
+      [[-72, -304], [4, -324], [18, -264], [-46, -250]],
+      [[-4, -322], [74, -310], [84, -248], [14, -256]],
+      [[64, -304], [136, -266], [126, -206], [72, -238]],
+      [[-76, -242], [44, -246], [56, -182], [-64, -176]],
+    ]) {
+      poly(rig.armorG, pts, ARM);
+      poly(rig.armorG, [pts[0], pts[1], [(pts[1][0] + pts[2][0]) * 0.5, (pts[1][1] + pts[2][1]) * 0.5], [(pts[0][0] + pts[3][0]) * 0.5, (pts[0][1] + pts[3][1]) * 0.5]], ARM_M, { opacity: 0.72 });
+      $('polygon', { points: pts.map((q) => q.join(',')).join(' '), fill: 'none', stroke: ARM_L, 'stroke-width': 3, 'stroke-linejoin': 'round' }, rig.armorG);
+    }
+    // pale bone lightning-grounding ridges across the chitin plates
+    for (const d of ['M-112 -246 L-56 -288 L-12 -296 L58 -286 L112 -250', 'M-58 -226 L-10 -228 L38 -220', 'M-44 -198 L24 -196']) {
+      $('path', { d, stroke: ARM_B, 'stroke-width': 7, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, rig.armorG);
+    }
+    rig.armSparks = $('path', { d: 'M-82 -260 L-44 -276 L-20 -248 L22 -272 L64 -244 L96 -264', stroke: '#4DF3FF', 'stroke-width': 3.5, fill: 'none', 'stroke-linecap': 'round', opacity: 0.75 }, rig.armorG);
+
+    // ---- DYNAMIC SCORCHED DAMAGE OVERLAY (P.damage 0..1)
+    rig.dmgG = $('g', { opacity: 0 }, B);
+    pathR(rig.dmgG, 'M-92 -264 C-42 -292 42 -288 94 -248 C108 -204 88 -154 44 -144 C-14 -134 -74 -144 -102 -178 C-116 -208 -110 -244 -92 -264 Z', '#0B090A', { opacity: 0.68 });
+    rig.embers = [[-62, -238, 22], [-18, -264, 28], [26, -242, 24], [64, -214, 20], [-36, -182, 26], [14, -172, 22]].map(([ex, ey, er]) => {
+      const c = $('circle', { cx: ex, cy: ey, r: er, fill: gEmber }, rig.dmgG);
+      $('path', { d: `M${ex - 12} ${ey} L${ex + 10} ${ey - 8}`, stroke: '#FF6A1A', 'stroke-width': 3.5, 'stroke-linecap': 'round' }, rig.dmgG);
+      return c;
+    });
+
+    // ---- DYNAMIC EXTREME REGEN OVERLAY (P.regen 0..1: crimson sinew webbing + rising green HCl vapor)
+    rig.regenG = $('g', { opacity: 0 }, B);
+    for (const d of ['M-76 -234 Q-32 -214 14 -238 Q48 -216 64 -184', 'M-68 -174 Q-20 -196 36 -166', 'M-44 -248 Q-12 -196 -22 -156', 'M12 -246 Q34 -202 22 -154']) {
+      $('path', { d, stroke: '#FF2438', 'stroke-width': 5.5, fill: 'none', 'stroke-linecap': 'round' }, rig.regenG);
+      $('path', { d, stroke: '#FF8A94', 'stroke-width': 2, fill: 'none', 'stroke-linecap': 'round', opacity: 0.75 }, rig.regenG);
+    }
+    rig.acidVapors = Array.from({ length: 7 }, (_, i) => ({ e: $('circle', { cx: -65 + i * 24, cy: -220, r: 22 + (i % 3) * 8, fill: gAcid }, rig.regenG), x0: -65 + i * 24, y0: -200 - (i % 2) * 35, ph: i * 0.17 }));
+
+    // ---- NEAR LIMBS (lF rear-near, aR front-near)
+    rig.lF = mkLimb(-102, -176, false, false);
+    rig.aR = mkLimb(94, -184, false, true);
+
+    // ---- NECK & EXPOSED PALE BONE SKULL HEAD
+    const hd = joint(B, 108, -262); rig.head = hd; const Hc = hd.c;
+    // thick muscular neck + ragged dark mane
+    pathR(Hc, 'M82 -294 C118 -314 166 -312 198 -288 L184 -216 C146 -208 104 -214 78 -232 Z', HIDE);
+    pathR(Hc, 'M74 -296 L112 -328 L138 -314 L168 -334 L196 -298 L174 -268 L194 -244 L152 -260 L132 -232 L114 -268 L84 -242 Z', MANE);
+    // skull armor crest (visible when P.armor > 0)
+    rig.headArmor = $('g', { opacity: 0 }, Hc);
+    poly(rig.headArmor, [[154, -318], [218, -334], [254, -304], [202, -296]], ARM_M);
+    $('polyline', { points: '162,-316 218,-328 248,-306', fill: 'none', stroke: ARM_B, 'stroke-width': 5, 'stroke-linecap': 'round' }, rig.headArmor);
+
+    // inner mouth cavity (crimson) + acid saliva strings
+    rig.cav = $('polygon', { fill: '#5A0810', points: '0,0' }, Hc);
+    rig.saliva = $('g', { opacity: 0 }, Hc);
+    for (const sx of [232, 260, 288]) $('line', { x1: sx, y1: -244, x2: sx - 4, y2: -214, stroke: ACID_C, 'stroke-width': 3.5, 'stroke-linecap': 'round', opacity: 0.85 }, rig.saliva);
+
+    // articulated jagged lower bone jaw
+    const hinge = [194, -242]; rig.hinge = hinge;
+    const jaw = joint(Hc, hinge[0], hinge[1]); rig.jaw = jaw;
+    pathR(jaw.c, 'M188 -244 L314 -238 L302 -214 L244 -208 L184 -216 Z', BONE_D);
+    pathR(jaw.c, 'M194 -240 L310 -235 L300 -224 L194 -226 Z', BONE);
+    rig.lteeth = $('g', {}, jaw.c);
+    for (const [tx, h] of [[214, 18], [234, 22], [256, 20], [278, 24], [298, 19]]) {
+      poly(rig.lteeth, [[tx - 6, -240], [tx + 6, -240], [tx + 1, -240 - h]], BONE_L);
+    }
+
+    // exposed pale reptilian bone skull cranium + elongated snout
+    pathR(Hc, 'M158 -282 C168 -314 202 -324 238 -310 L328 -282 C336 -272 332 -254 320 -246 L186 -238 C166 -244 154 -262 158 -282 Z', BONE);
+    pathR(Hc, 'M172 -298 C202 -316 236 -312 276 -296 L324 -278 L318 -268 L234 -288 C204 -294 182 -292 172 -298 Z', BONE_L, { opacity: 0.82 });
+    // skull suture cracks & dark nasal/cheek fenestra
+    $('path', { d: 'M198 -310 L214 -292 L206 -276 M252 -298 L266 -284 L256 -270', stroke: BONE_S, 'stroke-width': 2.5, fill: 'none', opacity: 0.72 }, Hc);
+    ell(Hc, 312, -268, 10, 6, '#1B1416'); // nostril cavity
+    poly(Hc, [[174, -274], [198, -280], [194, -256], [172, -258]], '#261418'); // temporal fenestra
+    // upper jagged bone fangs
+    rig.uteeth = $('g', {}, Hc);
+    for (const [tx, h] of [[208, 20], [228, 26], [250, 22], [272, 28], [294, 24], [312, 20]]) {
+      poly(rig.uteeth, [[tx - 6, -246], [tx + 6, -246], [tx + 1, -246 + h]], BONE_L);
+    }
+
+    // dual-tone glowing eye (chartreuse core #D9FF3F + inflamed crimson rim #FF3B1F)
+    const ex = 228, ey = -282;
+    rig.eyeGlow = $('circle', { cx: ex, cy: ey, r: 46, fill: gEye, opacity: 0.85 }, Hc);
+    ell(Hc, ex, ey, 19, 13, '#1A0808');
+    const eye = joint(Hc, ex, ey); rig.eye = eye;
+    ell(eye.c, ex, ey, 15, 10, EYE_RIM);
+    rig.eyeCore = ell(eye.c, ex + 1, ey, 11, 7.5, ACID_C);
+    ell(eye.c, ex + 3, ey, 3.5, 6.5, '#151814'); // reptile slit pupil
+    ell(eye.c, ex - 4, ey - 3, 3.2, 2.2, '#F4FF99');
+
+    // ---- NEAR HORROR WING (P.wings 0..1)
+    rig.wF = mkHorrorWing(18, -298, 1, true);
+
+    const mk = (n, p, x, y) => { rig.mk[n] = $('circle', { cx: x, cy: y, r: 1, fill: 'none' }, p); };
+    mk('eye', Hc, ex, ey); mk('head', Hc, 238, -278); mk('mouth', Hc, 294, -238);
+    mk('claw', rig.aR.sh.c, 126, -6); mk('body', B, 0, -215); mk('tail', tail3.c, -445, -144);
+    rig.dynHead = true;
+
+    rig.N = {
+      bodyY: 0, bodyRot: 0, sx: 1, sy: 1, shakeX: 0, shakeY: 0,
+      head: 0, jaw: 0.14, eyeGlow: 1.1,
+      tail: 0, tail2: 0, tail3: 0,
+      lB: [6, -8], lF: [10, -12], aL: [-8, 6], aR: [-4, 10],
+      armor: 0, wings: 0, wingAng: 12, spikes: 0, damage: 0, regen: 0, sink: 0,
+    };
+
+    rig.apply = (P, t) => {
+      body.set(P.bodyRot, P.sx, P.sy, P.shakeX, P.bodyY + P.shakeY + P.sink * 600);
+      for (const [L, a] of [[rig.lB, P.lB], [rig.lF, P.lF], [rig.aL, P.aL], [rig.aR, P.aR]]) { L.th.set(-a[0]); L.sh.set(-(a[1] - a[0])); }
+      tail.set(P.tail + 4 * Math.sin(t * 2.1));
+      tail2.set(P.tail2 + 7 * Math.sin(t * 2.4 + 0.8));
+      tail3.set(P.tail3 + 10 * Math.sin(t * 2.7 + 1.6));
+      hd.set(P.head + 1.5 * Math.sin(t * 1.6));
+
+      const jw = clamp(P.jaw, 0, 1.25), ja = jw * 36;
+      jaw.set(ja);
+      const aa = ja * rad, hx = hinge[0], hy = hinge[1];
+      const jt = (px, py) => { const dx = px - hx, dy = py - hy; return [hx + dx * Math.cos(aa) - dy * Math.sin(aa), hy + dx * Math.sin(aa) + dy * Math.cos(aa)]; };
+      const l0 = jt(194, -242), l1 = jt(312, -238);
+      rig.cav.setAttribute('points', [[194, -244], [318, -246], l1, l0].map((q) => f2(q[0]) + ',' + f2(q[1])).join(' '));
+      rig.cav.setAttribute('opacity', jw > 0.12 ? 1 : 0);
+      rig.saliva.setAttribute('opacity', f2(clamp((jw - 0.25) * 1.8)));
+
+      const eg = clamp(P.eyeGlow, 0.2, 2.6);
+      rig.eyeGlow.setAttribute('r', f2(38 * eg * (1 + 0.08 * Math.sin(t * 11))));
+      rig.eyeGlow.setAttribute('opacity', f2(clamp(0.45 + 0.35 * eg)));
+      eye.set(0, 1, Math.max(0.12, 1 - blink(t, 4.3)));
+
+      // Dynamic evolutions
+      const arm = clamp(P.armor);
+      rig.armorG.setAttribute('opacity', f2(arm));
+      rig.headArmor.setAttribute('opacity', f2(arm));
+      rig.armSparks.setAttribute('opacity', f2(arm * (0.45 + 0.55 * Math.abs(Math.sin(t * 23)))));
+
+      const spk = clamp(P.spikes);
+      rig.spikesG.setAttribute('opacity', f2(spk));
+      rig.spikesG.setAttribute('transform', spk > 0.01 ? `translate(0 ${f2((1 - spk) * 18)})` : '');
+
+      const dmg = clamp(P.damage);
+      rig.dmgG.setAttribute('opacity', f2(dmg));
+      if (dmg > 0.01) rig.embers.forEach((c, i) => c.setAttribute('r', f2((18 + (i % 3) * 5) * (0.8 + 0.35 * Math.sin(t * 19 + i * 2.1)))));
+
+      const reg = clamp(P.regen);
+      rig.regenG.setAttribute('opacity', f2(reg));
+      if (reg > 0.01) rig.acidVapors.forEach((v, i) => {
+        const q = (t * 0.9 + v.ph) % 1;
+        v.e.setAttribute('cx', f2(v.x0 + 16 * Math.sin(t * 4 + i)));
+        v.e.setAttribute('cy', f2(v.y0 - q * 110));
+        v.e.setAttribute('opacity', f2(Math.sin(q * Math.PI) * 0.85 * reg));
+      });
+
+      const wg = clamp(P.wings);
+      const wVis = wg > 0.01 ? 'inline' : 'none';
+      rig.wB.g.setAttribute('display', wVis); rig.wF.g.setAttribute('display', wVis);
+      if (wg > 0.01) {
+        const flap = P.wingAng + 5 * Math.sin(t * 3.2);
+        rig.wB.set(-flap * 0.9, wg, wg);
+        rig.wF.set(flap, wg, wg);
+        const vp = 0.4 + 0.45 * Math.sin(t * 7);
+        rig.wB.veins.forEach((v) => v.setAttribute('opacity', f2(vp * 0.55)));
+        rig.wF.veins.forEach((v) => v.setAttribute('opacity', f2(vp)));
+      }
+    };
+    return rig;
+  }
+
+  const SCP682 = {
+    idle: (c) => ({ bodyY: 5 * Math.sin(c.t * 2.2), bodyRot: 1.5 * Math.sin(c.t * 1.5), head: 3 * Math.sin(c.t * 1.8), jaw: 0.14 + 0.08 * Math.sin(c.t * 2.6), tail: 6 * Math.sin(c.t * 1.9), eyeGlow: 1.1 }),
+    'idle-card': (c) => ({ bodyY: 4 * Math.sin(c.t * 2), bodyRot: -8, head: -6, jaw: 0.52 + 0.06 * Math.sin(c.t * 3), aR: [28, 12], tail: 12, eyeGlow: 1.55 }),
+    rise: (c) => { const e = EASE.outCubic(clamp(c.u)); return { sink: 1 - e, bodyRot: -14 * e, head: -12 * e, jaw: 0.72 * e, aR: [42 * e, 16 * e], eyeGlow: 0.8 + 0.9 * e }; },
+    run: (c) => { const sp = c.p.speed || 2.8, f = 2 * Math.PI * sp * c.lt; return { bodyY: 14 * Math.abs(Math.sin(f)) - 10, bodyRot: 8 + 6 * Math.sin(f), head: -4 + 4 * Math.cos(f), jaw: 0.42, lF: legPh(f, 10, 42, 46), lB: legPh(f + 1.4, 8, 42, 46), aR: legPh(f + Math.PI, -4, 46, 52), aL: legPh(f + Math.PI + 1.2, -6, 46, 52), tail: -14 + 14 * Math.sin(f), eyeGlow: 1.45 }; },
+    lunge: (c) => KO(c.u, [[0, { bodyY: 22, bodyRot: -12, head: -10, jaw: 0.35, aR: [-24, -10], lF: [-22, -40], eyeGlow: 1.4 }], [0.42, { bodyY: -44, bodyRot: 16, head: 10, jaw: 1.05, aR: [68, 86], aL: [54, 72], lF: [-48, -62], tail: -28, eyeGlow: 2.0, shakeX: 6 }], [1, { bodyY: 0, bodyRot: 4, head: 0, jaw: 0.3, aR: [12, 16], eyeGlow: 1.3 }]], 'inOut'),
+    'claw-swipe': (c) => KO(c.u, [[0, { bodyRot: -18, head: -12, jaw: 0.5, aR: [115, 138], aL: [30, 42], eyeGlow: 1.6 }], [0.46, { bodyRot: 18, head: 8, jaw: 0.95, aR: [-38, -56], aL: [54, 70], eyeGlow: 2.1, shakeX: 7 }], [1, { bodyRot: 2, head: 0, jaw: 0.25, aR: [0, 12], eyeGlow: 1.2 }]], 'inOut'),
+    bite: (c) => KO(c.u, [[0, { bodyRot: -14, head: -22, jaw: 1.15, aR: [36, 20], eyeGlow: 1.8 }], [0.48, { bodyRot: 16, head: 14, jaw: 0.08, aR: [18, 28], eyeGlow: 2.1, shakeX: 8 }], [1, { bodyRot: 2, head: 0, jaw: 0.22, eyeGlow: 1.3 }]], 'inOut'),
+    'tail-whip': (c) => KO(c.u, [[0, { bodyRot: 10, tail: -38, tail2: -32, tail3: -28, jaw: 0.4 }], [0.45, { bodyRot: -18, tail: 54, tail2: 46, tail3: 42, jaw: 0.85, eyeGlow: 1.85, shakeX: 6 }], [1, { bodyRot: 0, tail: 6, tail2: 0, tail3: 0, jaw: 0.2 }]], 'inOut'),
+    hurt: (c) => { const f = Math.sin(c.lt * 34) * Math.exp(-c.lt * 1.8); return { bodyY: 16, bodyRot: -18 + 8 * f, head: -24 + 10 * f, jaw: 0.85, aR: [28, 10], damage: 0.95, eyeGlow: 0.65, shakeX: 8 * f, shakeY: 4 * Math.cos(c.lt * 41) }; },
+    regen: (c) => { const e = EASE.smooth(clamp(c.u)); return { bodyY: 14 * (1 - e), bodyRot: -10 + 6 * e, head: -12 + 12 * e, jaw: 0.45 + 0.4 * Math.sin(c.lt * 9), damage: Math.max(0, 1 - e * 1.25), regen: Math.sin(clamp(c.u) * Math.PI) * 1.1 + 0.25, eyeGlow: 0.8 + 1.1 * e, shakeX: 2.5 * Math.sin(c.lt * 38) }; },
+    'adapt-armor': (c) => { const e = EASE.outCubic(clamp(c.u)); return { bodyY: 10 * Math.sin(c.u * Math.PI), bodyRot: -16 * e, head: -14 * e, jaw: 0.92 * e, armor: e, aR: [44 * e, 24 * e], eyeGlow: 1.2 + 0.95 * e, shakeX: 4 * (1 - e * 0.5) * Math.sin(c.lt * 48) }; },
+    'spike-barrage': (c) => { const e = env(c.lt, 0.22); return { bodyY: 16 * e, bodyRot: 12 * e, head: -22 * e, jaw: 0.82 * e, spikes: e, eyeGlow: 1.9, shakeX: 4 * e * Math.sin(c.lt * 55) }; },
+    'grow-wings': (c) => { const e = EASE.outCubic(clamp(c.u)); return { bodyY: -28 * e, bodyRot: -22 * e, head: -24 * e, jaw: 1.05 * e, wings: e, wingAng: lerp(-28, 36, e), regen: Math.sin(clamp(c.u) * Math.PI), aR: [62 * e, 40 * e], eyeGlow: 1.4 + 1.0 * e, shakeX: 5 * (1 - e * 0.4) * Math.sin(c.lt * 52) }; },
+    'fly-hover': (c) => { const fl = Math.sin(c.t * 6.5); return { bodyY: -120 + 22 * Math.sin(c.t * 6.5 - 0.8), bodyRot: -14 + 4 * fl, head: 10, jaw: 0.45 + 0.15 * Math.sin(c.t * 4), wings: 1, wingAng: 12 + 38 * fl, aR: [32, 48], aL: [22, 38], lF: [-28, -42], lB: [-34, -48], tail: -18 + 10 * fl, eyeGlow: 1.7 }; },
+    'fly-slash': (c) => { const fl = Math.sin(c.t * 9); return Object.assign(KO(c.u, [[0, { bodyY: -135, bodyRot: -22, head: -10, jaw: 0.75, aR: [122, 146], wingAng: 44, eyeGlow: 1.85 }], [0.46, { bodyY: -95, bodyRot: 18, head: 14, jaw: 1.08, aR: [-42, -58], aL: [64, 82], wingAng: -32, eyeGlow: 2.3, shakeX: 7 }], [1, { bodyY: -120, bodyRot: -10, head: 6, jaw: 0.4, aR: [28, 42], wingAng: 16, eyeGlow: 1.6 }]], 'inOut'), { wings: 1, tail: -20 + 12 * fl }); },
+    roar: (c) => { const e = env(c.lt, 0.22); return { bodyRot: -20 * e, head: -24 * e, jaw: 1.15 * e, aR: [56 * e, 36 * e], aL: [42 * e, 26 * e], tail: 24 * e, eyeGlow: 2.2, shakeX: 5 * e * Math.sin(c.lt * 60) }; },
+    talk: (c) => { const a = c.amp || 0; return { bodyY: 4 * Math.sin(c.t * 2), head: -4 - 4 * a, jaw: 0.14 + 0.86 * a, tail: 6 * Math.sin(c.t * 2), eyeGlow: 1.15 + 0.75 * a }; },
+  };
+  SCP682.fade = SCP682.idle;
+
+  // ================================================================== PEGASUS (Olympian Winged Stallion: pearl-white muscular body with cool sky-lavender cel-shading, blazing golden-amber-white mane & tail, sweeping multi-layered iridescent feathered wings with sky-cyan/violet/gold glints, blazing sky-gold eyes, glowing golden hooves, diveFlame meteor cone, stormCharge lightning crackle, Hippocrene aqua-gold surge)
+  function buildPegasus() {
+    const uid = ++_rigUid;
+    const rig = newRig();
+    const root = $('g'); rig.root = root; rig.mk = {};
+    const defs = $('defs', {}, root);
+    const mkRad = (id, stops) => { const g = $('radialGradient', { id: `${id}_${uid}` }, defs); stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a }, g)); return `url(#${id}_${uid})`; };
+    const mkLin = (id, stops, x1 = 0, y1 = 0, x2 = 1, y2 = 1) => { const g = $('linearGradient', { id: `${id}_${uid}`, x1, y1, x2, y2 }, defs); stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a === undefined ? 1 : a }, g)); return `url(#${id}_${uid})`; };
+
+    const gEye = mkRad('pgEye', [[0, '#FFFFFF', 1], [0.3, '#4CE8FF', 0.92], [0.65, '#FFD859', 0.55], [1, '#B366FF', 0]]);
+    const gHoof = mkRad('pgHoof', [[0, '#FFFCE0', 1], [0.4, '#FFB830', 0.8], [1, '#FF7A1A', 0]]);
+    const gMane = mkLin('pgMane', [[0, '#FFF6C2', 1], [0.35, '#FFB830', 1], [0.75, '#FF7A1A', 1], [1, '#CC4B00', 0.92]], 0, 0, 1, 1);
+    const gWingIrid = mkLin('pgWI', [[0, '#FFFFFF', 0.98], [0.45, '#4CE8FF', 0.45], [0.78, '#B366FF', 0.48], [1, '#FF9E3D', 0.65]], 0, 0, 1, 1);
+    const gDive = mkRad('pgDive', [[0, '#FFFCE0', 0.95], [0.35, '#FFB82E', 0.78], [0.7, '#FF6A00', 0.45], [1, '#9D5CFF', 0]]);
+    const gSurge = mkRad('pgSurge', [[0, '#F5FAFF', 0.95], [0.35, '#2EF2D4', 0.72], [0.72, '#FFD147', 0.45], [1, '#C77DFF', 0]]);
+
+    const PEARL = '#F8FAFF', SKY_M = '#D8E4F8', LAV_D = '#9EB4DE', DEEP_S = '#768EC2', SPEC = '#FFFFFF';
+    const GOLD = '#FFB830', AMBER = '#FF7A1A', WGOLD = '#FFF6C2', EMBER = '#CC4B00';
+    const W_CYAN = '#4CE8FF', W_VIO = '#B366FF', W_AMB = '#FF9E3D';
+    const pathR = (p, d, fill, extra) => G.reg($('path', Object.assign({ d, fill }, extra || {}), p), fill);
+
+    const body = joint(root, 0, -210); rig.body = body; const B = body.c;
+
+    // ---- HIPPOCRENE SACRED SURGE SPHERE (P.surge 0..1)
+    rig.surgeG = $('g', { opacity: 0 }, B);
+    $('circle', { cx: 10, cy: -240, r: 310, fill: gSurge }, rig.surgeG);
+    rig.surgeR1 = $('circle', { cx: 10, cy: -240, r: 210, fill: 'none', stroke: '#2EF2D4', 'stroke-width': 10, opacity: 0.85 }, rig.surgeG);
+    rig.surgeR2 = $('circle', { cx: 10, cy: -240, r: 270, fill: 'none', stroke: '#FFD147', 'stroke-width': 6, 'stroke-dasharray': '42 18', opacity: 0.75 }, rig.surgeG);
+    rig.surgeR3 = $('circle', { cx: 10, cy: -240, r: 165, fill: 'none', stroke: '#C77DFF', 'stroke-width': 5, opacity: 0.7 }, rig.surgeG);
+
+    // ---- SWEEPING MULTI-LAYERED FEATHERED WINGS (cohesive overlapping bird-wing silhouette: solid arched wing-blade + overlapping primaries + scalloped coverts + iridescent cyan/violet/gold glints)
+    const mkFeatheredWing = (sx, sy, isFront) => {
+      const w = joint(B, sx, sy);
+      const wg = w.c;
+      const baseCol = isFront ? PEARL : SKY_M;
+      const midCol = isFront ? SKY_M : LAV_D;
+      const shCol = isFront ? LAV_D : DEEP_S;
+      const sc = isFront ? 1.0 : 0.88;
+      // 1. Cohesive swept wing-blade backing silhouette so feathers overlap seamlessly with zero awkward gaps
+      const backD = `M${sx - 10} ${sy + 10}`
+        + ` C${f2(sx - 68 * sc)} ${f2(sy - 110 * sc)} ${f2(sx - 175 * sc)} ${f2(sy - 235 * sc)} ${f2(sx - 285 * sc)} ${f2(sy - 265 * sc)}`
+        + ` C${f2(sx - 260 * sc)} ${f2(sy - 145 * sc)} ${f2(sx - 188 * sc)} ${f2(sy - 42 * sc)} ${f2(sx - 72 * sc)} ${f2(sy + 18 * sc)} Z`;
+      pathR(wg, backD, midCol);
+      $('path', { d: backD, fill: gWingIrid, opacity: isFront ? 0.36 : 0.22 }, wg);
+
+      // 2. 10 broad overlapping sweeping primary feathers curving gracefully upward & backward
+      const nPri = 10;
+      for (let i = 0; i < nPri; i++) {
+        const u = i / (nPri - 1);
+        const bx = sx - (18 + u * 115) * sc, by = sy - (18 + Math.sin(u * Math.PI * 0.72) * 110) * sc;
+        const tipX = sx - (295 - u * 155) * sc, tipY = sy - (278 - u * 238) * sc;
+        const mx = (bx + tipX) * 0.5 - 26 * sc, my = (by + tipY) * 0.5 - 24 * sc;
+        const wF = (24 - u * 6) * sc;
+        const ang = Math.atan2(tipY - by, tipX - bx);
+        const nx = -Math.sin(ang) * wF, ny = Math.cos(ang) * wF;
+        const d = `M${f2(bx)} ${f2(by)} Q${f2(mx + nx)} ${f2(my + ny)} ${f2(tipX)} ${f2(tipY)} Q${f2(mx - nx * 0.45)} ${f2(my - ny * 0.45)} ${f2(bx + 12 * sc)} ${f2(by + 16 * sc)} Z`;
+        pathR(wg, d, i % 2 === 0 ? baseCol : midCol);
+        // subtle cool shadow line separating feathers + iridescent alternating cyan/violet/amber edge glint
+        const rimCol = i % 3 === 0 ? W_CYAN : i % 3 === 1 ? W_VIO : W_AMB;
+        $('path', { d: `M${f2(mx + nx * 0.4)} ${f2(my + ny * 0.4)} Q${f2((mx + tipX) * 0.5 + nx * 0.35)} ${f2((my + tipY) * 0.5 + ny * 0.35)} ${f2(tipX)} ${f2(tipY)}`, stroke: rimCol, 'stroke-width': isFront ? 3.8 : 2.5, fill: 'none', 'stroke-linecap': 'round', opacity: isFront ? 0.85 : 0.48 }, wg);
+      }
+      // 3. 8 layered secondary covert feathers creating rich depth
+      for (let i = 0; i < 8; i++) {
+        const u = i / 7;
+        const bx = sx - (8 + u * 68) * sc, by = sy - (10 + u * 62) * sc;
+        const tipX = sx - (195 - u * 105) * sc, tipY = sy - (190 - u * 155) * sc;
+        const mx = (bx + tipX) * 0.5 - 16 * sc, my = (by + tipY) * 0.5 - 14 * sc;
+        const d = `M${f2(bx)} ${f2(by)} Q${f2(mx - 14 * sc)} ${f2(my + 10 * sc)} ${f2(tipX)} ${f2(tipY)} Q${f2(mx + 12 * sc)} ${f2(my - 8 * sc)} ${f2(bx + 10 * sc)} ${f2(by + 12 * sc)} Z`;
+        pathR(wg, d, isFront ? SPEC : PEARL);
+        $('path', { d, fill: gWingIrid, opacity: isFront ? 0.25 : 0.16 }, wg);
+      }
+      // 4. Sculpted leading wing-shoulder arch + starlight edge
+      pathR(wg, `M${sx - 10} ${sy + 8} Q${f2(sx - 82 * sc)} ${f2(sy - 102 * sc)} ${f2(sx - 188 * sc)} ${f2(sy - 196 * sc)} Q${f2(sx - 110 * sc)} ${f2(sy - 122 * sc)} ${sx - 12} ${sy - 26} Z`, SPEC);
+      pathR(wg, `M${sx - 6} ${sy + 12} Q${f2(sx - 64 * sc)} ${f2(sy - 72 * sc)} ${f2(sx - 142 * sc)} ${f2(sy - 146 * sc)} Q${f2(sx - 76 * sc)} ${f2(sy - 78 * sc)} ${sx + 2} ${sy - 4} Z`, shCol, { opacity: 0.35 });
+      return w;
+    };
+    rig.wB = mkFeatheredWing(-10, -280, false);
+
+    // ---- FLOWING LUMINOUS GOLDEN-AMBER-WHITE TAIL
+    const tail = joint(B, -118, -238); rig.tail = tail;
+    rig.tailFlames = [
+      pathR(tail.c, 'M-114 -244 C-166 -268 -226 -246 -266 -192 C-222 -198 -182 -214 -146 -188 C-182 -164 -216 -136 -236 -104 C-182 -124 -140 -164 -110 -216 Z', EMBER),
+      pathR(tail.c, 'M-114 -242 C-162 -258 -216 -236 -250 -190 C-210 -196 -172 -208 -142 -186 C-170 -166 -196 -144 -212 -118 C-168 -136 -134 -172 -112 -220 Z', gMane),
+      pathR(tail.c, 'M-116 -240 C-152 -246 -192 -226 -218 -194 C-184 -198 -154 -202 -132 -188 C-146 -174 -162 -162 -174 -144 C-146 -160 -126 -188 -114 -224 Z', WGOLD, { opacity: 0.88 }),
+    ];
+
+    // ---- ARTICULATED EQUINE LEGS WITH GLOWING GOLDEN HOOVES
+    const mkHorseLeg = (sx, sy, dark, isFront) => {
+      const c1 = dark ? SKY_M : PEARL, c2 = dark ? LAV_D : SKY_M;
+      const th = joint(B, sx, sy);
+      pathR(th.c, `M${sx - 24} ${sy - 14} C${sx - 30} ${sy + 26} ${sx - 20} ${sy + 68} ${sx - 13} ${sy + 96} L${sx + 15} ${sy + 96} C${sx + 26} ${sy + 60} ${sx + 28} ${sy + 20} ${sx + 22} ${sy - 14} Z`, c1);
+      pathR(th.c, `M${sx - 24} ${sy - 12} C${sx - 28} ${sy + 26} ${sx - 18} ${sy + 68} ${sx - 12} ${sy + 96} L${sx - 2} ${sy + 96} C${sx - 8} ${sy + 62} ${sx - 10} ${sy + 24} ${sx - 8} ${sy - 12} Z`, c2, { opacity: 0.65 });
+      const sh = joint(th.c, sx + 2, sy + 92);
+      pathR(sh.c, `M${sx - 12} ${sy + 86} L${sx + 14} ${sy + 86} L${sx + 10} ${sy + 174} L${sx - 10} ${sy + 174} Z`, c1);
+      // golden flame fetlock tuft
+      pathR(sh.c, `M${sx - 10} ${sy + 154} L${sx - 28} ${sy + 174} L${sx - 12} ${sy + 172} L${sx - 22} ${sy + 188} L${sx - 4} ${sy + 176} Z`, GOLD);
+      // glowing golden hoof
+      const hGlow = $('circle', { cx: sx + 4, cy: sy + 184, r: 30, fill: gHoof, opacity: 0.65 }, sh.c);
+      pathR(sh.c, `M${sx - 10} ${sy + 172} L${sx + 12} ${sy + 172} L${sx + 19} ${sy + 194} L${sx - 11} ${sy + 194} Z`, GOLD);
+      pathR(sh.c, `M${sx - 6} ${sy + 174} L${sx + 10} ${sy + 174} L${sx + 15} ${sy + 186} L${sx - 6} ${sy + 186} Z`, WGOLD, { opacity: 0.8 });
+      return { th, sh, hGlow };
+    };
+    rig.lB = mkHorseLeg(-86, -192, true, false);
+    rig.aL = mkHorseLeg(64, -196, true, true);
+
+    // ---- MUSCULAR PEARL-WHITE STALLION TORSO
+    pathR(B, 'M-126 -236 C-112 -284 -48 -296 18 -292 C78 -288 118 -266 122 -224 C124 -184 96 -156 54 -154 C-4 -152 -64 -154 -106 -172 C-128 -182 -136 -208 -126 -236 Z', PEARL);
+    // cool sky-blue & lavender-silver cel shading along underside & barrel
+    pathR(B, 'M-116 -202 C-82 -184 -16 -178 54 -180 C92 -182 114 -198 120 -224 C122 -184 96 -156 54 -154 C-4 -152 -64 -154 -106 -172 C-120 -178 -124 -190 -116 -202 Z', SKY_M, { opacity: 0.85 });
+    pathR(B, 'M-104 -182 C-66 -168 4 -164 62 -168 C90 -170 108 -182 114 -198 C104 -168 82 -156 50 -154 C-4 -152 -64 -154 -106 -172 Z', LAV_D, { opacity: 0.72 });
+    // starlight specular highlight along muscular chest & back
+    pathR(B, 'M-96 -264 C-46 -288 26 -288 86 -268 C104 -260 112 -244 108 -232 C84 -256 26 -270 -44 -268 C-74 -266 -88 -262 -96 -264 Z', SPEC, { opacity: 0.9 });
+
+    // ---- NEAR LEGS
+    rig.lF = mkHorseLeg(-74, -188, false, false);
+    rig.aR = mkHorseLeg(78, -192, false, true);
+
+    // ---- DIVINE HOOF-DIVE METEOR FLAME ENVELOPE (P.diveFlame 0..1)
+    rig.diveG = $('g', { opacity: 0 }, B);
+    $('ellipse', { cx: 112, cy: -145, rx: 140, ry: 110, fill: gDive }, rig.diveG);
+    pathR(rig.diveG, 'M186 -96 C140 -168 72 -224 -24 -258 C56 -212 104 -162 128 -108 C88 -128 36 -136 -28 -134 C46 -108 118 -86 186 -96 Z', AMBER, { opacity: 0.78 });
+    pathR(rig.diveG, 'M178 -102 C142 -156 88 -196 18 -220 C84 -176 116 -140 134 -106 C100 -116 62 -118 22 -114 C78 -98 128 -90 178 -102 Z', WGOLD, { opacity: 0.92 });
+    $('ellipse', { cx: 126, cy: -128, rx: 46, ry: 96, fill: 'none', stroke: '#63F2FF', 'stroke-width': 6, transform: 'rotate(-36 126 -128)', opacity: 0.85 }, rig.diveG);
+
+    // ---- ARCHED EQUINE NECK, BLAZING GOLDEN MANE & NOBLE HEAD
+    const hd = joint(B, 78, -274); rig.head = hd; const Hc = hd.c;
+    // blazing solar-flame mane cascading behind arched neck
+    rig.maneFlames = [
+      pathR(Hc, 'M74 -304 C54 -348 64 -404 114 -444 C82 -438 42 -422 18 -384 C44 -392 60 -384 36 -350 C14 -320 4 -296 22 -268 C44 -286 58 -288 74 -304 Z', EMBER),
+      pathR(Hc, 'M82 -306 C64 -348 76 -400 124 -438 C94 -432 58 -416 38 -382 C60 -388 74 -378 52 -348 C34 -322 28 -302 44 -278 C62 -292 70 -294 82 -306 Z', gMane),
+      pathR(Hc, 'M92 -310 C80 -346 90 -392 132 -428 C108 -422 82 -408 66 -380 C84 -384 92 -374 76 -348 C64 -328 62 -314 74 -296 Z', WGOLD, { opacity: 0.88 }),
+    ];
+    // sculpted arched pearl-white neck
+    pathR(Hc, 'M52 -264 C66 -324 88 -384 128 -426 L176 -394 C150 -354 134 -304 122 -248 Z', PEARL);
+    pathR(Hc, 'M52 -264 C66 -324 88 -384 128 -426 L142 -416 C106 -372 86 -318 76 -256 Z', SKY_M, { opacity: 0.72 });
+    // noble pointed equine ears
+    const ear1 = joint(Hc, 134, -424); rig.ear1 = ear1;
+    poly(ear1.c, [[124, -420], [142, -424], [128, -464]], SKY_M);
+    const ear2 = joint(Hc, 152, -422); rig.ear2 = ear2;
+    poly(ear2.c, [[142, -418], [160, -420], [154, -462]], PEARL);
+    poly(ear2.c, [[147, -422], [156, -422], [153, -450]], WGOLD, { opacity: 0.6 });
+
+    // articulated lower muzzle/jaw (for talk)
+    const jaw = joint(Hc, 178, -372); rig.jaw = jaw;
+    pathR(jaw.c, 'M174 -376 L232 -356 L224 -344 L170 -358 Z', SKY_M);
+    // sculpted equine head & muzzle
+    pathR(Hc, 'M122 -426 C146 -438 176 -430 198 -406 L242 -368 C246 -358 238 -348 226 -350 L176 -362 C152 -366 132 -382 124 -404 Z', PEARL);
+    pathR(Hc, 'M132 -404 C152 -384 176 -372 228 -358 L224 -350 L176 -362 C152 -366 132 -382 124 -404 Z', LAV_D, { opacity: 0.6 });
+    // flared nostril & forelock flame
+    ell(Hc, 226, -366, 5.5, 3.2, DEEP_S);
+    pathR(Hc, 'M142 -426 C164 -444 192 -440 210 -418 C190 -426 172 -422 154 -416 Z', GOLD);
+    pathR(Hc, 'M148 -424 C166 -436 186 -432 198 -418 C182 -424 168 -420 154 -418 Z', WGOLD, { opacity: 0.85 });
+
+    // blazing sky-gold eye (#4CE8FF / #FFD859)
+    const ex = 176, ey = -396;
+    rig.eyeGlow = $('circle', { cx: ex, cy: ey, r: 34, fill: gEye, opacity: 0.85 }, Hc);
+    const eye = joint(Hc, ex, ey); rig.eye = eye;
+    ell(eye.c, ex, ey, 11, 7.5, '#1B2A4A');
+    ell(eye.c, ex + 1, ey, 8.5, 5.8, '#4CE8FF');
+    ell(eye.c, ex + 2, ey, 4.5, 4.2, '#FFD859');
+    ell(eye.c, ex - 2, ey - 2, 2.5, 2.0, '#FFFFFF');
+
+    // ---- NEAR SWEEPING MULTI-LAYERED FEATHERED WING (wF)
+    rig.wF = mkFeatheredWing(18, -274, true);
+
+    // ---- STORM-CHARGE ELECTRIC CYAN-GOLD CRACKLE (P.stormCharge 0..1)
+    rig.stormG = $('g', { opacity: 0 }, B);
+    rig.stormBolts = [
+      $('polyline', { fill: 'none', stroke: '#38C6FF', 'stroke-width': 6, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, rig.stormG),
+      $('polyline', { fill: 'none', stroke: '#FFD94A', 'stroke-width': 4.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, rig.stormG),
+      $('polyline', { fill: 'none', stroke: '#FFFFFF', 'stroke-width': 2.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, rig.stormG),
+    ];
+
+    const mk = (n, p, x, y) => { rig.mk[n] = $('circle', { cx: x, cy: y, r: 1, fill: 'none' }, p); };
+    mk('eye', Hc, ex, ey); mk('head', Hc, 174, -394); mk('mouth', Hc, 232, -356);
+    mk('hoof', rig.aR.sh.c, 84, -2); mk('wing', rig.wF.c, -150, -370); mk('body', B, 0, -225);
+    rig.dynHead = true;
+
+    rig.N = {
+      bodyY: 0, bodyRot: 0, sx: 1, sy: 1, shakeX: 0, shakeY: 0, lift: 0,
+      head: 0, jaw: 0, eyeGlow: 1.15, hoofGlow: 0.75,
+      wingAng: 14, tail: 0,
+      lB: [-6, 6], lF: [6, -6], aL: [8, -10], aR: [14, -14],
+      diveFlame: 0, stormCharge: 0, surge: 0,
+    };
+
+    rig.apply = (P, t) => {
+      body.set(P.bodyRot, P.sx, P.sy, P.shakeX, P.bodyY + P.shakeY - P.lift);
+      for (const [L, a] of [[rig.lB, P.lB], [rig.lF, P.lF], [rig.aL, P.aL], [rig.aR, P.aR]]) {
+        L.th.set(-a[0]); L.sh.set(-(a[1] - a[0]));
+        const hg = clamp(P.hoofGlow, 0, 2);
+        L.hGlow.setAttribute('r', f2(26 * hg * (1 + 0.12 * Math.sin(t * 14))));
+        L.hGlow.setAttribute('opacity', f2(clamp(0.45 * hg)));
+      }
+      const flap = P.wingAng + 5 * Math.sin(t * 3.4);
+      rig.wB.set(-flap * 0.78 - 10);
+      rig.wF.set(flap);
+      tail.set(P.tail + 8 * Math.sin(t * 3.8));
+      hd.set(P.head + 2 * Math.sin(t * 2.1));
+      ear1.set(3 * Math.sin(t * 2.4)); ear2.set(-2 * Math.sin(t * 2.1 + 1));
+      jaw.set(clamp(P.jaw, 0, 1) * 24);
+
+      const eg = clamp(P.eyeGlow, 0.2, 2.6);
+      rig.eyeGlow.setAttribute('r', f2(18 * eg * (1 + 0.1 * Math.sin(t * 12))));
+      rig.eyeGlow.setAttribute('opacity', f2(clamp(0.45 + 0.3 * eg)));
+      eye.set(0, 1, Math.max(0.1, 1 - blink(t, 4.7)));
+
+      // Dive meteor flame
+      const df = clamp(P.diveFlame);
+      rig.diveG.setAttribute('opacity', f2(df * (0.88 + 0.12 * Math.sin(t * 38))));
+      rig.diveG.setAttribute('transform', df > 0.01 ? `scale(${f2(0.85 + 0.2 * df + 0.04 * Math.sin(t * 44))})` : '');
+
+      // Storm lightning crackle
+      const sc = clamp(P.stormCharge);
+      rig.stormG.setAttribute('opacity', f2(sc));
+      if (sc > 0.01) {
+        const fr = Math.floor(t * 24);
+        const mkCrk = (seed, x0, y0, x1, y1) => {
+          const pts = [];
+          for (let i = 0; i <= 6; i++) {
+            const u = i / 6;
+            const jx = i === 0 || i === 6 ? 0 : (hash(fr * 7.3 + i * 3.1 + seed) - 0.5) * 68;
+            const jy = i === 0 || i === 6 ? 0 : (hash(fr * 5.1 + i * 4.7 + seed) - 0.5) * 68;
+            pts.push(`${f2(lerp(x0, x1, u) + jx)},${f2(lerp(y0, y1, u) + jy)}`);
+          }
+          return pts.join(' ');
+        };
+        rig.stormBolts[0].setAttribute('points', mkCrk(1, -210, -420, 180, -340));
+        rig.stormBolts[1].setAttribute('points', mkCrk(9, -140, -240, 150, -450));
+        rig.stormBolts[2].setAttribute('points', mkCrk(17, -180, -380, 190, -380));
+      }
+
+      // Hippocrene sacred surge
+      const sg = clamp(P.surge);
+      rig.surgeG.setAttribute('opacity', f2(sg));
+      if (sg > 0.01) {
+        const sSc = 0.65 + 0.55 * sg + 0.06 * Math.sin(t * 16);
+        rig.surgeG.setAttribute('transform', `translate(10 -240) scale(${f2(sSc)}) translate(-10 240)`);
+        rig.surgeR2.setAttribute('transform', `rotate(${f2(t * 95)} 10 -240)`);
+      }
+    };
+    return rig;
+  }
+
+  const PEGASUS = {
+    idle: (c) => ({ bodyY: 6 * Math.sin(c.t * 2.3), wingAng: 14 + 10 * Math.sin(c.t * 2.8), head: 2 * Math.sin(c.t * 1.8), aR: [18, -22], aL: [8, -10], eyeGlow: 1.15, hoofGlow: 0.8 }),
+    'idle-card': (c) => ({ bodyRot: -18, lift: 24, wingAng: 26 + 8 * Math.sin(c.t * 3), head: 10, aR: [62, -24], aL: [44, -18], lF: [-14, -22], eyeGlow: 1.55, hoofGlow: 1.3 }),
+    hover: (c) => { const fl = Math.sin(c.t * 6.2); return { lift: 120 + 22 * Math.sin(c.t * 6.2 - 0.7), bodyRot: -10 + 4 * fl, wingAng: 8 + 42 * fl, head: 6, aR: [44, -16], aL: [28, -22], lF: [-22, -32], lB: [-32, -40], tail: -12 + 12 * fl, eyeGlow: 1.35, hoofGlow: 1.1 }; },
+    'dive-kick': (c) => { const e = EASE.outCubic(clamp(c.u * 1.6)); return { lift: lerp(210, 18, e), bodyRot: 32, head: -14, wingAng: -36, aR: [76, 84], aL: [62, 72], lF: [-48, -58], lB: [-54, -64], diveFlame: 0.4 + 0.6 * e, eyeGlow: 2.1, hoofGlow: 2.0, shakeX: 3.5 * Math.sin(c.lt * 55) }; },
+    'wing-cyclone': (c) => KO(c.u, [[0, { lift: 110, bodyRot: -22, wingAng: 54, aR: [54, -18], eyeGlow: 1.6, hoofGlow: 1.3 }], [0.46, { lift: 130, bodyRot: 14, wingAng: -44, aR: [36, 20], eyeGlow: 2.0, hoofGlow: 1.6, shakeX: 5 }], [1, { lift: 120, bodyRot: -8, wingAng: 18, aR: [40, -14], eyeGlow: 1.4 }]], 'inOut'),
+    'summon-thunder': (c) => { const e = env(c.lt, 0.24), fl = Math.sin(c.t * 7.5); return { lift: 145 + 14 * fl, bodyRot: -26 * e, head: -16 * e, wingAng: 32 + 24 * fl, aR: [68 * e, -24], aL: [52 * e, -18], stormCharge: e, eyeGlow: 1.4 + 1.1 * e, hoofGlow: 1.8, shakeX: 3 * e * Math.sin(c.lt * 52) }; },
+    block: (c) => { const e = EASE.outCubic(clamp(c.lt / 0.16)); return { lift: 90, bodyRot: -14 * e, wingAng: -26 * e, aR: [48 * e, -12], aL: [34 * e, -18], eyeGlow: 1.6, hoofGlow: 1.2, shakeX: 3 * e * Math.sin(c.lt * 46) }; },
+    recoil: (c) => { const f = Math.sin(c.lt * 32) * Math.exp(-c.lt * 2.1); return { lift: 85, bodyRot: -24 + 8 * f, head: -18 + 6 * f, wingAng: -22 + 16 * f, aR: [24, -36], lF: [-30, -44], eyeGlow: 0.75, shakeX: 7 * f }; },
+    'surge-escape': (c) => { const e = env(c.lt, 0.2); return { lift: 140 + 40 * e, bodyRot: -18 * e, wingAng: 48 * e, aR: [66 * e, -10], aL: [52 * e, -16], surge: e, eyeGlow: 2.35, hoofGlow: 2.0, shakeX: 3.5 * e * Math.sin(c.lt * 58) }; },
+    'ascend-olympus': (c) => { const e = EASE.inCubic(clamp(c.u)); return { lift: 120 + 680 * e, bodyRot: -48, head: -20, wingAng: 18 + 36 * Math.sin(c.t * 14), aR: [74, 58], aL: [62, 46], lF: [-46, -54], lB: [-52, -60], surge: 0.65 * (1 - e * 0.4), diveFlame: 0.55, eyeGlow: 2.4, hoofGlow: 2.0 }; },
+    bow: (c) => { const e = env(c.lt, 0.35); return { bodyY: 18 * e, bodyRot: 14 * e, head: 24 * e, wingAng: 28 * e, aR: [36 * e, -48 * e], aL: [12, -16], eyeGlow: 1.25, hoofGlow: 0.9 }; },
+    talk: (c) => { const a = c.amp || 0; return { lift: 65 + 10 * Math.sin(c.t * 3.2), bodyRot: -8, head: 4 - 6 * a, jaw: 0.1 + 0.85 * a, wingAng: 14 + 14 * Math.sin(c.t * 4.5) + 8 * a, aR: [34, -18], eyeGlow: 1.25 + 0.65 * a, hoofGlow: 1.0 + 0.4 * a }; },
+  };
+  PEGASUS.fade = PEGASUS.idle;
+
+  const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, fisherman: FISHERMAN, cerberus: CERB, bec: BEC, apep: APEP, thor: THOR, typhon: TYPHON, cthulhu: CTHULHU, scp682: SCP682, pegasus: PEGASUS };
+  const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, fisherman: buildFisherman, cerberus: buildCerberus, bec: buildBec, apep: buildApep, thor: buildThor, typhon: buildTyphon, cthulhu: buildCthulhu, scp682: buildScp682, pegasus: buildPegasus };
   Object.assign(G, { ACTIONS, RIGS });
 })(window);

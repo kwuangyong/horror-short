@@ -1,0 +1,326 @@
+{
+ "duration": 100.47,
+ "sections": [
+  {
+   "section": 0,
+   "name": "hook",
+   "start": 0.0,
+   "end": 3.0
+  },
+  {
+   "section": 1,
+   "name": "split_roll",
+   "start": 3.0
+  },
+  {
+   "name": "intro_scp682",
+   "start": 4.65,
+   "end": 12.85
+  },
+  {
+   "name": "intro_pegasus",
+   "start": 14.5,
+   "end": 21.88
+  },
+  {
+   "section": 2,
+   "name": "story",
+   "start": 23.43
+  },
+  {
+   "name": "fight",
+   "start": 37.17
+  },
+  {
+   "name": "adapt",
+   "start": 51.32
+  },
+  {
+   "name": "wings",
+   "start": 66.28
+  },
+  {
+   "name": "climax",
+   "start": 70.71
+  },
+  {
+   "name": "retreat",
+   "start": 79.35
+  },
+  {
+   "name": "aftermath",
+   "start": 86.37
+  },
+  {
+   "name": "cliffhanger",
+   "start": 92.79
+  },
+  {
+   "name": "whisper",
+   "start": 98.07
+  }
+ ],
+ "dialogue": [
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "I am SCP Six Eight Two, the reptile that cannot die.",
+   "start": 4.65,
+   "end": 7.99
+  },
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "Every strike feeds my evolution.",
+   "start": 8.23,
+   "end": 10.31
+  },
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "You are...",
+   "start": 10.55,
+   "end": 11.52
+  },
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "disgusting.",
+   "start": 11.76,
+   "end": 12.85
+  },
+  {
+   "section": 1,
+   "speaker": "pegasus",
+   "text": "I am Pegasus, winged steed of Olympus.",
+   "start": 14.5,
+   "end": 17.02
+  },
+  {
+   "section": 1,
+   "speaker": "pegasus",
+   "text": "I outfly every storm and bear Zeus's thunder.",
+   "start": 17.26,
+   "end": 19.98
+  },
+  {
+   "section": 1,
+   "speaker": "pegasus",
+   "text": "Your rampage ends here.",
+   "start": 20.22,
+   "end": 21.88
+  },
+  {
+   "section": 2,
+   "speaker": "scp682",
+   "text": "Your thunder means nothing!",
+   "start": 59.15,
+   "end": 60.77
+  },
+  {
+   "section": 2,
+   "speaker": "pegasus",
+   "text": "Only Zeus can end you!",
+   "start": 83.95,
+   "end": 85.47
+  },
+  {
+   "section": 2,
+   "speaker": "kid",
+   "text": "...Go get him.",
+   "start": 90.52,
+   "end": 91.54
+  },
+  {
+   "section": 2,
+   "speaker": "scp682_whisper",
+   "text": "Bring your god.",
+   "start": 98.07,
+   "end": 99.37
+  }
+ ],
+ "sentences": [
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "I am SCP Six Eight Two, the reptile that cannot die.",
+   "start": 4.65,
+   "end": 7.99
+  },
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "Every strike feeds my evolution.",
+   "start": 8.23,
+   "end": 10.31
+  },
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "You are...",
+   "start": 10.55,
+   "end": 11.52
+  },
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "disgusting.",
+   "start": 11.76,
+   "end": 12.85
+  },
+  {
+   "section": 1,
+   "speaker": "pegasus",
+   "text": "I am Pegasus, winged steed of Olympus.",
+   "start": 14.5,
+   "end": 17.02
+  },
+  {
+   "section": 1,
+   "speaker": "pegasus",
+   "text": "I outfly every storm and bear Zeus's thunder.",
+   "start": 17.26,
+   "end": 19.98
+  },
+  {
+   "section": 1,
+   "speaker": "pegasus",
+   "text": "Your rampage ends here.",
+   "start": 20.22,
+   "end": 21.88
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Containment failed, and SCP Six Eight Two tore out of the lab into the night forest.",
+   "start": 23.43,
+   "end": 28.01
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "A lost kid froze on the trail, until Pegasus dived through the storm.",
+   "start": 28.46,
+   "end": 32.21
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Radiant wings blocked the jaws, letting the kid sprint behind fallen timber.",
+   "start": 32.61,
+   "end": 36.47
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "High above the pines, Pegasus dominated the sky; the grounded beast could not reach.",
+   "start": 37.17,
+   "end": 41.8
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Diving like a meteor, Pegasus drove a divine hoof-kick straight through its ribs.",
+   "start": 42.25,
+   "end": 46.24
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Then Pegasus summoned Zeus's lightning, scorching the reptile to smoking ash.",
+   "start": 46.69,
+   "end": 50.77
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Yet nothing kills it; torn flesh knitted back in seconds.",
+   "start": 51.32,
+   "end": 54.46
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Worse, its body adapted, locking into dark armor immune to lightning.",
+   "start": 54.91,
+   "end": 58.8
+  },
+  {
+   "section": 2,
+   "speaker": "scp682",
+   "text": "Your thunder means nothing!",
+   "start": 59.15,
+   "end": 60.77
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Bone glands erupted, firing jagged spikes and corrosive acid straight into the clouds.",
+   "start": 61.22,
+   "end": 65.78
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Then its back ripped open, unfurling colossal horror wings to hunt the sky.",
+   "start": 66.28,
+   "end": 70.16
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Now matched in the air, the evolving monster began overwhelming the winged steed.",
+   "start": 70.71,
+   "end": 74.6
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Pegasus could never erase its regeneration, and exhaustion closed in.",
+   "start": 75.1,
+   "end": 78.85
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Choosing its only chance, Pegasus burst free and rocketed straight toward Olympus.",
+   "start": 79.35,
+   "end": 83.6
+  },
+  {
+   "section": 2,
+   "speaker": "pegasus",
+   "text": "Only Zeus can end you!",
+   "start": 83.95,
+   "end": 85.47
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Below, the kid escaped unseen as Olympus's sky began to thunder.",
+   "start": 86.37,
+   "end": 90.07
+  },
+  {
+   "section": 2,
+   "speaker": "kid",
+   "text": "...Go get him.",
+   "start": 90.52,
+   "end": 91.54
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Alone in the ruins, the winged reptile glared straight at the throne of the gods.",
+   "start": 92.79,
+   "end": 96.87
+  },
+  {
+   "section": 2,
+   "speaker": "scp682_whisper",
+   "text": "Bring your god.",
+   "start": 98.07,
+   "end": 99.37
+  }
+ ]
+}

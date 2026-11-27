@@ -145,6 +145,102 @@
       it.g.setAttribute('cx', f2(X)); it.g.setAttribute('cy', f2(Y)); it.g.setAttribute('r', f2(R * 0.9)); it.s1.setAttribute('points', star(R * 1.6, R * 0.08, 0)); it.s2.setAttribute('points', star(R * 0.8, R * 0.06, 0.785 + lt * 2));
     },
   };
+  // lightning {t0,dur=0.55, x,y -> x2,y2, color='#FFD94A', color2='#38C6FF', w=24, branches=4}  jagged forked sky-to-ground thunderbolt
+  FX.lightning = {
+    build(it) {
+      const f = it.f, g = it.grp, col = f.color || '#FFD94A', col2 = f.color2 || '#38C6FF', nb = f.branches === undefined ? 4 : f.branches;
+      it.skyFlash = $('ellipse', { fill: radial(col2, [[0, 0.65], [0.5, 0.25], [1, 0]]) }, g);
+      it.corona = $('polyline', { fill: 'none', stroke: col, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g);
+      it.mid = $('polyline', { fill: 'none', stroke: col2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g);
+      it.core = $('polyline', { fill: 'none', stroke: '#ffffff', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g);
+      it.br = Array.from({ length: nb }, () => ({
+        c: $('polyline', { fill: 'none', stroke: col, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g),
+        m: $('polyline', { fill: 'none', stroke: col2, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g),
+        w: $('polyline', { fill: 'none', stroke: '#ffffff', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, g),
+      }));
+      it.burst = mkBurst(g, col, 14);
+      it.burst2 = mkBurst(g, col2, 10);
+    },
+    update(it, t) {
+      const f = it.f, lt = t - f.t0, dur = f.dur || 0.55, u = lt / dur, W0 = f.w || 24;
+      const A = [f.x, f.y], B = [f.x2, f.y2], dx = B[0] - A[0], dy = B[1] - A[1], L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L;
+      const grow = EASE.outCubic(clamp(lt / 0.08)), fade = clamp((1 - u) / 0.45);
+      const flick = 0.65 + 0.35 * hash(FR(t) * 13.7 + f.x);
+      const fr = Math.floor(t * 24), nSeg = 14, pts = [];
+      for (let i = 0; i <= nSeg; i++) {
+        const s = (i / nSeg) * grow;
+        const envJ = Math.sin((i / nSeg) * Math.PI);
+        const jit = i === 0 || i === nSeg ? 0 : (hash(fr * 9.1 + i * 4.3 + (f.seed || f.x)) - 0.5) * Math.min(180, L * 0.16) * envJ;
+        pts.push([A[0] + dx * s + nx * jit, A[1] + dy * s + ny * jit]);
+      }
+      const pStr = P(pts), k = fade * flick;
+      it.skyFlash.setAttribute('cx', f2(A[0])); it.skyFlash.setAttribute('cy', f2(A[1])); it.skyFlash.setAttribute('rx', f2(W0 * 9)); it.skyFlash.setAttribute('ry', f2(W0 * 4.5)); it.skyFlash.setAttribute('opacity', f2(0.75 * k));
+      it.corona.setAttribute('points', pStr); it.corona.setAttribute('stroke-width', f2(W0 * 2.1 * (0.6 + 0.4 * fade))); it.corona.setAttribute('opacity', f2(0.45 * k));
+      it.mid.setAttribute('points', pStr); it.mid.setAttribute('stroke-width', f2(W0 * 1.05 * (0.6 + 0.4 * fade))); it.mid.setAttribute('opacity', f2(0.92 * k));
+      it.core.setAttribute('points', pStr); it.core.setAttribute('stroke-width', f2(W0 * 0.42 * (0.6 + 0.4 * fade))); it.core.setAttribute('opacity', f2(k));
+      it.br.forEach((b, j) => {
+        const idx = Math.min(nSeg - 2, Math.max(2, Math.floor((j + 1) / (it.br.length + 1) * nSeg)));
+        const p0 = pts[idx], side = j % 2 ? 1 : -1, bLen = L * (0.16 + 0.14 * hash(j * 3.7 + fr));
+        const bAng = Math.atan2(dy, dx) + side * (0.45 + 0.4 * hash(j * 5.3 + fr));
+        const bp = [p0];
+        for (let m = 1; m <= 4; m++) {
+          const r = m / 4, jj = (hash(fr * 6.1 + j * 11 + m * 2.9) - 0.5) * 44;
+          bp.push([p0[0] + Math.cos(bAng) * bLen * r - Math.sin(bAng) * jj, p0[1] + Math.sin(bAng) * bLen * r + Math.cos(bAng) * jj]);
+        }
+        const bs = P(bp), vis = grow > idx / nSeg ? k * 0.85 : 0;
+        b.c.setAttribute('points', bs); b.c.setAttribute('stroke-width', f2(W0 * 0.9)); b.c.setAttribute('opacity', f2(vis * 0.4));
+        b.m.setAttribute('points', bs); b.m.setAttribute('stroke-width', f2(W0 * 0.46)); b.m.setAttribute('opacity', f2(vis * 0.9));
+        b.w.setAttribute('points', bs); b.w.setAttribute('stroke-width', f2(W0 * 0.2)); b.w.setAttribute('opacity', f2(vis));
+      });
+      setBurst(it.burst, B[0], B[1], f.r || 170, (lt - 0.06) / Math.max(0.25, dur - 0.06), f.hit !== false && grow >= 0.95);
+      setBurst(it.burst2, B[0], B[1], (f.r || 170) * 0.72, (lt - 0.08) / Math.max(0.25, dur - 0.08), f.hit !== false && grow >= 0.95);
+    },
+  };
+  // spikes {t0,dur, x,y -> x2,y2, n=7, stagger=0.08, fly=0.45, arc=180, color='#F7F3E3', color2='#5CE62E'}  staggered bone-spike + acid-glob volley (zero round orbs!)
+  FX.spikes = {
+    build(it) {
+      const f = it.f, g = it.grp, col = f.color || '#F7F3E3', col2 = f.color2 || '#5CE62E', n = f.n || 7;
+      it.projs = Array.from({ length: n }, (_, i) => {
+        const isAcid = i % 3 === 1;
+        const pg = $('g', { opacity: 0 }, g);
+        if (!isAcid) {
+          // sharp tapered ivory/blood bone-spike harpoon + dark wind streak
+          const streak = $('polygon', { points: '-88,0 -12,-7 -12,7', fill: '#2A262B', opacity: 0.72 }, pg);
+          const base = $('polygon', { points: '-32,-9 4,0 -32,9 -18,0', fill: '#B81422' }, pg);
+          const dart = $('polygon', { points: '-24,-8 44,0 -24,8 -10,0', fill: col }, pg);
+          const edge = $('polygon', { points: '-14,-3 44,0 -14,2', fill: '#FFFFFF', opacity: 0.85 }, pg);
+          return { isAcid, pg, streak, base, dart, edge, burst: mkBurst(g, '#D92626', 8), side: i % 2 ? 1 : -1, h: 0.55 + 0.75 * hash(i * 4.1 + (f.seed || 1)), jx: (hash(i * 2.3) - 0.5) * 90, jy: (hash(i * 3.7) - 0.5) * 90 };
+        }
+        // bubbling corrosive acid glob (teardrop + jagged splatter droplets)
+        const rim = $('path', { d: 'M-34,0 Q-16,-18 18,-10 Q34,0 18,10 Q-16,18 -34,0 Z', fill: '#D4A017', opacity: 0.85 }, pg);
+        const body = $('path', { d: 'M-26,0 Q-12,-14 14,-8 Q28,0 14,8 Q-12,14 -26,0 Z', fill: col2 }, pg);
+        const core = $('path', { d: 'M-12,0 Q-2,-7 10,-4 Q18,0 10,4 Q-2,7 -12,0 Z', fill: '#E2FF3D' }, pg);
+        const drop1 = $('ellipse', { cx: -38, cy: -10, rx: 8, ry: 4, fill: col2 }, pg);
+        const drop2 = $('ellipse', { cx: -48, cy: 8, rx: 6, ry: 3.5, fill: '#E2FF3D' }, pg);
+        return { isAcid, pg, rim, body, core, drop1, drop2, burst: mkBurst(g, col2, 8), side: i % 2 ? 1 : -1, h: 0.65 + 0.7 * hash(i * 5.3 + (f.seed || 2)), jx: (hash(i * 1.7) - 0.5) * 90, jy: (hash(i * 2.9) - 0.5) * 90 };
+      });
+    },
+    update(it, t) {
+      const f = it.f, lt = t - f.t0, fly = f.fly || 0.45, stg = f.stagger === undefined ? 0.08 : f.stagger, arc = f.arc === undefined ? 180 : f.arc;
+      const A = [f.x, f.y], dx = f.x2 - f.x, dy = f.y2 - f.y, L = Math.hypot(dx, dy) || 1, nx = -dy / L, ny = dx / L;
+      it.projs.forEach((p, i) => {
+        const B = [f.x2 + p.jx, f.y2 + p.jy];
+        const Cc = [(A[0] + B[0]) * 0.5 + nx * arc * p.side * p.h, (A[1] + B[1]) * 0.5 + ny * arc * p.side * p.h];
+        const at = (s) => [(1 - s) * (1 - s) * A[0] + 2 * (1 - s) * s * Cc[0] + s * s * B[0], (1 - s) * (1 - s) * A[1] + 2 * (1 - s) * s * Cc[1] + s * s * B[1]];
+        const ls = lt - i * stg, s = ls / fly, flying = s >= 0 && s < 1;
+        if (flying) {
+          const u = clamp(s), q0 = at(u), q1 = at(Math.min(1, u + 0.03));
+          const ang = Math.atan2(q1[1] - q0[1], q1[0] - q0[0]) * 180 / Math.PI;
+          const sc = p.isAcid ? (0.95 + 0.15 * Math.sin(t * 42 + i)) : 1.05;
+          p.pg.setAttribute('transform', `translate(${f2(q0[0])} ${f2(q0[1])}) rotate(${f2(ang)}) scale(${f2(sc)})`);
+          p.pg.setAttribute('opacity', 1);
+        } else {
+          p.pg.setAttribute('opacity', 0);
+        }
+        setBurst(p.burst, B[0], B[1], p.isAcid ? 95 : 80, (ls - fly) / 0.38, f.hit !== false);
+      });
+    },
+  };
 
   // ---------------------------------------------------------------- domains (scene 'domain-<key>')
   // domains:{ key:{ sky:[top,bottom], glow, floor:[top,bottom], motif:'monoliths'|'spires'|'columns'|'runes'|'none', sigil:color|null, motes:color, horizon:900 } }
@@ -185,6 +281,59 @@
         for (let k = 0; k < 6; k++) $('line', { x1: -100 + k * 24, y1: -160 + k * 8, x2: -96 + k * 22, y2: 12, stroke: '#000', 'stroke-width': 4, opacity: 0.25 }, tg);
         $('ellipse', { cx: 86, cy: -90, rx: 16, ry: 8, fill: d.glow, opacity: 0.6, 'data-pulse': 3 }, tg); $('polyline', { points: P([[10, -190], [30, -120], [10, -60], [34, 10]]), fill: 'none', stroke: '#000', 'stroke-width': 4, opacity: 0.35 }, tg); }
       dune(80, hz + 40, sand[2], 7.7, 40);
+    },
+    lab(g, d, r) {              // SCP containment chamber: steel bulkheads, shattered blast door frame, HCl mist, flashing red beacons
+      const hz = d.horizon, steel = d.rock || '#222933', dark = '#13171F', hi = '#364152';
+      // steel wall panels & vertical bulkhead ribs
+      for (let i = -3; i < 8; i++) {
+        const x = i * 240;
+        $('rect', { x, y: -600, width: 234, height: hz + 660, fill: i % 2 ? steel : '#1C222B' }, g);
+        $('rect', { x: x + 224, y: -600, width: 16, height: hz + 660, fill: dark }, g);
+        $('rect', { x: x + 220, y: -600, width: 4, height: hz + 660, fill: hi, opacity: 0.5 }, g);
+        // hazard stripe near bottom
+        $('rect', { x: x + 6, y: hz - 44, width: 212, height: 22, fill: '#D4A017', opacity: 0.72 }, g);
+        for (let k = 0; k < 6; k++) $('polygon', { points: P([[x + 12 + k * 34, hz - 44], [x + 28 + k * 34, hz - 44], [x + 18 + k * 34, hz - 22], [x + 2 + k * 34, hz - 22]]), fill: '#14161A' }, g);
+      }
+      // shattered heavy steel blast door frame in center
+      const dx0 = 260, dx1 = 820, dy0 = hz - 680;
+      $('rect', { x: dx0 - 38, y: dy0 - 34, width: dx1 - dx0 + 76, height: hz - dy0 + 84, fill: dark }, g);
+      $('rect', { x: dx0, y: dy0, width: dx1 - dx0, height: hz - dy0 + 50, fill: '#080B10' }, g);
+      // jagged torn blast-door steel shards bent outward
+      $('polygon', { points: P([[dx0, dy0], [dx0 + 165, dy0], [dx0 + 110, dy0 + 180], [dx0 + 190, dy0 + 340], [dx0 + 75, dy0 + 510], [dx0 + 140, hz + 40], [dx0, hz + 40]]), fill: hi }, g);
+      $('polygon', { points: P([[dx1, dy0], [dx1 - 150, dy0], [dx1 - 95, dy0 + 210], [dx1 - 175, dy0 + 390], [dx1 - 70, hz + 40], [dx1, hz + 40]]), fill: '#2B3442' }, g);
+      // acid vat green mist seeping from breach
+      $('ellipse', { cx: 540, cy: hz + 18, rx: 380, ry: 95, fill: radial('#7CFF3B', [[0, 0.55], [0.55, 0.22], [1, 0]]), 'data-pulse': 1 }, g);
+      // flashing red emergency siren beacons + alarm cones
+      for (const [bx, by, idx] of [[180, dy0 - 10, 0], [540, dy0 - 70, 2], [900, dy0 - 10, 4]]) {
+        $('polygon', { points: P([[bx - 22, by + 16], [bx + 22, by + 16], [bx + 260, hz + 120], [bx - 260, hz + 120]]), fill: '#FF1E2D', opacity: 0.2, 'data-pulse': idx }, g);
+        $('rect', { x: bx - 22, y: by - 14, width: 44, height: 22, rx: 4, fill: dark }, g);
+        $('circle', { cx: bx, cy: by + 8, r: 16, fill: '#FF1E2D', 'data-pulse': idx }, g);
+        $('circle', { cx: bx, cy: by + 8, r: 72, fill: radial('#FF1E2D', [[0, 0.85], [0.5, 0.25], [1, 0]]), 'data-pulse': idx }, g);
+      }
+    },
+    forest(g, d, r) {           // night storm forest: wind-swept storm clouds + 3 depth layers of dark pine silhouettes
+      const hz = d.horizon, cFar = d.rock || '#0E1B2E', cMid = '#0A1322', cNear = '#060B14';
+      // brooding storm cloud deck overhead
+      for (let i = 0; i < 8; i++) {
+        const cx = -300 + i * 260 + r() * 80, cy = 80 + (i % 3) * 95;
+        $('ellipse', { cx, cy, rx: 240 + r() * 140, ry: 68 + r() * 44, fill: '#1A2B40', opacity: 0.65 }, g);
+      }
+      // subtle moonlit/storm fog shafts through canopy
+      for (let i = 0; i < 4; i++) {
+        const x = -80 + i * 360;
+        $('polygon', { points: P([[x, -300], [x + 120, -300], [x + 420, hz + 120], [x + 180, hz + 120]]), fill: '#4F88B8', opacity: 0.08, 'data-shaft': i }, g);
+      }
+      const mkPine = (x, base, h, w, col, lean) => {
+        const pts = [[x - w * 0.12, base], [x - w * 0.12, base - h * 0.22], [x - w * 0.95 + lean * 0.2, base - h * 0.2], [x - w * 0.35 + lean * 0.4, base - h * 0.46], [x - w * 0.78 + lean * 0.5, base - h * 0.44], [x - w * 0.26 + lean * 0.7, base - h * 0.72], [x - w * 0.52 + lean * 0.8, base - h * 0.7], [x + lean, base - h], [x + w * 0.48 + lean * 0.8, base - h * 0.68], [x + w * 0.22 + lean * 0.7, base - h * 0.7], [x + w * 0.74 + lean * 0.5, base - h * 0.42], [x + w * 0.32 + lean * 0.4, base - h * 0.44], [x + w * 0.92 + lean * 0.2, base - h * 0.18], [x + w * 0.12, base - h * 0.2], [x + w * 0.12, base]];
+        $('polygon', { points: P(pts), fill: col }, g);
+      };
+      // far ridge pines
+      for (let x = -1400; x <= 2500; x += 95 + r() * 55) mkPine(x, hz + 35, 240 + r() * 190, 58 + r() * 34, cFar, 12 + r() * 14);
+      $('ellipse', { cx: 540, cy: hz - 10, rx: 1600, ry: 120, fill: radial('#4F88B8', [[0, 0.24], [1, 0]]) }, g);
+      // mid storm-bent pines
+      for (let x = -1400; x <= 2500; x += 120 + r() * 75) mkPine(x, hz + 50, 340 + r() * 260, 76 + r() * 44, cMid, 18 + r() * 20);
+      // near framing pines on edges (keep center arena open for combat readability)
+      for (const [x, h] of [[-520, 680], [-280, 620], [-60, 520], [1160, 540], [1380, 640], [1620, 700]]) mkPine(x, hz + 70, h, 118, cNear, 24);
     },
     none() {},
   };

@@ -525,10 +525,12 @@
     brownie: (m) => { m.E(0, -60, 42, 44); m.P('-40,-62 -96,-98 -38,-40'); m.P('40,-62 96,-98 38,-40'); m.P('-44,-24 44,-24 70,130 22,112 0,142 -30,112 -70,130'); m.P('-50,-110 0,-190 50,-110'); m.P('90,-90 98,-90 98,170 90,170'); m.P('64,160 124,160 110,206 70,206'); m.eyes([[-15, -60], [15, -60]], 5); },
     matagot: (m) => { m.Pa('M-134,200 Q-110,-70 0,-76 Q110,-70 134,200 L96,200 Q60,70 0,60 Q-60,70 -96,200Z'); m.E(0, -108, 52, 44); m.P('-42,-130 -38,-196 -6,-142'); m.P('42,-130 38,-196 6,-142'); m.S('M120 190 Q210 120 160 20', 14); for (const s of [-1, 1]) for (const y of [-96, -84]) m.S(`M${s * 40} ${y} L${s * 100} ${y - 12}`, 3, '#9aa0b8'); m.eyes([[-20, -112], [20, -112]], 7); },
     tomte: (m) => { m.P('-58,-76 58,-76 8,-236 40,-250 36,-210'); m.E(0, -48, 40, 36); m.P('-62,-60 62,-60 44,100 0,170 -44,100'); m.E(0, 130, 70, 70); m.E(0, -34, 14, 11, '#caa08a'); m.P('-44,178 -8,178 -14,214 -50,214'); m.P('8,178 44,178 50,214 14,214'); m.eyes([[-16, -56], [16, -56]], 4); },
+    scp682: (m) => { m.E(-10, 50, 118, 56); m.P('82,8 192,28 194,64 96,76'); m.P('96,54 186,66 176,92 92,82'); m.P('-74,-2 -58,-52 -36,-2'); m.P('-30,-10 -12,-66 8,-8'); m.P('16,-8 36,-62 54,-6'); m.P('60,0 78,-46 92,4'); for (const x of [-86, -42, 46, 88]) m.P(`${x - 14},84 ${x + 14},84 ${x + 8},190 ${x - 16},190`); m.P('-118,46 -202,16 -184,78'); m.eyes([[142, 34]], 6, '#d9ff3f'); },
+    pegasus: (m) => { m.E(0, 62, 102, 54); m.P('-10,16 -170,-168 -196,-54 -116,18 -46,38'); m.P('14,14 -128,-196 -144,-90 -66,-8'); m.P('62,24 106,-116 146,-132 184,-90 156,-62 114,-68 96,36'); m.P('108,-126 124,-166 138,-122'); for (const x of [-76, -34, 48, 86]) m.P(`${x - 11},96 ${x + 11},96 ${x + 6},198 ${x - 12},198`); m.P('-98,42 -192,98 -164,132 -90,74'); m.eyes([[144, -104]], 5, '#4ce8ff'); },
   };
-  const MON_NAMES = ['koschei', 'chupacabra', 'jersey', 'draugr', 'babayaga', 'kelpie', 'horseman', 'blackeyed', 'strigoi', 'apep', 'typhon'];
-  const GUA_NAMES = ['cerberus', 'talos', 'griffin', 'garmr', 'domovoi', 'brownie', 'matagot', 'tomte', 'thor', 'cthulhu'];
-  const LABELS = { koschei: 'KOSCHEI', chupacabra: 'CHUPACABRA', jersey: 'JERSEY DEVIL', draugr: 'DRAUGR', babayaga: 'BABA YAGA', kelpie: 'KELPIE', horseman: 'HEADLESS HORSEMAN', blackeyed: 'BLACK-EYED CHILD', strigoi: 'STRIGOI', apep: 'APEP', thor: 'THOR', typhon: 'TYPHON', cthulhu: 'CTHULHU', cerberus: 'CERBERUS', talos: 'TALOS', griffin: 'GRIFFIN', garmr: 'GARMR', domovoi: 'DOMOVOI', brownie: 'BROWNIE', matagot: 'MATAGOT', tomte: 'TOMTE' };
+  const MON_NAMES = ['koschei', 'chupacabra', 'jersey', 'draugr', 'babayaga', 'kelpie', 'horseman', 'blackeyed', 'strigoi', 'apep', 'typhon', 'scp682'];
+  const GUA_NAMES = ['cerberus', 'talos', 'griffin', 'garmr', 'domovoi', 'brownie', 'matagot', 'tomte', 'thor', 'cthulhu', 'pegasus'];
+  const LABELS = { koschei: 'KOSCHEI', chupacabra: 'CHUPACABRA', jersey: 'JERSEY DEVIL', draugr: 'DRAUGR', babayaga: 'BABA YAGA', kelpie: 'KELPIE', horseman: 'HEADLESS HORSEMAN', blackeyed: 'BLACK-EYED CHILD', strigoi: 'STRIGOI', apep: 'APEP', thor: 'THOR', typhon: 'TYPHON', cthulhu: 'CTHULHU', scp682: 'SCP-682', pegasus: 'PEGASUS', cerberus: 'CERBERUS', talos: 'TALOS', griffin: 'GRIFFIN', garmr: 'GARMR', domovoi: 'DOMOVOI', brownie: 'BROWNIE', matagot: 'MATAGOT', tomte: 'TOMTE' };
   function drawDecoy(g, name, eyeCol) {
     const m = {
       P: (pts, fill) => $('polygon', { points: pts, fill: fill || SIL }, g), E: (cx, cy, rx, ry, fill) => $('ellipse', { cx, cy, rx, ry, fill: fill || SIL }, g), Pa: (d) => $('path', { d, fill: SIL }, g),
@@ -676,7 +678,7 @@
 
   // ------------------------------------------------------------------ SHOT SYSTEM (hard cuts between camera set-ups)
   let povLamp = null, povFogL = [], povRev = null, povBeamG = null, povGrp = [], povG = null, povW = null, povHand = null, povTrees = [], povFlies = [], povBeam = null, povCone = [], povDark = null, povFog = [], otsG = null, crashG = null, curShot = null;
-  const HEADSZ = { vry: 150, grim: 250, kid: 150, fisherman: 165, bec: 120, cerberus: 340, apep: 400, thor: 230, typhon: 280, cthulhu: 250 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262], fisherman: [0, -295], bec: [0, -262], cerberus: [424, -405], apep: [330, -250], thor: [8, -500], typhon: [12, -524], cthulhu: [8, -520] };
+  const HEADSZ = { vry: 150, grim: 250, kid: 150, fisherman: 165, bec: 120, cerberus: 340, apep: 400, thor: 230, typhon: 280, cthulhu: 250, scp682: 260, pegasus: 220 }, HEADOFF = { vry: [0, -425], grim: [222, -288], kid: [0, -262], fisherman: [0, -295], bec: [0, -262], cerberus: [424, -405], apep: [330, -250], thor: [8, -500], typhon: [12, -524], cthulhu: [8, -520], scp682: [238, -278], pegasus: [174, -394] };
   function markerWorld(actor, name) {
     const d = TL.actors[actor]; if (!d || !d.rig || !d.rig.mk || !d.rig.mk[name]) return null;
     const m = d.rig.mk[name], c1 = m.getCTM(), c2 = layers.actors.getCTM(); if (!c1 || !c2) return null;

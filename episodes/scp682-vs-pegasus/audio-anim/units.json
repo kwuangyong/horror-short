@@ -1,0 +1,1462 @@
+[
+ {
+  "section": 1,
+  "text": "I am SCP Six Eight Two, the reptile that cannot die.",
+  "speaker": "scp682",
+  "line_first": true,
+  "file": "u_00.wav",
+  "dur": 3.341,
+  "words": [
+   {
+    "word": "I",
+    "start": 0,
+    "end": 0.088
+   },
+   {
+    "word": "am",
+    "start": 0.099,
+    "end": 0.194
+   },
+   {
+    "word": "SCP",
+    "start": 0.217,
+    "end": 0.677
+   },
+   {
+    "word": "Six",
+    "start": 0.701,
+    "end": 0.972
+   },
+   {
+    "word": "Eight",
+    "start": 0.996,
+    "end": 1.114
+   },
+   {
+    "word": "Two",
+    "start": 1.137,
+    "end": 1.373
+   },
+   {
+    "word": "the",
+    "start": 1.55,
+    "end": 1.656
+   },
+   {
+    "word": "reptile",
+    "start": 1.68,
+    "end": 2.092
+   },
+   {
+    "word": "that",
+    "start": 2.116,
+    "end": 2.258
+   },
+   {
+    "word": "cannot",
+    "start": 2.281,
+    "end": 2.599
+   },
+   {
+    "word": "die",
+    "start": 2.623,
+    "end": 2.977
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "Every strike feeds my evolution.",
+  "speaker": "scp682",
+  "line_first": false,
+  "file": "u_01.wav",
+  "dur": 2.082,
+  "words": [
+   {
+    "word": "Every",
+    "start": 0,
+    "end": 0.238
+   },
+   {
+    "word": "strike",
+    "start": 0.262,
+    "end": 0.604
+   },
+   {
+    "word": "feeds",
+    "start": 0.627,
+    "end": 0.899
+   },
+   {
+    "word": "my",
+    "start": 0.91,
+    "end": 1.076
+   },
+   {
+    "word": "evolution",
+    "start": 1.099,
+    "end": 1.701
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "You are...",
+  "speaker": "scp682",
+  "line_first": false,
+  "file": "u_02.wav",
+  "dur": 0.967,
+  "words": [
+   {
+    "word": "You",
+    "start": 0,
+    "end": 0.171
+   },
+   {
+    "word": "are",
+    "start": 0.182,
+    "end": 0.654
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "disgusting.",
+  "speaker": "scp682",
+  "line_first": false,
+  "file": "u_03.wav",
+  "dur": 1.088,
+  "words": [
+   {
+    "word": "disgusting",
+    "start": 0,
+    "end": 0.717
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "I am Pegasus, winged steed of Olympus.",
+  "speaker": "pegasus",
+  "line_first": true,
+  "file": "u_04.wav",
+  "dur": 2.523,
+  "words": [
+   {
+    "word": "I",
+    "start": 0,
+    "end": 0.053
+   },
+   {
+    "word": "am",
+    "start": 0.065,
+    "end": 0.192
+   },
+   {
+    "word": "Pegasus",
+    "start": 0.203,
+    "end": 0.724
+   },
+   {
+    "word": "winged",
+    "start": 0.886,
+    "end": 1.164
+   },
+   {
+    "word": "steed",
+    "start": 1.176,
+    "end": 1.454
+   },
+   {
+    "word": "of",
+    "start": 1.465,
+    "end": 1.546
+   },
+   {
+    "word": "Olympus",
+    "start": 1.558,
+    "end": 2.102
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "I outfly every storm and bear Zeus's thunder.",
+  "speaker": "pegasus",
+  "line_first": false,
+  "file": "u_05.wav",
+  "dur": 2.724,
+  "words": [
+   {
+    "word": "I",
+    "start": 0,
+    "end": 0.09
+   },
+   {
+    "word": "outfly",
+    "start": 0.102,
+    "end": 0.519
+   },
+   {
+    "word": "every",
+    "start": 0.53,
+    "end": 0.773
+   },
+   {
+    "word": "storm",
+    "start": 0.785,
+    "end": 1.109
+   },
+   {
+    "word": "and",
+    "start": 1.121,
+    "end": 1.225
+   },
+   {
+    "word": "bear",
+    "start": 1.236,
+    "end": 1.421
+   },
+   {
+    "word": "Zeus's",
+    "start": 1.433,
+    "end": 1.827
+   },
+   {
+    "word": "thunder",
+    "start": 1.838,
+    "end": 2.278
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "Your rampage ends here.",
+  "speaker": "pegasus",
+  "line_first": false,
+  "file": "u_06.wav",
+  "dur": 1.653,
+  "words": [
+   {
+    "word": "Your",
+    "start": 0,
+    "end": 0.087
+   },
+   {
+    "word": "rampage",
+    "start": 0.098,
+    "end": 0.642
+   },
+   {
+    "word": "ends",
+    "start": 0.654,
+    "end": 0.839
+   },
+   {
+    "word": "here",
+    "start": 0.851,
+    "end": 1.221
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Containment failed, and SCP Six Eight Two tore out of the lab into the night forest.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_07.wav",
+  "dur": 4.584,
+  "words": [
+   {
+    "word": "Containment",
+    "start": 0,
+    "end": 0.413
+   },
+   {
+    "word": "failed",
+    "start": 0.424,
+    "end": 0.825
+   },
+   {
+    "word": "and",
+    "start": 1.026,
+    "end": 1.194
+   },
+   {
+    "word": "SCP",
+    "start": 1.205,
+    "end": 1.774
+   },
+   {
+    "word": "Six",
+    "start": 1.785,
+    "end": 2.12
+   },
+   {
+    "word": "Eight",
+    "start": 2.131,
+    "end": 2.321
+   },
+   {
+    "word": "Two",
+    "start": 2.332,
+    "end": 2.555
+   },
+   {
+    "word": "tore",
+    "start": 2.567,
+    "end": 2.868
+   },
+   {
+    "word": "out",
+    "start": 2.879,
+    "end": 2.991
+   },
+   {
+    "word": "of",
+    "start": 3.002,
+    "end": 3.058
+   },
+   {
+    "word": "the",
+    "start": 3.069,
+    "end": 3.147
+   },
+   {
+    "word": "lab",
+    "start": 3.158,
+    "end": 3.426
+   },
+   {
+    "word": "into",
+    "start": 3.437,
+    "end": 3.593
+   },
+   {
+    "word": "the",
+    "start": 3.605,
+    "end": 3.683
+   },
+   {
+    "word": "night",
+    "start": 3.694,
+    "end": 3.906
+   },
+   {
+    "word": "forest",
+    "start": 3.917,
+    "end": 4.486
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "A lost kid froze on the trail, until Pegasus dived through the storm.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_08.wav",
+  "dur": 3.744,
+  "words": [
+   {
+    "word": "A",
+    "start": 0,
+    "end": 0.032
+   },
+   {
+    "word": "lost",
+    "start": 0.044,
+    "end": 0.412
+   },
+   {
+    "word": "kid",
+    "start": 0.423,
+    "end": 0.635
+   },
+   {
+    "word": "froze",
+    "start": 0.646,
+    "end": 0.981
+   },
+   {
+    "word": "on",
+    "start": 0.992,
+    "end": 1.082
+   },
+   {
+    "word": "the",
+    "start": 1.093,
+    "end": 1.149
+   },
+   {
+    "word": "trail",
+    "start": 1.16,
+    "end": 1.539
+   },
+   {
+    "word": "until",
+    "start": 1.796,
+    "end": 2.041
+   },
+   {
+    "word": "Pegasus",
+    "start": 2.053,
+    "end": 2.544
+   },
+   {
+    "word": "dived",
+    "start": 2.555,
+    "end": 2.923
+   },
+   {
+    "word": "through",
+    "start": 2.934,
+    "end": 3.113
+   },
+   {
+    "word": "the",
+    "start": 3.124,
+    "end": 3.202
+   },
+   {
+    "word": "storm",
+    "start": 3.213,
+    "end": 3.671
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Radiant wings blocked the jaws, letting the kid sprint behind fallen timber.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_09.wav",
+  "dur": 3.864,
+  "words": [
+   {
+    "word": "Radiant",
+    "start": 0,
+    "end": 0.332
+   },
+   {
+    "word": "wings",
+    "start": 0.343,
+    "end": 0.678
+   },
+   {
+    "word": "blocked",
+    "start": 0.689,
+    "end": 1.024
+   },
+   {
+    "word": "the",
+    "start": 1.035,
+    "end": 1.114
+   },
+   {
+    "word": "jaws",
+    "start": 1.125,
+    "end": 1.56
+   },
+   {
+    "word": "letting",
+    "start": 1.772,
+    "end": 2.04
+   },
+   {
+    "word": "the",
+    "start": 2.051,
+    "end": 2.129
+   },
+   {
+    "word": "kid",
+    "start": 2.14,
+    "end": 2.375
+   },
+   {
+    "word": "sprint",
+    "start": 2.386,
+    "end": 2.687
+   },
+   {
+    "word": "behind",
+    "start": 2.698,
+    "end": 3.033
+   },
+   {
+    "word": "fallen",
+    "start": 3.044,
+    "end": 3.379
+   },
+   {
+    "word": "timber",
+    "start": 3.39,
+    "end": 3.792
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "High above the pines, Pegasus dominated the sky; the grounded beast could not reach.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_10.wav",
+  "dur": 4.632,
+  "words": [
+   {
+    "word": "High",
+    "start": 0,
+    "end": 0.183
+   },
+   {
+    "word": "above",
+    "start": 0.194,
+    "end": 0.496
+   },
+   {
+    "word": "the",
+    "start": 0.507,
+    "end": 0.585
+   },
+   {
+    "word": "pines",
+    "start": 0.596,
+    "end": 1.087
+   },
+   {
+    "word": "Pegasus",
+    "start": 1.232,
+    "end": 1.69
+   },
+   {
+    "word": "dominated",
+    "start": 1.701,
+    "end": 2.192
+   },
+   {
+    "word": "the",
+    "start": 2.203,
+    "end": 2.27
+   },
+   {
+    "word": "sky",
+    "start": 2.282,
+    "end": 2.672
+   },
+   {
+    "word": "the",
+    "start": 2.895,
+    "end": 2.996
+   },
+   {
+    "word": "grounded",
+    "start": 3.007,
+    "end": 3.409
+   },
+   {
+    "word": "beast",
+    "start": 3.42,
+    "end": 3.721
+   },
+   {
+    "word": "could",
+    "start": 3.732,
+    "end": 3.866
+   },
+   {
+    "word": "not",
+    "start": 3.878,
+    "end": 4.101
+   },
+   {
+    "word": "reach",
+    "start": 4.112,
+    "end": 4.514
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Diving like a meteor, Pegasus drove a divine hoof-kick straight through its ribs.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_11.wav",
+  "dur": 3.984,
+  "words": [
+   {
+    "word": "Diving",
+    "start": 0,
+    "end": 0.318
+   },
+   {
+    "word": "like",
+    "start": 0.329,
+    "end": 0.486
+   },
+   {
+    "word": "a",
+    "start": 0.497,
+    "end": 0.553
+   },
+   {
+    "word": "meteor",
+    "start": 0.564,
+    "end": 0.977
+   },
+   {
+    "word": "Pegasus",
+    "start": 1.178,
+    "end": 1.635
+   },
+   {
+    "word": "drove",
+    "start": 1.646,
+    "end": 1.881
+   },
+   {
+    "word": "a",
+    "start": 1.892,
+    "end": 1.948
+   },
+   {
+    "word": "divine",
+    "start": 1.959,
+    "end": 2.327
+   },
+   {
+    "word": "hoof-kick",
+    "start": 2.338,
+    "end": 2.751
+   },
+   {
+    "word": "straight",
+    "start": 2.762,
+    "end": 3.053
+   },
+   {
+    "word": "through",
+    "start": 3.064,
+    "end": 3.242
+   },
+   {
+    "word": "its",
+    "start": 3.254,
+    "end": 3.399
+   },
+   {
+    "word": "ribs",
+    "start": 3.41,
+    "end": 3.867
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Then Pegasus summoned Zeus's lightning, scorching the reptile to smoking ash.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_12.wav",
+  "dur": 4.08,
+  "words": [
+   {
+    "word": "Then",
+    "start": 0,
+    "end": 0.189
+   },
+   {
+    "word": "Pegasus",
+    "start": 0.2,
+    "end": 0.658
+   },
+   {
+    "word": "summoned",
+    "start": 0.669,
+    "end": 0.937
+   },
+   {
+    "word": "Zeus's",
+    "start": 0.948,
+    "end": 1.316
+   },
+   {
+    "word": "lightning",
+    "start": 1.328,
+    "end": 1.741
+   },
+   {
+    "word": "scorching",
+    "start": 1.964,
+    "end": 2.399
+   },
+   {
+    "word": "the",
+    "start": 2.41,
+    "end": 2.488
+   },
+   {
+    "word": "reptile",
+    "start": 2.5,
+    "end": 2.979
+   },
+   {
+    "word": "to",
+    "start": 2.991,
+    "end": 3.069
+   },
+   {
+    "word": "smoking",
+    "start": 3.08,
+    "end": 3.526
+   },
+   {
+    "word": "ash",
+    "start": 3.537,
+    "end": 3.973
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Yet nothing kills it; torn flesh knitted back in seconds.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_13.wav",
+  "dur": 3.144,
+  "words": [
+   {
+    "word": "Yet",
+    "start": 0,
+    "end": 0.15
+   },
+   {
+    "word": "nothing",
+    "start": 0.161,
+    "end": 0.529
+   },
+   {
+    "word": "kills",
+    "start": 0.54,
+    "end": 0.819
+   },
+   {
+    "word": "it",
+    "start": 0.831,
+    "end": 0.976
+   },
+   {
+    "word": "torn",
+    "start": 1.199,
+    "end": 1.478
+   },
+   {
+    "word": "flesh",
+    "start": 1.489,
+    "end": 1.79
+   },
+   {
+    "word": "knitted",
+    "start": 1.802,
+    "end": 2.092
+   },
+   {
+    "word": "back",
+    "start": 2.103,
+    "end": 2.348
+   },
+   {
+    "word": "in",
+    "start": 2.36,
+    "end": 2.482
+   },
+   {
+    "word": "seconds",
+    "start": 2.494,
+    "end": 3.052
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Worse, its body adapted, locking into dark armor immune to lightning.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_14.wav",
+  "dur": 3.888,
+  "words": [
+   {
+    "word": "Worse",
+    "start": 0,
+    "end": 0.405
+   },
+   {
+    "word": "its",
+    "start": 0.606,
+    "end": 0.751
+   },
+   {
+    "word": "body",
+    "start": 0.762,
+    "end": 1.075
+   },
+   {
+    "word": "adapted",
+    "start": 1.086,
+    "end": 1.566
+   },
+   {
+    "word": "locking",
+    "start": 1.756,
+    "end": 2.124
+   },
+   {
+    "word": "into",
+    "start": 2.135,
+    "end": 2.291
+   },
+   {
+    "word": "dark",
+    "start": 2.302,
+    "end": 2.593
+   },
+   {
+    "word": "armor",
+    "start": 2.604,
+    "end": 2.872
+   },
+   {
+    "word": "immune",
+    "start": 2.883,
+    "end": 3.218
+   },
+   {
+    "word": "to",
+    "start": 3.229,
+    "end": 3.329
+   },
+   {
+    "word": "lightning",
+    "start": 3.34,
+    "end": 3.798
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Your thunder means nothing!",
+  "speaker": "scp682",
+  "line_first": true,
+  "file": "u_15.wav",
+  "dur": 1.616,
+  "words": [
+   {
+    "word": "Your",
+    "start": 0,
+    "end": 0.123
+   },
+   {
+    "word": "thunder",
+    "start": 0.147,
+    "end": 0.536
+   },
+   {
+    "word": "means",
+    "start": 0.559,
+    "end": 0.819
+   },
+   {
+    "word": "nothing",
+    "start": 0.831,
+    "end": 1.267
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Bone glands erupted, firing jagged spikes and corrosive acid straight into the clouds.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_16.wav",
+  "dur": 4.56,
+  "words": [
+   {
+    "word": "Bone",
+    "start": 0,
+    "end": 0.219
+   },
+   {
+    "word": "glands",
+    "start": 0.23,
+    "end": 0.554
+   },
+   {
+    "word": "erupted",
+    "start": 0.565,
+    "end": 1.011
+   },
+   {
+    "word": "firing",
+    "start": 1.246,
+    "end": 1.648
+   },
+   {
+    "word": "jagged",
+    "start": 1.659,
+    "end": 1.994
+   },
+   {
+    "word": "spikes",
+    "start": 2.005,
+    "end": 2.406
+   },
+   {
+    "word": "and",
+    "start": 2.418,
+    "end": 2.507
+   },
+   {
+    "word": "corrosive",
+    "start": 2.518,
+    "end": 2.987
+   },
+   {
+    "word": "acid",
+    "start": 2.998,
+    "end": 3.333
+   },
+   {
+    "word": "straight",
+    "start": 3.344,
+    "end": 3.634
+   },
+   {
+    "word": "into",
+    "start": 3.645,
+    "end": 3.813
+   },
+   {
+    "word": "the",
+    "start": 3.824,
+    "end": 3.902
+   },
+   {
+    "word": "clouds",
+    "start": 3.913,
+    "end": 4.46
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Then its back ripped open, unfurling colossal horror wings to hunt the sky.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_17.wav",
+  "dur": 3.888,
+  "words": [
+   {
+    "word": "Then",
+    "start": 0,
+    "end": 0.141
+   },
+   {
+    "word": "its",
+    "start": 0.153,
+    "end": 0.275
+   },
+   {
+    "word": "back",
+    "start": 0.287,
+    "end": 0.566
+   },
+   {
+    "word": "ripped",
+    "start": 0.577,
+    "end": 0.811
+   },
+   {
+    "word": "open",
+    "start": 0.822,
+    "end": 1.135
+   },
+   {
+    "word": "unfurling",
+    "start": 1.325,
+    "end": 1.816
+   },
+   {
+    "word": "colossal",
+    "start": 1.827,
+    "end": 2.296
+   },
+   {
+    "word": "horror",
+    "start": 2.307,
+    "end": 2.642
+   },
+   {
+    "word": "wings",
+    "start": 2.653,
+    "end": 2.921
+   },
+   {
+    "word": "to",
+    "start": 2.932,
+    "end": 3.01
+   },
+   {
+    "word": "hunt",
+    "start": 3.021,
+    "end": 3.244
+   },
+   {
+    "word": "the",
+    "start": 3.255,
+    "end": 3.333
+   },
+   {
+    "word": "sky",
+    "start": 3.345,
+    "end": 3.791
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Now matched in the air, the evolving monster began overwhelming the winged steed.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_18.wav",
+  "dur": 3.888,
+  "words": [
+   {
+    "word": "Now",
+    "start": 0,
+    "end": 0.207
+   },
+   {
+    "word": "matched",
+    "start": 0.219,
+    "end": 0.553
+   },
+   {
+    "word": "in",
+    "start": 0.565,
+    "end": 0.609
+   },
+   {
+    "word": "the",
+    "start": 0.62,
+    "end": 0.676
+   },
+   {
+    "word": "air",
+    "start": 0.687,
+    "end": 0.977
+   },
+   {
+    "word": "the",
+    "start": 1.19,
+    "end": 1.268
+   },
+   {
+    "word": "evolving",
+    "start": 1.279,
+    "end": 1.681
+   },
+   {
+    "word": "monster",
+    "start": 1.692,
+    "end": 2.049
+   },
+   {
+    "word": "began",
+    "start": 2.06,
+    "end": 2.417
+   },
+   {
+    "word": "overwhelming",
+    "start": 2.428,
+    "end": 2.975
+   },
+   {
+    "word": "the",
+    "start": 2.986,
+    "end": 3.065
+   },
+   {
+    "word": "winged",
+    "start": 3.076,
+    "end": 3.321
+   },
+   {
+    "word": "steed",
+    "start": 3.332,
+    "end": 3.779
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Pegasus could never erase its regeneration, and exhaustion closed in.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_19.wav",
+  "dur": 3.744,
+  "words": [
+   {
+    "word": "Pegasus",
+    "start": 0,
+    "end": 0.431
+   },
+   {
+    "word": "could",
+    "start": 0.442,
+    "end": 0.598
+   },
+   {
+    "word": "never",
+    "start": 0.609,
+    "end": 0.866
+   },
+   {
+    "word": "erase",
+    "start": 0.877,
+    "end": 1.223
+   },
+   {
+    "word": "its",
+    "start": 1.234,
+    "end": 1.38
+   },
+   {
+    "word": "regeneration",
+    "start": 1.391,
+    "end": 2.161
+   },
+   {
+    "word": "and",
+    "start": 2.328,
+    "end": 2.451
+   },
+   {
+    "word": "exhaustion",
+    "start": 2.462,
+    "end": 2.987
+   },
+   {
+    "word": "closed",
+    "start": 2.998,
+    "end": 3.355
+   },
+   {
+    "word": "in",
+    "start": 3.366,
+    "end": 3.612
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Choosing its only chance, Pegasus burst free and rocketed straight toward Olympus.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_20.wav",
+  "dur": 4.248,
+  "words": [
+   {
+    "word": "Choosing",
+    "start": 0,
+    "end": 0.323
+   },
+   {
+    "word": "its",
+    "start": 0.334,
+    "end": 0.457
+   },
+   {
+    "word": "only",
+    "start": 0.468,
+    "end": 0.68
+   },
+   {
+    "word": "chance",
+    "start": 0.691,
+    "end": 1.171
+   },
+   {
+    "word": "Pegasus",
+    "start": 1.339,
+    "end": 1.796
+   },
+   {
+    "word": "burst",
+    "start": 1.807,
+    "end": 2.142
+   },
+   {
+    "word": "free",
+    "start": 2.153,
+    "end": 2.41
+   },
+   {
+    "word": "and",
+    "start": 2.421,
+    "end": 2.544
+   },
+   {
+    "word": "rocketed",
+    "start": 2.555,
+    "end": 2.957
+   },
+   {
+    "word": "straight",
+    "start": 2.968,
+    "end": 3.292
+   },
+   {
+    "word": "toward",
+    "start": 3.303,
+    "end": 3.549
+   },
+   {
+    "word": "Olympus",
+    "start": 3.56,
+    "end": 4.162
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Only Zeus can end you!",
+  "speaker": "pegasus",
+  "line_first": true,
+  "file": "u_21.wav",
+  "dur": 1.529,
+  "words": [
+   {
+    "word": "Only",
+    "start": 0,
+    "end": 0.228
+   },
+   {
+    "word": "Zeus",
+    "start": 0.24,
+    "end": 0.506
+   },
+   {
+    "word": "can",
+    "start": 0.518,
+    "end": 0.668
+   },
+   {
+    "word": "end",
+    "start": 0.68,
+    "end": 0.853
+   },
+   {
+    "word": "you",
+    "start": 0.865,
+    "end": 1.096
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Below, the kid escaped unseen as Olympus's sky began to thunder.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_22.wav",
+  "dur": 3.696,
+  "words": [
+   {
+    "word": "Below",
+    "start": 0,
+    "end": 0.357
+   },
+   {
+    "word": "the",
+    "start": 0.569,
+    "end": 0.67
+   },
+   {
+    "word": "kid",
+    "start": 0.681,
+    "end": 0.871
+   },
+   {
+    "word": "escaped",
+    "start": 0.882,
+    "end": 1.317
+   },
+   {
+    "word": "unseen",
+    "start": 1.328,
+    "end": 1.797
+   },
+   {
+    "word": "as",
+    "start": 1.808,
+    "end": 1.909
+   },
+   {
+    "word": "Olympus's",
+    "start": 1.92,
+    "end": 2.411
+   },
+   {
+    "word": "sky",
+    "start": 2.422,
+    "end": 2.735
+   },
+   {
+    "word": "began",
+    "start": 2.746,
+    "end": 3.081
+   },
+   {
+    "word": "to",
+    "start": 3.092,
+    "end": 3.159
+   },
+   {
+    "word": "thunder",
+    "start": 3.17,
+    "end": 3.639
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "...Go get him.",
+  "speaker": "kid",
+  "line_first": true,
+  "file": "u_23.wav",
+  "dur": 1.018,
+  "words": [
+   {
+    "word": "Go",
+    "start": 0,
+    "end": 0.19
+   },
+   {
+    "word": "get",
+    "start": 0.204,
+    "end": 0.466
+   },
+   {
+    "word": "him",
+    "start": 0.48,
+    "end": 0.887
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Alone in the ruins, the winged reptile glared straight at the throne of the gods.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_24.wav",
+  "dur": 4.08,
+  "words": [
+   {
+    "word": "Alone",
+    "start": 0,
+    "end": 0.312
+   },
+   {
+    "word": "in",
+    "start": 0.323,
+    "end": 0.39
+   },
+   {
+    "word": "the",
+    "start": 0.401,
+    "end": 0.468
+   },
+   {
+    "word": "ruins",
+    "start": 0.479,
+    "end": 0.959
+   },
+   {
+    "word": "the",
+    "start": 1.115,
+    "end": 1.238
+   },
+   {
+    "word": "winged",
+    "start": 1.249,
+    "end": 1.506
+   },
+   {
+    "word": "reptile",
+    "start": 1.517,
+    "end": 2.019
+   },
+   {
+    "word": "glared",
+    "start": 2.03,
+    "end": 2.354
+   },
+   {
+    "word": "straight",
+    "start": 2.365,
+    "end": 2.722
+   },
+   {
+    "word": "at",
+    "start": 2.734,
+    "end": 2.823
+   },
+   {
+    "word": "the",
+    "start": 2.834,
+    "end": 2.912
+   },
+   {
+    "word": "throne",
+    "start": 2.923,
+    "end": 3.225
+   },
+   {
+    "word": "of",
+    "start": 3.236,
+    "end": 3.303
+   },
+   {
+    "word": "the",
+    "start": 3.314,
+    "end": 3.392
+   },
+   {
+    "word": "gods",
+    "start": 3.403,
+    "end": 3.928
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Bring your god.",
+  "speaker": "scp682_whisper",
+  "line_first": true,
+  "file": "u_25.wav",
+  "dur": 1.306,
+  "words": [
+   {
+    "word": "Bring",
+    "start": 0,
+    "end": 0.214
+   },
+   {
+    "word": "your",
+    "start": 0.246,
+    "end": 0.471
+   },
+   {
+    "word": "god",
+    "start": 0.503,
+    "end": 1.016
+   }
+  ]
+ }
+]

@@ -1,0 +1,323 @@
+{
+ "duration": 86.29,
+ "sections": [
+  {
+   "section": 0,
+   "name": "hook",
+   "start": 0.0,
+   "end": 3.0
+  },
+  {
+   "section": 1,
+   "name": "split_roll",
+   "start": 3.0
+  },
+  {
+   "name": "intro_scp682",
+   "start": 4.6,
+   "end": 10.76
+  },
+  {
+   "name": "intro_zeus",
+   "start": 12.36,
+   "end": 20.26
+  },
+  {
+   "section": 2,
+   "name": "story",
+   "start": 21.76
+  },
+  {
+   "name": "fight",
+   "start": 31.71
+  },
+  {
+   "name": "absorb",
+   "start": 35.33
+  },
+  {
+   "name": "aegis",
+   "start": 45.06
+  },
+  {
+   "name": "overdrive",
+   "start": 53.38
+  },
+  {
+   "name": "climax",
+   "start": 57.98
+  },
+  {
+   "name": "vaporize",
+   "start": 63.91
+  },
+  {
+   "name": "aftermath",
+   "start": 69.33
+  },
+  {
+   "name": "cliffhanger",
+   "start": 78.59
+  },
+  {
+   "name": "whisper",
+   "start": 82.78
+  }
+ ],
+ "dialogue": [
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "I am SCP Six Eight Two.",
+   "start": 4.6,
+   "end": 6.58
+  },
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "Your winged horse fled to the clouds.",
+   "start": 6.8,
+   "end": 8.73
+  },
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "Now even a god will bleed.",
+   "start": 8.95,
+   "end": 10.76
+  },
+  {
+   "section": 1,
+   "speaker": "zeus",
+   "text": "I am Zeus, King of Olympus.",
+   "start": 12.36,
+   "end": 14.59
+  },
+  {
+   "section": 1,
+   "speaker": "zeus",
+   "text": "I shattered Typhon beneath a mountain.",
+   "start": 14.81,
+   "end": 17.1
+  },
+  {
+   "section": 1,
+   "speaker": "zeus",
+   "text": "Kneel, abomination, or turn to ash.",
+   "start": 17.32,
+   "end": 20.26
+  },
+  {
+   "section": 2,
+   "speaker": "scp682",
+   "text": "Delicious!",
+   "start": 39.96,
+   "end": 40.87
+  },
+  {
+   "section": 2,
+   "speaker": "zeus",
+   "text": "Be erased!",
+   "start": 62.22,
+   "end": 63.41
+  },
+  {
+   "section": 2,
+   "speaker": "zeus",
+   "text": "The sky is safe.",
+   "start": 73.43,
+   "end": 74.93
+  },
+  {
+   "section": 2,
+   "speaker": "zeus",
+   "text": "Nothing survives the Master Bolt.",
+   "start": 75.15,
+   "end": 77.34
+  },
+  {
+   "section": 2,
+   "speaker": "scp682_whisper",
+   "text": "Still...",
+   "start": 82.78,
+   "end": 83.76
+  },
+  {
+   "section": 2,
+   "speaker": "scp682_whisper",
+   "text": "alive.",
+   "start": 83.98,
+   "end": 84.99
+  }
+ ],
+ "sentences": [
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "I am SCP Six Eight Two.",
+   "start": 4.6,
+   "end": 6.58
+  },
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "Your winged horse fled to the clouds.",
+   "start": 6.8,
+   "end": 8.73
+  },
+  {
+   "section": 1,
+   "speaker": "scp682",
+   "text": "Now even a god will bleed.",
+   "start": 8.95,
+   "end": 10.76
+  },
+  {
+   "section": 1,
+   "speaker": "zeus",
+   "text": "I am Zeus, King of Olympus.",
+   "start": 12.36,
+   "end": 14.59
+  },
+  {
+   "section": 1,
+   "speaker": "zeus",
+   "text": "I shattered Typhon beneath a mountain.",
+   "start": 14.81,
+   "end": 17.1
+  },
+  {
+   "section": 1,
+   "speaker": "zeus",
+   "text": "Kneel, abomination, or turn to ash.",
+   "start": 17.32,
+   "end": 20.26
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Pegasus reached Olympus, and the sky over the burning city tore wide open.",
+   "start": 21.76,
+   "end": 25.77
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Zeus descended in golden fury, confronting the winged, armored SCP Six Eight Two.",
+   "start": 26.22,
+   "end": 31.11
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Zeus hurled a warning thunderbolt, expecting instant ash.",
+   "start": 31.71,
+   "end": 34.88
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Instead, the reptile's evolved armor drank the lightning and surged with stolen power.",
+   "start": 35.33,
+   "end": 39.61
+  },
+  {
+   "section": 2,
+   "speaker": "scp682",
+   "text": "Delicious!",
+   "start": 39.96,
+   "end": 40.87
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Supercharged, the monster slammed Zeus through the shattered street.",
+   "start": 41.32,
+   "end": 44.56
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Enraged, Zeus hurled twin thunderbolts, shattering the monster's guard.",
+   "start": 45.06,
+   "end": 48.92
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "The blast ripped off its bone wings and cracked the dark armor wide open.",
+   "start": 49.37,
+   "end": 52.88
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Then the King of Olympus dropped all restraint, calling the Cyclopes' Master Bolt.",
+   "start": 53.38,
+   "end": 57.48
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Desperate, SCP Six Eight Two fired everything it had into the sky.",
+   "start": 57.98,
+   "end": 61.87
+  },
+  {
+   "section": 2,
+   "speaker": "zeus",
+   "text": "Be erased!",
+   "start": 62.22,
+   "end": 63.41
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Pure divine plasma tore through its flesh, vaporizing the beast into glowing ash.",
+   "start": 63.91,
+   "end": 68.28
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Dawn broke over the silent crater, and Zeus ascended back to Olympus.",
+   "start": 69.33,
+   "end": 72.98
+  },
+  {
+   "section": 2,
+   "speaker": "zeus",
+   "text": "The sky is safe.",
+   "start": 73.43,
+   "end": 74.93
+  },
+  {
+   "section": 2,
+   "speaker": "zeus",
+   "text": "Nothing survives the Master Bolt.",
+   "start": 75.15,
+   "end": 77.34
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Yet deep inside a cracked fissure, one charred bone shard began to pulse.",
+   "start": 78.59,
+   "end": 82.48
+  },
+  {
+   "section": 2,
+   "speaker": "scp682_whisper",
+   "text": "Still...",
+   "start": 82.78,
+   "end": 83.76
+  },
+  {
+   "section": 2,
+   "speaker": "scp682_whisper",
+   "text": "alive.",
+   "start": 83.98,
+   "end": 84.99
+  }
+ ]
+}

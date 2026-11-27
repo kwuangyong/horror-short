@@ -2140,7 +2140,564 @@
   };
   PEGASUS.fade = PEGASUS.idle;
 
-  const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, fisherman: FISHERMAN, cerberus: CERB, bec: BEC, apep: APEP, thor: THOR, typhon: TYPHON, cthulhu: CTHULHU, scp682: SCP682, pegasus: PEGASUS };
-  const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, fisherman: buildFisherman, cerberus: buildCerberus, bec: buildBec, apep: buildApep, thor: buildThor, typhon: buildTyphon, cthulhu: buildCthulhu, scp682: buildScp682, pegasus: buildPegasus };
+  // ================================================================== ZEUS (Classical Greek God-King: ultra-muscular "lực điền" physique, chiseled bare chest & abs, golden-bronze Greek pauldron & battle belt/pteruges, storm-navy gold-trimmed cloak, thick radiant silver-white beard & windswept hair, golden laurel crown, blazing sky-gold eyes, Master Bolt & Aegis Shield, God-King Overdrive)
+  function buildZeus() {
+    const uid = ++_rigUid;
+    const rig = newRig();
+    const root = $('g'); rig.root = root; rig.mk = {};
+    const defs = $('defs', {}, root);
+    const mkRad = (id, stops) => { const g = $('radialGradient', { id: `${id}_${uid}` }, defs); stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a }, g)); return `url(#${id}_${uid})`; };
+    const mkLin = (id, stops, x1 = 0, y1 = 0, x2 = 1, y2 = 1) => { const g = $('linearGradient', { id: `${id}_${uid}`, x1, y1, x2, y2 }, defs); stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a === undefined ? 1 : a }, g)); return `url(#${id}_${uid})`; };
+
+    const gEye = mkRad('zsEye', [[0, '#FFFFFF', 1], [0.32, '#4CE8FF', 0.95], [0.68, '#FFD859', 0.58], [1, '#FFD859', 0]]);
+    const gBolt = mkRad('zsBolt', [[0, '#FFFFFF', 1], [0.28, '#FFF4B8', 0.92], [0.6, '#FFD859', 0.58], [0.85, '#4CE8FF', 0.32], [1, '#B366FF', 0]]);
+    const gAegis = mkRad('zsAeg', [[0, '#FFF8D0', 0.95], [0.42, '#FFD859', 0.62], [0.75, '#4CE8FF', 0.38], [1, '#4CE8FF', 0]]);
+    const gOverdrive = mkRad('zsOd', [[0, '#FFFCE0', 0.88], [0.35, '#FFD859', 0.52], [0.68, '#4CE8FF', 0.34], [1, '#B366FF', 0]]);
+    const gGold = mkLin('zsGold', [[0, '#FFF2B2', 1], [0.4, '#F2C14E', 1], [0.8, '#B8801E', 1], [1, '#7A4F0C', 1]], 0, 0, 1, 1);
+
+    const SKIN = '#DC9E72', SKIN_L = '#F3C096', SKIN_D = '#A86B43', SKIN_DD = '#7A482A';
+    const GOLD = '#F2C14E', GOLD_L = '#FFF2B2', GOLD_D = '#B57B1C', BRONZE = '#9E6C32', BRONZE_D = '#5D3B16';
+    const CLOAK = '#162447', CLOAK_L = '#263E75', CLOAK_D = '#0C142B';
+    const TUNIC = '#EAE4D4', TUNIC_D = '#B6AE9A', LEA = '#6E4022', LEA_D = '#3E2211';
+    const HAIR = '#E7EDF7', HAIR_L = '#FFFFFF', HAIR_D = '#9FB0CC', HAIR_DD = '#6D80A0';
+    const pathR = (p, d, fill, extra) => G.reg($('path', Object.assign({ d, fill }, extra || {}), p), fill);
+
+    const body = joint(root, 0, -234); rig.body = body; const B = body.c;
+
+    // ---- 1. GOD-KING OVERDRIVE BACK HALO (P.overdrive 0..1)
+    rig.odBack = $('g', { opacity: 0 }, B);
+    $('ellipse', { cx: 0, cy: -340, rx: 250, ry: 310, fill: gOverdrive }, rig.odBack);
+    rig.odRing1 = $('ellipse', { cx: 0, cy: -340, rx: 175, ry: 235, fill: 'none', stroke: '#FFD859', 'stroke-width': 6, 'stroke-dasharray': '44 20', opacity: 0.78 }, rig.odBack);
+    rig.odRing2 = $('ellipse', { cx: 0, cy: -340, rx: 215, ry: 275, fill: 'none', stroke: '#4CE8FF', 'stroke-width': 4.5, 'stroke-dasharray': '28 24', opacity: 0.65 }, rig.odBack);
+
+    // ---- 2. FLOWING DYNAMIC STORM-NAVY & GOLD-TRIMMED CLOAK
+    rig.cloak = $('path', { fill: CLOAK }, B); G.reg(rig.cloak, CLOAK);
+    rig.cloakFold = $('path', { fill: CLOAK_L, opacity: 0.72 }, B); G.reg(rig.cloakFold, CLOAK_L);
+    rig.cloakShade = $('path', { fill: CLOAK_D, opacity: 0.55 }, B); G.reg(rig.cloakShade, CLOAK_D);
+    rig.cloakTrim = $('path', { fill: 'none', stroke: GOLD, 'stroke-width': 9, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' }, B);
+
+    // ---- 3. MUSCULAR ARM BUILDER (broad deltoid, bulging bicep/tricep, vascular forearm + Greek bronze-gold bracer)
+    const mkArm = (sx, sy, isFront) => {
+      const sk = isFront ? SKIN : SKIN_D, skL = isFront ? SKIN_L : SKIN, skD = isFront ? SKIN_D : SKIN_DD;
+      const gld = isFront ? GOLD : BRONZE, gldL = isFront ? GOLD_L : GOLD, gldD = isFront ? BRONZE : BRONZE_D;
+      const up = joint(B, sx, sy);
+      // massive rounded deltoid cap
+      ell(up.c, sx, sy + 6, 40, 38, sk);
+      pathR(up.c, `M${sx - 34} ${sy - 4} C${sx - 20} ${sy - 32} ${sx + 20} ${sy - 32} ${sx + 34} ${sy - 4} C${sx + 16} ${sy - 16} ${sx - 16} ${sy - 16} ${sx - 34} ${sy - 4} Z`, skL, { opacity: 0.72 });
+      // bulging muscular upper arm (bicep + tricep silhouette)
+      pathR(up.c, `M${sx - 34} ${sy + 10} C${sx - 42} ${sy + 48} ${sx - 34} ${sy + 86} ${sx - 24} ${sy + 110} L${sx + 24} ${sy + 110} C${sx + 40} ${sy + 78} ${sx + 42} ${sy + 38} ${sx + 34} ${sy + 10} Z`, sk);
+      // bicep peak highlight & shadow separation
+      pathR(up.c, `M${sx + 8} ${sy + 26} C${sx + 34} ${sy + 44} ${sx + 34} ${sy + 80} ${sx + 14} ${sy + 98} C${sx + 20} ${sy + 74} ${sx + 18} ${sy + 44} ${sx + 8} ${sy + 26} Z`, skL, { opacity: 0.75 });
+      pathR(up.c, `M${sx - 32} ${sy + 22} C${sx - 36} ${sy + 54} ${sx - 30} ${sy + 84} ${sx - 22} ${sy + 106} L${sx - 8} ${sy + 106} C${sx - 16} ${sy + 78} ${sx - 18} ${sy + 48} ${sx - 16} ${sy + 22} Z`, skD, { opacity: 0.65 });
+      // golden Greek bicep armlet
+      poly(up.c, [[sx - 34, sy + 68], [sx + 34, sy + 68], [sx + 32, sy + 82], [sx - 32, sy + 82]], gld);
+      poly(up.c, [[sx - 33, sy + 68], [sx + 33, sy + 68], [sx + 33, sy + 73], [sx - 33, sy + 73]], gldL, { opacity: 0.85 });
+
+      const fo = joint(up.c, sx, sy + 106);
+      // thick muscular forearm
+      pathR(fo.c, `M${sx - 27} ${sy + 102} C${sx - 33} ${sy + 132} ${sx - 24} ${sy + 174} ${sx - 19} ${sy + 198} L${sx + 19} ${sy + 198} C${sx + 28} ${sy + 168} ${sx + 34} ${sy + 132} ${sx + 27} ${sy + 102} Z`, sk);
+      pathR(fo.c, `M${sx + 6} ${sy + 108} C${sx + 24} ${sy + 132} ${sx + 24} ${sy + 162} ${sx + 14} ${sy + 186} L${sx + 4} ${sy + 186} C${sx + 12} ${sy + 158} ${sx + 12} ${sy + 130} ${sx + 6} ${sy + 108} Z`, skL, { opacity: 0.65 });
+      // ornate bronze-gold Greek vambrace/bracer
+      poly(fo.c, [[sx - 25, sy + 136], [sx + 25, sy + 136], [sx + 21, sy + 196], [sx - 21, sy + 196]], gld);
+      poly(fo.c, [[sx - 25, sy + 136], [sx - 4, sy + 136], [sx - 6, sy + 196], [sx - 21, sy + 196]], gldD, { opacity: 0.65 });
+      poly(fo.c, [[sx + 4, sy + 138], [sx + 22, sy + 138], [sx + 18, sy + 194], [sx + 2, sy + 194]], gldL, { opacity: 0.55 });
+      $('path', { d: `M${sx - 22} ${sy + 148} L${sx + 22} ${sy + 148} M${sx - 20} ${sy + 184} L${sx + 20} ${sy + 184}`, stroke: gldD, 'stroke-width': 4 }, fo.c);
+      // powerful clenched fist
+      ell(fo.c, sx, sy + 208, 24, 24, sk);
+      pathR(fo.c, `M${sx - 18} ${sy + 204} L${sx + 20} ${sy + 204} L${sx + 22} ${sy + 224} L${sx - 16} ${sy + 224} Z`, sk);
+      for (const dx of [-10, 0, 10]) ell(fo.c, sx + dx, sy + 218, 6, 7, skL, { opacity: 0.72 });
+      $('line', { x1: sx - 16, y1: sy + 212, x2: sx + 18, y2: sy + 212, stroke: skD, 'stroke-width': 2.5 }, fo.c);
+      return { up, fo, sx, sy };
+    };
+
+    // ---- BACK ARM (aL) + AEGIS SHIELD
+    rig.aL = mkArm(-82, -406, false);
+    const ax = rig.aL.sx, ay = rig.aL.sy + 192;
+    const aegisJ = joint(rig.aL.fo.c, ax, ay); rig.aegisJ = aegisJ; const Ag = aegisJ.c;
+    // radiant divine sun-rim & electric sky-blue shockwave ring
+    rig.aegisHalo = $('circle', { cx: ax, cy: ay, r: 128, fill: gAegis, opacity: 0.55 }, Ag);
+    rig.aegisRing = $('circle', { cx: ax, cy: ay, r: 112, fill: 'none', stroke: '#4CE8FF', 'stroke-width': 9, opacity: 0 }, Ag);
+    rig.aegisRing2 = $('circle', { cx: ax, cy: ay, r: 136, fill: 'none', stroke: '#FFD859', 'stroke-width': 5, 'stroke-dasharray': '36 16', opacity: 0 }, Ag);
+    // ornate round golden-bronze divine hoplon Aegis shield
+    ell(Ag, ax, ay, 82, 86, BRONZE_D);
+    ell(Ag, ax, ay, 77, 81, gGold);
+    ell(Ag, ax, ay, 66, 70, BRONZE);
+    ell(Ag, ax, ay, 60, 64, '#24345C'); // deep Olympian storm-navy inlaid face
+    // 12 radiant golden sunburst rays across the Aegis face
+    for (let i = 0; i < 12; i++) {
+      const a0 = (i * 30) * rad, a1 = (i * 30 + 11) * rad;
+      poly(Ag, [
+        [ax + Math.cos(a0) * 24, ay + Math.sin(a0) * 26],
+        [ax + Math.cos(a0 + 0.09) * 58, ay + Math.sin(a0 + 0.09) * 61],
+        [ax + Math.cos(a1) * 24, ay + Math.sin(a1) * 26],
+      ], GOLD, { opacity: 0.9 });
+    }
+    // Greek meander/rim ring
+    $('ellipse', { cx: ax, cy: ay, rx: 69, ry: 73, fill: 'none', stroke: GOLD_L, 'stroke-width': 4.5, 'stroke-dasharray': '14 8' }, Ag);
+    // central sculpted golden sun-boss / Gorgoneion crest
+    ell(Ag, ax, ay, 27, 29, GOLD_D);
+    ell(Ag, ax, ay, 22, 24, GOLD);
+    ell(Ag, ax, ay, 13, 15, GOLD_L);
+    rig.aegisCore = ell(Ag, ax, ay, 10, 11, '#4CE8FF', { opacity: 0.75 });
+    // specular arc on upper-right rim
+    $('path', { d: `M${ax - 36} ${ay - 64} A72 76 0 0 1 ${ax + 64} ${ay - 30}`, fill: 'none', stroke: '#FFFFFF', 'stroke-width': 5, 'stroke-linecap': 'round', opacity: 0.65 }, Ag);
+
+    // ---- 4. STRONG MUSCULAR LEGS WITH BRONZE-GOLD GREAVES & SANDALS
+    const mkLeg = (hx, isFront) => {
+      const sk = isFront ? SKIN : SKIN_D, skL = isFront ? SKIN_L : SKIN, skD = isFront ? SKIN_D : SKIN_DD;
+      const gld = isFront ? GOLD : BRONZE, gldL = isFront ? GOLD_L : GOLD, gldD = isFront ? BRONZE : BRONZE_D;
+      const th = joint(B, hx, -228);
+      // thick muscular quad/thigh
+      pathR(th.c, `M${hx - 34} -232 C${hx - 38} -186 ${hx - 30} -144 ${hx - 23} -116 L${hx + 25} -116 C${hx + 36} -148 ${hx + 38} -190 ${hx + 32} -232 Z`, sk);
+      pathR(th.c, `M${hx + 4} -224 C${hx + 28} -196 ${hx + 30} -154 ${hx + 16} -122 L${hx + 4} -122 C${hx + 14} -156 ${hx + 14} -194 ${hx + 4} -224 Z`, skL, { opacity: 0.68 });
+      pathR(th.c, `M${hx - 32} -224 C${hx - 34} -184 ${hx - 28} -146 ${hx - 22} -118 L${hx - 8} -118 C${hx - 14} -150 ${hx - 16} -186 ${hx - 16} -224 Z`, skD, { opacity: 0.58 });
+      // sculpted knee cap
+      ell(th.c, hx + 4, -118, 22, 18, sk);
+
+      const sh = joint(th.c, hx, -118);
+      // muscular calf
+      pathR(sh.c, `M${hx - 24} -118 C${hx - 30} -86 ${hx - 24} -48 ${hx - 17} -20 L${hx + 19} -20 C${hx + 26} -50 ${hx + 28} -86 ${hx + 22} -118 Z`, sk);
+      // ornate bronze-gold Greek greave (knemis)
+      pathR(sh.c, `M${hx - 21} -114 C${hx - 2} -126 ${hx + 18} -122 ${hx + 24} -106 L${hx + 21} -24 L${hx - 19} -24 L${hx - 23} -92 Z`, gld);
+      pathR(sh.c, `M${hx - 21} -114 L${hx - 4} -118 L${hx - 5} -24 L${hx - 19} -24 Z`, gldD, { opacity: 0.65 });
+      pathR(sh.c, `M${hx + 6} -116 L${hx + 22} -106 L${hx + 19} -26 L${hx + 5} -26 Z`, gldL, { opacity: 0.58 });
+      $('line', { x1: hx + 6, y1: -116, x2: hx + 5, y2: -26, stroke: gldL, 'stroke-width': 3.5, opacity: 0.85 }, sh.c);
+      // golden knee lion/sun crest & winged ankle trim
+      ell(sh.c, hx + 4, -110, 14, 10, gldL);
+      poly(sh.c, [[hx - 22, -46], [hx - 38, -58], [hx - 20, -34]], gldL);
+      // strapped Greek sandal grounded at y = 0
+      pathR(sh.c, `M${hx - 22} -24 L${hx + 20} -24 L${hx + 52} -10 L${hx + 52} 0 L${hx - 24} 0 Z`, LEA_D);
+      poly(sh.c, [[hx - 24, -7], [hx + 52, -7], [hx + 52, 0], [hx - 24, 0]], gldD);
+      $('path', { d: `M${hx - 18} -22 L${hx + 18} -12 M${hx - 16} -12 L${hx + 34} -8`, stroke: gld, 'stroke-width': 4, 'stroke-linecap': 'round' }, sh.c);
+      return { th, sh };
+    };
+    rig.lB = mkLeg(-34, false);
+    rig.lF = mkLeg(34, true);
+
+    // ---- 5. ULTRA-MUSCULAR BARE TORSO + ANCIENT GREEK BATTLE TUNIC/PTERUGES + GOLDEN BELT + LEFT SHOULDER PAULDRON
+    // Pleated ivory-white Greek battle chiton skirt (split so muscular thighs remain visible)
+    pathR(B, 'M-70 -254 L70 -254 L88 -154 L40 -164 L12 -148 L-18 -164 L-52 -152 L-84 -162 Z', TUNIC);
+    for (const px of [-54, -28, 0, 28, 52]) {
+      poly(B, [[px - 6, -252], [px + 4, -252], [px + 10, -158], [px - 10, -158]], TUNIC_D, { opacity: 0.65 });
+    }
+    // golden Greek meander hem along skirt
+    $('path', { d: 'M-82 -166 L-52 -156 L-18 -168 L12 -152 L40 -168 L86 -158', fill: 'none', stroke: GOLD, 'stroke-width': 7, 'stroke-linejoin': 'round' }, B);
+    // layered leather & gold pteruges battle strips
+    for (let i = 0; i < 6; i++) {
+      const lx = -62 + i * 24;
+      poly(B, [[lx, -250], [lx + 18, -250], [lx + 16, -182], [lx + 2, -182]], i % 2 === 0 ? LEA : LEA_D);
+      poly(B, [[lx + 3, -192], [lx + 15, -192], [lx + 14, -183], [lx + 4, -183]], GOLD);
+    }
+
+    // MASSIVE CHISELED BARE MUSCULAR TORSO (broad V-taper shoulders, pecs, abs, lats)
+    pathR(B, 'M-96 -430 C-108 -416 -104 -374 -84 -334 L-66 -254 L66 -254 L86 -334 C106 -374 108 -416 94 -430 C64 -444 -64 -444 -96 -430 Z', SKIN);
+    // left/back side deep anatomical shadow
+    pathR(B, 'M-96 -430 C-108 -416 -104 -374 -84 -334 L-66 -254 L-16 -254 L-26 -344 L-44 -436 Z', SKIN_D, { opacity: 0.62 });
+    // heroic right-front sunlit rim highlight
+    pathR(B, 'M44 -434 C76 -432 98 -414 102 -384 C98 -354 84 -326 66 -268 L52 -268 C68 -324 78 -356 80 -386 C78 -410 64 -424 44 -434 Z', SKIN_L, { opacity: 0.72 });
+
+    // sculpted trapezius & thick muscular neck
+    pathR(B, 'M-58 -432 L-30 -468 L32 -468 L58 -432 Z', SKIN);
+    pathR(B, 'M-58 -432 L-30 -468 L-8 -468 L-24 -432 Z', SKIN_D, { opacity: 0.68 });
+    $('path', { d: 'M-24 -462 L-8 -432 M24 -462 L10 -432 M-64 -424 Q-18 -416 0 -422 Q24 -416 68 -424', fill: 'none', stroke: SKIN_DD, 'stroke-width': 3.5, 'stroke-linecap': 'round', opacity: 0.75 }, B);
+
+    // massive sculpted pectoral muscles (left & right pec slabs + sternum cleft)
+    pathR(B, 'M-82 -408 C-56 -420 -14 -418 -4 -404 L-4 -356 C-28 -346 -68 -354 -84 -376 Z', SKIN_D, { opacity: 0.48 });
+    pathR(B, 'M4 -404 C18 -418 60 -420 84 -406 L86 -374 C70 -352 28 -346 4 -356 Z', SKIN_L, { opacity: 0.55 });
+    $('path', { d: 'M-82 -374 Q-44 -346 -4 -356 M4 -356 Q46 -346 84 -374 M0 -412 L0 -354', fill: 'none', stroke: SKIN_DD, 'stroke-width': 4.5, 'stroke-linecap': 'round', opacity: 0.82 }, B);
+
+    // chiseled 6-pack abs & obliques
+    for (let r = 0; r < 3; r++) {
+      const ay0 = -346 + r * 28;
+      // left ab block
+      pathR(B, `M-36 ${ay0} Q-20 ${ay0 - 4} -4 ${ay0 + 2} L-4 ${ay0 + 21} Q-20 ${ay0 + 25} -34 ${ay0 + 19} Z`, SKIN_D, { opacity: 0.35 });
+      // right ab block (lit)
+      pathR(B, `M4 ${ay0 + 2} Q22 ${ay0 - 4} 38 ${ay0} L36 ${ay0 + 19} Q22 ${ay0 + 25} 4 ${ay0 + 21} Z`, SKIN_L, { opacity: 0.45 });
+      $('path', { d: `M-34 ${ay0 + 21} Q-18 ${ay0 + 26} -4 ${ay0 + 22} M4 ${ay0 + 22} Q20 ${ay0 + 26} 36 ${ay0 + 21}`, fill: 'none', stroke: SKIN_DD, 'stroke-width': 3.2, 'stroke-linecap': 'round', opacity: 0.72 }, B);
+    }
+    $('line', { x1: 0, y1: -348, x2: 0, y2: -268, stroke: SKIN_DD, 'stroke-width': 3.2, opacity: 0.72 }, B);
+    // serratus/oblique ribs
+    for (const yy of [-338, -318, -298]) {
+      $('path', { d: `M-68 ${yy} Q-54 ${yy + 8} -44 ${yy + 4} M68 ${yy} Q54 ${yy + 8} 44 ${yy + 4}`, fill: 'none', stroke: SKIN_DD, 'stroke-width': 2.8, 'stroke-linecap': 'round', opacity: 0.6 }, B);
+    }
+
+    // Diagonal leather-and-gold baldric strap from left pauldron across torso
+    poly(B, [[-76, -424], [-54, -432], [58, -262], [36, -254]], LEA);
+    $('line', { x1: -65, y1: -426, x2: 47, y2: -258, stroke: GOLD, 'stroke-width': 5, 'stroke-dasharray': '14 10' }, B);
+
+    // Ornate Ancient Greek Golden-Bronze Left Shoulder Pauldron + Cloak Clasp
+    pathR(B, 'M-118 -384 C-116 -436 -78 -454 -38 -436 C-46 -408 -68 -382 -118 -384 Z', gGold);
+    pathR(B, 'M-114 -390 C-108 -426 -78 -442 -48 -432 C-58 -412 -78 -394 -114 -390 Z', GOLD_L, { opacity: 0.65 });
+    pathR(B, 'M-124 -362 C-118 -384 -92 -394 -64 -384 L-70 -360 C-94 -366 -112 -364 -124 -362 Z', BRONZE);
+    ell(B, -62, -422, 14, 14, GOLD_D); ell(B, -62, -422, 9, 9, GOLD_L);
+    // cloak clasp on right collarbone
+    ell(B, 56, -422, 12, 12, GOLD_D); ell(B, 56, -422, 7, 7, GOLD_L);
+
+    // Golden-Bronze Ancient Greek Battle Waist-Belt
+    poly(B, [[-72, -280], [72, -280], [76, -242], [-76, -242]], BRONZE_D);
+    poly(B, [[-70, -276], [70, -276], [73, -246], [-73, -246]], gGold);
+    // Greek key / lightning relief across belt
+    $('path', { d: 'M-62 -261 L-48 -261 L-48 -254 L-36 -254 L-36 -268 L-24 -268 M24 -268 L36 -268 L36 -254 L48 -254 L48 -261 L62 -261', fill: 'none', stroke: BRONZE_D, 'stroke-width': 3.5, 'stroke-linejoin': 'round' }, B);
+    // central embossed golden eagle/sun buckle
+    poly(B, [[-22, -284], [22, -284], [26, -238], [0, -230], [-26, -238]], GOLD_D);
+    poly(B, [[-17, -279], [17, -279], [20, -242], [0, -236], [-20, -242]], GOLD_L);
+    ell(B, 0, -258, 9, 9, '#4CE8FF', { opacity: 0.8 });
+
+    // ---- 6. FRONT MUSCULAR ARM (aR) + MASTER BOLT (Cyclopes Divine Thunderbolt Spear)
+    rig.aR = mkArm(84, -406, true);
+    const bx = rig.aR.sx, by = rig.aR.sy + 208;
+    const boltJ = joint(rig.aR.fo.c, bx, by); rig.boltJ = boltJ; const Bt = boltJ.c;
+    // multi-layer divine glow envelope around Master Bolt
+    rig.boltHalo = $('ellipse', { cx: bx, cy: by + 35, rx: 78, ry: 250, fill: gBolt, opacity: 0.85 }, Bt);
+    // outer electric cyan lightning silhouette
+    pathR(Bt, `M${bx} ${by - 210} L${bx + 24} ${by - 122} L${bx + 4} ${by - 128} L${bx + 22} ${by - 40} L${bx - 22} ${by - 40} L${bx - 4} ${by - 110} L${bx - 24} ${by - 104} Z`, '#4CE8FF', { opacity: 0.72 });
+    pathR(Bt, `M${bx - 22} ${by + 36} L${bx + 22} ${by + 36} L${bx + 32} ${by + 118} L${bx + 8} ${by + 112} L${bx + 36} ${by + 196} L${bx + 6} ${by + 188} L${bx} ${by + 286} L${bx - 32} ${by + 178} L${bx - 8} ${by + 184} L${bx - 28} ${by + 104} L${bx - 6} ${by + 110} Z`, '#4CE8FF', { opacity: 0.72 });
+    // main jagged golden divine thunderbolt spear blades
+    pathR(Bt, `M${bx} ${by - 196} L${bx + 18} ${by - 118} L${bx + 2} ${by - 124} L${bx + 16} ${by - 36} L${bx - 16} ${by - 36} L${bx - 2} ${by - 106} L${bx - 18} ${by - 100} Z`, GOLD);
+    pathR(Bt, `M${bx - 17} ${by + 36} L${bx + 17} ${by + 36} L${bx + 25} ${by + 114} L${bx + 5} ${by + 108} L${bx + 28} ${by + 190} L${bx + 4} ${by + 184} L${bx} ${by + 272} L${bx - 24} ${by + 174} L${bx - 5} ${by + 180} L${bx - 22} ${by + 102} L${bx - 4} ${by + 108} Z`, GOLD);
+    // blazing pure white-gold inner core
+    pathR(Bt, `M${bx} ${by - 172} L${bx + 8} ${by - 114} L${bx - 2} ${by - 118} L${bx + 7} ${by - 36} L${bx - 7} ${by - 36} L${bx - 10} ${by - 102} Z`, '#FFFFFF', { opacity: 0.94 });
+    pathR(Bt, `M${bx - 7} ${by + 36} L${bx + 7} ${by + 36} L${bx + 12} ${by + 110} L${bx} ${by + 106} L${bx + 14} ${by + 186} L${bx} ${by + 252} L${bx - 11} ${by + 174} L${bx - 2} ${by + 178} L${bx - 10} ${by + 104} Z`, '#FFFFFF', { opacity: 0.95 });
+    // central celestial gold hilt + twin winged collars
+    poly(Bt, [[bx - 12, by - 36], [bx + 12, by - 36], [bx + 12, by + 36], [bx - 12, by + 36]], BRONZE_D);
+    poly(Bt, [[bx - 26, by - 42], [bx + 26, by - 42], [bx + 18, by - 26], [bx - 18, by - 26]], GOLD_L);
+    poly(Bt, [[bx - 28, by + 26], [bx + 28, by + 26], [bx + 20, by + 44], [bx - 20, by + 44]], GOLD_L);
+    // dynamic crackling cyan & gold arcs along Master Bolt
+    rig.boltArcs = [
+      $('polyline', { fill: 'none', stroke: '#4CE8FF', 'stroke-width': 5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, Bt),
+      $('polyline', { fill: 'none', stroke: '#FFD859', 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, Bt),
+      $('polyline', { fill: 'none', stroke: '#FFFFFF', 'stroke-width': 2.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, Bt),
+    ];
+
+    // ---- 7. NOBLE-FIERCE HEAD, THICK SILVER-WHITE BEARD, WINDSWEPT HAIR, GOLDEN LAUREL CROWN & BLAZING EYES
+    const hd = joint(B, 4, -456); rig.head = hd; const Hc = hd.c;
+    // back windswept silver-white hair mane (lifts up in Overdrive!)
+    const hairB = joint(Hc, 0, -514); rig.hairB = hairB;
+    pathR(hairB.c, 'M-48 -534 C-78 -518 -96 -474 -86 -424 C-66 -436 -54 -448 -46 -434 C-64 -412 -74 -394 -58 -378 C-34 -398 -16 -414 20 -424 C48 -428 66 -454 62 -492 C60 -528 32 -554 -8 -556 C-30 -556 -40 -544 -48 -534 Z', HAIR_D);
+    pathR(hairB.c, 'M-44 -530 C-68 -510 -80 -472 -70 -436 C-54 -448 -44 -456 -34 -444 C-46 -426 -50 -410 -38 -396 C-18 -414 6 -428 34 -438 C52 -454 54 -486 48 -514 C40 -540 16 -552 -12 -550 Z', HAIR);
+
+    // ear & sculpted classical Greek face
+    ell(Hc, -32, -486, 9, 14, SKIN_D);
+    pathR(Hc, 'M-30 -524 C-14 -542 26 -542 44 -522 C52 -504 52 -474 42 -454 C30 -436 -8 -434 -24 -452 C-36 -470 -38 -504 -30 -524 Z', SKIN);
+    pathR(Hc, 'M-30 -524 C-16 -538 2 -538 10 -534 L2 -444 C-10 -442 -20 -446 -24 -452 C-36 -470 -38 -504 -30 -524 Z', SKIN_D, { opacity: 0.45 });
+    // noble straight Greek nose & brow ridge shadow
+    poly(Hc, [[10, -502], [20, -502], [25, -478], [9, -476]], SKIN_D);
+    poly(Hc, [[13, -500], [18, -500], [22, -480], [14, -480]], SKIN_L, { opacity: 0.72 });
+
+    // THICK RADIANT SILVER-WHITE BEARD (voluminous Olympian curls)
+    const beard = joint(Hc, 10, -456); rig.beard = beard;
+    pathR(beard.c, 'M-34 -480 C-44 -454 -42 -414 -20 -384 C-4 -364 12 -354 24 -360 C44 -374 56 -406 56 -442 C56 -460 52 -474 46 -482 L26 -468 L-10 -468 Z', HAIR_D);
+    pathR(beard.c, 'M-28 -476 C-34 -452 -30 -418 -12 -390 C2 -372 14 -364 24 -370 C40 -384 50 -414 48 -446 C48 -462 44 -472 38 -478 L22 -466 L-6 -466 Z', HAIR);
+    // sculpted flowing silver-white beard locks
+    pathR(beard.c, 'M-18 -454 C-22 -426 -14 -398 -2 -376 C-2 -400 -4 -426 -4 -450 Z', HAIR_L, { opacity: 0.85 });
+    pathR(beard.c, 'M10 -450 C14 -422 14 -394 10 -366 C24 -388 28 -418 24 -448 Z', HAIR_L, { opacity: 0.9 });
+    pathR(beard.c, 'M30 -454 C36 -432 38 -408 32 -384 C44 -404 46 -430 42 -454 Z', HAIR_L, { opacity: 0.75 });
+    $('path', { d: 'M-12 -442 Q-6 -412 -14 -388 M16 -442 Q22 -408 14 -374 M34 -446 Q38 -420 30 -394', fill: 'none', stroke: HAIR_DD, 'stroke-width': 2.5, 'stroke-linecap': 'round', opacity: 0.55 }, beard.c);
+
+    // articulated mouth & teeth (tracks c.amp in talk)
+    rig.mouth = ell(Hc, 12, -460, 14, 3.5, '#3E1216');
+    rig.teeth = poly(Hc, [[-1, -464], [24, -464], [24, -458], [-1, -458]], '#FFFFFF');
+    // thick noble silver-white mustache
+    rig.mou = joint(Hc, 12, -468);
+    pathR(rig.mou.c, 'M-30 -470 C-14 -480 6 -482 14 -474 C22 -482 40 -480 54 -468 C42 -458 26 -460 14 -468 C2 -460 -16 -458 -30 -470 Z', HAIR_L);
+    pathR(rig.mou.c, 'M-26 -468 C-12 -474 4 -475 14 -470 C24 -475 38 -474 50 -467 C38 -463 24 -464 14 -469 C4 -464 -12 -463 -26 -468 Z', HAIR_D, { opacity: 0.35 });
+
+    // BLAZING ELECTRIC SKY-GOLD EYES
+    rig.eyes = [];
+    const mkEye = (cx, cy) => {
+      const gl = $('circle', { cx, cy, r: 26, fill: gEye, opacity: 0.72 }, Hc);
+      const e = joint(Hc, cx, cy);
+      ell(e.c, cx, cy, 10.5, 7.5, '#122240');
+      ell(e.c, cx + 1, cy, 8.5, 5.8, '#4CE8FF');
+      ell(e.c, cx + 1.5, cy, 5, 4.2, '#FFFCE0');
+      ell(e.c, cx - 1, cy - 2, 2.2, 1.8, '#FFFFFF');
+      rig.eyes.push({ gl, e });
+    };
+    mkEye(-6, -496); mkEye(28, -496);
+    // fierce sculpted silver-white brows
+    rig.browL = joint(Hc, -8, -505); poly(rig.browL.c, [[-26, -514], [6, -504], [5, -496], [-26, -504]], HAIR_L);
+    rig.browR = joint(Hc, 30, -505); poly(rig.browR.c, [[46, -514], [14, -504], [15, -496], [46, -504]], HAIR_L);
+
+    // WINDSWEPT SILVER-WHITE CROWN HAIR (lifts dramatically in Overdrive)
+    const hairF = joint(Hc, 6, -526); rig.hairF = hairF;
+    pathR(hairF.c, 'M-38 -518 C-46 -548 -24 -570 6 -568 C34 -566 56 -546 50 -518 C36 -534 18 -538 2 -532 C-14 -538 -28 -532 -38 -518 Z', HAIR);
+    // windswept flame-like silver locks cresting backward
+    pathR(hairF.c, 'M-38 -522 L-58 -552 L-28 -546 L-36 -578 L-4 -556 L10 -582 L26 -552 L48 -568 L44 -534 L54 -518 L28 -530 L4 -524 L-22 -530 Z', HAIR_L);
+    pathR(hairF.c, 'M-26 -546 L-12 -568 L2 -546 L16 -570 L28 -544 L10 -540 L-10 -542 Z', HAIR_D, { opacity: 0.42 });
+
+    // ICONIC GOLDEN LAUREL WREATH CROWN (wraps brow & temples)
+    $('path', { d: 'M-38 -512 Q6 -530 48 -512', fill: 'none', stroke: GOLD_D, 'stroke-width': 6, 'stroke-linecap': 'round' }, Hc);
+    $('path', { d: 'M-36 -513 Q6 -531 46 -513', fill: 'none', stroke: GOLD_L, 'stroke-width': 3, 'stroke-linecap': 'round' }, Hc);
+    for (const [lx, ly, ang] of [[-34, -514, -54], [-22, -520, -38], [-8, -524, -22], [8, -525, 0], [22, -523, 24], [35, -518, 42], [45, -512, 58]]) {
+      const lf = $('g', { transform: `translate(${lx} ${ly}) rotate(${ang})` }, Hc);
+      pathR(lf, 'M0 0 C-7 -8 -6 -20 0 -26 C6 -20 7 -8 0 0 Z', GOLD);
+      pathR(lf, 'M0 -2 C-3 -8 -2 -18 0 -24 C2 -18 3 -8 0 -2 Z', GOLD_L, { opacity: 0.85 });
+    }
+
+    // ---- 8. GOD-KING OVERDRIVE FRONT LIGHTNING CRACKLE (P.overdrive 0..1)
+    rig.odFront = $('g', { opacity: 0 }, B);
+    rig.odArcs = [
+      $('polyline', { fill: 'none', stroke: '#4CE8FF', 'stroke-width': 6.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, rig.odFront),
+      $('polyline', { fill: 'none', stroke: '#FFD859', 'stroke-width': 5.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, rig.odFront),
+      $('polyline', { fill: 'none', stroke: '#FFFFFF', 'stroke-width': 3, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, rig.odFront),
+      $('polyline', { fill: 'none', stroke: '#4CE8FF', 'stroke-width': 4.5, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, rig.odFront),
+      $('polyline', { fill: 'none', stroke: '#FFD859', 'stroke-width': 4, 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, rig.odFront),
+    ];
+
+    // ---- MARKERS
+    const mk = (n, p, x, y) => { rig.mk[n] = $('circle', { cx: x, cy: y, r: 1, fill: 'none' }, p); };
+    mk('eye', Hc, 14, -496);
+    mk('head', Hc, 8, -485);
+    mk('mouth', Hc, 12, -460);
+    mk('hand', rig.aR.fo.c, bx, by);
+    mk('bolt', Bt, bx, by + 235);
+    mk('aegis', Ag, ax, ay);
+    mk('body', B, 0, -320);
+    rig.dynHead = true;
+
+    rig.N = {
+      bodyY: 0, bodyRot: 0, sx: 1, sy: 1, shakeX: 0, shakeY: 0, lift: 0,
+      head: 0, brow: 0.25, mouth: 0, eye: 1, eyeGlow: 1.2,
+      beard: 0, hair: 0, cloak: 1, trail: 0,
+      lF: [8, 4], lB: [-8, -4], aL: [-16, 12], aR: [18, 28],
+      bolt: 1, boltGlow: 0.85, boltAng: 72,
+      aegis: 0, aegisGlow: 0, aegisAng: 0,
+      overdrive: 0,
+    };
+
+    const zig = (x0, y0, x1, y1, n, amp, sd) => {
+      const pts = [];
+      for (let i = 0; i <= n; i++) {
+        const s = i / n, nx = -(y1 - y0), ny = (x1 - x0), L = Math.hypot(nx, ny) || 1;
+        const o = (i === 0 || i === n) ? 0 : (hash(sd + i * 7.3) - 0.5) * 2 * amp;
+        pts.push(`${f2(x0 + (x1 - x0) * s + nx / L * o)},${f2(y0 + (y1 - y0) * s + ny / L * o)}`);
+      }
+      return pts.join(' ');
+    };
+
+    rig.apply = (P, t) => {
+      const od = clamp(P.overdrive);
+      body.set(P.bodyRot, P.sx, P.sy, P.shakeX, P.bodyY + P.shakeY - P.lift);
+      for (const [L, a] of [[rig.lF, P.lF], [rig.lB, P.lB]]) { L.th.set(-a[0]); L.sh.set(-(a[1] - a[0])); }
+      for (const [A, a] of [[rig.aL, P.aL], [rig.aR, P.aR]]) { A.up.set(-a[0]); A.fo.set(-(a[1] - a[0])); }
+
+      // Head, hair, beard (hair & beard lift upward & flare in Overdrive!)
+      hd.set(P.head + 0.8 * Math.sin(t * 1.4));
+      const odHairLift = od * 14, odWave = (1 + 2.2 * od) * Math.sin(t * (3.2 + 9 * od));
+      rig.hairB.set(P.hair - od * 14 + 2.2 * Math.sin(t * 2.1), 1 + 0.16 * od, 1 + 0.18 * od, -od * 6, -odHairLift);
+      rig.hairF.set(-od * 10 + 1.8 * odWave, 1 + 0.12 * od, 1 + 0.28 * od, 0, -od * 10);
+      beard.set(P.beard - od * 12 + 2.5 * Math.sin(t * 1.9 + 0.6), 1 + 0.08 * od, 1 - 0.06 * od + 0.03 * P.mouth, 0, -od * 6);
+
+      // Mouth & eyes
+      const mo = clamp(P.mouth, 0, 1.25);
+      rig.mouth.setAttribute('ry', f2(3 + mo * 13));
+      rig.mouth.setAttribute('cy', f2(-460 + mo * 5));
+      rig.teeth.setAttribute('opacity', mo > 0.22 ? 1 : 0);
+      rig.mou.set(0, 1, 1, 0, -mo * 1.6);
+
+      const eg = clamp(P.eyeGlow + od * 0.65, 0.2, 2.4);
+      const bl = P.eye * (1 - blink(t, 4.1));
+      rig.eyes.forEach((E) => {
+        E.e.set(0, 1, Math.max(0.1, bl));
+        E.gl.setAttribute('r', f2(14 * Math.min(eg, 1.75) * (1 + 0.08 * Math.sin(t * 16))));
+        E.gl.setAttribute('opacity', f2(clamp(0.32 + 0.24 * eg, 0, 0.78)));
+      });
+      rig.browL.set(P.brow * 7, 1, 1, 0, P.brow * 4);
+      rig.browR.set(-P.brow * 7, 1, 1, 0, P.brow * 4);
+
+      // Dynamic storm-navy cloak with golden border
+      const tr = P.trail + od * 48, cl = P.cloak + od * 1.6;
+      const lf = clamp(P.lift / 120, 0, 2.2) + od * 0.8;
+      const wf = (i) => cl * 9 * Math.sin(t * (3.4 + od * 4.5) + i * 1.45) - lf * (18 + i * 14);
+      const cp = [
+        [-42, -424], [-108, -412], [-148 - 0.35 * tr, -276],
+        [-192 - tr, -98 + wf(0)], [-142 - 0.85 * tr, -62 + wf(1)],
+        [-92 - 0.65 * tr, -88 + wf(2)], [-44 - 0.4 * tr, -56 + wf(3)],
+        [10 - 0.15 * tr, -84 + wf(4) * 0.6], [42, -264], [56, -422],
+      ];
+      rig.cloak.setAttribute('d', 'M' + cp.map((q) => f2(q[0]) + ' ' + f2(q[1])).join('L') + 'Z');
+      rig.cloakFold.setAttribute('d', 'M' + [cp[1], cp[2], cp[3], cp[4], [cp[4][0] + 34, cp[4][1] - 42], [cp[2][0] + 36, cp[2][1]]].map((q) => f2(q[0]) + ' ' + f2(q[1])).join('L') + 'Z');
+      rig.cloakShade.setAttribute('d', 'M' + [cp[0], cp[5], cp[6], cp[7], cp[8]].map((q) => f2(q[0]) + ' ' + f2(q[1])).join('L') + 'Z');
+      rig.cloakTrim.setAttribute('d', 'M' + [cp[2], cp[3], cp[4], cp[5], cp[6], cp[7]].map((q) => f2(q[0]) + ' ' + f2(q[1])).join('L'));
+
+      // Master Bolt visibility, glow & crackling electric arcs
+      const bt = clamp(P.bolt);
+      boltJ.g.setAttribute('display', bt > 0.02 ? 'inline' : 'none');
+      boltJ.g.setAttribute('opacity', f2(bt));
+      boltJ.set(P.boltAng);
+      const bg = clamp(P.boltGlow + od * 0.7, 0, 2.5);
+      rig.boltHalo.setAttribute('rx', f2(32 + 16 * bg + 4 * Math.sin(t * 28)));
+      rig.boltHalo.setAttribute('ry', f2(205 + 32 * bg));
+      rig.boltHalo.setAttribute('opacity', f2(clamp(0.22 + 0.24 * bg, 0, 0.72)));
+      const fr = Math.floor(t * 24);
+      if (bt > 0.02 && bg > 0.25) {
+        const ba = clamp((bg - 0.2) * 0.85);
+        rig.boltArcs[0].setAttribute('points', zig(bx - 18, by - 165, bx + 16, by + 245, 7, 28 + 12 * bg, fr * 5.3 + 1));
+        rig.boltArcs[1].setAttribute('points', zig(bx + 20, by - 140, bx - 14, by + 255, 7, 24 + 10 * bg, fr * 7.1 + 9));
+        rig.boltArcs[2].setAttribute('points', zig(bx, by - 180, bx, by + 268, 6, 16 + 8 * bg, fr * 11.3 + 17));
+        rig.boltArcs.forEach((el) => el.setAttribute('opacity', f2(ba)));
+      } else {
+        rig.boltArcs.forEach((el) => el.setAttribute('opacity', '0'));
+      }
+
+      // Aegis Shield visibility, sun-rim glow & sky-blue shockwave ring
+      const ag = clamp(P.aegis);
+      aegisJ.g.setAttribute('display', ag > 0.02 ? 'inline' : 'none');
+      aegisJ.g.setAttribute('opacity', f2(ag));
+      aegisJ.set(P.aegisAng);
+      const agg = clamp(P.aegisGlow + od * 0.35, 0, 1.8);
+      rig.aegisHalo.setAttribute('r', f2(96 + 44 * agg + 6 * Math.sin(t * 18)));
+      rig.aegisHalo.setAttribute('opacity', f2(clamp(0.2 + 0.52 * agg)));
+      rig.aegisCore.setAttribute('opacity', f2(clamp(0.45 + 0.45 * agg)));
+      const rOp = clamp((agg - 0.45) * 1.2);
+      rig.aegisRing.setAttribute('opacity', f2(rOp * (0.78 + 0.22 * Math.sin(t * 24))));
+      rig.aegisRing.setAttribute('r', f2(104 + 18 * agg + 8 * Math.sin(t * 16)));
+      rig.aegisRing2.setAttribute('opacity', f2(rOp * 0.85));
+      rig.aegisRing2.setAttribute('transform', `rotate(${f2(t * 90)} ${ax} ${ay})`);
+
+      // God-King Overdrive storm aura & crackling body arcs
+      rig.odBack.setAttribute('opacity', f2(od * (0.85 + 0.15 * Math.sin(t * 16))));
+      rig.odFront.setAttribute('opacity', f2(od));
+      if (od > 0.02) {
+        const osc = 0.88 + 0.18 * od + 0.04 * Math.sin(t * 22);
+        rig.odBack.setAttribute('transform', `translate(0 -340) scale(${f2(osc)}) translate(0 340)`);
+        rig.odRing1.setAttribute('transform', `rotate(${f2(t * 70)} 0 -340)`);
+        rig.odRing2.setAttribute('transform', `rotate(${f2(-t * 55)} 0 -340)`);
+        const segs = [
+          [-125, -520, 130, -450],
+          [118, -460, -110, -290],
+          [-95, -540, 88, -210],
+          [-145, -360, 145, -340],
+          [92, -550, -82, -160],
+        ];
+        rig.odArcs.forEach((el, i) => {
+          const s = segs[i];
+          el.setAttribute('points', zig(s[0], s[1], s[2], s[3], 6, 32 * od + 10, fr * 9.7 + i * 13));
+          el.setAttribute('opacity', f2(od * (0.65 + 0.35 * hash(fr * 3.1 + i * 5))));
+        });
+      }
+    };
+    return rig;
+  }
+
+  const ZEUS = {
+    idle: (c) => ({
+      bodyY: 3 * Math.sin(c.t * 2.0), sy: 1 + 0.008 * Math.sin(c.t * 2.0),
+      head: 1.5 * Math.sin(c.t * 1.3), brow: 0.35, eyeGlow: 1.25,
+      aL: [-18 + 3 * Math.sin(c.t * 1.4), 14], aR: [20 + 3 * Math.sin(c.t * 1.2), 30 + 3 * Math.sin(c.t * 1.6)],
+      lF: [8, 4], lB: [-8, -4],
+      bolt: 1, boltGlow: 0.9, boltAng: 72, aegis: 0, aegisGlow: 0, cloak: 1.2, beard: 2 * Math.sin(c.t * 1.5),
+    }),
+    'idle-card': (c) => ({
+      bodyRot: -4, head: 2, brow: 0.65, eyeGlow: 1.75,
+      aL: [54, 96], aR: [134, 152], lF: [14, 6], lB: [-14, -8],
+      bolt: 1, boltGlow: 1.45, boltAng: 16, aegis: 0, aegisGlow: 0, aegisAng: -12,
+      overdrive: 0.45, cloak: 2.0, trail: 36, beard: 4 * Math.sin(c.t * 2.2),
+    }),
+    descend: (c) => {
+      const fl = Math.sin(c.t * 3.8);
+      return {
+        lift: 140 + 18 * fl, bodyRot: -6 + 2 * fl, head: 10, brow: 0.65, eyeGlow: 1.85,
+        aL: [46, 86], aR: [142, 162], lF: [-14, -34], lB: [-26, -52],
+        bolt: 1, boltGlow: 1.5, boltAng: 18, aegis: 0, aegisGlow: 0, aegisAng: -8,
+        overdrive: 0.55, cloak: 2.8, trail: 48, hair: 10, beard: 8,
+      };
+    },
+    'land-hero': (c) => KO(c.u, [
+      [0, { lift: 170, bodyRot: -6, head: 8, aL: [62, 98], aR: [152, 168], lF: [-14, -32], lB: [-28, -54], bolt: 1, boltGlow: 1.4, boltAng: 16, aegis: 0, aegisGlow: 0, cloak: 3.0, trail: 30, overdrive: 0.6, eyeGlow: 1.9 }],
+      [0.44, { lift: 0, bodyY: 96, bodyRot: 12, head: 16, aL: [72, 110], aR: [44, 62], lF: [76, 8], lB: [-12, -88], bolt: 1, boltGlow: 1.7, boltAng: 58, aegis: 0, aegisGlow: 0, cloak: 2.4, trail: 64, overdrive: 0.75, shakeY: 7, eyeGlow: 2.1 }],
+      [0.72, { lift: 0, bodyY: 84, bodyRot: 8, head: 6, shakeY: 0, overdrive: 0.45 }],
+      [1, { lift: 0, bodyY: 0, bodyRot: 0, head: 0, aL: [-16, 12], aR: [20, 30], lF: [8, 4], lB: [-8, -4], bolt: 1, boltGlow: 1.0, boltAng: 72, aegis: 0, aegisGlow: 0, cloak: 1.2, trail: 0, overdrive: 0.15, eyeGlow: 1.35 }],
+    ], 'inOut'),
+    walk: (c) => {
+      const sp = c.p.speed || 1.0, f = 2 * Math.PI * sp * c.lt;
+      return {
+        bodyY: 4 * Math.abs(Math.sin(f)), bodyRot: 3, head: 2 * Math.sin(f), brow: 0.4, eyeGlow: 1.3,
+        lF: legPh(f, 4, 26, 26), lB: legPh(f + Math.PI, 4, 26, 26),
+        aL: [-14 - 16 * Math.sin(f), 14 - 12 * Math.sin(f)], aR: [20 + 12 * Math.sin(f), 30 + 12 * Math.sin(f)],
+        bolt: 1, boltGlow: 0.9, boltAng: 72, aegis: 0, aegisGlow: 0, cloak: 1.6, trail: 28, beard: 4 * Math.sin(f),
+      };
+    },
+    'aegis-block': (c) => {
+      const e = EASE.outCubic(clamp(c.lt / 0.16)), w = Math.sin(c.lt * 38) * (1 - 0.55 * clamp(c.lt / (c.dur || 1)));
+      return {
+        bodyY: 12 * e, bodyRot: -8 * e, head: 4 * e, brow: 0.95, mouth: 0.4 * e, eyeGlow: 1.85,
+        aL: [lerp(-16, 84, e), lerp(12, 104, e)], aR: [lerp(20, -34, e), lerp(30, 8, e)],
+        lF: [8 + 22 * e, 4 + 14 * e], lB: [-8 - 22 * e, -4 - 18 * e],
+        bolt: 1, boltGlow: 1.15, boltAng: 48, aegis: 0, aegisGlow: 0 * e + 0.2, aegisAng: -12 * e,
+        overdrive: 0.35 * e, cloak: 2.2, trail: -24 * e, shakeX: 3.5 * w * e,
+      };
+    },
+    'aegis-bash': (c) => KO(c.u, [
+      [0, { bodyRot: -14, head: -6, aL: [54, 108], aR: [-30, 8], lF: [16, 8], lB: [-20, -26], aegis: 0, aegisGlow: 0, aegisAng: -12, bolt: 1, boltGlow: 1.1, boltAng: 54, brow: 0.9, eyeGlow: 1.7 }],
+      [0.42, { bodyRot: 16, bodyY: -6, head: 8, mouth: 0.85, aL: [112, 118], aR: [-46, -18], lF: [36, 20], lB: [-32, -40], aegis: 0, aegisGlow: 0, aegisAng: -4, bolt: 1, boltGlow: 1.4, boltAng: 40, overdrive: 0.65, cloak: 2.6, trail: 76, shakeX: 7, eyeGlow: 2.2 }],
+      [1, { bodyRot: 4, head: 0, mouth: 0.15, aL: [82, 120], aR: [12, 24], lF: [16, 8], lB: [-14, -10], aegis: 0, aegisGlow: 0, bolt: 1, boltGlow: 1.0, boltAng: 64, overdrive: 0.25, trail: 18, eyeGlow: 1.5 }],
+    ], 'inOut'),
+    'bolt-throw': (c) => KO(c.u, [
+      [0, { bodyRot: -4, aL: [36, 74], aR: [36, 48], bolt: 1, boltGlow: 1.2, boltAng: 62, aegis: 0, aegisGlow: 0, brow: 0.8, eyeGlow: 1.5 }],
+      [0.32, { bodyRot: -18, head: -8, mouth: 0.55, aL: [84, 106], aR: [192, 212], lF: [24, 14], lB: [-26, -32], bolt: 1, boltGlow: 1.85, boltAng: -16, aegis: 0, aegisGlow: 0, overdrive: 0.55, cloak: 2.4, trail: -24, eyeGlow: 2.1 }],
+      [0.54, { bodyRot: 18, head: 8, mouth: 0.95, aL: [-28, -12], aR: [96, 94], lF: [38, 22], lB: [-30, -38], bolt: 1, boltGlow: 2.0, boltAng: 0, aegis: 0, aegisGlow: 0, overdrive: 0.7, cloak: 2.6, trail: 82, shakeX: 6, eyeGlow: 2.3 }],
+      [0.62, { bolt: 0, boltGlow: 0, overdrive: 0.35 }],
+      [1, { bodyRot: 6, head: 2, mouth: 0.15, aL: [-12, 14], aR: [76, 72], lF: [18, 10], lB: [-14, -10], bolt: 0, aegis: 0, aegisGlow: 0, overdrive: 0.1, trail: 12, eyeGlow: 1.4 }],
+    ], 'inOut'),
+    'master-bolt-charge': (c) => {
+      const e = env(c.lt, 0.28);
+      return {
+        lift: 32 * e + 8 * Math.sin(c.t * 6), bodyRot: -10 * e, head: -18 * e, brow: 1.0, mouth: 0.68 * e, eyeGlow: 1.5 + 1.1 * e,
+        aL: [lerp(20, 144, e), lerp(40, 166, e)], aR: [lerp(30, 168, e), lerp(40, 178, e)],
+        lF: [14 * e + 8, 6 * e + 4], lB: [-16 * e - 8, -14 * e - 4],
+        bolt: 1, boltGlow: 1.1 + 0.9 * e, boltAng: lerp(52, 4, e),
+        aegis: 0, aegisGlow: 0 + 0.65 * e, aegisAng: -20 * e,
+        overdrive: e, cloak: 2.8, trail: 54 * e, hair: 14 * e, beard: 12 * e,
+        shakeX: 3.5 * e * Math.sin(c.lt * 52),
+      };
+    },
+    'master-bolt-fire': (c) => {
+      const e = EASE.outCubic(clamp(c.lt / 0.14));
+      return {
+        lift: 20, bodyRot: 14 * e, head: 6 * e, brow: 1.0, mouth: 0.95 * e, eyeGlow: 2.5,
+        aL: [lerp(130, -34, e), lerp(150, -10, e)], aR: [lerp(155, 92, e), lerp(168, 92, e)],
+        lF: [36 * e + 8, 22 * e + 4], lB: [-34 * e - 8, -38 * e - 4],
+        bolt: 1, boltGlow: 2.0, boltAng: 0,
+        aegis: 0, aegisGlow: 0, aegisAng: 12,
+        overdrive: 1.0, cloak: 3.0, trail: 96 * e, hair: 16, beard: 14,
+        shakeX: 5.5 * Math.sin(c.lt * 64), shakeY: 2.5 * Math.cos(c.lt * 58),
+      };
+    },
+    stagger: (c) => {
+      const f = Math.sin(c.lt * 32) * Math.exp(-c.lt * 1.8);
+      return {
+        bodyY: 16, bodyRot: -16 + 7 * f, head: -14 + 8 * f, brow: 0.9, mouth: 0.72, eyeGlow: 0.85,
+        aL: [34 + 12 * f, 68], aR: [-24 - 10 * f, 12],
+        lF: [18, 12], lB: [-26, -32],
+        bolt: 1, boltGlow: 0.55, boltAng: 84, aegis: 0, aegisGlow: 0,
+        cloak: 1.8, trail: -36, shakeX: 7 * f, shakeY: 3.5 * Math.cos(c.lt * 42),
+      };
+    },
+    hover: (c) => {
+      const fl = Math.sin(c.t * 3.4);
+      return {
+        lift: 115 + 20 * fl, bodyRot: -4 + 2.5 * fl, head: 4, brow: 0.45, eyeGlow: 1.65,
+        aL: [34, 72], aR: [128, 148], lF: [-10, -26], lB: [-22, -44],
+        bolt: 1, boltGlow: 1.35, boltAng: 24, aegis: 0, aegisGlow: 0,
+        overdrive: 0.35, cloak: 2.4, trail: 36, hair: 6, beard: 5,
+      };
+    },
+    talk: (c) => {
+      const a = c.amp || 0;
+      return {
+        bodyY: 2 * Math.sin(c.t * 2), head: 2 * Math.sin(c.t * 1.4) - 3 * a,
+        mouth: 0.08 + 0.82 * a, brow: 0.35 + 0.45 * a, eyeGlow: 1.25 + 0.55 * a,
+        aL: [-14, 16 + 8 * a], aR: [22 + 6 * a, 32 + 8 * a],
+        lF: [8, 4], lB: [-8, -4],
+        bolt: 1, boltGlow: 0.95 + 0.4 * a, boltAng: 70, aegis: 0, aegisGlow: 0 + 0.25 * a,
+        cloak: 1.3, beard: 3 * a + 2 * Math.sin(c.t * 1.5), overdrive: c.p.overdrive || 0,
+      };
+    },
+  };
+  ZEUS.fade = ZEUS.idle;
+
+  const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, fisherman: FISHERMAN, cerberus: CERB, bec: BEC, apep: APEP, thor: THOR, typhon: TYPHON, cthulhu: CTHULHU, scp682: SCP682, pegasus: PEGASUS, zeus: ZEUS };
+  const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, fisherman: buildFisherman, cerberus: buildCerberus, bec: buildBec, apep: buildApep, thor: buildThor, typhon: buildTyphon, cthulhu: buildCthulhu, scp682: buildScp682, pegasus: buildPegasus, zeus: buildZeus };
   Object.assign(G, { ACTIONS, RIGS });
 })(window);

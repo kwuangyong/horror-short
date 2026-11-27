@@ -1,0 +1,235 @@
+{
+  "fps": 30,
+  "duration": 4.2,
+  "domains": {
+    "olympus-storm": {
+      "sky": [
+        "#091024",
+        "#1A2D54"
+      ],
+      "glow": "#FFD859",
+      "floor": [
+        "#141D36",
+        "#070A16"
+      ],
+      "motif": "forest",
+      "motes": "#4CE8FF",
+      "horizon": 1020
+    }
+  },
+  "scenes": [
+    {
+      "t0": 0,
+      "s": "domain-olympus-storm"
+    }
+  ],
+  "shots": [
+    {
+      "t": 0,
+      "type": "wide",
+      "cx": 540,
+      "cy": 880,
+      "zoom": 1
+    },
+    {
+      "t": 1,
+      "type": "wide",
+      "cx": 540,
+      "cy": 960,
+      "zoom": 1.06
+    },
+    {
+      "t": 2,
+      "type": "wide",
+      "cx": 540,
+      "cy": 920,
+      "zoom": 0.96
+    },
+    {
+      "t": 3,
+      "type": "wide",
+      "cx": 540,
+      "cy": 940,
+      "zoom": 0.98
+    }
+  ],
+  "actors": {
+    "zeus": {
+      "kind": "zeus",
+      "x": 540,
+      "y": 1260,
+      "scale": 1.15,
+      "flip": 1,
+      "vis": [
+        [
+          0,
+          4.2
+        ]
+      ],
+      "rim": "#FFD859",
+      "rimPx": 5,
+      "aura": {
+        "colors": [
+          "#B366FF",
+          "#4CE8FF",
+          "#FFD859",
+          "#FFFCE0"
+        ],
+        "r": 270,
+        "h": 310,
+        "on": 0
+      }
+    }
+  },
+  "cues": [
+    {
+      "actor": "zeus",
+      "t0": 0,
+      "t1": 1,
+      "action": "descend",
+      "params": {
+        "x": [
+          540,
+          540
+        ],
+        "y": [
+          1260,
+          1260
+        ],
+        "scale": [
+          1.12,
+          1.12
+        ],
+        "aura": [
+          0.75,
+          0.75
+        ]
+      }
+    },
+    {
+      "actor": "zeus",
+      "t0": 1,
+      "t1": 2,
+      "action": "aegis-block",
+      "params": {
+        "x": [
+          500,
+          500
+        ],
+        "y": [
+          1280,
+          1280
+        ],
+        "scale": [
+          1.18,
+          1.18
+        ],
+        "aura": [
+          0.85,
+          0.85
+        ]
+      }
+    },
+    {
+      "actor": "zeus",
+      "t0": 2,
+      "t1": 3,
+      "action": "master-bolt-charge",
+      "params": {
+        "x": [
+          540,
+          540
+        ],
+        "y": [
+          1280,
+          1280
+        ],
+        "scale": [
+          1.12,
+          1.12
+        ],
+        "aura": [
+          1.2,
+          1.2
+        ]
+      }
+    },
+    {
+      "actor": "zeus",
+      "t0": 3,
+      "t1": 4.2,
+      "action": "master-bolt-fire",
+      "params": {
+        "x": [
+          470,
+          470
+        ],
+        "y": [
+          1280,
+          1280
+        ],
+        "scale": [
+          1.14,
+          1.14
+        ],
+        "aura": [
+          1.35,
+          1.35
+        ]
+      }
+    }
+  ],
+  "fx": [
+    {
+      "type": "lightning",
+      "t0": 2.1,
+      "dur": 0.9,
+      "x": 650,
+      "y": 40,
+      "x2": 665,
+      "y2": 340,
+      "color": "#FFD859",
+      "color2": "#4CE8FF",
+      "w": 22,
+      "branches": 5
+    }
+  ],
+  "text": [
+    {
+      "t0": 0,
+      "t1": 0.99,
+      "x": 540,
+      "y": 180,
+      "text": "ZEUS · DESCEND",
+      "size": 50,
+      "color": "#FFD859"
+    },
+    {
+      "t0": 1,
+      "t1": 1.99,
+      "x": 540,
+      "y": 180,
+      "text": "ZEUS · AEGIS-BLOCK",
+      "size": 50,
+      "color": "#4CE8FF"
+    },
+    {
+      "t0": 2,
+      "t1": 2.99,
+      "x": 540,
+      "y": 180,
+      "text": "ZEUS · MASTER-BOLT-CHARGE",
+      "size": 44,
+      "color": "#FFF4B8"
+    },
+    {
+      "t0": 3,
+      "t1": 4.19,
+      "x": 540,
+      "y": 180,
+      "text": "ZEUS · MASTER-BOLT-FIRE",
+      "size": 46,
+      "color": "#FFD859"
+    }
+  ]
+}

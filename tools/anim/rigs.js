@@ -2707,185 +2707,507 @@
   };
 
   function buildScp096() {
+    const uid = ++_rigUid;
+    const rig = newRig();
     const g = $('g');
-    const sh = $('ellipse', { cx: 0, cy: 4, rx: 112, ry: 22, fill: 'rgba(0,0,0,0.52)' }, g);
+    const defs = $('defs', {}, g);
+    const mkRad = (id, stops, cx = 0.5, cy = 0.5, r = 0.5) => {
+      const gr = $('radialGradient', { id: `${id}_${uid}`, cx, cy, r }, defs);
+      stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a === undefined ? 1 : a }, gr));
+      return `url(#${id}_${uid})`;
+    };
+    const mkLin = (id, stops, x1 = 0, y1 = 0, x2 = 0, y2 = 1) => {
+      const gr = $('linearGradient', { id: `${id}_${uid}`, x1, y1, x2, y2 }, defs);
+      stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a === undefined ? 1 : a }, gr));
+      return `url(#${id}_${uid})`;
+    };
+
+    const gBodyShade = mkLin('s096Body', [[0, '#FFFFFF', 0.24], [0.42, '#8F887D', 0.14], [1, '#3B3530', 0.44]], 0, 0, 1, 0.3);
+    const gSkull = mkRad('s096Skull', [[0, '#FFFFFF', 0.46], [0.55, '#E3DFD6', 0.1], [1, '#59534B', 0.56]], 0.62, 0.3, 0.68);
+    const gEyeFlare = mkRad('s096Eye', [[0, '#FFFFFF', 1], [0.38, '#FF3848', 0.86], [0.76, '#8F0510', 0.38], [1, '#000000', 0]]);
+    const gBloodDrip = mkLin('s096Blood', [[0, '#59050C', 0.94], [0.55, '#B80D1B', 0.92], [1, '#FF2E40', 0.96]], 0, 0, 0, 1);
+    const gStone = mkLin('s096Stone', [[0, '#AEB6BC', 0.36], [0.55, '#6E767C', 0.14], [1, '#252B30', 0.56]], 0, 0, 1, 1);
+    const gCrackGlow = mkRad('s096Crack', [[0, '#FFFFFF', 0.96], [0.38, '#FF2438', 0.86], [0.78, '#8F0612', 0.4], [1, '#1A0204', 0]]);
+
+    const SKIN_L = '#F5F2EB', SKIN = '#E3DFD6', SKIN_M = '#BFB9AC', SKIN_D = '#8F887D', SKIN_DD = '#59534B';
+    const BONE = '#FAF7EE', BONE_D = '#D8D1BE';
+    const GORE_L = '#FF3648', GORE = '#B80D1B', GORE_D = '#59050C';
+    const STONE_L = '#9CA4AA', STONE = '#6E767C', STONE_D = '#40474D';
+    const pathR = (p, d, fill, extra) => G.reg($('path', Object.assign({ d, fill }, extra || {}), p), fill);
+
+    const sh = $('ellipse', { cx: 0, cy: 4, rx: 118, ry: 22, fill: 'rgba(0,0,0,0.52)' }, g);
     const root = $('g', {}, g);
 
-    const SKIN = '#e6e3dc', SKIN_D = '#c7c2b8', SKIN_SH = '#9e998e', RIB = '#b8b2a6';
-    const BLOOD = '#b8101c', BLOOD_D = '#6e0810', BONE = '#faf7ef';
-    const STONE = '#6e757a', STONE_D = '#4a5156', STONE_L = '#929aa0';
+    // Z-order container: armB (back) -> legB -> legF -> torso + neck/head + armF (front)
+    const bodyBack = joint(root, 0, -258);
+    const legLayer = $('g', {}, root);
+    const body = joint(root, 0, -258);
+    const B = body.c;
 
-    const makeLeg = (parent, dark) => {
-      const col = dark ? SKIN_D : SKIN, col2 = dark ? SKIN_SH : SKIN_D;
-      const hip = $('g', {}, parent);
-      $('polygon', { points: '-14,-8 14,-8 11,134 -10,134', fill: col }, hip);
-      $('polygon', { points: '-12,0 10,0 8,132 -8,132', fill: STONE_D, class: 's096-stone', opacity: 0 }, hip);
-      const knee = $('g', {}, hip); tr(knee, 0, 132);
-      $('ellipse', { cx: 0, cy: 0, rx: 11, ry: 12, fill: col2 }, knee);
-      $('polygon', { points: '-10,0 10,0 8,136 -8,136', fill: col2 }, knee);
-      $('polygon', { points: '-9,4 9,4 7,134 -7,134', fill: STONE, class: 's096-stone', opacity: 0 }, knee);
-      $('polygon', { points: '-12,130 28,136 24,148 -14,144', fill: col }, knee);
+    // ---- GAUNT KNOBBY LEGS (emaciated bowed femur, protruding patella, skeletal foot at y=0)
+    const makeLeg = (parent, sx, sy, dark) => {
+      const cBase = dark ? SKIN_M : SKIN;
+      const cShd = dark ? SKIN_D : SKIN_M;
+      const cHi = dark ? SKIN : SKIN_L;
+      const hip = joint(parent, sx, sy);
+      const hc = hip.c;
+      const ky = sy + 124;
+      const footY = 0;
+
+      // Emaciated bowed thigh
+      const thD = `M${sx - 12} ${sy - 6} C${sx - 15} ${sy + 32} ${sx - 13} ${sy + 82} ${sx - 9} ${ky - 6} `
+        + `C${sx - 11} ${ky + 4} ${sx + 10} ${ky + 6} ${sx + 10} ${ky - 5} `
+        + `C${sx + 9} ${sy + 76} ${sx + 13} ${sy + 32} ${sx + 12} ${sy - 6} Z`;
+      pathR(hc, thD, cBase);
+      // Hollow muscle trough + pale femur rim
+      pathR(hc, `M${sx - 5} ${sy + 10} C${sx - 7} ${sy + 48} ${sx - 6} ${sy + 86} ${sx - 3} ${ky - 12} L${sx + 2} ${ky - 12} C${sx} ${sy + 84} ${sx + 1} ${sy + 46} ${sx + 1} ${sy + 10} Z`, SKIN_D, { opacity: dark ? 0.55 : 0.42 });
+      pathR(hc, `M${sx + 5} ${sy + 6} C${sx + 8} ${sy + 44} ${sx + 6} ${sy + 84} ${sx + 5} ${ky - 10} L${sx + 9} ${ky - 10} C${sx + 10} ${sy + 84} ${sx + 12} ${sy + 44} ${sx + 10} ${sy + 6} Z`, cHi, { opacity: 0.65 });
+      $('path', { d: thD, fill: gBodyShade, opacity: dark ? 0.45 : 0.3 }, hc);
+      // Stone thigh shell
+      const thSt = $('g', { class: 's096-stone', opacity: 0 }, hc);
+      $('path', { d: thD, fill: dark ? STONE_D : STONE }, thSt);
+      $('path', { d: thD, fill: gStone, opacity: 0.7 }, thSt);
+      $('path', { d: `M${sx - 6} ${sy + 26} L${sx + 4} ${sy + 54} L${sx - 3} ${sy + 88}`, stroke: '#2A3035', 'stroke-width': 2.2, fill: 'none' }, thSt);
+
+      // Knobby protruding knee + bowed tibia shin + elongated skeletal foot
+      const knee = joint(hc, sx, ky);
+      const kc = knee.c;
+      // Protruding twin-lobed patella condyle
+      pathR(kc, `M${sx - 11} ${ky - 8} C${sx - 14} ${ky + 2} ${sx - 10} ${ky + 14} ${sx} ${ky + 14} C${sx + 13} ${ky + 13} ${sx + 15} ${ky + 1} ${sx + 11} ${ky - 9} C${sx + 4} ${ky - 14} ${sx - 6} ${ky - 14} ${sx - 11} ${ky - 8} Z`, cBase);
+      pathR(kc, `M${sx + 1} ${ky - 6} C${sx + 8} ${ky - 4} ${sx + 10} ${ky + 4} ${sx + 4} ${ky + 9} C${sx + 1} ${ky + 5} ${sx} ${ky - 1} ${sx + 1} ${ky - 6} Z`, cHi, { opacity: 0.85 });
+      pathR(kc, `M${sx - 8} ${ky + 2} C${sx - 4} ${ky + 9} ${sx + 4} ${ky + 10} ${sx + 8} ${ky + 6} C${sx + 2} ${ky + 13} ${sx - 6} ${ky + 12} ${sx - 8} ${ky + 2} Z`, SKIN_D, { opacity: 0.6 });
+
+      // Bowed skeletal shin
+      const shD = `M${sx - 8} ${ky + 6} C${sx - 11} ${ky + 44} ${sx - 9} ${ky + 86} ${sx - 6} ${footY - 12} `
+        + `L${sx + 6} ${footY - 12} C${sx + 7} ${ky + 84} ${sx + 10} ${ky + 44} ${sx + 8} ${ky + 6} Z`;
+      pathR(kc, shD, cShd);
+      // Sharp pale shin-bone ridge
+      pathR(kc, `M${sx + 2} ${ky + 10} C${sx + 5} ${ky + 46} ${sx + 4} ${ky + 84} ${sx + 3} ${footY - 14} L${sx + 6} ${footY - 14} C${sx + 7} ${ky + 84} ${sx + 8} ${ky + 46} ${sx + 6} ${ky + 10} Z`, cHi, { opacity: 0.78 });
+      // Knobby ankle malleolus
+      ell(kc, sx - 1, footY - 11, 7.5, 6.5, cBase);
+      // Long gaunt clawed foot grounded at y = 0
+      const ftD = `M${sx - 11} ${footY - 11} C${sx - 14} ${footY - 3} ${sx - 11} ${footY} ${sx - 4} ${footY} `
+        + `L${sx + 33} ${footY} C${sx + 35} ${footY - 4} ${sx + 28} ${footY - 9} ${sx + 18} ${footY - 10} `
+        + `C${sx + 10} ${footY - 11} ${sx + 6} ${footY - 15} ${sx + 3} ${footY - 15} L${sx - 8} ${footY - 14} Z`;
+      pathR(kc, ftD, cBase);
+      pathR(kc, `M${sx + 4} ${footY - 8} L${sx + 26} ${footY - 3} L${sx + 24} ${footY - 1} L${sx + 2} ${footY - 5} Z`, SKIN_D, { opacity: 0.55 });
+      $('path', { d: shD, fill: gBodyShade, opacity: 0.35 }, kc);
+
+      // Stone shin + foot shell
+      const shSt = $('g', { class: 's096-stone', opacity: 0 }, kc);
+      $('path', { d: `M${sx - 12} ${ky - 9} C${sx - 15} ${ky + 2} ${sx - 10} ${ky + 15} ${sx} ${ky + 15} C${sx + 14} ${ky + 14} ${sx + 16} ${ky + 1} ${sx + 11} ${ky - 9} Z`, fill: STONE_L }, shSt);
+      $('path', { d: shD, fill: dark ? STONE_D : STONE }, shSt);
+      $('path', { d: ftD, fill: STONE_D }, shSt);
+      $('path', { d: shD, fill: gStone, opacity: 0.7 }, shSt);
+      $('path', { d: `M${sx + 4} ${ky + 24} L${sx - 4} ${ky + 64} L${sx + 3} ${ky + 98}`, stroke: '#2A3035', 'stroke-width': 2, fill: 'none' }, shSt);
+
       return { hip, knee };
     };
 
-    const makeArm = (parent, dark) => {
-      const col = dark ? SKIN_D : SKIN, col2 = dark ? SKIN_SH : SKIN_D;
-      const shd = $('g', {}, parent);
-      $('polygon', { points: '-12,-6 12,-6 9,158 -9,158', fill: col }, shd);
-      $('polygon', { points: '-10,0 10,0 8,156 -8,156', fill: STONE_D, class: 's096-stone', opacity: 0 }, shd);
-      const elb = $('g', {}, shd); tr(elb, 0, 156);
-      $('ellipse', { cx: 0, cy: 0, rx: 9, ry: 10, fill: col2 }, elb);
-      $('polygon', { points: '-9,0 9,0 8,162 -7,162', fill: col2 }, elb);
-      $('polygon', { points: '-8,4 8,4 7,160 -6,160', fill: STONE, class: 's096-stone', opacity: 0 }, elb);
-      // Elongated gaunt hand + bloody claws
-      const hand = $('g', { transform: 'translate(0,162)' }, elb);
-      $('polygon', { points: '-11,0 13,0 16,32 -10,30', fill: col }, hand);
-      $('polygon', { points: '-10,0 12,0 15,30 -9,28', fill: STONE_L, class: 's096-stone', opacity: 0 }, hand);
-      for (const dx of [-10, -3, 4, 11]) {
-        $('polygon', { points: `${dx - 2},26 ${dx + 2},26 ${dx + 6},64 ${dx - 1},58`, fill: dark ? SKIN_D : SKIN }, hand);
-        $('polygon', { points: `${dx - 1},44 ${dx + 3},44 ${dx + 6},64 ${dx - 1},58`, fill: BLOOD, class: 's096-blood', opacity: 0.7 }, hand);
+    // ---- IMPOSSIBLY LONG ARMS (~430px reach past knees) & OVERSIZED BLOODY HOOKED HANDS
+    const makeArm = (parent, sx, sy, dark) => {
+      const cBase = dark ? SKIN_M : SKIN;
+      const cShd = dark ? SKIN_D : SKIN_M;
+      const cHi = dark ? SKIN : SKIN_L;
+      const shd = joint(parent, sx, sy);
+      const sc = shd.c;
+      const ey = sy + 168;
+      const wy = ey + 166;
+
+      // Sharp protruding acromion shoulder knob
+      pathR(sc, `M${sx - 13} ${sy - 11} C${sx - 15} ${sy + 4} ${sx - 9} ${sy + 14} ${sx + 2} ${sy + 13} C${sx + 14} ${sy + 11} ${sx + 15} ${sy - 4} ${sx + 8} ${sy - 13} C${sx + 1} ${sy - 17} ${sx - 9} ${sy - 16} ${sx - 13} ${sy - 11} Z`, cBase);
+      pathR(sc, `M${sx - 6} ${sy - 11} C${sx + 2} ${sy - 13} ${sx + 9} ${sy - 7} ${sx + 8} ${sy + 1} C${sx + 4} ${sy - 5} ${sx - 2} ${sy - 8} ${sx - 6} ${sy - 11} Z`, cHi, { opacity: 0.8 });
+
+      // Hyper-thin emaciated humerus
+      const upD = `M${sx - 9} ${sy + 2} C${sx - 11} ${sy + 54} ${sx - 8} ${sy + 112} ${sx - 6.5} ${ey - 4} `
+        + `L${sx + 6.5} ${ey - 4} C${sx + 8} ${sy + 112} ${sx + 11} ${sy + 54} ${sx + 9} ${sy + 2} Z`;
+      pathR(sc, upD, cBase);
+      pathR(sc, `M${sx - 3} ${sy + 14} C${sx - 4} ${sy + 68} ${sx - 3} ${sy + 120} ${sx - 2} ${ey - 10} L${sx + 1} ${ey - 10} C${sx + 1} ${sy + 120} ${sx + 2} ${sy + 68} ${sx + 1} ${sy + 14} Z`, SKIN_D, { opacity: 0.5 });
+      pathR(sc, `M${sx + 4} ${sy + 10} C${sx + 6} ${sy + 64} ${sx + 5} ${sy + 116} ${sx + 3.5} ${ey - 10} L${sx + 6.5} ${ey - 10} C${sx + 8} ${sy + 116} ${sx + 9} ${sy + 64} ${sx + 7.5} ${sy + 10} Z`, cHi, { opacity: 0.65 });
+      $('path', { d: upD, fill: gBodyShade, opacity: 0.35 }, sc);
+
+      const upSt = $('g', { class: 's096-stone', opacity: 0 }, sc);
+      $('path', { d: upD, fill: dark ? STONE_D : STONE }, upSt);
+      $('path', { d: upD, fill: gStone, opacity: 0.65 }, upSt);
+      $('path', { d: `M${sx - 5} ${sy + 42} L${sx + 3} ${sy + 94} L${sx - 4} ${sy + 136}`, stroke: '#2A3035', 'stroke-width': 2, fill: 'none' }, upSt);
+
+      // Sharp jutting olecranon elbow spike + impossibly long forearm
+      const elb = joint(sc, sx, ey);
+      const ec = elb.c;
+      const elbKnobD = `M${sx - 12} ${ey - 6} C${sx - 15} ${ey + 2} ${sx - 12} ${ey + 11} ${sx - 2} ${ey + 11} C${sx + 8} ${ey + 10} ${sx + 10} ${ey - 1} ${sx + 7} ${ey - 8} C${sx + 2} ${ey - 12} ${sx - 7} ${ey - 11} ${sx - 12} ${ey - 6} Z`;
+      pathR(ec, elbKnobD, cBase);
+      pathR(ec, `M${sx - 11} ${ey - 4} C${sx - 14} ${ey + 1} ${sx - 11} ${ey + 7} ${sx - 6} ${ey + 6} Z`, cHi, { opacity: 0.85 });
+
+      // Long thin double-boned forearm flaring into knobby wrist
+      const foD = `M${sx - 7.5} ${ey + 4} C${sx - 8.5} ${ey + 58} ${sx - 6.5} ${ey + 116} ${sx - 5.5} ${wy - 4} `
+        + `C${sx - 8} ${wy + 2} ${sx + 8} ${wy + 2} ${sx + 6} ${wy - 4} `
+        + `C${sx + 6.5} ${ey + 116} ${sx + 8.5} ${ey + 58} ${sx + 7.5} ${ey + 4} Z`;
+      pathR(ec, foD, cShd);
+      pathR(ec, `M${sx + 2} ${ey + 12} C${sx + 3.5} ${ey + 64} ${sx + 3} ${ey + 118} ${sx + 2.5} ${wy - 8} L${sx + 5.5} ${wy - 8} C${sx + 6} ${ey + 118} ${sx + 6.5} ${ey + 64} ${sx + 5} ${ey + 12} Z`, cHi, { opacity: 0.72 });
+      pathR(ec, `M${sx - 2} ${ey + 18} L${sx - 1} ${wy - 12} L${sx + 1} ${wy - 12} L${sx} ${ey + 18} Z`, SKIN_D, { opacity: 0.55 });
+      $('path', { d: foD, fill: gBodyShade, opacity: 0.35 }, ec);
+
+      // Oversized gaunt skeletal hand + 5 long hooked bloody fingers/claws
+      const hand = $('g', {}, ec);
+      const palmD = `M${sx - 7} ${wy - 2} C${sx - 13} ${wy + 8} ${sx - 15} ${wy + 24} ${sx - 14} ${wy + 38} `
+        + `L${sx + 15} ${wy + 38} C${sx + 17} ${wy + 24} ${sx + 14} ${wy + 8} ${sx + 7} ${wy - 2} Z`;
+      pathR(hand, palmD, cBase);
+      // Dorsal hand metacarpal bone tendons
+      for (const td of [-8, -2, 4, 10]) {
+        pathR(hand, `M${sx + td * 0.55} ${wy + 4} L${sx + td} ${wy + 34} L${sx + td + 2.2} ${wy + 34} L${sx + td * 0.55 + 1.8} ${wy + 4} Z`, cHi, { opacity: 0.7 });
       }
-      const clawMk = $('circle', { cx: 6, cy: 52, r: 1, fill: 'none' }, hand);
-      const handMk = $('circle', { cx: 2, cy: 18, r: 1, fill: 'none' }, hand);
-      return { shd, elb, hand, clawMk, handMk };
+      // Bloody knuckles wash
+      $('path', { d: `M${sx - 14} ${wy + 26} C${sx - 6} ${wy + 20} ${sx + 6} ${wy + 21} ${sx + 15} ${wy + 27} L${sx + 15} ${wy + 39} L${sx - 14} ${wy + 39} Z`, fill: gBloodDrip, class: 's096-blood', opacity: 0.85 }, hand);
+
+      // 5 long splayed hooked claws (thumb inner-forward + 4 massive talons)
+      const fingers = [
+        { dx: -13, len: 52, hook: -6, w: 4.2 },
+        { dx: -6, len: 68, hook: 4, w: 4.4 },
+        { dx: 1, len: 74, hook: 8, w: 4.5 },
+        { dx: 8, len: 69, hook: 11, w: 4.3 },
+        { dx: 14, len: 56, hook: 13, w: 3.8 },
+      ];
+      const clawStonePaths = [];
+      fingers.forEach(({ dx, len, hook, w }) => {
+        const fx = sx + dx, fy = wy + 34;
+        const fD = `M${fx - w * 0.5} ${fy} C${fx - w * 0.3 + hook * 0.25} ${fy + len * 0.45} ${fx + hook * 0.65} ${fy + len * 0.78} ${fx + hook} ${fy + len} `
+          + `C${fx + hook * 0.92 + w * 0.6} ${fy + len * 0.72} ${fx + w * 0.6 + hook * 0.35} ${fy + len * 0.38} ${fx + w * 0.55} ${fy} Z`;
+        pathR(hand, fD, cBase);
+        clawStonePaths.push(fD);
+        // Wet dripping arterial blood sleeve from mid-finger to razor talon
+        const bD = `M${fx - w * 0.45 + hook * 0.16} ${fy + len * 0.28} C${fx + hook * 0.55} ${fy + len * 0.68} ${fx + hook * 0.9} ${fy + len * 0.88} ${fx + hook} ${fy + len} `
+          + `C${fx + hook * 0.92 + w * 0.55} ${fy + len * 0.74} ${fx + w * 0.55 + hook * 0.3} ${fy + len * 0.44} ${fx + w * 0.5 + hook * 0.16} ${fy + len * 0.28} Z`;
+        $('path', { d: bD, fill: GORE, class: 's096-blood', opacity: 0.92 }, hand);
+        $('path', { d: `M${fx + hook * 0.4} ${fy + len * 0.45} Q${fx + hook * 0.8} ${fy + len * 0.75} ${fx + hook} ${fy + len}`, stroke: GORE_L, 'stroke-width': 1.5, fill: 'none', class: 's096-blood', opacity: 0.85 }, hand);
+      });
+      // Hanging blood droplet beads off middle claws
+      $('path', { d: `M${sx + 9} ${wy + 108} C${sx + 6} ${wy + 116} ${sx + 7} ${wy + 122} ${sx + 10} ${wy + 122} C${sx + 13} ${wy + 122} ${sx + 13} ${wy + 116} ${sx + 9} ${wy + 108} Z`, fill: GORE_L, class: 's096-blood', opacity: 0.9 }, hand);
+      $('path', { d: `M${sx + 19} ${wy + 102} C${sx + 17} ${wy + 109} ${sx + 18} ${wy + 114} ${sx + 20} ${wy + 114} C${sx + 22} ${wy + 114} ${sx + 22} ${wy + 109} ${sx + 19} ${wy + 102} Z`, fill: GORE, class: 's096-blood', opacity: 0.85 }, hand);
+
+      // Stone forearm + hand + claws shell
+      const foSt = $('g', { class: 's096-stone', opacity: 0 }, ec);
+      $('path', { d: elbKnobD, fill: STONE_L }, foSt);
+      $('path', { d: foD, fill: dark ? STONE_D : STONE }, foSt);
+      $('path', { d: palmD, fill: STONE_L }, foSt);
+      clawStonePaths.forEach((d) => $('path', { d, fill: dark ? STONE_D : STONE }, foSt));
+      $('path', { d: foD, fill: gStone, opacity: 0.7 }, foSt);
+      $('path', { d: `M${sx + 3} ${ey + 36} L${sx - 4} ${ey + 88} L${sx + 3} ${ey + 134}`, stroke: '#2A3035', 'stroke-width': 2, fill: 'none' }, foSt);
+
+      const handMk = $('circle', { cx: sx + 2, cy: wy + 22, r: 1, fill: 'none' }, hand);
+      const clawMk = $('circle', { cx: sx + 9, cy: wy + 96, r: 1, fill: 'none' }, hand);
+      return { shd, elb, hand, handMk, clawMk };
     };
 
-    const pelvis = $('g', { transform: 'translate(0,-272)' }, root);
-    const legB = makeLeg(pelvis, true);
-    const armB = makeArm(pelvis, true);
+    // Mount limbs in exact depth order
+    const armB = makeArm(bodyBack.c, -30, -448, true);
+    const legB = makeLeg(legLayer, -10, -252, true);
+    const legF = makeLeg(legLayer, 12, -250, false);
 
-    const torso = $('g', {}, pelvis);
-    // Pelvis + gaunt spine + protruding ribcage
-    $('polygon', { points: '-26,-12 28,-12 20,24 -22,24', fill: SKIN_D }, torso);
-    $('polygon', { points: '-18,-184 22,-184 26,-10 -24,-10', fill: SKIN }, torso);
-    $('polygon', { points: '-36,-196 38,-196 28,-128 -26,-128', fill: SKIN }, torso);
-    // Protruding ribs
-    for (let i = 0; i < 5; i++) {
-      const y = -168 + i * 22;
-      $('path', { d: `M-24,${y} Q0,${y + 10} 24,${y - 2}`, stroke: RIB, 'stroke-width': 6, fill: 'none', 'stroke-linecap': 'round' }, torso);
-    }
-    // Blood streaks on chest
-    const chestBlood = $('g', { opacity: 0.35 }, torso);
-    $('polygon', { points: '2,-160 12,-160 16,-86 6,-92', fill: BLOOD }, chestBlood);
-    $('polygon', { points: '-14,-146 -6,-146 -4,-98 -12,-104', fill: BLOOD_D }, chestBlood);
-    // Stone torso shell
-    $('polygon', { points: '-38,-198 40,-198 28,-10 -26,-10', fill: STONE, class: 's096-stone', opacity: 0 }, torso);
-    $('polygon', { points: '-34,-192 10,-192 4,-14 -24,-14', fill: STONE_D, class: 's096-stone', opacity: 0 }, torso);
+    // ---- EMACIATED HUNCHED TORSO (pelvis, concave abdomen, kyphotic spine, 7 protruding ribs, clavicles)
+    // Bony pelvis & iliac crest
+    const pelvD = 'M-24 -274 C-32 -258 -24 -238 -16 -232 L18 -232 C28 -242 30 -260 22 -274 Z';
+    pathR(B, pelvD, SKIN_M);
+    pathR(B, 'M-22 -268 C-16 -258 -10 -252 -4 -248 L-16 -246 C-24 -252 -26 -260 -22 -268 Z', SKIN_L, { opacity: 0.72 });
+    pathR(B, 'M20 -268 C16 -258 12 -252 6 -248 L16 -246 C24 -252 25 -260 20 -268 Z', SKIN_L, { opacity: 0.78 });
 
-    const bodyMk = $('circle', { cx: 4, cy: -115, r: 1, fill: 'none' }, torso);
+    // Pinched deeply concave waist/abdomen expanding into flared lower ribcage
+    const abdD = 'M-22 -268 C-13 -300 -11 -334 -28 -364 L30 -364 C16 -332 14 -300 22 -268 Z';
+    pathR(B, abdD, SKIN);
+    // Deep hollowed abdominal concavity shadow
+    pathR(B, 'M-12 -272 C-5 -304 -7 -336 -20 -358 L16 -358 C5 -336 3 -304 10 -272 Z', SKIN_D, { opacity: 0.68 });
+    pathR(B, 'M-4 -278 C-1 -306 -2 -334 -8 -356 L4 -356 C0 -334 0 -306 2 -278 Z', SKIN_DD, { opacity: 0.45 });
 
-    // Head + unhinging jaw
-    const neck = $('g', { transform: 'translate(6,-196)' }, torso);
-    $('polygon', { points: '-12,8 12,8 14,-34 -10,-34', fill: SKIN_D }, neck);
-    const headG = $('g', {}, neck); tr(headG, 4, -34);
-    // Upper cranium
-    $('ellipse', { cx: 2, cy: -34, rx: 32, ry: 38, fill: SKIN }, headG);
-    $('polygon', { points: '-26,-18 32,-18 28,6 -22,6', fill: SKIN }, headG);
-    // Stone cranium overlay
-    $('ellipse', { cx: 2, cy: -34, rx: 33, ry: 39, fill: STONE_L, class: 's096-stone', opacity: 0 }, headG);
-    // Hollow sunken eyes
-    $('ellipse', { cx: 14, cy: -34, rx: 8, ry: 9, fill: '#2a2626' }, headG);
-    $('ellipse', { cx: -6, cy: -34, rx: 6, ry: 8, fill: '#2a2626' }, headG);
-    const eyeGlowL = $('circle', { cx: -6, cy: -34, r: 3.5, fill: '#ffffff', opacity: 0.7 }, headG);
-    const eyeGlowR = $('circle', { cx: 14, cy: -34, r: 4.2, fill: '#ffffff', opacity: 0.85 }, headG);
-    const eyeFlare = $('circle', { cx: 14, cy: -34, r: 12, fill: '#ff2438', opacity: 0 }, headG);
-    const eyeMk = $('circle', { cx: 14, cy: -34, r: 1, fill: 'none' }, headG);
-    const headMk = $('circle', { cx: 4, cy: -24, r: 1, fill: 'none' }, headG);
-
-    // Mouth cavity (visible when jaw unhinges)
-    const mouthCav = $('polygon', { points: '-16,-6 28,-6 24,8 -12,8', fill: BLOOD_D }, headG);
-    // Upper teeth
+    // Asymmetric hunched kyphotic thoracic ribcage
+    const chestD = 'M-38 -454 C-49 -424 -43 -382 -28 -356 L30 -356 C44 -384 46 -424 34 -454 C14 -468 -18 -468 -38 -454 Z';
+    pathR(B, chestD, SKIN);
+    // Dorsal vertebral spine knobs along hunched left back edge
     for (let i = 0; i < 6; i++) {
-      const tx = -12 + i * 7;
-      $('polygon', { points: `${tx},-6 ${tx + 5},-6 ${tx + 2.5},3`, fill: BONE }, headG);
+      const sy = -442 + i * 17;
+      const sx = -42 - Math.sin((i / 5) * Math.PI) * 5;
+      pathR(B, `M${f2(sx + 4)} ${sy - 6} C${f2(sx - 6)} ${sy - 2} ${f2(sx - 6)} ${sy + 4} ${f2(sx + 5)} ${sy + 6} Z`, SKIN_L, { opacity: 0.72 });
     }
-    // Unhinging lower jaw group
-    const jawG = $('g', { transform: 'translate(0,4)' }, headG);
-    // Stretched crimson cheek tendons
-    const tendonL = $('polygon', { points: '-18,-10 -10,-10 -12,18 -20,14', fill: BLOOD }, jawG);
-    const tendonR = $('polygon', { points: '22,-10 30,-10 26,18 18,14', fill: BLOOD }, jawG);
-    $('polygon', { points: '-20,0 26,0 20,26 -14,24', fill: SKIN_D }, jawG);
-    $('polygon', { points: '-21,0 27,0 21,27 -15,25', fill: STONE, class: 's096-stone', opacity: 0 }, jawG);
-    // Lower teeth
+    // Deep thoracic shadow & ribcage hollow recess
+    pathR(B, 'M-34 -448 C-40 -422 -36 -386 -24 -360 L12 -360 C4 -388 4 -422 8 -448 Z', SKIN_D, { opacity: 0.48 });
+
+    // Protruding sharp clavicles & dark supraclavicular hollows
+    pathR(B, 'M-32 -454 C-18 -444 -4 -446 4 -450 C14 -446 26 -444 34 -454 C24 -462 12 -460 4 -456 C-6 -460 -20 -462 -32 -454 Z', SKIN_DD, { opacity: 0.74 });
+    pathR(B, 'M-30 -453 C-16 -444 -4 -445 4 -450 C14 -444 26 -443 34 -452 C26 -448 14 -448 4 -453 C-4 -449 -16 -449 -30 -453 Z', SKIN_L);
+
+    // Central ridged sternum line
+    pathR(B, 'M2 -448 C4 -422 5 -394 4 -366 L9 -366 C10 -394 9 -422 7 -448 Z', SKIN_M);
+    pathR(B, 'M4 -446 L6 -368 L8 -368 L6 -446 Z', SKIN_L, { opacity: 0.85 });
+
+    // 7 individual curved protruding ribs (deep intercostal shadow groove + raised pale bone arch)
+    for (let i = 0; i < 7; i++) {
+      const y = -436 + i * 12;
+      const spread = 1 - Math.abs(i - 2.6) * 0.08;
+      const lx = f2(-28 * spread), rx = f2(30 * spread);
+      // Dark intercostal trough underneath
+      pathR(B, `M${lx} ${y + 3} C${f2(lx * 0.35)} ${y + 12} ${f2(rx * 0.35)} ${y + 13} ${rx} ${y + 1} C${f2(rx * 0.35)} ${y + 9} ${f2(lx * 0.35)} ${y + 8} ${lx} ${y + 3} Z`, SKIN_D, { opacity: 0.78 });
+      // Raised pale bony rib ridge on top
+      pathR(B, `M${lx} ${y} C${f2(lx * 0.35)} ${y + 9} ${f2(rx * 0.35)} ${y + 10} ${rx} ${y - 2} C${f2(rx * 0.35)} ${y + 5.5} ${f2(lx * 0.35)} ${y + 4.5} ${lx} ${y} Z`, SKIN_L, { opacity: 0.94 });
+    }
+    // Cylindrical shading overlay on torso
+    $('path', { d: chestD, fill: gBodyShade, opacity: 0.36 }, B);
+    $('path', { d: abdD, fill: gBodyShade, opacity: 0.34 }, B);
+
+    // Chest gore trails (viscous crimson runs from chin/neck down sternum & lower ribs)
+    const chestBlood = $('g', { opacity: 0.5 }, B);
+    $('path', { d: 'M-2 -454 C-4 -424 1 -392 -3 -358 C-1 -348 4 -348 5 -360 C7 -392 14 -422 15 -454 Z', fill: gBloodDrip }, chestBlood);
+    $('path', { d: 'M14 -448 C18 -422 22 -394 18 -372 C19 -364 24 -366 24 -375 C26 -400 24 -426 20 -448 Z', fill: GORE }, chestBlood);
+    $('path', { d: 'M-16 -444 C-18 -422 -14 -404 -17 -386 C-15 -380 -11 -382 -11 -389 C-10 -408 -12 -426 -10 -444 Z', fill: GORE_D, opacity: 0.85 }, chestBlood);
+    $('path', { d: 'M5 -446 C6 -418 5 -390 3 -362', stroke: GORE_L, 'stroke-width': 2.2, fill: 'none', opacity: 0.8 }, chestBlood);
+    $('path', { d: 'M0 -346 C-3 -338 -2 -332 1 -332 C4 -332 4 -338 0 -346 Z', fill: GORE_L }, chestBlood);
+
+    // Sculpted stone torso shell (petrified granite statue look)
+    const torsoSt = $('g', { class: 's096-stone', opacity: 0 }, B);
+    $('path', { d: pelvD, fill: STONE_D }, torsoSt);
+    $('path', { d: abdD, fill: STONE }, torsoSt);
+    $('path', { d: chestD, fill: STONE }, torsoSt);
+    $('path', { d: 'M-36 -450 C-44 -424 -38 -384 -24 -358 L4 -358 C-2 -386 -2 -422 4 -450 Z', fill: STONE_D, opacity: 0.82 }, torsoSt);
+    $('path', { d: 'M-28 -452 C-14 -444 -2 -445 6 -450 C16 -444 26 -444 33 -452 C24 -448 14 -448 5 -453 Z', fill: STONE_L }, torsoSt);
     for (let i = 0; i < 6; i++) {
-      const tx = -12 + i * 7;
-      $('polygon', { points: `${tx},2 ${tx + 5},2 ${tx + 2.5},-7`, fill: BONE }, jawG);
+      const y = -432 + i * 13;
+      $('path', { d: `M-22 ${y} Q2 ${y + 9} 26 ${y - 2}`, stroke: STONE_L, 'stroke-width': 3, fill: 'none', opacity: 0.65 }, torsoSt);
     }
-    const mouthMk = $('circle', { cx: 12, cy: 10, r: 1, fill: 'none' }, jawG);
+    $('path', { d: chestD, fill: gStone, opacity: 0.68 }, torsoSt);
+    $('path', { d: 'M-18 -446 L-4 -412 L16 -424 L26 -388 M-12 -396 L4 -364 L-6 -324 M14 -376 L8 -334', stroke: '#2A3035', 'stroke-width': 2.4, fill: 'none', 'stroke-linecap': 'round' }, torsoSt);
 
-    // Cliffhanger C2: glowing crimson cracks + exposed white indestructible skull bone!
-    const crackG = $('g', { opacity: 0 }, headG);
-    $('polygon', { points: '-6,-20 26,-16 30,22 2,26 -10,4', fill: BONE }, crackG);
-    $('polygon', { points: '8,-10 22,-8 18,4 10,2', fill: '#1a0608' }, crackG);
-    $('path', { d: 'M-22,-46 L-6,-22 L12,-36 L28,-12 M-8,4 L10,18 L28,8 M4,-18 L8,34', stroke: '#ff2438', 'stroke-width': 4.5, fill: 'none', 'stroke-linecap': 'round' }, crackG);
-    $('circle', { cx: 14, cy: -4, r: 24, fill: 'url(#gRed)', opacity: 0.75 }, crackG);
+    const bodyMk = $('circle', { cx: 4, cy: -385, r: 1, fill: 'none' }, B);
 
-    const legF = makeLeg(pelvis, false);
-    const armF = makeArm(torso, false);
+    // ---- GAUNT CORDED NECK + HAIRLESS PALE SKULL + DEEP HOLLOW SOCKETS + 4x UNHINGING JAW
+    const neckD = 'M-8 -452 C-6 -474 -1 -490 3 -502 L22 -500 C18 -484 14 -468 15 -450 Z';
+    pathR(B, neckD, SKIN_D);
+    // Straining sternocleidomastoid tendons
+    pathR(B, 'M-4 -454 C-1 -472 3 -486 6 -498 L10 -498 C7 -486 4 -472 1 -454 Z', SKIN_L, { opacity: 0.72 });
+    pathR(B, 'M8 -452 C11 -470 14 -484 16 -498 L19 -498 C17 -484 15 -470 12 -452 Z', SKIN, { opacity: 0.65 });
+    const neckSt = $('g', { class: 's096-stone', opacity: 0 }, B);
+    $('path', { d: neckD, fill: STONE_D }, neckSt);
 
-    // Position shoulders & hips
-    tr(legB.hip, -10, 12);
-    tr(legF.hip, 12, 12);
-    tr(armB.shd, -26, -182);
-    tr(armF.shd, 26, -182);
+    // Head joint at top of neck (10, -492)
+    const headG = joint(B, 10, -492);
+    const Hc = headG.c;
+
+    // Dynamic cavernous blood-black inner gullet (stretches massively as jaw drops!)
+    const mouthCavOuter = $('path', { d: 'M-10 -494 C-12 -484 -8 -476 10 -476 C28 -476 34 -484 32 -494 Z', fill: '#240206' }, Hc);
+    const mouthCavInner = $('path', { d: 'M-4 -492 C-6 -484 -2 -480 10 -480 C22 -480 26 -484 24 -492 Z', fill: GORE_D }, Hc);
+
+    // Stretched ragged crimson cheek tendons (4 cords spanning upper cheek to dropped mandible)
+    const tendonL = $('path', { d: 'M-14 -496 L-8 -496 L-10 -484 L-16 -484 Z', fill: GORE }, Hc);
+    const tendonR = $('path', { d: 'M26 -496 L33 -496 L30 -484 L23 -484 Z', fill: GORE }, Hc);
+    const tendonLHi = $('path', { d: 'M-11 -495 L-12 -485', stroke: GORE_L, 'stroke-width': 2, fill: 'none', opacity: 0.85 }, Hc);
+    const tendonRHi = $('path', { d: 'M29 -495 L27 -485', stroke: GORE_L, 'stroke-width': 2, fill: 'none', opacity: 0.85 }, Hc);
+
+    // Viscous crimson saliva/blood strands spanning the open mouth (stretch & snap at jaw > 1.2)
+    const saliva1 = $('path', { d: 'M-2 -492 Q0 -486 -1 -480', stroke: GORE_L, 'stroke-width': 2.2, fill: 'none', opacity: 0 }, Hc);
+    const saliva2 = $('path', { d: 'M12 -492 Q15 -486 11 -480', stroke: GORE, 'stroke-width': 2.8, fill: 'none', opacity: 0 }, Hc);
+    const saliva3 = $('path', { d: 'M22 -492 Q20 -486 23 -480', stroke: GORE_L, 'stroke-width': 1.8, fill: 'none', opacity: 0 }, Hc);
+
+    // Upper hairless pale cranium
+    const skullD = 'M-26 -522 C-30 -558 -6 -578 18 -576 C42 -574 52 -548 48 -518 C46 -504 40 -494 34 -488 L-12 -488 C-22 -496 -25 -508 -26 -522 Z';
+    pathR(Hc, skullD, SKIN);
+    // Temporal hollow shadow + gaunt sunken cheek + protruding zygomatic cheekbone shelf
+    pathR(Hc, 'M-22 -522 C-24 -542 -14 -556 -4 -556 C-12 -540 -12 -518 -6 -496 L-16 -498 C-22 -506 -22 -514 -22 -522 Z', SKIN_D, { opacity: 0.65 });
+    pathR(Hc, 'M-10 -510 C2 -514 22 -512 38 -510 C34 -504 22 -503 10 -504 C0 -505 -6 -507 -10 -510 Z', SKIN_L, { opacity: 0.78 });
+    // Moonlight radial sculpting overlay
+    $('path', { d: skullD, fill: gSkull, opacity: 0.68 }, Hc);
+
+    // Heavy gaunt brow ridge casting dark shadow over deep recessed eye sockets
+    pathR(Hc, 'M-12 -541 C2 -546 22 -546 42 -539 C34 -534 18 -534 2 -535 C-6 -536 -10 -538 -12 -541 Z', SKIN_D, { opacity: 0.72 });
+    // Deep hollow abyssal eye sockets
+    $('ellipse', { cx: 24, cy: -528, rx: 10.5, ry: 11.5, fill: '#141012' }, Hc);
+    $('ellipse', { cx: 2, cy: -528, rx: 7.8, ry: 10.5, fill: '#141012' }, Hc);
+    // Recessed orbital rim shadow
+    $('ellipse', { cx: 24, cy: -528, rx: 10.5, ry: 11.5, fill: 'none', stroke: SKIN_DD, 'stroke-width': 2.2, opacity: 0.75 }, Hc);
+    $('ellipse', { cx: 2, cy: -528, rx: 7.8, ry: 10.5, fill: 'none', stroke: SKIN_DD, 'stroke-width': 2, opacity: 0.7 }, Hc);
+    // Cold dead pigmentless white pinprick irises (flare crimson in rage)
+    const eyeFlareL = $('circle', { cx: 2, cy: -528, r: 13, fill: gEyeFlare, opacity: 0 }, Hc);
+    const eyeFlareR = $('circle', { cx: 24, cy: -528, r: 17, fill: gEyeFlare, opacity: 0 }, Hc);
+    const eyeGlowL = $('circle', { cx: 2, cy: -528, r: 2.8, fill: '#FFFFFF', opacity: 0.88 }, Hc);
+    const eyeGlowR = $('circle', { cx: 24, cy: -528, r: 3.3, fill: '#FFFFFF', opacity: 0.95 }, Hc);
+
+    // Flat nasal bridge & pinched vertical slit nostrils
+    pathR(Hc, 'M13 -534 L17 -514 L11 -514 Z', SKIN_D, { opacity: 0.55 });
+    $('path', { d: 'M12 -514 C11 -510 11 -507 12.5 -506 C13.8 -507 13.8 -510 12 -514 Z', fill: '#2A2224' }, Hc);
+    $('path', { d: 'M18 -514 C17 -510 17 -507 18.5 -506 C19.8 -507 19.8 -510 18 -514 Z', fill: '#2A2224' }, Hc);
+
+    // Bloodstained upper gumline + 8 jagged uneven upper needle-teeth
+    $('path', { d: 'M-12 -492 C2 -496 22 -496 34 -492 L32 -487 C20 -490 2 -490 -10 -487 Z', fill: GORE_D }, Hc);
+    const uTeeth = [[-9, 10], [-4, 13], [1, 8], [6, 12], [11, 9], [16, 13], [21, 8.5], [26, 11]];
+    uTeeth.forEach(([tx, len], i) => {
+      pathR(Hc, `M${tx} -490 L${tx + 4.4} -490 L${f2(tx + 2.1)} ${f2(-490 + len)} Z`, i % 2 ? BONE_D : BONE);
+    });
+
+    // Sculpted granite upper cranium overlay (petrified state)
+    const skullSt = $('g', { class: 's096-stone', opacity: 0 }, Hc);
+    $('path', { d: skullD, fill: STONE_L }, skullSt);
+    $('path', { d: 'M-24 -522 C-26 -548 -10 -568 10 -572 C-2 -554 -6 -524 2 -492 L-14 -492 C-22 -500 -24 -510 -24 -522 Z', fill: STONE_D, opacity: 0.78 }, skullSt);
+    $('path', { d: skullD, fill: gStone, opacity: 0.72 }, skullSt);
+    $('ellipse', { cx: 24, cy: -528, rx: 10.5, ry: 11.5, fill: '#23282D' }, skullSt);
+    $('ellipse', { cx: 2, cy: -528, rx: 7.8, ry: 10.5, fill: '#23282D' }, skullSt);
+    $('path', { d: 'M-10 -560 L4 -542 L-4 -518 M28 -564 L36 -540 L26 -514', stroke: '#2A3035', 'stroke-width': 2.2, fill: 'none' }, skullSt);
+
+    // ---- ARTICULATED 4x UNHINGING LOWER JAW (jawG drops vertically down to chest depth!)
+    const jawG = $('g', {}, Hc);
+    const jawD = 'M-13 -490 C-12 -466 -3 -454 11 -452 C26 -452 34 -466 33 -490 L26 -490 C25 -474 20 -466 11 -466 C1 -466 -5 -474 -6 -490 Z';
+    pathR(jawG, jawD, SKIN);
+    pathR(jawG, 'M-10 -482 C-8 -466 0 -456 11 -454 C4 -458 -2 -468 -4 -482 Z', SKIN_D, { opacity: 0.65 });
+    pathR(jawG, 'M6 -460 C14 -457 22 -462 27 -472 C24 -460 16 -454 6 -456 Z', SKIN_L, { opacity: 0.82 });
+    // Lower gumline + 7 jagged uneven lower teeth pointing upward
+    $('path', { d: 'M-8 -484 C4 -480 18 -480 28 -484 L26 -478 C16 -475 4 -475 -6 -478 Z', fill: GORE_D }, jawG);
+    const lTeeth = [[-6, 11], [-1, 8.5], [4, 12.5], [9, 9], [14, 12], [19, 8.5], [23.5, 10.5]];
+    lTeeth.forEach(([tx, len], i) => {
+      pathR(jawG, `M${tx} -482 L${tx + 4.2} -482 L${f2(tx + 2.1)} ${f2(-482 - len)} Z`, i % 2 ? BONE : BONE_D);
+    });
+    // 4 thick dripping blood trails off the chin down toward the chest
+    const jawBlood = $('g', { class: 's096-blood', opacity: 0.85 }, jawG);
+    $('path', { d: 'M-4 -466 C-6 -446 -3 -430 -5 -416 C-3 -410 1 -412 1 -419 C2 -434 4 -448 3 -464 Z', fill: gBloodDrip }, jawBlood);
+    $('path', { d: 'M8 -456 C7 -434 10 -414 8 -398 C10 -390 15 -392 15 -401 C16 -418 16 -438 15 -455 Z', fill: gBloodDrip }, jawBlood);
+    $('path', { d: 'M20 -462 C21 -444 24 -428 22 -414 C24 -408 28 -410 28 -417 C28 -432 27 -446 26 -462 Z', fill: GORE }, jawBlood);
+    $('path', { d: 'M11 -452 L11 -402', stroke: GORE_L, 'stroke-width': 1.8, fill: 'none', opacity: 0.85 }, jawBlood);
+    $('path', { d: 'M12 -388 C9 -380 10 -374 12.5 -374 C15 -374 15.5 -380 12 -388 Z', fill: GORE_L }, jawBlood);
+
+    // Sculpted granite lower jaw overlay
+    const jawSt = $('g', { class: 's096-stone', opacity: 0 }, jawG);
+    $('path', { d: jawD, fill: STONE }, jawSt);
+    $('path', { d: jawD, fill: gStone, opacity: 0.72 }, jawSt);
+    $('path', { d: 'M-4 -480 L6 -464 L22 -472', stroke: '#2A3035', 'stroke-width': 2.2, fill: 'none' }, jawSt);
+
+    // ---- CLIFFHANGER C2: GLOWING CRIMSON CRACKS + SHATTERING GRANITE + BLINDING WHITE INDESTRUCTIBLE SKULL BONE!
+    const crackG = $('g', { opacity: 0 }, Hc);
+    // Blinding white intact skull bone exposed beneath shattering stone
+    const crackBoneG = $('g', { opacity: 0 }, crackG);
+    $('path', { d: 'M-2 -522 C12 -528 30 -524 40 -512 C42 -498 36 -484 26 -474 C14 -468 0 -470 -8 -480 C-10 -494 -8 -510 -2 -522 Z', fill: '#FFFFFF' }, crackBoneG);
+    $('path', { d: 'M2 -518 C14 -522 26 -518 34 -508 C36 -498 32 -486 24 -480 C14 -474 2 -476 -4 -484 Z', fill: BONE }, crackBoneG);
+    // Exposed intact bone eye-socket rim & white teeth gleam
+    $('path', { d: 'M14 -524 C22 -528 32 -524 34 -516 C28 -514 20 -515 14 -518 Z', fill: '#180608' }, crackBoneG);
+    for (const tx of [0, 7, 14, 21]) {
+      $('polygon', { points: `${tx},-492 ${tx + 5},-492 ${tx + 2.5},-480`, fill: '#FFFFFF' }, crackBoneG);
+    }
+    // Radial crimson sub-surface bone resonance glow
+    const crackGlowEl = $('circle', { cx: 18, cy: -502, r: 36, fill: gCrackGlow, opacity: 0.82 }, crackG);
+    // Jagged glowing crimson fracture fault lines (outer crimson + hot white-pink core)
+    const faultD = 'M-18 -548 L-4 -526 L12 -538 L30 -516 L44 -522 M-6 -494 L12 -482 L32 -492 M8 -522 L12 -466 M24 -514 L34 -478';
+    $('path', { d: faultD, stroke: '#FF2438', 'stroke-width': 6.5, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round', opacity: 0.92 }, crackG);
+    $('path', { d: faultD, stroke: '#FFE6E8', 'stroke-width': 2.4, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, crackG);
+    // Falling broken grey granite shell chunks (separate & drop when crack > 0.4)
+    const chunk1 = $('polygon', { points: '4,-514 22,-518 26,-498 8,-496', fill: STONE }, crackG);
+    const chunk2 = $('polygon', { points: '22,-504 38,-508 36,-486 18,-484', fill: STONE_L }, crackG);
+    const chunk3 = $('polygon', { points: '-6,-494 12,-492 10,-474 -4,-476', fill: STONE_D }, crackG);
+
+    // Markers on head & jaw
+    const eyeMk = $('circle', { cx: 24, cy: -528, r: 1, fill: 'none' }, Hc);
+    const headMk = $('circle', { cx: 12, cy: -524, r: 1, fill: 'none' }, Hc);
+    const mouthMk = $('circle', { cx: 14, cy: -484, r: 1, fill: 'none' }, jawG);
+
+    // Front impossibly long arm (mounted last on B so it overlaps torso and legs cleanly)
+    const armF = makeArm(B, 30, -448, false);
 
     const stoneEls = Array.from(g.querySelectorAll('.s096-stone'));
     const bloodEls = Array.from(g.querySelectorAll('.s096-blood'));
 
-    const rig = {
-      root: g,
-      g,
-      fills: [],
-      dynHead: true,
-      mk: { eye: eyeMk, head: headMk, mouth: mouthMk, hand: armF.handMk, claw: armF.clawMk, body: bodyMk },
-      N: {
-        bodyY: 0, bodyRot: 10, lift: 0, head: 6, jaw: 0.08,
-        aL: [14, 18], aR: [22, 26], lF: [12, 16], lB: [-12, -10],
-        stone: 0, crack: 0, blood: 0.5, rage: 0, shakeX: 0, shakeY: 0,
-      },
-      apply(p) {
-        const lift = p.lift || 0;
-        const sx = p.shakeX || 0, sy = p.shakeY || 0;
-        tr(root, sx, (p.bodyY || 0) - lift + sy);
-        sh.setAttribute('rx', f2(clamp(112 - lift * 0.25, 36, 130)));
-        sh.setAttribute('opacity', f2(clamp(0.55 - lift * 0.002, 0.1, 0.6)));
-        rot(torso, p.bodyRot || 0, 0, 0);
-        rot(headG, p.head || 0, 0, 0);
-        const j = clamp(p.jaw || 0, 0, 1.4);
-        tr(jawG, 0, 4 + j * 42);
-        mouthCav.setAttribute('points', `-16,-6 28,-6 24,${f2(8 + j * 40)} -12,${f2(8 + j * 40)}`);
-        tendonL.setAttribute('points', `-18,${f2(-10 - j * 38)} -10,${f2(-10 - j * 38)} -12,18 -20,14`);
-        tendonR.setAttribute('points', `22,${f2(-10 - j * 38)} 30,${f2(-10 - j * 38)} 26,18 18,14`);
-        const rg = clamp(p.rage || 0, 0, 1.5);
-        eyeFlare.setAttribute('opacity', f2(clamp(rg * 0.65, 0, 0.9)));
-        eyeGlowL.setAttribute('fill', rg > 0.3 ? '#ff4455' : '#ffffff');
-        eyeGlowR.setAttribute('fill', rg > 0.3 ? '#ff4455' : '#ffffff');
-        const st = clamp(p.stone || 0, 0, 1);
-        stoneEls.forEach((el) => el.setAttribute('opacity', f2(st)));
-        const bl = clamp((p.blood === undefined ? 0.5 : p.blood) * (1 - st * 0.85), 0, 1);
-        chestBlood.setAttribute('opacity', f2(bl * 0.65));
-        bloodEls.forEach((el) => el.setAttribute('opacity', f2(bl)));
-        crackG.setAttribute('opacity', f2(clamp(p.crack || 0, 0, 1)));
-        const setL = (L, a) => { rot(L.hip, a[0], 0, 0); rot(L.knee, a[1], 0, 0); };
-        const setA = (A, a) => { rot(A.shd, a[0], 0, 0); rot(A.elb, a[1], 0, 0); };
-        setL(legF, p.lF || [12, 16]);
-        setL(legB, p.lB || [-12, -10]);
-        setA(armB, p.aL || [14, 18]);
-        setA(armF, p.aR || [22, 26]);
-      },
+    rig.root = g;
+    rig.g = g;
+    rig.dynHead = true;
+    rig.mk = { eye: eyeMk, head: headMk, mouth: mouthMk, hand: armF.handMk, claw: armF.clawMk, body: bodyMk };
+    rig.N = {
+      bodyY: 0, bodyRot: 12, lift: 0, head: 6, jaw: 0.08,
+      aL: [14, 18], aR: [22, 26], lF: [12, 16], lB: [-12, -10],
+      stone: 0, crack: 0, blood: 0.5, rage: 0, shakeX: 0, shakeY: 0,
+    };
+    rig.apply = (p) => {
+      const lift = p.lift || 0;
+      const sx = p.shakeX || 0, sy = p.shakeY || 0;
+      tr(root, sx, (p.bodyY || 0) - lift + sy);
+      sh.setAttribute('rx', f2(clamp(118 - lift * 0.25, 36, 134)));
+      sh.setAttribute('opacity', f2(clamp(0.54 - lift * 0.002, 0.1, 0.6)));
+
+      const br = p.bodyRot || 0;
+      body.set(br);
+      bodyBack.set(br);
+      headG.set(p.head || 0);
+
+      // 4x Vertical Jaw Unhinge + stretched crimson cheek tendons + blood strands
+      const j = clamp(p.jaw || 0, 0, 1.45);
+      const drop = j * 54;
+      tr(jawG, 0, drop);
+      const cavBot = -476 + drop;
+      mouthCavOuter.setAttribute('d', `M-12 -494 C-14 ${f2(-484 + drop * 0.5)} -10 ${f2(cavBot)} 10 ${f2(cavBot + 2)} C28 ${f2(cavBot + 2)} 34 ${f2(-484 + drop * 0.5)} 32 -494 Z`);
+      mouthCavInner.setAttribute('d', `M-5 -492 C-7 ${f2(-484 + drop * 0.5)} -3 ${f2(cavBot - 4)} 10 ${f2(cavBot - 2)} C22 ${f2(cavBot - 2)} 27 ${f2(-484 + drop * 0.5)} 25 -492 Z`);
+      mouthCavOuter.setAttribute('opacity', j > 0.04 ? 1 : 0);
+      mouthCavInner.setAttribute('opacity', j > 0.04 ? 1 : 0);
+
+      const tBot = -486 + drop;
+      const tOp = f2(clamp(j * 2.2, 0, 1));
+      tendonL.setAttribute('d', `M-15 -498 C-11 ${f2(-492 + drop * 0.45)} -10 ${f2(-490 + drop * 0.72)} -12 ${f2(tBot + 10)} L-17 ${f2(tBot + 8)} C-16 ${f2(-490 + drop * 0.6)} -17 ${f2(-494 + drop * 0.35)} -19 -498 Z`);
+      tendonR.setAttribute('d', `M28 -498 C25 ${f2(-492 + drop * 0.45)} 25 ${f2(-490 + drop * 0.72)} 27 ${f2(tBot + 10)} L33 ${f2(tBot + 8)} C31 ${f2(-490 + drop * 0.6)} 32 ${f2(-494 + drop * 0.35)} 34 -498 Z`);
+      tendonLHi.setAttribute('d', `M-15 -496 Q-12 ${f2(-492 + drop * 0.5)} -14 ${f2(tBot + 8)}`);
+      tendonRHi.setAttribute('d', `M31 -496 Q28 ${f2(-492 + drop * 0.5)} 30 ${f2(tBot + 8)}`);
+      tendonL.setAttribute('opacity', tOp);
+      tendonR.setAttribute('opacity', tOp);
+      tendonLHi.setAttribute('opacity', f2(tOp * 0.85));
+      tendonRHi.setAttribute('opacity', f2(tOp * 0.85));
+
+      // Viscous crimson saliva/blood strands spanning open mouth (snap past jaw 1.25)
+      const salOp = j > 0.22 && j < 1.32 ? f2(clamp((j - 0.22) * 2.5, 0, 0.88) * clamp((1.32 - j) * 4, 0, 1)) : 0;
+      saliva1.setAttribute('d', `M-2 -488 Q1 ${f2(-484 + drop * 0.5)} -1 ${f2(-480 + drop)}`);
+      saliva2.setAttribute('d', `M12 -488 Q16 ${f2(-484 + drop * 0.5)} 11 ${f2(-480 + drop)}`);
+      saliva3.setAttribute('d', `M22 -488 Q19 ${f2(-484 + drop * 0.5)} 23 ${f2(-480 + drop)}`);
+      saliva1.setAttribute('opacity', salOp);
+      saliva2.setAttribute('opacity', salOp);
+      saliva3.setAttribute('opacity', salOp);
+
+      // Eyes & rage flare
+      const rg = clamp(p.rage || 0, 0, 1.5);
+      const flareOp = f2(clamp(rg * 0.68, 0, 0.92));
+      eyeFlareL.setAttribute('opacity', f2(flareOp * 0.72));
+      eyeFlareR.setAttribute('opacity', flareOp);
+      eyeGlowL.setAttribute('fill', rg > 0.25 ? '#FF3B4D' : '#FFFFFF');
+      eyeGlowR.setAttribute('fill', rg > 0.25 ? '#FF3B4D' : '#FFFFFF');
+
+      // Stone petrification overlay & blood fade
+      const st = clamp(p.stone || 0, 0, 1);
+      stoneEls.forEach((el) => el.setAttribute('opacity', f2(st)));
+      const bl = clamp((p.blood === undefined ? 0.5 : p.blood) * (1 - st * 0.9), 0, 1);
+      chestBlood.setAttribute('opacity', f2(bl * 0.75));
+      bloodEls.forEach((el) => el.setAttribute('opacity', f2(bl)));
+
+      // Cliffhanger C2: crimson cracks -> shattering granite chunks -> blinding white skull bone
+      const cr = clamp(p.crack || 0, 0, 1);
+      crackG.setAttribute('opacity', f2(cr > 0.01 ? clamp(cr * 1.4, 0, 1) : 0));
+      crackGlowEl.setAttribute('opacity', f2(clamp(cr * 0.95, 0, 0.92)));
+      const boneVis = clamp((cr - 0.35) / 0.5, 0, 1);
+      crackBoneG.setAttribute('opacity', f2(boneVis));
+      const fall = clamp((cr - 0.4) / 0.6, 0, 1);
+      const fallSq = fall * fall;
+      chunk1.setAttribute('transform', `translate(${f2(-fall * 10)},${f2(fallSq * 36)}) rotate(${f2(-fall * 28)} 14 -506)`);
+      chunk2.setAttribute('transform', `translate(${f2(fall * 14)},${f2(fallSq * 42)}) rotate(${f2(fall * 34)} 28 -496)`);
+      chunk3.setAttribute('transform', `translate(${f2(-fall * 8)},${f2(fallSq * 32)}) rotate(${f2(-fall * 22)} 4 -484)`);
+      const chOp = f2(cr > 0.35 ? clamp(1 - fall * 0.65, 0, 1) : 0);
+      chunk1.setAttribute('opacity', chOp);
+      chunk2.setAttribute('opacity', chOp);
+      chunk3.setAttribute('opacity', chOp);
+
+      // Limb joints
+      const setL = (L, a) => { L.hip.set(a[0]); L.knee.set(a[1]); };
+      const setA = (A, a) => { A.shd.set(a[0]); A.elb.set(a[1]); };
+      setL(legF, p.lF || [12, 16]);
+      setL(legB, p.lB || [-12, -10]);
+      setA(armB, p.aL || [14, 18]);
+      setA(armF, p.aR || [22, 26]);
     };
     return rig;
   }
 
   const SCP096 = {
     idle: (c) => ({
-      bodyY: 4 * Math.sin(c.t * 2.4), bodyRot: 12 + 2 * Math.sin(c.t * 1.8), head: 8 + 3 * Math.sin(c.t * 2.1),
+      bodyY: 4 * Math.sin(c.t * 2.4), bodyRot: 14 + 2 * Math.sin(c.t * 1.8), head: 8 + 3 * Math.sin(c.t * 2.1),
       jaw: 0.1 + 0.06 * Math.sin(c.t * 3), aL: [10, 16], aR: [18, 24], lF: [10, 14], lB: [-10, -8],
-      rage: 0.15, blood: 0.45,
+      rage: 0.15, blood: 0.5,
     }),
     'idle-card': (c) => ({
-      bodyY: 2 * Math.sin(c.t * 3), bodyRot: 14, head: -6, jaw: 0.92, rage: 1.0,
-      aL: [-54, -46], aR: [-72, -54], lF: [14, 18], lB: [-16, -12], blood: 0.85,
+      bodyY: 2 * Math.sin(c.t * 3), bodyRot: 14, head: -6, jaw: 0.96, rage: 1.05,
+      aL: [-54, -46], aR: [-72, -54], lF: [14, 18], lB: [-16, -12], blood: 0.88,
       shakeX: 2.5 * Math.sin(c.t * 42),
     }),
     cower: (c) => ({
@@ -2895,41 +3217,41 @@
     }),
     'trigger-unhinge': (c) => KO(c.u, [
       [0, { bodyY: 60, bodyRot: 28, head: 18, jaw: 0.12, aL: [-110, -96], aR: [-122, -102], rage: 0.2, shakeX: 3 }],
-      [0.45, { bodyY: 18, bodyRot: -6, head: -22, jaw: 1.15, aL: [-42, -30], aR: [-36, -24], rage: 1.1, shakeX: 7, blood: 0.75 }],
-      [1, { bodyY: 0, bodyRot: 16, head: -14, jaw: 1.25, aL: [-68, -42], aR: [-78, -46], rage: 1.35, shakeX: 8, blood: 0.9 }],
+      [0.45, { bodyY: 18, bodyRot: -6, head: -22, jaw: 1.18, aL: [-42, -30], aR: [-36, -24], rage: 1.15, shakeX: 7, blood: 0.8 }],
+      [1, { bodyY: 0, bodyRot: 16, head: -14, jaw: 1.3, aL: [-68, -42], aR: [-78, -46], rage: 1.38, shakeX: 8, blood: 0.95 }],
     ], 'inOut'),
     charge: (c) => {
       const f = 2 * Math.PI * (c.p.speed || 3.4) * c.lt;
       return {
-        bodyY: 18 + 12 * Math.abs(Math.sin(f)), bodyRot: 28, head: -20, jaw: 1.12, rage: 1.3,
+        bodyY: 18 + 12 * Math.abs(Math.sin(f)), bodyRot: 28, head: -20, jaw: 1.15, rage: 1.32,
         lF: legPh(f, 10, 44, 42), lB: legPh(f + Math.PI, 10, 44, 42),
         aL: [-48 + 18 * Math.sin(f), -18], aR: [-58 - 18 * Math.sin(f), -22],
-        blood: 0.9, shakeX: 4 * Math.sin(c.lt * 58),
+        blood: 0.92, shakeX: 4 * Math.sin(c.lt * 58),
       };
     },
     'claw-slash': (c) => KO(c.u, [
       [0, { bodyRot: -10, head: -16, jaw: 1.1, aL: [-110, -70], aR: [-140, -60], rage: 1.2, blood: 0.9 }],
-      [0.45, { bodyRot: 32, head: -10, jaw: 1.25, aL: [-40, -18], aR: [-22, -8], lF: [36, 26], lB: [-34, -22], rage: 1.4, shakeX: 9, blood: 1.0 }],
-      [1, { bodyRot: 18, head: -12, jaw: 1.0, aL: [-54, -30], aR: [-52, -24], rage: 1.1, blood: 0.95 }],
+      [0.45, { bodyRot: 32, head: -10, jaw: 1.28, aL: [-40, -18], aR: [-22, -8], lF: [36, 26], lB: [-34, -22], rage: 1.4, shakeX: 9, blood: 1.0 }],
+      [1, { bodyRot: 18, head: -12, jaw: 1.02, aL: [-54, -30], aR: [-52, -24], rage: 1.1, blood: 0.95 }],
     ], 'inOut'),
     'grab-crush': (c) => ({
-      bodyY: 26, bodyRot: 38, head: 14, jaw: 1.22, rage: 1.35,
+      bodyY: 26, bodyRot: 38, head: 14, jaw: 1.25, rage: 1.35,
       aL: [-48, -22], aR: [-56, -26], lF: [34, 42], lB: [-28, -16],
       blood: 1.0, shakeX: 5.5 * Math.sin(c.lt * 52),
     }),
     roar: (c) => ({
-      bodyY: 6, bodyRot: -12, head: -28, jaw: 1.32, rage: 1.45,
+      bodyY: 6, bodyRot: -12, head: -28, jaw: 1.36, rage: 1.45,
       aL: [-82, -52], aR: [-94, -56], lF: [18, 22], lB: [-22, -16],
       blood: 1.0, shakeX: 6.5 * Math.sin(c.lt * 60), shakeY: 3 * Math.cos(c.lt * 52),
     }),
     'petrify-resist': (c) => ({
-      bodyY: 14, bodyRot: 20, head: -12, jaw: 1.18, rage: 1.3,
+      bodyY: 14, bodyRot: 20, head: -12, jaw: 1.2, rage: 1.3,
       aL: [-70, -40], aR: [-84, -44], lF: [24, 28], lB: [-24, -20],
       stone: lerp(c.p.stone0 || 0.25, c.p.stone1 || 0.6, clamp(c.u)),
       blood: 0.85, shakeX: 7 * Math.sin(c.lt * 64),
     }),
     petrified: (c) => ({
-      bodyY: 12, bodyRot: 22, head: -14, jaw: 1.18, rage: 0,
+      bodyY: 12, bodyRot: 22, head: -14, jaw: 1.2, rage: 0,
       aL: [-72, -36], aR: [-84, -38], lF: [22, 26], lB: [-22, -18],
       stone: c.p.stone === undefined ? 1.0 : c.p.stone,
       crack: c.p.crack === undefined ? 0 : c.p.crack,
@@ -2938,7 +3260,7 @@
     hurt: (c) => {
       const f = Math.sin(c.lt * 34) * Math.exp(-c.lt * 1.6);
       return {
-        bodyY: 18, bodyRot: -18 + 8 * f, head: -16, jaw: 1.1, rage: 1.2,
+        bodyY: 18, bodyRot: -18 + 8 * f, head: -16, jaw: 1.12, rage: 1.2,
         aL: [24, 48], aR: [34, 52], lF: [14, 22], lB: [-28, -32],
         blood: 1.0, shakeX: 8 * f,
       };
@@ -2946,173 +3268,562 @@
     talk: (c) => {
       const a = c.amp || 0;
       return {
-        bodyY: 4 * Math.sin(c.t * 3), bodyRot: 10 - 6 * a, head: -6 - 10 * a,
-        jaw: 0.25 + 0.95 * a, rage: 0.6 + 0.8 * a,
+        bodyY: 4 * Math.sin(c.t * 3), bodyRot: 12 - 6 * a, head: -6 - 10 * a,
+        jaw: 0.25 + 0.98 * a, rage: 0.6 + 0.8 * a,
         aL: [-34 - 18 * a, -28], aR: [-42 - 22 * a, -32], lF: [12, 16], lB: [-12, -10],
-        blood: 0.75, shakeX: 4 * a * Math.sin(c.t * 50),
+        blood: 0.78, shakeX: 4 * a * Math.sin(c.t * 50),
       };
     },
   };
   SCP096.fade = SCP096.idle;
 
   // ==================== MEDUSA (Cursed Gorgon · Greek Mythology Original) ====================
-  // Apollodorus Bibliotheca 2.4.2: living serpent hair, golden wings, brazen (bronze) claws,
-  // emerald petrifying eyes, dark emerald-gold Greek chiton. Faces +x (flip -1 on right).
+  // Apollodorus Bibliotheca 2.4.2: dense 16-viper living serpent hair crown, sculpted classical
+  // Greek horror face with glowing emerald slit-pupil eyes & Gorgon fangs, multi-layered golden
+  // feathered wings with dynamic wingDmg fracture, brazen (bronze) forearms & razor claws,
+  // dark emerald-gold tattered chiton + coiled scaled serpentine lower tail. Faces +x.
   function buildMedusa() {
+    const uid = ++_rigUid;
+    const rig = newRig();
     const g = $('g');
-    const sh = $('ellipse', { cx: 0, cy: 4, rx: 106, ry: 20, fill: 'rgba(0,0,0,0.5)' }, g);
+    const defs = $('defs', {}, g);
+    const mkRad = (id, stops, cx = 0.5, cy = 0.5, r = 0.5) => {
+      const gr = $('radialGradient', { id: `${id}_${uid}`, cx, cy, r }, defs);
+      stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a === undefined ? 1 : a }, gr));
+      return `url(#${id}_${uid})`;
+    };
+    const mkLin = (id, stops, x1 = 0, y1 = 0, x2 = 0, y2 = 1) => {
+      const gr = $('linearGradient', { id: `${id}_${uid}`, x1, y1, x2, y2 }, defs);
+      stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a === undefined ? 1 : a }, gr));
+      return `url(#${id}_${uid})`;
+    };
+
+    // Local unique gradients (never passed to G.reg)
+    const gGoldWing = mkLin('medGW', [[0, '#FFF6C4', 0.92], [0.42, '#F0C24B', 0.72], [0.82, '#9E6B18', 0.85], [1, '#4D2D06', 0.95]], 0, 0, 1, 1);
+    const gGoldWingB = mkLin('medGWB', [[0, '#D49E32', 0.78], [0.52, '#8A5A12', 0.85], [1, '#3B2204', 0.95]], 0, 0, 1, 1);
+    const gBronze = mkLin('medBrz', [[0, '#FFE3A3', 0.85], [0.45, '#C78038', 0.55], [1, '#4D290A', 0.88]], 0, 0, 1, 0);
+    const gEyeEm = mkRad('medEye', [[0, '#FFFFFF', 1], [0.24, '#B0FFD0', 0.92], [0.54, '#4CFF88', 0.62], [0.84, '#0A5C2B', 0.25], [1, '#000000', 0]]);
+    const gChiton = mkLin('medCht', [[0, '#245443', 0.65], [0.58, '#122B22', 0.55], [1, '#06100C', 0.85]], 0, 0, 0, 1);
+    const gFace = mkRad('medFac', [[0, '#D8EADB', 0.72], [0.55, '#99B3A0', 0.28], [1, '#3B5244', 0.75]], 0.58, 0.36, 0.68);
+    const gTail = mkLin('medTl', [[0, '#2B8752', 0.65], [0.55, '#143B2A', 0.65], [1, '#071710', 0.88]], 0, 0, 1, 1);
+    const gIchor = mkLin('medIch', [[0, '#781D4E', 0.95], [0.5, '#2B0A1D', 0.95], [1, '#12040C', 0.9]], 0, 0, 0, 1);
+
+    // Palette (strict 6-digit hex for G.reg / setSil compatibility)
+    const SKIN_L = '#C8DBC9', SKIN = '#99B3A0', SKIN_D = '#637D6C', SKIN_DD = '#293B31';
+    const GOLD_L = '#FFF2B2', GOLD = '#F0C24B', GOLD_D = '#9E6B18', GOLD_DD = '#5C3908';
+    const BRONZE_L = '#FFE099', BRONZE = '#C78038', BRONZE_D = '#6E3F14';
+    const ROBE_DD = '#07120E', ROBE_D = '#0B1C16', ROBE = '#122B22', ROBE_L = '#204B3C';
+    const VIPER_DD = '#081D13', VIPER_B = '#123D27', VIPER = '#298F56', VIPER_L = '#5BE091', VIPER_HI = '#A8FFC8';
+    const BELLY = '#C8BA78', EYE_EM = '#4CFF88', ICHOR = '#240B1A', ICHOR_L = '#6E1B47';
+
+    const pathR = (p, d, fill, extra) => G.reg($('path', Object.assign({ d, fill }, extra || {}), p), fill);
+
+    // Non-registered ground shadow
+    const sh = $('ellipse', { cx: 0, cy: 4, rx: 112, ry: 22, fill: 'rgba(0,0,0,0.5)' }, g);
     const root = $('g', {}, g);
 
-    const SKIN = '#9eb8a8', SKIN_D = '#759182';
-    const ROBE = '#122620', ROBE_L = '#1e3e34', GOLD = '#f0c24b', GOLD_D = '#a87d22';
-    const BRONZE = '#c98842', BRONZE_L = '#f2b86b', VIPER = '#2ea860', VIPER_D = '#185c35';
+    // Main body pivot at waist (y = -245 in rig space; ground = 0, face center ~ -464)
+    const body = joint(root, 0, -245);
+    const B = body.c;
 
-    // Golden wings (back layer)
-    const wingB = $('g', {}, root); tr(wingB, -22, -340);
-    $('polygon', { points: '0,0 -190,-155 -236,-42 -156,52 -40,56', fill: GOLD_D }, wingB);
-    $('polygon', { points: '-14,-8 -164,-128 -196,-42 -132,32 -36,36', fill: GOLD }, wingB);
-    for (let i = 0; i < 4; i++) {
-      $('polygon', { points: `${-54 - i * 38},${10 - i * 24} ${-160 - i * 18},${-85 - i * 12} ${-148 - i * 14},${-64 - i * 10} ${-48 - i * 32},${24 - i * 20}`, fill: '#ffe588', opacity: 0.75 }, wingB);
+    // ==================== 1. MULTI-LAYERED GOLDEN FEATHERED WINGS (Apollodorus 2.4.2) ====================
+    const drawPrimaryFeather = (parent, sx, sy, u, sc, isFront) => {
+      const bx = sx - (14 + u * 98) * sc;
+      const by = sy - (16 + Math.sin(u * Math.PI * 0.72) * 92) * sc;
+      const tipX = sx - (262 - u * 138) * sc;
+      const tipY = sy - (248 - u * 218) * sc;
+      const mx = (bx + tipX) * 0.5 - 24 * sc;
+      const my = (by + tipY) * 0.5 - 20 * sc;
+      const wF = (21 - u * 5.5) * sc;
+      const ang = Math.atan2(tipY - by, tipX - bx);
+      const nx = -Math.sin(ang) * wF, ny = Math.cos(ang) * wF;
+      const d = `M${f2(bx)} ${f2(by)} Q${f2(mx + nx)} ${f2(my + ny)} ${f2(tipX)} ${f2(tipY)} Q${f2(mx - nx * 0.45)} ${f2(my - ny * 0.45)} ${f2(bx + 10 * sc)} ${f2(by + 14 * sc)} Z`;
+      const col = isFront ? (iMod(u) ? GOLD_L : GOLD) : (iMod(u) ? GOLD : GOLD_D);
+      pathR(parent, d, col);
+      // Dark underside separator + gleaming metallic rachis shaft
+      $('path', { d: `M${f2(bx + 6 * sc)} ${f2(by + 8 * sc)} Q${f2(mx - nx * 0.3)} ${f2(my - ny * 0.3)} ${f2(tipX)} ${f2(tipY)}`, stroke: GOLD_DD, 'stroke-width': isFront ? 2.0 : 1.5, fill: 'none', opacity: isFront ? 0.65 : 0.5 }, parent);
+      $('path', { d: `M${f2(bx)} ${f2(by)} Q${f2(mx + nx * 0.28)} ${f2(my + ny * 0.28)} ${f2(tipX)} ${f2(tipY)}`, stroke: GOLD_L, 'stroke-width': isFront ? 2.2 : 1.4, fill: 'none', 'stroke-linecap': 'round', opacity: isFront ? 0.85 : 0.45 }, parent);
+    };
+    const iMod = (u) => Math.round(u * 9) % 2 === 0;
+
+    // Back Golden Wing (shadowed depth layer)
+    const wingB = joint(B, -24, -392);
+    {
+      const wg = wingB.c, sx = -24, sy = -392, sc = 0.9;
+      const backD = `M${sx - 6} ${sy + 12} C${f2(sx - 64 * sc)} ${f2(sy - 102 * sc)} ${f2(sx - 166 * sc)} ${f2(sy - 216 * sc)} ${f2(sx - 252 * sc)} ${f2(sy - 238 * sc)} C${f2(sx - 232 * sc)} ${f2(sy - 128 * sc)} ${f2(sx - 168 * sc)} ${f2(sy - 32 * sc)} ${f2(sx - 62 * sc)} ${f2(sy + 26 * sc)} Z`;
+      pathR(wg, backD, GOLD_D);
+      $('path', { d: backD, fill: gGoldWingB, opacity: 0.78 }, wg);
+      for (let i = 0; i < 10; i++) drawPrimaryFeather(wg, sx, sy, i / 9, sc, false);
+      // 7 layered secondary covert feathers
+      for (let i = 0; i < 7; i++) {
+        const u = i / 6;
+        const bx = sx - (6 + u * 56) * sc, by = sy - (8 + u * 52) * sc;
+        const tipX = sx - (170 - u * 92) * sc, tipY = sy - (166 - u * 134) * sc;
+        const mx = (bx + tipX) * 0.5 - 14 * sc, my = (by + tipY) * 0.5 - 12 * sc;
+        const d = `M${f2(bx)} ${f2(by)} Q${f2(mx - 12 * sc)} ${f2(my + 9 * sc)} ${f2(tipX)} ${f2(tipY)} Q${f2(mx + 10 * sc)} ${f2(my - 7 * sc)} ${f2(bx + 8 * sc)} ${f2(by + 10 * sc)} Z`;
+        pathR(wg, d, GOLD);
+        $('path', { d, fill: gGoldWingB, opacity: 0.55 }, wg);
+      }
+      // Sculpted shoulder arch
+      pathR(wg, `M${sx - 6} ${sy + 8} Q${f2(sx - 74 * sc)} ${f2(sy - 92 * sc)} ${f2(sx - 164 * sc)} ${f2(sy - 172 * sc)} Q${f2(sx - 96 * sc)} ${f2(sy - 106 * sc)} ${sx - 8} ${sy - 20} Z`, GOLD);
     }
 
-    const wingF = $('g', {}, root); tr(wingF, -12, -332);
-    $('polygon', { points: '0,0 -174,-186 -204,-72 -128,28 -26,46', fill: GOLD }, wingF);
-    $('polygon', { points: '-12,-10 -150,-156 -170,-68 -108,16 -22,30', fill: '#ffe37a' }, wingF);
+    // Front Golden Wing (split into inner shoulder + outer fracture joint for dynamic wingDmg!)
+    const wingF = joint(B, -10, -384);
+    const wingFOuter = joint(wingF.c, -106, -476);
+    const wingBreakG = $('g', { opacity: 0 }, wingF.c);
+    {
+      const sx = -10, sy = -384, sc = 1.0;
+      const wgIn = wingF.c, wgOut = wingFOuter.c;
 
-    // Lower chiton + scaled tail-hem silhouette
-    const body = $('g', {}, root); tr(body, 0, -240);
-    const skirt = $('polygon', { points: '-38,0 38,0 74,242 22,226 -14,244 -68,236', fill: ROBE }, body);
-    $('polygon', { points: '-26,0 24,0 44,234 -34,228', fill: ROBE_L }, body);
-    // Gold Greek key trim + waist sash
-    $('polygon', { points: '-42,-8 42,-8 38,14 -38,14', fill: GOLD }, body);
-    $('polygon', { points: '-16,12 16,12 22,124 -8,118', fill: GOLD_D }, body);
+      // Inner covert blade backing
+      const inBackD = `M${sx - 6} ${sy + 12} C${f2(sx - 44)} ${f2(sy - 48)} ${f2(sx - 84)} ${f2(sy - 98)} ${f2(sx - 120)} ${f2(sy - 118)} C${f2(sx - 128)} ${f2(sy - 56)} ${f2(sx - 102)} ${f2(sy - 4)} ${f2(sx - 56)} ${f2(sy + 26)} Z`;
+      pathR(wgIn, inBackD, GOLD);
+      $('path', { d: inBackD, fill: gGoldWing, opacity: 0.72 }, wgIn);
 
-    // Back arm (bronze hand)
-    const makeArm = (parent, dark) => {
-      const shd = $('g', {}, parent);
-      $('polygon', { points: '-12,-8 12,-8 10,114 -10,114', fill: dark ? SKIN_D : SKIN }, shd);
-      const elb = $('g', {}, shd); tr(elb, 0, 112);
-      // Brazen (bronze) forearm & claws (Apollodorus 2.4.2!)
-      $('polygon', { points: '-11,0 11,0 10,112 -9,112', fill: dark ? '#9c632b' : BRONZE }, elb);
-      $('polygon', { points: '-6,8 6,8 5,104 -4,104', fill: BRONZE_L, opacity: 0.65 }, elb);
-      const hand = $('g', { transform: 'translate(0,112)' }, elb);
-      $('polygon', { points: '-12,0 14,0 16,28 -10,26', fill: BRONZE }, hand);
-      for (const dx of [-8, 0, 8]) {
-        $('polygon', { points: `${dx - 2},24 ${dx + 3},24 ${dx + 6},54 ${dx - 1},48`, fill: '#ffd87a' }, hand);
+      // Outer covert blade backing (inside wingFOuter so it droops & snaps cleanly!)
+      const outBackD = `M${f2(sx - 94)} ${f2(sy - 90)} C${f2(sx - 154)} ${f2(sy - 166)} ${f2(sx - 216)} ${f2(sy - 224)} ${f2(sx - 268)} ${f2(sy - 246)} C${f2(sx - 242)} ${f2(sy - 134)} ${f2(sx - 186)} ${f2(sy - 56)} ${f2(sx - 104)} ${f2(sy - 18)} Z`;
+      pathR(wgOut, outBackD, GOLD);
+      $('path', { d: outBackD, fill: gGoldWing, opacity: 0.78 }, wgOut);
+
+      // 10 overlapping primary feathers: outer 6 on wingFOuter (i = 0..5), inner 4 on wingF (i = 6..9)
+      for (let i = 0; i < 6; i++) drawPrimaryFeather(wgOut, sx, sy, i / 9, sc, true);
+      for (let i = 6; i < 10; i++) drawPrimaryFeather(wgIn, sx, sy, i / 9, sc, true);
+
+      // 7 layered secondary covert feathers on inner wing
+      for (let i = 0; i < 7; i++) {
+        const u = i / 6;
+        const bx = sx - (8 + u * 54), by = sy - (10 + u * 48);
+        const tipX = sx - (158 - u * 84), tipY = sy - (152 - u * 124);
+        const mx = (bx + tipX) * 0.5 - 12, my = (by + tipY) * 0.5 - 10;
+        const d = `M${f2(bx)} ${f2(by)} Q${f2(mx - 12)} ${f2(my + 9)} ${f2(tipX)} ${f2(tipY)} Q${f2(mx + 10)} ${f2(my - 8)} ${f2(bx + 9)} ${f2(by + 11)} Z`;
+        pathR(i < 2 ? wgOut : wgIn, d, i % 2 === 0 ? GOLD_L : GOLD);
+        $('path', { d, fill: gGoldWing, opacity: 0.35 }, i < 2 ? wgOut : wgIn);
       }
-      const handMk = $('circle', { cx: 6, cy: 36, r: 1, fill: 'none' }, hand);
+
+      // Ornate Greek sculpted golden shoulder arch & spiral crest
+      pathR(wgIn, `M${sx - 6} ${sy + 10} Q${f2(sx - 56)} ${f2(sy - 66)} ${f2(sx - 114)} ${f2(sy - 118)} Q${f2(sx - 66)} ${f2(sy - 72)} ${sx - 10} ${sy - 20} Z`, GOLD_L);
+      $('path', { d: `M${sx - 16} ${sy - 8} C${sx - 34} ${sy - 24} ${sx - 44} ${sy - 8} ${sx - 32} ${sy + 4} C${sx - 24} ${sy + 10} ${sx - 18} ${sy + 2} ${sx - 26} ${sy - 2}`, stroke: GOLD_DD, 'stroke-width': 2.6, fill: 'none', 'stroke-linecap': 'round' }, wgIn);
+
+      // Wing fracture seam: jagged broken golden quills + dark Gorgon ichor splatters (shown when wingDmg > 0)
+      const fx = -106, fy = -476;
+      $('path', { d: `M${fx + 8} ${fy + 8} L${fx - 18} ${fy - 22} L${fx - 6} ${fy + 4} L${fx - 26} ${fy - 4} L${fx - 2} ${fy + 16} L${fx - 16} ${fy + 26} Z`, fill: GOLD_L, stroke: GOLD_DD, 'stroke-width': 1.8 }, wingBreakG);
+      $('path', { d: `M${fx + 2} ${fy - 4} C${fx - 14} ${fy + 10} ${fx - 18} ${fy + 32} ${fx - 8} ${fy + 46} C${fx + 2} ${fy + 34} ${fx + 10} ${fy + 14} ${fx + 2} ${fy - 4} Z`, fill: gIchor, opacity: 0.92 }, wingBreakG);
+      $('circle', { cx: fx - 14, cy: fy + 22, r: 5.5, fill: ICHOR }, wingBreakG);
+      $('circle', { cx: fx - 6, cy: fy + 38, r: 3.8, fill: ICHOR_L }, wingBreakG);
+    }
+
+    // ==================== 2. COILED SCALED SERPENTINE LOWER BODY ====================
+    const tailG = $('g', {}, B);
+    const tailUnderPath = pathR(tailG, 'M0 -245', VIPER_DD);
+    const tailBodyPath = pathR(tailG, 'M0 -245', VIPER_B);
+    const tailGradPath = $('path', { d: 'M0 -245', fill: gTail, opacity: 0.78 }, tailG);
+    const tailBellyPath = $('path', { d: 'M0 -245', stroke: BELLY, 'stroke-width': 13, 'stroke-dasharray': '7 9', 'stroke-linecap': 'round', fill: 'none', opacity: 0.76 }, tailG);
+    const tailScalePath = $('path', { d: 'M0 -245', stroke: VIPER_L, 'stroke-width': 8, 'stroke-dasharray': '10 11', 'stroke-linecap': 'round', fill: 'none', opacity: 0.56 }, tailG);
+    const tailHiPath = $('path', { d: 'M0 -245', stroke: VIPER_HI, 'stroke-width': 2.5, 'stroke-dasharray': '16 22', 'stroke-linecap': 'round', fill: 'none', opacity: 0.42 }, tailG);
+
+    // Helper: build a smooth tapered filled ribbon around a polyline of [x, y, halfWidth]
+    const buildTaperRibbon = (pts) => {
+      const L = [], R = [];
+      for (let i = 0; i < pts.length; i++) {
+        const p = pts[i];
+        const prev = pts[Math.max(0, i - 1)], next = pts[Math.min(pts.length - 1, i + 1)];
+        const dx = next[0] - prev[0], dy = next[1] - prev[1];
+        const len = Math.hypot(dx, dy) || 1;
+        const nx = -dy / len, ny = dx / len;
+        L.push([p[0] + nx * p[2], p[1] + ny * p[2]]);
+        R.push([p[0] - nx * p[2], p[1] - ny * p[2]]);
+      }
+      let d = `M${f2(L[0][0])} ${f2(L[0][1])}`;
+      for (let i = 1; i < L.length; i++) d += ` L${f2(L[i][0])} ${f2(L[i][1])}`;
+      for (let i = R.length - 1; i >= 0; i--) d += ` L${f2(R[i][0])} ${f2(R[i][1])}`;
+      return d + ' Z';
+    };
+
+    // ==================== 3. TATTERED EMERALD-GOLD GREEK CHITON SKIRT ====================
+    const skirtG = $('g', {}, B);
+    const skirtBaseD = 'M-40 -248 C-54 -184 -74 -116 -86 -48 L-54 -72 L-30 -28 L-6 -64 L22 -24 L46 -58 L72 -32 C60 -106 48 -178 38 -248 Z';
+    pathR(skirtG, skirtBaseD, ROBE);
+    $('path', { d: skirtBaseD, fill: gChiton, opacity: 0.8 }, skirtG);
+    // Draped pleated shadows & highlights
+    pathR(skirtG, 'M-30 -246 C-40 -178 -54 -116 -60 -58 L-42 -68 C-34 -128 -22 -184 -14 -246 Z', ROBE_D);
+    pathR(skirtG, 'M-14 -246 C-20 -176 -26 -108 -30 -36 L-12 -58 C-6 -120 0 -184 4 -246 Z', ROBE_L);
+    pathR(skirtG, 'M10 -246 C16 -178 24 -110 26 -34 L42 -54 C36 -118 28 -182 22 -246 Z', ROBE_L);
+    pathR(skirtG, 'M26 -246 C36 -178 48 -112 58 -46 L70 -36 C58 -108 46 -178 36 -246 Z', ROBE_D);
+    // Hammered gold tattered hem trim
+    $('path', { d: 'M-82 -56 L-54 -78 L-30 -36 L-6 -70 L22 -32 L46 -64 L68 -40', stroke: GOLD, 'stroke-width': 3.5, fill: 'none', 'stroke-linejoin': 'miter', opacity: 0.88 }, skirtG);
+    $('path', { d: 'M-80 -62 L-54 -84 L-30 -42 L-6 -76 L22 -38 L46 -70 L66 -46', stroke: GOLD_D, 'stroke-width': 1.8, fill: 'none', opacity: 0.72 }, skirtG);
+
+    // ==================== 4. BRAZEN (BRONZE) ARMS & RAZOR CLAWS ====================
+    const makeArm = (parent, sx, sy, isBack) => {
+      const shd = joint(parent, sx, sy);
+      const uCol = isBack ? SKIN_D : SKIN;
+      // Slender sculpted Greek upper arm
+      const upD = `M${sx - 12} ${sy - 6} C${sx - 15} ${sy + 32} ${sx - 13} ${sy + 74} ${sx - 10} ${sy + 106} L${sx + 10} ${sy + 106} C${sx + 13} ${sy + 72} ${sx + 15} ${sy + 30} ${sx + 12} ${sy - 6} Z`;
+      pathR(shd.c, upD, uCol);
+      if (!isBack) {
+        pathR(shd.c, `M${sx + 2} ${sy} C${sx + 8} ${sy + 34} ${sx + 8} ${sy + 72} ${sx + 5} ${sy + 102} L${sx + 10} ${sy + 102} C${sx + 13} ${sy + 70} ${sx + 13} ${sy + 32} ${sx + 10} ${sy} Z`, SKIN_L);
+      }
+      // Coiled golden serpent bicep armlet
+      pathR(shd.c, `M${sx - 14} ${sy + 40} Q${sx} ${sy + 48} ${sx + 14} ${sy + 38} L${sx + 14} ${sy + 46} Q${sx} ${sy + 56} ${sx - 14} ${sy + 48} Z`, isBack ? GOLD_D : GOLD);
+      pathR(shd.c, `M${sx - 13} ${sy + 52} Q${sx} ${sy + 60} ${sx + 13} ${sy + 50} L${sx + 13} ${sy + 56} Q${sx} ${sy + 66} ${sx - 13} ${sy + 58} Z`, isBack ? GOLD_DD : GOLD_L);
+
+      // Brazen (forged bronze) forearm & vambrace
+      const elb = joint(shd.c, sx, sy + 106);
+      const ey = sy + 106;
+      const bBase = isBack ? BRONZE_D : BRONZE;
+      const foreD = `M${sx - 12} ${ey - 4} C${sx - 14} ${ey + 32} ${sx - 11} ${ey + 74} ${sx - 9} ${ey + 106} L${sx + 9} ${ey + 106} C${sx + 12} ${ey + 72} ${sx + 14} ${ey + 30} ${sx + 12} ${ey - 4} Z`;
+      pathR(elb.c, foreD, bBase);
+      $('path', { d: foreD, fill: gBronze, opacity: isBack ? 0.42 : 0.78 }, elb.c);
+      // Specular metallic bronze ridge & engraved Greek elbow/wrist cuffs
+      pathR(elb.c, `M${sx + 1} ${ey + 6} C${sx + 5} ${ey + 38} ${sx + 4} ${ey + 74} ${sx + 2} ${ey + 100} L${sx + 7} ${ey + 100} C${sx + 9} ${ey + 72} ${sx + 10} ${ey + 36} ${sx + 7} ${ey + 6} Z`, isBack ? BRONZE : BRONZE_L);
+      pathR(elb.c, `M${sx - 13} ${ey - 2} L${sx + 13} ${ey - 2} L${sx + 12} ${ey + 9} L${sx - 12} ${ey + 9} Z`, isBack ? GOLD_DD : GOLD);
+      pathR(elb.c, `M${sx - 10} ${ey + 95} L${sx + 10} ${ey + 95} L${sx + 9} ${ey + 105} L${sx - 9} ${ey + 105} Z`, isBack ? GOLD_DD : GOLD);
+
+      // Articulated brazen clawed hand (5 curved razor talons)
+      const hy = ey + 106;
+      const hand = joint(elb.c, sx, hy);
+      const palmD = `M${sx - 10} ${hy} C${sx - 14} ${hy + 12} ${sx - 13} ${hy + 26} ${sx - 8} ${hy + 32} L${sx + 10} ${hy + 32} C${sx + 15} ${hy + 24} ${sx + 16} ${hy + 10} ${sx + 10} ${hy} Z`;
+      pathR(hand.c, palmD, bBase);
+      $('path', { d: palmD, fill: gBronze, opacity: isBack ? 0.4 : 0.72 }, hand.c);
+      // 5 curved gleaming bronze-gold talons (thumb + 4 fingers)
+      const talons = [
+        [sx + 11, hy + 16, sx + 22, hy + 24, sx + 26, hy + 38, 4.5],
+        [sx - 9, hy + 28, sx - 13, hy + 46, sx - 9, hy + 62, 4.2],
+        [sx - 3, hy + 30, sx - 4, hy + 52, sx + 1, hy + 70, 4.5],
+        [sx + 3, hy + 30, sx + 5, hy + 52, sx + 10, hy + 68, 4.4],
+        [sx + 9, hy + 28, sx + 13, hy + 46, sx + 18, hy + 60, 4.0],
+      ];
+      talons.forEach(([x0, y0, cx, cy, tx, ty, w]) => {
+        pathR(hand.c, `M${f2(x0 - w * 0.5)} ${f2(y0)} Q${f2(cx - w * 0.3)} ${f2(cy)} ${f2(tx)} ${f2(ty)} Q${f2(cx + w * 0.6)} ${f2(cy - 2)} ${f2(x0 + w * 0.5)} ${f2(y0)} Z`, isBack ? BRONZE : BRONZE_L);
+        if (!isBack) {
+          $('path', { d: `M${f2(x0 + w * 0.2)} ${f2(y0 + 2)} Q${f2(cx + w * 0.35)} ${f2(cy)} ${f2(tx)} ${f2(ty)}`, stroke: GOLD_L, 'stroke-width': 1.5, fill: 'none', 'stroke-linecap': 'round' }, hand.c);
+        }
+      });
+      const handMk = $('circle', { cx: sx + 6, cy: hy + 38, r: 1, fill: 'none' }, hand.c);
       return { shd, elb, hand, handMk };
     };
 
-    const armB = makeArm(body, true);
-    tr(armB.shd, -32, -148);
+    const armB = makeArm(B, -38, -384, true);
 
-    // Torso
-    $('polygon', { points: '-40,-158 40,-158 34,2 -34,2', fill: ROBE }, body);
-    $('polygon', { points: '-36,-156 36,-156 26,-110 -26,-110', fill: GOLD_D }, body);
-    $('polygon', { points: '-24,-154 24,-154 16,-118 -16,-118', fill: GOLD }, body);
-    const bodyMk = $('circle', { cx: 0, cy: -84, r: 1, fill: 'none' }, body);
+    // ==================== 5. SCULPTED CLASSICAL TORSO, CHITON BODICE & GREEK MEANDER BELT ====================
+    // Pale olive-jade upper chest, shoulders & collarbone
+    pathR(B, 'M-42 -390 C-26 -402 26 -402 42 -390 C44 -366 38 -342 32 -324 L-32 -324 C-38 -342 -44 -366 -42 -390 Z', SKIN);
+    // Collarbone ridges & hollow
+    $('path', { d: 'M-30 -386 Q-12 -378 2 -384 Q16 -378 32 -386', stroke: SKIN_L, 'stroke-width': 3.5, fill: 'none', 'stroke-linecap': 'round' }, B);
+    $('path', { d: 'M-24 -380 Q0 -372 24 -380', stroke: SKIN_D, 'stroke-width': 2.5, fill: 'none', opacity: 0.65 }, B);
 
-    // Head + writhing live serpent hair
-    const neck = $('g', { transform: 'translate(4,-158)' }, body);
-    $('polygon', { points: '-13,8 13,8 11,-34 -11,-34', fill: SKIN_D }, neck);
-    const headG = $('g', {}, neck); tr(headG, 2, -34);
+    // Draped dark emerald Greek chiton bodice (asymmetric classical folds)
+    const bodiceD = 'M-40 -386 C-42 -354 -34 -304 -28 -254 L28 -254 C34 -304 42 -354 38 -386 C20 -366 -16 -362 -40 -386 Z';
+    pathR(B, bodiceD, ROBE);
+    $('path', { d: bodiceD, fill: gChiton, opacity: 0.78 }, B);
+    // Diagonal classical drapery folds across bust & waist
+    pathR(B, 'M-38 -384 C-18 -364 12 -346 34 -334 L32 -320 C8 -334 -20 -350 -38 -368 Z', ROBE_L);
+    pathR(B, 'M-34 -352 C-12 -334 10 -322 30 -308 L28 -294 C8 -308 -14 -320 -32 -338 Z', ROBE_D);
+    pathR(B, 'M-30 -318 C-10 -304 10 -296 28 -282 L26 -268 C8 -282 -10 -290 -28 -304 Z', ROBE_L);
+    // Hammered gold neckline trim & twin Gorgon shoulder brooches
+    $('path', { d: 'M-40 -386 C-16 -362 20 -366 38 -386', stroke: GOLD, 'stroke-width': 4.5, fill: 'none', 'stroke-linecap': 'round' }, B);
+    ell(B, -34, -386, 8, 6.5, GOLD); ell(B, -34, -386, 4.2, 3.2, GOLD_L);
+    ell(B, 34, -386, 8, 6.5, GOLD); ell(B, 34, -386, 4.2, 3.2, GOLD_L);
 
-    // Back vipers
+    // Embossed golden Greek meander (key-pattern) waist corset/belt + central tabard
+    pathR(B, 'M-32 -264 C-10 -258 10 -258 32 -264 L35 -236 C12 -228 -12 -228 -35 -236 Z', GOLD);
+    pathR(B, 'M-30 -260 C-10 -255 10 -255 30 -260 L32 -240 C12 -233 -12 -233 -32 -240 Z', GOLD_D);
+    pathR(B, 'M-28 -257 C-10 -252 10 -252 28 -257 L29 -244 C10 -238 -10 -238 -29 -244 Z', GOLD);
+    // Crisp Greek key filigree lines
+    $('path', { d: 'M-26 -250 H-18 V-244 H-12 V-254 H-4 V-244 H4 V-254 H12 V-244 H18 V-250 H26', stroke: GOLD_DD, 'stroke-width': 2.2, fill: 'none' }, B);
+    // Flowing gold-trimmed central tabard drape
+    pathR(B, 'M-15 -236 L15 -236 L22 -118 L0 -96 L-18 -122 Z', ROBE_D);
+    pathR(B, 'M-12 -236 L12 -236 L17 -122 L0 -104 L-14 -126 Z', GOLD_D);
+    $('path', { d: 'M-10 -234 L-12 -128 L0 -108 L14 -124 L10 -234', stroke: GOLD_L, 'stroke-width': 2.2, fill: 'none', opacity: 0.85 }, B);
+    // Central emerald belt clasp
+    pathR(B, 'M0 -260 L10 -248 L0 -236 L-10 -248 Z', GOLD_L);
+    pathR(B, 'M0 -255 L6 -248 L0 -241 L-6 -248 Z', EYE_EM);
+
+    // Battle ichor splatters on collarbone & armor (driven by P.ichor)
+    const chestIchorG = $('g', { opacity: 0 }, B);
+    $('path', { d: 'M14 -384 C20 -366 16 -344 22 -324 C26 -342 28 -364 22 -382 Z', fill: gIchor }, chestIchorG);
+    $('path', { d: 'M-12 -368 C-6 -354 -10 -332 -4 -314 C2 -334 0 -354 -6 -368 Z', fill: gIchor, opacity: 0.85 }, chestIchorG);
+    $('circle', { cx: 22, cy: -316, r: 3.2, fill: ICHOR_L }, chestIchorG);
+
+    const bodyMk = $('circle', { cx: 0, cy: -324, r: 1, fill: 'none' }, B);
+
+    // ==================== 6. NECK, SCULPTED GREEK FACE & 16-VIPER CROWN ====================
+    const neck = joint(B, 4, -394);
+    pathR(neck.c, 'M-11 -392 C-9 -408 -7 -424 -6 -436 L18 -436 C16 -422 15 -406 17 -392 Z', SKIN_D);
+    pathR(neck.c, 'M-3 -392 C-1 -408 1 -424 2 -434 L14 -434 C13 -422 12 -408 13 -392 Z', SKIN);
+    // Straining sternocleidomastoid neck tendons
+    $('path', { d: 'M-2 -432 Q2 -412 -4 -394 M11 -432 Q9 -412 14 -394', stroke: SKIN_DD, 'stroke-width': 2.0, fill: 'none', opacity: 0.55 }, neck.c);
+    // Ornate golden neck torc
+    pathR(neck.c, 'M-13 -398 Q4 -388 20 -398 L19 -391 Q4 -381 -12 -391 Z', GOLD);
+    pathR(neck.c, 'M4 -391 L9 -382 L4 -374 L-1 -382 Z', EYE_EM);
+
+    // Head joint (face centered around x = 6, y = -466 — matches HEADOFF.medusa = [6, -460]!)
+    const headG = joint(neck.c, 6, -432);
+    const H = headG.c;
+
+    // Helper: create a living cubic-Bezier tapered viper with diamond head, slit eye, hissing jaw, & flickering forked tongue
     const snakes = [];
-    const snakeCfg = [
-      [-18, -58, -145, 76, true],
-      [-28, -36, -165, 84, true],
-      [-6, -64, -105, 88, false],
-      [14, -62, -62, 92, false],
-      [26, -46, -24, 96, false],
-      [-24, -16, 175, 78, true],
-      [28, -22, 12, 86, false],
-    ];
-    snakeCfg.forEach(([sx, sy, baseAng, len, back], idx) => {
-      const sg = $('g', { transform: `translate(${sx},${sy})` }, headG);
-      const path = $('path', { d: `M0,0 Q${len * 0.45},-24 ${len},0`, stroke: back ? VIPER_D : VIPER, 'stroke-width': 12, fill: 'none', 'stroke-linecap': 'round' }, sg);
-      const h = $('g', { transform: `translate(${len},0)` }, sg);
-      $('polygon', { points: '-6,-9 18,-5 24,0 18,6 -6,9', fill: back ? VIPER_D : VIPER }, h);
-      $('circle', { cx: 10, cy: -2, r: 2.5, fill: '#66ff88' }, h);
-      $('path', { d: 'M22,0 L34,-4 M22,0 L34,4', stroke: '#ff3344', 'stroke-width': 2.2, fill: 'none' }, h);
-      snakes.push({ sg, path, h, baseAng, len, idx });
-    });
-    const snakeMk = $('circle', { cx: 74, cy: -52, r: 1, fill: 'none' }, headG);
+    const buildViper = (parent, cfg, idx) => {
+      const [sx, sy, baseAng, len, w0, isBack, phase] = cfg;
+      const sg = $('g', { transform: `translate(${sx},${sy})` }, parent);
+      const bodyCol = isBack ? VIPER_B : VIPER;
+      const rimCol = isBack ? VIPER_DD : VIPER_B;
+      const bodyFill = pathR(sg, 'M0 0', bodyCol);
+      const scaleStroke = $('path', { d: 'M0 0', stroke: isBack ? VIPER : VIPER_L, 'stroke-width': isBack ? 3.2 : 4.2, 'stroke-dasharray': isBack ? '6 8' : '7 7', 'stroke-linecap': 'round', fill: 'none', opacity: isBack ? 0.52 : 0.78 }, sg);
+      const bellyStroke = !isBack ? $('path', { d: 'M0 0', stroke: BELLY, 'stroke-width': 2.6, 'stroke-dasharray': '5 6', 'stroke-linecap': 'round', fill: 'none', opacity: 0.62 }, sg) : null;
 
-    // Face
-    $('ellipse', { cx: 2, cy: -32, rx: 32, ry: 38, fill: SKIN }, headG);
-    $('polygon', { points: '-26,-26 30,-26 24,6 -20,6', fill: SKIN }, headG);
-    // Golden Gorgon circlet
-    $('polygon', { points: '-32,-50 32,-50 28,-40 -28,-40', fill: GOLD }, headG);
-    $('polygon', { points: '-6,-60 6,-60 10,-46 -10,-46', fill: '#4cff88' }, headG);
+      // Articulated triangular diamond viper head
+      const h = $('g', {}, sg);
+      const jaw = $('g', {}, h);
+      // Lower jaw (opens on snakeLunge)
+      pathR(jaw, 'M-3 2 Q8 7 18 4 Q8 10 -4 8 Z', rimCol);
+      $('polygon', { points: '12,3 14.5,3 13.5,-1', fill: '#F8F6EE' }, jaw);
+      // Flickering crimson forked tongue
+      const tongue = $('path', { d: 'M18 1 Q27 0 33 -4 M28 0 L34 4', stroke: '#FF2A40', 'stroke-width': 2.0, fill: 'none', 'stroke-linecap': 'round' }, h);
+      // Upper diamond viper skull
+      pathR(h, 'M-7 -6 C2 -10 13 -7 21 -1 C16 4 6 5 -7 5 C-9 1 -9 -3 -7 -6 Z', bodyCol);
+      if (!isBack) {
+        pathR(h, 'M-4 -5 C4 -8 12 -6 18 -1 C11 -2 3 -2 -4 -3 Z', VIPER_L);
+      }
+      // Upper fangs (visible when jaw opens)
+      const fangs = $('g', { opacity: 0.35 }, h);
+      $('polygon', { points: '14,1 16.5,1 15.2,7', fill: '#FFFFFF' }, fangs);
+      $('polygon', { points: '10,1 12.2,1 11.1,6', fill: '#FFFFFF' }, fangs);
+      // Glowing yellow-emerald viper eye + vertical black slit
+      $('ellipse', { cx: 10, cy: -2.6, rx: 3.1, ry: 2.1, fill: isBack ? '#6BFF95' : '#C4FF6E' }, h);
+      $('ellipse', { cx: 10.4, cy: -2.6, rx: 0.9, ry: 2.0, fill: '#05120A' }, h);
 
-    // Petrifying emerald eyes + glow
-    const eyeGlowBg = $('circle', { cx: 14, cy: -32, r: 24, fill: '#38ff88', opacity: 0.28 }, headG);
-    $('ellipse', { cx: 14, cy: -32, rx: 9, ry: 5.5, fill: '#0b2416' }, headG);
-    $('ellipse', { cx: -8, cy: -32, rx: 7, ry: 5, fill: '#0b2416' }, headG);
-    const eyePupilR = $('ellipse', { cx: 15, cy: -32, rx: 3, ry: 5, fill: '#5cff9d' }, headG);
-    const eyePupilL = $('ellipse', { cx: -7, cy: -32, rx: 2.4, ry: 4.5, fill: '#5cff9d' }, headG);
-    const eyeMk = $('circle', { cx: 15, cy: -32, r: 1, fill: 'none' }, headG);
-    const headMk = $('circle', { cx: 4, cy: -30, r: 1, fill: 'none' }, headG);
-
-    // Mouth + slight Gorgon fangs
-    const mouth = $('ellipse', { cx: 10, cy: -10, rx: 10, ry: 3, fill: '#220b12' }, headG);
-    $('polygon', { points: '4,-12 7,-12 5.5,-5', fill: '#f6f4ec' }, headG);
-    $('polygon', { points: '13,-12 16,-12 14.5,-5', fill: '#f6f4ec' }, headG);
-    const mouthMk = $('circle', { cx: 10, cy: -10, r: 1, fill: 'none' }, headG);
-    // Battle ichor streak on cheek
-    const ichor = $('polygon', { points: '18,-22 24,-22 21,-4 16,-8', fill: '#1f0b18', opacity: 0 }, headG);
-
-    const armF = makeArm(body, false);
-    tr(armF.shd, 30, -148);
-
-    const rig = {
-      root: g,
-      g,
-      fills: [],
-      dynHead: true,
-      mk: { eye: eyeMk, head: headMk, mouth: mouthMk, hand: armF.handMk, snake: snakeMk, body: bodyMk },
-      N: {
-        bodyY: 0, bodyRot: 0, lift: 0, head: 0, mouth: 0.1,
-        eyeGlow: 1.0, wingFlap: 0, wingDmg: 0, snakeLunge: 0,
-        aL: [-18, 24], aR: [24, 34], ichor: 0, shakeX: 0, shakeY: 0, t: 0,
-      },
-      apply(p) {
-        const lift = p.lift || 0;
-        const sx = p.shakeX || 0, sy = p.shakeY || 0;
-        tr(root, sx, (p.bodyY || 0) - lift + sy);
-        sh.setAttribute('rx', f2(clamp(106 - lift * 0.25, 34, 124)));
-        sh.setAttribute('opacity', f2(clamp(0.5 - lift * 0.002, 0.08, 0.55)));
-        rot(body, p.bodyRot || 0, 0, 0);
-        rot(headG, p.head || 0, 0, 0);
-        // Wings flap + battle damage droop
-        const wf = p.wingFlap || 0, wd = clamp(p.wingDmg || 0, 0, 1);
-        rot(wingF, wf - wd * 42, -12, -332);
-        rot(wingB, -wf * 0.7 + wd * 28, -22, -340);
-        // Eye glow
-        const eg = clamp(p.eyeGlow === undefined ? 1 : p.eyeGlow, 0, 2.8);
-        eyeGlowBg.setAttribute('opacity', f2(clamp(0.18 + eg * 0.34, 0, 0.95)));
-        eyeGlowBg.setAttribute('r', f2(16 + eg * 14));
-        eyePupilR.setAttribute('fill', eg > 1.6 ? '#d8ffea' : '#5cff9d');
-        eyePupilL.setAttribute('fill', eg > 1.6 ? '#d8ffea' : '#5cff9d');
-        mouth.setAttribute('ry', f2(2.5 + clamp(p.mouth || 0, 0, 1.2) * 11));
-        ichor.setAttribute('opacity', f2(clamp(p.ichor || 0, 0, 1)));
-        // Writhing snakes
-        const tt = p.t || 0, sl = clamp(p.snakeLunge || 0, 0, 1);
-        snakes.forEach((s) => {
-          const wave = Math.sin(tt * 4.5 + s.idx * 1.1) * (12 + sl * 16);
-          const ang = lerp(s.baseAng, -10 + (s.idx - 3) * 8, sl) + wave * 0.6;
-          const len = s.len * (1 + sl * 0.45);
-          s.sg.setAttribute('transform', `translate(${snakeCfg[s.idx][0]},${snakeCfg[s.idx][1]}) rotate(${f2(ang)})`);
-          s.path.setAttribute('d', `M0,0 Q${f2(len * 0.48)},${f2(wave)} ${f2(len)},0`);
-          s.h.setAttribute('transform', `translate(${f2(len)},0)`);
-        });
-        const setA = (A, a) => { rot(A.shd, a[0], 0, 0); rot(A.elb, a[1], 0, 0); };
-        setA(armB, p.aL || [-18, 24]);
-        setA(armF, p.aR || [24, 34]);
-      },
+      snakes.push({ sg, bodyFill, scaleStroke, bellyStroke, h, jaw, fangs, tongue, sx, sy, baseAng, len, w0, isBack, phase, idx });
     };
+
+    // LAYER A: 8 Dark Shadowed Back Vipers (dense wide Gorgon crown behind face)
+    const backViperG = $('g', {}, H);
+    const backCfgs = [
+      [-16, -488, -168, 108, 8.2, true, 0.2],
+      [-20, -504, -148, 122, 8.5, true, 1.1],
+      [-12, -518, -126, 132, 8.8, true, 2.0],
+      [2, -524, -102, 136, 8.8, true, 2.9],
+      [16, -520, -78, 132, 8.5, true, 3.8],
+      [26, -508, -54, 124, 8.2, true, 4.7],
+      [30, -490, -32, 114, 7.8, true, 5.4],
+      [-18, -468, 168, 102, 8.0, true, 0.8],
+    ];
+    backCfgs.forEach((cfg, i) => buildViper(backViperG, cfg, i));
+
+    // LAYER B: Sculpted Classical Greek Face (centered ~ x=6, y=-466)
+    const faceG = $('g', {}, H);
+    const faceD = 'M-24 -492 C-26 -516 -10 -528 8 -528 C28 -528 38 -510 36 -486 C35 -468 28 -454 21 -444 C15 -436 10 -432 4 -432 C-4 -432 -14 -442 -19 -456 C-24 -470 -24 -480 -24 -492 Z';
+    pathR(faceG, faceD, SKIN);
+    $('path', { d: faceD, fill: gFace, opacity: 0.58 }, faceG);
+
+    // Sculpted facial planes: sunken hollow left cheek, high cheekbones, classical Greek nose bridge
+    pathR(faceG, 'M-22 -484 C-16 -472 -12 -456 -10 -444 C-16 -450 -22 -466 -22 -484 Z', SKIN_D, { opacity: 0.8 });
+    pathR(faceG, 'M-20 -462 C-12 -452 -4 -442 6 -436 C-6 -436 -16 -446 -20 -462 Z', SKIN_DD, { opacity: 0.45 });
+    // High sculpted cheekbone highlight
+    pathR(faceG, 'M16 -466 C24 -468 30 -464 32 -458 C26 -458 20 -460 16 -466 Z', SKIN_L, { opacity: 0.82 });
+    pathR(faceG, 'M-14 -466 C-8 -468 -2 -464 0 -459 C-6 -459 -11 -461 -14 -466 Z', SKIN_L, { opacity: 0.55 });
+    // Straight Greek nose bridge + shadow plane + pinched nostrils
+    pathR(faceG, 'M7 -480 L12 -456 L6 -454 L4 -478 Z', SKIN_L, { opacity: 0.85 });
+    pathR(faceG, 'M3 -478 L6 -454 L1 -456 L0 -474 Z', SKIN_D, { opacity: 0.72 });
+    $('path', { d: 'M3 -455 Q6 -453 10 -455', stroke: SKIN_DD, 'stroke-width': 1.8, fill: 'none', 'stroke-linecap': 'round' }, faceG);
+
+    // Deep sunken shadowed orbital eye sockets
+    pathR(faceG, 'M10 -476 C16 -481 26 -481 32 -474 C28 -466 16 -466 10 -472 Z', SKIN_DD, { opacity: 0.84 });
+    pathR(faceG, 'M-15 -475 C-9 -480 0 -480 4 -473 C0 -466 -10 -466 -15 -472 Z', SKIN_DD, { opacity: 0.84 });
+
+    // Blazing Petrifying Emerald Slit-Pupil Eyes + radial bloom
+    const eyeGlowBgR = $('circle', { cx: 20, cy: -473, r: 22, fill: gEyeEm, opacity: 0.55 }, faceG);
+    const eyeGlowBgL = $('circle', { cx: -5, cy: -473, r: 17, fill: gEyeEm, opacity: 0.45 }, faceG);
+    // Dark kohl-lined almond eye sockets
+    $('path', { d: 'M11 -473 Q20 -480 30 -473 Q20 -467 11 -473 Z', fill: '#061A10', stroke: '#040D08', 'stroke-width': 1.6 }, faceG);
+    $('path', { d: 'M-14 -473 Q-5 -479 3 -473 Q-5 -467 -14 -473 Z', fill: '#061A10', stroke: '#040D08', 'stroke-width': 1.5 }, faceG);
+    // Glowing emerald irises
+    const eyeIrisR = $('ellipse', { cx: 20.5, cy: -473, rx: 5.8, ry: 4.5, fill: EYE_EM }, faceG);
+    const eyeIrisL = $('ellipse', { cx: -4.5, cy: -473, rx: 4.8, ry: 4.2, fill: EYE_EM }, faceG);
+    // Razor vertical black viper slit pupils + white specular glints
+    $('ellipse', { cx: 21, cy: -473, rx: 1.5, ry: 4.2, fill: '#041208' }, faceG);
+    $('ellipse', { cx: -4.2, cy: -473, rx: 1.3, ry: 3.8, fill: '#041208' }, faceG);
+    $('circle', { cx: 18.8, cy: -474.5, r: 1.5, fill: '#FFFFFF' }, faceG);
+    $('circle', { cx: -6, cy: -474.5, r: 1.3, fill: '#FFFFFF' }, faceG);
+
+    // Fierce sharp arched Gorgon brows
+    $('path', { d: 'M9 -479 Q19 -487 33 -482', stroke: '#0C1E15', 'stroke-width': 3.2, fill: 'none', 'stroke-linecap': 'round' }, faceG);
+    $('path', { d: 'M-16 -481 Q-6 -486 4 -479', stroke: '#0C1E15', 'stroke-width': 2.8, fill: 'none', 'stroke-linecap': 'round' }, faceG);
+
+    // Dark venomous plum-black lips + dynamic mouth cavity & sharp Gorgon fangs
+    const mouthCav = $('ellipse', { cx: 10, cy: -445, rx: 9.5, ry: 2.8, fill: '#18050B' }, faceG);
+    // Twin gleaming white upper Gorgon fangs + subtle lower canines
+    const upperFangs = $('g', {}, faceG);
+    $('polygon', { points: '4.5,-447 7.4,-447 5.8,-440.5', fill: '#FAF8F0' }, upperFangs);
+    $('polygon', { points: '12.6,-447 15.5,-447 14.2,-440.5', fill: '#FAF8F0' }, upperFangs);
+    const lowerFangs = $('g', { opacity: 0.2 }, faceG);
+    $('polygon', { points: '6.2,-442 8.2,-442 7.2,-446', fill: '#EBE7DA' }, lowerFangs);
+    $('polygon', { points: '11.8,-442 13.8,-442 12.8,-446', fill: '#EBE7DA' }, lowerFangs);
+    // Sculpted upper & lower dark venomous lips
+    $('path', { d: 'M0 -446 Q6 -450 10 -448 Q14 -450 20 -446 Q14 -444 10 -445 Q6 -444 0 -446 Z', fill: '#2B0A16' }, faceG);
+    const mouthLower = $('path', { d: 'M1 -445 Q10 -439 19 -445 Q10 -443 1 -445 Z', fill: '#3B0F20' }, faceG);
+
+    // Ornate hammered gold-bronze Gorgon brow circlet + emerald centerpiece gem
+    pathR(faceG, 'M-27 -496 C-12 -506 16 -506 37 -496 L35 -486 C16 -496 -12 -496 -25 -486 Z', GOLD);
+    pathR(faceG, 'M-24 -494 C-10 -502 14 -502 34 -494 L33 -489 C14 -497 -10 -497 -23 -489 Z', GOLD_D);
+    // Winged gold centerpiece crest + glowing emerald gem
+    pathR(faceG, 'M-8 -502 L8 -518 L24 -502 L14 -494 L8 -488 L2 -494 Z', GOLD_L);
+    pathR(faceG, 'M8 -512 L14 -500 L8 -491 L2 -500 Z', EYE_EM);
+    $('polygon', { points: '8,-509 11,-501 8,-496 6,-501', fill: '#D4FFE6', opacity: 0.85 }, faceG);
+
+    // Mortal Gorgon ichor streak on cheek & lip corner (driven by P.ichor)
+    const ichorG = $('g', { opacity: 0 }, faceG);
+    $('path', { d: 'M18 -462 C22 -454 20 -444 23 -434 C25 -442 26 -454 22 -462 Z', fill: gIchor }, ichorG);
+    $('path', { d: 'M17 -446 C20 -440 18 -432 20 -424 C22 -432 23 -440 20 -446 Z', fill: gIchor, opacity: 0.9 }, ichorG);
+    $('circle', { cx: 23, cy: -429, r: 2.2, fill: ICHOR_L }, ichorG);
+
+    // LAYER C: 8 Vibrant Scaled Foreground Vipers (framing forehead, temples, & striking forward)
+    const frontViperG = $('g', {}, H);
+    const frontCfgs = [
+      [-22, -498, -158, 96, 7.2, false, 0.6],
+      [-14, -514, -134, 110, 7.6, false, 1.5],
+      [0, -520, -110, 118, 7.8, false, 2.4],
+      [14, -516, -82, 122, 7.8, false, 3.3],
+      [26, -504, -56, 116, 7.5, false, 4.1],
+      [32, -488, -32, 112, 7.4, false, 4.9],
+      [30, -472, -10, 104, 7.0, false, 5.7],
+      [24, -456, 16, 92, 6.6, false, 1.9],
+    ];
+    frontCfgs.forEach((cfg, i) => buildViper(frontViperG, cfg, i + 8));
+
+    // Markers (preserving exact API & HEADOFF alignment)
+    const eyeMk = $('circle', { cx: 20, cy: -473, r: 1, fill: 'none' }, H);
+    const headMk = $('circle', { cx: 6, cy: -464, r: 1, fill: 'none' }, H);
+    const mouthMk = $('circle', { cx: 10, cy: -445, r: 1, fill: 'none' }, H);
+    const snakeMk = $('circle', { cx: 74, cy: -496, r: 1, fill: 'none' }, H);
+
+    // Front brazen arm (foreground layer)
+    const armF = makeArm(B, 36, -384, false);
+
+    // ==================== 7. RIG CONTRACT & DYNAMIC ANIMATION ====================
+    rig.root = g;
+    rig.g = g;
+    rig.dynHead = true;
+    rig.mk = { eye: eyeMk, head: headMk, mouth: mouthMk, hand: armF.handMk, snake: snakeMk, body: bodyMk };
+    rig.N = {
+      bodyY: 0, bodyRot: 0, lift: 0, head: 0, mouth: 0.1,
+      eyeGlow: 1.0, wingFlap: 0, wingDmg: 0, snakeLunge: 0,
+      aL: [-18, 22], aR: [22, 32], ichor: 0, shakeX: 0, shakeY: 0, t: 0,
+    };
+
+    rig.apply = (p, tArg) => {
+      const lift = p.lift || 0;
+      const sx = p.shakeX || 0, sy = p.shakeY || 0;
+      const tt = p.t !== undefined ? p.t : (tArg || 0);
+
+      tr(root, sx, (p.bodyY || 0) - lift + sy);
+      sh.setAttribute('rx', f2(clamp(112 - lift * 0.26, 36, 128)));
+      sh.setAttribute('opacity', f2(clamp(0.5 - lift * 0.002, 0.08, 0.55)));
+
+      body.set(p.bodyRot || 0);
+      headG.set(p.head || 0);
+
+      // Golden wings flap + dynamic wingDmg bone fracture & droop
+      const wf = p.wingFlap || 0, wd = clamp(p.wingDmg || 0, 0, 1);
+      wingF.set(wf - wd * 20);
+      wingFOuter.set(-wd * 58);
+      wingBreakG.setAttribute('opacity', f2(clamp(wd * 1.6, 0, 1)));
+      wingB.set(-wf * 0.68 + wd * 24);
+
+      // Dynamic coiled serpentine lower tail (coiled on ground, unfurls when airborne!)
+      const air = clamp(lift / 120, 0, 1);
+      const sw1 = Math.sin(tt * 2.4) * (8 + air * 14);
+      const sw2 = Math.sin(tt * 2.4 + 1.5) * (10 + air * 18);
+      const sw3 = Math.sin(tt * 2.4 + 3.1) * (12 + air * 22);
+      const tailPts = [
+        [0, -242, 34],
+        [lerp(14, 10, air) + sw1 * 0.25, lerp(-182, -168, air), 32],
+        [lerp(56, 26, air) + sw1 * 0.6, lerp(-124, -92, air), 30],
+        [lerp(72, -18, air) + sw2 * 0.7, lerp(-68, -18, air), 27],
+        [lerp(18, -32, air) + sw2 * 0.5, lerp(-22, 32, air), 23],
+        [lerp(-58, 12, air) + sw3 * 0.6, lerp(-14, 68, air), 18],
+        [lerp(-104, 24, air) + sw3 * 0.85, lerp(-32, 96, air), 12],
+        [lerp(-128, 4, air) + sw3, lerp(-16, 118, air), 4],
+      ];
+      const tailRibbonD = buildTaperRibbon(tailPts);
+      const tailUnderPts = tailPts.map(([x, y, w]) => [x - 3, y + 6, w + 3]);
+      tailUnderPath.setAttribute('d', buildTaperRibbon(tailUnderPts));
+      tailBodyPath.setAttribute('d', tailRibbonD);
+      tailGradPath.setAttribute('d', tailRibbonD);
+      const spineD = tailPts.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${f2(x)} ${f2(y)}`).join(' ');
+      const bellyD = tailPts.map(([x, y, w], i) => `${i === 0 ? 'M' : 'L'}${f2(x)} ${f2(y + w * 0.42)}`).join(' ');
+      const hiD = tailPts.map(([x, y, w], i) => `${i === 0 ? 'M' : 'L'}${f2(x)} ${f2(y - w * 0.34)}`).join(' ');
+      tailScalePath.setAttribute('d', spineD);
+      tailBellyPath.setAttribute('d', bellyD);
+      tailHiPath.setAttribute('d', hiD);
+
+      // Blazing emerald eye glow (tightly scaled so ecu never washes out face)
+      const eg = clamp(p.eyeGlow === undefined ? 1 : p.eyeGlow, 0, 2.8);
+      eyeGlowBgR.setAttribute('opacity', f2(clamp(0.22 + eg * 0.28, 0, 0.92)));
+      eyeGlowBgR.setAttribute('r', f2(15 + eg * 11));
+      eyeGlowBgL.setAttribute('opacity', f2(clamp(0.16 + eg * 0.24, 0, 0.85)));
+      eyeGlowBgL.setAttribute('r', f2(12 + eg * 9));
+      const irisCol = eg > 1.7 ? '#D8FFEA' : EYE_EM;
+      eyeIrisR.setAttribute('fill', irisCol);
+      eyeIrisL.setAttribute('fill', irisCol);
+
+      // Dynamic venomous mouth & fangs
+      const mo = clamp(p.mouth || 0, 0, 1.2);
+      mouthCav.setAttribute('ry', f2(2.2 + mo * 9.5));
+      mouthLower.setAttribute('transform', `translate(0,${f2(mo * 8.5)})`);
+      lowerFangs.setAttribute('transform', `translate(0,${f2(mo * 8.0)})`);
+      lowerFangs.setAttribute('opacity', f2(clamp((mo - 0.25) * 1.4, 0, 1)));
+
+      // Mortal Gorgon ichor on cheek & chest armor
+      const ic = clamp(p.ichor || 0, 0, 1);
+      ichorG.setAttribute('opacity', f2(ic));
+      chestIchorG.setAttribute('opacity', f2(ic * 0.9));
+
+      // 16 living writhing vipers (multi-harmonic cubic-Bezier ribbons + tangent-aligned heads + hissing jaws & flickering tongues)
+      const sl = clamp(p.snakeLunge || 0, 0, 1);
+      for (let i = 0; i < snakes.length; i++) {
+        const s = snakes[i];
+        const w1 = Math.sin(tt * 4.2 + s.phase) * (15 + sl * 18);
+        const w2 = Math.cos(tt * 5.6 + s.phase * 1.3) * (11 + sl * 14);
+        const targetAng = s.isBack ? (-36 + (i - 3.5) * 12) : (-12 + (i - 11.5) * 9);
+        const ang = lerp(s.baseAng, targetAng, sl * 0.78) + w1 * 0.42;
+        const L = s.len * (1 + sl * 0.42);
+        const c1x = L * 0.34, c1y = w1;
+        const c2x = L * 0.68, c2y = -w2 * 0.85;
+        const tipX = L, tipY = w2 * 0.32;
+        const w0 = s.w0, wA = w0 * 0.76, wB = w0 * 0.56, wT = w0 * 0.36;
+
+        s.sg.setAttribute('transform', `translate(${s.sx},${s.sy}) rotate(${f2(ang)})`);
+        // Tapered filled cubic-Bezier serpent ribbon (setSil-safe!)
+        const ribD = `M0 ${f2(-w0)} C${f2(c1x)} ${f2(c1y - wA)} ${f2(c2x)} ${f2(c2y - wB)} ${f2(tipX)} ${f2(tipY - wT)} L${f2(tipX)} ${f2(tipY + wT)} C${f2(c2x)} ${f2(c2y + wB)} ${f2(c1x)} ${f2(c1y + wA)} 0 ${f2(w0)} Z`;
+        s.bodyFill.setAttribute('d', ribD);
+        const midD = `M0 0 C${f2(c1x)} ${f2(c1y)} ${f2(c2x)} ${f2(c2y)} ${f2(tipX)} ${f2(tipY)}`;
+        s.scaleStroke.setAttribute('d', midD);
+        if (s.bellyStroke) {
+          s.bellyStroke.setAttribute('d', `M0 ${f2(w0 * 0.45)} C${f2(c1x)} ${f2(c1y + wA * 0.45)} ${f2(c2x)} ${f2(c2y + wB * 0.45)} ${f2(tipX)} ${f2(tipY + wT * 0.45)}`);
+        }
+        // Align viper head to curve tangent at tip
+        const headDeg = Math.atan2(tipY - c2y, tipX - c2x) / rad;
+        s.h.setAttribute('transform', `translate(${f2(tipX)},${f2(tipY)}) rotate(${f2(headDeg)})`);
+        // Open hissing viper jaw & fangs on lunge
+        const hiss = clamp(sl * 0.9 + Math.max(0, Math.sin(tt * 3.8 + s.phase * 2.1)) * 0.28, 0, 1);
+        s.jaw.setAttribute('transform', `rotate(${f2(hiss * 28)} 0 2)`);
+        s.fangs.setAttribute('opacity', f2(clamp(hiss * 1.4, 0.25, 1)));
+        // Flickering crimson forked tongue
+        const flick = Math.sin(tt * 19 + s.phase * 3.7) > (0.25 - sl * 0.45) ? 1 : 0;
+        s.tongue.setAttribute('opacity', flick ? 1 : 0);
+      }
+
+      // Brazen arms (standard rigs.js convention: + = forward toward +x)
+      const setA = (A, a) => {
+        A.shd.set(-a[0]);
+        A.elb.set(-(a[1] - a[0]));
+      };
+      setA(armB, p.aL || [-18, 22]);
+      setA(armF, p.aR || [22, 32]);
+    };
+
     return rig;
   }
 

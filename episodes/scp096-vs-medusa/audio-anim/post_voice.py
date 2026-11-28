@@ -16,21 +16,22 @@ def load(p):
 
 EXTRA_GAP = {
     "I am Medusa": 1.65,            # emerge L -> spin & lock R -> dive R
-    "Deep in the misty": 1.55,      # emerge R -> VS slam + CTA -> shatter into misty ruins
-    "Then a deafening": 0.45,
-    "The intruder was": 0.65,       # 1v1 establishing wide shot
+    "A fugitive soldier": 1.55,     # emerge R -> VS slam + CTA -> shatter into misty ruins
+    "Medusa glided": 0.55,          # soldier runs into misty ruins -> Medusa glides out
+    "Seconds later": 0.55,          # soldier petrified -> 096 shrieks & smashes wall
+    "Its target was": 0.65,         # 1v1 establishing wide shot
     "Both curses": 0.45,
-    "Grey rock crept": 0.50,
-    "From above": 0.45,
+    "Grey stone crept": 0.50,
+    "Spreading golden": 0.45,
     "Shredded and": 0.55,
     "It yanked": 0.45,
-    "Her golden wings": 0.50,
+    "Golden wings": 0.50,
     "Trapped beneath": 0.50,
     "Turn to stone": 0.35,
     "Emerald fire": 0.50,
     "Breathing hard": 1.15,         # Petrification freeze -> aftermath silence
     "No beast escapes": 0.45,
-    "Yet stone can only": 1.35,     # Beat 1 false peace -> Beat 2 music cuts dead
+    "Yet stone only": 1.35,         # Beat 1 false peace -> Beat 2 music cuts dead
     "Four...": 1.15,                # Beat 3: stone cracks revealing indestructible white skull
 }
 
@@ -82,28 +83,29 @@ def first(p):
     return [s for s in sents if s["text"].startswith(p)][0]
 
 t_m0 = first("I am SCP")["start"]
-t_m1 = first("Once you see")["end"]
+t_m1 = first("See my face")["end"]
 t_g0 = first("I am Medusa")["start"]
-t_g1 = first("Trespass here")["end"]
+t_g1 = first("Look once")["end"]
 
 secs = [
     {"section": 0, "name": "hook", "start": 0.0, "end": 3.0},
     {"section": 1, "name": "split_roll", "start": 3.0},
     {"name": "intro_scp096", "start": t_m0, "end": t_m1},
     {"name": "intro_medusa", "start": t_g0, "end": t_g1},
-    {"section": 2, "name": "story", "start": first("Deep in the misty")["start"]},
-    {"name": "wall_breach", "start": first("Then a deafening")["start"]},
-    {"name": "eye_lock", "start": first("The intruder was")["start"]},
+    {"section": 2, "name": "story", "start": first("A fugitive soldier")["start"]},
+    {"name": "petrify_soldier", "start": first("Medusa glided")["start"]},
+    {"name": "wall_breach", "start": first("Seconds later")["start"]},
+    {"name": "eye_lock", "start": first("Its target was")["start"]},
     {"name": "charge1", "start": first("Both curses")["start"]},
-    {"name": "wings", "start": first("Grey rock crept")["start"]},
-    {"name": "barrage", "start": first("From above")["start"]},
+    {"name": "wings", "start": first("Grey stone crept")["start"]},
+    {"name": "barrage", "start": first("Spreading golden")["start"]},
     {"name": "reversal", "start": first("Shredded and")["start"]},
     {"name": "slam", "start": first("It yanked")["start"]},
-    {"name": "pinned", "start": first("Her golden wings")["start"]},
+    {"name": "pinned", "start": first("Golden wings")["start"]},
     {"name": "climax", "start": first("Trapped beneath")["start"]},
     {"name": "petrify", "start": first("Emerald fire")["start"]},
     {"name": "aftermath", "start": first("Breathing hard")["start"]},
-    {"name": "cliffhanger", "start": first("Yet stone can only")["start"]},
+    {"name": "cliffhanger", "start": first("Yet stone only")["start"]},
     {"name": "whisper", "start": first("Four...")["start"]},
 ]
 json.dump(

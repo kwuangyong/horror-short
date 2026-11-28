@@ -95,6 +95,7 @@ def stone_crack(d=0.9, g=1.0):
 t_m0, t_m1 = sec("intro_scp096")["start"], sec("intro_scp096")["end"]
 t_g0, t_g1 = sec("intro_medusa")["start"], sec("intro_medusa")["end"]
 t_story = sec("story")["start"]
+t_petrify_soldier = sec("petrify_soldier")["start"]
 t_breach = sec("wall_breach")["start"]
 t_eyelock = sec("eye_lock")["start"]
 t_charge1 = sec("charge1")["start"]
@@ -102,6 +103,7 @@ t_wings = sec("wings")["start"]
 t_barrage = sec("barrage")["start"]
 t_rev = sec("reversal")["start"]
 t_slam = sec("slam")["start"]
+t_pinned = sec("pinned")["start"]
 t_climax = sec("climax")["start"]
 t_petrify = sec("petrify")["start"]
 t_after = sec("aftermath")["start"]
@@ -153,22 +155,29 @@ while t_d < t_after - 0.4:
     t_d += BEAT * 0.5
 
 # Key battle SFX synced to sections
-put(impact(1.8), t_breach + 0.4, 0.95)          # Wall smashed
-put(shriek_fx(1.6, 0.78), t_eyelock + 0.7)      # 096 eye-lock trigger shriek
-put(whoosh(0.6), t_charge1 + 0.2, 0.85)         # Supersonic charge
-put(petrify_beam(1.9, 0.85), t_charge1 + 0.8)   # First gaze beam
-put(stone_crack(0.75, 0.75), t_wings + 0.2)     # 096 breaks first stone crust
-put(whoosh(0.55), t_barrage + 0.2, 0.9)         # Golden wing dive + bronze slash
-put(impact(1.5), t_barrage + 0.8, 0.85)
-put(impact(2.0), t_slam + 0.45, 1.0)            # 096 slams Medusa into floor
-put(shriek_fx(1.8, 0.75), t_climax + 0.3)       # Point-blank clash buildup
-put(petrify_beam(3.2, 1.05), t_climax + 1.0)    # Final beam-clash
-put(impact(2.2), t_petrify + 0.15, 1.0)         # Petrification climax impact
-put(stone_crack(0.85, 0.85), t_petrify + 1.3)   # Stone locks solid
+put(petrify_beam(1.5, 0.72), t_petrify_soldier + 1.0)    # Soldier petrified by Medusa
+put(stone_crack(0.7, 0.65), t_petrify_soldier + 2.3)     # Soldier freezes into marble statue
+put(shriek_fx(1.3, 0.68), t_breach + 0.2)                # Deafening shriek splits the woods
+put(impact(1.8), t_breach + 1.8, 0.95)                   # 096 smashes through temple wall
+put(petrify_beam(1.1, 0.58), t_eyelock + 1.6)            # Medusa locks eyes onto 096's face
+put(shriek_fx(1.6, 0.78), t_charge1 + 0.2)               # 096 unhinges jaw & triggers
+put(whoosh(0.6), t_charge1 + 1.2, 0.85)                  # Supersonic charge
+put(petrify_beam(1.9, 0.85), t_charge1 + 1.8)            # First gaze beam
+put(stone_crack(0.75, 0.75), t_wings + 1.0)              # 096 breaks first stone crust
+put(whoosh(0.55), t_barrage + 0.25, 0.9)                 # Golden wing vault + bronze slash
+put(impact(1.5), t_barrage + 1.6, 0.85)                  # Serpent venom orbs detonation
+put(shriek_fx(1.2, 0.65), t_rev + 0.6)                   # 096 rises roaring through venom smoke
+put(impact(1.4), t_rev + 1.8, 0.85)                      # Monoliths erupt from earth
+put(impact(2.0), t_slam + 1.1, 1.0)                      # 096 slams Medusa into floor
+put(whoosh(0.45), t_pinned + 0.3, 0.55)                  # Towering claws raised over pinned Medusa
+put(shriek_fx(1.8, 0.75), t_climax + 0.3)                # Point-blank clash buildup
+put(petrify_beam(3.2, 1.05), t_climax + 1.2)             # Final beam-clash
+put(impact(2.2), t_petrify + 0.15, 1.0)                  # Petrification climax impact
+put(stone_crack(0.85, 0.85), t_petrify + 1.3)            # Stone locks solid
 
 # C2 Cliffhanger SFX in dead silence!
-put(stone_crack(1.0, 0.95), t_cut + 0.45)       # Hairline marble crack
-put(stone_crack(1.2, 1.10), t_whisp - 0.55)     # Stone chunk drops revealing white bone!
+put(stone_crack(1.0, 0.95), t_cut + 0.45)                # Hairline marble crack
+put(stone_crack(1.2, 1.10), t_whisp - 0.55)              # Stone chunk drops revealing white bone!
 put(boom(1.8, 62, 22, 5, 0.65), t_whisp - 0.15, 0.75)
 
 # Normalize & write 16-bit WAV

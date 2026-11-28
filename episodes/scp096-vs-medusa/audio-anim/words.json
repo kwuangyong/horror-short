@@ -86,1279 +86,1279 @@
  {
   "word": "Only",
   "start": 5.1,
-  "end": 5.336,
+  "end": 5.335,
   "speaker": "narrator"
  },
  {
   "word": "one",
-  "start": 5.347,
-  "end": 5.584,
+  "start": 5.346,
+  "end": 5.582,
   "speaker": "narrator"
  },
  {
   "word": "soldier",
-  "start": 5.596,
-  "end": 5.99,
+  "start": 5.593,
+  "end": 5.986,
   "speaker": "narrator"
  },
  {
   "word": "survived",
-  "start": 6.002,
-  "end": 6.543,
+  "start": 5.997,
+  "end": 6.535,
   "speaker": "narrator"
  },
  {
   "word": "fleeing",
-  "start": 6.78,
-  "end": 7.118,
+  "start": 6.771,
+  "end": 7.108,
   "speaker": "narrator"
  },
  {
   "word": "with",
-  "start": 7.129,
-  "end": 7.231,
+  "start": 7.119,
+  "end": 7.22,
   "speaker": "narrator"
  },
  {
   "word": "a",
-  "start": 7.242,
-  "end": 7.299,
+  "start": 7.231,
+  "end": 7.287,
   "speaker": "narrator"
  },
  {
   "word": "cursed",
-  "start": 7.31,
-  "end": 7.671,
+  "start": 7.298,
+  "end": 7.657,
   "speaker": "narrator"
  },
  {
   "word": "four-pixel",
-  "start": 7.682,
-  "end": 8.212,
+  "start": 7.669,
+  "end": 8.196,
   "speaker": "narrator"
  },
  {
   "word": "photo",
-  "start": 8.223,
-  "end": 8.539,
+  "start": 8.207,
+  "end": 8.521,
   "speaker": "narrator"
  },
  {
   "word": "clenched",
-  "start": 8.551,
-  "end": 8.934,
+  "start": 8.532,
+  "end": 8.914,
   "speaker": "narrator"
  },
  {
   "word": "in",
-  "start": 8.945,
-  "end": 9.013,
+  "start": 8.925,
+  "end": 8.992,
   "speaker": "narrator"
  },
  {
   "word": "his",
-  "start": 9.024,
-  "end": 9.16,
+  "start": 9.004,
+  "end": 9.138,
   "speaker": "narrator"
  },
  {
   "word": "fist",
-  "start": 9.171,
-  "end": 9.622,
+  "start": 9.15,
+  "end": 9.598,
   "speaker": "narrator"
  },
  {
   "word": "From",
-  "start": 10.135,
-  "end": 10.243,
+  "start": 10.111,
+  "end": 10.219,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 10.254,
-  "end": 10.333,
+  "start": 10.23,
+  "end": 10.309,
   "speaker": "narrator"
  },
  {
   "word": "ruined",
-  "start": 10.344,
-  "end": 10.648,
+  "start": 10.32,
+  "end": 10.624,
   "speaker": "narrator"
  },
  {
   "word": "shrine",
-  "start": 10.66,
-  "end": 11.02,
+  "start": 10.636,
+  "end": 10.996,
   "speaker": "narrator"
  },
  {
   "word": "of",
-  "start": 11.031,
-  "end": 11.087,
+  "start": 11.007,
+  "end": 11.063,
   "speaker": "narrator"
  },
  {
   "word": "Athena",
-  "start": 11.099,
-  "end": 11.515,
+  "start": 11.075,
+  "end": 11.491,
   "speaker": "narrator"
  },
  {
   "word": "Medusa",
-  "start": 11.729,
-  "end": 12.123,
+  "start": 11.705,
+  "end": 12.099,
   "speaker": "narrator"
  },
  {
   "word": "glided",
-  "start": 12.134,
-  "end": 12.483,
+  "start": 12.11,
+  "end": 12.459,
   "speaker": "narrator"
  },
  {
   "word": "out",
-  "start": 12.494,
-  "end": 12.697,
+  "start": 12.47,
+  "end": 12.673,
   "speaker": "narrator"
  },
  {
   "word": "and",
-  "start": 12.708,
-  "end": 12.798,
+  "start": 12.684,
+  "end": 12.774,
   "speaker": "narrator"
  },
  {
   "word": "froze",
-  "start": 12.809,
-  "end": 13.113,
+  "start": 12.785,
+  "end": 13.089,
   "speaker": "narrator"
  },
  {
   "word": "him",
-  "start": 13.124,
-  "end": 13.226,
+  "start": 13.1,
+  "end": 13.202,
   "speaker": "narrator"
  },
  {
   "word": "mid-scream",
-  "start": 13.237,
-  "end": 13.867,
+  "start": 13.213,
+  "end": 13.843,
   "speaker": "narrator"
  },
  {
   "word": "Another",
-  "start": 14.277,
-  "end": 14.664,
+  "start": 14.253,
+  "end": 14.64,
   "speaker": "medusa"
  },
  {
   "word": "trespasser",
-  "start": 14.677,
-  "end": 15.433,
+  "start": 14.653,
+  "end": 15.409,
   "speaker": "medusa"
  },
  {
   "word": "for",
-  "start": 15.447,
-  "end": 15.598,
+  "start": 15.423,
+  "end": 15.574,
   "speaker": "medusa"
  },
  {
   "word": "my",
-  "start": 15.612,
-  "end": 15.845,
+  "start": 15.587,
+  "end": 15.821,
   "speaker": "medusa"
  },
  {
   "word": "island",
-  "start": 15.859,
-  "end": 16.559,
+  "start": 15.835,
+  "end": 16.535,
   "speaker": "medusa"
  },
  {
   "word": "Seconds",
-  "start": 17.774,
-  "end": 18.144,
+  "start": 17.75,
+  "end": 18.12,
   "speaker": "narrator"
  },
  {
   "word": "later",
-  "start": 18.156,
-  "end": 18.482,
+  "start": 18.132,
+  "end": 18.458,
   "speaker": "narrator"
  },
  {
   "word": "an",
-  "start": 18.684,
-  "end": 18.808,
+  "start": 18.66,
+  "end": 18.784,
   "speaker": "narrator"
  },
  {
   "word": "unearthly",
-  "start": 18.819,
-  "end": 19.281,
+  "start": 18.795,
+  "end": 19.257,
   "speaker": "narrator"
  },
  {
   "word": "shriek",
-  "start": 19.292,
-  "end": 19.686,
+  "start": 19.268,
+  "end": 19.662,
   "speaker": "narrator"
  },
  {
   "word": "crossed",
-  "start": 19.697,
-  "end": 20.045,
+  "start": 19.673,
+  "end": 20.021,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 20.057,
-  "end": 20.147,
+  "start": 20.033,
+  "end": 20.123,
   "speaker": "narrator"
  },
  {
   "word": "sea",
-  "start": 20.158,
-  "end": 20.507,
+  "start": 20.134,
+  "end": 20.483,
   "speaker": "narrator"
  },
  {
   "word": "and",
-  "start": 20.754,
-  "end": 20.934,
+  "start": 20.73,
+  "end": 20.91,
   "speaker": "narrator"
  },
  {
   "word": "SCP",
-  "start": 20.945,
-  "end": 21.53,
+  "start": 20.921,
+  "end": 21.506,
   "speaker": "narrator"
  },
  {
   "word": "Zero",
-  "start": 21.542,
-  "end": 21.857,
+  "start": 21.518,
+  "end": 21.833,
   "speaker": "narrator"
  },
  {
   "word": "Nine",
-  "start": 21.868,
-  "end": 22.194,
+  "start": 21.844,
+  "end": 22.17,
   "speaker": "narrator"
  },
  {
   "word": "Six",
-  "start": 22.205,
-  "end": 22.509,
+  "start": 22.181,
+  "end": 22.485,
   "speaker": "narrator"
  },
  {
   "word": "smashed",
-  "start": 22.52,
-  "end": 22.959,
+  "start": 22.496,
+  "end": 22.935,
   "speaker": "narrator"
  },
  {
   "word": "through",
-  "start": 22.97,
-  "end": 23.105,
+  "start": 22.946,
+  "end": 23.081,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 23.116,
-  "end": 23.195,
+  "start": 23.092,
+  "end": 23.171,
   "speaker": "narrator"
  },
  {
   "word": "temple",
-  "start": 23.206,
-  "end": 23.51,
+  "start": 23.182,
+  "end": 23.486,
   "speaker": "narrator"
  },
  {
   "word": "gate",
-  "start": 23.521,
-  "end": 23.87,
+  "start": 23.497,
+  "end": 23.846,
   "speaker": "narrator"
  },
  {
   "word": "Its",
-  "start": 24.492,
-  "end": 24.623,
+  "start": 24.468,
+  "end": 24.599,
   "speaker": "narrator"
  },
  {
   "word": "target",
-  "start": 24.634,
-  "end": 25.006,
+  "start": 24.61,
+  "end": 24.982,
   "speaker": "narrator"
  },
  {
   "word": "was",
-  "start": 25.017,
-  "end": 25.141,
+  "start": 24.993,
+  "end": 25.117,
   "speaker": "narrator"
  },
  {
   "word": "already",
-  "start": 25.152,
-  "end": 25.501,
+  "start": 25.128,
+  "end": 25.477,
   "speaker": "narrator"
  },
  {
   "word": "marble",
-  "start": 25.512,
-  "end": 25.906,
+  "start": 25.488,
+  "end": 25.882,
   "speaker": "narrator"
  },
  {
   "word": "until",
-  "start": 26.176,
-  "end": 26.412,
+  "start": 26.152,
+  "end": 26.388,
   "speaker": "narrator"
  },
  {
   "word": "Medusa",
-  "start": 26.424,
-  "end": 26.885,
+  "start": 26.4,
+  "end": 26.861,
   "speaker": "narrator"
  },
  {
   "word": "looked",
-  "start": 26.896,
-  "end": 27.144,
+  "start": 26.872,
+  "end": 27.12,
   "speaker": "narrator"
  },
  {
   "word": "straight",
-  "start": 27.155,
-  "end": 27.459,
+  "start": 27.131,
+  "end": 27.435,
   "speaker": "narrator"
  },
  {
   "word": "into",
-  "start": 27.47,
-  "end": 27.639,
+  "start": 27.446,
+  "end": 27.615,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 27.65,
-  "end": 27.718,
+  "start": 27.626,
+  "end": 27.694,
   "speaker": "narrator"
  },
  {
   "word": "monster's",
-  "start": 27.729,
-  "end": 28.191,
+  "start": 27.705,
+  "end": 28.167,
   "speaker": "narrator"
  },
  {
   "word": "face",
-  "start": 28.202,
-  "end": 28.663,
+  "start": 28.178,
+  "end": 28.639,
   "speaker": "narrator"
  },
  {
   "word": "Both",
-  "start": 29.366,
-  "end": 29.563,
+  "start": 29.342,
+  "end": 29.539,
   "speaker": "narrator"
  },
  {
   "word": "curses",
-  "start": 29.574,
-  "end": 29.945,
+  "start": 29.55,
+  "end": 29.921,
   "speaker": "narrator"
  },
  {
   "word": "ignited",
-  "start": 29.956,
-  "end": 30.36,
+  "start": 29.932,
+  "end": 30.336,
   "speaker": "narrator"
  },
  {
   "word": "at",
-  "start": 30.371,
-  "end": 30.45,
+  "start": 30.347,
+  "end": 30.426,
   "speaker": "narrator"
  },
  {
   "word": "once",
-  "start": 30.461,
-  "end": 30.82,
+  "start": 30.437,
+  "end": 30.796,
   "speaker": "narrator"
  },
  {
   "word": "and",
-  "start": 31.044,
-  "end": 31.201,
+  "start": 31.02,
+  "end": 31.177,
   "speaker": "narrator"
  },
  {
   "word": "Zero",
-  "start": 31.213,
-  "end": 31.527,
+  "start": 31.189,
+  "end": 31.503,
   "speaker": "narrator"
  },
  {
   "word": "Nine",
-  "start": 31.538,
-  "end": 31.864,
+  "start": 31.514,
+  "end": 31.84,
   "speaker": "narrator"
  },
  {
   "word": "Six",
-  "start": 31.875,
-  "end": 32.178,
+  "start": 31.851,
+  "end": 32.154,
   "speaker": "narrator"
  },
  {
   "word": "blurred",
-  "start": 32.189,
-  "end": 32.469,
+  "start": 32.165,
+  "end": 32.445,
   "speaker": "narrator"
  },
  {
   "word": "across",
-  "start": 32.481,
-  "end": 32.806,
+  "start": 32.457,
+  "end": 32.782,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 32.817,
-  "end": 32.907,
+  "start": 32.793,
+  "end": 32.883,
   "speaker": "narrator"
  },
  {
   "word": "courtyard",
-  "start": 32.918,
-  "end": 33.378,
+  "start": 32.894,
+  "end": 33.354,
   "speaker": "narrator"
  },
  {
   "word": "like",
-  "start": 33.39,
-  "end": 33.524,
+  "start": 33.366,
+  "end": 33.5,
   "speaker": "narrator"
  },
  {
   "word": "a",
-  "start": 33.535,
-  "end": 33.58,
+  "start": 33.511,
+  "end": 33.556,
   "speaker": "narrator"
  },
  {
   "word": "missile",
-  "start": 33.592,
-  "end": 34.007,
+  "start": 33.568,
+  "end": 33.983,
   "speaker": "narrator"
  },
  {
   "word": "Medusa",
-  "start": 34.447,
-  "end": 34.846,
+  "start": 34.423,
+  "end": 34.822,
   "speaker": "narrator"
  },
  {
   "word": "fired",
-  "start": 34.857,
-  "end": 35.183,
+  "start": 34.833,
+  "end": 35.159,
   "speaker": "narrator"
  },
  {
   "word": "a",
-  "start": 35.194,
-  "end": 35.25,
+  "start": 35.17,
+  "end": 35.226,
   "speaker": "narrator"
  },
  {
   "word": "petrifying",
-  "start": 35.261,
-  "end": 35.868,
+  "start": 35.237,
+  "end": 35.844,
   "speaker": "narrator"
  },
  {
   "word": "beam",
-  "start": 35.879,
-  "end": 36.171,
+  "start": 35.855,
+  "end": 36.147,
   "speaker": "narrator"
  },
  {
   "word": "then",
-  "start": 36.407,
-  "end": 36.597,
+  "start": 36.383,
+  "end": 36.573,
   "speaker": "narrator"
  },
  {
   "word": "backflipped",
-  "start": 36.609,
-  "end": 37.092,
+  "start": 36.585,
+  "end": 37.068,
   "speaker": "narrator"
  },
  {
   "word": "skyward",
-  "start": 37.103,
-  "end": 37.518,
+  "start": 37.079,
+  "end": 37.494,
   "speaker": "narrator"
  },
  {
   "word": "a",
-  "start": 37.529,
-  "end": 37.586,
+  "start": 37.505,
+  "end": 37.562,
   "speaker": "narrator"
  },
  {
   "word": "split-second",
-  "start": 37.597,
-  "end": 38.226,
+  "start": 37.573,
+  "end": 38.202,
   "speaker": "narrator"
  },
  {
   "word": "before",
-  "start": 38.237,
-  "end": 38.518,
+  "start": 38.213,
+  "end": 38.494,
   "speaker": "narrator"
  },
  {
   "word": "its",
-  "start": 38.529,
-  "end": 38.641,
+  "start": 38.505,
+  "end": 38.617,
   "speaker": "narrator"
  },
  {
   "word": "claws",
-  "start": 38.652,
-  "end": 38.944,
+  "start": 38.628,
+  "end": 38.92,
   "speaker": "narrator"
  },
  {
   "word": "struck",
-  "start": 38.956,
-  "end": 39.371,
+  "start": 38.932,
+  "end": 39.347,
   "speaker": "narrator"
  },
  {
   "word": "Her",
-  "start": 39.889,
-  "end": 39.983,
+  "start": 39.865,
+  "end": 39.959,
   "speaker": "narrator"
  },
  {
   "word": "vipers",
-  "start": 39.994,
-  "end": 40.421,
+  "start": 39.97,
+  "end": 40.397,
   "speaker": "narrator"
  },
  {
   "word": "spat",
-  "start": 40.432,
-  "end": 40.724,
+  "start": 40.408,
+  "end": 40.7,
   "speaker": "narrator"
  },
  {
   "word": "venom",
-  "start": 40.736,
-  "end": 41.062,
+  "start": 40.712,
+  "end": 41.038,
   "speaker": "narrator"
  },
  {
   "word": "from",
-  "start": 41.073,
-  "end": 41.219,
+  "start": 41.049,
+  "end": 41.195,
   "speaker": "narrator"
  },
  {
   "word": "above",
-  "start": 41.23,
-  "end": 41.634,
+  "start": 41.206,
+  "end": 41.61,
   "speaker": "narrator"
  },
  {
   "word": "yet",
-  "start": 41.893,
-  "end": 42.073,
+  "start": 41.869,
+  "end": 42.049,
   "speaker": "narrator"
  },
  {
   "word": "Zero",
-  "start": 42.084,
-  "end": 42.398,
+  "start": 42.06,
+  "end": 42.374,
   "speaker": "narrator"
  },
  {
   "word": "Nine",
-  "start": 42.41,
-  "end": 42.758,
+  "start": 42.386,
+  "end": 42.734,
   "speaker": "narrator"
  },
  {
   "word": "Six",
-  "start": 42.769,
-  "end": 43.084,
+  "start": 42.745,
+  "end": 43.06,
   "speaker": "narrator"
  },
  {
   "word": "ducked",
-  "start": 43.095,
-  "end": 43.32,
+  "start": 43.071,
+  "end": 43.296,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 43.331,
-  "end": 43.398,
+  "start": 43.307,
+  "end": 43.374,
   "speaker": "narrator"
  },
  {
   "word": "volley",
-  "start": 43.409,
-  "end": 43.814,
+  "start": 43.385,
+  "end": 43.79,
   "speaker": "narrator"
  },
  {
   "word": "and",
-  "start": 43.825,
-  "end": 43.96,
+  "start": 43.801,
+  "end": 43.936,
   "speaker": "narrator"
  },
  {
   "word": "leaped",
-  "start": 43.971,
-  "end": 44.185,
+  "start": 43.947,
+  "end": 44.161,
   "speaker": "narrator"
  },
  {
   "word": "off",
-  "start": 44.196,
-  "end": 44.353,
+  "start": 44.172,
+  "end": 44.329,
   "speaker": "narrator"
  },
  {
   "word": "a",
-  "start": 44.364,
-  "end": 44.42,
+  "start": 44.34,
+  "end": 44.396,
   "speaker": "narrator"
  },
  {
   "word": "broken",
-  "start": 44.432,
-  "end": 44.769,
+  "start": 44.408,
+  "end": 44.745,
   "speaker": "narrator"
  },
  {
   "word": "column",
-  "start": 44.78,
-  "end": 45.207,
+  "start": 44.756,
+  "end": 45.183,
   "speaker": "narrator"
  },
  {
   "word": "Medusa",
-  "start": 45.691,
-  "end": 46.13,
+  "start": 45.667,
+  "end": 46.106,
   "speaker": "narrator"
  },
  {
   "word": "dove",
-  "start": 46.141,
-  "end": 46.356,
+  "start": 46.117,
+  "end": 46.332,
   "speaker": "narrator"
  },
  {
   "word": "with",
-  "start": 46.367,
-  "end": 46.503,
+  "start": 46.343,
+  "end": 46.479,
   "speaker": "narrator"
  },
  {
   "word": "brazen",
-  "start": 46.514,
-  "end": 46.898,
+  "start": 46.49,
+  "end": 46.874,
   "speaker": "narrator"
  },
  {
   "word": "claws",
-  "start": 46.91,
-  "end": 47.35,
+  "start": 46.886,
+  "end": 47.326,
   "speaker": "narrator"
  },
  {
   "word": "slicing",
-  "start": 47.576,
-  "end": 48.051,
+  "start": 47.552,
+  "end": 48.027,
   "speaker": "narrator"
  },
  {
   "word": "deep",
-  "start": 48.062,
-  "end": 48.288,
+  "start": 48.038,
+  "end": 48.264,
   "speaker": "narrator"
  },
  {
   "word": "across",
-  "start": 48.3,
-  "end": 48.661,
+  "start": 48.276,
+  "end": 48.637,
   "speaker": "narrator"
  },
  {
   "word": "its",
-  "start": 48.673,
-  "end": 48.82,
+  "start": 48.649,
+  "end": 48.796,
   "speaker": "narrator"
  },
  {
   "word": "ribs",
-  "start": 48.831,
-  "end": 49.159,
+  "start": 48.807,
+  "end": 49.135,
   "speaker": "narrator"
  },
  {
   "word": "before",
-  "start": 49.17,
-  "end": 49.475,
+  "start": 49.146,
+  "end": 49.451,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 49.487,
-  "end": 49.554,
+  "start": 49.463,
+  "end": 49.53,
   "speaker": "narrator"
  },
  {
   "word": "monster",
-  "start": 49.566,
-  "end": 49.95,
+  "start": 49.542,
+  "end": 49.926,
   "speaker": "narrator"
  },
  {
   "word": "caught",
-  "start": 49.961,
-  "end": 50.176,
+  "start": 49.937,
+  "end": 50.152,
   "speaker": "narrator"
  },
  {
   "word": "her",
-  "start": 50.187,
-  "end": 50.289,
+  "start": 50.163,
+  "end": 50.265,
   "speaker": "narrator"
  },
  {
   "word": "mid-air",
-  "start": 50.3,
-  "end": 50.786,
+  "start": 50.276,
+  "end": 50.762,
   "speaker": "narrator"
  },
  {
   "word": "It",
-  "start": 51.278,
-  "end": 51.363,
+  "start": 51.253,
+  "end": 51.338,
   "speaker": "narrator"
  },
  {
   "word": "yanked",
-  "start": 51.375,
-  "end": 51.633,
+  "start": 51.35,
+  "end": 51.608,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 51.644,
-  "end": 51.734,
+  "start": 51.619,
+  "end": 51.709,
   "speaker": "narrator"
  },
  {
   "word": "cursed",
-  "start": 51.745,
-  "end": 52.094,
+  "start": 51.72,
+  "end": 52.069,
   "speaker": "narrator"
  },
  {
   "word": "Gorgon",
-  "start": 52.105,
-  "end": 52.487,
+  "start": 52.08,
+  "end": 52.462,
   "speaker": "narrator"
  },
  {
   "word": "out",
-  "start": 52.498,
-  "end": 52.61,
+  "start": 52.473,
+  "end": 52.585,
   "speaker": "narrator"
  },
  {
   "word": "of",
-  "start": 52.622,
-  "end": 52.678,
+  "start": 52.597,
+  "end": 52.653,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 52.689,
-  "end": 52.756,
+  "start": 52.664,
+  "end": 52.731,
   "speaker": "narrator"
  },
  {
   "word": "sky",
-  "start": 52.768,
-  "end": 53.15,
+  "start": 52.743,
+  "end": 53.125,
   "speaker": "narrator"
  },
  {
   "word": "and",
-  "start": 53.161,
-  "end": 53.307,
+  "start": 53.136,
+  "end": 53.282,
   "speaker": "narrator"
  },
  {
   "word": "slammed",
-  "start": 53.318,
-  "end": 53.689,
+  "start": 53.293,
+  "end": 53.664,
   "speaker": "narrator"
  },
  {
   "word": "her",
-  "start": 53.7,
-  "end": 53.79,
+  "start": 53.675,
+  "end": 53.765,
   "speaker": "narrator"
  },
  {
   "word": "into",
-  "start": 53.801,
-  "end": 53.97,
+  "start": 53.776,
+  "end": 53.945,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 53.981,
-  "end": 54.048,
+  "start": 53.956,
+  "end": 54.023,
   "speaker": "narrator"
  },
  {
   "word": "marble",
-  "start": 54.06,
-  "end": 54.352,
+  "start": 54.035,
+  "end": 54.327,
   "speaker": "narrator"
  },
  {
   "word": "floor",
-  "start": 54.363,
-  "end": 54.79,
+  "start": 54.338,
+  "end": 54.765,
   "speaker": "narrator"
  },
  {
   "word": "Her",
-  "start": 55.33,
-  "end": 55.44,
+  "start": 55.306,
+  "end": 55.402,
   "speaker": "narrator"
  },
  {
-  "word": "golden",
-  "start": 55.451,
-  "end": 55.798,
+  "word": "serpent",
+  "start": 55.413,
+  "end": 55.795,
   "speaker": "narrator"
  },
  {
-  "word": "wings",
-  "start": 55.809,
-  "end": 56.034,
+  "word": "coils",
+  "start": 55.806,
+  "end": 56.176,
   "speaker": "narrator"
  },
  {
-  "word": "shattered",
-  "start": 56.045,
-  "end": 56.471,
+  "word": "pinned",
+  "start": 56.188,
+  "end": 56.569,
   "speaker": "narrator"
  },
  {
   "word": "Medusa",
-  "start": 56.672,
-  "end": 57.132,
+  "start": 56.794,
+  "end": 57.242,
   "speaker": "narrator"
  },
  {
   "word": "stopped",
-  "start": 57.143,
-  "end": 57.535,
+  "start": 57.254,
+  "end": 57.646,
   "speaker": "narrator"
  },
  {
   "word": "dodging",
-  "start": 57.546,
-  "end": 57.972,
+  "start": 57.658,
+  "end": 58.084,
   "speaker": "narrator"
  },
  {
   "word": "and",
-  "start": 57.983,
-  "end": 58.073,
+  "start": 58.095,
+  "end": 58.185,
   "speaker": "narrator"
  },
  {
   "word": "poured",
-  "start": 58.084,
-  "end": 58.331,
-  "speaker": "narrator"
- },
- {
-  "word": "her",
-  "start": 58.342,
+  "start": 58.196,
   "end": 58.443,
   "speaker": "narrator"
  },
  {
-  "word": "entire",
+  "word": "her",
   "start": 58.454,
-  "end": 58.891,
+  "end": 58.555,
+  "speaker": "narrator"
+ },
+ {
+  "word": "entire",
+  "start": 58.566,
+  "end": 59.004,
   "speaker": "narrator"
  },
  {
   "word": "curse",
-  "start": 58.902,
-  "end": 59.194,
+  "start": 59.015,
+  "end": 59.318,
   "speaker": "narrator"
  },
  {
   "word": "into",
-  "start": 59.205,
-  "end": 59.451,
+  "start": 59.329,
+  "end": 59.576,
   "speaker": "narrator"
  },
  {
   "word": "one",
-  "start": 59.463,
-  "end": 59.676,
+  "start": 59.588,
+  "end": 59.801,
   "speaker": "narrator"
  },
  {
   "word": "gaze",
-  "start": 59.687,
-  "end": 60.158,
+  "start": 59.812,
+  "end": 60.283,
   "speaker": "narrator"
  },
  {
   "word": "Turn",
-  "start": 60.576,
-  "end": 60.849,
+  "start": 60.696,
+  "end": 60.969,
   "speaker": "medusa"
  },
  {
   "word": "to",
-  "start": 60.864,
-  "end": 60.994,
+  "start": 60.984,
+  "end": 61.114,
   "speaker": "medusa"
  },
  {
   "word": "stone",
-  "start": 61.009,
-  "end": 61.631,
+  "start": 61.129,
+  "end": 61.751,
   "speaker": "medusa"
  },
  {
   "word": "Emerald",
-  "start": 62.21,
-  "end": 62.485,
+  "start": 62.329,
+  "end": 62.604,
   "speaker": "narrator"
  },
  {
   "word": "fire",
-  "start": 62.497,
-  "end": 62.846,
+  "start": 62.616,
+  "end": 62.965,
   "speaker": "narrator"
  },
  {
   "word": "swallowed",
-  "start": 62.857,
-  "end": 63.252,
+  "start": 62.976,
+  "end": 63.371,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 63.264,
-  "end": 63.32,
+  "start": 63.383,
+  "end": 63.439,
   "speaker": "narrator"
  },
  {
   "word": "shriek",
-  "start": 63.331,
-  "end": 63.715,
+  "start": 63.45,
+  "end": 63.834,
   "speaker": "narrator"
  },
  {
   "word": "locking",
-  "start": 63.929,
-  "end": 64.267,
+  "start": 64.048,
+  "end": 64.386,
   "speaker": "narrator"
  },
  {
   "word": "pale",
-  "start": 64.279,
-  "end": 64.549,
+  "start": 64.398,
+  "end": 64.668,
   "speaker": "narrator"
  },
  {
   "word": "flesh",
-  "start": 64.561,
-  "end": 64.876,
+  "start": 64.68,
+  "end": 64.995,
   "speaker": "narrator"
  },
  {
   "word": "into",
-  "start": 64.888,
-  "end": 65.079,
+  "start": 65.007,
+  "end": 65.198,
   "speaker": "narrator"
  },
  {
   "word": "solid",
-  "start": 65.091,
-  "end": 65.44,
+  "start": 65.21,
+  "end": 65.559,
   "speaker": "narrator"
  },
  {
   "word": "rock",
-  "start": 65.452,
-  "end": 65.722,
+  "start": 65.571,
+  "end": 65.841,
   "speaker": "narrator"
  },
  {
   "word": "from",
-  "start": 65.734,
-  "end": 65.846,
+  "start": 65.853,
+  "end": 65.965,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 65.858,
-  "end": 65.948,
+  "start": 65.977,
+  "end": 66.067,
   "speaker": "narrator"
  },
  {
   "word": "eyes",
-  "start": 65.959,
-  "end": 66.264,
+  "start": 66.078,
+  "end": 66.383,
   "speaker": "narrator"
  },
  {
   "word": "down",
-  "start": 66.275,
-  "end": 66.647,
+  "start": 66.394,
+  "end": 66.766,
   "speaker": "narrator"
  },
  {
   "word": "Breathing",
-  "start": 67.896,
-  "end": 68.187,
+  "start": 68.016,
+  "end": 68.307,
   "speaker": "narrator"
  },
  {
   "word": "hard",
-  "start": 68.198,
-  "end": 68.457,
+  "start": 68.318,
+  "end": 68.577,
   "speaker": "narrator"
  },
  {
   "word": "among",
-  "start": 68.468,
-  "end": 68.694,
+  "start": 68.588,
+  "end": 68.814,
   "speaker": "narrator"
  },
  {
   "word": "the",
-  "start": 68.705,
-  "end": 68.784,
+  "start": 68.825,
+  "end": 68.904,
   "speaker": "narrator"
  },
  {
   "word": "rubble",
-  "start": 68.795,
-  "end": 69.099,
+  "start": 68.915,
+  "end": 69.219,
   "speaker": "narrator"
  },
  {
   "word": "Medusa",
-  "start": 69.324,
-  "end": 69.741,
+  "start": 69.444,
+  "end": 69.861,
   "speaker": "narrator"
  },
  {
   "word": "turned",
-  "start": 69.752,
-  "end": 69.978,
+  "start": 69.872,
+  "end": 70.098,
   "speaker": "narrator"
  },
  {
   "word": "her",
-  "start": 69.989,
-  "end": 70.09,
+  "start": 70.109,
+  "end": 70.21,
   "speaker": "narrator"
  },
  {
   "word": "back",
-  "start": 70.102,
-  "end": 70.383,
+  "start": 70.222,
+  "end": 70.503,
   "speaker": "narrator"
  },
  {
   "word": "on",
-  "start": 70.394,
-  "end": 70.485,
+  "start": 70.514,
+  "end": 70.605,
   "speaker": "narrator"
  },
  {
   "word": "her",
-  "start": 70.496,
-  "end": 70.586,
+  "start": 70.616,
+  "end": 70.706,
   "speaker": "narrator"
  },
  {
   "word": "deadliest",
-  "start": 70.597,
-  "end": 71.059,
+  "start": 70.717,
+  "end": 71.179,
   "speaker": "narrator"
  },
  {
   "word": "trophy",
-  "start": 71.07,
-  "end": 71.532,
+  "start": 71.19,
+  "end": 71.652,
   "speaker": "narrator"
  },
  {
   "word": "My",
-  "start": 71.968,
-  "end": 72.105,
+  "start": 72.088,
+  "end": 72.225,
   "speaker": "medusa"
  },
  {
   "word": "garden",
-  "start": 72.119,
-  "end": 72.702,
+  "start": 72.239,
+  "end": 72.822,
   "speaker": "medusa"
  },
  {
   "word": "always",
-  "start": 72.715,
-  "end": 73.159,
+  "start": 72.835,
+  "end": 73.279,
   "speaker": "medusa"
  },
  {
   "word": "wins",
-  "start": 73.173,
-  "end": 73.812,
+  "start": 73.293,
+  "end": 73.932,
   "speaker": "medusa"
  },
  {
   "word": "But",
-  "start": 75.242,
-  "end": 75.312,
+  "start": 75.361,
+  "end": 75.431,
   "speaker": "narrator"
  },
  {
   "word": "she",
-  "start": 75.323,
-  "end": 75.482,
+  "start": 75.442,
+  "end": 75.601,
   "speaker": "narrator"
  },
  {
   "word": "had",
-  "start": 75.493,
-  "end": 75.629,
+  "start": 75.612,
+  "end": 75.748,
   "speaker": "narrator"
  },
  {
   "word": "seen",
-  "start": 75.64,
-  "end": 75.866,
+  "start": 75.759,
+  "end": 75.985,
   "speaker": "narrator"
  },
  {
   "word": "its",
-  "start": 75.877,
-  "end": 76.024,
+  "start": 75.996,
+  "end": 76.143,
   "speaker": "narrator"
  },
  {
   "word": "face",
-  "start": 76.036,
-  "end": 76.454,
+  "start": 76.155,
+  "end": 76.573,
   "speaker": "narrator"
  },
  {
   "word": "and",
-  "start": 76.669,
-  "end": 76.816,
+  "start": 76.788,
+  "end": 76.935,
   "speaker": "narrator"
  },
  {
   "word": "stone",
-  "start": 76.827,
-  "end": 77.189,
+  "start": 76.946,
+  "end": 77.308,
   "speaker": "narrator"
  },
  {
   "word": "did",
-  "start": 77.2,
-  "end": 77.324,
+  "start": 77.319,
+  "end": 77.443,
   "speaker": "narrator"
  },
  {
   "word": "not",
-  "start": 77.336,
-  "end": 77.55,
+  "start": 77.455,
+  "end": 77.669,
   "speaker": "narrator"
  },
  {
   "word": "stop",
-  "start": 77.562,
-  "end": 77.901,
+  "start": 77.681,
+  "end": 78.02,
   "speaker": "narrator"
  },
  {
   "word": "Zero",
-  "start": 77.912,
-  "end": 78.217,
+  "start": 78.031,
+  "end": 78.336,
   "speaker": "narrator"
  },
  {
   "word": "Nine",
-  "start": 78.229,
-  "end": 78.534,
+  "start": 78.348,
+  "end": 78.653,
   "speaker": "narrator"
  },
  {
   "word": "Six",
-  "start": 78.545,
-  "end": 79.054,
+  "start": 78.664,
+  "end": 79.173,
   "speaker": "narrator"
  },
  {
   "word": "You",
-  "start": 80.28,
-  "end": 80.379,
+  "start": 80.4,
+  "end": 80.499,
   "speaker": "scp096"
  },
  {
   "word": "just",
-  "start": 80.412,
-  "end": 80.788,
+  "start": 80.532,
+  "end": 80.908,
   "speaker": "scp096"
  },
  {
   "word": "gave",
-  "start": 80.821,
-  "end": 81.083,
+  "start": 80.941,
+  "end": 81.203,
   "speaker": "scp096"
  },
  {
   "word": "me",
-  "start": 81.099,
-  "end": 81.312,
+  "start": 81.219,
+  "end": 81.432,
   "speaker": "scp096"
  },
  {
   "word": "armor",
-  "start": 81.344,
-  "end": 81.933,
+  "start": 81.464,
+  "end": 82.053,
   "speaker": "scp096"
  }
 ]

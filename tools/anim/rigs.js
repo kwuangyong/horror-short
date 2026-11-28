@@ -3300,11 +3300,14 @@
   };
   SCP096.fade = SCP096.idle;
 
-  // ==================== MEDUSA (Cursed Gorgon · Greek Mythology Original) ====================
-  // Apollodorus Bibliotheca 2.4.2: dense 16-viper living serpent hair crown, sculpted classical
-  // Greek horror face with glowing emerald slit-pupil eyes & Gorgon fangs, multi-layered golden
-  // feathered wings with dynamic wingDmg fracture, brazen (bronze) forearms & razor claws,
-  // dark emerald-gold tattered chiton + coiled scaled serpentine lower tail. Faces +x.
+  // ==================== MEDUSA (Classical Wingless Gorgon · Greek Mythology Original) ====================
+  // Hauntingly beautiful classical Greek Gorgon: pale alabaster/moonlight-ivory complexion,
+  // sculpted cheekbones & winged dark-lashed almond emerald-gold eyes, dark plum-crimson lips
+  // (sleekly parted, fangs only on hiss), delicate hammered-gold diadem, natural cascading &
+  // draping 16-viper dark-emerald serpent hair framing cheeks & shoulders, hourglass feminine
+  // obsidian-emerald chiton with gold meander trim & sash, graceful ivory arms with ornate
+  // gold-bronze wrist bracers & dark claws, and a muscular coiled emerald-obsidian serpent tail
+  // with golden belly scutes. Faces +x.
   function buildMedusa() {
     const uid = ++_rigUid;
     const rig = newRig();
@@ -3322,130 +3325,55 @@
     };
 
     // Local unique gradients (never passed to G.reg)
-    const gGoldWing = mkLin('medGW', [[0, '#FFF6C4', 0.92], [0.42, '#F0C24B', 0.72], [0.82, '#9E6B18', 0.85], [1, '#4D2D06', 0.95]], 0, 0, 1, 1);
-    const gGoldWingB = mkLin('medGWB', [[0, '#D49E32', 0.78], [0.52, '#8A5A12', 0.85], [1, '#3B2204', 0.95]], 0, 0, 1, 1);
-    const gBronze = mkLin('medBrz', [[0, '#FFE3A3', 0.85], [0.45, '#C78038', 0.55], [1, '#4D290A', 0.88]], 0, 0, 1, 0);
-    const gEyeEm = mkRad('medEye', [[0, '#FFFFFF', 1], [0.24, '#B0FFD0', 0.92], [0.54, '#4CFF88', 0.62], [0.84, '#0A5C2B', 0.25], [1, '#000000', 0]]);
-    const gChiton = mkLin('medCht', [[0, '#245443', 0.65], [0.58, '#122B22', 0.55], [1, '#06100C', 0.85]], 0, 0, 0, 1);
-    const gFace = mkRad('medFac', [[0, '#D8EADB', 0.72], [0.55, '#99B3A0', 0.28], [1, '#3B5244', 0.75]], 0.58, 0.36, 0.68);
-    const gTail = mkLin('medTl', [[0, '#2B8752', 0.65], [0.55, '#143B2A', 0.65], [1, '#071710', 0.88]], 0, 0, 1, 1);
+    const gFace = mkRad('medFac', [[0, '#F5F1EB', 0.86], [0.52, '#E2DCD4', 0.42], [0.85, '#B2A89F', 0.55], [1, '#756C66', 0.8]], 0.58, 0.34, 0.7);
+    const gSkin = mkLin('medSkn', [[0, '#EEEAE4', 0.72], [0.55, '#D8D1C8', 0.32], [1, '#9E948C', 0.68]], 0, 0, 1, 0.35);
+    const gChiton = mkLin('medCht', [[0, '#1C4034', 0.72], [0.52, '#0D211B', 0.72], [1, '#040C09', 0.92]], 0, 0, 0.3, 1);
+    const gGold = mkLin('medGld', [[0, '#FFF4C4', 0.92], [0.42, '#DFAF46', 0.78], [0.85, '#8C5C14', 0.9], [1, '#422806', 0.95]], 0, 0, 1, 1);
+    const gBracer = mkLin('medBrc', [[0, '#FFE4A3', 0.9], [0.48, '#C88B38', 0.7], [1, '#52310B', 0.92]], 0, 0, 1, 0);
+    const gTail = mkLin('medTl', [[0, '#247551', 0.72], [0.48, '#0E3324', 0.75], [1, '#05120D', 0.92]], 0, 0, 1, 0.85);
+    const gSnake = mkLin('medSnk', [[0, '#2F8A5C', 0.68], [0.55, '#123B29', 0.65], [1, '#071811', 0.85]], 0, 0, 1, 1);
+    const gEyeEm = mkRad('medEye', [[0, '#FFFFFF', 1], [0.22, '#B6FFD0', 0.92], [0.55, '#42F584', 0.58], [0.86, '#0B5E2E', 0.2], [1, '#000000', 0]]);
     const gIchor = mkLin('medIch', [[0, '#781D4E', 0.95], [0.5, '#2B0A1D', 0.95], [1, '#12040C', 0.9]], 0, 0, 0, 1);
 
-    // Palette (strict 6-digit hex for G.reg / setSil compatibility)
-    const SKIN_L = '#C8DBC9', SKIN = '#99B3A0', SKIN_D = '#637D6C', SKIN_DD = '#293B31';
-    const GOLD_L = '#FFF2B2', GOLD = '#F0C24B', GOLD_D = '#9E6B18', GOLD_DD = '#5C3908';
-    const BRONZE_L = '#FFE099', BRONZE = '#C78038', BRONZE_D = '#6E3F14';
-    const ROBE_DD = '#07120E', ROBE_D = '#0B1C16', ROBE = '#122B22', ROBE_L = '#204B3C';
-    const VIPER_DD = '#081D13', VIPER_B = '#123D27', VIPER = '#298F56', VIPER_L = '#5BE091', VIPER_HI = '#A8FFC8';
-    const BELLY = '#C8BA78', EYE_EM = '#4CFF88', ICHOR = '#240B1A', ICHOR_L = '#6E1B47';
+    // Strict 6-digit hex palette for G.reg / setSil safety
+    const SKIN_HL = '#F3EFE9', SKIN_L = '#E2DCD4', SKIN = '#D5CDC4', SKIN_M = '#B8AEA5', SKIN_D = '#9C928A', SKIN_DD = '#6D645E';
+    const LIP_U = '#380E1E', LIP_L = '#58172E', LIP_HI = '#842A4A';
+    const GOLD_L = '#FFF1B8', GOLD = '#DEB044', GOLD_D = '#916216', GOLD_DD = '#4E3007';
+    const BRONZE_L = '#FFE09B', BRONZE = '#C48436', BRONZE_D = '#683D12';
+    const ROBE_DD = '#06100C', ROBE_D = '#0B1D17', ROBE = '#122E24', ROBE_L = '#235241';
+    const TAIL_DD = '#05140E', TAIL_D = '#0B281C', TAIL = '#164A35', TAIL_L = '#2A855C', TAIL_HI = '#5ED698';
+    const VIPER_DD = '#071B13', VIPER_B = '#0E3424', VIPER = '#1E6B47', VIPER_L = '#3DAE76', VIPER_HI = '#84F2B6';
+    const BELLY = '#D4BC72', BELLY_L = '#EFE0A8', EYE_EM = '#44F585', EYE_GOLD = '#E8FA78';
+    const CLAW = '#1A1116', ICHOR = '#240B1A', ICHOR_L = '#6E1B47';
 
     const pathR = (p, d, fill, extra) => G.reg($('path', Object.assign({ d, fill }, extra || {}), p), fill);
 
-    // Non-registered ground shadow
-    const sh = $('ellipse', { cx: 0, cy: 4, rx: 112, ry: 22, fill: 'rgba(0,0,0,0.5)' }, g);
+    // Ground shadow
+    const sh = $('ellipse', { cx: 0, cy: 6, rx: 132, ry: 24, fill: 'rgba(0,0,0,0.52)' }, g);
     const root = $('g', {}, g);
 
-    // Main body pivot at waist (y = -245 in rig space; ground = 0, face center ~ -464)
+    // Main body pivot at hips/waist (y = -245; ground = 0, face center ~ -464)
     const body = joint(root, 0, -245);
     const B = body.c;
 
-    // ==================== 1. MULTI-LAYERED GOLDEN FEATHERED WINGS (Apollodorus 2.4.2) ====================
-    const drawPrimaryFeather = (parent, sx, sy, u, sc, isFront) => {
-      const bx = sx - (14 + u * 98) * sc;
-      const by = sy - (16 + Math.sin(u * Math.PI * 0.72) * 92) * sc;
-      const tipX = sx - (262 - u * 138) * sc;
-      const tipY = sy - (248 - u * 218) * sc;
-      const mx = (bx + tipX) * 0.5 - 24 * sc;
-      const my = (by + tipY) * 0.5 - 20 * sc;
-      const wF = (21 - u * 5.5) * sc;
-      const ang = Math.atan2(tipY - by, tipX - bx);
-      const nx = -Math.sin(ang) * wF, ny = Math.cos(ang) * wF;
-      const d = `M${f2(bx)} ${f2(by)} Q${f2(mx + nx)} ${f2(my + ny)} ${f2(tipX)} ${f2(tipY)} Q${f2(mx - nx * 0.45)} ${f2(my - ny * 0.45)} ${f2(bx + 10 * sc)} ${f2(by + 14 * sc)} Z`;
-      const col = isFront ? (iMod(u) ? GOLD_L : GOLD) : (iMod(u) ? GOLD : GOLD_D);
-      pathR(parent, d, col);
-      // Dark underside separator + gleaming metallic rachis shaft
-      $('path', { d: `M${f2(bx + 6 * sc)} ${f2(by + 8 * sc)} Q${f2(mx - nx * 0.3)} ${f2(my - ny * 0.3)} ${f2(tipX)} ${f2(tipY)}`, stroke: GOLD_DD, 'stroke-width': isFront ? 2.0 : 1.5, fill: 'none', opacity: isFront ? 0.65 : 0.5 }, parent);
-      $('path', { d: `M${f2(bx)} ${f2(by)} Q${f2(mx + nx * 0.28)} ${f2(my + ny * 0.28)} ${f2(tipX)} ${f2(tipY)}`, stroke: GOLD_L, 'stroke-width': isFront ? 2.2 : 1.4, fill: 'none', 'stroke-linecap': 'round', opacity: isFront ? 0.85 : 0.45 }, parent);
-    };
-    const iMod = (u) => Math.round(u * 9) % 2 === 0;
-
-    // Back Golden Wing (shadowed depth layer)
-    const wingB = joint(B, -24, -392);
-    {
-      const wg = wingB.c, sx = -24, sy = -392, sc = 0.9;
-      const backD = `M${sx - 6} ${sy + 12} C${f2(sx - 64 * sc)} ${f2(sy - 102 * sc)} ${f2(sx - 166 * sc)} ${f2(sy - 216 * sc)} ${f2(sx - 252 * sc)} ${f2(sy - 238 * sc)} C${f2(sx - 232 * sc)} ${f2(sy - 128 * sc)} ${f2(sx - 168 * sc)} ${f2(sy - 32 * sc)} ${f2(sx - 62 * sc)} ${f2(sy + 26 * sc)} Z`;
-      pathR(wg, backD, GOLD_D);
-      $('path', { d: backD, fill: gGoldWingB, opacity: 0.78 }, wg);
-      for (let i = 0; i < 10; i++) drawPrimaryFeather(wg, sx, sy, i / 9, sc, false);
-      // 7 layered secondary covert feathers
-      for (let i = 0; i < 7; i++) {
-        const u = i / 6;
-        const bx = sx - (6 + u * 56) * sc, by = sy - (8 + u * 52) * sc;
-        const tipX = sx - (170 - u * 92) * sc, tipY = sy - (166 - u * 134) * sc;
-        const mx = (bx + tipX) * 0.5 - 14 * sc, my = (by + tipY) * 0.5 - 12 * sc;
-        const d = `M${f2(bx)} ${f2(by)} Q${f2(mx - 12 * sc)} ${f2(my + 9 * sc)} ${f2(tipX)} ${f2(tipY)} Q${f2(mx + 10 * sc)} ${f2(my - 7 * sc)} ${f2(bx + 8 * sc)} ${f2(by + 10 * sc)} Z`;
-        pathR(wg, d, GOLD);
-        $('path', { d, fill: gGoldWingB, opacity: 0.55 }, wg);
-      }
-      // Sculpted shoulder arch
-      pathR(wg, `M${sx - 6} ${sy + 8} Q${f2(sx - 74 * sc)} ${f2(sy - 92 * sc)} ${f2(sx - 164 * sc)} ${f2(sy - 172 * sc)} Q${f2(sx - 96 * sc)} ${f2(sy - 106 * sc)} ${sx - 8} ${sy - 20} Z`, GOLD);
-    }
-
-    // Front Golden Wing (split into inner shoulder + outer fracture joint for dynamic wingDmg!)
-    const wingF = joint(B, -10, -384);
-    const wingFOuter = joint(wingF.c, -106, -476);
-    const wingBreakG = $('g', { opacity: 0 }, wingF.c);
-    {
-      const sx = -10, sy = -384, sc = 1.0;
-      const wgIn = wingF.c, wgOut = wingFOuter.c;
-
-      // Inner covert blade backing
-      const inBackD = `M${sx - 6} ${sy + 12} C${f2(sx - 44)} ${f2(sy - 48)} ${f2(sx - 84)} ${f2(sy - 98)} ${f2(sx - 120)} ${f2(sy - 118)} C${f2(sx - 128)} ${f2(sy - 56)} ${f2(sx - 102)} ${f2(sy - 4)} ${f2(sx - 56)} ${f2(sy + 26)} Z`;
-      pathR(wgIn, inBackD, GOLD);
-      $('path', { d: inBackD, fill: gGoldWing, opacity: 0.72 }, wgIn);
-
-      // Outer covert blade backing (inside wingFOuter so it droops & snaps cleanly!)
-      const outBackD = `M${f2(sx - 94)} ${f2(sy - 90)} C${f2(sx - 154)} ${f2(sy - 166)} ${f2(sx - 216)} ${f2(sy - 224)} ${f2(sx - 268)} ${f2(sy - 246)} C${f2(sx - 242)} ${f2(sy - 134)} ${f2(sx - 186)} ${f2(sy - 56)} ${f2(sx - 104)} ${f2(sy - 18)} Z`;
-      pathR(wgOut, outBackD, GOLD);
-      $('path', { d: outBackD, fill: gGoldWing, opacity: 0.78 }, wgOut);
-
-      // 10 overlapping primary feathers: outer 6 on wingFOuter (i = 0..5), inner 4 on wingF (i = 6..9)
-      for (let i = 0; i < 6; i++) drawPrimaryFeather(wgOut, sx, sy, i / 9, sc, true);
-      for (let i = 6; i < 10; i++) drawPrimaryFeather(wgIn, sx, sy, i / 9, sc, true);
-
-      // 7 layered secondary covert feathers on inner wing
-      for (let i = 0; i < 7; i++) {
-        const u = i / 6;
-        const bx = sx - (8 + u * 54), by = sy - (10 + u * 48);
-        const tipX = sx - (158 - u * 84), tipY = sy - (152 - u * 124);
-        const mx = (bx + tipX) * 0.5 - 12, my = (by + tipY) * 0.5 - 10;
-        const d = `M${f2(bx)} ${f2(by)} Q${f2(mx - 12)} ${f2(my + 9)} ${f2(tipX)} ${f2(tipY)} Q${f2(mx + 10)} ${f2(my - 8)} ${f2(bx + 9)} ${f2(by + 11)} Z`;
-        pathR(i < 2 ? wgOut : wgIn, d, i % 2 === 0 ? GOLD_L : GOLD);
-        $('path', { d, fill: gGoldWing, opacity: 0.35 }, i < 2 ? wgOut : wgIn);
-      }
-
-      // Ornate Greek sculpted golden shoulder arch & spiral crest
-      pathR(wgIn, `M${sx - 6} ${sy + 10} Q${f2(sx - 56)} ${f2(sy - 66)} ${f2(sx - 114)} ${f2(sy - 118)} Q${f2(sx - 66)} ${f2(sy - 72)} ${sx - 10} ${sy - 20} Z`, GOLD_L);
-      $('path', { d: `M${sx - 16} ${sy - 8} C${sx - 34} ${sy - 24} ${sx - 44} ${sy - 8} ${sx - 32} ${sy + 4} C${sx - 24} ${sy + 10} ${sx - 18} ${sy + 2} ${sx - 26} ${sy - 2}`, stroke: GOLD_DD, 'stroke-width': 2.6, fill: 'none', 'stroke-linecap': 'round' }, wgIn);
-
-      // Wing fracture seam: jagged broken golden quills + dark Gorgon ichor splatters (shown when wingDmg > 0)
-      const fx = -106, fy = -476;
-      $('path', { d: `M${fx + 8} ${fy + 8} L${fx - 18} ${fy - 22} L${fx - 6} ${fy + 4} L${fx - 26} ${fy - 4} L${fx - 2} ${fy + 16} L${fx - 16} ${fy + 26} Z`, fill: GOLD_L, stroke: GOLD_DD, 'stroke-width': 1.8 }, wingBreakG);
-      $('path', { d: `M${fx + 2} ${fy - 4} C${fx - 14} ${fy + 10} ${fx - 18} ${fy + 32} ${fx - 8} ${fy + 46} C${fx + 2} ${fy + 34} ${fx + 10} ${fy + 14} ${fx + 2} ${fy - 4} Z`, fill: gIchor, opacity: 0.92 }, wingBreakG);
-      $('circle', { cx: fx - 14, cy: fy + 22, r: 5.5, fill: ICHOR }, wingBreakG);
-      $('circle', { cx: fx - 6, cy: fy + 38, r: 3.8, fill: ICHOR_L }, wingBreakG);
-    }
-
-    // ==================== 2. COILED SCALED SERPENTINE LOWER BODY ====================
+    // ==================== 1. MUSCULAR COILED SERPENTINE LOWER TAIL (NO WINGS!) ====================
     const tailG = $('g', {}, B);
-    const tailUnderPath = pathR(tailG, 'M0 -245', VIPER_DD);
-    const tailBodyPath = pathR(tailG, 'M0 -245', VIPER_B);
-    const tailGradPath = $('path', { d: 'M0 -245', fill: gTail, opacity: 0.78 }, tailG);
-    const tailBellyPath = $('path', { d: 'M0 -245', stroke: BELLY, 'stroke-width': 13, 'stroke-dasharray': '7 9', 'stroke-linecap': 'round', fill: 'none', opacity: 0.76 }, tailG);
-    const tailScalePath = $('path', { d: 'M0 -245', stroke: VIPER_L, 'stroke-width': 8, 'stroke-dasharray': '10 11', 'stroke-linecap': 'round', fill: 'none', opacity: 0.56 }, tailG);
-    const tailHiPath = $('path', { d: 'M0 -245', stroke: VIPER_HI, 'stroke-width': 2.5, 'stroke-dasharray': '16 22', 'stroke-linecap': 'round', fill: 'none', opacity: 0.42 }, tailG);
+    // Back loop / tail tip curling dynamically behind & around coils
+    const tailBackUnder = pathR(tailG, 'M0 -245', TAIL_DD);
+    const tailBackBody = pathR(tailG, 'M0 -245', TAIL_D);
+    const tailBackBelly = $('path', { d: 'M0 -245', stroke: BELLY, 'stroke-width': 10, 'stroke-dasharray': '7 9', 'stroke-linecap': 'round', fill: 'none', opacity: 0.65 }, tailG);
+    const tailBackScale = $('path', { d: 'M0 -245', stroke: TAIL_L, 'stroke-width': 5.5, 'stroke-dasharray': '9 11', 'stroke-linecap': 'round', fill: 'none', opacity: 0.48 }, tailG);
 
-    // Helper: build a smooth tapered filled ribbon around a polyline of [x, y, halfWidth]
+    // Primary foreground S-coiled lower body
+    const tailUnderPath = pathR(tailG, 'M0 -245', TAIL_DD);
+    const tailBodyPath = pathR(tailG, 'M0 -245', TAIL);
+    const tailGradPath = $('path', { d: 'M0 -245', fill: gTail, opacity: 0.85 }, tailG);
+    const tailBellyPath = $('path', { d: 'M0 -245', stroke: BELLY, 'stroke-width': 15, 'stroke-dasharray': '8 9', 'stroke-linecap': 'round', fill: 'none', opacity: 0.88 }, tailG);
+    const tailBellyHi = $('path', { d: 'M0 -245', stroke: BELLY_L, 'stroke-width': 5.5, 'stroke-dasharray': '7 10', 'stroke-linecap': 'round', fill: 'none', opacity: 0.68 }, tailG);
+    const tailScalePath = $('path', { d: 'M0 -245', stroke: TAIL_L, 'stroke-width': 9, 'stroke-dasharray': '10 11', 'stroke-linecap': 'round', fill: 'none', opacity: 0.66 }, tailG);
+    const tailHiPath = $('path', { d: 'M0 -245', stroke: TAIL_HI, 'stroke-width': 2.6, 'stroke-dasharray': '14 20', 'stroke-linecap': 'round', fill: 'none', opacity: 0.48 }, tailG);
+
+    // Smooth Catmull-Rom / polyline tapered ribbon builder
     const buildTaperRibbon = (pts) => {
       const L = [], R = [];
       for (let i = 0; i < pts.length; i++) {
@@ -3458,393 +3386,487 @@
         R.push([p[0] - nx * p[2], p[1] - ny * p[2]]);
       }
       let d = `M${f2(L[0][0])} ${f2(L[0][1])}`;
-      for (let i = 1; i < L.length; i++) d += ` L${f2(L[i][0])} ${f2(L[i][1])}`;
-      for (let i = R.length - 1; i >= 0; i--) d += ` L${f2(R[i][0])} ${f2(R[i][1])}`;
-      return d + ' Z';
+      for (let i = 1; i < L.length; i++) {
+        const p0 = L[i - 1], p1 = L[i];
+        d += ` Q${f2(p0[0])} ${f2(p0[1])} ${f2((p0[0] + p1[0]) * 0.5)} ${f2((p0[1] + p1[1]) * 0.5)}`;
+      }
+      d += ` L${f2(L[L.length - 1][0])} ${f2(L[L.length - 1][1])}`;
+      d += ` L${f2(R[R.length - 1][0])} ${f2(R[R.length - 1][1])}`;
+      for (let i = R.length - 1; i > 0; i--) {
+        const p0 = R[i], p1 = R[i - 1];
+        d += ` Q${f2(p0[0])} ${f2(p0[1])} ${f2((p0[0] + p1[0]) * 0.5)} ${f2((p0[1] + p1[1]) * 0.5)}`;
+      }
+      return d + ` L${f2(R[0][0])} ${f2(R[0][1])} Z`;
     };
 
-    // ==================== 3. TATTERED EMERALD-GOLD GREEK CHITON SKIRT ====================
-    const skirtG = $('g', {}, B);
-    const skirtBaseD = 'M-40 -248 C-54 -184 -74 -116 -86 -48 L-54 -72 L-30 -28 L-6 -64 L22 -24 L46 -58 L72 -32 C60 -106 48 -178 38 -248 Z';
-    pathR(skirtG, skirtBaseD, ROBE);
-    $('path', { d: skirtBaseD, fill: gChiton, opacity: 0.8 }, skirtG);
-    // Draped pleated shadows & highlights
-    pathR(skirtG, 'M-30 -246 C-40 -178 -54 -116 -60 -58 L-42 -68 C-34 -128 -22 -184 -14 -246 Z', ROBE_D);
-    pathR(skirtG, 'M-14 -246 C-20 -176 -26 -108 -30 -36 L-12 -58 C-6 -120 0 -184 4 -246 Z', ROBE_L);
-    pathR(skirtG, 'M10 -246 C16 -178 24 -110 26 -34 L42 -54 C36 -118 28 -182 22 -246 Z', ROBE_L);
-    pathR(skirtG, 'M26 -246 C36 -178 48 -112 58 -46 L70 -36 C58 -108 46 -178 36 -246 Z', ROBE_D);
-    // Hammered gold tattered hem trim
-    $('path', { d: 'M-82 -56 L-54 -78 L-30 -36 L-6 -70 L22 -32 L46 -64 L68 -40', stroke: GOLD, 'stroke-width': 3.5, fill: 'none', 'stroke-linejoin': 'miter', opacity: 0.88 }, skirtG);
-    $('path', { d: 'M-80 -62 L-54 -84 L-30 -42 L-6 -76 L22 -38 L46 -70 L66 -46', stroke: GOLD_D, 'stroke-width': 1.8, fill: 'none', opacity: 0.72 }, skirtG);
+    const smoothCurveD = (pts, offFn) => {
+      const shifted = pts.map((p) => (offFn ? offFn(p) : [p[0], p[1]]));
+      let d = `M${f2(shifted[0][0])} ${f2(shifted[0][1])}`;
+      for (let i = 1; i < shifted.length - 1; i++) {
+        const mx = (shifted[i][0] + shifted[i + 1][0]) * 0.5;
+        const my = (shifted[i][1] + shifted[i + 1][1]) * 0.5;
+        d += ` Q${f2(shifted[i][0])} ${f2(shifted[i][1])} ${f2(mx)} ${f2(my)}`;
+      }
+      const last = shifted[shifted.length - 1];
+      return d + ` L${f2(last[0])} ${f2(last[1])}`;
+    };
 
-    // ==================== 4. BRAZEN (BRONZE) ARMS & RAZOR CLAWS ====================
+    // ==================== 2. SLEEK GREEK CHITON HIP-SKIRT & SLIT OVER COILS ====================
+    const skirtG = $('g', {}, B);
+    const skirtBaseD = 'M-29 -248 C-40 -220 -55 -172 -64 -118 L-42 -136 L-24 -96 L-4 -128 L18 -88 L41 -122 L60 -102 C50 -158 39 -214 31 -248 Z';
+    pathR(skirtG, skirtBaseD, ROBE);
+    $('path', { d: skirtBaseD, fill: gChiton, opacity: 0.82 }, skirtG);
+    pathR(skirtG, 'M-25 -246 C-34 -208 -44 -166 -48 -128 L-34 -135 C-28 -172 -18 -208 -12 -246 Z', ROBE_D);
+    pathR(skirtG, 'M-10 -246 C-14 -202 -18 -154 -22 -102 L-8 -121 C-2 -166 2 -206 4 -246 Z', ROBE_L, { opacity: 0.7 });
+    pathR(skirtG, 'M10 -246 C16 -202 22 -150 22 -94 L35 -115 C31 -162 24 -206 20 -246 Z', ROBE_L, { opacity: 0.72 });
+    pathR(skirtG, 'M22 -246 C32 -204 41 -158 47 -110 L58 -103 C49 -156 38 -206 30 -246 Z', ROBE_D);
+    $('path', { d: 'M-62 -124 L-42 -140 L-24 -102 L-4 -132 L18 -94 L41 -126 L58 -108', stroke: GOLD, 'stroke-width': 3.2, fill: 'none', 'stroke-linejoin': 'miter', opacity: 0.9 }, skirtG);
+    $('path', { d: 'M-59 -130 L-42 -146 L-24 -108 L-4 -138 L18 -100 L41 -132 L56 -114', stroke: GOLD_D, 'stroke-width': 1.6, fill: 'none', opacity: 0.75 }, skirtG);
+
+    // ==================== 3. GRACEFUL PALE IVORY ARMS, BRONZE-GOLD BRACERS & CLAWS ====================
     const makeArm = (parent, sx, sy, isBack) => {
       const shd = joint(parent, sx, sy);
-      const uCol = isBack ? SKIN_D : SKIN;
-      // Slender sculpted Greek upper arm
-      const upD = `M${sx - 12} ${sy - 6} C${sx - 15} ${sy + 32} ${sx - 13} ${sy + 74} ${sx - 10} ${sy + 106} L${sx + 10} ${sy + 106} C${sx + 13} ${sy + 72} ${sx + 15} ${sy + 30} ${sx + 12} ${sy - 6} Z`;
+      const uCol = isBack ? SKIN_M : SKIN;
+      const fCol = isBack ? SKIN_M : SKIN;
+      // Seamless rounded shoulder deltoid cap overlapping chest contour smoothly
+      const upD = `M${sx - 9} ${sy} C${sx - 8} ${sy - 9} ${sx + 8} ${sy - 9} ${sx + 9} ${sy} C${sx + 11} ${sy + 28} ${sx + 9.5} ${sy + 66} ${sx + 7.5} ${sy + 96} C${sx + 3} ${sy + 102} ${sx - 3} ${sy + 102} ${sx - 7.5} ${sy + 96} C${sx - 9.5} ${sy + 66} ${sx - 11} ${sy + 28} ${sx - 9} ${sy} Z`;
       pathR(shd.c, upD, uCol);
       if (!isBack) {
-        pathR(shd.c, `M${sx + 2} ${sy} C${sx + 8} ${sy + 34} ${sx + 8} ${sy + 72} ${sx + 5} ${sy + 102} L${sx + 10} ${sy + 102} C${sx + 13} ${sy + 70} ${sx + 13} ${sy + 32} ${sx + 10} ${sy} Z`, SKIN_L);
+        pathR(shd.c, `M${sx + 2} ${sy + 4} C${sx + 6} ${sy + 32} ${sx + 6} ${sy + 64} ${sx + 3.6} ${sy + 90} L${sx + 7} ${sy + 90} C${sx + 9} ${sy + 64} ${sx + 9.2} ${sy + 30} ${sx + 7} ${sy + 4} Z`, SKIN_HL, { opacity: 0.45 });
       }
       // Coiled golden serpent bicep armlet
-      pathR(shd.c, `M${sx - 14} ${sy + 40} Q${sx} ${sy + 48} ${sx + 14} ${sy + 38} L${sx + 14} ${sy + 46} Q${sx} ${sy + 56} ${sx - 14} ${sy + 48} Z`, isBack ? GOLD_D : GOLD);
-      pathR(shd.c, `M${sx - 13} ${sy + 52} Q${sx} ${sy + 60} ${sx + 13} ${sy + 50} L${sx + 13} ${sy + 56} Q${sx} ${sy + 66} ${sx - 13} ${sy + 58} Z`, isBack ? GOLD_DD : GOLD_L);
+      pathR(shd.c, `M${sx - 10.6} ${sy + 34} Q${sx} ${sy + 41} ${sx + 10.6} ${sy + 32} L${sx + 10.6} ${sy + 38} Q${sx} ${sy + 47} ${sx - 10.6} ${sy + 40} Z`, isBack ? GOLD_D : GOLD);
+      pathR(shd.c, `M${sx - 9.8} ${sy + 44} Q${sx} ${sy + 51} ${sx + 9.8} ${sy + 42} L${sx + 9.8} ${sy + 47} Q${sx} ${sy + 56} ${sx - 9.8} ${sy + 49} Z`, isBack ? GOLD_DD : GOLD_L);
 
-      // Brazen (forged bronze) forearm & vambrace
-      const elb = joint(shd.c, sx, sy + 106);
-      const ey = sy + 106;
-      const bBase = isBack ? BRONZE_D : BRONZE;
-      const foreD = `M${sx - 12} ${ey - 4} C${sx - 14} ${ey + 32} ${sx - 11} ${ey + 74} ${sx - 9} ${ey + 106} L${sx + 9} ${ey + 106} C${sx + 12} ${ey + 72} ${sx + 14} ${ey + 30} ${sx + 12} ${ey - 4} Z`;
-      pathR(elb.c, foreD, bBase);
-      $('path', { d: foreD, fill: gBronze, opacity: isBack ? 0.42 : 0.78 }, elb.c);
-      // Specular metallic bronze ridge & engraved Greek elbow/wrist cuffs
-      pathR(elb.c, `M${sx + 1} ${ey + 6} C${sx + 5} ${ey + 38} ${sx + 4} ${ey + 74} ${sx + 2} ${ey + 100} L${sx + 7} ${ey + 100} C${sx + 9} ${ey + 72} ${sx + 10} ${ey + 36} ${sx + 7} ${ey + 6} Z`, isBack ? BRONZE : BRONZE_L);
-      pathR(elb.c, `M${sx - 13} ${ey - 2} L${sx + 13} ${ey - 2} L${sx + 12} ${ey + 9} L${sx - 12} ${ey + 9} Z`, isBack ? GOLD_DD : GOLD);
-      pathR(elb.c, `M${sx - 10} ${ey + 95} L${sx + 10} ${ey + 95} L${sx + 9} ${ey + 105} L${sx - 9} ${ey + 105} Z`, isBack ? GOLD_DD : GOLD);
+      // Seamless forearm (same base SKIN color so elbow joint blends invisibly!)
+      const elb = joint(shd.c, sx, sy + 96);
+      const ey = sy + 96;
+      const foreD = `M${sx - 7.6} ${ey} C${sx - 5.5} ${ey - 7.5} ${sx + 5.5} ${ey - 7.5} ${sx + 7.6} ${ey} C${sx + 9.2} ${ey + 26} ${sx + 8} ${ey + 62} ${sx + 6.2} ${ey + 95} L${sx - 6.2} ${ey + 95} C${sx - 7.8} ${ey + 62} ${sx - 9.2} ${ey + 26} ${sx - 7.6} ${ey} Z`;
+      pathR(elb.c, foreD, fCol);
+      if (!isBack) {
+        pathR(elb.c, `M${sx + 2} ${ey + 4} C${sx + 5} ${ey + 30} ${sx + 4.8} ${ey + 54} ${sx + 2.8} ${ey + 78} L${sx + 5.8} ${ey + 78} C${sx + 7.4} ${ey + 54} ${sx + 8.2} ${ey + 28} ${sx + 5.8} ${ey + 4} Z`, SKIN_HL, { opacity: 0.42 });
+      }
 
-      // Articulated brazen clawed hand (5 curved razor talons)
-      const hy = ey + 106;
+      // Ornate gold-bronze Greek wrist bracer
+      const bracerD = `M${sx - 8.6} ${ey + 48} C${sx - 8.4} ${ey + 64} ${sx - 7.2} ${ey + 81} ${sx - 6.8} ${ey + 94} L${sx + 6.8} ${ey + 94} C${sx + 7.4} ${ey + 81} ${sx + 8.6} ${ey + 64} ${sx + 8.8} ${ey + 48} Z`;
+      pathR(elb.c, bracerD, isBack ? BRONZE_D : BRONZE);
+      $('path', { d: bracerD, fill: gBracer, opacity: isBack ? 0.45 : 0.85 }, elb.c);
+      pathR(elb.c, `M${sx - 9.2} ${ey + 46} Q${sx} ${ey + 51} ${sx + 9.2} ${ey + 46} L${sx + 8.9} ${ey + 53} Q${sx} ${ey + 58} ${sx - 8.9} ${ey + 53} Z`, isBack ? GOLD_D : GOLD_L);
+      pathR(elb.c, `M${sx - 7.2} ${ey + 88} Q${sx} ${ey + 92} ${sx + 7.2} ${ey + 88} L${sx + 6.8} ${ey + 94} Q${sx} ${ey + 98} ${sx - 6.8} ${ey + 94} Z`, isBack ? GOLD_D : GOLD_L);
+      if (!isBack) {
+        $('path', { d: `M${sx - 3.8} ${ey + 69} L${sx} ${ey + 61} L${sx + 3.8} ${ey + 69} L${sx} ${ey + 77} Z`, fill: GOLD_L, opacity: 0.9 }, elb.c);
+      }
+
+      // Slender graceful pale-ivory hand + dark venomous claws
+      const hy = ey + 95;
       const hand = joint(elb.c, sx, hy);
-      const palmD = `M${sx - 10} ${hy} C${sx - 14} ${hy + 12} ${sx - 13} ${hy + 26} ${sx - 8} ${hy + 32} L${sx + 10} ${hy + 32} C${sx + 15} ${hy + 24} ${sx + 16} ${hy + 10} ${sx + 10} ${hy} Z`;
-      pathR(hand.c, palmD, bBase);
-      $('path', { d: palmD, fill: gBronze, opacity: isBack ? 0.4 : 0.72 }, hand.c);
-      // 5 curved gleaming bronze-gold talons (thumb + 4 fingers)
-      const talons = [
-        [sx + 11, hy + 16, sx + 22, hy + 24, sx + 26, hy + 38, 4.5],
-        [sx - 9, hy + 28, sx - 13, hy + 46, sx - 9, hy + 62, 4.2],
-        [sx - 3, hy + 30, sx - 4, hy + 52, sx + 1, hy + 70, 4.5],
-        [sx + 3, hy + 30, sx + 5, hy + 52, sx + 10, hy + 68, 4.4],
-        [sx + 9, hy + 28, sx + 13, hy + 46, sx + 18, hy + 60, 4.0],
+      const palmD = `M${sx - 6.6} ${hy} C${sx - 9.2} ${hy + 10} ${sx - 8.2} ${hy + 21} ${sx - 5.0} ${hy + 26} L${sx + 6.6} ${hy + 26} C${sx + 10.2} ${hy + 19} ${sx + 10.8} ${hy + 9} ${sx + 6.6} ${hy} Z`;
+      pathR(hand.c, palmD, isBack ? SKIN_D : SKIN);
+      const fingers = [
+        [sx + 7.5, hy + 12, sx + 14, hy + 19, sx + 16, hy + 28, 3.0],
+        [sx - 5.6, hy + 23, sx - 8.5, hy + 36, sx - 5.5, hy + 49, 2.9],
+        [sx - 1.4, hy + 24, sx - 2, hy + 41, sx + 1, hy + 55, 3.0],
+        [sx + 2.8, hy + 24, sx + 4.2, hy + 40, sx + 7.5, hy + 53, 2.9],
+        [sx + 6.5, hy + 22, sx + 9.5, hy + 36, sx + 12, hy + 46, 2.7],
       ];
-      talons.forEach(([x0, y0, cx, cy, tx, ty, w]) => {
-        pathR(hand.c, `M${f2(x0 - w * 0.5)} ${f2(y0)} Q${f2(cx - w * 0.3)} ${f2(cy)} ${f2(tx)} ${f2(ty)} Q${f2(cx + w * 0.6)} ${f2(cy - 2)} ${f2(x0 + w * 0.5)} ${f2(y0)} Z`, isBack ? BRONZE : BRONZE_L);
-        if (!isBack) {
-          $('path', { d: `M${f2(x0 + w * 0.2)} ${f2(y0 + 2)} Q${f2(cx + w * 0.35)} ${f2(cy)} ${f2(tx)} ${f2(ty)}`, stroke: GOLD_L, 'stroke-width': 1.5, fill: 'none', 'stroke-linecap': 'round' }, hand.c);
-        }
+      fingers.forEach(([x0, y0, cx, cy, tx, ty, w]) => {
+        const mx = lerp(x0, tx, 0.62), my = lerp(y0, ty, 0.62);
+        pathR(hand.c, `M${f2(x0 - w * 0.5)} ${f2(y0)} Q${f2(cx - w * 0.35)} ${f2((y0 + my) * 0.5)} ${f2(mx - w * 0.25)} ${f2(my)} L${f2(mx + w * 0.25)} ${f2(my)} Q${f2(cx + w * 0.4)} ${f2((y0 + my) * 0.5)} ${f2(x0 + w * 0.5)} ${f2(y0)} Z`, isBack ? SKIN_D : SKIN_L);
+        pathR(hand.c, `M${f2(mx - w * 0.28)} ${f2(my - 1)} Q${f2(lerp(mx, tx, 0.6))} ${f2(lerp(my, ty, 0.5))} ${f2(tx)} ${f2(ty)} Q${f2(lerp(mx, tx, 0.4) + w * 0.35)} ${f2(lerp(my, ty, 0.5))} ${f2(mx + w * 0.28)} ${f2(my - 1)} Z`, CLAW);
       });
-      const handMk = $('circle', { cx: sx + 6, cy: hy + 38, r: 1, fill: 'none' }, hand.c);
+      const handMk = $('circle', { cx: sx + 4, cy: hy + 30, r: 1, fill: 'none' }, hand.c);
       return { shd, elb, hand, handMk };
     };
 
-    const armB = makeArm(B, -38, -384, true);
+    const armB = makeArm(B, -35, -384, true);
 
-    // ==================== 5. SCULPTED CLASSICAL TORSO, CHITON BODICE & GREEK MEANDER BELT ====================
-    // Pale olive-jade upper chest, shoulders & collarbone
-    pathR(B, 'M-42 -390 C-26 -402 26 -402 42 -390 C44 -366 38 -342 32 -324 L-32 -324 C-38 -342 -44 -366 -42 -390 Z', SKIN);
-    // Collarbone ridges & hollow
-    $('path', { d: 'M-30 -386 Q-12 -378 2 -384 Q16 -378 32 -386', stroke: SKIN_L, 'stroke-width': 3.5, fill: 'none', 'stroke-linecap': 'round' }, B);
-    $('path', { d: 'M-24 -380 Q0 -372 24 -380', stroke: SKIN_D, 'stroke-width': 2.5, fill: 'none', opacity: 0.65 }, B);
+    // ==================== 4. FEMININE HOURGLASS TORSO, COLLARBONES & OBSIDIAN-GOLD CHITON ====================
+    // Softly contoured classical pale-ivory shoulders, chest, & slender collarbones
+    pathR(B, 'M-40 -386 C-28 -401 -12 -405 0 -405 C14 -405 30 -400 40 -386 C42 -364 36 -340 28 -314 L-28 -314 C-36 -340 -42 -364 -40 -386 Z', SKIN);
+    $('path', { d: 'M-40 -386 C-28 -401 -12 -405 0 -405 C14 -405 30 -400 40 -386 C42 -364 36 -340 28 -314 L-28 -314 C-36 -340 -42 -364 -40 -386 Z', fill: gSkin, opacity: 0.42 }, B);
+    $('path', { d: 'M-29 -384 Q-12 -377 1 -383 Q15 -377 30 -384', stroke: SKIN_HL, 'stroke-width': 2.8, fill: 'none', 'stroke-linecap': 'round', opacity: 0.72 }, B);
+    $('path', { d: 'M-24 -378 Q0 -370 24 -378', stroke: SKIN_D, 'stroke-width': 1.8, fill: 'none', opacity: 0.48 }, B);
 
-    // Draped dark emerald Greek chiton bodice (asymmetric classical folds)
-    const bodiceD = 'M-40 -386 C-42 -354 -34 -304 -28 -254 L28 -254 C34 -304 42 -354 38 -386 C20 -366 -16 -362 -40 -386 Z';
+    // Sculpted hourglass obsidian-emerald Greek chiton bodice
+    const bodiceD = 'M-36 -384 C-39 -356 -32 -328 -25 -302 C-20 -282 -21 -264 -27 -248 L27 -248 C21 -264 20 -282 25 -302 C32 -328 39 -356 35 -384 C18 -363 -14 -361 -36 -384 Z';
     pathR(B, bodiceD, ROBE);
-    $('path', { d: bodiceD, fill: gChiton, opacity: 0.78 }, B);
-    // Diagonal classical drapery folds across bust & waist
-    pathR(B, 'M-38 -384 C-18 -364 12 -346 34 -334 L32 -320 C8 -334 -20 -350 -38 -368 Z', ROBE_L);
-    pathR(B, 'M-34 -352 C-12 -334 10 -322 30 -308 L28 -294 C8 -308 -14 -320 -32 -338 Z', ROBE_D);
-    pathR(B, 'M-30 -318 C-10 -304 10 -296 28 -282 L26 -268 C8 -282 -10 -290 -28 -304 Z', ROBE_L);
-    // Hammered gold neckline trim & twin Gorgon shoulder brooches
-    $('path', { d: 'M-40 -386 C-16 -362 20 -366 38 -386', stroke: GOLD, 'stroke-width': 4.5, fill: 'none', 'stroke-linecap': 'round' }, B);
-    ell(B, -34, -386, 8, 6.5, GOLD); ell(B, -34, -386, 4.2, 3.2, GOLD_L);
-    ell(B, 34, -386, 8, 6.5, GOLD); ell(B, 34, -386, 4.2, 3.2, GOLD_L);
+    $('path', { d: bodiceD, fill: gChiton, opacity: 0.85 }, B);
+    pathR(B, 'M-35 -380 C-16 -362 10 -344 31 -331 L28 -317 C6 -331 -18 -348 -35 -366 Z', ROBE_L, { opacity: 0.72 });
+    pathR(B, 'M-29 -346 C-10 -330 10 -318 25 -304 L23 -292 C8 -305 -12 -316 -27 -332 Z', ROBE_D, { opacity: 0.82 });
+    pathR(B, 'M-24 -308 C-8 -296 8 -288 22 -275 L21 -265 C6 -277 -8 -283 -22 -294 Z', ROBE_L, { opacity: 0.55 });
+    pathR(B, 'M-36 -384 C-18 -356 4 -308 26 -258 L28 -248 C4 -298 -20 -346 -38 -372 Z', GOLD_D, { opacity: 0.92 });
+    $('path', { d: 'M-36 -381 C-16 -351 5 -304 26 -254', stroke: GOLD_L, 'stroke-width': 2.2, fill: 'none', opacity: 0.84 }, B);
 
-    // Embossed golden Greek meander (key-pattern) waist corset/belt + central tabard
-    pathR(B, 'M-32 -264 C-10 -258 10 -258 32 -264 L35 -236 C12 -228 -12 -228 -35 -236 Z', GOLD);
-    pathR(B, 'M-30 -260 C-10 -255 10 -255 30 -260 L32 -240 C12 -233 -12 -233 -32 -240 Z', GOLD_D);
-    pathR(B, 'M-28 -257 C-10 -252 10 -252 28 -257 L29 -244 C10 -238 -10 -238 -29 -244 Z', GOLD);
-    // Crisp Greek key filigree lines
-    $('path', { d: 'M-26 -250 H-18 V-244 H-12 V-254 H-4 V-244 H4 V-254 H12 V-244 H18 V-250 H26', stroke: GOLD_DD, 'stroke-width': 2.2, fill: 'none' }, B);
-    // Flowing gold-trimmed central tabard drape
-    pathR(B, 'M-15 -236 L15 -236 L22 -118 L0 -96 L-18 -122 Z', ROBE_D);
-    pathR(B, 'M-12 -236 L12 -236 L17 -122 L0 -104 L-14 -126 Z', GOLD_D);
-    $('path', { d: 'M-10 -234 L-12 -128 L0 -108 L14 -124 L10 -234', stroke: GOLD_L, 'stroke-width': 2.2, fill: 'none', opacity: 0.85 }, B);
-    // Central emerald belt clasp
-    pathR(B, 'M0 -260 L10 -248 L0 -236 L-10 -248 Z', GOLD_L);
-    pathR(B, 'M0 -255 L6 -248 L0 -241 L-6 -248 Z', EYE_EM);
+    $('path', { d: 'M-36 -384 C-14 -361 18 -363 35 -384', stroke: GOLD, 'stroke-width': 4.0, fill: 'none', 'stroke-linecap': 'round' }, B);
+    ell(B, -31, -384, 7, 5.5, GOLD); ell(B, -31, -384, 3.6, 2.8, GOLD_L);
+    ell(B, 31, -384, 7, 5.5, GOLD); ell(B, 31, -384, 3.6, 2.8, GOLD_L);
 
-    // Battle ichor splatters on collarbone & armor (driven by P.ichor)
+    // Slender hourglass golden Greek meander waist corset/belt + central draped tabard
+    const beltD = 'M-27 -262 C-9 -256 9 -256 27 -262 L30 -236 C10 -229 -10 -229 -30 -236 Z';
+    pathR(B, beltD, GOLD);
+    $('path', { d: beltD, fill: gGold, opacity: 0.78 }, B);
+    pathR(B, 'M-25 -258 C-8 -253 8 -253 25 -258 L27 -240 C9 -234 -9 -234 -27 -240 Z', GOLD_D);
+    pathR(B, 'M-23 -255 C-8 -250 8 -250 23 -255 L24 -243 C8 -238 -8 -238 -24 -243 Z', GOLD);
+    $('path', { d: 'M-21 -249 H-14 V-244 H-9 V-253 H-3 V-244 H3 V-253 H9 V-244 H14 V-249 H21', stroke: GOLD_DD, 'stroke-width': 1.9, fill: 'none' }, B);
+    pathR(B, 'M-12 -236 L12 -236 L17 -134 L0 -114 L-15 -136 Z', ROBE_D);
+    pathR(B, 'M-9 -236 L9 -236 L13 -138 L0 -122 L-11 -140 Z', GOLD_D);
+    $('path', { d: 'M-7 -234 L-9 -142 L0 -125 L10 -140 L8 -234', stroke: GOLD_L, 'stroke-width': 2.0, fill: 'none', opacity: 0.88 }, B);
+    pathR(B, 'M0 -258 L8 -248 L0 -238 L-8 -248 Z', GOLD_L);
+    pathR(B, 'M0 -254 L4.8 -248 L0 -242 L-4.8 -248 Z', EYE_EM);
+
+    // Battle ichor splatters on collarbone & bodice (driven by P.ichor)
     const chestIchorG = $('g', { opacity: 0 }, B);
-    $('path', { d: 'M14 -384 C20 -366 16 -344 22 -324 C26 -342 28 -364 22 -382 Z', fill: gIchor }, chestIchorG);
-    $('path', { d: 'M-12 -368 C-6 -354 -10 -332 -4 -314 C2 -334 0 -354 -6 -368 Z', fill: gIchor, opacity: 0.85 }, chestIchorG);
-    $('circle', { cx: 22, cy: -316, r: 3.2, fill: ICHOR_L }, chestIchorG);
+    $('path', { d: 'M12 -380 C17 -362 14 -340 19 -322 C23 -340 25 -360 19 -378 Z', fill: gIchor }, chestIchorG);
+    $('path', { d: 'M-10 -364 C-5 -350 -8 -330 -3 -314 C2 -332 0 -350 -5 -364 Z', fill: gIchor, opacity: 0.85 }, chestIchorG);
+    $('circle', { cx: 19, cy: -316, r: 2.8, fill: ICHOR_L }, chestIchorG);
 
-    const bodyMk = $('circle', { cx: 0, cy: -324, r: 1, fill: 'none' }, B);
+    const bodyMk = $('circle', { cx: 0, cy: -322, r: 1, fill: 'none' }, B);
 
-    // ==================== 6. NECK, SCULPTED GREEK FACE & 16-VIPER CROWN ====================
-    const neck = joint(B, 4, -394);
-    pathR(neck.c, 'M-11 -392 C-9 -408 -7 -424 -6 -436 L18 -436 C16 -422 15 -406 17 -392 Z', SKIN_D);
-    pathR(neck.c, 'M-3 -392 C-1 -408 1 -424 2 -434 L14 -434 C13 -422 12 -408 13 -392 Z', SKIN);
-    // Straining sternocleidomastoid neck tendons
-    $('path', { d: 'M-2 -432 Q2 -412 -4 -394 M11 -432 Q9 -412 14 -394', stroke: SKIN_DD, 'stroke-width': 2.0, fill: 'none', opacity: 0.55 }, neck.c);
-    // Ornate golden neck torc
-    pathR(neck.c, 'M-13 -398 Q4 -388 20 -398 L19 -391 Q4 -381 -12 -391 Z', GOLD);
-    pathR(neck.c, 'M4 -391 L9 -382 L4 -374 L-1 -382 Z', EYE_EM);
+    // ==================== 5. NATURAL PROPORTIONED NECK, CLASSICAL GREEK FACE & CASCADING SERPENT HAIR ====================
+    // Graceful, natural neck length (head chin sits cleanly at -424, ~22px neck span above collarbones!)
+    const neck = joint(B, 3, -400);
+    pathR(neck.c, 'M-11 -398 C-9 -410 -7 -418 -6 -430 L16 -430 C14 -418 14 -410 17 -398 Z', SKIN_M);
+    pathR(neck.c, 'M-4 -398 C-2 -410 0 -418 1 -428 L13 -428 C12 -418 12 -410 14 -398 Z', SKIN);
+    $('path', { d: 'M-4 -398 C-2 -410 0 -418 1 -428 L13 -428 C12 -418 12 -410 14 -398 Z', fill: gSkin, opacity: 0.45 }, neck.c);
+    pathR(neck.c, 'M-7 -430 C0 -418 10 -418 16 -430 Z', SKIN_D, { opacity: 0.58 });
+    pathR(neck.c, 'M-12 -404 Q3 -396 18 -404 L17 -398 Q3 -390 -11 -398 Z', GOLD);
+    pathR(neck.c, 'M3 -399 L7 -392 L3 -385 L-1 -392 Z', EYE_EM);
 
-    // Head joint (face centered around x = 6, y = -466 — matches HEADOFF.medusa = [6, -460]!)
-    const headG = joint(neck.c, 6, -432);
+    const headG = joint(neck.c, 5, -424);
     const H = headG.c;
 
-    // Helper: create a living cubic-Bezier tapered viper with diamond head, slit eye, hissing jaw, & flickering forked tongue
+    // Helper: create a living cubic-Bezier tapered serpent that drapes naturally downward OR rears outward on lunge
     const snakes = [];
     const buildViper = (parent, cfg, idx) => {
-      const [sx, sy, baseAng, len, w0, isBack, phase] = cfg;
-      const sg = $('g', { transform: `translate(${sx},${sy})` }, parent);
+      const [sx, sy, len, w0, isBack, phase, c1dx, c1dy, c2dx, c2dy, tipdx, tipdy, lungeAng] = cfg;
+      const sg = $('g', {}, parent);
       const bodyCol = isBack ? VIPER_B : VIPER;
       const rimCol = isBack ? VIPER_DD : VIPER_B;
       const bodyFill = pathR(sg, 'M0 0', bodyCol);
-      const scaleStroke = $('path', { d: 'M0 0', stroke: isBack ? VIPER : VIPER_L, 'stroke-width': isBack ? 3.2 : 4.2, 'stroke-dasharray': isBack ? '6 8' : '7 7', 'stroke-linecap': 'round', fill: 'none', opacity: isBack ? 0.52 : 0.78 }, sg);
-      const bellyStroke = !isBack ? $('path', { d: 'M0 0', stroke: BELLY, 'stroke-width': 2.6, 'stroke-dasharray': '5 6', 'stroke-linecap': 'round', fill: 'none', opacity: 0.62 }, sg) : null;
+      const scaleStroke = $('path', { d: 'M0 0', stroke: isBack ? VIPER : VIPER_L, 'stroke-width': isBack ? 3.2 : 4.2, 'stroke-dasharray': isBack ? '6 8' : '7 7', 'stroke-linecap': 'round', fill: 'none', opacity: isBack ? 0.52 : 0.8 }, sg);
+      const bellyStroke = !isBack ? $('path', { d: 'M0 0', stroke: BELLY, 'stroke-width': 2.5, 'stroke-dasharray': '5 7', 'stroke-linecap': 'round', fill: 'none', opacity: 0.56 }, sg) : null;
+      const hiStroke = !isBack ? $('path', { d: 'M0 0', stroke: VIPER_HI, 'stroke-width': 1.4, 'stroke-dasharray': '10 14', 'stroke-linecap': 'round', fill: 'none', opacity: 0.45 }, sg) : null;
 
-      // Articulated triangular diamond viper head
       const h = $('g', {}, sg);
       const jaw = $('g', {}, h);
-      // Lower jaw (opens on snakeLunge)
-      pathR(jaw, 'M-3 2 Q8 7 18 4 Q8 10 -4 8 Z', rimCol);
-      $('polygon', { points: '12,3 14.5,3 13.5,-1', fill: '#F8F6EE' }, jaw);
-      // Flickering crimson forked tongue
-      const tongue = $('path', { d: 'M18 1 Q27 0 33 -4 M28 0 L34 4', stroke: '#FF2A40', 'stroke-width': 2.0, fill: 'none', 'stroke-linecap': 'round' }, h);
-      // Upper diamond viper skull
-      pathR(h, 'M-7 -6 C2 -10 13 -7 21 -1 C16 4 6 5 -7 5 C-9 1 -9 -3 -7 -6 Z', bodyCol);
+      pathR(jaw, 'M-3 1.5 Q7 6 16 3.5 Q7 8.5 -4 6.5 Z', rimCol);
+      $('polygon', { points: '10.5,2.5 13,2.5 12,-0.8', fill: '#F8F6EE' }, jaw);
+      const tongue = $('path', { d: 'M16 1 Q24 0 30 -3.5 M25 0 L31 3.5', stroke: '#FF2A42', 'stroke-width': 1.8, fill: 'none', 'stroke-linecap': 'round' }, h);
+      pathR(h, 'M-6 -5.5 C2 -9 12 -6.5 19 -0.8 C14 3.5 5 4.5 -6 4.5 C-8 1 -8 -3 -6 -5.5 Z', bodyCol);
       if (!isBack) {
-        pathR(h, 'M-4 -5 C4 -8 12 -6 18 -1 C11 -2 3 -2 -4 -3 Z', VIPER_L);
+        pathR(h, 'M-3 -4.5 C4 -7.2 11 -5.2 16.5 -0.8 C10 -1.5 3 -1.5 -3 -2.5 Z', VIPER_L);
       }
-      // Upper fangs (visible when jaw opens)
-      const fangs = $('g', { opacity: 0.35 }, h);
-      $('polygon', { points: '14,1 16.5,1 15.2,7', fill: '#FFFFFF' }, fangs);
-      $('polygon', { points: '10,1 12.2,1 11.1,6', fill: '#FFFFFF' }, fangs);
-      // Glowing yellow-emerald viper eye + vertical black slit
-      $('ellipse', { cx: 10, cy: -2.6, rx: 3.1, ry: 2.1, fill: isBack ? '#6BFF95' : '#C4FF6E' }, h);
-      $('ellipse', { cx: 10.4, cy: -2.6, rx: 0.9, ry: 2.0, fill: '#05120A' }, h);
+      const fangs = $('g', { opacity: 0.25 }, h);
+      $('polygon', { points: '12.5,0.8 14.8,0.8 13.6,6.2', fill: '#FFFFFF' }, fangs);
+      $('polygon', { points: '9,0.8 11,0.8 10,5.2', fill: '#FFFFFF' }, fangs);
+      $('ellipse', { cx: 9, cy: -2.2, rx: 2.8, ry: 1.9, fill: isBack ? '#8CFF7A' : '#DCFF6E' }, h);
+      $('ellipse', { cx: 9.3, cy: -2.2, rx: 0.85, ry: 1.8, fill: '#041009' }, h);
 
-      snakes.push({ sg, bodyFill, scaleStroke, bellyStroke, h, jaw, fangs, tongue, sx, sy, baseAng, len, w0, isBack, phase, idx });
+      snakes.push({
+        sg, bodyFill, scaleStroke, bellyStroke, hiStroke, h, jaw, fangs, tongue,
+        sx, sy, len, w0, isBack, phase, c1dx, c1dy, c2dx, c2dy, tipdx, tipdy, lungeAng, idx,
+      });
     };
 
-    // LAYER A: 8 Dark Shadowed Back Vipers (dense wide Gorgon crown behind face)
+    // LAYER A: 14 Dark Shadow-Emerald Back Serpents — lush thick cascading serpent mane behind neck, temples & shoulders
     const backViperG = $('g', {}, H);
     const backCfgs = [
-      [-16, -488, -168, 108, 8.2, true, 0.2],
-      [-20, -504, -148, 122, 8.5, true, 1.1],
-      [-12, -518, -126, 132, 8.8, true, 2.0],
-      [2, -524, -102, 136, 8.8, true, 2.9],
-      [16, -520, -78, 132, 8.5, true, 3.8],
-      [26, -508, -54, 124, 8.2, true, 4.7],
-      [30, -490, -32, 114, 7.8, true, 5.4],
-      [-18, -468, 168, 102, 8.0, true, 0.8],
+      [-22, -474, 152, 8.2, true, 0.1, -38, 18, -54, 78, -36, 146, -168],
+      [-18, -478, 134, 8.0, true, 0.4, -32, 16, -42, 68, -28, 126, -162],
+      [-15, -488, 156, 8.4, true, 0.8, -36, 8, -56, 66, -44, 142, -154],
+      [-12, -494, 144, 8.2, true, 1.1, -30, 2, -44, 56, -34, 130, -148],
+      [-7, -502, 154, 8.4, true, 1.5, -28, -8, -52, 42, -46, 124, -136],
+      [-2, -506, 150, 8.4, true, 1.9, -22, -14, -44, 34, -40, 114, -126],
+      [2, -514, 152, 8.4, true, 2.3, -18, -24, -42, 16, -48, 98, -112],
+      [5, -512, 146, 8.4, true, 2.7, -14, -22, -36, 12, -44, 92, -100],
+      [10, -516, 148, 8.4, true, 3.1, 14, -26, 36, 6, 46, 82, -74],
+      [12, -512, 142, 8.2, true, 3.5, 18, -24, 38, 10, 48, 76, -60],
+      [18, -506, 146, 8.2, true, 3.9, 26, -16, 46, 22, 46, 94, -46],
+      [21, -500, 138, 8.0, true, 4.3, 28, -8, 42, 34, 38, 102, -36],
+      [24, -484, 134, 7.8, true, 5.1, 32, 10, 42, 60, 32, 126, -16],
+      [-10, -460, 128, 7.6, true, 5.8, -24, 26, -30, 78, -16, 132, 152],
     ];
     backCfgs.forEach((cfg, i) => buildViper(backViperG, cfg, i));
 
-    // LAYER B: Sculpted Classical Greek Face (centered ~ x=6, y=-466)
+    // Rich dark-emerald serpent crown base wrapping temples & forehead (zero exposed scalp!)
+    pathR(H, 'M-24 -482 C-24 -512 -9 -524 7 -524 C24 -524 34 -508 33 -480 C22 -488 -10 -488 -24 -482 Z', VIPER_B);
+    pathR(H, 'M-19 -488 C-16 -512 -3 -520 8 -520 C20 -520 29 -508 29 -486 C16 -493 -7 -493 -19 -488 Z', VIPER);
+
+    // LAYER B: Hauntingly Beautiful Sculpted Classical Greek Face (pale moonlight ivory / alabaster)
     const faceG = $('g', {}, H);
-    const faceD = 'M-24 -492 C-26 -516 -10 -528 8 -528 C28 -528 38 -510 36 -486 C35 -468 28 -454 21 -444 C15 -436 10 -432 4 -432 C-4 -432 -14 -442 -19 -456 C-24 -470 -24 -480 -24 -492 Z';
+    ell(faceG, -19, -460, 4.2, 8.0, SKIN_M);
+
+    const faceD = 'M-21 -482 C-20 -494 -6 -498 8 -498 C23 -498 31 -492 31 -478 C31 -460 27 -446 20 -435 C15 -426 10 -422 5 -422 C-1 -422 -10 -430 -15 -444 C-20 -458 -21 -468 -21 -482 Z';
     pathR(faceG, faceD, SKIN);
-    $('path', { d: faceD, fill: gFace, opacity: 0.58 }, faceG);
+    $('path', { d: faceD, fill: gFace, opacity: 0.78 }, faceG);
 
-    // Sculpted facial planes: sunken hollow left cheek, high cheekbones, classical Greek nose bridge
-    pathR(faceG, 'M-22 -484 C-16 -472 -12 -456 -10 -444 C-16 -450 -22 -466 -22 -484 Z', SKIN_D, { opacity: 0.8 });
-    pathR(faceG, 'M-20 -462 C-12 -452 -4 -442 6 -436 C-6 -436 -16 -446 -20 -462 Z', SKIN_DD, { opacity: 0.45 });
-    // High sculpted cheekbone highlight
-    pathR(faceG, 'M16 -466 C24 -468 30 -464 32 -458 C26 -458 20 -460 16 -466 Z', SKIN_L, { opacity: 0.82 });
-    pathR(faceG, 'M-14 -466 C-8 -468 -2 -464 0 -459 C-6 -459 -11 -461 -14 -466 Z', SKIN_L, { opacity: 0.55 });
-    // Straight Greek nose bridge + shadow plane + pinched nostrils
-    pathR(faceG, 'M7 -480 L12 -456 L6 -454 L4 -478 Z', SKIN_L, { opacity: 0.85 });
-    pathR(faceG, 'M3 -478 L6 -454 L1 -456 L0 -474 Z', SKIN_D, { opacity: 0.72 });
-    $('path', { d: 'M3 -455 Q6 -453 10 -455', stroke: SKIN_DD, 'stroke-width': 1.8, fill: 'none', 'stroke-linecap': 'round' }, faceG);
+    pathR(faceG, 'M-20 -474 C-15 -460 -12 -446 -7 -434 C-14 -441 -19 -456 -20 -474 Z', SKIN_D, { opacity: 0.36 });
+    pathR(faceG, 'M-16 -446 C-9 -436 -2 -427 5 -424 C-4 -424 -12 -432 -16 -446 Z', SKIN_M, { opacity: 0.38 });
+    ell(faceG, 23, -455, 5.2, 2.2, SKIN_HL, { opacity: 0.34 });
+    ell(faceG, -8, -455, 4.2, 2.0, SKIN_HL, { opacity: 0.24 });
+    ell(faceG, 6, -427, 4.2, 2.4, SKIN_HL, { opacity: 0.58 });
 
-    // Deep sunken shadowed orbital eye sockets
-    pathR(faceG, 'M10 -476 C16 -481 26 -481 32 -474 C28 -466 16 -466 10 -472 Z', SKIN_DD, { opacity: 0.84 });
-    pathR(faceG, 'M-15 -475 C-9 -480 0 -480 4 -473 C0 -466 -10 -466 -15 -472 Z', SKIN_DD, { opacity: 0.84 });
+    pathR(faceG, 'M7 -470 L11.5 -448 L7 -446 L5.2 -468 Z', SKIN_HL, { opacity: 0.85 });
+    pathR(faceG, 'M4.5 -468 L7 -446 L2.5 -448 L2 -465 Z', SKIN_M, { opacity: 0.42 });
+    $('path', { d: 'M4.5 -446.5 Q7.5 -445 10.5 -446.5', stroke: SKIN_DD, 'stroke-width': 1.2, fill: 'none', 'stroke-linecap': 'round', opacity: 0.65 }, faceG);
 
-    // Blazing Petrifying Emerald Slit-Pupil Eyes + radial bloom
-    const eyeGlowBgR = $('circle', { cx: 20, cy: -473, r: 22, fill: gEyeEm, opacity: 0.55 }, faceG);
-    const eyeGlowBgL = $('circle', { cx: -5, cy: -473, r: 17, fill: gEyeEm, opacity: 0.45 }, faceG);
-    // Dark kohl-lined almond eye sockets
-    $('path', { d: 'M11 -473 Q20 -480 30 -473 Q20 -467 11 -473 Z', fill: '#061A10', stroke: '#040D08', 'stroke-width': 1.6 }, faceG);
-    $('path', { d: 'M-14 -473 Q-5 -479 3 -473 Q-5 -467 -14 -473 Z', fill: '#061A10', stroke: '#040D08', 'stroke-width': 1.5 }, faceG);
-    // Glowing emerald irises
-    const eyeIrisR = $('ellipse', { cx: 20.5, cy: -473, rx: 5.8, ry: 4.5, fill: EYE_EM }, faceG);
-    const eyeIrisL = $('ellipse', { cx: -4.5, cy: -473, rx: 4.8, ry: 4.2, fill: EYE_EM }, faceG);
-    // Razor vertical black viper slit pupils + white specular glints
-    $('ellipse', { cx: 21, cy: -473, rx: 1.5, ry: 4.2, fill: '#041208' }, faceG);
-    $('ellipse', { cx: -4.2, cy: -473, rx: 1.3, ry: 3.8, fill: '#041208' }, faceG);
-    $('circle', { cx: 18.8, cy: -474.5, r: 1.5, fill: '#FFFFFF' }, faceG);
-    $('circle', { cx: -6, cy: -474.5, r: 1.3, fill: '#FFFFFF' }, faceG);
+    pathR(faceG, 'M11 -467 C17 -472 26 -471 30 -464 C26 -459 16 -459 11 -463 Z', SKIN_M, { opacity: 0.32 });
+    pathR(faceG, 'M-13 -466 C-8 -471 0 -471 3 -464 C0 -459 -8 -459 -13 -463 Z', SKIN_M, { opacity: 0.32 });
 
-    // Fierce sharp arched Gorgon brows
-    $('path', { d: 'M9 -479 Q19 -487 33 -482', stroke: '#0C1E15', 'stroke-width': 3.2, fill: 'none', 'stroke-linecap': 'round' }, faceG);
-    $('path', { d: 'M-16 -481 Q-6 -486 4 -479', stroke: '#0C1E15', 'stroke-width': 2.8, fill: 'none', 'stroke-linecap': 'round' }, faceG);
+    // Fierce, hauntingly beautiful winged almond eyes + piercing emerald-gold slit pupils
+    const eyeGlowBgR = $('circle', { cx: 20, cy: -464, r: 14, fill: gEyeEm, opacity: 0.08 }, faceG);
+    const eyeGlowBgL = $('circle', { cx: -4, cy: -464, r: 11, fill: gEyeEm, opacity: 0.06 }, faceG);
 
-    // Dark venomous plum-black lips + dynamic mouth cavity & sharp Gorgon fangs
-    const mouthCav = $('ellipse', { cx: 10, cy: -445, rx: 9.5, ry: 2.8, fill: '#18050B' }, faceG);
-    // Twin gleaming white upper Gorgon fangs + subtle lower canines
-    const upperFangs = $('g', {}, faceG);
-    $('polygon', { points: '4.5,-447 7.4,-447 5.8,-440.5', fill: '#FAF8F0' }, upperFangs);
-    $('polygon', { points: '12.6,-447 15.5,-447 14.2,-440.5', fill: '#FAF8F0' }, upperFangs);
-    const lowerFangs = $('g', { opacity: 0.2 }, faceG);
-    $('polygon', { points: '6.2,-442 8.2,-442 7.2,-446', fill: '#EBE7DA' }, lowerFangs);
-    $('polygon', { points: '11.8,-442 13.8,-442 12.8,-446', fill: '#EBE7DA' }, lowerFangs);
-    // Sculpted upper & lower dark venomous lips
-    $('path', { d: 'M0 -446 Q6 -450 10 -448 Q14 -450 20 -446 Q14 -444 10 -445 Q6 -444 0 -446 Z', fill: '#2B0A16' }, faceG);
-    const mouthLower = $('path', { d: 'M1 -445 Q10 -439 19 -445 Q10 -443 1 -445 Z', fill: '#3B0F20' }, faceG);
+    $('path', { d: 'M11.5 -464 Q19.5 -470.5 28.5 -464.5 Q19.5 -458.8 11.5 -464 Z', fill: '#0A1C13' }, faceG);
+    $('path', { d: 'M-12 -464 Q-4.5 -470 2.2 -464 Q-4.5 -458.8 -12 -464 Z', fill: '#0A1C13' }, faceG);
 
-    // Ornate hammered gold-bronze Gorgon brow circlet + emerald centerpiece gem
-    pathR(faceG, 'M-27 -496 C-12 -506 16 -506 37 -496 L35 -486 C16 -496 -12 -496 -25 -486 Z', GOLD);
-    pathR(faceG, 'M-24 -494 C-10 -502 14 -502 34 -494 L33 -489 C14 -497 -10 -497 -23 -489 Z', GOLD_D);
-    // Winged gold centerpiece crest + glowing emerald gem
-    pathR(faceG, 'M-8 -502 L8 -518 L24 -502 L14 -494 L8 -488 L2 -494 Z', GOLD_L);
-    pathR(faceG, 'M8 -512 L14 -500 L8 -491 L2 -500 Z', EYE_EM);
-    $('polygon', { points: '8,-509 11,-501 8,-496 6,-501', fill: '#D4FFE6', opacity: 0.85 }, faceG);
+    const eyeIrisR = $('ellipse', { cx: 20.2, cy: -464, rx: 4.8, ry: 3.9, fill: EYE_EM }, faceG);
+    const eyeIrisL = $('ellipse', { cx: -4.4, cy: -464, rx: 4.1, ry: 3.6, fill: EYE_EM }, faceG);
+    const eyeGoldR = $('ellipse', { cx: 20.2, cy: -464, rx: 2.9, ry: 2.6, fill: EYE_GOLD, opacity: 0.72 }, faceG);
+    const eyeGoldL = $('ellipse', { cx: -4.4, cy: -464, rx: 2.5, ry: 2.4, fill: EYE_GOLD, opacity: 0.72 }, faceG);
+    $('ellipse', { cx: 20.5, cy: -464, rx: 1.05, ry: 3.6, fill: '#030B06' }, faceG);
+    $('ellipse', { cx: -4.2, cy: -464, rx: 0.95, ry: 3.3, fill: '#030B06' }, faceG);
+    $('circle', { cx: 18.6, cy: -465.4, r: 1.25, fill: '#FFFFFF' }, faceG);
+    $('circle', { cx: -5.8, cy: -465.4, r: 1.1, fill: '#FFFFFF' }, faceG);
+
+    $('path', { d: 'M10.5 -464 Q19.5 -471.8 29 -465 L33 -468.5 L28.2 -463.6', stroke: '#0B0B10', 'stroke-width': 2.2, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, faceG);
+    $('path', { d: 'M12.5 -462.5 Q19.5 -458.8 27.5 -463.2', stroke: '#1A161C', 'stroke-width': 1.1, fill: 'none', opacity: 0.75 }, faceG);
+    $('path', { d: 'M-14.8 -467.2 L-11.5 -464.6 Q-4.5 -471 2.8 -464', stroke: '#0B0B10', 'stroke-width': 2.0, fill: 'none', 'stroke-linecap': 'round', 'stroke-linejoin': 'round' }, faceG);
+    $('path', { d: 'M-11 -462.5 Q-4.5 -458.8 1.6 -463.2', stroke: '#1A161C', 'stroke-width': 1.0, fill: 'none', opacity: 0.75 }, faceG);
+
+    $('path', { d: 'M10.5 -471.5 Q20 -477.5 31 -472.8', stroke: '#1A191E', 'stroke-width': 2.2, fill: 'none', 'stroke-linecap': 'round' }, faceG);
+    $('path', { d: 'M-14 -472 Q-5 -476.8 3.2 -471', stroke: '#1A191E', 'stroke-width': 2.0, fill: 'none', 'stroke-linecap': 'round' }, faceG);
+
+    // Sculpted dark plum-crimson lips (sleek, seductive, parted only slightly in idle; fangs only on hiss!)
+    const mouthCav = $('path', { d: 'M1.5 -436.5 Q8.5 -438 16 -436.5 Q8.5 -435 1.5 -436.5 Z', fill: '#19040A', opacity: 0 }, faceG);
+    const upperFangs = $('g', { opacity: 0 }, faceG);
+    $('polygon', { points: '4.4,-437.5 6.4,-437.5 5.3,-432.2', fill: '#F9F6EE' }, upperFangs);
+    $('polygon', { points: '11.4,-437.5 13.4,-437.5 12.5,-432.2', fill: '#F9F6EE' }, upperFangs);
+    const lowerFangs = $('g', { opacity: 0 }, faceG);
+    $('polygon', { points: '5.6,-434.5 7.2,-434.5 6.4,-437.8', fill: '#EAE5D8' }, lowerFangs);
+    $('polygon', { points: '10.6,-434.5 12.2,-434.5 11.4,-437.8', fill: '#EAE5D8' }, lowerFangs);
+
+    $('path', { d: 'M0.2 -437.2 Q4.8 -441.2 8.8 -439.2 Q12.8 -441.2 17.2 -437.2 Q12.8 -435.8 8.8 -436.4 Q4.8 -435.8 0.2 -437.2 Z', fill: LIP_U }, faceG);
+    const mouthLower = $('g', {}, faceG);
+    $('path', { d: 'M1.2 -436.5 Q8.8 -430.4 16.4 -436.5 Q8.8 -434.6 1.2 -436.5 Z', fill: LIP_L }, mouthLower);
+    $('path', { d: 'M5.2 -434.2 Q8.8 -432.6 12.4 -434.2', stroke: LIP_HI, 'stroke-width': 1.1, fill: 'none', 'stroke-linecap': 'round', opacity: 0.78 }, mouthLower);
+
+    // Delicate ornate hammered-gold Greek Gorgon diadem / circlet nestled directly along hairline
+    const diademD = 'M-23 -486 C-10 -495 15 -495 33 -485 L31.5 -479 C15 -488 -10 -488 -21.5 -479 Z';
+    pathR(faceG, diademD, GOLD);
+    $('path', { d: diademD, fill: gGold, opacity: 0.75 }, faceG);
+    $('path', { d: 'M-20 -483 C-8 -490 14 -490 30 -482', stroke: GOLD_L, 'stroke-width': 1.4, fill: 'none', opacity: 0.85 }, faceG);
+    pathR(faceG, 'M-2 -491 L8.5 -504 L19 -491 L12.5 -485 L8.5 -481 L4.5 -485 Z', GOLD_L);
+    pathR(faceG, 'M8.5 -499 L12.5 -490.5 L8.5 -484 L4.5 -490.5 Z', EYE_EM);
+    $('polygon', { points: '8.5,-497 10.5,-491 8.5,-487 6.8,-491', fill: '#DBFFE8', opacity: 0.85 }, faceG);
 
     // Mortal Gorgon ichor streak on cheek & lip corner (driven by P.ichor)
     const ichorG = $('g', { opacity: 0 }, faceG);
-    $('path', { d: 'M18 -462 C22 -454 20 -444 23 -434 C25 -442 26 -454 22 -462 Z', fill: gIchor }, ichorG);
-    $('path', { d: 'M17 -446 C20 -440 18 -432 20 -424 C22 -432 23 -440 20 -446 Z', fill: gIchor, opacity: 0.9 }, ichorG);
-    $('circle', { cx: 23, cy: -429, r: 2.2, fill: ICHOR_L }, ichorG);
+    $('path', { d: 'M17 -452 C21 -444 19 -435 22 -426 C24 -433 25 -444 21 -452 Z', fill: gIchor }, ichorG);
+    $('path', { d: 'M16 -437 C19 -431 17 -424 19 -417 C21 -424 22 -431 19 -437 Z', fill: gIchor, opacity: 0.9 }, ichorG);
+    $('circle', { cx: 22, cy: -421, r: 2.0, fill: ICHOR_L }, ichorG);
 
-    // LAYER C: 8 Vibrant Scaled Foreground Vipers (framing forehead, temples, & striking forward)
+    // LAYER C: 14 Rich Jade-Emerald Framing Serpents — lush draping curls over temples, cheeks, crown & collarbones
     const frontViperG = $('g', {}, H);
     const frontCfgs = [
-      [-22, -498, -158, 96, 7.2, false, 0.6],
-      [-14, -514, -134, 110, 7.6, false, 1.5],
-      [0, -520, -110, 118, 7.8, false, 2.4],
-      [14, -516, -82, 122, 7.8, false, 3.3],
-      [26, -504, -56, 116, 7.5, false, 4.1],
-      [32, -488, -32, 112, 7.4, false, 4.9],
-      [30, -472, -10, 104, 7.0, false, 5.7],
-      [24, -456, 16, 92, 6.6, false, 1.9],
+      [-22, -476, 136, 6.8, false, 0.2, -28, 16, -34, 68, -20, 126, -160],
+      [-18, -482, 124, 6.8, false, 0.5, -22, 12, -26, 56, -12, 110, -154],
+      [-16, -490, 130, 7.0, false, 0.9, -28, 4, -38, 46, -30, 104, -142],
+      [-12, -496, 116, 7.0, false, 1.3, -22, -2, -32, 34, -24, 88, -134],
+      [-8, -504, 122, 7.2, false, 1.7, -20, -10, -36, 22, -36, 78, -120],
+      [-3, -506, 112, 7.2, false, 2.2, -16, -14, -32, 14, -34, 64, -108],
+      [4, -510, 114, 7.2, false, 2.6, -4, -20, -14, 6, -18, 52, -92],
+      [11, -506, 110, 7.2, false, 3.0, 16, -14, 34, 12, 42, 54, -74],
+      [16, -502, 118, 7.0, false, 3.4, 22, -10, 38, 20, 38, 72, -58],
+      [21, -496, 114, 6.8, false, 3.8, 22, -4, 34, 30, 30, 84, -46],
+      [24, -488, 124, 6.8, false, 4.2, 24, 8, 32, 46, 22, 102, -32],
+      [25, -482, 120, 6.6, false, 4.6, 18, 14, 22, 58, 12, 110, -22],
+      [25, -470, 102, 6.2, false, 5.4, 22, 6, 38, 26, 50, 50, 2],
+      [-18, -468, 104, 6.2, false, 1.9, -20, 18, -28, 52, -16, 94, 162],
     ];
-    frontCfgs.forEach((cfg, i) => buildViper(frontViperG, cfg, i + 8));
+    frontCfgs.forEach((cfg, i) => buildViper(frontViperG, cfg, i + backCfgs.length));
 
     // Markers (preserving exact API & HEADOFF alignment)
-    const eyeMk = $('circle', { cx: 20, cy: -473, r: 1, fill: 'none' }, H);
-    const headMk = $('circle', { cx: 6, cy: -464, r: 1, fill: 'none' }, H);
-    const mouthMk = $('circle', { cx: 10, cy: -445, r: 1, fill: 'none' }, H);
-    const snakeMk = $('circle', { cx: 74, cy: -496, r: 1, fill: 'none' }, H);
+    const eyeMk = $('circle', { cx: 20, cy: -464, r: 1, fill: 'none' }, H);
+    const headMk = $('circle', { cx: 6, cy: -458, r: 1, fill: 'none' }, H);
+    const mouthMk = $('circle', { cx: 9, cy: -437, r: 1, fill: 'none' }, H);
+    const snakeMk = $('circle', { cx: 52, cy: -470, r: 1, fill: 'none' }, H);
 
-    // Front brazen arm (foreground layer)
-    const armF = makeArm(B, 36, -384, false);
+    // Front graceful pale-ivory arm with gold-bronze wrist bracer
+    const armF = makeArm(B, 34, -384, false);
 
-    // ==================== 7. RIG CONTRACT & DYNAMIC ANIMATION ====================
+    // ==================== 6. RIG CONTRACT & DYNAMIC ANIMATION ====================
     rig.root = g;
     rig.g = g;
     rig.dynHead = true;
     rig.mk = { eye: eyeMk, head: headMk, mouth: mouthMk, hand: armF.handMk, snake: snakeMk, body: bodyMk };
     rig.N = {
-      bodyY: 0, bodyRot: 0, lift: 0, head: 0, mouth: 0.1,
+      bodyY: 0, bodyRot: 0, lift: 0, head: 0, mouth: 0.06,
       eyeGlow: 1.0, wingFlap: 0, wingDmg: 0, snakeLunge: 0,
-      aL: [-18, 22], aR: [22, 32], ichor: 0, shakeX: 0, shakeY: 0, t: 0,
+      aL: [-14, 20], aR: [18, 30], ichor: 0, shakeX: 0, shakeY: 0, t: 0,
     };
 
     rig.apply = (p, tArg) => {
       const lift = p.lift || 0;
       const sx = p.shakeX || 0, sy = p.shakeY || 0;
       const tt = p.t !== undefined ? p.t : (tArg || 0);
+      const wf = p.wingFlap || 0;
+      const wd = clamp(p.wingDmg || 0, 0, 1);
 
       tr(root, sx, (p.bodyY || 0) - lift + sy);
-      sh.setAttribute('rx', f2(clamp(112 - lift * 0.26, 36, 128)));
-      sh.setAttribute('opacity', f2(clamp(0.5 - lift * 0.002, 0.08, 0.55)));
+      sh.setAttribute('rx', f2(clamp(138 - lift * 0.28, 42, 152)));
+      sh.setAttribute('opacity', f2(clamp(0.52 - lift * 0.002, 0.08, 0.58)));
 
       body.set(p.bodyRot || 0);
       headG.set(p.head || 0);
 
-      // Golden wings flap + dynamic wingDmg bone fracture & droop
-      const wf = p.wingFlap || 0, wd = clamp(p.wingDmg || 0, 0, 1);
-      wingF.set(wf - wd * 20);
-      wingFOuter.set(-wd * 58);
-      wingBreakG.setAttribute('opacity', f2(clamp(wd * 1.6, 0, 1)));
-      wingB.set(-wf * 0.68 + wd * 24);
-
-      // Dynamic coiled serpentine lower tail (coiled on ground, unfurls when airborne!)
+      // Dynamic coiled muscular emerald-obsidian serpent tail (grounded S-coils + tail-spring aerial whip!)
       const air = clamp(lift / 120, 0, 1);
-      const sw1 = Math.sin(tt * 2.4) * (8 + air * 14);
-      const sw2 = Math.sin(tt * 2.4 + 1.5) * (10 + air * 18);
-      const sw3 = Math.sin(tt * 2.4 + 3.1) * (12 + air * 22);
+      const coilSpring = clamp(wf * -0.014, -0.3, 0.55);
+      const sw1 = Math.sin(tt * 2.5) * (6 + air * 14);
+      const sw2 = Math.sin(tt * 2.5 + 1.4) * (9 + air * 18);
+      const sw3 = Math.sin(tt * 2.5 + 2.9) * (11 + air * 22);
+      const sw4 = Math.sin(tt * 2.5 + 4.3) * (13 + air * 24);
+
+      const tailBackPts = [
+        [lerp(18, -14, air), lerp(-72, -18, air), 22],
+        [lerp(-58, -44, air) + sw2 * 0.45, lerp(-44, 22, air) - coilSpring * 18, 20],
+        [lerp(-112, -22, air) + sw3 * 0.65, lerp(-14, 66, air) - coilSpring * 26, 17],
+        [lerp(-142, 20, air) + sw3 * 0.85, lerp(-36, 94, air) - coilSpring * 20, 13],
+        [lerp(-124, 48, air) + sw4, lerp(-68, 114, air) - coilSpring * 12, 8],
+        [lerp(-94, 62, air) + sw4 * 1.15, lerp(-56, 128, air), 3],
+      ];
+      const backRibD = buildTaperRibbon(tailBackPts);
+      const backUnderPts = tailBackPts.map(([x, y, w]) => [x - 3, y + 5, w + 2.5]);
+      tailBackUnder.setAttribute('d', buildTaperRibbon(backUnderPts));
+      tailBackBody.setAttribute('d', backRibD);
+      tailBackBelly.setAttribute('d', smoothCurveD(tailBackPts, ([x, y, w]) => [x, y + w * 0.38]));
+      tailBackScale.setAttribute('d', smoothCurveD(tailBackPts));
+
       const tailPts = [
-        [0, -242, 34],
-        [lerp(14, 10, air) + sw1 * 0.25, lerp(-182, -168, air), 32],
-        [lerp(56, 26, air) + sw1 * 0.6, lerp(-124, -92, air), 30],
-        [lerp(72, -18, air) + sw2 * 0.7, lerp(-68, -18, air), 27],
-        [lerp(18, -32, air) + sw2 * 0.5, lerp(-22, 32, air), 23],
-        [lerp(-58, 12, air) + sw3 * 0.6, lerp(-14, 68, air), 18],
-        [lerp(-104, 24, air) + sw3 * 0.85, lerp(-32, 96, air), 12],
-        [lerp(-128, 4, air) + sw3, lerp(-16, 118, air), 4],
+        [0, -242, 27],
+        [lerp(20, 14, air) + sw1 * 0.25, lerp(-186, -172, air), 30],
+        [lerp(66, 36, air) + sw1 * 0.55, lerp(-128, -104, air) - coilSpring * 10, 31],
+        [lerp(96, 12, air) + sw2 * 0.65, lerp(-72, -34, air) - coilSpring * 16, 29],
+        [lerp(68, -36, air) + sw2 * 0.55, lerp(-22, 22, air) - coilSpring * 14, 27],
+        [lerp(-18, -42, air) + sw3 * 0.55, lerp(-14, 66, air) - coilSpring * 10, 24],
+        [lerp(-98, 6, air) + sw3 * 0.7, lerp(-22, 98, air), 20],
+        [lerp(-144, 34, air) + sw4 * 0.85, lerp(-44, 118, air), 14],
       ];
       const tailRibbonD = buildTaperRibbon(tailPts);
       const tailUnderPts = tailPts.map(([x, y, w]) => [x - 3, y + 6, w + 3]);
       tailUnderPath.setAttribute('d', buildTaperRibbon(tailUnderPts));
       tailBodyPath.setAttribute('d', tailRibbonD);
       tailGradPath.setAttribute('d', tailRibbonD);
-      const spineD = tailPts.map(([x, y], i) => `${i === 0 ? 'M' : 'L'}${f2(x)} ${f2(y)}`).join(' ');
-      const bellyD = tailPts.map(([x, y, w], i) => `${i === 0 ? 'M' : 'L'}${f2(x)} ${f2(y + w * 0.42)}`).join(' ');
-      const hiD = tailPts.map(([x, y, w], i) => `${i === 0 ? 'M' : 'L'}${f2(x)} ${f2(y - w * 0.34)}`).join(' ');
-      tailScalePath.setAttribute('d', spineD);
-      tailBellyPath.setAttribute('d', bellyD);
-      tailHiPath.setAttribute('d', hiD);
+      tailScalePath.setAttribute('d', smoothCurveD(tailPts));
+      tailBellyPath.setAttribute('d', smoothCurveD(tailPts, ([x, y, w]) => [x, y + w * 0.42]));
+      tailBellyHi.setAttribute('d', smoothCurveD(tailPts, ([x, y, w]) => [x, y + w * 0.42]));
+      tailHiPath.setAttribute('d', smoothCurveD(tailPts, ([x, y, w]) => [x, y - w * 0.34]));
 
-      // Blazing emerald eye glow (tightly scaled so ecu never washes out face)
+      // Piercing emerald-gold eye glow: subtle & defined in idle, blooms bright emerald when eyeGlow > 1.3!
       const eg = clamp(p.eyeGlow === undefined ? 1 : p.eyeGlow, 0, 2.8);
-      eyeGlowBgR.setAttribute('opacity', f2(clamp(0.22 + eg * 0.28, 0, 0.92)));
-      eyeGlowBgR.setAttribute('r', f2(15 + eg * 11));
-      eyeGlowBgL.setAttribute('opacity', f2(clamp(0.16 + eg * 0.24, 0, 0.85)));
-      eyeGlowBgL.setAttribute('r', f2(12 + eg * 9));
-      const irisCol = eg > 1.7 ? '#D8FFEA' : EYE_EM;
+      const bloom = clamp((eg - 1.3) / 1.4, 0, 1);
+      eyeGlowBgR.setAttribute('opacity', f2(0.08 + bloom * 0.82));
+      eyeGlowBgR.setAttribute('r', f2(11 + bloom * 22));
+      eyeGlowBgL.setAttribute('opacity', f2(0.06 + bloom * 0.74));
+      eyeGlowBgL.setAttribute('r', f2(9 + bloom * 18));
+      const irisCol = eg > 1.3 ? mixc(EYE_EM, '#C9FFE0', bloom * 0.75) : EYE_EM;
       eyeIrisR.setAttribute('fill', irisCol);
       eyeIrisL.setAttribute('fill', irisCol);
+      eyeGoldR.setAttribute('opacity', f2(0.76 - bloom * 0.35));
+      eyeGoldL.setAttribute('opacity', f2(0.76 - bloom * 0.35));
 
-      // Dynamic venomous mouth & fangs
+      // Sleek sculpted plum-crimson lips: parted only slightly in idle; venomous hiss & sharp fangs when mouth > 0.35!
       const mo = clamp(p.mouth || 0, 0, 1.2);
-      mouthCav.setAttribute('ry', f2(2.2 + mo * 9.5));
-      mouthLower.setAttribute('transform', `translate(0,${f2(mo * 8.5)})`);
-      lowerFangs.setAttribute('transform', `translate(0,${f2(mo * 8.0)})`);
-      lowerFangs.setAttribute('opacity', f2(clamp((mo - 0.25) * 1.4, 0, 1)));
+      const hissOpen = clamp((mo - 0.35) / 0.65, 0, 1);
+      const partAmt = mo * 1.4 + hissOpen * 6.8;
+      mouthCav.setAttribute('d', `M1.8 -436.5 Q8.8 ${f2(-437.5)} 15.8 -436.5 Q8.8 ${f2(-435.2 + partAmt)} 1.8 -436.5 Z`);
+      mouthCav.setAttribute('opacity', f2(clamp(mo * 0.65 + hissOpen * 0.85, 0, 1)));
+      mouthLower.setAttribute('transform', `translate(0,${f2(partAmt * 0.82)})`);
+      upperFangs.setAttribute('opacity', f2(hissOpen));
+      lowerFangs.setAttribute('transform', `translate(0,${f2(partAmt * 0.72)})`);
+      lowerFangs.setAttribute('opacity', f2(clamp((mo - 0.5) * 2.0, 0, 1)));
 
-      // Mortal Gorgon ichor on cheek & chest armor
+      // Mortal Gorgon ichor on cheek & bodice
       const ic = clamp(p.ichor || 0, 0, 1);
       ichorG.setAttribute('opacity', f2(ic));
       chestIchorG.setAttribute('opacity', f2(ic * 0.9));
 
-      // 16 living writhing vipers (multi-harmonic cubic-Bezier ribbons + tangent-aligned heads + hissing jaws & flickering tongues)
+      // 16 Living Cascading & Draping Serpents:
       const sl = clamp(p.snakeLunge || 0, 0, 1);
       for (let i = 0; i < snakes.length; i++) {
         const s = snakes[i];
-        const w1 = Math.sin(tt * 4.2 + s.phase) * (15 + sl * 18);
-        const w2 = Math.cos(tt * 5.6 + s.phase * 1.3) * (11 + sl * 14);
-        const targetAng = s.isBack ? (-36 + (i - 3.5) * 12) : (-12 + (i - 11.5) * 9);
-        const ang = lerp(s.baseAng, targetAng, sl * 0.78) + w1 * 0.42;
-        const L = s.len * (1 + sl * 0.42);
-        const c1x = L * 0.34, c1y = w1;
-        const c2x = L * 0.68, c2y = -w2 * 0.85;
-        const tipX = L, tipY = w2 * 0.32;
-        const w0 = s.w0, wA = w0 * 0.76, wB = w0 * 0.56, wT = w0 * 0.36;
+        const sway1 = Math.sin(tt * 3.4 + s.phase) * (5.5 + sl * 12);
+        const sway2 = Math.cos(tt * 4.5 + s.phase * 1.25) * (7.5 + sl * 15);
 
-        s.sg.setAttribute('transform', `translate(${s.sx},${s.sy}) rotate(${f2(ang)})`);
-        // Tapered filled cubic-Bezier serpent ribbon (setSil-safe!)
-        const ribD = `M0 ${f2(-w0)} C${f2(c1x)} ${f2(c1y - wA)} ${f2(c2x)} ${f2(c2y - wB)} ${f2(tipX)} ${f2(tipY - wT)} L${f2(tipX)} ${f2(tipY + wT)} C${f2(c2x)} ${f2(c2y + wB)} ${f2(c1x)} ${f2(c1y + wA)} 0 ${f2(w0)} Z`;
+        const c1Drape = [s.c1dx + sway1 * 0.5, s.c1dy + sway2 * 0.3];
+        const c2Drape = [s.c2dx - sway2 * 0.7, s.c2dy + sway1 * 0.5];
+        const tipDrape = [s.tipdx + sway1 * 0.9, s.tipdy + sway2 * 0.45];
+
+        const la = s.lungeAng * rad;
+        const L = s.len * (0.9 + sl * 0.34);
+        const lx = Math.cos(la), ly = Math.sin(la);
+        const nx = -ly, ny = lx;
+        const c1Strike = [lx * L * 0.35 + nx * sway1 * 1.1, ly * L * 0.35 + ny * sway1 * 1.1];
+        const c2Strike = [lx * L * 0.7 - nx * sway2 * 1.0, ly * L * 0.7 - ny * sway2 * 1.0];
+        const tipStrike = [lx * L + nx * sway2 * 0.5, ly * L + ny * sway2 * 0.5];
+
+        const rearWeight = (i >= 11 || i === 3 || i === 4) ? sl : sl * 0.62;
+        const p0 = [s.sx, s.sy];
+        const p1 = [s.sx + lerp(c1Drape[0], c1Strike[0], rearWeight), s.sy + lerp(c1Drape[1], c1Strike[1], rearWeight)];
+        const p2 = [s.sx + lerp(c2Drape[0], c2Strike[0], rearWeight), s.sy + lerp(c2Drape[1], c2Strike[1], rearWeight)];
+        const p3 = [s.sx + lerp(tipDrape[0], tipStrike[0], rearWeight), s.sy + lerp(tipDrape[1], tipStrike[1], rearWeight)];
+
+        const bz = (u) => {
+          const v = 1 - u;
+          return [
+            v * v * v * p0[0] + 3 * v * v * u * p1[0] + 3 * v * u * u * p2[0] + u * u * u * p3[0],
+            v * v * v * p0[1] + 3 * v * v * u * p1[1] + 3 * v * u * u * p2[1] + u * u * u * p3[1],
+          ];
+        };
+        const N = 8, Lpts = [], Rpts = [], mids = [];
+        for (let k = 0; k <= N; k++) mids.push(bz(k / N));
+        for (let k = 0; k <= N; k++) {
+          const a = mids[Math.max(0, k - 1)], b = mids[Math.min(N, k + 1)];
+          const dx = b[0] - a[0], dy = b[1] - a[1], ln = Math.hypot(dx, dy) || 1;
+          const nux = -dy / ln, nuy = dx / ln;
+          const u = k / N;
+          const hw = s.w0 * (1 - u * 0.62);
+          Lpts.push([mids[k][0] + nux * hw, mids[k][1] + nuy * hw]);
+          Rpts.push([mids[k][0] - nux * hw, mids[k][1] - nuy * hw]);
+        }
+        let ribD = `M${f2(Lpts[0][0])} ${f2(Lpts[0][1])}`;
+        for (let k = 1; k < Lpts.length; k++) ribD += ` L${f2(Lpts[k][0])} ${f2(Lpts[k][1])}`;
+        for (let k = Rpts.length - 1; k >= 0; k--) ribD += ` L${f2(Rpts[k][0])} ${f2(Rpts[k][1])}`;
+        ribD += ' Z';
+
         s.bodyFill.setAttribute('d', ribD);
-        const midD = `M0 0 C${f2(c1x)} ${f2(c1y)} ${f2(c2x)} ${f2(c2y)} ${f2(tipX)} ${f2(tipY)}`;
+        const midD = `M${f2(p0[0])} ${f2(p0[1])} C${f2(p1[0])} ${f2(p1[1])} ${f2(p2[0])} ${f2(p2[1])} ${f2(p3[0])} ${f2(p3[1])}`;
         s.scaleStroke.setAttribute('d', midD);
         if (s.bellyStroke) {
-          s.bellyStroke.setAttribute('d', `M0 ${f2(w0 * 0.45)} C${f2(c1x)} ${f2(c1y + wA * 0.45)} ${f2(c2x)} ${f2(c2y + wB * 0.45)} ${f2(tipX)} ${f2(tipY + wT * 0.45)}`);
+          s.bellyStroke.setAttribute('d', `M${f2(p0[0] + 2)} ${f2(p0[1] + 2)} C${f2(p1[0] + 2)} ${f2(p1[1] + 2)} ${f2(p2[0] + 2)} ${f2(p2[1] + 2)} ${f2(p3[0] + 1)} ${f2(p3[1] + 1)}`);
         }
-        // Align viper head to curve tangent at tip
-        const headDeg = Math.atan2(tipY - c2y, tipX - c2x) / rad;
-        s.h.setAttribute('transform', `translate(${f2(tipX)},${f2(tipY)}) rotate(${f2(headDeg)})`);
-        // Open hissing viper jaw & fangs on lunge
-        const hiss = clamp(sl * 0.9 + Math.max(0, Math.sin(tt * 3.8 + s.phase * 2.1)) * 0.28, 0, 1);
-        s.jaw.setAttribute('transform', `rotate(${f2(hiss * 28)} 0 2)`);
-        s.fangs.setAttribute('opacity', f2(clamp(hiss * 1.4, 0.25, 1)));
-        // Flickering crimson forked tongue
-        const flick = Math.sin(tt * 19 + s.phase * 3.7) > (0.25 - sl * 0.45) ? 1 : 0;
+        if (s.hiStroke) {
+          s.hiStroke.setAttribute('d', `M${f2(p0[0] - 1.5)} ${f2(p0[1] - 1.5)} C${f2(p1[0] - 1.5)} ${f2(p1[1] - 1.5)} ${f2(p2[0] - 1.5)} ${f2(p2[1] - 1.5)} ${f2(p3[0] - 1)} ${f2(p3[1] - 1)}`);
+        }
+
+        const qPrev = mids[N - 1], qTip = mids[N];
+        const headDeg = Math.atan2(qTip[1] - qPrev[1], qTip[0] - qPrev[0]) / rad;
+        s.h.setAttribute('transform', `translate(${f2(qTip[0])},${f2(qTip[1])}) rotate(${f2(headDeg)})`);
+
+        const hiss = clamp(sl * 0.92 + Math.max(0, Math.sin(tt * 3.4 + s.phase * 2.1)) * (0.12 + 0.16 * wd), 0, 1);
+        s.jaw.setAttribute('transform', `rotate(${f2(hiss * 26)} 0 1.5)`);
+        s.fangs.setAttribute('opacity', f2(clamp((hiss - 0.18) * 1.4, 0, 1)));
+        const flick = Math.sin(tt * 18 + s.phase * 3.7) > (0.45 - sl * 0.65) ? 1 : 0;
         s.tongue.setAttribute('opacity', flick ? 1 : 0);
       }
 
-      // Brazen arms (standard rigs.js convention: + = forward toward +x)
       const setA = (A, a) => {
         A.shd.set(-a[0]);
         A.elb.set(-(a[1] - a[0]));
       };
-      setA(armB, p.aL || [-18, 22]);
-      setA(armF, p.aR || [22, 32]);
+      setA(armB, p.aL || [-14, 20]);
+      setA(armF, p.aR || [18, 30]);
     };
 
     return rig;
@@ -3852,89 +3874,92 @@
 
   const MEDUSA = {
     idle: (c) => ({
-      t: c.t, bodyY: 3 * Math.sin(c.t * 2.1), head: 2 * Math.sin(c.t * 1.4), eyeGlow: 1.05,
-      wingFlap: 6 * Math.sin(c.t * 1.8), aL: [-18, 22], aR: [22, 32],
+      t: c.t, bodyY: 3 * Math.sin(c.t * 2.1), head: 1.5 * Math.sin(c.t * 1.4), mouth: 0.06, eyeGlow: 1.0,
+      wingFlap: 4 * Math.sin(c.t * 1.8), aL: [-14, 20], aR: [18, 30],
     }),
     'idle-card': (c) => ({
-      t: c.t, bodyRot: -4, head: 2, eyeGlow: 1.85, wingFlap: -18 + 6 * Math.sin(c.t * 2.5),
-      snakeLunge: 0.45, aL: [36, 62], aR: [76, 88],
+      t: c.t, bodyRot: -4, head: 2, mouth: 0.1, eyeGlow: 1.8, wingFlap: -14 + 5 * Math.sin(c.t * 2.5),
+      snakeLunge: 0.48, aL: [32, 58], aR: [72, 86],
     }),
     'glide-watch': (c) => ({
-      t: c.t, lift: 18 + 8 * Math.sin(c.t * 2.6), bodyRot: 6, head: 4, eyeGlow: 1.15,
-      wingFlap: -10 + 10 * Math.sin(c.t * 2.6), aL: [-26, 18], aR: [14, 28],
+      t: c.t, lift: 16 + 7 * Math.sin(c.t * 2.6), bodyRot: 5, head: 3, mouth: 0.08, eyeGlow: 1.1,
+      wingFlap: -8 + 8 * Math.sin(c.t * 2.6), aL: [-22, 16], aR: [14, 26],
     }),
     'gaze-charge': (c) => {
       const e = env(c.lt, 0.26);
       return {
-        t: c.t, bodyRot: -6 * e, head: 4 * e, mouth: 0.4 * e, eyeGlow: 1.2 + 1.3 * e,
-        wingFlap: -24 * e, snakeLunge: 0.55 * e, aL: [38 * e, 54 * e], aR: [68 * e, 78 * e],
+        t: c.t, bodyRot: -6 * e, head: 4 * e, mouth: 0.32 * e, eyeGlow: 1.2 + 1.35 * e,
+        wingFlap: -22 * e, snakeLunge: 0.58 * e, aL: [36 * e, 52 * e], aR: [66 * e, 78 * e],
         shakeX: 2.5 * e * Math.sin(c.lt * 44),
       };
     },
     'gaze-blast': (c) => ({
-      t: c.t, bodyRot: 8, head: 6, mouth: 0.72, eyeGlow: 2.4,
-      wingFlap: -28, snakeLunge: 0.85, aL: [52, 74], aR: [92, 98],
+      t: c.t, bodyRot: 8, head: 5, mouth: 0.68, eyeGlow: 2.4,
+      wingFlap: -24, snakeLunge: 0.85, aL: [48, 70], aR: [88, 96],
       shakeX: 3.5 * Math.sin(c.lt * 52),
     }),
     'wing-dodge': (c) => {
-      const fl = Math.sin(c.lt * 14);
+      // Serpentine tail-spring vault & coiled whip dodge (wingless!)
+      const fl = Math.sin(c.lt * 13);
       return {
-        t: c.t, lift: 195 + 26 * fl, bodyRot: -12, head: 14, eyeGlow: 1.65,
-        wingFlap: -34 + 28 * fl, snakeLunge: 0.35, aL: [44, 68], aR: [110, 128],
+        t: c.t, lift: 188 + 26 * fl, bodyRot: -14, head: 12, mouth: 0.28, eyeGlow: 1.65,
+        wingFlap: -32 + 24 * fl, snakeLunge: 0.42, aL: [42, 66], aR: [108, 126],
       };
     },
     'backflip-evade': (c) => {
+      // Sinuous serpent-spring backflip leap
       const arc = Math.sin(clamp(c.u) * Math.PI);
       return {
-        t: c.t, lift: 210 + 24 * arc, bodyRot: -34 - 8 * arc, head: 18, mouth: 0.55,
-        eyeGlow: 1.85, wingFlap: -38 + 14 * Math.sin(c.lt * 16), snakeLunge: 0.72,
-        aL: [54, 82], aR: [118, 134],
+        t: c.t, lift: 204 + 26 * arc, bodyRot: -30 - 8 * arc, head: 14, mouth: 0.52,
+        eyeGlow: 1.85, wingFlap: -36 + 14 * Math.sin(c.lt * 16), snakeLunge: 0.72,
+        aL: [50, 78], aR: [112, 130],
       };
     },
     'aerial-weave': (c) => {
+      // Coiling serpentine spring weave
       const w = c.lt * 6.5;
       return {
-        t: c.t, lift: 175 + 28 * Math.sin(w), bodyRot: -10 + 14 * Math.cos(w),
-        head: 8 - 6 * Math.cos(w), mouth: 0.42, eyeGlow: 1.9,
-        wingFlap: -18 + 30 * Math.sin(w * 1.4), snakeLunge: 0.78 + 0.18 * Math.sin(w),
-        aL: [36 + 14 * Math.sin(w), 62], aR: [88 - 16 * Math.cos(w), 106],
+        t: c.t, lift: 170 + 28 * Math.sin(w), bodyRot: -10 + 13 * Math.cos(w),
+        head: 7 - 5 * Math.cos(w), mouth: 0.38, eyeGlow: 1.9,
+        wingFlap: -18 + 28 * Math.sin(w * 1.4), snakeLunge: 0.78 + 0.18 * Math.sin(w),
+        aL: [34 + 14 * Math.sin(w), 60], aR: [84 - 16 * Math.cos(w), 102],
       };
     },
     'bronze-slash': (c) => KO(c.u, [
-      [0, { t: c.t, lift: 130, bodyRot: -14, head: 10, eyeGlow: 1.7, wingFlap: -32, aL: [-40, -10], aR: [-120, -48] }],
-      [0.45, { t: c.t, lift: 65, bodyRot: 22, head: 12, mouth: 0.7, eyeGlow: 2.1, wingFlap: 14, snakeLunge: 0.8, aL: [36, 52], aR: [88, 96], shakeX: 6 }],
-      [1, { t: c.t, lift: 40, bodyRot: 8, head: 4, eyeGlow: 1.4, wingFlap: -10, aL: [14, 28], aR: [42, 54] }],
+      [0, { t: c.t, lift: 126, bodyRot: -14, head: 10, mouth: 0.2, eyeGlow: 1.7, wingFlap: -30, aL: [-38, -8], aR: [-116, -46] }],
+      [0.45, { t: c.t, lift: 62, bodyRot: 20, head: 10, mouth: 0.72, eyeGlow: 2.1, wingFlap: 14, snakeLunge: 0.8, aL: [36, 52], aR: [88, 96], shakeX: 6 }],
+      [1, { t: c.t, lift: 38, bodyRot: 8, head: 4, mouth: 0.16, eyeGlow: 1.4, wingFlap: -10, aL: [14, 28], aR: [42, 54] }],
     ], 'inOut'),
     'snake-strike': (c) => ({
-      t: c.t, lift: 45, bodyRot: 14, head: 10, mouth: 0.6, eyeGlow: 1.9,
-      wingFlap: -18, snakeLunge: 1.0, aL: [28, 44], aR: [64, 72],
+      t: c.t, lift: 42, bodyRot: 14, head: 9, mouth: 0.58, eyeGlow: 1.9,
+      wingFlap: -18, snakeLunge: 1.0, aL: [26, 42], aR: [62, 70],
       shakeX: 3 * Math.sin(c.lt * 46),
     }),
     pinned: (c) => ({
-      t: c.t, bodyY: 96, bodyRot: -28, head: 16, mouth: 0.65, eyeGlow: 1.35,
-      wingFlap: 12, wingDmg: 0.75, snakeLunge: 0.7, ichor: 0.9,
-      aL: [68, 96], aR: [82, 110], shakeX: 5 * Math.sin(c.lt * 42),
+      t: c.t, bodyY: 96, bodyRot: -26, head: 14, mouth: 0.62, eyeGlow: 1.4,
+      wingFlap: 14, wingDmg: 0.75, snakeLunge: 0.72, ichor: 0.9,
+      aL: [66, 94], aR: [80, 108], shakeX: 5 * Math.sin(c.lt * 42),
     }),
     'gaze-overdrive': (c) => ({
-      t: c.t, bodyY: 64, bodyRot: -12, head: 6, mouth: 0.9, eyeGlow: 2.8,
-      wingFlap: -10, wingDmg: 0.75, snakeLunge: 1.0, ichor: 0.9,
-      aL: [62, 88], aR: [96, 108], shakeX: 4.5 * Math.sin(c.lt * 58),
+      t: c.t, bodyY: 64, bodyRot: -12, head: 6, mouth: 0.88, eyeGlow: 2.8,
+      wingFlap: -12, wingDmg: 0.75, snakeLunge: 1.0, ichor: 0.9,
+      aL: [60, 86], aR: [94, 106], shakeX: 4.5 * Math.sin(c.lt * 58),
     }),
     'breathe-after': (c) => ({
-      t: c.t, bodyY: 8 + 5 * Math.sin(c.t * 3.2), bodyRot: 6, head: 4, mouth: 0.25, eyeGlow: 1.1,
-      wingFlap: 8, wingDmg: 0.75, ichor: 0.85, aL: [-12, 18], aR: [16, 28],
+      t: c.t, bodyY: 8 + 4.5 * Math.sin(c.t * 3.2), bodyRot: 5, head: 3, mouth: 0.14, eyeGlow: 1.05,
+      wingFlap: 6, wingDmg: 0.75, ichor: 0.85, aL: [-10, 18], aR: [16, 26],
     }),
     'walk-away': (c) => ({
-      t: c.t, bodyY: 4 * Math.abs(Math.sin(c.lt * 5)), bodyRot: 8, head: 2, eyeGlow: 0.85,
-      wingFlap: 10, wingDmg: 0.75, ichor: 0.7, aL: [-20, 14], aR: [12, 22],
+      t: c.t, bodyY: 3.5 * Math.abs(Math.sin(c.lt * 5)), bodyRot: 7, head: 2, mouth: 0.06, eyeGlow: 0.9,
+      wingFlap: 8, wingDmg: 0.75, ichor: 0.7, aL: [-18, 14], aR: [12, 22],
     }),
     talk: (c) => {
       const a = c.amp || 0;
       return {
-        t: c.t, bodyY: 2 * Math.sin(c.t * 2), head: 2 * Math.sin(c.t * 1.4) - 2 * a,
-        mouth: 0.1 + 0.8 * a, eyeGlow: 1.2 + 0.85 * a, wingFlap: -8 - 6 * a,
-        snakeLunge: 0.2 + 0.45 * a, wingDmg: c.p.wingDmg || 0, ichor: c.p.ichor || 0,
-        aL: [-16, 22 + 8 * a], aR: [24 + 8 * a, 36 + 10 * a],
+        t: c.t, bodyY: 2 * Math.sin(c.t * 2), head: 1.5 * Math.sin(c.t * 1.4) - 2 * a,
+        mouth: 0.08 + 0.45 * a, eyeGlow: 1.15 + 0.65 * a, wingFlap: -6 - 5 * a,
+        snakeLunge: 0.15 + 0.4 * a, wingDmg: c.p.wingDmg || 0, ichor: c.p.ichor || 0,
+        aL: [-14, 20 + 8 * a], aR: [22 + 8 * a, 34 + 10 * a],
       };
     },
   };

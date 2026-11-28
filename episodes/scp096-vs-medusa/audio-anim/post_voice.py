@@ -25,7 +25,7 @@ EXTRA_GAP = {
     "Her vipers spat": 0.45,
     "Medusa dove": 0.45,
     "It yanked": 0.45,
-    "Her golden wings": 0.50,
+    "Her serpent coils": 0.50,
     "Turn to stone": 0.35,
     "Emerald fire": 0.45,
     "Breathing hard": 1.15,         # Petrification freeze -> aftermath silence
@@ -93,7 +93,7 @@ secs = [
     {"name": "duck_venom", "start": first("Her vipers spat")["start"]},
     {"name": "dive_grab", "start": first("Medusa dove")["start"]},
     {"name": "slam", "start": first("It yanked")["start"]},
-    {"name": "climax", "start": first("Her golden wings")["start"]},
+    {"name": "climax", "start": first("Her serpent coils")["start"]},
     {"name": "turn_stone", "start": first("Turn to stone")["start"]},
     {"name": "petrify", "start": first("Emerald fire")["start"]},
     {"name": "aftermath", "start": first("Breathing hard")["start"]},

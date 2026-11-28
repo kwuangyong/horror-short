@@ -49,7 +49,7 @@ Attribution (CC BY-SA 3.0): "SCP-096" by Dr Dan, SCP Wiki (https://scp-wiki.wiki
 [SHOT #23 cu] Close-up on Medusa pinned beneath the rubble, dark ichor on her cheek, vipers thrashing wildly (`hand`).
 
 ### BEAT 3: POINT-BLANK PETRIFICATION (A4 CLIMAX)
-> Her golden wings *shattered*, Medusa stopped dodging and poured her entire curse into one gaze.
+> Her serpent coils *pinned*, Medusa stopped dodging and poured her entire curse into one gaze.
 [SHOT #24 low] SCP-096 towers over her, blood-drenched jaw wide, raising its hooked claws (`roar`, `hand`).
 [SHOT #25 ecu at claw] Tight zoom on 096's bloody claws plunging downward directly above Medusa's writhing snake crown.
 [SHOT #26 ecu at eye] Reverse-shot: Medusa's eyes blaze blinding emerald (`gaze-overdrive`, `glint`, emerald `pillar`).

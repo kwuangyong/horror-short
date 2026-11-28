@@ -1,5 +1,5 @@
 {
- "duration": 83.4,
+ "duration": 83.52,
  "sections": [
   {
    "name": "cold_open",
@@ -12,67 +12,67 @@
   },
   {
    "name": "medusa_reveal",
-   "start": 10.13
+   "start": 10.11
   },
   {
    "name": "medusa_line",
-   "start": 14.28
+   "start": 14.25
   },
   {
    "name": "wall_breach",
-   "start": 17.77
+   "start": 17.75
   },
   {
    "name": "eye_lock",
-   "start": 24.49
+   "start": 24.47
   },
   {
    "name": "charge1",
-   "start": 29.37
+   "start": 29.34
   },
   {
    "name": "dodge1",
-   "start": 34.45
+   "start": 34.42
   },
   {
    "name": "duck_venom",
-   "start": 39.89
+   "start": 39.86
   },
   {
    "name": "dive_grab",
-   "start": 45.69
+   "start": 45.67
   },
   {
    "name": "slam",
-   "start": 51.28
+   "start": 51.25
   },
   {
    "name": "climax",
-   "start": 55.33
+   "start": 55.31
   },
   {
    "name": "turn_stone",
-   "start": 60.58
+   "start": 60.7
   },
   {
    "name": "petrify",
-   "start": 62.21
+   "start": 62.33
   },
   {
    "name": "aftermath",
-   "start": 67.9
+   "start": 68.02
   },
   {
    "name": "medusa_end",
-   "start": 71.97
+   "start": 72.09
   },
   {
    "name": "cliffhanger",
-   "start": 75.24
+   "start": 75.36
   },
   {
    "name": "whisper",
-   "start": 80.28
+   "start": 80.4
   }
  ],
  "dialogue": [
@@ -80,29 +80,29 @@
    "section": 0,
    "speaker": "medusa",
    "text": "Another trespasser for my island.",
-   "start": 14.28,
-   "end": 16.62
+   "start": 14.25,
+   "end": 16.6
   },
   {
    "section": 2,
    "speaker": "medusa",
    "text": "Turn to stone!",
-   "start": 60.58,
-   "end": 61.76
+   "start": 60.7,
+   "end": 61.88
   },
   {
    "section": 3,
    "speaker": "medusa",
    "text": "My garden always wins.",
-   "start": 71.97,
-   "end": 73.89
+   "start": 72.09,
+   "end": 74.01
   },
   {
    "section": 3,
    "speaker": "scp096_whisper",
    "text": "You just gave me armor.",
-   "start": 80.28,
-   "end": 82.0
+   "start": 80.4,
+   "end": 82.12
   }
  ],
  "sentences": [
@@ -118,119 +118,119 @@
    "speaker": "narrator",
    "text": "Only one soldier survived \u2014 fleeing with a cursed four-pixel photo clenched in his fist.",
    "start": 5.1,
-   "end": 9.68
+   "end": 9.66
   },
   {
    "section": 0,
    "speaker": "narrator",
    "text": "From the ruined shrine of Athena, Medusa glided out and froze him mid-scream.",
-   "start": 10.13,
-   "end": 13.93
+   "start": 10.11,
+   "end": 13.9
   },
   {
    "section": 0,
    "speaker": "medusa",
    "text": "Another trespasser for my island.",
-   "start": 14.28,
-   "end": 16.62
+   "start": 14.25,
+   "end": 16.6
   },
   {
    "section": 1,
    "speaker": "narrator",
    "text": "Seconds later, an unearthly shriek crossed the sea, and SCP Zero Nine Six smashed through the temple gate.",
-   "start": 17.77,
-   "end": 23.94
+   "start": 17.75,
+   "end": 23.92
   },
   {
    "section": 1,
    "speaker": "narrator",
    "text": "Its target was already marble \u2014 until Medusa looked straight into the monster's face.",
-   "start": 24.49,
-   "end": 28.72
+   "start": 24.47,
+   "end": 28.69
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Both curses ignited at once, and Zero Nine Six blurred across the courtyard like a missile.",
-   "start": 29.37,
-   "end": 34.05
+   "start": 29.34,
+   "end": 34.02
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Medusa fired a petrifying beam, then backflipped skyward a split-second before its claws struck.",
-   "start": 34.45,
-   "end": 39.44
+   "start": 34.42,
+   "end": 39.41
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Her vipers spat venom from above, yet Zero Nine Six ducked the volley and leaped off a broken column.",
-   "start": 39.89,
-   "end": 45.24
+   "start": 39.86,
+   "end": 45.22
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Medusa dove with brazen claws, slicing deep across its ribs before the monster caught her mid-air.",
-   "start": 45.69,
-   "end": 50.83
+   "start": 45.67,
+   "end": 50.8
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "It yanked the cursed Gorgon out of the sky and slammed her into the marble floor.",
-   "start": 51.28,
-   "end": 54.83
+   "start": 51.25,
+   "end": 54.81
   },
   {
    "section": 2,
    "speaker": "narrator",
-   "text": "Her golden wings shattered, Medusa stopped dodging and poured her entire curse into one gaze.",
-   "start": 55.33,
-   "end": 60.23
+   "text": "Her serpent coils pinned, Medusa stopped dodging and poured her entire curse into one gaze.",
+   "start": 55.31,
+   "end": 60.35
   },
   {
    "section": 2,
    "speaker": "medusa",
    "text": "Turn to stone!",
-   "start": 60.58,
-   "end": 61.76
+   "start": 60.7,
+   "end": 61.88
   },
   {
    "section": 2,
    "speaker": "narrator",
    "text": "Emerald fire swallowed the shriek, locking pale flesh into solid rock from the eyes down.",
-   "start": 62.21,
-   "end": 66.75
+   "start": 62.33,
+   "end": 66.87
   },
   {
    "section": 3,
    "speaker": "narrator",
    "text": "Breathing hard among the rubble, Medusa turned her back on her deadliest trophy.",
-   "start": 67.9,
-   "end": 71.57
+   "start": 68.02,
+   "end": 71.69
   },
   {
    "section": 3,
    "speaker": "medusa",
    "text": "My garden always wins.",
-   "start": 71.97,
-   "end": 73.89
+   "start": 72.09,
+   "end": 74.01
   },
   {
    "section": 3,
    "speaker": "narrator",
    "text": "But she had seen its face \u2014 and stone did not stop Zero Nine Six.",
-   "start": 75.24,
-   "end": 79.13
+   "start": 75.36,
+   "end": 79.25
   },
   {
    "section": 3,
    "speaker": "scp096_whisper",
    "text": "You just gave me armor.",
-   "start": 80.28,
-   "end": 82.0
+   "start": 80.4,
+   "end": 82.12
   }
  ]
 }

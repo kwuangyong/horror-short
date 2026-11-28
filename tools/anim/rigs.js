@@ -3020,12 +3020,6 @@
     // Recessed orbital rim shadow
     $('ellipse', { cx: 24, cy: -528, rx: 10.5, ry: 11.5, fill: 'none', stroke: SKIN_DD, 'stroke-width': 2.2, opacity: 0.75 }, Hc);
     $('ellipse', { cx: 2, cy: -528, rx: 7.8, ry: 10.5, fill: 'none', stroke: SKIN_DD, 'stroke-width': 2, opacity: 0.7 }, Hc);
-    // Cold dead pigmentless white pinprick irises (flare crimson in rage)
-    const eyeFlareL = $('circle', { cx: 2, cy: -528, r: 13, fill: gEyeFlare, opacity: 0 }, Hc);
-    const eyeFlareR = $('circle', { cx: 24, cy: -528, r: 17, fill: gEyeFlare, opacity: 0 }, Hc);
-    const eyeGlowL = $('circle', { cx: 2, cy: -528, r: 2.8, fill: '#FFFFFF', opacity: 0.88 }, Hc);
-    const eyeGlowR = $('circle', { cx: 24, cy: -528, r: 3.3, fill: '#FFFFFF', opacity: 0.95 }, Hc);
-
     // Flat nasal bridge & pinched vertical slit nostrils
     pathR(Hc, 'M13 -534 L17 -514 L11 -514 Z', SKIN_D, { opacity: 0.55 });
     $('path', { d: 'M12 -514 C11 -510 11 -507 12.5 -506 C13.8 -507 13.8 -510 12 -514 Z', fill: '#2A2224' }, Hc);
@@ -3046,6 +3040,12 @@
     $('ellipse', { cx: 24, cy: -528, rx: 10.5, ry: 11.5, fill: '#23282D' }, skullSt);
     $('ellipse', { cx: 2, cy: -528, rx: 7.8, ry: 10.5, fill: '#23282D' }, skullSt);
     $('path', { d: 'M-10 -560 L4 -542 L-4 -518 M28 -564 L36 -540 L26 -514', stroke: '#2A3035', 'stroke-width': 2.2, fill: 'none' }, skullSt);
+
+    // Cold dead pigmentless white pinprick irises (flare crimson in rage, layered above skullSt so stone-march eyes blaze!)
+    const eyeFlareL = $('circle', { cx: 2, cy: -528, r: 13, fill: gEyeFlare, opacity: 0 }, Hc);
+    const eyeFlareR = $('circle', { cx: 24, cy: -528, r: 17, fill: gEyeFlare, opacity: 0 }, Hc);
+    const eyeGlowL = $('circle', { cx: 2, cy: -528, r: 2.8, fill: '#FFFFFF', opacity: 0.88 }, Hc);
+    const eyeGlowR = $('circle', { cx: 24, cy: -528, r: 3.3, fill: '#FFFFFF', opacity: 0.95 }, Hc);
 
     // ---- ARTICULATED 4x UNHINGING LOWER JAW (jawG drops vertically down to chest depth!)
     const jawG = $('g', {}, Hc);
@@ -3157,16 +3157,18 @@
       saliva2.setAttribute('opacity', salOp);
       saliva3.setAttribute('opacity', salOp);
 
-      // Eyes & rage flare
+      // Eyes & rage flare + stone petrification overlay & blood fade
+      const st = clamp(p.stone || 0, 0, 1);
       const rg = clamp(p.rage || 0, 0, 1.5);
       const flareOp = f2(clamp(rg * 0.68, 0, 0.92));
       eyeFlareL.setAttribute('opacity', f2(flareOp * 0.72));
       eyeFlareR.setAttribute('opacity', flareOp);
+      const eyeVis = rg > 0.25 ? 1 : (1 - st);
       eyeGlowL.setAttribute('fill', rg > 0.25 ? '#FF3B4D' : '#FFFFFF');
       eyeGlowR.setAttribute('fill', rg > 0.25 ? '#FF3B4D' : '#FFFFFF');
+      eyeGlowL.setAttribute('opacity', f2(0.88 * eyeVis));
+      eyeGlowR.setAttribute('opacity', f2(0.95 * eyeVis));
 
-      // Stone petrification overlay & blood fade
-      const st = clamp(p.stone || 0, 0, 1);
       stoneEls.forEach((el) => el.setAttribute('opacity', f2(st)));
       const bl = clamp((p.blood === undefined ? 0.5 : p.blood) * (1 - st * 0.9), 0, 1);
       chestBlood.setAttribute('opacity', f2(bl * 0.75));
@@ -3257,6 +3259,27 @@
       crack: c.p.crack === undefined ? 0 : c.p.crack,
       blood: 0, shakeX: (c.p.crack || 0) > 0.2 ? 3.5 * Math.sin(c.lt * 48) : 0,
     }),
+    'duck-dodge': (c) => ({
+      bodyY: 110 + 4 * Math.sin(c.lt * 18), bodyRot: 48, head: -22, jaw: 1.08, rage: 1.32,
+      aL: [-46, -64], aR: [-62, -74], lF: [58, 98], lB: [44, 86],
+      blood: 0.92, shakeX: 3.5 * Math.sin(c.lt * 46),
+    }),
+    'leap-pounce': (c) => ({
+      lift: 190 + 14 * Math.sin(c.lt * 8), bodyRot: 42, head: -24, jaw: 1.32, rage: 1.45,
+      aL: [-92, -16], aR: [-108, -14], lF: [-28, 52], lB: [34, 48],
+      blood: 0.98, shakeX: 4.5 * Math.sin(c.lt * 56),
+    }),
+    'stone-march': (c) => {
+      const f = 2 * Math.PI * (c.p.speed || 1.15) * c.lt;
+      const step = Math.sin(f);
+      return {
+        bodyY: 8 + 10 * Math.abs(step), bodyRot: 18 + 2.5 * step, head: -10, jaw: 1.28,
+        rage: 1.45, stone: 1.0, crack: c.p.crack === undefined ? 0.2 : c.p.crack,
+        lF: legPh(f, 8, 30, 26), lB: legPh(f + Math.PI, 8, 30, 26),
+        aL: [-68 + 12 * step, -32], aR: [-80 - 12 * step, -36],
+        blood: 0, shakeX: 2.8 * Math.sin(c.lt * 46),
+      };
+    },
     hurt: (c) => {
       const f = Math.sin(c.lt * 34) * Math.exp(-c.lt * 1.6);
       return {
@@ -3860,6 +3883,23 @@
         wingFlap: -34 + 28 * fl, snakeLunge: 0.35, aL: [44, 68], aR: [110, 128],
       };
     },
+    'backflip-evade': (c) => {
+      const arc = Math.sin(clamp(c.u) * Math.PI);
+      return {
+        t: c.t, lift: 210 + 24 * arc, bodyRot: -34 - 8 * arc, head: 18, mouth: 0.55,
+        eyeGlow: 1.85, wingFlap: -38 + 14 * Math.sin(c.lt * 16), snakeLunge: 0.72,
+        aL: [54, 82], aR: [118, 134],
+      };
+    },
+    'aerial-weave': (c) => {
+      const w = c.lt * 6.5;
+      return {
+        t: c.t, lift: 175 + 28 * Math.sin(w), bodyRot: -10 + 14 * Math.cos(w),
+        head: 8 - 6 * Math.cos(w), mouth: 0.42, eyeGlow: 1.9,
+        wingFlap: -18 + 30 * Math.sin(w * 1.4), snakeLunge: 0.78 + 0.18 * Math.sin(w),
+        aL: [36 + 14 * Math.sin(w), 62], aR: [88 - 16 * Math.cos(w), 106],
+      };
+    },
     'bronze-slash': (c) => KO(c.u, [
       [0, { t: c.t, lift: 130, bodyRot: -14, head: 10, eyeGlow: 1.7, wingFlap: -32, aL: [-40, -10], aR: [-120, -48] }],
       [0.45, { t: c.t, lift: 65, bodyRot: 22, head: 12, mouth: 0.7, eyeGlow: 2.1, wingFlap: 14, snakeLunge: 0.8, aL: [36, 52], aR: [88, 96], shakeX: 6 }],
@@ -3900,7 +3940,418 @@
   };
   MEDUSA.fade = MEDUSA.idle;
 
-  const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, fisherman: FISHERMAN, cerberus: CERB, bec: BEC, apep: APEP, thor: THOR, typhon: TYPHON, cthulhu: CTHULHU, scp682: SCP682, pegasus: PEGASUS, zeus: ZEUS, scp096: SCP096, medusa: MEDUSA };
-  const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, fisherman: buildFisherman, cerberus: buildCerberus, bec: buildBec, apep: buildApep, thor: buildThor, typhon: buildTyphon, cthulhu: buildCthulhu, scp682: buildScp682, pegasus: buildPegasus, zeus: buildZeus, scp096: buildScp096, medusa: buildMedusa };
+  // ==================== FOUNDATION MTF SOLDIER (Articulated Tactical Rig) ====================
+  // Dark olive-charcoal combat fatigues, ballistic plate carrier vest, knee pads, combat boots,
+  // matte tactical helmet + raised NVG mount, panicked face, right hand gripping the crumpled
+  // 4-pixel mountain photograph, and dynamic granite petrification overlay (stone: 0..1) while
+  // the photograph stays vivid and clutched in his hand. Feet at y = 0, faces +x.
+  function buildSoldier() {
+    const uid = ++_rigUid;
+    const rig = newRig();
+    const g = $('g');
+    const defs = $('defs', {}, g);
+    const mkRad = (id, stops, cx = 0.5, cy = 0.5, r = 0.5) => {
+      const gr = $('radialGradient', { id: `${id}_${uid}`, cx, cy, r }, defs);
+      stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a === undefined ? 1 : a }, gr));
+      return `url(#${id}_${uid})`;
+    };
+    const mkLin = (id, stops, x1 = 0, y1 = 0, x2 = 0, y2 = 1) => {
+      const gr = $('linearGradient', { id: `${id}_${uid}`, x1, y1, x2, y2 }, defs);
+      stops.forEach(([o, c, a]) => $('stop', { offset: o, 'stop-color': c, 'stop-opacity': a === undefined ? 1 : a }, gr));
+      return `url(#${id}_${uid})`;
+    };
+
+    // Local unique gradients (never passed to G.reg)
+    const gCloth = mkLin('solCl', [[0, '#6B7864', 0.34], [0.5, '#363F33', 0.14], [1, '#121611', 0.52]], 0, 0, 1, 0.25);
+    const gVest = mkLin('solVs', [[0, '#5A6357', 0.42], [0.48, '#2B312A', 0.2], [1, '#111510', 0.62]], 0, 0, 1, 0.8);
+    const gHelm = mkRad('solHm', [[0, '#788572', 0.55], [0.52, '#31392E', 0.18], [1, '#121611', 0.68]], 0.62, 0.26, 0.72);
+    const gFace = mkRad('solFc', [[0, '#F5DAC4', 0.55], [0.58, '#CFA284', 0.18], [1, '#6E4B38', 0.58]], 0.64, 0.34, 0.68);
+    const gStone = mkLin('solSt', [[0, '#BCC4CA', 0.42], [0.55, '#727A80', 0.16], [1, '#262C31', 0.58]], 0, 0, 1, 1);
+    const gGlint = mkRad('solGl', [[0, '#FFFFFF', 1], [0.35, '#FF3B4D', 0.85], [0.75, '#FF1E32', 0.28], [1, '#FF1E32', 0]]);
+
+    // Hex-only palette for G.reg / setSil compatibility
+    const FAT_L = '#4B5546', FAT = '#363F33', FAT_D = '#242B22', FAT_DD = '#161B15';
+    const VEST_L = '#424940', VEST = '#2B312A', VEST_D = '#1B201A';
+    const GEAR = '#1F2428', GEAR_L = '#394147';
+    const BOOT = '#191D20', BOOT_L = '#32383D';
+    const HELM_L = '#4A5446', HELM = '#31392E', HELM_D = '#1E241C';
+    const SKIN_L = '#E8C5AA', SKIN = '#CFA284', SKIN_D = '#9E7358', SKIN_DD = '#644433';
+    const STONE_L = '#A2AAB0', STONE = '#727A80', STONE_D = '#434A50';
+    const pathR = (p, d, fill, extra) => G.reg($('path', Object.assign({ d, fill }, extra || {}), p), fill);
+
+    const sh = $('ellipse', { cx: 0, cy: 4, rx: 78, ry: 16, fill: 'rgba(0,0,0,0.5)' }, g);
+    const root = $('g', {}, g);
+
+    // Z-order: armB (back) -> legB -> legF -> torso + head + armF (front holding photo)
+    const bodyBack = joint(root, 0, -184);
+    const legLayer = $('g', {}, root);
+    const body = joint(root, 0, -184);
+    const B = body.c;
+
+    // ---- ARTICULATED COMBAT LEGS (fatigues, cargo pockets, molded knee pads, lug-sole combat boots)
+    const makeLeg = (parent, sx, sy, dark) => {
+      const cFat = dark ? FAT_D : FAT;
+      const cHi = dark ? FAT : FAT_L;
+      const hip = joint(parent, sx, sy);
+      const hc = hip.c;
+      const ky = sy + 88;
+      const footY = 0;
+
+      // Thigh combat trousers
+      const thD = `M${sx - 18} ${sy - 6} C${sx - 21} ${sy + 26} ${sx - 19} ${sy + 60} ${sx - 15} ${ky + 2} `
+        + `L${sx + 15} ${ky + 2} C${sx + 19} ${sy + 58} ${sx + 21} ${sy + 24} ${sx + 17} ${sy - 6} Z`;
+      pathR(hc, thD, cFat);
+      // Cargo pocket + cloth highlight fold
+      pathR(hc, `M${sx + 4} ${sy + 8} C${sx + 12} ${sy + 30} ${sx + 12} ${sy + 56} ${sx + 9} ${ky - 6} L${sx + 15} ${ky - 6} C${sx + 18} ${sy + 54} ${sx + 18} ${sy + 28} ${sx + 14} ${sy + 6} Z`, cHi, { opacity: 0.72 });
+      pathR(hc, `M${sx - 10} ${sy + 26} L${sx + 8} ${sy + 26} L${sx + 9} ${sy + 56} L${sx - 9} ${sy + 56} Z`, dark ? FAT_DD : FAT_D, { opacity: 0.78 });
+      $('path', { d: `M${sx - 10} ${sy + 34} L${sx + 8} ${sy + 34}`, stroke: FAT_DD, 'stroke-width': 2, fill: 'none' }, hc);
+      $('path', { d: thD, fill: gCloth, opacity: dark ? 0.55 : 0.36 }, hc);
+
+      // Stone thigh shell
+      const thSt = $('g', { class: 'sol-stone', opacity: 0 }, hc);
+      $('path', { d: thD, fill: dark ? STONE_D : STONE }, thSt);
+      $('path', { d: thD, fill: gStone, opacity: 0.72 }, thSt);
+      $('path', { d: `M${sx - 6} ${sy + 22} L${sx + 5} ${sy + 52} L${sx - 2} ${sy + 76}`, stroke: '#2A3035', 'stroke-width': 1.8, fill: 'none' }, thSt);
+
+      // Knee joint: molded tactical knee pad + shin trousers + combat boot grounded at y = 0
+      const knee = joint(hc, sx, ky);
+      const kc = knee.c;
+
+      const shD = `M${sx - 15} ${ky - 4} C${sx - 17} ${ky + 26} ${sx - 15} ${ky + 52} ${sx - 12} ${footY - 26} `
+        + `L${sx + 13} ${footY - 26} C${sx + 16} ${ky + 50} ${sx + 17} ${ky + 24} ${sx + 15} ${ky - 4} Z`;
+      pathR(kc, shD, cFat);
+      pathR(kc, `M${sx + 4} ${ky + 8} C${sx + 9} ${ky + 32} ${sx + 9} ${ky + 50} ${sx + 7} ${footY - 28} L${sx + 12} ${footY - 28} C${sx + 14} ${ky + 50} ${sx + 15} ${ky + 30} ${sx + 12} ${ky + 8} Z`, cHi, { opacity: 0.65 });
+      $('path', { d: shD, fill: gCloth, opacity: dark ? 0.55 : 0.35 }, kc);
+
+      // Molded hard-shell tactical knee pad + elastic straps
+      const padD = `M${sx - 10} ${ky - 11} C${sx - 14} ${ky - 2} ${sx - 12} ${ky + 12} ${sx - 3} ${ky + 15} `
+        + `C${sx + 10} ${ky + 16} ${sx + 18} ${ky + 9} ${sx + 18} ${ky - 1} C${sx + 17} ${ky - 11} ${sx + 6} ${ky - 14} ${sx - 10} ${ky - 11} Z`;
+      pathR(kc, `M${sx - 16} ${ky - 5} L${sx + 12} ${ky - 5} L${sx + 12} ${ky + 8} L${sx - 16} ${ky + 8} Z`, FAT_DD);
+      pathR(kc, padD, GEAR);
+      pathR(kc, `M${sx + 1} ${ky - 8} C${sx + 10} ${ky - 8} ${sx + 14} ${ky - 3} ${sx + 14} ${ky + 4} C${sx + 10} ${ky + 1} ${sx + 5} ${ky - 2} ${sx + 1} ${ky - 8} Z`, GEAR_L, { opacity: 0.85 });
+
+      // Heavy laced combat boot with lug sole grounded at y = 0
+      const bootD = `M${sx - 14} ${footY - 30} L${sx + 13} ${footY - 30} C${sx + 15} ${footY - 20} ${sx + 18} ${footY - 14} ${sx + 29} ${footY - 10} `
+        + `C${sx + 35} ${footY - 8} ${sx + 36} ${footY - 2} ${sx + 34} ${footY} L${sx - 16} ${footY} `
+        + `C${sx - 18} ${footY - 8} ${sx - 16} ${footY - 20} ${sx - 14} ${footY - 30} Z`;
+      pathR(kc, bootD, BOOT);
+      pathR(kc, `M${sx + 6} ${footY - 26} C${sx + 12} ${footY - 16} ${sx + 22} ${footY - 11} ${sx + 31} ${footY - 7} L${sx + 27} ${footY - 4} C${sx + 16} ${footY - 8} ${sx + 8} ${footY - 14} ${sx + 3} ${footY - 24} Z`, BOOT_L, { opacity: 0.72 });
+      // Boot lug sole line
+      $('path', { d: `M${sx - 15} ${footY - 4} L${sx + 33} ${footY - 4}`, stroke: '#0C0E10', 'stroke-width': 3.5, fill: 'none' }, kc);
+
+      // Stone shin + knee pad + boot shell
+      const shSt = $('g', { class: 'sol-stone', opacity: 0 }, kc);
+      $('path', { d: shD, fill: dark ? STONE_D : STONE }, shSt);
+      $('path', { d: padD, fill: STONE_L }, shSt);
+      $('path', { d: bootD, fill: STONE_D }, shSt);
+      $('path', { d: shD, fill: gStone, opacity: 0.72 }, shSt);
+      $('path', { d: `M${sx + 5} ${ky + 18} L${sx - 4} ${ky + 48} L${sx + 3} ${ky + 68}`, stroke: '#2A3035', 'stroke-width': 1.8, fill: 'none' }, shSt);
+
+      return { hip, knee };
+    };
+
+    // ---- ARTICULATED TACTICAL ARMS (combat sleeves, elbow guards, tactical gloves; front hand grips 4-pixel photo!)
+    const makeArm = (parent, sx, sy, dark, hasPhoto) => {
+      const cFat = dark ? FAT_D : FAT;
+      const cHi = dark ? FAT : FAT_L;
+      const shd = joint(parent, sx, sy);
+      const sc = shd.c;
+      const ey = sy + 68;
+      const wy = ey + 64;
+
+      // Upper combat sleeve + shoulder pad + MTF patch on front arm
+      const upD = `M${sx - 15} ${sy - 10} C${sx - 18} ${sy + 18} ${sx - 15} ${sy + 48} ${sx - 12} ${ey + 2} `
+        + `L${sx + 12} ${ey + 2} C${sx + 16} ${sy + 48} ${sx + 18} ${sy + 18} ${sx + 14} ${sy - 10} C${sx + 6} ${sy - 18} ${sx - 8} ${sy - 18} ${sx - 15} ${sy - 10} Z`;
+      pathR(sc, upD, cFat);
+      pathR(sc, `M${sx + 3} ${sy - 8} C${sx + 10} ${sy + 16} ${sx + 11} ${sy + 44} ${sx + 7} ${ey - 4} L${sx + 12} ${ey - 4} C${sx + 16} ${sy + 44} ${sx + 17} ${sy + 14} ${sx + 12} ${sy - 8} Z`, cHi, { opacity: 0.68 });
+      if (!dark) {
+        // Foundation MTF shoulder Velcro patch
+        pathR(sc, `M${sx - 9} ${sy + 6} L${sx + 7} ${sy + 6} L${sx + 7} ${sy + 24} L${sx - 9} ${sy + 24} Z`, GEAR);
+        $('circle', { cx: sx - 1, cy: sy + 15, r: 5.2, fill: 'none', stroke: '#C8CFC4', 'stroke-width': 1.5, opacity: 0.85 }, sc);
+        $('path', { d: `M${sx - 4} ${sy + 17} L${sx - 1} ${sy + 12} L${sx + 2} ${sy + 17}`, stroke: '#C8CFC4', 'stroke-width': 1.4, fill: 'none', opacity: 0.85 }, sc);
+      }
+      $('path', { d: upD, fill: gCloth, opacity: dark ? 0.55 : 0.35 }, sc);
+
+      const upSt = $('g', { class: 'sol-stone', opacity: 0 }, sc);
+      $('path', { d: upD, fill: dark ? STONE_D : STONE }, upSt);
+      $('path', { d: upD, fill: gStone, opacity: 0.7 }, upSt);
+
+      // Elbow joint: forearm sleeve + tactical glove
+      const elb = joint(sc, sx, ey);
+      const ec = elb.c;
+      const foD = `M${sx - 12} ${ey - 2} C${sx - 14} ${ey + 22} ${sx - 11} ${ey + 44} ${sx - 9} ${wy} `
+        + `L${sx + 9} ${wy} C${sx + 12} ${ey + 44} ${sx + 14} ${ey + 22} ${sx + 12} ${ey - 2} Z`;
+      pathR(ec, foD, cFat);
+      pathR(ec, `M${sx + 2} ${ey + 4} C${sx + 6} ${ey + 24} ${sx + 6} ${ey + 44} ${sx + 5} ${wy - 4} L${sx + 9} ${wy - 4} C${sx + 11} ${ey + 44} ${sx + 12} ${ey + 22} ${sx + 9} ${ey + 4} Z`, cHi, { opacity: 0.65 });
+      // Molded elbow guard
+      pathR(ec, `M${sx - 14} ${ey - 6} C${sx - 16} ${ey + 4} ${sx - 13} ${ey + 12} ${sx - 5} ${ey + 11} C${sx - 6} ${ey + 3} ${sx - 7} ${ey - 4} ${sx - 14} ${ey - 6} Z`, GEAR);
+      $('path', { d: foD, fill: gCloth, opacity: dark ? 0.52 : 0.34 }, ec);
+
+      // Tactical gloved hand
+      const hand = $('g', {}, ec);
+      const gloveD = `M${sx - 9} ${wy - 2} C${sx - 13} ${wy + 8} ${sx - 12} ${wy + 22} ${sx - 6} ${wy + 26} `
+        + `L${sx + 10} ${wy + 26} C${sx + 15} ${wy + 20} ${sx + 15} ${wy + 8} ${sx + 9} ${wy - 2} Z`;
+      pathR(hand, gloveD, GEAR);
+      pathR(hand, `M${sx - 5} ${wy + 8} L${sx + 9} ${wy + 8} L${sx + 8} ${wy + 13} L${sx - 5} ${wy + 13} Z`, GEAR_L, { opacity: 0.85 });
+
+      // Stone forearm + glove shell (applied BEFORE the photo so the photo stays vivid & unpetrified!)
+      const foSt = $('g', { class: 'sol-stone', opacity: 0 }, ec);
+      $('path', { d: foD, fill: dark ? STONE_D : STONE }, foSt);
+      $('path', { d: gloveD, fill: STONE_L }, foSt);
+      $('path', { d: foD, fill: gStone, opacity: 0.7 }, foSt);
+      $('path', { d: `M${sx - 4} ${ey + 18} L${sx + 4} ${ey + 42}`, stroke: '#2A3035', 'stroke-width': 1.8, fill: 'none' }, foSt);
+
+      let photoMk = null;
+      if (hasPhoto) {
+        // ---- CRUMPLED 4-PIXEL MOUNTAIN PHOTOGRAPH (NEVER turns to stone!)
+        const phG = $('g', { transform: `translate(${sx + 8},${wy + 14}) rotate(-18)` }, hand);
+        // Crumpled glossy white photo border
+        $('path', { d: 'M-22 -28 L24 -30 L26 16 L2 19 L-20 15 Z', fill: '#EAE6DC', stroke: '#B8B2A6', 'stroke-width': 1.5 }, phG);
+        // Alpine mountain scene inside photo
+        $('path', { d: 'M-18 -24 L20 -25 L21 6 L-17 5 Z', fill: '#9AB8D1' }, phG);
+        // Distant snow peaks & dark foreground ridge
+        $('path', { d: 'M-18 -4 L-6 -18 L4 -8 L13 -20 L21 -6 L21 6 L-17 5 Z', fill: '#D9E6F0' }, phG);
+        $('path', { d: 'M-18 -2 L-8 -11 L0 -3 L10 -12 L21 -1 L21 6 L-17 5 Z', fill: '#455C70' }, phG);
+        $('path', { d: 'M-17 1 L-4 -4 L8 0 L21 -2 L21 6 L-17 5 Z', fill: '#222F3A' }, phG);
+        // Crumpled diagonal paper crease shadows
+        $('path', { d: 'M-14 -27 L10 17 M-20 -4 L24 -12', stroke: '#283038', 'stroke-width': 1.1, opacity: 0.28, fill: 'none' }, phG);
+        // Subtle red-white 4-PIXEL GLINT in the snowy mountain background!
+        $('circle', { cx: 6, cy: -11, r: 7.5, fill: gGlint, opacity: 0.78 }, phG);
+        $('rect', { x: 4.8, y: -12.2, width: 1.5, height: 1.5, fill: '#FFFFFF' }, phG);
+        $('rect', { x: 6.3, y: -12.2, width: 1.5, height: 1.5, fill: '#FF3B4D' }, phG);
+        $('rect', { x: 4.8, y: -10.7, width: 1.5, height: 1.5, fill: '#FF3B4D' }, phG);
+        $('rect', { x: 6.3, y: -10.7, width: 1.5, height: 1.5, fill: '#FFFFFF' }, phG);
+        // Gloved thumb & forefinger pinching the bottom edge of the photo
+        pathR(phG, 'M-16 8 C-10 2 -2 4 2 10 C0 16 -8 18 -16 14 Z', GEAR);
+        const thSt = $('g', { class: 'sol-stone', opacity: 0 }, phG);
+        $('path', { d: 'M-16 8 C-10 2 -2 4 2 10 C0 16 -8 18 -16 14 Z', fill: STONE_L }, thSt);
+
+        photoMk = $('circle', { cx: 4, cy: -8, r: 1, fill: 'none' }, phG);
+      }
+      return { shd, elb, hand, photoMk };
+    };
+
+    // Mount limbs in exact depth order
+    const armB = makeArm(bodyBack.c, -22, -296, true, false);
+    const legB = makeLeg(legLayer, -10, -180, true);
+    const legF = makeLeg(legLayer, 12, -178, false);
+
+    // ---- TORSO: COMBAT FATIGUES + BALLISTIC PLATE CARRIER VEST + UTILITY BELT
+    // Combat shirt torso base
+    const torsoD = 'M-30 -302 C-36 -272 -32 -224 -26 -178 L28 -178 C34 -224 38 -272 32 -302 C14 -314 -14 -314 -30 -302 Z';
+    pathR(B, torsoD, FAT);
+    $('path', { d: torsoD, fill: gCloth, opacity: 0.4 }, B);
+
+    // Ballistic plate carrier vest (layered bevelled armor plate + shoulder straps + MOLLE pouches)
+    const vestD = 'M-27 -300 C-33 -272 -31 -234 -26 -204 L28 -204 C33 -234 35 -272 29 -300 L18 -304 L14 -286 L-10 -286 L-14 -304 Z';
+    pathR(B, vestD, VEST);
+    // Front ballistic trauma plate bevel + highlight
+    pathR(B, 'M-18 -282 L20 -282 L24 -250 L20 -212 L-18 -212 L-22 -250 Z', VEST_L, { opacity: 0.78 });
+    pathR(B, 'M-14 -276 L16 -276 L18 -218 L-14 -218 Z', VEST);
+    // MOLLE webbing rows & twin rifle magazine pouches + tactical radio on chest
+    for (const my of [-266, -254, -242]) {
+      $('path', { d: `M-16 ${my} L20 ${my}`, stroke: VEST_D, 'stroke-width': 3.2, fill: 'none' }, B);
+    }
+    pathR(B, 'M-14 -240 L-1 -240 L-1 -210 L-14 -210 Z', VEST_D);
+    pathR(B, 'M2 -240 L16 -240 L16 -210 L2 -210 Z', VEST_D);
+    pathR(B, 'M-13 -238 L-2 -238 L-2 -228 L-13 -228 Z', VEST_L, { opacity: 0.75 });
+    pathR(B, 'M3 -238 L15 -238 L15 -228 L3 -228 Z', VEST_L, { opacity: 0.75 });
+    // Radio antenna peeking from left shoulder
+    $('path', { d: 'M-20 -298 L-25 -334', stroke: GEAR, 'stroke-width': 2.4, fill: 'none', 'stroke-linecap': 'round' }, B);
+    $('path', { d: vestD, fill: gVest, opacity: 0.55 }, B);
+
+    // Tactical duty belt + buckle + side pouches
+    pathR(B, 'M-29 -196 L31 -196 L30 -180 L-28 -180 Z', GEAR);
+    pathR(B, 'M4 -195 L16 -195 L16 -181 L4 -181 Z', GEAR_L);
+
+    // Stone torso + plate carrier shell
+    const torsoSt = $('g', { class: 'sol-stone', opacity: 0 }, B);
+    $('path', { d: torsoD, fill: STONE }, torsoSt);
+    $('path', { d: vestD, fill: STONE_L }, torsoSt);
+    $('path', { d: 'M-14 -240 L-1 -240 L-1 -210 L-14 -210 Z M2 -240 L16 -240 L16 -210 L2 -210 Z', fill: STONE_D }, torsoSt);
+    $('path', { d: vestD, fill: gStone, opacity: 0.74 }, torsoSt);
+    $('path', { d: 'M-16 -288 L2 -254 L18 -266 M-10 -238 L6 -212 L-4 -186', stroke: '#2A3035', 'stroke-width': 2.1, fill: 'none' }, torsoSt);
+
+    const bodyMk = $('circle', { cx: 2, cy: -245, r: 1, fill: 'none' }, B);
+
+    // ---- NECK + SCULPTED HEAD (MATTE TACTICAL HELMET, RAISED NVG MOUNT, PANICKED FACE)
+    const neckD = 'M-10 -300 C-9 -312 -8 -320 -7 -328 L15 -328 C14 -320 14 -310 16 -300 Z';
+    pathR(B, neckD, SKIN_D);
+    // High collar / balaclava neck gaiter
+    pathR(B, 'M-14 -304 C-6 -298 10 -298 19 -304 L17 -314 C8 -309 -5 -309 -12 -314 Z', GEAR);
+    const neckSt = $('g', { class: 'sol-stone', opacity: 0 }, B);
+    $('path', { d: neckD, fill: STONE_D }, neckSt);
+
+    const headG = joint(B, 4, -324);
+    const Hc = headG.c;
+
+    // Sculpted jaw & face silhouette (centered around x=4, y=-348)
+    const faceD = 'M-20 -354 C-22 -376 -8 -388 8 -386 C26 -384 32 -368 30 -348 C29 -334 24 -322 14 -318 C2 -316 -12 -322 -18 -334 C-20 -342 -20 -348 -20 -354 Z';
+    pathR(Hc, faceD, SKIN);
+    pathR(Hc, 'M-18 -352 C-14 -340 -10 -328 -4 -320 C-12 -324 -18 -336 -18 -352 Z', SKIN_D, { opacity: 0.72 });
+    // Nose bridge + nostril shadow
+    pathR(Hc, 'M14 -352 L19 -339 L12 -338 Z', SKIN_D, { opacity: 0.65 });
+    $('path', { d: faceD, fill: gFace, opacity: 0.45 }, Hc);
+
+    // Shadowed brow recess + panicked high-arched brows
+    pathR(Hc, 'M-8 -359 C4 -363 18 -363 29 -358 C22 -352 4 -352 -8 -355 Z', SKIN_D, { opacity: 0.55 });
+    $('path', { d: 'M8 -359 Q17 -365 26 -359', stroke: '#2A1E18', 'stroke-width': 2.6, fill: 'none', 'stroke-linecap': 'round' }, Hc);
+    $('path', { d: 'M-9 -358 Q-1 -364 5 -359', stroke: '#2A1E18', 'stroke-width': 2.3, fill: 'none', 'stroke-linecap': 'round' }, Hc);
+
+    // Panicked wide expressive eyes (sclera + tiny contracted terrified pupils)
+    $('ellipse', { cx: 18, cy: -350, rx: 6.2, ry: 5.4, fill: '#F5F4EE', stroke: SKIN_DD, 'stroke-width': 1.2 }, Hc);
+    $('ellipse', { cx: -1, cy: -350, rx: 5.0, ry: 5.0, fill: '#F5F4EE', stroke: SKIN_DD, 'stroke-width': 1.1 }, Hc);
+    const pupilsG = $('g', {}, Hc);
+    $('circle', { cx: 19, cy: -350, r: 2.3, fill: '#485E6B' }, pupilsG);
+    $('circle', { cx: 19.2, cy: -350, r: 1.3, fill: '#101418' }, pupilsG);
+    $('circle', { cx: 17.5, cy: -351.4, r: 0.9, fill: '#FFFFFF' }, pupilsG);
+    $('circle', { cx: -0.2, cy: -350, r: 2.0, fill: '#485E6B' }, pupilsG);
+    $('circle', { cx: 0, cy: -350, r: 1.1, fill: '#101418' }, pupilsG);
+    $('circle', { cx: -1.3, cy: -351.4, r: 0.8, fill: '#FFFFFF' }, pupilsG);
+
+    // Terrified dynamic screaming mouth
+    const mouthCav = $('ellipse', { cx: 12, cy: -331, rx: 7.8, ry: 5.2, fill: '#280C10', stroke: SKIN_DD, 'stroke-width': 1.3 }, Hc);
+    const mouthTeethU = $('path', { d: 'M6 -334 Q12 -332 18 -334 L17 -331 Q12 -330 7 -331 Z', fill: '#F2EFE6' }, Hc);
+    const mouthTeethL = $('path', { d: 'M7 -328 Q12 -327 17 -328 L16 -326 Q12 -325 8 -326 Z', fill: '#E2DDD0' }, Hc);
+
+    // Matte tactical FAST combat helmet + ARC side rail + chinstrap
+    const helmD = 'M-26 -354 C-28 -384 -10 -398 10 -396 C28 -394 38 -378 36 -362 C26 -366 12 -368 -2 -364 C-8 -358 -12 -348 -14 -340 C-22 -342 -26 -346 -26 -354 Z';
+    pathR(Hc, helmD, HELM);
+    pathR(Hc, 'M-24 -356 C-24 -380 -8 -394 10 -392 C-2 -384 -12 -370 -14 -346 C-20 -348 -24 -350 -24 -356 Z', HELM_D, { opacity: 0.72 });
+    pathR(Hc, 'M-6 -392 C8 -394 22 -388 30 -374 C22 -380 8 -384 -6 -386 Z', HELM_L, { opacity: 0.8 });
+    $('path', { d: helmD, fill: gHelm, opacity: 0.58 }, Hc);
+    // Helmet ARC side rail + comms headset cup + chinstrap
+    pathR(Hc, 'M-18 -364 L6 -366 L6 -360 L-18 -358 Z', GEAR);
+    ell(Hc, -12, -348, 7, 9, GEAR);
+    ell(Hc, -11, -348, 4, 6, GEAR_L);
+    $('path', { d: 'M-10 -340 Q-4 -324 8 -320', stroke: GEAR, 'stroke-width': 2.6, fill: 'none' }, Hc);
+
+    // Raised NVG shroud + flipped-up dual-tube night vision goggles on helmet brow
+    const nvgMountD = 'M24 -378 L36 -384 L38 -374 L26 -368 Z';
+    pathR(Hc, nvgMountD, GEAR);
+    const nvgTubeD = 'M22 -386 L42 -398 L48 -388 L28 -376 Z';
+    pathR(Hc, nvgTubeD, GEAR_L);
+    pathR(Hc, 'M28 -382 L44 -392 L47 -386 L31 -376 Z', GEAR);
+    const nvgLens = $('ellipse', { cx: 45, cy: -392, rx: 3.2, ry: 4.8, transform: 'rotate(-28 45 -392)', fill: '#3CE87A', opacity: 0.82 }, Hc);
+
+    // Sculpted granite head + helmet + frozen mid-scream face overlay
+    const headSt = $('g', { class: 'sol-stone', opacity: 0 }, Hc);
+    $('path', { d: faceD, fill: STONE }, headSt);
+    $('ellipse', { cx: 18, cy: -350, rx: 6.2, ry: 5.4, fill: STONE_D }, headSt);
+    $('ellipse', { cx: -1, cy: -350, rx: 5.0, ry: 5.0, fill: STONE_D }, headSt);
+    const mouthSt = $('ellipse', { cx: 12, cy: -331, rx: 7.8, ry: 5.2, fill: '#2B3136' }, headSt);
+    $('path', { d: helmD, fill: STONE_L }, headSt);
+    $('path', { d: nvgMountD, fill: STONE_D }, headSt);
+    $('path', { d: nvgTubeD, fill: STONE }, headSt);
+    $('path', { d: helmD, fill: gStone, opacity: 0.74 }, headSt);
+    $('path', { d: 'M-10 -386 L4 -370 L-2 -348 M20 -360 L26 -338', stroke: '#2A3035', 'stroke-width': 2, fill: 'none' }, headSt);
+
+    // Markers on head
+    const eyeMk = $('circle', { cx: 18, cy: -350, r: 1, fill: 'none' }, Hc);
+    const headMk = $('circle', { cx: 4, cy: -348, r: 1, fill: 'none' }, Hc);
+    const mouthMk = $('circle', { cx: 12, cy: -331, r: 1, fill: 'none' }, Hc);
+
+    // Front arm holding the crumpled 4-pixel photograph (mounted last so it overlaps torso)
+    const armF = makeArm(B, 22, -296, false, true);
+
+    const stoneEls = Array.from(g.querySelectorAll('.sol-stone'));
+
+    rig.root = g;
+    rig.g = g;
+    rig.dynHead = true;
+    rig.mk = { eye: eyeMk, head: headMk, mouth: mouthMk, photo: armF.photoMk, body: bodyMk };
+    rig.N = {
+      bodyY: 0, bodyRot: 4, lift: 0, head: 0, mouth: 0.2, eyeLook: 0,
+      aL: [-14, 18], aR: [42, 82], lF: [10, 6], lB: [-10, -8],
+      stone: 0, shakeX: 0, shakeY: 0,
+    };
+
+    rig.apply = (p) => {
+      const lift = p.lift || 0;
+      const sx = p.shakeX || 0, sy = p.shakeY || 0;
+      tr(root, sx, (p.bodyY || 0) - lift + sy);
+      sh.setAttribute('rx', f2(clamp(78 - lift * 0.2, 28, 92)));
+      sh.setAttribute('opacity', f2(clamp(0.5 - lift * 0.002, 0.08, 0.56)));
+
+      const br = p.bodyRot || 0;
+      body.set(br);
+      bodyBack.set(br);
+      headG.set(p.head || 0);
+
+      // Eye glance shift & terrified screaming mouth
+      const el = clamp(p.eyeLook || 0, -1, 1);
+      tr(pupilsG, el * 2.2, 0);
+      const mo = clamp(p.mouth === undefined ? 0.2 : p.mouth, 0, 1.1);
+      const mRy = 1.8 + mo * 7.6;
+      mouthCav.setAttribute('ry', f2(mRy));
+      mouthSt.setAttribute('ry', f2(mRy));
+      mouthTeethU.setAttribute('opacity', mo > 0.22 ? 1 : 0);
+      mouthTeethL.setAttribute('transform', `translate(0,${f2(mo * 4.5)})`);
+      mouthTeethL.setAttribute('opacity', mo > 0.35 ? 1 : 0);
+
+      // Dynamic granite petrification overlay (photo stays vivid!)
+      const st = clamp(p.stone || 0, 0, 1);
+      stoneEls.forEach((elS) => elS.setAttribute('opacity', f2(st)));
+      nvgLens.setAttribute('opacity', f2(0.82 * (1 - st)));
+
+      // Articulated limbs (standard rigs.js convention: + = forward toward +x)
+      const setL = (L, a) => { L.hip.set(-a[0]); L.knee.set(-(a[1] - a[0])); };
+      const setA = (A, a) => { A.shd.set(-a[0]); A.elb.set(-(a[1] - a[0])); };
+      setL(legF, p.lF || [10, 6]);
+      setL(legB, p.lB || [-10, -8]);
+      setA(armB, p.aL || [-14, 18]);
+      setA(armF, p.aR || [42, 82]);
+    };
+
+    return rig;
+  }
+
+  const SOLDIER = {
+    idle: (c) => ({
+      bodyY: 2.5 * Math.sin(c.t * 2.8), bodyRot: 4 + 1.5 * Math.sin(c.t * 1.9),
+      head: 2 * Math.sin(c.t * 1.6), mouth: 0.16, eyeLook: 0.2,
+      aL: [-14, 18], aR: [44, 86], lF: [10, 6], lB: [-10, -8], stone: 0,
+    }),
+    run: (c) => {
+      const f = 2 * Math.PI * (c.p.speed || 2.8) * c.lt;
+      const s = Math.sin(f);
+      return {
+        bodyY: 8 + 10 * Math.abs(s), bodyRot: 22 + 3 * s, head: -10,
+        mouth: 0.65, eyeLook: 0.4,
+        lF: legPh(f, 8, 42, 46), lB: legPh(f + Math.PI, 8, 42, 46),
+        aL: [-28 + 34 * s, 26 + 24 * s], aR: [54 - 14 * s, 96 - 10 * s],
+        stone: 0, shakeX: 1.8 * Math.sin(c.lt * 34),
+      };
+    },
+    'look-back': (c) => {
+      const f = 2 * Math.PI * (c.p.speed || 2.1) * c.lt;
+      const s = Math.sin(f);
+      return {
+        bodyY: 12 + 7 * Math.abs(s), bodyRot: 14 + 4 * s, head: -26 + 3 * Math.sin(c.lt * 14),
+        mouth: 0.78, eyeLook: -1,
+        lF: legPh(f, 12, 34, 38), lB: legPh(f + Math.PI, 12, 34, 38),
+        aL: [-34 + 20 * s, 14], aR: [62, 108],
+        stone: 0, shakeX: 3.2 * Math.sin(c.lt * 46),
+      };
+    },
+    petrify: (c) => {
+      const st = lerp(c.p.stone0 || 0, c.p.stone1 === undefined ? 1 : c.p.stone1, clamp(c.u));
+      const rem = 1 - st;
+      return {
+        bodyY: 14, bodyRot: 18, head: -22, mouth: 0.92, eyeLook: -0.9,
+        lF: [36, 12], lB: [-34, -52], aL: [-42, 8], aR: [74, 114],
+        stone: st, shakeX: 4.5 * rem * Math.sin(c.lt * 52),
+      };
+    },
+    statue: () => ({
+      bodyY: 14, bodyRot: 18, head: -22, mouth: 0.92, eyeLook: -0.9,
+      lF: [36, 12], lB: [-34, -52], aL: [-42, 8], aR: [74, 114],
+      stone: 1.0, shakeX: 0, shakeY: 0,
+    }),
+  };
+  SOLDIER.fade = SOLDIER.idle;
+
+  const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, fisherman: FISHERMAN, cerberus: CERB, bec: BEC, apep: APEP, thor: THOR, typhon: TYPHON, cthulhu: CTHULHU, scp682: SCP682, pegasus: PEGASUS, zeus: ZEUS, scp096: SCP096, medusa: MEDUSA, soldier: SOLDIER };
+  const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, fisherman: buildFisherman, cerberus: buildCerberus, bec: buildBec, apep: buildApep, thor: buildThor, typhon: buildTyphon, cthulhu: buildCthulhu, scp682: buildScp682, pegasus: buildPegasus, zeus: buildZeus, scp096: buildScp096, medusa: buildMedusa, soldier: buildSoldier };
   Object.assign(G, { ACTIONS, RIGS });
 })(window);

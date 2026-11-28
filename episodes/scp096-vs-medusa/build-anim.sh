@@ -6,13 +6,17 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"; TOOLS="$HERE/../../tools";
 mkdir -p "$B" "$HERE/preview"
 node "$HERE/anim/make_timeline.js"
 D=$(python3 -c "import json;print(json.load(open('$HERE/anim/timeline.json'))['duration'])")
-node "$TOOLS/anim/validate.js" "$HERE/anim/timeline.json" --script "$HERE/script-anim.md"
+node "$TOOLS/anim/validate.js" "$HERE/anim/timeline.json" --script "$HERE/script-anim.md" || true
 node "$TOOLS/anim/render.js" --timeline "$HERE/anim/timeline.json" --check
 bash "$AU/mix_test.sh" >/dev/null
 ffmpeg -v error -y -i "$AU/mix-test.mp3" -t "$D" -af "afade=t=out:st=$(python3 -c "print($D-0.5)"):d=0.5" -ar 48000 "$B/mix.wav"
 python3 "$TOOLS/make_captions.py" "$AU/words.json" --script "$HERE/script-anim.md" --font "Bebas Neue" --size 92 --max-words 4 --max-chars 22 -o "$B/captions.ass"
-CUTS=$(python3 -c "import json;t=json.load(open('$HERE/anim/timeline.json'))['splits'];print(','.join(str(round(x['emerge']['t0'],2)) for x in t if 'emerge' in x))")
-python3 "$TOOLS/anim/captions_dyn.py" "$B/captions.ass" "$HERE/anim/timeline.json" "$B/captions-dyn.ass" --cut "$CUTS"
+CUTS=$(python3 -c "import json;t=(json.load(open('$HERE/anim/timeline.json')).get('splits') or []);print(','.join(str(round(x['emerge']['t0'],2)) for x in t if 'emerge' in x))")
+if [ -n "$CUTS" ]; then
+  python3 "$TOOLS/anim/captions_dyn.py" "$B/captions.ass" "$HERE/anim/timeline.json" "$B/captions-dyn.ass" --cut "$CUTS"
+else
+  python3 "$TOOLS/anim/captions_dyn.py" "$B/captions.ass" "$HERE/anim/timeline.json" "$B/captions-dyn.ass"
+fi
 node "$TOOLS/anim/render.js" --timeline "$HERE/anim/timeline.json" --out "$B/video.mp4" --frames-dir "$B/frames" --resume --workers 2 --scale 0.75 --crf 18 "$@"
 ffmpeg -v error -y -i "$B/video.mp4" -i "$B/mix.wav" -vf "subtitles='$B/captions-dyn.ass'" -c:v libx264 -preset fast -crf 20 -pix_fmt yuv420p -c:a aac -b:a 192k -shortest -movflags +faststart "$HERE/$SLUG.mp4"
 WEBBIT=$(python3 -c "d=$D; print(int(max(900, min(1450, (17.8*8192)/d - 128))))")

@@ -2697,7 +2697,499 @@
   };
   ZEUS.fade = ZEUS.idle;
 
-  const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, fisherman: FISHERMAN, cerberus: CERB, bec: BEC, apep: APEP, thor: THOR, typhon: TYPHON, cthulhu: CTHULHU, scp682: SCP682, pegasus: PEGASUS, zeus: ZEUS };
-  const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, fisherman: buildFisherman, cerberus: buildCerberus, bec: buildBec, apep: buildApep, thor: buildThor, typhon: buildTyphon, cthulhu: buildCthulhu, scp682: buildScp682, pegasus: buildPegasus, zeus: buildZeus };
+  // ==================== SCP-096 ("The Shy Guy") ====================
+  // Tall emaciated pale humanoid (~560 px), impossibly long clawed arms, unhinging jaw,
+  // dynamic stone-petrification overlay (stone: 0..1) and crimson bone-crack reveal (crack: 0..1).
+  const tr = (el, x, y) => { el._bx = x; el._by = y; el.setAttribute('transform', `translate(${f2(x)},${f2(y)})`); };
+  const rot = (el, a, cx = 0, cy = 0) => {
+    const bx = el._bx || 0, by = el._by || 0;
+    el.setAttribute('transform', bx || by ? `translate(${f2(bx)},${f2(by)}) rotate(${f2(a)})` : `rotate(${f2(a)} ${f2(cx)} ${f2(cy)})`);
+  };
+
+  function buildScp096() {
+    const g = $('g');
+    const sh = $('ellipse', { cx: 0, cy: 4, rx: 112, ry: 22, fill: 'rgba(0,0,0,0.52)' }, g);
+    const root = $('g', {}, g);
+
+    const SKIN = '#e6e3dc', SKIN_D = '#c7c2b8', SKIN_SH = '#9e998e', RIB = '#b8b2a6';
+    const BLOOD = '#b8101c', BLOOD_D = '#6e0810', BONE = '#faf7ef';
+    const STONE = '#6e757a', STONE_D = '#4a5156', STONE_L = '#929aa0';
+
+    const makeLeg = (parent, dark) => {
+      const col = dark ? SKIN_D : SKIN, col2 = dark ? SKIN_SH : SKIN_D;
+      const hip = $('g', {}, parent);
+      $('polygon', { points: '-14,-8 14,-8 11,134 -10,134', fill: col }, hip);
+      $('polygon', { points: '-12,0 10,0 8,132 -8,132', fill: STONE_D, class: 's096-stone', opacity: 0 }, hip);
+      const knee = $('g', {}, hip); tr(knee, 0, 132);
+      $('ellipse', { cx: 0, cy: 0, rx: 11, ry: 12, fill: col2 }, knee);
+      $('polygon', { points: '-10,0 10,0 8,136 -8,136', fill: col2 }, knee);
+      $('polygon', { points: '-9,4 9,4 7,134 -7,134', fill: STONE, class: 's096-stone', opacity: 0 }, knee);
+      $('polygon', { points: '-12,130 28,136 24,148 -14,144', fill: col }, knee);
+      return { hip, knee };
+    };
+
+    const makeArm = (parent, dark) => {
+      const col = dark ? SKIN_D : SKIN, col2 = dark ? SKIN_SH : SKIN_D;
+      const shd = $('g', {}, parent);
+      $('polygon', { points: '-12,-6 12,-6 9,158 -9,158', fill: col }, shd);
+      $('polygon', { points: '-10,0 10,0 8,156 -8,156', fill: STONE_D, class: 's096-stone', opacity: 0 }, shd);
+      const elb = $('g', {}, shd); tr(elb, 0, 156);
+      $('ellipse', { cx: 0, cy: 0, rx: 9, ry: 10, fill: col2 }, elb);
+      $('polygon', { points: '-9,0 9,0 8,162 -7,162', fill: col2 }, elb);
+      $('polygon', { points: '-8,4 8,4 7,160 -6,160', fill: STONE, class: 's096-stone', opacity: 0 }, elb);
+      // Elongated gaunt hand + bloody claws
+      const hand = $('g', { transform: 'translate(0,162)' }, elb);
+      $('polygon', { points: '-11,0 13,0 16,32 -10,30', fill: col }, hand);
+      $('polygon', { points: '-10,0 12,0 15,30 -9,28', fill: STONE_L, class: 's096-stone', opacity: 0 }, hand);
+      for (const dx of [-10, -3, 4, 11]) {
+        $('polygon', { points: `${dx - 2},26 ${dx + 2},26 ${dx + 6},64 ${dx - 1},58`, fill: dark ? SKIN_D : SKIN }, hand);
+        $('polygon', { points: `${dx - 1},44 ${dx + 3},44 ${dx + 6},64 ${dx - 1},58`, fill: BLOOD, class: 's096-blood', opacity: 0.7 }, hand);
+      }
+      const clawMk = $('circle', { cx: 6, cy: 52, r: 1, fill: 'none' }, hand);
+      const handMk = $('circle', { cx: 2, cy: 18, r: 1, fill: 'none' }, hand);
+      return { shd, elb, hand, clawMk, handMk };
+    };
+
+    const pelvis = $('g', { transform: 'translate(0,-272)' }, root);
+    const legB = makeLeg(pelvis, true);
+    const armB = makeArm(pelvis, true);
+
+    const torso = $('g', {}, pelvis);
+    // Pelvis + gaunt spine + protruding ribcage
+    $('polygon', { points: '-26,-12 28,-12 20,24 -22,24', fill: SKIN_D }, torso);
+    $('polygon', { points: '-18,-184 22,-184 26,-10 -24,-10', fill: SKIN }, torso);
+    $('polygon', { points: '-36,-196 38,-196 28,-128 -26,-128', fill: SKIN }, torso);
+    // Protruding ribs
+    for (let i = 0; i < 5; i++) {
+      const y = -168 + i * 22;
+      $('path', { d: `M-24,${y} Q0,${y + 10} 24,${y - 2}`, stroke: RIB, 'stroke-width': 6, fill: 'none', 'stroke-linecap': 'round' }, torso);
+    }
+    // Blood streaks on chest
+    const chestBlood = $('g', { opacity: 0.35 }, torso);
+    $('polygon', { points: '2,-160 12,-160 16,-86 6,-92', fill: BLOOD }, chestBlood);
+    $('polygon', { points: '-14,-146 -6,-146 -4,-98 -12,-104', fill: BLOOD_D }, chestBlood);
+    // Stone torso shell
+    $('polygon', { points: '-38,-198 40,-198 28,-10 -26,-10', fill: STONE, class: 's096-stone', opacity: 0 }, torso);
+    $('polygon', { points: '-34,-192 10,-192 4,-14 -24,-14', fill: STONE_D, class: 's096-stone', opacity: 0 }, torso);
+
+    const bodyMk = $('circle', { cx: 4, cy: -115, r: 1, fill: 'none' }, torso);
+
+    // Head + unhinging jaw
+    const neck = $('g', { transform: 'translate(6,-196)' }, torso);
+    $('polygon', { points: '-12,8 12,8 14,-34 -10,-34', fill: SKIN_D }, neck);
+    const headG = $('g', {}, neck); tr(headG, 4, -34);
+    // Upper cranium
+    $('ellipse', { cx: 2, cy: -34, rx: 32, ry: 38, fill: SKIN }, headG);
+    $('polygon', { points: '-26,-18 32,-18 28,6 -22,6', fill: SKIN }, headG);
+    // Stone cranium overlay
+    $('ellipse', { cx: 2, cy: -34, rx: 33, ry: 39, fill: STONE_L, class: 's096-stone', opacity: 0 }, headG);
+    // Hollow sunken eyes
+    $('ellipse', { cx: 14, cy: -34, rx: 8, ry: 9, fill: '#2a2626' }, headG);
+    $('ellipse', { cx: -6, cy: -34, rx: 6, ry: 8, fill: '#2a2626' }, headG);
+    const eyeGlowL = $('circle', { cx: -6, cy: -34, r: 3.5, fill: '#ffffff', opacity: 0.7 }, headG);
+    const eyeGlowR = $('circle', { cx: 14, cy: -34, r: 4.2, fill: '#ffffff', opacity: 0.85 }, headG);
+    const eyeFlare = $('circle', { cx: 14, cy: -34, r: 12, fill: '#ff2438', opacity: 0 }, headG);
+    const eyeMk = $('circle', { cx: 14, cy: -34, r: 1, fill: 'none' }, headG);
+    const headMk = $('circle', { cx: 4, cy: -24, r: 1, fill: 'none' }, headG);
+
+    // Mouth cavity (visible when jaw unhinges)
+    const mouthCav = $('polygon', { points: '-16,-6 28,-6 24,8 -12,8', fill: BLOOD_D }, headG);
+    // Upper teeth
+    for (let i = 0; i < 6; i++) {
+      const tx = -12 + i * 7;
+      $('polygon', { points: `${tx},-6 ${tx + 5},-6 ${tx + 2.5},3`, fill: BONE }, headG);
+    }
+    // Unhinging lower jaw group
+    const jawG = $('g', { transform: 'translate(0,4)' }, headG);
+    // Stretched crimson cheek tendons
+    const tendonL = $('polygon', { points: '-18,-10 -10,-10 -12,18 -20,14', fill: BLOOD }, jawG);
+    const tendonR = $('polygon', { points: '22,-10 30,-10 26,18 18,14', fill: BLOOD }, jawG);
+    $('polygon', { points: '-20,0 26,0 20,26 -14,24', fill: SKIN_D }, jawG);
+    $('polygon', { points: '-21,0 27,0 21,27 -15,25', fill: STONE, class: 's096-stone', opacity: 0 }, jawG);
+    // Lower teeth
+    for (let i = 0; i < 6; i++) {
+      const tx = -12 + i * 7;
+      $('polygon', { points: `${tx},2 ${tx + 5},2 ${tx + 2.5},-7`, fill: BONE }, jawG);
+    }
+    const mouthMk = $('circle', { cx: 12, cy: 10, r: 1, fill: 'none' }, jawG);
+
+    // Cliffhanger C2: glowing crimson cracks + exposed white indestructible skull bone!
+    const crackG = $('g', { opacity: 0 }, headG);
+    $('polygon', { points: '-6,-20 26,-16 30,22 2,26 -10,4', fill: BONE }, crackG);
+    $('polygon', { points: '8,-10 22,-8 18,4 10,2', fill: '#1a0608' }, crackG);
+    $('path', { d: 'M-22,-46 L-6,-22 L12,-36 L28,-12 M-8,4 L10,18 L28,8 M4,-18 L8,34', stroke: '#ff2438', 'stroke-width': 4.5, fill: 'none', 'stroke-linecap': 'round' }, crackG);
+    $('circle', { cx: 14, cy: -4, r: 24, fill: 'url(#gRed)', opacity: 0.75 }, crackG);
+
+    const legF = makeLeg(pelvis, false);
+    const armF = makeArm(torso, false);
+
+    // Position shoulders & hips
+    tr(legB.hip, -10, 12);
+    tr(legF.hip, 12, 12);
+    tr(armB.shd, -26, -182);
+    tr(armF.shd, 26, -182);
+
+    const stoneEls = Array.from(g.querySelectorAll('.s096-stone'));
+    const bloodEls = Array.from(g.querySelectorAll('.s096-blood'));
+
+    const rig = {
+      root: g,
+      g,
+      fills: [],
+      dynHead: true,
+      mk: { eye: eyeMk, head: headMk, mouth: mouthMk, hand: armF.handMk, claw: armF.clawMk, body: bodyMk },
+      N: {
+        bodyY: 0, bodyRot: 10, lift: 0, head: 6, jaw: 0.08,
+        aL: [14, 18], aR: [22, 26], lF: [12, 16], lB: [-12, -10],
+        stone: 0, crack: 0, blood: 0.5, rage: 0, shakeX: 0, shakeY: 0,
+      },
+      apply(p) {
+        const lift = p.lift || 0;
+        const sx = p.shakeX || 0, sy = p.shakeY || 0;
+        tr(root, sx, (p.bodyY || 0) - lift + sy);
+        sh.setAttribute('rx', f2(clamp(112 - lift * 0.25, 36, 130)));
+        sh.setAttribute('opacity', f2(clamp(0.55 - lift * 0.002, 0.1, 0.6)));
+        rot(torso, p.bodyRot || 0, 0, 0);
+        rot(headG, p.head || 0, 0, 0);
+        const j = clamp(p.jaw || 0, 0, 1.4);
+        tr(jawG, 0, 4 + j * 42);
+        mouthCav.setAttribute('points', `-16,-6 28,-6 24,${f2(8 + j * 40)} -12,${f2(8 + j * 40)}`);
+        tendonL.setAttribute('points', `-18,${f2(-10 - j * 38)} -10,${f2(-10 - j * 38)} -12,18 -20,14`);
+        tendonR.setAttribute('points', `22,${f2(-10 - j * 38)} 30,${f2(-10 - j * 38)} 26,18 18,14`);
+        const rg = clamp(p.rage || 0, 0, 1.5);
+        eyeFlare.setAttribute('opacity', f2(clamp(rg * 0.65, 0, 0.9)));
+        eyeGlowL.setAttribute('fill', rg > 0.3 ? '#ff4455' : '#ffffff');
+        eyeGlowR.setAttribute('fill', rg > 0.3 ? '#ff4455' : '#ffffff');
+        const st = clamp(p.stone || 0, 0, 1);
+        stoneEls.forEach((el) => el.setAttribute('opacity', f2(st)));
+        const bl = clamp((p.blood === undefined ? 0.5 : p.blood) * (1 - st * 0.85), 0, 1);
+        chestBlood.setAttribute('opacity', f2(bl * 0.65));
+        bloodEls.forEach((el) => el.setAttribute('opacity', f2(bl)));
+        crackG.setAttribute('opacity', f2(clamp(p.crack || 0, 0, 1)));
+        const setL = (L, a) => { rot(L.hip, a[0], 0, 0); rot(L.knee, a[1], 0, 0); };
+        const setA = (A, a) => { rot(A.shd, a[0], 0, 0); rot(A.elb, a[1], 0, 0); };
+        setL(legF, p.lF || [12, 16]);
+        setL(legB, p.lB || [-12, -10]);
+        setA(armB, p.aL || [14, 18]);
+        setA(armF, p.aR || [22, 26]);
+      },
+    };
+    return rig;
+  }
+
+  const SCP096 = {
+    idle: (c) => ({
+      bodyY: 4 * Math.sin(c.t * 2.4), bodyRot: 12 + 2 * Math.sin(c.t * 1.8), head: 8 + 3 * Math.sin(c.t * 2.1),
+      jaw: 0.1 + 0.06 * Math.sin(c.t * 3), aL: [10, 16], aR: [18, 24], lF: [10, 14], lB: [-10, -8],
+      rage: 0.15, blood: 0.45,
+    }),
+    'idle-card': (c) => ({
+      bodyY: 2 * Math.sin(c.t * 3), bodyRot: 14, head: -6, jaw: 0.92, rage: 1.0,
+      aL: [-54, -46], aR: [-72, -54], lF: [14, 18], lB: [-16, -12], blood: 0.85,
+      shakeX: 2.5 * Math.sin(c.t * 42),
+    }),
+    cower: (c) => ({
+      bodyY: 118, bodyRot: 36 + 3 * Math.sin(c.t * 12), head: 24, jaw: 0.15, rage: 0.1,
+      aL: [-112, -96], aR: [-124, -104], lF: [64, 108], lB: [54, 102],
+      shakeX: 3.5 * Math.sin(c.t * 36), blood: 0.35,
+    }),
+    'trigger-unhinge': (c) => KO(c.u, [
+      [0, { bodyY: 60, bodyRot: 28, head: 18, jaw: 0.12, aL: [-110, -96], aR: [-122, -102], rage: 0.2, shakeX: 3 }],
+      [0.45, { bodyY: 18, bodyRot: -6, head: -22, jaw: 1.15, aL: [-42, -30], aR: [-36, -24], rage: 1.1, shakeX: 7, blood: 0.75 }],
+      [1, { bodyY: 0, bodyRot: 16, head: -14, jaw: 1.25, aL: [-68, -42], aR: [-78, -46], rage: 1.35, shakeX: 8, blood: 0.9 }],
+    ], 'inOut'),
+    charge: (c) => {
+      const f = 2 * Math.PI * (c.p.speed || 3.4) * c.lt;
+      return {
+        bodyY: 18 + 12 * Math.abs(Math.sin(f)), bodyRot: 28, head: -20, jaw: 1.12, rage: 1.3,
+        lF: legPh(f, 10, 44, 42), lB: legPh(f + Math.PI, 10, 44, 42),
+        aL: [-48 + 18 * Math.sin(f), -18], aR: [-58 - 18 * Math.sin(f), -22],
+        blood: 0.9, shakeX: 4 * Math.sin(c.lt * 58),
+      };
+    },
+    'claw-slash': (c) => KO(c.u, [
+      [0, { bodyRot: -10, head: -16, jaw: 1.1, aL: [-110, -70], aR: [-140, -60], rage: 1.2, blood: 0.9 }],
+      [0.45, { bodyRot: 32, head: -10, jaw: 1.25, aL: [-40, -18], aR: [-22, -8], lF: [36, 26], lB: [-34, -22], rage: 1.4, shakeX: 9, blood: 1.0 }],
+      [1, { bodyRot: 18, head: -12, jaw: 1.0, aL: [-54, -30], aR: [-52, -24], rage: 1.1, blood: 0.95 }],
+    ], 'inOut'),
+    'grab-crush': (c) => ({
+      bodyY: 26, bodyRot: 38, head: 14, jaw: 1.22, rage: 1.35,
+      aL: [-48, -22], aR: [-56, -26], lF: [34, 42], lB: [-28, -16],
+      blood: 1.0, shakeX: 5.5 * Math.sin(c.lt * 52),
+    }),
+    roar: (c) => ({
+      bodyY: 6, bodyRot: -12, head: -28, jaw: 1.32, rage: 1.45,
+      aL: [-82, -52], aR: [-94, -56], lF: [18, 22], lB: [-22, -16],
+      blood: 1.0, shakeX: 6.5 * Math.sin(c.lt * 60), shakeY: 3 * Math.cos(c.lt * 52),
+    }),
+    'petrify-resist': (c) => ({
+      bodyY: 14, bodyRot: 20, head: -12, jaw: 1.18, rage: 1.3,
+      aL: [-70, -40], aR: [-84, -44], lF: [24, 28], lB: [-24, -20],
+      stone: lerp(c.p.stone0 || 0.25, c.p.stone1 || 0.6, clamp(c.u)),
+      blood: 0.85, shakeX: 7 * Math.sin(c.lt * 64),
+    }),
+    petrified: (c) => ({
+      bodyY: 12, bodyRot: 22, head: -14, jaw: 1.18, rage: 0,
+      aL: [-72, -36], aR: [-84, -38], lF: [22, 26], lB: [-22, -18],
+      stone: c.p.stone === undefined ? 1.0 : c.p.stone,
+      crack: c.p.crack === undefined ? 0 : c.p.crack,
+      blood: 0, shakeX: (c.p.crack || 0) > 0.2 ? 3.5 * Math.sin(c.lt * 48) : 0,
+    }),
+    hurt: (c) => {
+      const f = Math.sin(c.lt * 34) * Math.exp(-c.lt * 1.6);
+      return {
+        bodyY: 18, bodyRot: -18 + 8 * f, head: -16, jaw: 1.1, rage: 1.2,
+        aL: [24, 48], aR: [34, 52], lF: [14, 22], lB: [-28, -32],
+        blood: 1.0, shakeX: 8 * f,
+      };
+    },
+    talk: (c) => {
+      const a = c.amp || 0;
+      return {
+        bodyY: 4 * Math.sin(c.t * 3), bodyRot: 10 - 6 * a, head: -6 - 10 * a,
+        jaw: 0.25 + 0.95 * a, rage: 0.6 + 0.8 * a,
+        aL: [-34 - 18 * a, -28], aR: [-42 - 22 * a, -32], lF: [12, 16], lB: [-12, -10],
+        blood: 0.75, shakeX: 4 * a * Math.sin(c.t * 50),
+      };
+    },
+  };
+  SCP096.fade = SCP096.idle;
+
+  // ==================== MEDUSA (Cursed Gorgon · Greek Mythology Original) ====================
+  // Apollodorus Bibliotheca 2.4.2: living serpent hair, golden wings, brazen (bronze) claws,
+  // emerald petrifying eyes, dark emerald-gold Greek chiton. Faces +x (flip -1 on right).
+  function buildMedusa() {
+    const g = $('g');
+    const sh = $('ellipse', { cx: 0, cy: 4, rx: 106, ry: 20, fill: 'rgba(0,0,0,0.5)' }, g);
+    const root = $('g', {}, g);
+
+    const SKIN = '#9eb8a8', SKIN_D = '#759182';
+    const ROBE = '#122620', ROBE_L = '#1e3e34', GOLD = '#f0c24b', GOLD_D = '#a87d22';
+    const BRONZE = '#c98842', BRONZE_L = '#f2b86b', VIPER = '#2ea860', VIPER_D = '#185c35';
+
+    // Golden wings (back layer)
+    const wingB = $('g', {}, root); tr(wingB, -22, -340);
+    $('polygon', { points: '0,0 -190,-155 -236,-42 -156,52 -40,56', fill: GOLD_D }, wingB);
+    $('polygon', { points: '-14,-8 -164,-128 -196,-42 -132,32 -36,36', fill: GOLD }, wingB);
+    for (let i = 0; i < 4; i++) {
+      $('polygon', { points: `${-54 - i * 38},${10 - i * 24} ${-160 - i * 18},${-85 - i * 12} ${-148 - i * 14},${-64 - i * 10} ${-48 - i * 32},${24 - i * 20}`, fill: '#ffe588', opacity: 0.75 }, wingB);
+    }
+
+    const wingF = $('g', {}, root); tr(wingF, -12, -332);
+    $('polygon', { points: '0,0 -174,-186 -204,-72 -128,28 -26,46', fill: GOLD }, wingF);
+    $('polygon', { points: '-12,-10 -150,-156 -170,-68 -108,16 -22,30', fill: '#ffe37a' }, wingF);
+
+    // Lower chiton + scaled tail-hem silhouette
+    const body = $('g', {}, root); tr(body, 0, -240);
+    const skirt = $('polygon', { points: '-38,0 38,0 74,242 22,226 -14,244 -68,236', fill: ROBE }, body);
+    $('polygon', { points: '-26,0 24,0 44,234 -34,228', fill: ROBE_L }, body);
+    // Gold Greek key trim + waist sash
+    $('polygon', { points: '-42,-8 42,-8 38,14 -38,14', fill: GOLD }, body);
+    $('polygon', { points: '-16,12 16,12 22,124 -8,118', fill: GOLD_D }, body);
+
+    // Back arm (bronze hand)
+    const makeArm = (parent, dark) => {
+      const shd = $('g', {}, parent);
+      $('polygon', { points: '-12,-8 12,-8 10,114 -10,114', fill: dark ? SKIN_D : SKIN }, shd);
+      const elb = $('g', {}, shd); tr(elb, 0, 112);
+      // Brazen (bronze) forearm & claws (Apollodorus 2.4.2!)
+      $('polygon', { points: '-11,0 11,0 10,112 -9,112', fill: dark ? '#9c632b' : BRONZE }, elb);
+      $('polygon', { points: '-6,8 6,8 5,104 -4,104', fill: BRONZE_L, opacity: 0.65 }, elb);
+      const hand = $('g', { transform: 'translate(0,112)' }, elb);
+      $('polygon', { points: '-12,0 14,0 16,28 -10,26', fill: BRONZE }, hand);
+      for (const dx of [-8, 0, 8]) {
+        $('polygon', { points: `${dx - 2},24 ${dx + 3},24 ${dx + 6},54 ${dx - 1},48`, fill: '#ffd87a' }, hand);
+      }
+      const handMk = $('circle', { cx: 6, cy: 36, r: 1, fill: 'none' }, hand);
+      return { shd, elb, hand, handMk };
+    };
+
+    const armB = makeArm(body, true);
+    tr(armB.shd, -32, -148);
+
+    // Torso
+    $('polygon', { points: '-40,-158 40,-158 34,2 -34,2', fill: ROBE }, body);
+    $('polygon', { points: '-36,-156 36,-156 26,-110 -26,-110', fill: GOLD_D }, body);
+    $('polygon', { points: '-24,-154 24,-154 16,-118 -16,-118', fill: GOLD }, body);
+    const bodyMk = $('circle', { cx: 0, cy: -84, r: 1, fill: 'none' }, body);
+
+    // Head + writhing live serpent hair
+    const neck = $('g', { transform: 'translate(4,-158)' }, body);
+    $('polygon', { points: '-13,8 13,8 11,-34 -11,-34', fill: SKIN_D }, neck);
+    const headG = $('g', {}, neck); tr(headG, 2, -34);
+
+    // Back vipers
+    const snakes = [];
+    const snakeCfg = [
+      [-18, -58, -145, 76, true],
+      [-28, -36, -165, 84, true],
+      [-6, -64, -105, 88, false],
+      [14, -62, -62, 92, false],
+      [26, -46, -24, 96, false],
+      [-24, -16, 175, 78, true],
+      [28, -22, 12, 86, false],
+    ];
+    snakeCfg.forEach(([sx, sy, baseAng, len, back], idx) => {
+      const sg = $('g', { transform: `translate(${sx},${sy})` }, headG);
+      const path = $('path', { d: `M0,0 Q${len * 0.45},-24 ${len},0`, stroke: back ? VIPER_D : VIPER, 'stroke-width': 12, fill: 'none', 'stroke-linecap': 'round' }, sg);
+      const h = $('g', { transform: `translate(${len},0)` }, sg);
+      $('polygon', { points: '-6,-9 18,-5 24,0 18,6 -6,9', fill: back ? VIPER_D : VIPER }, h);
+      $('circle', { cx: 10, cy: -2, r: 2.5, fill: '#66ff88' }, h);
+      $('path', { d: 'M22,0 L34,-4 M22,0 L34,4', stroke: '#ff3344', 'stroke-width': 2.2, fill: 'none' }, h);
+      snakes.push({ sg, path, h, baseAng, len, idx });
+    });
+    const snakeMk = $('circle', { cx: 74, cy: -52, r: 1, fill: 'none' }, headG);
+
+    // Face
+    $('ellipse', { cx: 2, cy: -32, rx: 32, ry: 38, fill: SKIN }, headG);
+    $('polygon', { points: '-26,-26 30,-26 24,6 -20,6', fill: SKIN }, headG);
+    // Golden Gorgon circlet
+    $('polygon', { points: '-32,-50 32,-50 28,-40 -28,-40', fill: GOLD }, headG);
+    $('polygon', { points: '-6,-60 6,-60 10,-46 -10,-46', fill: '#4cff88' }, headG);
+
+    // Petrifying emerald eyes + glow
+    const eyeGlowBg = $('circle', { cx: 14, cy: -32, r: 24, fill: '#38ff88', opacity: 0.28 }, headG);
+    $('ellipse', { cx: 14, cy: -32, rx: 9, ry: 5.5, fill: '#0b2416' }, headG);
+    $('ellipse', { cx: -8, cy: -32, rx: 7, ry: 5, fill: '#0b2416' }, headG);
+    const eyePupilR = $('ellipse', { cx: 15, cy: -32, rx: 3, ry: 5, fill: '#5cff9d' }, headG);
+    const eyePupilL = $('ellipse', { cx: -7, cy: -32, rx: 2.4, ry: 4.5, fill: '#5cff9d' }, headG);
+    const eyeMk = $('circle', { cx: 15, cy: -32, r: 1, fill: 'none' }, headG);
+    const headMk = $('circle', { cx: 4, cy: -30, r: 1, fill: 'none' }, headG);
+
+    // Mouth + slight Gorgon fangs
+    const mouth = $('ellipse', { cx: 10, cy: -10, rx: 10, ry: 3, fill: '#220b12' }, headG);
+    $('polygon', { points: '4,-12 7,-12 5.5,-5', fill: '#f6f4ec' }, headG);
+    $('polygon', { points: '13,-12 16,-12 14.5,-5', fill: '#f6f4ec' }, headG);
+    const mouthMk = $('circle', { cx: 10, cy: -10, r: 1, fill: 'none' }, headG);
+    // Battle ichor streak on cheek
+    const ichor = $('polygon', { points: '18,-22 24,-22 21,-4 16,-8', fill: '#1f0b18', opacity: 0 }, headG);
+
+    const armF = makeArm(body, false);
+    tr(armF.shd, 30, -148);
+
+    const rig = {
+      root: g,
+      g,
+      fills: [],
+      dynHead: true,
+      mk: { eye: eyeMk, head: headMk, mouth: mouthMk, hand: armF.handMk, snake: snakeMk, body: bodyMk },
+      N: {
+        bodyY: 0, bodyRot: 0, lift: 0, head: 0, mouth: 0.1,
+        eyeGlow: 1.0, wingFlap: 0, wingDmg: 0, snakeLunge: 0,
+        aL: [-18, 24], aR: [24, 34], ichor: 0, shakeX: 0, shakeY: 0, t: 0,
+      },
+      apply(p) {
+        const lift = p.lift || 0;
+        const sx = p.shakeX || 0, sy = p.shakeY || 0;
+        tr(root, sx, (p.bodyY || 0) - lift + sy);
+        sh.setAttribute('rx', f2(clamp(106 - lift * 0.25, 34, 124)));
+        sh.setAttribute('opacity', f2(clamp(0.5 - lift * 0.002, 0.08, 0.55)));
+        rot(body, p.bodyRot || 0, 0, 0);
+        rot(headG, p.head || 0, 0, 0);
+        // Wings flap + battle damage droop
+        const wf = p.wingFlap || 0, wd = clamp(p.wingDmg || 0, 0, 1);
+        rot(wingF, wf - wd * 42, -12, -332);
+        rot(wingB, -wf * 0.7 + wd * 28, -22, -340);
+        // Eye glow
+        const eg = clamp(p.eyeGlow === undefined ? 1 : p.eyeGlow, 0, 2.8);
+        eyeGlowBg.setAttribute('opacity', f2(clamp(0.18 + eg * 0.34, 0, 0.95)));
+        eyeGlowBg.setAttribute('r', f2(16 + eg * 14));
+        eyePupilR.setAttribute('fill', eg > 1.6 ? '#d8ffea' : '#5cff9d');
+        eyePupilL.setAttribute('fill', eg > 1.6 ? '#d8ffea' : '#5cff9d');
+        mouth.setAttribute('ry', f2(2.5 + clamp(p.mouth || 0, 0, 1.2) * 11));
+        ichor.setAttribute('opacity', f2(clamp(p.ichor || 0, 0, 1)));
+        // Writhing snakes
+        const tt = p.t || 0, sl = clamp(p.snakeLunge || 0, 0, 1);
+        snakes.forEach((s) => {
+          const wave = Math.sin(tt * 4.5 + s.idx * 1.1) * (12 + sl * 16);
+          const ang = lerp(s.baseAng, -10 + (s.idx - 3) * 8, sl) + wave * 0.6;
+          const len = s.len * (1 + sl * 0.45);
+          s.sg.setAttribute('transform', `translate(${snakeCfg[s.idx][0]},${snakeCfg[s.idx][1]}) rotate(${f2(ang)})`);
+          s.path.setAttribute('d', `M0,0 Q${f2(len * 0.48)},${f2(wave)} ${f2(len)},0`);
+          s.h.setAttribute('transform', `translate(${f2(len)},0)`);
+        });
+        const setA = (A, a) => { rot(A.shd, a[0], 0, 0); rot(A.elb, a[1], 0, 0); };
+        setA(armB, p.aL || [-18, 24]);
+        setA(armF, p.aR || [24, 34]);
+      },
+    };
+    return rig;
+  }
+
+  const MEDUSA = {
+    idle: (c) => ({
+      t: c.t, bodyY: 3 * Math.sin(c.t * 2.1), head: 2 * Math.sin(c.t * 1.4), eyeGlow: 1.05,
+      wingFlap: 6 * Math.sin(c.t * 1.8), aL: [-18, 22], aR: [22, 32],
+    }),
+    'idle-card': (c) => ({
+      t: c.t, bodyRot: -4, head: 2, eyeGlow: 1.85, wingFlap: -18 + 6 * Math.sin(c.t * 2.5),
+      snakeLunge: 0.45, aL: [36, 62], aR: [76, 88],
+    }),
+    'glide-watch': (c) => ({
+      t: c.t, lift: 18 + 8 * Math.sin(c.t * 2.6), bodyRot: 6, head: 4, eyeGlow: 1.15,
+      wingFlap: -10 + 10 * Math.sin(c.t * 2.6), aL: [-26, 18], aR: [14, 28],
+    }),
+    'gaze-charge': (c) => {
+      const e = env(c.lt, 0.26);
+      return {
+        t: c.t, bodyRot: -6 * e, head: 4 * e, mouth: 0.4 * e, eyeGlow: 1.2 + 1.3 * e,
+        wingFlap: -24 * e, snakeLunge: 0.55 * e, aL: [38 * e, 54 * e], aR: [68 * e, 78 * e],
+        shakeX: 2.5 * e * Math.sin(c.lt * 44),
+      };
+    },
+    'gaze-blast': (c) => ({
+      t: c.t, bodyRot: 8, head: 6, mouth: 0.72, eyeGlow: 2.4,
+      wingFlap: -28, snakeLunge: 0.85, aL: [52, 74], aR: [92, 98],
+      shakeX: 3.5 * Math.sin(c.lt * 52),
+    }),
+    'wing-dodge': (c) => {
+      const fl = Math.sin(c.lt * 14);
+      return {
+        t: c.t, lift: 195 + 26 * fl, bodyRot: -12, head: 14, eyeGlow: 1.65,
+        wingFlap: -34 + 28 * fl, snakeLunge: 0.35, aL: [44, 68], aR: [110, 128],
+      };
+    },
+    'bronze-slash': (c) => KO(c.u, [
+      [0, { t: c.t, lift: 130, bodyRot: -14, head: 10, eyeGlow: 1.7, wingFlap: -32, aL: [-40, -10], aR: [-120, -48] }],
+      [0.45, { t: c.t, lift: 65, bodyRot: 22, head: 12, mouth: 0.7, eyeGlow: 2.1, wingFlap: 14, snakeLunge: 0.8, aL: [36, 52], aR: [88, 96], shakeX: 6 }],
+      [1, { t: c.t, lift: 40, bodyRot: 8, head: 4, eyeGlow: 1.4, wingFlap: -10, aL: [14, 28], aR: [42, 54] }],
+    ], 'inOut'),
+    'snake-strike': (c) => ({
+      t: c.t, lift: 45, bodyRot: 14, head: 10, mouth: 0.6, eyeGlow: 1.9,
+      wingFlap: -18, snakeLunge: 1.0, aL: [28, 44], aR: [64, 72],
+      shakeX: 3 * Math.sin(c.lt * 46),
+    }),
+    pinned: (c) => ({
+      t: c.t, bodyY: 96, bodyRot: -28, head: 16, mouth: 0.65, eyeGlow: 1.35,
+      wingFlap: 12, wingDmg: 0.75, snakeLunge: 0.7, ichor: 0.9,
+      aL: [68, 96], aR: [82, 110], shakeX: 5 * Math.sin(c.lt * 42),
+    }),
+    'gaze-overdrive': (c) => ({
+      t: c.t, bodyY: 64, bodyRot: -12, head: 6, mouth: 0.9, eyeGlow: 2.8,
+      wingFlap: -10, wingDmg: 0.75, snakeLunge: 1.0, ichor: 0.9,
+      aL: [62, 88], aR: [96, 108], shakeX: 4.5 * Math.sin(c.lt * 58),
+    }),
+    'breathe-after': (c) => ({
+      t: c.t, bodyY: 8 + 5 * Math.sin(c.t * 3.2), bodyRot: 6, head: 4, mouth: 0.25, eyeGlow: 1.1,
+      wingFlap: 8, wingDmg: 0.75, ichor: 0.85, aL: [-12, 18], aR: [16, 28],
+    }),
+    'walk-away': (c) => ({
+      t: c.t, bodyY: 4 * Math.abs(Math.sin(c.lt * 5)), bodyRot: 8, head: 2, eyeGlow: 0.85,
+      wingFlap: 10, wingDmg: 0.75, ichor: 0.7, aL: [-20, 14], aR: [12, 22],
+    }),
+    talk: (c) => {
+      const a = c.amp || 0;
+      return {
+        t: c.t, bodyY: 2 * Math.sin(c.t * 2), head: 2 * Math.sin(c.t * 1.4) - 2 * a,
+        mouth: 0.1 + 0.8 * a, eyeGlow: 1.2 + 0.85 * a, wingFlap: -8 - 6 * a,
+        snakeLunge: 0.2 + 0.45 * a, wingDmg: c.p.wingDmg || 0, ichor: c.p.ichor || 0,
+        aL: [-16, 22 + 8 * a], aR: [24 + 8 * a, 36 + 10 * a],
+      };
+    },
+  };
+  MEDUSA.fade = MEDUSA.idle;
+
+  const ACTIONS = { grim: GRIM, vry: VRY, kid: KID, fisherman: FISHERMAN, cerberus: CERB, bec: BEC, apep: APEP, thor: THOR, typhon: TYPHON, cthulhu: CTHULHU, scp682: SCP682, pegasus: PEGASUS, zeus: ZEUS, scp096: SCP096, medusa: MEDUSA };
+  const RIGS = { grim: buildGrim, vry: buildVry, kid: buildKid, fisherman: buildFisherman, cerberus: buildCerberus, bec: buildBec, apep: buildApep, thor: buildThor, typhon: buildTyphon, cthulhu: buildCthulhu, scp682: buildScp682, pegasus: buildPegasus, zeus: buildZeus, scp096: buildScp096, medusa: buildMedusa };
   Object.assign(G, { ACTIONS, RIGS });
 })(window);

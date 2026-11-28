@@ -1,0 +1,346 @@
+{
+ "duration": 96.7,
+ "sections": [
+  {
+   "section": 0,
+   "name": "hook",
+   "start": 0.0,
+   "end": 3.0
+  },
+  {
+   "section": 1,
+   "name": "split_roll",
+   "start": 3.0
+  },
+  {
+   "name": "intro_scp096",
+   "start": 4.65,
+   "end": 10.95
+  },
+  {
+   "name": "intro_medusa",
+   "start": 12.6,
+   "end": 20.31
+  },
+  {
+   "section": 2,
+   "name": "story",
+   "start": 21.86
+  },
+  {
+   "name": "wall_breach",
+   "start": 25.89
+  },
+  {
+   "name": "eye_lock",
+   "start": 31.68
+  },
+  {
+   "name": "charge1",
+   "start": 36.28
+  },
+  {
+   "name": "wings",
+   "start": 40.28
+  },
+  {
+   "name": "barrage",
+   "start": 45.92
+  },
+  {
+   "name": "reversal",
+   "start": 50.88
+  },
+  {
+   "name": "slam",
+   "start": 55.89
+  },
+  {
+   "name": "pinned",
+   "start": 59.97
+  },
+  {
+   "name": "climax",
+   "start": 64.17
+  },
+  {
+   "name": "petrify",
+   "start": 71.41
+  },
+  {
+   "name": "aftermath",
+   "start": 77.12
+  },
+  {
+   "name": "cliffhanger",
+   "start": 86.72
+  },
+  {
+   "name": "whisper",
+   "start": 92.45
+  }
+ ],
+ "dialogue": [
+  {
+   "section": 1,
+   "speaker": "scp096",
+   "text": "I am SCP Zero Nine Six.",
+   "start": 4.65,
+   "end": 6.64
+  },
+  {
+   "section": 1,
+   "speaker": "scp096",
+   "text": "Four pixels seal your fate.",
+   "start": 6.86,
+   "end": 8.45
+  },
+  {
+   "section": 1,
+   "speaker": "scp096",
+   "text": "Once you see my face, nothing stops me.",
+   "start": 8.67,
+   "end": 10.95
+  },
+  {
+   "section": 1,
+   "speaker": "medusa",
+   "text": "I am Medusa, cursed Gorgon.",
+   "start": 12.6,
+   "end": 15.04
+  },
+  {
+   "section": 1,
+   "speaker": "medusa",
+   "text": "One gaze turns flesh to stone.",
+   "start": 15.26,
+   "end": 17.54
+  },
+  {
+   "section": 1,
+   "speaker": "medusa",
+   "text": "Trespass here, and join my garden.",
+   "start": 17.76,
+   "end": 20.31
+  },
+  {
+   "section": 2,
+   "speaker": "medusa",
+   "text": "Turn to stone!",
+   "start": 69.72,
+   "end": 70.91
+  },
+  {
+   "section": 2,
+   "speaker": "medusa",
+   "text": "No beast escapes my gaze.",
+   "start": 81.89,
+   "end": 83.99
+  },
+  {
+   "section": 2,
+   "speaker": "medusa",
+   "text": "Not even you.",
+   "start": 84.21,
+   "end": 85.37
+  },
+  {
+   "section": 2,
+   "speaker": "scp096_whisper",
+   "text": "Four...",
+   "start": 92.45,
+   "end": 93.17
+  },
+  {
+   "section": 2,
+   "speaker": "scp096_whisper",
+   "text": "pixels...",
+   "start": 93.39,
+   "end": 94.3
+  },
+  {
+   "section": 2,
+   "speaker": "scp096_whisper",
+   "text": "left.",
+   "start": 94.52,
+   "end": 95.25
+  }
+ ],
+ "sentences": [
+  {
+   "section": 1,
+   "speaker": "scp096",
+   "text": "I am SCP Zero Nine Six.",
+   "start": 4.65,
+   "end": 6.64
+  },
+  {
+   "section": 1,
+   "speaker": "scp096",
+   "text": "Four pixels seal your fate.",
+   "start": 6.86,
+   "end": 8.45
+  },
+  {
+   "section": 1,
+   "speaker": "scp096",
+   "text": "Once you see my face, nothing stops me.",
+   "start": 8.67,
+   "end": 10.95
+  },
+  {
+   "section": 1,
+   "speaker": "medusa",
+   "text": "I am Medusa, cursed Gorgon.",
+   "start": 12.6,
+   "end": 15.04
+  },
+  {
+   "section": 1,
+   "speaker": "medusa",
+   "text": "One gaze turns flesh to stone.",
+   "start": 15.26,
+   "end": 17.54
+  },
+  {
+   "section": 1,
+   "speaker": "medusa",
+   "text": "Trespass here, and join my garden.",
+   "start": 17.76,
+   "end": 20.31
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Deep in the misty ruins, Medusa guarded her silent garden of stone.",
+   "start": 21.86,
+   "end": 25.44
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Then a deafening shriek shattered the night, and SCP Zero Nine Six smashed straight through the wall.",
+   "start": 25.89,
+   "end": 31.03
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "The intruder was already stone, yet Medusa looked straight into the monster's face.",
+   "start": 31.68,
+   "end": 35.83
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Both curses ignited at once as the Shy Guy blurred forward like a missile.",
+   "start": 36.28,
+   "end": 39.78
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Grey rock crept across its skin, yet the monster barely slowed, forcing Medusa into the air.",
+   "start": 40.28,
+   "end": 45.47
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "From above, her brazen claws and venomous vipers tore deep into its pale flesh.",
+   "start": 45.92,
+   "end": 50.33
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Shredded and bleeding, Zero Nine Six refused to fall, ripping a pillar from the earth.",
+   "start": 50.88,
+   "end": 55.44
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "It yanked the cursed Gorgon out of the sky and slammed her into the marble floor.",
+   "start": 55.89,
+   "end": 59.47
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Her golden wings broken, the mortal Gorgon stared death straight in the jaw.",
+   "start": 59.97,
+   "end": 63.67
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Trapped beneath its claws, Medusa stopped dodging and poured every drop of her curse into one gaze.",
+   "start": 64.17,
+   "end": 69.37
+  },
+  {
+   "section": 2,
+   "speaker": "medusa",
+   "text": "Turn to stone!",
+   "start": 69.72,
+   "end": 70.91
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Emerald fire swallowed the scream, locking pale flesh into solid rock from the eyes down.",
+   "start": 71.41,
+   "end": 75.97
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Breathing hard among the rubble, Medusa rose and studied the newest statue in her garden.",
+   "start": 77.12,
+   "end": 81.44
+  },
+  {
+   "section": 2,
+   "speaker": "medusa",
+   "text": "No beast escapes my gaze.",
+   "start": 81.89,
+   "end": 83.99
+  },
+  {
+   "section": 2,
+   "speaker": "medusa",
+   "text": "Not even you.",
+   "start": 84.21,
+   "end": 85.37
+  },
+  {
+   "section": 2,
+   "speaker": "narrator",
+   "text": "Yet stone can only freeze flesh \u2014 and Zero Nine Six's bones cannot be broken.",
+   "start": 86.72,
+   "end": 91.3
+  },
+  {
+   "section": 2,
+   "speaker": "scp096_whisper",
+   "text": "Four...",
+   "start": 92.45,
+   "end": 93.17
+  },
+  {
+   "section": 2,
+   "speaker": "scp096_whisper",
+   "text": "pixels...",
+   "start": 93.39,
+   "end": 94.3
+  },
+  {
+   "section": 2,
+   "speaker": "scp096_whisper",
+   "text": "left.",
+   "start": 94.52,
+   "end": 95.25
+  }
+ ]
+}

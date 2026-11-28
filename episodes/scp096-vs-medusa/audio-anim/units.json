@@ -1,0 +1,1457 @@
+[
+ {
+  "section": 1,
+  "text": "I am SCP Zero Nine Six.",
+  "speaker": "scp096",
+  "line_first": true,
+  "file": "u_00.wav",
+  "dur": 1.993,
+  "words": [
+   {
+    "word": "I",
+    "start": 0.0,
+    "end": 0.085
+   },
+   {
+    "word": "am",
+    "start": 0.097,
+    "end": 0.206
+   },
+   {
+    "word": "SCP",
+    "start": 0.23,
+    "end": 0.81
+   },
+   {
+    "word": "Zero",
+    "start": 0.834,
+    "end": 1.16
+   },
+   {
+    "word": "Nine",
+    "start": 1.184,
+    "end": 1.426
+   },
+   {
+    "word": "Six",
+    "start": 1.45,
+    "end": 1.921
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "Four pixels seal your fate.",
+  "speaker": "scp096",
+  "line_first": false,
+  "file": "u_01.wav",
+  "dur": 1.585,
+  "words": [
+   {
+    "word": "Four",
+    "start": 0.0,
+    "end": 0.166
+   },
+   {
+    "word": "pixels",
+    "start": 0.19,
+    "end": 0.644
+   },
+   {
+    "word": "seal",
+    "start": 0.668,
+    "end": 0.901
+   },
+   {
+    "word": "your",
+    "start": 0.926,
+    "end": 1.073
+   },
+   {
+    "word": "fate",
+    "start": 1.097,
+    "end": 1.514
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "Once you see my face, nothing stops me.",
+  "speaker": "scp096",
+  "line_first": false,
+  "file": "u_02.wav",
+  "dur": 2.281,
+  "words": [
+   {
+    "word": "Once",
+    "start": 0.0,
+    "end": 0.218
+   },
+   {
+    "word": "you",
+    "start": 0.242,
+    "end": 0.35
+   },
+   {
+    "word": "see",
+    "start": 0.374,
+    "end": 0.543
+   },
+   {
+    "word": "my",
+    "start": 0.567,
+    "end": 0.712
+   },
+   {
+    "word": "face",
+    "start": 0.736,
+    "end": 1.134
+   },
+   {
+    "word": "nothing",
+    "start": 1.291,
+    "end": 1.616
+   },
+   {
+    "word": "stops",
+    "start": 1.641,
+    "end": 1.966
+   },
+   {
+    "word": "me",
+    "start": 1.978,
+    "end": 2.183
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "I am Medusa, cursed Gorgon.",
+  "speaker": "medusa",
+  "line_first": true,
+  "file": "u_03.wav",
+  "dur": 2.444,
+  "words": [
+   {
+    "word": "I",
+    "start": 0.0,
+    "end": 0.097
+   },
+   {
+    "word": "am",
+    "start": 0.11,
+    "end": 0.247
+   },
+   {
+    "word": "Medusa",
+    "start": 0.261,
+    "end": 0.985
+   },
+   {
+    "word": "cursed",
+    "start": 1.272,
+    "end": 1.751
+   },
+   {
+    "word": "Gorgon",
+    "start": 1.765,
+    "end": 2.366
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "One gaze turns flesh to stone.",
+  "speaker": "medusa",
+  "line_first": false,
+  "file": "u_04.wav",
+  "dur": 2.272,
+  "words": [
+   {
+    "word": "One",
+    "start": 0.0,
+    "end": 0.258
+   },
+   {
+    "word": "gaze",
+    "start": 0.271,
+    "end": 0.643
+   },
+   {
+    "word": "turns",
+    "start": 0.656,
+    "end": 1.11
+   },
+   {
+    "word": "flesh",
+    "start": 1.124,
+    "end": 1.44
+   },
+   {
+    "word": "to",
+    "start": 1.454,
+    "end": 1.578
+   },
+   {
+    "word": "stone",
+    "start": 1.591,
+    "end": 2.183
+   }
+  ]
+ },
+ {
+  "section": 1,
+  "text": "Trespass here, and join my garden.",
+  "speaker": "medusa",
+  "line_first": false,
+  "file": "u_05.wav",
+  "dur": 2.557,
+  "words": [
+   {
+    "word": "Trespass",
+    "start": 0.0,
+    "end": 0.584
+   },
+   {
+    "word": "here",
+    "start": 0.598,
+    "end": 0.966
+   },
+   {
+    "word": "and",
+    "start": 1.225,
+    "end": 1.403
+   },
+   {
+    "word": "join",
+    "start": 1.416,
+    "end": 1.689
+   },
+   {
+    "word": "my",
+    "start": 1.703,
+    "end": 1.853
+   },
+   {
+    "word": "garden",
+    "start": 1.866,
+    "end": 2.48
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Deep in the misty ruins, Medusa guarded her silent garden of stone.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_06.wav",
+  "dur": 3.576,
+  "words": [
+   {
+    "word": "Deep",
+    "start": 0.0,
+    "end": 0.181
+   },
+   {
+    "word": "in",
+    "start": 0.192,
+    "end": 0.249
+   },
+   {
+    "word": "the",
+    "start": 0.261,
+    "end": 0.317
+   },
+   {
+    "word": "misty",
+    "start": 0.329,
+    "end": 0.647
+   },
+   {
+    "word": "ruins",
+    "start": 0.658,
+    "end": 1.146
+   },
+   {
+    "word": "Medusa",
+    "start": 1.339,
+    "end": 1.805
+   },
+   {
+    "word": "guarded",
+    "start": 1.816,
+    "end": 2.1
+   },
+   {
+    "word": "her",
+    "start": 2.112,
+    "end": 2.236
+   },
+   {
+    "word": "silent",
+    "start": 2.248,
+    "end": 2.634
+   },
+   {
+    "word": "garden",
+    "start": 2.645,
+    "end": 2.94
+   },
+   {
+    "word": "of",
+    "start": 2.952,
+    "end": 3.031
+   },
+   {
+    "word": "stone",
+    "start": 3.043,
+    "end": 3.52
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Then a deafening shriek shattered the night, and SCP Zero Nine Six smashed straight through the wall.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_07.wav",
+  "dur": 5.136,
+  "words": [
+   {
+    "word": "Then",
+    "start": 0.0,
+    "end": 0.168
+   },
+   {
+    "word": "a",
+    "start": 0.179,
+    "end": 0.258
+   },
+   {
+    "word": "deafening",
+    "start": 0.269,
+    "end": 0.653
+   },
+   {
+    "word": "shriek",
+    "start": 0.665,
+    "end": 0.981
+   },
+   {
+    "word": "shattered",
+    "start": 0.992,
+    "end": 1.365
+   },
+   {
+    "word": "the",
+    "start": 1.376,
+    "end": 1.433
+   },
+   {
+    "word": "night",
+    "start": 1.444,
+    "end": 1.76
+   },
+   {
+    "word": "and",
+    "start": 1.986,
+    "end": 2.144
+   },
+   {
+    "word": "SCP",
+    "start": 2.155,
+    "end": 2.743
+   },
+   {
+    "word": "Zero",
+    "start": 2.754,
+    "end": 3.07
+   },
+   {
+    "word": "Nine",
+    "start": 3.082,
+    "end": 3.409
+   },
+   {
+    "word": "Six",
+    "start": 3.42,
+    "end": 3.737
+   },
+   {
+    "word": "smashed",
+    "start": 3.748,
+    "end": 4.177
+   },
+   {
+    "word": "straight",
+    "start": 4.188,
+    "end": 4.482
+   },
+   {
+    "word": "through",
+    "start": 4.493,
+    "end": 4.64
+   },
+   {
+    "word": "the",
+    "start": 4.651,
+    "end": 4.73
+   },
+   {
+    "word": "wall",
+    "start": 4.742,
+    "end": 5.114
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "The intruder was already stone, yet Medusa looked straight into the monster's face.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_08.wav",
+  "dur": 4.152,
+  "words": [
+   {
+    "word": "The",
+    "start": 0.0,
+    "end": 0.034
+   },
+   {
+    "word": "intruder",
+    "start": 0.045,
+    "end": 0.486
+   },
+   {
+    "word": "was",
+    "start": 0.497,
+    "end": 0.633
+   },
+   {
+    "word": "already",
+    "start": 0.644,
+    "end": 1.006
+   },
+   {
+    "word": "stone",
+    "start": 1.018,
+    "end": 1.413
+   },
+   {
+    "word": "yet",
+    "start": 1.685,
+    "end": 1.843
+   },
+   {
+    "word": "Medusa",
+    "start": 1.854,
+    "end": 2.318
+   },
+   {
+    "word": "looked",
+    "start": 2.329,
+    "end": 2.578
+   },
+   {
+    "word": "straight",
+    "start": 2.59,
+    "end": 2.895
+   },
+   {
+    "word": "into",
+    "start": 2.906,
+    "end": 3.076
+   },
+   {
+    "word": "the",
+    "start": 3.087,
+    "end": 3.155
+   },
+   {
+    "word": "monster's",
+    "start": 3.166,
+    "end": 3.63
+   },
+   {
+    "word": "face",
+    "start": 3.641,
+    "end": 4.105
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Both curses ignited at once as the Shy Guy blurred forward like a missile.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_09.wav",
+  "dur": 3.504,
+  "words": [
+   {
+    "word": "Both",
+    "start": 0.0,
+    "end": 0.195
+   },
+   {
+    "word": "curses",
+    "start": 0.207,
+    "end": 0.577
+   },
+   {
+    "word": "ignited",
+    "start": 0.589,
+    "end": 1.004
+   },
+   {
+    "word": "at",
+    "start": 1.015,
+    "end": 1.105
+   },
+   {
+    "word": "once",
+    "start": 1.117,
+    "end": 1.386
+   },
+   {
+    "word": "as",
+    "start": 1.397,
+    "end": 1.51
+   },
+   {
+    "word": "the",
+    "start": 1.521,
+    "end": 1.6
+   },
+   {
+    "word": "Shy",
+    "start": 1.611,
+    "end": 1.914
+   },
+   {
+    "word": "Guy",
+    "start": 1.925,
+    "end": 2.116
+   },
+   {
+    "word": "blurred",
+    "start": 2.128,
+    "end": 2.431
+   },
+   {
+    "word": "forward",
+    "start": 2.442,
+    "end": 2.802
+   },
+   {
+    "word": "like",
+    "start": 2.813,
+    "end": 2.982
+   },
+   {
+    "word": "a",
+    "start": 2.993,
+    "end": 3.038
+   },
+   {
+    "word": "missile",
+    "start": 3.049,
+    "end": 3.465
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Grey rock crept across its skin, yet the monster barely slowed, forcing Medusa into the air.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_10.wav",
+  "dur": 5.184,
+  "words": [
+   {
+    "word": "Grey",
+    "start": 0.0,
+    "end": 0.2
+   },
+   {
+    "word": "rock",
+    "start": 0.211,
+    "end": 0.56
+   },
+   {
+    "word": "crept",
+    "start": 0.571,
+    "end": 0.841
+   },
+   {
+    "word": "across",
+    "start": 0.853,
+    "end": 1.201
+   },
+   {
+    "word": "its",
+    "start": 1.213,
+    "end": 1.37
+   },
+   {
+    "word": "skin",
+    "start": 1.381,
+    "end": 1.674
+   },
+   {
+    "word": "yet",
+    "start": 1.944,
+    "end": 2.079
+   },
+   {
+    "word": "the",
+    "start": 2.09,
+    "end": 2.146
+   },
+   {
+    "word": "monster",
+    "start": 2.158,
+    "end": 2.551
+   },
+   {
+    "word": "barely",
+    "start": 2.563,
+    "end": 2.878
+   },
+   {
+    "word": "slowed",
+    "start": 2.889,
+    "end": 3.294
+   },
+   {
+    "word": "forcing",
+    "start": 3.553,
+    "end": 3.924
+   },
+   {
+    "word": "Medusa",
+    "start": 3.935,
+    "end": 4.442
+   },
+   {
+    "word": "into",
+    "start": 4.453,
+    "end": 4.667
+   },
+   {
+    "word": "the",
+    "start": 4.678,
+    "end": 4.757
+   },
+   {
+    "word": "air",
+    "start": 4.768,
+    "end": 5.151
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "From above, her brazen claws and venomous vipers tore deep into its pale flesh.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_11.wav",
+  "dur": 4.416,
+  "words": [
+   {
+    "word": "From",
+    "start": 0.0,
+    "end": 0.125
+   },
+   {
+    "word": "above",
+    "start": 0.136,
+    "end": 0.553
+   },
+   {
+    "word": "her",
+    "start": 0.755,
+    "end": 0.89
+   },
+   {
+    "word": "brazen",
+    "start": 0.902,
+    "end": 1.296
+   },
+   {
+    "word": "claws",
+    "start": 1.307,
+    "end": 1.724
+   },
+   {
+    "word": "and",
+    "start": 1.735,
+    "end": 1.825
+   },
+   {
+    "word": "venomous",
+    "start": 1.836,
+    "end": 2.196
+   },
+   {
+    "word": "vipers",
+    "start": 2.208,
+    "end": 2.624
+   },
+   {
+    "word": "tore",
+    "start": 2.636,
+    "end": 2.872
+   },
+   {
+    "word": "deep",
+    "start": 2.883,
+    "end": 3.131
+   },
+   {
+    "word": "into",
+    "start": 3.142,
+    "end": 3.379
+   },
+   {
+    "word": "its",
+    "start": 3.39,
+    "end": 3.503
+   },
+   {
+    "word": "pale",
+    "start": 3.514,
+    "end": 3.806
+   },
+   {
+    "word": "flesh",
+    "start": 3.818,
+    "end": 4.336
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Shredded and bleeding, Zero Nine Six refused to fall, ripping a pillar from the earth.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_12.wav",
+  "dur": 4.56,
+  "words": [
+   {
+    "word": "Shredded",
+    "start": 0.0,
+    "end": 0.383
+   },
+   {
+    "word": "and",
+    "start": 0.394,
+    "end": 0.507
+   },
+   {
+    "word": "bleeding",
+    "start": 0.518,
+    "end": 0.902
+   },
+   {
+    "word": "Zero",
+    "start": 1.139,
+    "end": 1.432
+   },
+   {
+    "word": "Nine",
+    "start": 1.444,
+    "end": 1.76
+   },
+   {
+    "word": "Six",
+    "start": 1.771,
+    "end": 2.064
+   },
+   {
+    "word": "refused",
+    "start": 2.076,
+    "end": 2.504
+   },
+   {
+    "word": "to",
+    "start": 2.516,
+    "end": 2.595
+   },
+   {
+    "word": "fall",
+    "start": 2.606,
+    "end": 2.945
+   },
+   {
+    "word": "ripping",
+    "start": 3.204,
+    "end": 3.441
+   },
+   {
+    "word": "a",
+    "start": 3.453,
+    "end": 3.509
+   },
+   {
+    "word": "pillar",
+    "start": 3.52,
+    "end": 3.836
+   },
+   {
+    "word": "from",
+    "start": 3.848,
+    "end": 3.983
+   },
+   {
+    "word": "the",
+    "start": 3.994,
+    "end": 4.085
+   },
+   {
+    "word": "earth",
+    "start": 4.096,
+    "end": 4.502
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "It yanked the cursed Gorgon out of the sky and slammed her into the marble floor.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_13.wav",
+  "dur": 3.576,
+  "words": [
+   {
+    "word": "It",
+    "start": 0.0,
+    "end": 0.086
+   },
+   {
+    "word": "yanked",
+    "start": 0.097,
+    "end": 0.357
+   },
+   {
+    "word": "the",
+    "start": 0.369,
+    "end": 0.459
+   },
+   {
+    "word": "cursed",
+    "start": 0.47,
+    "end": 0.821
+   },
+   {
+    "word": "Gorgon",
+    "start": 0.832,
+    "end": 1.217
+   },
+   {
+    "word": "out",
+    "start": 1.228,
+    "end": 1.341
+   },
+   {
+    "word": "of",
+    "start": 1.353,
+    "end": 1.409
+   },
+   {
+    "word": "the",
+    "start": 1.421,
+    "end": 1.488
+   },
+   {
+    "word": "sky",
+    "start": 1.5,
+    "end": 1.884
+   },
+   {
+    "word": "and",
+    "start": 1.896,
+    "end": 2.043
+   },
+   {
+    "word": "slammed",
+    "start": 2.054,
+    "end": 2.427
+   },
+   {
+    "word": "her",
+    "start": 2.438,
+    "end": 2.529
+   },
+   {
+    "word": "into",
+    "start": 2.54,
+    "end": 2.71
+   },
+   {
+    "word": "the",
+    "start": 2.721,
+    "end": 2.789
+   },
+   {
+    "word": "marble",
+    "start": 2.8,
+    "end": 3.094
+   },
+   {
+    "word": "floor",
+    "start": 3.106,
+    "end": 3.535
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Her golden wings broken, the mortal Gorgon stared death straight in the jaw.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_14.wav",
+  "dur": 3.696,
+  "words": [
+   {
+    "word": "Her",
+    "start": 0.0,
+    "end": 0.11
+   },
+   {
+    "word": "golden",
+    "start": 0.121,
+    "end": 0.47
+   },
+   {
+    "word": "wings",
+    "start": 0.481,
+    "end": 0.774
+   },
+   {
+    "word": "broken",
+    "start": 0.785,
+    "end": 1.167
+   },
+   {
+    "word": "the",
+    "start": 1.392,
+    "end": 1.46
+   },
+   {
+    "word": "mortal",
+    "start": 1.471,
+    "end": 1.764
+   },
+   {
+    "word": "Gorgon",
+    "start": 1.775,
+    "end": 2.146
+   },
+   {
+    "word": "stared",
+    "start": 2.157,
+    "end": 2.517
+   },
+   {
+    "word": "death",
+    "start": 2.529,
+    "end": 2.765
+   },
+   {
+    "word": "straight",
+    "start": 2.776,
+    "end": 3.068
+   },
+   {
+    "word": "in",
+    "start": 3.08,
+    "end": 3.147
+   },
+   {
+    "word": "the",
+    "start": 3.158,
+    "end": 3.226
+   },
+   {
+    "word": "jaw",
+    "start": 3.237,
+    "end": 3.631
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Trapped beneath its claws, Medusa stopped dodging and poured every drop of her curse into one gaze.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_15.wav",
+  "dur": 5.208,
+  "words": [
+   {
+    "word": "Trapped",
+    "start": 0.0,
+    "end": 0.31
+   },
+   {
+    "word": "beneath",
+    "start": 0.321,
+    "end": 0.614
+   },
+   {
+    "word": "its",
+    "start": 0.625,
+    "end": 0.749
+   },
+   {
+    "word": "claws",
+    "start": 0.76,
+    "end": 1.232
+   },
+   {
+    "word": "Medusa",
+    "start": 1.39,
+    "end": 1.851
+   },
+   {
+    "word": "stopped",
+    "start": 1.862,
+    "end": 2.244
+   },
+   {
+    "word": "dodging",
+    "start": 2.255,
+    "end": 2.694
+   },
+   {
+    "word": "and",
+    "start": 2.705,
+    "end": 2.795
+   },
+   {
+    "word": "poured",
+    "start": 2.806,
+    "end": 3.132
+   },
+   {
+    "word": "every",
+    "start": 3.144,
+    "end": 3.357
+   },
+   {
+    "word": "drop",
+    "start": 3.369,
+    "end": 3.638
+   },
+   {
+    "word": "of",
+    "start": 3.65,
+    "end": 3.728
+   },
+   {
+    "word": "her",
+    "start": 3.74,
+    "end": 3.852
+   },
+   {
+    "word": "curse",
+    "start": 3.863,
+    "end": 4.167
+   },
+   {
+    "word": "into",
+    "start": 4.178,
+    "end": 4.426
+   },
+   {
+    "word": "one",
+    "start": 4.437,
+    "end": 4.65
+   },
+   {
+    "word": "gaze",
+    "start": 4.662,
+    "end": 5.134
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Turn to stone!",
+  "speaker": "medusa",
+  "line_first": true,
+  "file": "u_16.wav",
+  "dur": 1.183,
+  "words": [
+   {
+    "word": "Turn",
+    "start": 0.0,
+    "end": 0.273
+   },
+   {
+    "word": "to",
+    "start": 0.288,
+    "end": 0.418
+   },
+   {
+    "word": "stone",
+    "start": 0.433,
+    "end": 1.055
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Emerald fire swallowed the scream, locking pale flesh into solid rock from the eyes down.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_17.wav",
+  "dur": 4.56,
+  "words": [
+   {
+    "word": "Emerald",
+    "start": 0.0,
+    "end": 0.27
+   },
+   {
+    "word": "fire",
+    "start": 0.281,
+    "end": 0.62
+   },
+   {
+    "word": "swallowed",
+    "start": 0.632,
+    "end": 1.027
+   },
+   {
+    "word": "the",
+    "start": 1.039,
+    "end": 1.107
+   },
+   {
+    "word": "scream",
+    "start": 1.118,
+    "end": 1.548
+   },
+   {
+    "word": "locking",
+    "start": 1.751,
+    "end": 2.091
+   },
+   {
+    "word": "pale",
+    "start": 2.102,
+    "end": 2.373
+   },
+   {
+    "word": "flesh",
+    "start": 2.385,
+    "end": 2.701
+   },
+   {
+    "word": "into",
+    "start": 2.713,
+    "end": 2.894
+   },
+   {
+    "word": "solid",
+    "start": 2.905,
+    "end": 3.256
+   },
+   {
+    "word": "rock",
+    "start": 3.267,
+    "end": 3.55
+   },
+   {
+    "word": "from",
+    "start": 3.561,
+    "end": 3.674
+   },
+   {
+    "word": "the",
+    "start": 3.685,
+    "end": 3.776
+   },
+   {
+    "word": "eyes",
+    "start": 3.787,
+    "end": 4.081
+   },
+   {
+    "word": "down",
+    "start": 4.093,
+    "end": 4.466
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Breathing hard among the rubble, Medusa rose and studied the newest statue in her garden.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_18.wav",
+  "dur": 4.32,
+  "words": [
+   {
+    "word": "Breathing",
+    "start": 0.0,
+    "end": 0.293
+   },
+   {
+    "word": "hard",
+    "start": 0.305,
+    "end": 0.565
+   },
+   {
+    "word": "among",
+    "start": 0.576,
+    "end": 0.803
+   },
+   {
+    "word": "the",
+    "start": 0.814,
+    "end": 0.893
+   },
+   {
+    "word": "rubble",
+    "start": 0.905,
+    "end": 1.221
+   },
+   {
+    "word": "Medusa",
+    "start": 1.448,
+    "end": 1.855
+   },
+   {
+    "word": "rose",
+    "start": 1.867,
+    "end": 2.229
+   },
+   {
+    "word": "and",
+    "start": 2.24,
+    "end": 2.354
+   },
+   {
+    "word": "studied",
+    "start": 2.365,
+    "end": 2.704
+   },
+   {
+    "word": "the",
+    "start": 2.716,
+    "end": 2.772
+   },
+   {
+    "word": "newest",
+    "start": 2.784,
+    "end": 3.123
+   },
+   {
+    "word": "statue",
+    "start": 3.135,
+    "end": 3.565
+   },
+   {
+    "word": "in",
+    "start": 3.576,
+    "end": 3.678
+   },
+   {
+    "word": "her",
+    "start": 3.689,
+    "end": 3.814
+   },
+   {
+    "word": "garden",
+    "start": 3.825,
+    "end": 4.278
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "No beast escapes my gaze.",
+  "speaker": "medusa",
+  "line_first": true,
+  "file": "u_19.wav",
+  "dur": 2.098,
+  "words": [
+   {
+    "word": "No",
+    "start": 0.0,
+    "end": 0.213
+   },
+   {
+    "word": "beast",
+    "start": 0.227,
+    "end": 0.642
+   },
+   {
+    "word": "escapes",
+    "start": 0.656,
+    "end": 1.169
+   },
+   {
+    "word": "my",
+    "start": 1.182,
+    "end": 1.349
+   },
+   {
+    "word": "gaze",
+    "start": 1.362,
+    "end": 2.013
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Not even you.",
+  "speaker": "medusa",
+  "line_first": false,
+  "file": "u_20.wav",
+  "dur": 1.165,
+  "words": [
+   {
+    "word": "Not",
+    "start": 0.0,
+    "end": 0.281
+   },
+   {
+    "word": "even",
+    "start": 0.295,
+    "end": 0.64
+   },
+   {
+    "word": "you",
+    "start": 0.655,
+    "end": 1.086
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Yet stone can only freeze flesh — and Zero Nine Six's bones cannot be broken.",
+  "speaker": "narrator",
+  "line_first": true,
+  "file": "u_21.wav",
+  "dur": 4.584,
+  "words": [
+   {
+    "word": "Yet",
+    "start": 0.0,
+    "end": 0.163
+   },
+   {
+    "word": "stone",
+    "start": 0.174,
+    "end": 0.58
+   },
+   {
+    "word": "can",
+    "start": 0.591,
+    "end": 0.76
+   },
+   {
+    "word": "only",
+    "start": 0.771,
+    "end": 0.997
+   },
+   {
+    "word": "freeze",
+    "start": 1.008,
+    "end": 1.379
+   },
+   {
+    "word": "flesh",
+    "start": 1.391,
+    "end": 1.819
+   },
+   {
+    "word": "and",
+    "start": 2.089,
+    "end": 2.224
+   },
+   {
+    "word": "Zero",
+    "start": 2.235,
+    "end": 2.562
+   },
+   {
+    "word": "Nine",
+    "start": 2.573,
+    "end": 2.911
+   },
+   {
+    "word": "Six's",
+    "start": 2.922,
+    "end": 3.271
+   },
+   {
+    "word": "bones",
+    "start": 3.282,
+    "end": 3.631
+   },
+   {
+    "word": "cannot",
+    "start": 3.643,
+    "end": 3.947
+   },
+   {
+    "word": "be",
+    "start": 3.958,
+    "end": 4.059
+   },
+   {
+    "word": "broken",
+    "start": 4.071,
+    "end": 4.532
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "Four...",
+  "speaker": "scp096_whisper",
+  "line_first": true,
+  "file": "u_22.wav",
+  "dur": 0.714,
+  "words": [
+   {
+    "word": "Four",
+    "start": 0.0,
+    "end": 0.662
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "pixels...",
+  "speaker": "scp096_whisper",
+  "line_first": false,
+  "file": "u_23.wav",
+  "dur": 0.907,
+  "words": [
+   {
+    "word": "pixels",
+    "start": 0.0,
+    "end": 0.834
+   }
+  ]
+ },
+ {
+  "section": 2,
+  "text": "left.",
+  "speaker": "scp096_whisper",
+  "line_first": false,
+  "file": "u_24.wav",
+  "dur": 0.739,
+  "words": [
+   {
+    "word": "left",
+    "start": 0.0,
+    "end": 0.638
+   }
+  ]
+ }
+]

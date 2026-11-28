@@ -320,7 +320,7 @@
     const dawn = trk('dawn', t, 0);
     for (const name in PAR) {
       const l = layers[name]; l.setAttribute('display', vis.includes(name) ? 'inline' : 'none'); if (!vis.includes(name)) continue;
-      const p = PAR[name], cx = 540 + (cam.cx - 540) * p, cy = 960 + (cam.cy - 960) * p, z = name === 'church' ? 1 : cam.zoom;
+      const p = PAR[name], cx = 540 + (cam.cx - 540) * p, cy = 960 + (cam.cy - 960) * p, z = name === 'church' ? 1 : cam.zoom * (p < 1 || name === 'domain' ? (cam.bgK || 1) : 1);
       l.setAttribute('transform', `translate(${f2(540 + shk[0])} ${f2(960 + shk[1])}) rotate(${f2(cam.rot || 0)}) scale(${f2(z)} ${f2(z * (cam.sy || 1))}) translate(${f2(-cx)} ${f2(-cy)})`);
     }
     layers.dawnRect.setAttribute('opacity', dawn);
@@ -705,11 +705,16 @@
     if (s.push) zoom *= 1 + (s.push - 1) * ease(s.pushEase || 'inOut', u);
     if (s.pan) { cx += s.pan[0] * ease('inOut', u); cy += s.pan[1] * ease('inOut', u); }
     if (s.anchor) { const an = s.anchor, zz = zoom * (s.crash && t >= s.crash.at ? 1 + (s.crash.k - 1) * EASE.outCubic(clamp((t - s.crash.at) / (s.crash.dur || 0.12))) : 1) * (s.push ? 1 + (s.push - 1) * ease(s.pushEase || 'inOut', u) : 1), mk = markerWorld(an.actor, an.at || 'body'); if (mk) { cx = mk.x - ((an.sx === undefined ? 540 : an.sx) - 540) / zz + (s.pan ? 0 : 0); cy = mk.y - ((an.sy === undefined ? 960 : an.sy) - 960) / zz; } }
+    // ---- signature camera moves (docs/10-camera-moves.md). Stack on any shot type.
+    let bgK = 1;
+    if (s.pullback) { const pb = typeof s.pullback === 'number' ? { k: s.pullback } : s.pullback; zoom *= lerp(pb.k || 2, 1, ease(pb.ease || 'outCubic', u)); if (pb.rise) cy += pb.rise * ease('inOut', u); }
+    if (s.dolly) { const dz = typeof s.dolly === 'number' ? { k: s.dolly } : s.dolly; bgK = lerp(1, dz.k || 1.6, ease(dz.ease || 'inOut', u)); }
+    if (s.crane) { const cr = s.crane, e = ease(cr.ease || 'inOut', u), land = cr.land ? EASE.outBack(clamp(u * 1.05)) : e; cy += (cr.dy === undefined ? -520 : cr.dy) * (1 - land); sy *= lerp(cr.from === undefined ? 0.76 : cr.from, cr.to === undefined ? 1 : cr.to, e); if (cr.zoom) zoom *= lerp(cr.zoom, 1, e); }
     if (s.dutch !== undefined) rot = lerp(s.dutch, s.dutchTo === undefined ? s.dutch : s.dutchTo, u);
     if (s.hand) { const a = s.hand; cx += a * (Math.sin(t * 1.9) + 0.5 * Math.sin(t * 4.3 + 1)); cy += a * (Math.sin(t * 1.3 + 2) + 0.5 * Math.sin(t * 3.7)); rot += a * 0.05 * Math.sin(t * 1.1 + 1); }
     let crash = 0;
     if (s.crash) { const q = clamp((t - s.crash.at) / (s.crash.dur || 0.12)); if (t >= s.crash.at) { zoom *= 1 + (s.crash.k - 1) * EASE.outCubic(q); crash = clamp(1 - (t - s.crash.at) / 0.4) * 1; } }
-    return { cx, cy, zoom, rot, sy, crash, whip: s.whip && lt < s.whip ? 1 - lt / s.whip : 0, whipDir: s.whipDir || 1, rack: s.rack || null };
+    return { cx, cy, zoom, rot, sy, bgK, crash, whip: s.whip && lt < s.whip ? 1 - lt / s.whip : 0, whipDir: s.whipDir || 1, rack: s.rack || null };
   }
   // ---- POV-KID: first-person forest walk with a flashlight cone (screen space, deterministic)
   function buildPov(cfg) {

@@ -49,6 +49,7 @@ Action = `fn({t,lt,dur,u,p}) -> partial pose`; add new ones in rigs.js (`ACTIONS
 
 ## v3: SHOT SYSTEM (cinematic cuts) - `shots:[{t, type, ...}]` (hard cut at t, shot lasts until the next shot; no `shots` = legacy `cam` tracks)
 Common params: `scene` (switch scene at the cut), `push` (total zoom factor over the shot), `pan:[dx,dy]`, `dutch`/`dutchTo` (frame roll, deg), `hand` (handheld amplitude), `slow` (actor time-scale for the whole shot, e.g. 0.4; actors catch up smoothly afterwards; sound unaffected), `whip` (s: whip-pan blur+slide at the start, `whipDir` +-1), `rack:{bg,fg}` (blur px of background / foreground), `crash:{at,dur,k}` (crash-zoom: zoom x k at time `at`, with radial speed lines), `cx,cy,zoom`.
+- **Signature moves** (stack on any shot type, see docs/10-camera-moves.md, demo `demo/camera_moves_demo.js`): `pullback:{k,ease,rise}` (start k x tighter, ease out to the base framing), `dolly:{k,ease}` (dolly zoom / vertigo: actors keep size, background layers parallax<1 + domain scale 1->k), `crane:{dy,from,to,zoom,ease,land}` (start dy px higher with vertical squash `from`, descend to `to`; `land:true` settles with an overshoot).
 - `wide` / `establish` {cx,cy,zoom}  - `insert` {cx,cy,zoom} close-up on a prop (garlic, tomb, door, hole: pass its x,y)
 - `versus` {a,b,dx,cy,zoom|maxZoom,margin} - side-on fighting-game framing of two actors (follows their midpoint)
 - `cu` / `reaction` {actor, fill=0.6 (head width / frame), dx,dy} - close-up on the head (kid = REACTION-KID)

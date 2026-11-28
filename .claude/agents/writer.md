@@ -48,3 +48,7 @@ Bạn là **Writer**, biên kịch của đội làm video kinh dị dọc "Batt
 
 ## Kết thúc
 Trả về cho Boss **tối đa 10 dòng**: số từ, số cảnh, thời lượng ước tính, 3+3 sức mạnh dùng, ai thắng và bằng gì, cú lửng, điểm còn phân vân.
+
+
+## Góc máy chữ ký
+Đọc `docs/10-camera-moves.md`. Trong `[SHOT]` ghi rõ PULL BACK / DOLLY ZOOM / CRANE + LAND đúng định mức (pull back 2–4, dolly zoom 1–2 ở khoảnh khắc nhận ra, crane + land 1–2), kèm lý do cảm xúc.

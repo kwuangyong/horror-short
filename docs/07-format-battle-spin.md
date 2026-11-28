@@ -122,7 +122,7 @@ Quy tắc: whip-pan **bám hướng bay**; mỗi chuỗi ≥ 1 cảnh cận và 
 
 ## 11. Camera & continuity
 - **Một chiến trường duy nhất** cho truyện (scene `domain-<field>`); địa hình monster **trồi lên ngay trên đó** (track `rise`), không đổi phông giữa trận. Lãnh địa riêng chỉ ở 2 intro; cảnh khác chỉ cho mở truyện / kết lửng (cùng địa điểm, khác giờ: vd. `dusk`).
-- **Không khung nào đứng máy**: mọi shot có `push` + `pan`. Nối trái ↔ phải bằng whip (`tr:{type:'whip',dir}`) theo hướng đạn; `follow`, `dutch` khi không gian biến dạng, `slow` + `crash` ở đòn kết.
+- **Không khung nào đứng máy**: mọi shot có `push` + `pan`. Nối trái ↔ phải bằng whip (`tr:{type:'whip',dir}`) theo hướng đạn; `follow`, `dutch` khi không gian biến dạng, `slow` + `crash` ở đòn kết. Chuyển động chữ ký PULL BACK / DOLLY ZOOM / CRANE + LAND theo [docs/10](10-camera-moves.md).
 - **Trục 180°**: Monster luôn TRÁI, Guardian luôn PHẢI (`sides`); `render.js --check` phải in `180-RULE OK`.
 - Sau 2–3 cảnh cận phải có 1 cảnh rộng định vị. Bé không bị che trong cảnh rộng (trước khi chạy đi).
 

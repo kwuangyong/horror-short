@@ -1,0 +1,165 @@
+{
+ "fps": 30,
+ "duration": 9,
+ "sides": {
+  "left": "mon",
+  "right": "gua"
+ },
+ "tracks": {},
+ "cues": [
+  {
+   "actor": "mon",
+   "action": "grin",
+   "t0": 0,
+   "t1": 9,
+   "params": {}
+  },
+  {
+   "actor": "gua",
+   "action": "growl",
+   "t0": 0,
+   "t1": 9,
+   "params": {}
+  }
+ ],
+ "shots": [
+  {
+   "t": 0,
+   "type": "cu",
+   "scene": "domain-field",
+   "actor": "mon",
+   "zoom": 0.62,
+   "dx": 280,
+   "pullback": {
+    "k": 2.6,
+    "rise": 40
+   },
+   "pan": [
+    0,
+    0.01
+   ]
+  },
+  {
+   "t": 3,
+   "type": "cu",
+   "scene": "domain-field",
+   "actor": "gua",
+   "fill": 0.5,
+   "dolly": {
+    "k": 1.9
+   },
+   "pan": [
+    0,
+    0.01
+   ],
+   "tr": {
+    "type": "whip",
+    "dur": 0.2,
+    "dir": 1
+   }
+  },
+  {
+   "t": 6,
+   "type": "low",
+   "scene": "domain-field",
+   "actor": "gua",
+   "zoom": 1.4,
+   "crane": {
+    "dy": -700,
+    "from": 0.72,
+    "land": true,
+    "zoom": 0.8
+   },
+   "pan": [
+    -40,
+    0
+   ],
+   "tr": {
+    "type": "dip",
+    "dur": 0.2
+   }
+  }
+ ],
+ "shake": [
+  {
+   "t0": 8.4,
+   "dur": 0.3,
+   "amp": 10
+  }
+ ],
+ "flash": [],
+ "fx": [],
+ "text": [
+  {
+   "t0": 0.1,
+   "t1": 2.9,
+   "text": "01 PULL BACK",
+   "x": 540,
+   "y": 1700,
+   "size": 64,
+   "color": "#ffb04a",
+   "anim": "fade"
+  },
+  {
+   "t0": 3.1,
+   "t1": 5.9,
+   "text": "02 DOLLY ZOOM",
+   "x": 540,
+   "y": 1700,
+   "size": 64,
+   "color": "#ffb04a",
+   "anim": "fade"
+  },
+  {
+   "t0": 6.1,
+   "t1": 8.9,
+   "text": "03 CRANE + LAND",
+   "x": 540,
+   "y": 1700,
+   "size": 64,
+   "color": "#ffb04a",
+   "anim": "fade"
+  }
+ ],
+ "embers": [],
+ "cinema": [
+  [
+   0,
+   9
+  ]
+ ],
+ "domains": {
+  "field": {
+   "sky": [
+    "#06070f",
+    "#24203e"
+   ],
+   "glow": "#c4121f",
+   "floor": [
+    "#1b2140",
+    "#06070f"
+   ],
+   "motif": "spires",
+   "rock": "#0c0d18",
+   "motes": "#ffb04a"
+  }
+ },
+ "actors": {
+  "mon": {
+   "kind": "vry",
+   "x": 250,
+   "y": 1080,
+   "scale": 1,
+   "flip": 1,
+   "z": 2
+  },
+  "gua": {
+   "kind": "grim",
+   "x": 860,
+   "y": 1080,
+   "scale": 0.95,
+   "flip": -1,
+   "z": 2
+  }
+ }
+}

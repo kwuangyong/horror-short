@@ -119,6 +119,7 @@ Trước khi viết, scout lập **bảng sức mạnh có nguồn** (`01-resear
 - **Animation**: luôn chuyển động; lấy đà → ra đòn → dư âm (tóc, râu, áo choàng); lúc trúng đòn có flash + rung + giật lùi; nhân vật `talk` mở miệng theo giọng.
 - **Sức mạnh = chuỗi 2–4 cảnh**: chuẩn bị → kích hoạt → tác động → hậu quả, theo công thức từng loại ([docs/07 mục 10](docs/07-format-battle-spin.md)): tia/sét (`beam`), vũ khí ném (`slash` + bay về tay), đạn cầu (`orbs`), lưỡi chém (`slash`), thức tỉnh (`pillar` + aura), ánh mắt (`glint` + đông cứng), siết, địa hình (`rise`), **đụng chưởng** (`beam-clash`, đỉnh trận).
 - **Camera**: mọi shot có push + pan; whip-pan bám hướng bay của đạn; slow-mo + crash-zoom ở đòn kết; letterbox + tàn lửa trong hành động; **trục 180°: monster luôn TRÁI, guardian luôn PHẢI**.
+- **Chuyển động chữ ký** ([docs/10-camera-moves.md](docs/10-camera-moves.md)): `pullback` (lùi máy hé lộ), `dolly` (dolly zoom/vertigo), `crane` (cần cẩu hạ + đáp). Demo: `node tools/anim/demo/camera_moves_demo.js`, ảnh `tools/anim/demo/camera-moves-sheet.jpg`.
 
 ## 7. Sản xuất
 

@@ -48,3 +48,7 @@ Bạn là **Producer**, kỹ thuật của đội làm video kinh dị dọc "Ba
 
 ## Kết thúc
 Trả về cho Boss **tối đa 12 dòng**: đường dẫn video, độ dài, LUFS, số cảnh, kết quả `--check`, đường dẫn sheet, điểm còn yếu.
+
+
+## Góc máy chữ ký
+Đọc `docs/10-camera-moves.md`. Dịch PULL BACK / DOLLY ZOOM / CRANE + LAND thành tham số shot `pullback` / `dolly` / `crane` (stage.js); thêm shake 0.3 s ở mốc đáp của crane; kiểm khung bằng `render.js --dump`.

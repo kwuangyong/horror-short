@@ -24,7 +24,7 @@ const realShots = shots.length - placeholders.length;
 (realShots >= 50 && realShots <= 60) ? R('PASS', `${realShots} shots (+${placeholders.length} under split-roll)`) : R('WARN', `${realShots} shots outside 50-60 (+${placeholders.length} under split-roll)`);
 const lens = shots.map((s, i) => (i + 1 < shots.length ? shots[i + 1].t : D) - s.t), longs = shots.filter((s, i) => lens[i] > 3.2 && !placeholders.includes(s));
 longs.length ? R('WARN', `shots longer than 3.2 s at ${longs.map((s) => s.t.toFixed(1)).join(', ')}`) : R('PASS', 'no shot longer than 3.2 s');
-const still = shots.filter((s) => !placeholders.includes(s) && !['pov', 'povgate'].includes(s.type) && !(s.push && s.push !== 1) && !s.pan && !s.follow && s.type !== 'follow');
+const still = shots.filter((s) => !placeholders.includes(s) && !['pov', 'povgate'].includes(s.type) && !(s.push && s.push !== 1) && !s.pan && !s.pullback && !s.dolly && !s.crane && !s.follow && s.type !== 'follow');
 still.length ? R('WARN', `${still.length} shot(s) without push/pan (no static frames): ${still.map((s) => s.t.toFixed(1)).join(', ')}`) : R('PASS', 'every shot has push/pan');
 // ---- 3. opening: hook, split-roll with 2 dives + emerges, VS
 const hook = texts.find((x) => /WHO SURVIVES/i.test(x.text) && x.t0 < 3.5);

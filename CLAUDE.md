@@ -6,6 +6,7 @@ Phiên chính chạy **Opus** (`.claude/settings.json`) và đóng vai **Boss**:
 - [`docs/07-format-battle-spin.md`](docs/07-format-battle-spin.md): engine hoạt ảnh khớp xương (cấm ảnh tĩnh, HP, ROUND), hook in medias res, Split-Roll + 2 màn tự giới thiệu ~5 s, bé chạy đi nấp, Sakuga Cinematic, continuity, tempo vừa (dễ hiểu), 85–100 s, 50–60 cảnh.
 - [`docs/08-he-thong-bien-the.md`](docs/08-he-thong-bien-the.md): tổ hợp A–F + luật chống lặp, ghi `episodes/_registry.md`; sức mạnh có nguồn.
 - [`docs/09-kho-nhan-vat.md`](docs/09-kho-nhan-vat.md): chỉ nhân vật nổi tiếng trong thần thoại / truyền thuyết / truyền thuyết đô thị **phương Tây, Ai Cập cổ, Lưỡng Hà + Nhật Bản**.
+- [`docs/10-camera-moves.md`](docs/10-camera-moves.md): góc máy + 3 chuyển động chữ ký **PULL BACK · DOLLY ZOOM · CRANE + LAND** (`pullback`/`dolly`/`crane`), định mức mỗi tập.
 - Engine: [`tools/anim/README.md`](tools/anim/README.md). **Tập mẫu chuẩn: `episodes/apep-vs-thor/`** (tempo vừa, monster khổng lồ, đủ 3 cổng); cấu trúc tối giản: `tools/anim/demo/sakuga_demo.js`.
 
 Thiết kế đội agent: [`docs/06-dan-nhac-agent.md`](docs/06-dan-nhac-agent.md).
@@ -39,7 +40,7 @@ Mọi tập nằm trong `episodes/<slug>/`. Agent trao đổi qua file, không q
 | Hook + mở đầu | Hook 0–3 s in medias res (khung có thật trong trận) + "WHO SURVIVES?" + tua ngược; Split-Roll có 2 màn tự giới thiệu ngôi thứ nhất ~5 s (thực thể gì, nguồn gốc, quyền năng), 2–3 góc máy mỗi màn, VS + "WHO WINS? COMMENT" |
 | Mạch lạc + tempo | Lời dẫn liền ý có từ nối, ~200–240 từ cho 85–100 s, mỗi câu ≤ 1 từ khóa `*...*` |
 | Lore + sức mạnh + xung đột | Đúng tổ hợp A/B/C; guardian có giới hạn có nguồn bị khai thác, đòn quyết định dựa điểm yếu đã cài (docs/07 mục 4); mỗi bên ≥ 3 sức mạnh có nguồn, mỗi lần khoe là chuỗi 2–4 cảnh theo công thức loại sức mạnh (mục 10); chi tiết sáng tạo ghi "(story)" |
-| Phân cảnh Sakuga | 50–60 cảnh (~1.6–1.8 s/cảnh), một chiến trường duy nhất (địa hình monster trồi lên), mọi shot có push+pan, whip-pan theo hướng đạn, slow-mo + crash-zoom ở đòn kết, 180° |
+| Phân cảnh Sakuga | 50–60 cảnh (~1.6–1.8 s/cảnh), một chiến trường duy nhất (địa hình monster trồi lên), mọi shot có push+pan, có PULL BACK + DOLLY ZOOM + CRANE + LAND đúng định mức docs/10, whip-pan theo hướng đạn, slow-mo + crash-zoom ở đòn kết, 180° |
 | Bé + thoại + kết + an toàn | Bé chạy ra khỏi khung khi guardian chắn đòn đầu rồi bị ẩn suốt 1v1, chỉ cắt về chỗ nấp khi có biến cố và lúc kết, không máu; thoại đúng mục 6 (intro công thức, thoại cuối gài lore, thì thầm ≤ 5 từ); cú lửng 3 nhịp, dựa lore, lộ diện bằng hình (mục 7) |
 
 ## Cổng 3: mốc bắt buộc phải xem
